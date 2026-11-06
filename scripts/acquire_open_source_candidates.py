@@ -13,6 +13,9 @@ SOURCES=[
  {"id":"HuggingFaceTB/cosmopedia","config":"auto_math_text","license":"Apache-2.0","limit":5000,"fields":["text","prompt"],"caveat":"Verify per-config card and source lineage; synthetic quality requires audit."},
  {"id":"HuggingFaceTB/smollm-corpus","config":"cosmopedia-v2","license":"ODC-By-1.0","limit":5000,"fields":["text","prompt"],"caveat":"Synthetic data seeded from web/educational sources; quality and source-derived risks require audit."},
  {"id":"CohereLabs/aya_dataset","config":"default","license":"Apache-2.0","verify_license_tag":True,"limit":5000,"fields":["inputs","targets"],"caveat":"Official card states Apache-2.0 for any purpose. Human annotations and re-annotations; default config only. Do not load demographics config or user_id. Retain language and annotation_type; inspect PII and upstream prompt lineage."},
+ {"id":"philippesaade/wikidata","config":None,"license":"CC0-1.0","verify_license_tag":True,"limit":5000,"fields":["id","labels","descriptions"],"caveat":"Wikidata structured data is CC0. Keep only labels/descriptions, not linked Wikipedia article text or image assets."},
+ {"id":"common-pile/pubmed_filtered","config":None,"license":"per-document CC-BY-4.0 or CC0-1.0 only","verify_license_tags_any":["license:cc0-1.0","license:cc-by-4.0"],"license_filter":["creativecommons.org/licenses/by/4.0/","creativecommons.org/publicdomain/zero/1.0/"],"limit":5000,"fields":["text"],"caveat":"Common Pile warns of license metadata errors. Require row-level metadata.license allowlist, preserve article URL/authors/license, and exclude CC-BY-SA, NC, ND and unknown licenses."},
+ {"id":"common-pile/stackexchange","config":None,"license":"per-document CC-BY-SA-4.0 only","license_filter":["creativecommons.org/licenses/by-sa/4.0/"],"limit":5000,"fields":["text"],"caveat":"Per-document license required; dataset may contain CC-BY-SA 2.5/3.0 and licensing metadata errors. Only exact 4.0 records are candidates; preserve authors, URL, site and license. Share-alike model implications need separate legal review."},
 ]
 EMAIL=re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b")
 PHONE=re.compile(r"(?<!\d)(?:\+?\d[\d .()/-]{7,}\d)(?!\d)")
@@ -27,23 +30,34 @@ def main():
   repo=source["id"]; info=api.dataset_info(repo); revision=info.sha
   tags=set(info.tags or [])
   expected_tag="license:"+source["license"].lower()
-  license_tag_verified=expected_tag in tags
+  expected_any=set(source.get("verify_license_tags_any",[]))
+  license_tag_verified=(expected_tag in tags) if source.get("verify_license_tag") else (bool(expected_any & tags) if expected_any else None)
   if source.get("verify_license_tag") and not license_tag_verified:
    raise RuntimeError(f"{repo}: expected official Hub tag {expected_tag}; found {sorted(tags)}")
+  if expected_any and not license_tag_verified:
+   raise RuntimeError(f"{repo}: none of required official Hub license tags found: {sorted(expected_any)}; found {sorted(tags)}")
   cfg=source["config"]
   ds=load_dataset(repo,cfg,split="train",streaming=True,revision=revision)
   target=OUT/(repo.replace("/","__")+".jsonl")
   seen=set(); written=0; rejected=0; started=time.time()
   with target.open("w",encoding="utf-8") as f:
    for row in ds:
+    row_metadata=row.get("metadata",{}) if isinstance(row.get("metadata",{}),dict) else {}
+    row_license=str(row_metadata.get("license",""))
+    allowed=source.get("license_filter",[])
+    if allowed and not any(token in row_license.lower() for token in allowed):
+     rejected+=1; continue
     chunks=[str(row[k]).strip() for k in source["fields"] if row.get(k)]
     body="\n\n".join(x for x in chunks if x)
     normalized=re.sub(r"\s+"," ",body).strip()
     if len(body)<160 or len(body)>200000 or normalized in seen or EMAIL.search(body) or PHONE.search(body):
      rejected+=1; continue
     seen.add(normalized)
+    provenance={k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length","id","source") if k in row}
+    for k in ("license","url","authors","site","journal","provenance"):
+     if k in row_metadata: provenance["record_"+k]=row_metadata[k]
     record={"text":body,"source":repo,"revision":revision,"config":cfg or "default",
-            "license":source["license"],"source_metadata":{k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length") if k in row}}
+            "license":row_license or source["license"],"source_metadata":provenance}
     f.write(json.dumps(record,ensure_ascii=False)+"\n"); written+=1
     if written>=source["limit"]: break
   if written<source["limit"]//2: raise RuntimeError(f"{repo}: only {written} usable rows")
