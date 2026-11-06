@@ -99,7 +99,7 @@ def main():
         before = json.loads(Path("incoming/holdout-before.json").read_text())
         previous_losses = checkpoint.get("loss_tail", [])
         Path("out/holdout-before.json").write_text(
-            json.dumps(before, ensure_ascii=False, indent=2) + "\\n"
+            json.dumps(before, ensure_ascii=False, indent=2) + "\n"
         )
     else:
         # Deliberate one-time optimizer reset at the batch-regime transition.
