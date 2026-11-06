@@ -18,13 +18,17 @@ def main():
   cpus=sorted(os.sched_getaffinity(0))
   if cpus: os.sched_setaffinity(0,set(cpus[:max(1,len(cpus)//2)])); affinity=True
  Path("out").mkdir(parents=True,exist_ok=True)
+ ck=torch.load("incoming/checkpoint.pt",map_location="cpu",weights_only=False)
+ if int(ck.get("step",-1))!=2600: raise RuntimeError("Expected exact step-2600 checkpoint")
+ seed=int(ck.get("seed",20261106))
+ torch.manual_seed(seed+2600); np.random.seed((seed+2600)%(2**32-1))
  plan=Path("out/batch-plan.pt")
  if a.create_plan:
   corpus,info=build_corpus(Path("incoming/ronin-ia-train.zip"),Path("incoming/GLOBAL-CORPUS-AUDIT.json"))
  else:
   info=json.load(open("incoming/baseline.json"))["corpus"]
  if a.create_plan:
-  rng=random.Random(20261106+2600); names=list(corpus); weights=[len(corpus[x])**.5 for x in names]; batches=[]
+  rng=random.Random(seed+2600); names=list(corpus); weights=[len(corpus[x])**.5 for x in names]; batches=[]
   for _ in range(N):
    xs=[]; ys=[]
    for _ in range(B):
@@ -44,13 +48,14 @@ def main():
   px=torch.stack([x for x,y in batches]); py=torch.stack([y for x,y in batches])
   batches=[(px[i],py[i]) for i in range(len(px))]
  data_prep=time.perf_counter()-load0
- ck=torch.load("incoming/checkpoint.pt",map_location="cpu",weights_only=False)
- if int(ck.get("step",-1))!=2600: raise RuntimeError("Expected exact step-2600 checkpoint")
  cfg=ModelConfig(**ck["model_config"]); model=RoninLM(cfg); model.load_state_dict(ck["model"],strict=True)
  if model.parameter_count!=500102144: raise RuntimeError(f"Unexpected parameter count {model.parameter_count}")
  if v=="torch-compile": model=torch.compile(model,backend="inductor",fullgraph=False)
  optkw={"foreach":True} if v=="adamw-foreach" else {}
- opt=torch.optim.AdamW(model.parameters(),lr=1e-5*(40**.5),betas=(.9,.999),weight_decay=.01,eps=1e-8,**optkw)
+ peak_lr=1e-5*(40**.5)
+ opt=torch.optim.AdamW(model.parameters(),lr=peak_lr,betas=(.9,.999),weight_decay=.01,eps=1e-8,**optkw)
+ scheduler=torch.optim.lr_scheduler.LambdaLR(opt,lambda step:min(1.0,(step+1)/200))
+ lr_used=opt.param_groups[0]["lr"]
  if v=="mkldnn-disabled": torch.backends.mkldnn.enabled=False
  model.train(); opt.zero_grad(set_to_none=True); losses=[]; cpu0=time.process_time(); t0=time.perf_counter()
  for item in batches:
@@ -60,10 +65,10 @@ def main():
   (loss/N).backward(); losses.append(float(loss.detach().float()))
  grad=torch.nn.utils.clip_grad_norm_(model.parameters(),1.0)
  if not torch.isfinite(grad): raise FloatingPointError("non-finite gradient")
- opt.step(); elapsed=time.perf_counter()-t0
+ opt.step(); scheduler.step(); elapsed=time.perf_counter()-t0
  if shard_pool is not None: shard_pool.shutdown(wait=True)
  with torch.no_grad(): fingerprint=float(next(model.parameters()).detach().float().reshape(-1)[:4096].sum())
- out={"variant":v,"status":"completed","checkpoint_step":2600,"optimizer_updates":1,"micro_batches":N,"tokens":N*B*C,"threads":torch.get_num_threads(),"interop_threads":torch.get_num_interop_threads(),"affinity_applied":affinity,"bf16_autocast":v=="bf16-autocast","wall_seconds":elapsed,"data_prep_seconds":data_prep,"end_to_end_seconds":elapsed+data_prep,"cpu_seconds":time.process_time()-cpu0,"tokens_per_second":N*B*C/elapsed,"mean_loss":float(np.mean(losses)),"first_loss":losses[0],"last_loss":losses[-1],"grad_norm":float(grad),"parameter_fingerprint":fingerprint,"peak_rss_mb":resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,"corpus":info}
+ out={"variant":v,"status":"completed","checkpoint_step":2600,"optimizer_updates":1,"micro_batches":N,"tokens":N*B*C,"threads":torch.get_num_threads(),"interop_threads":torch.get_num_interop_threads(),"affinity_applied":affinity,"bf16_autocast":v=="bf16-autocast","lr_used":lr_used,"peak_lr":peak_lr,"warmup_optimizer_steps":200,"wall_seconds":elapsed,"data_prep_seconds":data_prep,"end_to_end_seconds":elapsed+data_prep,"cpu_seconds":time.process_time()-cpu0,"tokens_per_second":N*B*C/elapsed,"mean_loss":float(np.mean(losses)),"first_loss":losses[0],"last_loss":losses[-1],"grad_norm":float(grad),"parameter_fingerprint":fingerprint,"peak_rss_mb":resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,"corpus":info}
  if v=="inference-mode-eval":
   from heretic_train_real_corpus_250k import evaluate
   t=time.perf_counter()
