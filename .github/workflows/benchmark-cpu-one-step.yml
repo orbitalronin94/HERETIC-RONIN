@@ -34,6 +34,7 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
+          cache-dependency-path: requirements-cpu-benchmark.txt
       - name: Fetch and verify exact checkpoint, train data and signed audit
         env:
           GH_TOKEN: ${{ github.token }}
@@ -109,19 +110,18 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
+          cache-dependency-path: requirements-cpu-benchmark.txt
       - uses: actions/download-artifact@v4
         with:
           name: heretic-cpu-baseline-${{ github.run_id }}
           path: incoming/baseline
-      - name: Fetch identical checkpoint, data and audit
+      - name: Fetch identical step-2600 checkpoint and shared baseline batch plan
         env:
           GH_TOKEN: ${{ github.token }}
           SOURCE_RUN_ID: ${{ inputs.source_run_id }}
-          AUDIT_RUN_ID: ${{ inputs.audit_run_id }}
-          TRAIN_ARTIFACT_ID: ${{ inputs.train_artifact_id }}
         run: |
           set -euo pipefail
-          mkdir -p incoming/checkpoint incoming/audit
+          mkdir -p incoming/checkpoint
           curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${SOURCE_RUN_ID}/artifacts" -o incoming/artifacts.json
           python - <<'PY'
           import json
@@ -132,24 +132,8 @@ jobs:
           curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/$(cat incoming/checkpoint-id)/zip" -o incoming/checkpoint.zip
           unzip -q incoming/checkpoint.zip -d incoming/checkpoint
           cp "$(find incoming/checkpoint -name checkpoint.pt -print -quit)" incoming/checkpoint.pt
-          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/${TRAIN_ARTIFACT_ID}/zip" -o incoming/ronin-ia-train.zip
-          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${AUDIT_RUN_ID}/artifacts" -o incoming/audits.json
-          python - <<'PY'
-          import json,os
-          d=json.load(open("incoming/audits.json")); wanted="heretic-global-corpus-audit-"+os.environ["AUDIT_RUN_ID"]
-          a=[x for x in d["artifacts"] if x["name"]==wanted and not x["expired"]]
-          assert len(a)==1
-          open("incoming/audit-id","w").write(str(a[0]["id"]))
-          PY
-          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/$(cat incoming/audit-id)/zip" -o incoming/audit.zip
-          unzip -q incoming/audit.zip -d incoming/audit
-          cp "$(find incoming/audit -name GLOBAL-CORPUS-AUDIT.json -print -quit)" incoming/GLOBAL-CORPUS-AUDIT.json
           cp incoming/baseline/batch-plan.pt incoming/batch-plan.pt
           cp incoming/baseline/baseline.json incoming/baseline.json
-          python - <<'PY'
-          import json
-          a=json.load(open("incoming/GLOBAL-CORPUS-AUDIT.json")); assert a.get("training_authorized") is True
-          PY
       - name: Install dependencies and model implementation
         run: |
           python -m pip install --upgrade pip
