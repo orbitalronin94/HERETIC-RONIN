@@ -1,0 +1,49 @@
+name: HERETIC — acquire pinned open-source corpus candidates
+
+on:
+  push:
+    branches: [main, experiment/500m-distilled-10k-all-corpus]
+    paths:
+      - ".github/workflows/acquire-open-source-candidates.yml"
+      - "scripts/acquire_open_source_candidates.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: heretic-open-source-acquisition
+  cancel-in-progress: false
+
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - name: Checkout HERETIC-RONIN
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dataset streaming tools
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "datasets==4.3.0" "huggingface_hub==0.36.0" "pyarrow>=20"
+
+      - name: Stream bounded train-only slices and pin source revisions
+        run: python scripts/acquire_open_source_candidates.py
+
+      - name: Upload candidate corpus and provenance manifest
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-open-source-candidates-${{ github.run_id }}
+          path: staging/open-source-candidates/
+          if-no-files-found: error
+          compression-level: 1
+          retention-days: 90
