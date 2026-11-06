@@ -19,7 +19,7 @@ Su principio es sencillo: **experimentar sin reverencia, medir sin indulgencia**
 | Estructura | 10 shards JSONL de 5.000 filas |
 | Dominios actuales | Matemáticas, álgebra, lógica, programación, física, química, probabilidad, estadística, economía e ingeniería |
 | Naturaleza del lote actual | Sintético y procedimental; no corpus gold |
-| Herencia RONIN-IA | 286.468 documentos train scoped declarados en el inventario de origen; integración completa y gates globales aún pendientes |\n| Objetivo de biblioteca | 500 GB de datos admitidos y trazables (objetivo, aún no alcanzado) |
+| Herencia RONIN-IA | 286.464 documentos train scoped reconciliados con los artefactos exactos (el README de origen aún anuncia 286.468); integración completa y gates globales aún pendientes |\n| Objetivo de biblioteca | 500 GB de datos admitidos y trazables (objetivo, aún no alcanzado) |
 | Promoción de datos | Nunca automática por volumen |
 | Evaluación | Holdout separado; nunca se incorpora al entrenamiento |
 
@@ -121,7 +121,7 @@ El código de este repositorio se distribuye bajo MIT. Los datasets, checkpoints
 
 ### RONIN-IA: corpus que debe heredarse
 
-El inventario de origen de RONIN-IA (6-11-2026) declara **286.468 documentos train scoped y 684.738.932 bytes UTF-8**:
+El inventario de origen de RONIN-IA (6-11-2026) declara **286.464 documentos train scoped**; la cifra de 286.468 del README de origen difiere en cuatro registros NASA que el artefacto más reciente retiene por mismatch:
 
 | Fuente | Train scoped | Derechos / límite |
 |---|---:|---|
@@ -129,10 +129,10 @@ El inventario de origen de RONIN-IA (6-11-2026) declara **286.468 documentos tra
 | ScienceVerse | 7.103 | CC-BY-4.0 / CC0 por documento; atribución por DOI |
 | Mathlib4 | 8.498 | Apache-2.0; el payload exacto train todavía debe recuperarse |
 | Literatura española | 608 | Licencia por fuente; solo train |
-| NASA NTRS file-reviewed | 6 | Solo documentos individualmente revisados |
+| NASA NTRS file-reviewed | 2 train (+4 retenidos) | Solo payloads cuyo hash/bytes coinciden con la atestación |
 | Papers propios | 9 | Autorización para entrenamiento interno; no implica redistribución |
 
-Estos 286.468 documentos son **elegibles por partición y manifiesto de origen**, no una autorización global ya superada. En el último estado auditado, G-0 global seguía FAIL y los controles globales de near-duplicates y contaminación de holdout estaban pendientes. El importador actual solo materializa una parte del inventario: no se debe declarar heredada toda la biblioteca hasta que el artefacto incluya los 8.498 registros Mathlib4 y los seis NASA revisados, con sus hashes originales. El estado y los bloqueos exactos se mantienen en [data/imports/README.md](data/imports/README.md).
+Estos 286.464 documentos son **elegibles por partición y manifiesto de origen**, no una autorización global ya superada. En el último estado auditado, G-0 global seguía FAIL y los controles globales de near-duplicates y contaminación de holdout estaban pendientes. El importador incorpora ahora los 8.498 registros Mathlib4 del artefacto train-only verificado y los dos NASA train exactos. Cuatro NASA siguen retenidos por mismatch de atestación/payload; no se fuerzan a train. El estado y los bloqueos exactos se mantienen en [data/imports/README.md](data/imports/README.md).
 
 **Regla de entrenamiento:** se heredan todas las particiones train que superen sus gates; validation, test y holdout permanecen aislados. No se reconstruyen splits perdidos a partir del dataset upstream ni se sustituyen hashes por otros calculados después.
 
