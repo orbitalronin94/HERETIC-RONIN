@@ -44,7 +44,9 @@ jobs:
         run: |
           set -euo pipefail
           git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git ronin-source
-          git -C ronin-source sparse-checkout set ronin scripts/evaluate_mmlu_pro.py
+          # Sparse-checkout in cone mode accepts directories, not individual files.
+          # Include the scripts directory so evaluate_mmlu_pro.py is present.
+          git -C ronin-source sparse-checkout set ronin scripts
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -67,6 +69,7 @@ jobs:
           df -h .
           test "$(find data/drosophila/parts -maxdepth 1 -name '*_5000.jsonl' | wc -l)" -eq 10
           test "$(find incoming/student-artifact -name 'student-500m-step-00000100.pt' | wc -l)" -eq 1
+          test -f ronin-source/scripts/evaluate_mmlu_pro.py
           python - <<'PY'
           import torch
           from pathlib import Path
