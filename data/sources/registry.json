@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "target_admitted_examples": 500000,
+  "current_versioned_candidate_rows": 50000,
+  "counting_policy": "Count only unique rows that pass provenance, license, schema, quality, contamination and deduplication gates. Candidate and rejected rows never count toward the admitted target.",
+  "sources": [
+    {
+      "id": "meta-math/MetaMathQA",
+      "url": "https://huggingface.co/datasets/meta-math/MetaMathQA",
+      "revision": "main",
+      "reported_rows": 395000,
+      "reported_license": "MIT",
+      "status": "candidate_pending_ingestion_and_audit",
+      "domains": ["mathematics", "multi-step reasoning"],
+      "language": ["en"],
+      "known_lineage": "Augmented from GSM8K and MATH training sets; source card states that test sets were not used.",
+      "required_checks": [
+        "pin immutable source revision and verify license file at that revision",
+        "download train split only",
+        "deduplicate against existing Drosophila shards and all declared upstream sources",
+        "audit source/type distribution and repeated templates",
+        "validate answer/solution completeness and mathematical consistency on a stratified sample",
+        "exclude any overlap with local holdouts"
+      ],
+      "count_toward_admitted_target": false
+    },
+    {
+      "id": "AI-MO/NuminaMath-CoT",
+      "url": "https://huggingface.co/datasets/AI-MO/NuminaMath-CoT",
+      "revision": "main",
+      "reported_rows": 859608,
+      "reported_license": "conflicting metadata across revisions",
+      "status": "blocked_pending_license_resolution",
+      "domains": ["mathematics", "competition reasoning"],
+      "language": ["en"],
+      "known_lineage": "Dataset card reports source aggregation including GSM8K, MATH, olympiad, forum, translated and synthetic subsets.",
+      "required_checks": [
+        "resolve license discrepancy against an immutable upstream revision and all source materials",
+        "inspect source breakdown and identify duplicate/overlapping source datasets",
+        "train split only; never import test split",
+        "audit OCR, translation, synthetic subsets and mathematical correctness",
+        "exclude any overlap with local holdouts"
+      ],
+      "count_toward_admitted_target": false
+    },
+    {
+      "id": "openai/gsm8k",
+      "url": "https://huggingface.co/datasets/openai/gsm8k",
+      "revision": "main",
+      "reported_rows": 7473,
+      "reported_license": "MIT",
+      "status": "reference_and_overlap_audit_only",
+      "domains": ["mathematics", "grade-school word problems"],
+      "language": ["en"],
+      "known_lineage": "MetaMathQA declares GSM8K training data among its augmentation sources.",
+      "required_checks": [
+        "use only train split for any future ingestion",
+        "compare exact and semantic overlap with MetaMathQA before counting",
+        "keep test split outside all training and curation outputs"
+      ],
+      "count_toward_admitted_target": false
+    },
+    {
+      "id": "nickrosh/Evol-Instruct-Code-80k-v1",
+      "url": "https://huggingface.co/datasets/nickrosh/Evol-Instruct-Code-80k-v1",
+      "revision": "main",
+      "reported_rows": 78264,
+      "reported_license": "CC-BY-NC-SA-4.0",
+      "status": "excluded_noncommercial_sharealike",
+      "domains": ["programming"],
+      "language": ["en"],
+      "count_toward_admitted_target": false
+    },
+    {
+      "id": "HuggingFaceH4/CodeAlpaca_20K",
+      "url": "https://huggingface.co/datasets/HuggingFaceH4/CodeAlpaca_20K",
+      "revision": "main",
+      "reported_rows": 20022,
+      "reported_license": "ambiguous cc metadata",
+      "status": "blocked_pending_license_clarification",
+      "domains": ["programming"],
+      "language": ["en"],
+      "count_toward_admitted_target": false
+    }
+  ]
+}
