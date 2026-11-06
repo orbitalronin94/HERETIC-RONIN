@@ -152,6 +152,14 @@ La ampliación no se limita a fuentes sintéticas ni a Common Crawl. Se buscará
 | [Wikipedia dumps](https://dumps.wikimedia.org/) | Enciclopedia multilingüe | CC BY-SA / GFDL según contenido y versión | Conservar atribución, historial/licencia y obligaciones share-alike |
 | [Project Gutenberg](https://www.gutenberg.org/) | Literatura y libros, principalmente inglés | Dominio público en EE. UU. para la mayoría; revisar país y aviso por obra | Obras individualmente verificadas |
 
+**Primera adquisición ejecutada:** [run 42283763295](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42283763295) descargó 20.000 filas train de cuatro fuentes, con 97.008.625 bytes de texto y un artefacto de 36.722.816 bytes:
+- FineWeb-Edu: 5.000 documentos.
+- OpenWebMath: 5.000 documentos.
+- Cosmopedia v0.1 (`auto_math_text`): 5.000 documentos.
+- Cosmopedia v2: 5.000 documentos.
+
+Las cuatro revisiones inmutables y los SHA-256 están en `data/sources/registry.json` y en el artefacto del run. La comprobación local inicial encontró 0 duplicados exactos entre esas 20.000 filas y 0 coincidencias exactas con las 120 preguntas del holdout. **No es una admisión:** la near-deduplicación, la auditoría de benchmark, la revisión humana y la comprobación de derechos por contenido siguen pendientes; el manifiesto marca `training_authorized=false`.
+
 La licencia de una colección **no borra los derechos de cada documento**. ODC-By no convierte automáticamente cada página web en obra libre; Common Pile no tiene una licencia universal; The Stack conserva licencias por archivo. Ningún candidato cuenta como admitido por aparecer en esta tabla. La fuente primaria, su revisión inmutable, split, atribución y SHA-256 deben quedar registrados antes de usarlo.
 
 ### Plan de entrenamiento de 10.000 pasos del estudiante destilado 500M
