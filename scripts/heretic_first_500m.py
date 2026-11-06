@@ -139,7 +139,7 @@ def main() -> None:
         device="cpu",
         checkpoint_dir=checkpoint_dir,
         metrics_path=metrics_path,
-        optimizer_mode="foreach",
+        optimizer_mode="default",
     )
     report = {
         "experiment": "heretic-500m-first-100-steps",
