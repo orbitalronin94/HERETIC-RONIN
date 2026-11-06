@@ -1,0 +1,137 @@
+name: HERETIC — first 500M run + instructor acquisition
+
+on:
+  push:
+    paths:
+      - ".github/workflows/first-500m-and-instructor.yml"
+      - "scripts/heretic_first_500m.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: heretic-first-500m-and-instructor
+  cancel-in-progress: false
+
+jobs:
+  instructor:
+    name: Acquire Qwen3.5-4B instructor (Q4_K_M)
+    runs-on: ubuntu-26.04
+    timeout-minutes: 180
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Download pinned Qwen3.5-4B GGUF and verify publisher checksum
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade "huggingface_hub==0.36.0"
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          from huggingface_hub import HfApi, hf_hub_download
+
+          repo = "SoAIHQ/Qwen3.5-4B-GGUF"
+          filename = "Qwen3.5-4B-Q4_K_M.gguf"
+          expected = "2ebe6eb67cb92adeffc7073c48dd4e3baf79465ac650793dc751cad2b29cf219"
+          info = HfApi().model_info(repo)
+          revision = info.sha
+          model_path = Path(hf_hub_download(
+              repo_id=repo, filename=filename, revision=revision,
+              local_dir="instructor/qwen3.5-4b"
+          ))
+          actual = hashlib.sha256(model_path.read_bytes()).hexdigest()
+          if actual != expected:
+              raise SystemExit(f"SHA256 mismatch: {actual}")
+          metadata = {
+              "role": "teacher/instructor",
+              "repo_id": repo,
+              "revision": revision,
+              "file": filename,
+              "bytes": model_path.stat().st_size,
+              "sha256": actual,
+              "quantization": "Q4_K_M",
+              "parameters": "4B-class",
+              "license": "Apache-2.0",
+              "source_model": "Qwen/Qwen3.5-4B",
+              "source_model_revision": "851bf6e806",
+              "notes": "GGUF text inference weights; no mmproj file downloaded because this first distillation stage is text-only."
+          }
+          Path("instructor").mkdir(exist_ok=True)
+          Path("instructor/INSTRUCTOR.json").write_text(
+              json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
+          Path("instructor/INSTRUCTOR-SHA256SUMS").write_text(
+              f"{actual}  {filename}\n", encoding="utf-8"
+          )
+          print(json.dumps(metadata, ensure_ascii=False, indent=2))
+          PY
+      - name: Upload verified instructor
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-instructor-qwen35-4b-q4km
+          path: instructor/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 90
+
+  student:
+    name: Train 500M student for 100 steps
+    runs-on: ubuntu-26.04
+    timeout-minutes: 360
+    env:
+      OMP_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - name: Checkout HERETIC-RONIN
+        uses: actions/checkout@v5
+      - name: Checkout RONIN-IA model implementation and admitted corpus
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git ronin-source
+          git -C ronin-source sparse-checkout set ronin data/datasets/admitted
+          mkdir -p payload/data/datasets
+          cp -a ronin-source/data/datasets/admitted payload/data/datasets/
+          echo "Admitted payload inventory:"
+          find payload/data/datasets/admitted -type f | wc -l
+          du -sh payload/data/datasets/admitted
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Install CPU PyTorch
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.2"
+      - name: Verify runner budget and model parameter count
+        run: |
+          free -h
+          df -h .
+          PYTHONPATH=ronin-source python - <<'PY'
+          from ronin.config import ModelConfig
+          from ronin.models.transformer import RoninLM
+          cfg = ModelConfig(vocab_size=256, context_length=128, n_layers=39, n_heads=16, d_model=1024, d_ff=2806)
+          model = RoninLM(cfg)
+          print("500M student parameters:", model.parameter_count)
+          assert model.parameter_count == 500_102_144
+          del model
+          PY
+      - name: Execute first 100 steps on admitted corpus
+        env:
+          PYTHONPATH: ronin-source
+        run: python scripts/heretic_first_500m.py
+      - name: Upload 500M student checkpoint and metrics
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-student-500m-first-100-steps
+          path: reports/first-500m/
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 90
