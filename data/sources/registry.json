@@ -456,9 +456,9 @@
     {
       "id": "HuggingFaceFW/fineweb-edu",
       "url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu",
-      "revision": "pin immutable Hub commit before acquisition",
+      "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
       "reported_license": "ODC-By-1.0",
-      "status": "candidate_not_downloaded",
+      "status": "candidate_downloaded_pending_global_audit",
       "domains": [
         "general education",
         "science",
@@ -476,7 +476,11 @@
         "deduplicate against FineWeb/FineWeb-2 and all local corpora",
         "audit language, quality, PII, safety and benchmark contamination"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "downloaded_rows": 5000,
+      "downloaded_text_bytes": 21423171,
+      "downloaded_sha256": "d76e3210e05e9ff35dfb7293bbe719e87abe213ec95eb1d266af2d568050d9d0",
+      "acquisition_run": 42283763295
     },
     {
       "id": "HuggingFaceFW/fineweb-2",
@@ -508,9 +512,9 @@
     {
       "id": "open-web-math/open-web-math",
       "url": "https://huggingface.co/datasets/open-web-math/open-web-math",
-      "revision": "pin immutable Hub commit before acquisition",
+      "revision": "fde8ef8de2300f5e778f56261843dab89f230815",
       "reported_license": "ODC-By-1.0; Common Crawl terms also apply",
-      "status": "candidate_not_downloaded",
+      "status": "candidate_downloaded_pending_global_audit",
       "domains": [
         "mathematics",
         "LaTeX",
@@ -527,14 +531,18 @@
         "deduplicate against Mathlib4, Drosophila and other math sources",
         "check malformed LaTeX, OCR, answer leakage and benchmark overlap"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "downloaded_rows": 5000,
+      "downloaded_text_bytes": 23306831,
+      "downloaded_sha256": "b7f717ce107609c4435ce0eb28be4fab5ff71c7a0f6dbe88f013e57627e37547",
+      "acquisition_run": 42283763295
     },
     {
       "id": "HuggingFaceTB/smollm-corpus:Cosmopedia-v2",
       "url": "https://huggingface.co/datasets/HuggingFaceTB/smollm-corpus",
-      "revision": "pin immutable Hub commit and Cosmopedia-v2 config",
+      "revision": "3ba9d605774198c5868892d7a8deda78031a781f",
       "reported_license": "ODC-By-1.0 (dataset card)",
-      "status": "candidate_not_downloaded",
+      "status": "candidate_downloaded_pending_global_audit",
       "domains": [
         "educational text",
         "textbooks",
@@ -553,7 +561,11 @@
         "audit factual correctness, repetitive templates and source-derived passages",
         "preserve card, citation and provenance"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "downloaded_rows": 5000,
+      "downloaded_text_bytes": 28353454,
+      "downloaded_sha256": "fad68d06cccf5f85f971e0830f909b0a7b64197aa1938ccd3787e20bd33a80cb",
+      "acquisition_run": 42283763295
     },
     {
       "id": "bigcode/the-stack-v1.2",
@@ -633,9 +645,9 @@
     {
       "id": "HuggingFaceTB/cosmopedia-v0.1",
       "url": "https://huggingface.co/datasets/HuggingFaceTB/cosmopedia",
-      "revision": "pin immutable Hub commit and selected config before acquisition",
+      "revision": "0ae6ec63f91742bd2d1eaef4f02232c55d719385",
       "reported_license": "Apache-2.0 (dataset card)",
-      "status": "candidate_not_downloaded",
+      "status": "candidate_downloaded_pending_global_audit",
       "domains": [
         "educational text",
         "textbooks",
@@ -654,7 +666,11 @@
         "deduplicate against FineWeb-Edu, Cosmopedia-v2 and local corpora",
         "audit factual correctness, template repetition and benchmark contamination"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "downloaded_rows": 5000,
+      "downloaded_text_bytes": 23925169,
+      "downloaded_sha256": "050b03f64c3e9976d91ff86447761174f46121c0af899004172368f61255dcc6",
+      "acquisition_run": 42283763295
     }
   ],
   "target_library_bytes": 500000000000,
