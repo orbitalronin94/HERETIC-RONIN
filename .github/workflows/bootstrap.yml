@@ -8,7 +8,6 @@ on:
 
 permissions:
   contents: read
-  actions: read
 
 concurrency:
   group: heretic-drosophila-bootstrap
@@ -39,17 +38,11 @@ jobs:
           EXPECTED_SHA256: "f3f8e2e75e418f8630372c242378a28010db83148d169d85ad3e4f73114cda9a"
         run: |
           set -euo pipefail
-          mkdir -p /tmp/ronin-artifact
           curl --fail --location --retry 3 \
-            -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/orbitalronin94/RONIN-IA/actions/artifacts/${ARTIFACT_ID}/zip" \
-            -o /tmp/ronin-artifact/model.zip
-          unzip -q /tmp/ronin-artifact/model.zip -d /tmp/ronin-artifact/unpacked
-          CHECKPOINT="$(find /tmp/ronin-artifact/unpacked -type f -name expanded-final.pt -print -quit)"
-          test -n "$CHECKPOINT"
-          ACTUAL_SHA256="$(sha256sum "$CHECKPOINT" | cut -d ' ' -f1)"
+            "https://github.com/orbitalronin94/RONIN-IA/releases/download/heretic-drosophila-100900160-2026-11-06/ronin-drosophila-100900160.pt" \
+            -o staging/weights/ronin-drosophila-100900160.pt
+          ACTUAL_SHA256="$(sha256sum staging/weights/ronin-drosophila-100900160.pt | cut -d ' ' -f1)"
           test "$ACTUAL_SHA256" = "$EXPECTED_SHA256"
-          cp "$CHECKPOINT" staging/weights/ronin-drosophila-100900160.pt
           printf '%s  %s\n' "$EXPECTED_SHA256" "ronin-drosophila-100900160.pt" > staging/weights/SHA256SUMS
 
       - name: Write bundle inventory
@@ -64,7 +57,7 @@ jobs:
           - weights/ronin-drosophila-main.json: source model manifest.
           - weights/SHA256SUMS: verified checkpoint digest.
 
-          Source: RONIN-IA Actions run 42207268776, artifact 13497987527.
+          Source: RONIN-IA release heretic-drosophila-100900160-2026-11-06.
           Checkpoint SHA-256: f3f8e2e75e418f8630372c242378a28010db83148d169d85ad3e4f73114cda9a
 
           Evaluation limits: paired 64-question MMLU-Pro screening was 5/64 before and
