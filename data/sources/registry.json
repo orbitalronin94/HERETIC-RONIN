@@ -370,10 +370,98 @@
         "do not infer external redistribution or commercial rights"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "open-thoughts/OpenThoughts3-1.2M",
+      "url": "https://huggingface.co/datasets/open-thoughts/OpenThoughts3-1.2M",
+      "revision": "4a2bcf37d10ee14b39ce78bbe6ddc21922af2b81",
+      "reported_rows": 1200000,
+      "reported_size": "59,763,369,750 bytes expanded; 28,188,197,544 bytes download per pinned card",
+      "reported_license": "Apache-2.0 declared on dataset card",
+      "status": "priority_candidate_pending_source_lineage_and_overlap_audit",
+      "domains": [
+        "mathematics",
+        "programming",
+        "science",
+        "reasoning"
+      ],
+      "language": [
+        "en"
+      ],
+      "known_lineage": "850k math, 250k code, 100k science; annotations generated with QwQ-32B. Source question datasets are described in paper/pipeline, but card metadata does not enumerate all upstream sources.",
+      "required_checks": [
+        "pin immutable dataset revision and verify README/license at that commit",
+        "enumerate upstream question sources from paper and curation pipeline and resolve source-level rights",
+        "download only train parquet shards listed by pinned card",
+        "audit benchmark contamination and overlap with local holdouts and existing math/code corpora",
+        "validate schema, reasoning completeness, correctness sample, PII and exact/near duplicates",
+        "preserve attribution and shard-level hashes"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "CohereLabs/aya_dataset",
+      "url": "https://huggingface.co/datasets/CohereLabs/aya_dataset",
+      "revision": "main; immutable Hub commit required before acquisition",
+      "reported_rows": 204000,
+      "reported_license": "Apache-2.0 declared by dataset card",
+      "status": "candidate_pending_revision_split_and_annotation_privacy_audit",
+      "domains": [
+        "multilingual instruction following",
+        "general knowledge",
+        "reasoning"
+      ],
+      "language": [
+        "65 languages; 71 including dialects/scripts"
+      ],
+      "known_lineage": "Human-annotated prompt-completion pairs curated through the Aya Open Science Initiative; card also reports annotator demographic data.",
+      "required_checks": [
+        "pin immutable Hub commit and verify payload license and files",
+        "inspect exact train/validation/test splits and exclude evaluation partitions",
+        "exclude or separately protect annotator demographic data and inspect PII",
+        "audit source-task rights, attribution and language balance",
+        "deduplicate against RONIN-IA and all holdouts",
+        "sample quality and instruction/answer correctness"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "allenai/dolma",
+      "url": "https://huggingface.co/datasets/allenai/dolma",
+      "revision": "v1_6-sample or v1_7; pin exact Hub commit and shard manifest",
+      "reported_size": "v1_6-sample approximately 16.4 GB compressed; full versions multi-terabyte",
+      "reported_license": "ODC-BY-1.0; original source terms also apply",
+      "status": "priority_candidate_for_bounded_general_text_shards",
+      "domains": [
+        "general web text",
+        "academic publications",
+        "code",
+        "books",
+        "encyclopedic material"
+      ],
+      "language": [
+        "en"
+      ],
+      "rights_caveat": "ODC-BY is a database license and does not erase source-specific rights or terms; retain provenance and attribution, and exclude sources whose terms are incompatible or unclear.",
+      "required_checks": [
+        "select bounded sample/shards and pin immutable revision",
+        "inspect source manifest and per-source terms; exclude unclear or incompatible sources",
+        "preserve source URLs, metadata, ODC attribution and opt-out removals",
+        "run language, quality, PII, safety, malware and holdout-contamination filters",
+        "cross-deduplicate with FineWeb, DCLM and current corpus",
+        "record exact compressed/expanded sizes and SHA-256"
+      ],
+      "count_toward_admitted_bytes": false
     }
   ],
   "target_library_bytes": 500000000000,
   "target_library_display": "500 GB decimal (approximately 465.7 GiB)",
   "current_local_corpus_bytes": null,
-  "storage_policy": "Do not commit multi-gigabyte corpora to Git history. Keep immutable manifests, source revisions, checksums and curation reports in Git; keep bulk data in an explicitly configured object store or dataset host. GitHub Actions runners/artifacts are for bounded staging and audit, not permanent 500 GB storage."
+  "storage_policy": "Do not commit multi-gigabyte corpora to Git history. Keep immutable manifests, source revisions, checksums and curation reports in Git; keep bulk data in an explicitly configured object store or dataset host. GitHub Actions runners/artifacts are for bounded staging and audit, not permanent 500 GB storage.",
+  "research_notes": [
+    {
+      "date": "2026-11-06",
+      "note": "Additional external sources discovered: OpenThoughts3-1.2M (Apache-2.0 declared, 1.2M train rows, source lineage still to audit); Aya (Apache-2.0 declared, 204k multilingual human annotations, privacy/splits to audit); Dolma and FineWeb (ODC-BY database license, underlying source rights remain); DCLM (CC-BY-4.0 declared, source terms and research-use conditions to audit). All remain candidates and contribute zero admitted bytes until payload, rights, split, provenance, hashes, dedup and holdout gates pass."
+    }
+  ]
 }
