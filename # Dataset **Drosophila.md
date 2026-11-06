@@ -2964,7 +2964,7 @@
 1. Identificar 10 y 2
 2. Sumar ambos valores
 3. Obtener 12
-**Supuestos:** Enteros positivos. **Verificación:** 10+2=12 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 10+2=12 ✔.
 
 ### 302 · Calcula 17×7.
 **R:** 119.
@@ -2972,7 +2972,7 @@
 1. Multiplicar 17 por 7
 2. Calcular el producto
 3. Obtener 119
-**Supuestos:** Enteros positivos. **Verificación:** 17·7=119 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 17·7=119 ✔.
 
 ### 303 · Calcula 24+12.
 **R:** 36.
@@ -2980,7 +2980,7 @@
 1. Identificar 24 y 12
 2. Sumar ambos valores
 3. Obtener 36
-**Supuestos:** Enteros positivos. **Verificación:** 24+12=36 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 24+12=36 ✔.
 
 ### 304 · Calcula 31×17.
 **R:** 527.
@@ -2988,7 +2988,7 @@
 1. Multiplicar 31 por 17
 2. Calcular el producto
 3. Obtener 527
-**Supuestos:** Enteros positivos. **Verificación:** 31·17=527 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 31·17=527 ✔.
 
 ### 305 · Calcula 38+3.
 **R:** 41.
@@ -2996,7 +2996,7 @@
 1. Identificar 38 y 3
 2. Sumar ambos valores
 3. Obtener 41
-**Supuestos:** Enteros positivos. **Verificación:** 38+3=41 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 38+3=41 ✔.
 
 ### 306 · Calcula 45×8.
 **R:** 360.
@@ -3004,7 +3004,7 @@
 1. Multiplicar 45 por 8
 2. Calcular el producto
 3. Obtener 360
-**Supuestos:** Enteros positivos. **Verificación:** 45·8=360 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 45·8=360 ✔.
 
 ### 307 · Calcula 52+13.
 **R:** 65.
@@ -3012,7 +3012,7 @@
 1. Identificar 52 y 13
 2. Sumar ambos valores
 3. Obtener 65
-**Supuestos:** Enteros positivos. **Verificación:** 52+13=65 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 52+13=65 ✔.
 
 ### 308 · Calcula 59×18.
 **R:** 1062.
@@ -3020,7 +3020,7 @@
 1. Multiplicar 59 por 18
 2. Calcular el producto
 3. Obtener 1062
-**Supuestos:** Enteros positivos. **Verificación:** 59·18=1062 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 59·18=1062 ✔.
 
 ### 309 · Calcula 66+4.
 **R:** 70.
@@ -3028,7 +3028,7 @@
 1. Identificar 66 y 4
 2. Sumar ambos valores
 3. Obtener 70
-**Supuestos:** Enteros positivos. **Verificación:** 66+4=70 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 66+4=70 ✔.
 
 ### 310 · Calcula 73×9.
 **R:** 657.
@@ -3036,7 +3036,7 @@
 1. Multiplicar 73 por 9
 2. Calcular el producto
 3. Obtener 657
-**Supuestos:** Enteros positivos. **Verificación:** 73·9=657 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 73·9=657 ✔.
 
 ### 311 · Calcula 80+14.
 **R:** 94.
@@ -3044,7 +3044,7 @@
 1. Identificar 80 y 14
 2. Sumar ambos valores
 3. Obtener 94
-**Supuestos:** Enteros positivos. **Verificación:** 80+14=94 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 80+14=94 ✔.
 
 ### 312 · Calcula 87×19.
 **R:** 1653.
@@ -3052,7 +3052,7 @@
 1. Multiplicar 87 por 19
 2. Calcular el producto
 3. Obtener 1653
-**Supuestos:** Enteros positivos. **Verificación:** 87·19=1653 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 87·19=1653 ✔.
 
 ### 313 · Calcula 14+5.
 **R:** 19.
@@ -3060,7 +3060,7 @@
 1. Identificar 14 y 5
 2. Sumar ambos valores
 3. Obtener 19
-**Supuestos:** Enteros positivos. **Verificación:** 14+5=19 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 14+5=19 ✔.
 
 ### 314 · Calcula 21×10.
 **R:** 210.
@@ -3068,7 +3068,7 @@
 1. Multiplicar 21 por 10
 2. Calcular el producto
 3. Obtener 210
-**Supuestos:** Enteros positivos. **Verificación:** 21·10=210 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 21·10=210 ✔.
 
 ### 315 · Calcula 28+15.
 **R:** 43.
@@ -3076,7 +3076,7 @@
 1. Identificar 28 y 15
 2. Sumar ambos valores
 3. Obtener 43
-**Supuestos:** Enteros positivos. **Verificación:** 28+15=43 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 28+15=43 ✔.
 
 ### 316 · Calcula 35×20.
 **R:** 700.
@@ -3084,7 +3084,7 @@
 1. Multiplicar 35 por 20
 2. Calcular el producto
 3. Obtener 700
-**Supuestos:** Enteros positivos. **Verificación:** 35·20=700 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 35·20=700 ✔.
 
 ### 317 · Calcula 42+6.
 **R:** 48.
@@ -3092,7 +3092,7 @@
 1. Identificar 42 y 6
 2. Sumar ambos valores
 3. Obtener 48
-**Supuestos:** Enteros positivos. **Verificación:** 42+6=48 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 42+6=48 ✔.
 
 ### 318 · Calcula 49×11.
 **R:** 539.
@@ -3100,7 +3100,7 @@
 1. Multiplicar 49 por 11
 2. Calcular el producto
 3. Obtener 539
-**Supuestos:** Enteros positivos. **Verificación:** 49·11=539 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 49·11=539 ✔.
 
 ### 319 · Calcula 56+16.
 **R:** 72.
@@ -3108,7 +3108,7 @@
 1. Identificar 56 y 16
 2. Sumar ambos valores
 3. Obtener 72
-**Supuestos:** Enteros positivos. **Verificación:** 56+16=72 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 56+16=72 ✔.
 
 ### 320 · Calcula 63×2.
 **R:** 126.
@@ -3116,7 +3116,7 @@
 1. Multiplicar 63 por 2
 2. Calcular el producto
 3. Obtener 126
-**Supuestos:** Enteros positivos. **Verificación:** 63·2=126 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 63·2=126 ✔.
 
 ### 321 · Calcula 70+7.
 **R:** 77.
@@ -3124,7 +3124,7 @@
 1. Identificar 70 y 7
 2. Sumar ambos valores
 3. Obtener 77
-**Supuestos:** Enteros positivos. **Verificación:** 70+7=77 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 70+7=77 ✔.
 
 ### 322 · Calcula 77×12.
 **R:** 924.
@@ -3132,7 +3132,7 @@
 1. Multiplicar 77 por 12
 2. Calcular el producto
 3. Obtener 924
-**Supuestos:** Enteros positivos. **Verificación:** 77·12=924 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 77·12=924 ✔.
 
 ### 323 · Calcula 84+17.
 **R:** 101.
@@ -3140,7 +3140,7 @@
 1. Identificar 84 y 17
 2. Sumar ambos valores
 3. Obtener 101
-**Supuestos:** Enteros positivos. **Verificación:** 84+17=101 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 84+17=101 ✔.
 
 ### 324 · Calcula 11×3.
 **R:** 33.
@@ -3148,7 +3148,7 @@
 1. Multiplicar 11 por 3
 2. Calcular el producto
 3. Obtener 33
-**Supuestos:** Enteros positivos. **Verificación:** 11·3=33 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 11·3=33 ✔.
 
 ### 325 · Calcula 18+8.
 **R:** 26.
@@ -3156,7 +3156,7 @@
 1. Identificar 18 y 8
 2. Sumar ambos valores
 3. Obtener 26
-**Supuestos:** Enteros positivos. **Verificación:** 18+8=26 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 18+8=26 ✔.
 
 ### 326 · Calcula 25×13.
 **R:** 325.
@@ -3164,7 +3164,7 @@
 1. Multiplicar 25 por 13
 2. Calcular el producto
 3. Obtener 325
-**Supuestos:** Enteros positivos. **Verificación:** 25·13=325 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 25·13=325 ✔.
 
 ### 327 · Calcula 32+18.
 **R:** 50.
@@ -3172,7 +3172,7 @@
 1. Identificar 32 y 18
 2. Sumar ambos valores
 3. Obtener 50
-**Supuestos:** Enteros positivos. **Verificación:** 32+18=50 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 32+18=50 ✔.
 
 ### 328 · Calcula 39×4.
 **R:** 156.
@@ -3180,7 +3180,7 @@
 1. Multiplicar 39 por 4
 2. Calcular el producto
 3. Obtener 156
-**Supuestos:** Enteros positivos. **Verificación:** 39·4=156 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 39·4=156 ✔.
 
 ### 329 · Calcula 46+9.
 **R:** 55.
@@ -3188,7 +3188,7 @@
 1. Identificar 46 y 9
 2. Sumar ambos valores
 3. Obtener 55
-**Supuestos:** Enteros positivos. **Verificación:** 46+9=55 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 46+9=55 ✔.
 
 ### 330 · Calcula 53×14.
 **R:** 742.
@@ -3196,7 +3196,7 @@
 1. Multiplicar 53 por 14
 2. Calcular el producto
 3. Obtener 742
-**Supuestos:** Enteros positivos. **Verificación:** 53·14=742 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 53·14=742 ✔.
 
 ### 331 · Calcula 60+19.
 **R:** 79.
@@ -3204,7 +3204,7 @@
 1. Identificar 60 y 19
 2. Sumar ambos valores
 3. Obtener 79
-**Supuestos:** Enteros positivos. **Verificación:** 60+19=79 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 60+19=79 ✔.
 
 ### 332 · Calcula 67×5.
 **R:** 335.
@@ -3212,7 +3212,7 @@
 1. Multiplicar 67 por 5
 2. Calcular el producto
 3. Obtener 335
-**Supuestos:** Enteros positivos. **Verificación:** 67·5=335 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 67·5=335 ✔.
 
 ### 333 · Calcula 74+10.
 **R:** 84.
@@ -3220,7 +3220,7 @@
 1. Identificar 74 y 10
 2. Sumar ambos valores
 3. Obtener 84
-**Supuestos:** Enteros positivos. **Verificación:** 74+10=84 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 74+10=84 ✔.
 
 ### 334 · Calcula 81×15.
 **R:** 1215.
@@ -3228,7 +3228,7 @@
 1. Multiplicar 81 por 15
 2. Calcular el producto
 3. Obtener 1215
-**Supuestos:** Enteros positivos. **Verificación:** 81·15=1215 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 81·15=1215 ✔.
 
 ### 335 · Calcula 88+20.
 **R:** 108.
@@ -3236,7 +3236,7 @@
 1. Identificar 88 y 20
 2. Sumar ambos valores
 3. Obtener 108
-**Supuestos:** Enteros positivos. **Verificación:** 88+20=108 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 88+20=108 ✔.
 
 ### 336 · Calcula 15×6.
 **R:** 90.
@@ -3244,7 +3244,7 @@
 1. Multiplicar 15 por 6
 2. Calcular el producto
 3. Obtener 90
-**Supuestos:** Enteros positivos. **Verificación:** 15·6=90 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 15·6=90 ✔.
 
 ### 337 · Calcula 22+11.
 **R:** 33.
@@ -3252,7 +3252,7 @@
 1. Identificar 22 y 11
 2. Sumar ambos valores
 3. Obtener 33
-**Supuestos:** Enteros positivos. **Verificación:** 22+11=33 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 22+11=33 ✔.
 
 ### 338 · Calcula 29×16.
 **R:** 464.
@@ -3260,7 +3260,7 @@
 1. Multiplicar 29 por 16
 2. Calcular el producto
 3. Obtener 464
-**Supuestos:** Enteros positivos. **Verificación:** 29·16=464 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 29·16=464 ✔.
 
 ### 339 · Calcula 36+2.
 **R:** 38.
@@ -3268,7 +3268,7 @@
 1. Identificar 36 y 2
 2. Sumar ambos valores
 3. Obtener 38
-**Supuestos:** Enteros positivos. **Verificación:** 36+2=38 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 36+2=38 ✔.
 
 ### 340 · Calcula 43×7.
 **R:** 301.
@@ -3276,7 +3276,7 @@
 1. Multiplicar 43 por 7
 2. Calcular el producto
 3. Obtener 301
-**Supuestos:** Enteros positivos. **Verificación:** 43·7=301 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 43·7=301 ✔.
 
 ### 341 · Calcula 50+12.
 **R:** 62.
@@ -3284,7 +3284,7 @@
 1. Identificar 50 y 12
 2. Sumar ambos valores
 3. Obtener 62
-**Supuestos:** Enteros positivos. **Verificación:** 50+12=62 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 50+12=62 ✔.
 
 ### 342 · Calcula 57×17.
 **R:** 969.
@@ -3292,7 +3292,7 @@
 1. Multiplicar 57 por 17
 2. Calcular el producto
 3. Obtener 969
-**Supuestos:** Enteros positivos. **Verificación:** 57·17=969 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 57·17=969 ✔.
 
 ### 343 · Calcula 64+3.
 **R:** 67.
@@ -3300,7 +3300,7 @@
 1. Identificar 64 y 3
 2. Sumar ambos valores
 3. Obtener 67
-**Supuestos:** Enteros positivos. **Verificación:** 64+3=67 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 64+3=67 ✔.
 
 ### 344 · Calcula 71×8.
 **R:** 568.
@@ -3308,7 +3308,7 @@
 1. Multiplicar 71 por 8
 2. Calcular el producto
 3. Obtener 568
-**Supuestos:** Enteros positivos. **Verificación:** 71·8=568 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 71·8=568 ✔.
 
 ### 345 · Calcula 78+13.
 **R:** 91.
@@ -3316,7 +3316,7 @@
 1. Identificar 78 y 13
 2. Sumar ambos valores
 3. Obtener 91
-**Supuestos:** Enteros positivos. **Verificación:** 78+13=91 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 78+13=91 ✔.
 
 ### 346 · Calcula 85×18.
 **R:** 1530.
@@ -3324,7 +3324,7 @@
 1. Multiplicar 85 por 18
 2. Calcular el producto
 3. Obtener 1530
-**Supuestos:** Enteros positivos. **Verificación:** 85·18=1530 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 85·18=1530 ✔.
 
 ### 347 · Calcula 12+4.
 **R:** 16.
@@ -3332,7 +3332,7 @@
 1. Identificar 12 y 4
 2. Sumar ambos valores
 3. Obtener 16
-**Supuestos:** Enteros positivos. **Verificación:** 12+4=16 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 12+4=16 ✔.
 
 ### 348 · Calcula 19×9.
 **R:** 171.
@@ -3340,7 +3340,7 @@
 1. Multiplicar 19 por 9
 2. Calcular el producto
 3. Obtener 171
-**Supuestos:** Enteros positivos. **Verificación:** 19·9=171 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 19·9=171 ✔.
 
 ### 349 · Calcula 26+14.
 **R:** 40.
@@ -3348,7 +3348,7 @@
 1. Identificar 26 y 14
 2. Sumar ambos valores
 3. Obtener 40
-**Supuestos:** Enteros positivos. **Verificación:** 26+14=40 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 26+14=40 ✔.
 
 ### 350 · Calcula 33×19.
 **R:** 627.
@@ -3356,7 +3356,7 @@
 1. Multiplicar 33 por 19
 2. Calcular el producto
 3. Obtener 627
-**Supuestos:** Enteros positivos. **Verificación:** 33·19=627 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 33·19=627 ✔.
 
 ### 351 · Calcula 40+5.
 **R:** 45.
@@ -3364,7 +3364,7 @@
 1. Identificar 40 y 5
 2. Sumar ambos valores
 3. Obtener 45
-**Supuestos:** Enteros positivos. **Verificación:** 40+5=45 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 40+5=45 ✔.
 
 ### 352 · Calcula 47×10.
 **R:** 470.
@@ -3372,7 +3372,7 @@
 1. Multiplicar 47 por 10
 2. Calcular el producto
 3. Obtener 470
-**Supuestos:** Enteros positivos. **Verificación:** 47·10=470 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 47·10=470 ✔.
 
 ### 353 · Calcula 54+15.
 **R:** 69.
@@ -3380,7 +3380,7 @@
 1. Identificar 54 y 15
 2. Sumar ambos valores
 3. Obtener 69
-**Supuestos:** Enteros positivos. **Verificación:** 54+15=69 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 54+15=69 ✔.
 
 ### 354 · Calcula 61×20.
 **R:** 1220.
@@ -3388,7 +3388,7 @@
 1. Multiplicar 61 por 20
 2. Calcular el producto
 3. Obtener 1220
-**Supuestos:** Enteros positivos. **Verificación:** 61·20=1220 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 61·20=1220 ✔.
 
 ### 355 · Calcula 68+6.
 **R:** 74.
@@ -3396,7 +3396,7 @@
 1. Identificar 68 y 6
 2. Sumar ambos valores
 3. Obtener 74
-**Supuestos:** Enteros positivos. **Verificación:** 68+6=74 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 68+6=74 ✔.
 
 ### 356 · Calcula 75×11.
 **R:** 825.
@@ -3404,7 +3404,7 @@
 1. Multiplicar 75 por 11
 2. Calcular el producto
 3. Obtener 825
-**Supuestos:** Enteros positivos. **Verificación:** 75·11=825 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 75·11=825 ✔.
 
 ### 357 · Calcula 82+16.
 **R:** 98.
@@ -3412,7 +3412,7 @@
 1. Identificar 82 y 16
 2. Sumar ambos valores
 3. Obtener 98
-**Supuestos:** Enteros positivos. **Verificación:** 82+16=98 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 82+16=98 ✔.
 
 ### 358 · Calcula 89×2.
 **R:** 178.
@@ -3420,7 +3420,7 @@
 1. Multiplicar 89 por 2
 2. Calcular el producto
 3. Obtener 178
-**Supuestos:** Enteros positivos. **Verificación:** 89·2=178 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 89·2=178 ✔.
 
 ### 359 · Calcula 16+7.
 **R:** 23.
@@ -3428,7 +3428,7 @@
 1. Identificar 16 y 7
 2. Sumar ambos valores
 3. Obtener 23
-**Supuestos:** Enteros positivos. **Verificación:** 16+7=23 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 16+7=23 ✔.
 
 ### 360 · Calcula 23×12.
 **R:** 276.
@@ -3436,7 +3436,7 @@
 1. Multiplicar 23 por 12
 2. Calcular el producto
 3. Obtener 276
-**Supuestos:** Enteros positivos. **Verificación:** 23·12=276 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 23·12=276 ✔.
 
 ### 361 · Calcula 30+17.
 **R:** 47.
@@ -3444,7 +3444,7 @@
 1. Identificar 30 y 17
 2. Sumar ambos valores
 3. Obtener 47
-**Supuestos:** Enteros positivos. **Verificación:** 30+17=47 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 30+17=47 ✔.
 
 ### 362 · Calcula 37×3.
 **R:** 111.
@@ -3452,7 +3452,7 @@
 1. Multiplicar 37 por 3
 2. Calcular el producto
 3. Obtener 111
-**Supuestos:** Enteros positivos. **Verificación:** 37·3=111 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 37·3=111 ✔.
 
 ### 363 · Calcula 44+8.
 **R:** 52.
@@ -3460,7 +3460,7 @@
 1. Identificar 44 y 8
 2. Sumar ambos valores
 3. Obtener 52
-**Supuestos:** Enteros positivos. **Verificación:** 44+8=52 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 44+8=52 ✔.
 
 ### 364 · Calcula 51×13.
 **R:** 663.
@@ -3468,7 +3468,7 @@
 1. Multiplicar 51 por 13
 2. Calcular el producto
 3. Obtener 663
-**Supuestos:** Enteros positivos. **Verificación:** 51·13=663 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 51·13=663 ✔.
 
 ### 365 · Calcula 58+18.
 **R:** 76.
@@ -3476,7 +3476,7 @@
 1. Identificar 58 y 18
 2. Sumar ambos valores
 3. Obtener 76
-**Supuestos:** Enteros positivos. **Verificación:** 58+18=76 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 58+18=76 ✔.
 
 ### 366 · Calcula 65×4.
 **R:** 260.
@@ -3484,7 +3484,7 @@
 1. Multiplicar 65 por 4
 2. Calcular el producto
 3. Obtener 260
-**Supuestos:** Enteros positivos. **Verificación:** 65·4=260 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 65·4=260 ✔.
 
 ### 367 · Calcula 72+9.
 **R:** 81.
@@ -3492,7 +3492,7 @@
 1. Identificar 72 y 9
 2. Sumar ambos valores
 3. Obtener 81
-**Supuestos:** Enteros positivos. **Verificación:** 72+9=81 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 72+9=81 ✔.
 
 ### 368 · Calcula 79×14.
 **R:** 1106.
@@ -3500,7 +3500,7 @@
 1. Multiplicar 79 por 14
 2. Calcular el producto
 3. Obtener 1106
-**Supuestos:** Enteros positivos. **Verificación:** 79·14=1106 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 79·14=1106 ✔.
 
 ### 369 · Calcula 86+19.
 **R:** 105.
@@ -3508,7 +3508,7 @@
 1. Identificar 86 y 19
 2. Sumar ambos valores
 3. Obtener 105
-**Supuestos:** Enteros positivos. **Verificación:** 86+19=105 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 86+19=105 ✔.
 
 ### 370 · Calcula 13×5.
 **R:** 65.
@@ -3516,7 +3516,7 @@
 1. Multiplicar 13 por 5
 2. Calcular el producto
 3. Obtener 65
-**Supuestos:** Enteros positivos. **Verificación:** 13·5=65 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 13·5=65 ✔.
 
 ### 371 · Calcula 20+10.
 **R:** 30.
@@ -3524,7 +3524,7 @@
 1. Identificar 20 y 10
 2. Sumar ambos valores
 3. Obtener 30
-**Supuestos:** Enteros positivos. **Verificación:** 20+10=30 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 20+10=30 ✔.
 
 ### 372 · Calcula 27×15.
 **R:** 405.
@@ -3532,7 +3532,7 @@
 1. Multiplicar 27 por 15
 2. Calcular el producto
 3. Obtener 405
-**Supuestos:** Enteros positivos. **Verificación:** 27·15=405 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 27·15=405 ✔.
 
 ### 373 · Calcula 34+20.
 **R:** 54.
@@ -3540,7 +3540,7 @@
 1. Identificar 34 y 20
 2. Sumar ambos valores
 3. Obtener 54
-**Supuestos:** Enteros positivos. **Verificación:** 34+20=54 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 34+20=54 ✔.
 
 ### 374 · Calcula 41×6.
 **R:** 246.
@@ -3548,7 +3548,7 @@
 1. Multiplicar 41 por 6
 2. Calcular el producto
 3. Obtener 246
-**Supuestos:** Enteros positivos. **Verificación:** 41·6=246 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 41·6=246 ✔.
 
 ### 375 · Calcula 48+11.
 **R:** 59.
@@ -3556,7 +3556,7 @@
 1. Identificar 48 y 11
 2. Sumar ambos valores
 3. Obtener 59
-**Supuestos:** Enteros positivos. **Verificación:** 48+11=59 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 48+11=59 ✔.
 
 ### 376 · Calcula 55×16.
 **R:** 880.
@@ -3564,7 +3564,7 @@
 1. Multiplicar 55 por 16
 2. Calcular el producto
 3. Obtener 880
-**Supuestos:** Enteros positivos. **Verificación:** 55·16=880 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 55·16=880 ✔.
 
 ### 377 · Calcula 62+2.
 **R:** 64.
@@ -3572,7 +3572,7 @@
 1. Identificar 62 y 2
 2. Sumar ambos valores
 3. Obtener 64
-**Supuestos:** Enteros positivos. **Verificación:** 62+2=64 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 62+2=64 ✔.
 
 ### 378 · Calcula 69×7.
 **R:** 483.
@@ -3580,7 +3580,7 @@
 1. Multiplicar 69 por 7
 2. Calcular el producto
 3. Obtener 483
-**Supuestos:** Enteros positivos. **Verificación:** 69·7=483 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 69·7=483 ✔.
 
 ### 379 · Calcula 76+12.
 **R:** 88.
@@ -3588,7 +3588,7 @@
 1. Identificar 76 y 12
 2. Sumar ambos valores
 3. Obtener 88
-**Supuestos:** Enteros positivos. **Verificación:** 76+12=88 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 76+12=88 ✔.
 
 ### 380 · Calcula 83×17.
 **R:** 1411.
@@ -3596,7 +3596,7 @@
 1. Multiplicar 83 por 17
 2. Calcular el producto
 3. Obtener 1411
-**Supuestos:** Enteros positivos. **Verificación:** 83·17=1411 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 83·17=1411 ✔.
 
 ### 381 · Calcula 10+3.
 **R:** 13.
@@ -3604,7 +3604,7 @@
 1. Identificar 10 y 3
 2. Sumar ambos valores
 3. Obtener 13
-**Supuestos:** Enteros positivos. **Verificación:** 10+3=13 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 10+3=13 ✔.
 
 ### 382 · Calcula 17×8.
 **R:** 136.
@@ -3612,7 +3612,7 @@
 1. Multiplicar 17 por 8
 2. Calcular el producto
 3. Obtener 136
-**Supuestos:** Enteros positivos. **Verificación:** 17·8=136 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 17·8=136 ✔.
 
 ### 383 · Calcula 24+13.
 **R:** 37.
@@ -3620,7 +3620,7 @@
 1. Identificar 24 y 13
 2. Sumar ambos valores
 3. Obtener 37
-**Supuestos:** Enteros positivos. **Verificación:** 24+13=37 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 24+13=37 ✔.
 
 ### 384 · Calcula 31×18.
 **R:** 558.
@@ -3628,7 +3628,7 @@
 1. Multiplicar 31 por 18
 2. Calcular el producto
 3. Obtener 558
-**Supuestos:** Enteros positivos. **Verificación:** 31·18=558 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 31·18=558 ✔.
 
 ### 385 · Calcula 38+4.
 **R:** 42.
@@ -3636,7 +3636,7 @@
 1. Identificar 38 y 4
 2. Sumar ambos valores
 3. Obtener 42
-**Supuestos:** Enteros positivos. **Verificación:** 38+4=42 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 38+4=42 ✔.
 
 ### 386 · Calcula 45×9.
 **R:** 405.
@@ -3644,7 +3644,7 @@
 1. Multiplicar 45 por 9
 2. Calcular el producto
 3. Obtener 405
-**Supuestos:** Enteros positivos. **Verificación:** 45·9=405 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 45·9=405 ✔.
 
 ### 387 · Calcula 52+14.
 **R:** 66.
@@ -3652,7 +3652,7 @@
 1. Identificar 52 y 14
 2. Sumar ambos valores
 3. Obtener 66
-**Supuestos:** Enteros positivos. **Verificación:** 52+14=66 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 52+14=66 ✔.
 
 ### 388 · Calcula 59×19.
 **R:** 1121.
@@ -3660,7 +3660,7 @@
 1. Multiplicar 59 por 19
 2. Calcular el producto
 3. Obtener 1121
-**Supuestos:** Enteros positivos. **Verificación:** 59·19=1121 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 59·19=1121 ✔.
 
 ### 389 · Calcula 66+5.
 **R:** 71.
@@ -3668,7 +3668,7 @@
 1. Identificar 66 y 5
 2. Sumar ambos valores
 3. Obtener 71
-**Supuestos:** Enteros positivos. **Verificación:** 66+5=71 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 66+5=71 ✔.
 
 ### 390 · Calcula 73×10.
 **R:** 730.
@@ -3676,7 +3676,7 @@
 1. Multiplicar 73 por 10
 2. Calcular el producto
 3. Obtener 730
-**Supuestos:** Enteros positivos. **Verificación:** 73·10=730 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 73·10=730 ✔.
 
 ### 391 · Calcula 80+15.
 **R:** 95.
@@ -3684,7 +3684,7 @@
 1. Identificar 80 y 15
 2. Sumar ambos valores
 3. Obtener 95
-**Supuestos:** Enteros positivos. **Verificación:** 80+15=95 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 80+15=95 ✔.
 
 ### 392 · Calcula 87×20.
 **R:** 1740.
@@ -3692,7 +3692,7 @@
 1. Multiplicar 87 por 20
 2. Calcular el producto
 3. Obtener 1740
-**Supuestos:** Enteros positivos. **Verificación:** 87·20=1740 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 87·20=1740 ✔.
 
 ### 393 · Calcula 14+6.
 **R:** 20.
@@ -3700,7 +3700,7 @@
 1. Identificar 14 y 6
 2. Sumar ambos valores
 3. Obtener 20
-**Supuestos:** Enteros positivos. **Verificación:** 14+6=20 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 14+6=20 ✔.
 
 ### 394 · Calcula 21×11.
 **R:** 231.
@@ -3708,7 +3708,7 @@
 1. Multiplicar 21 por 11
 2. Calcular el producto
 3. Obtener 231
-**Supuestos:** Enteros positivos. **Verificación:** 21·11=231 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 21·11=231 ✔.
 
 ### 395 · Calcula 28+16.
 **R:** 44.
@@ -3716,7 +3716,7 @@
 1. Identificar 28 y 16
 2. Sumar ambos valores
 3. Obtener 44
-**Supuestos:** Enteros positivos. **Verificación:** 28+16=44 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 28+16=44 ✔.
 
 ### 396 · Calcula 35×2.
 **R:** 70.
@@ -3724,7 +3724,7 @@
 1. Multiplicar 35 por 2
 2. Calcular el producto
 3. Obtener 70
-**Supuestos:** Enteros positivos. **Verificación:** 35·2=70 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 35·2=70 ✔.
 
 ### 397 · Calcula 42+7.
 **R:** 49.
@@ -3732,7 +3732,7 @@
 1. Identificar 42 y 7
 2. Sumar ambos valores
 3. Obtener 49
-**Supuestos:** Enteros positivos. **Verificación:** 42+7=49 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 42+7=49 ✔.
 
 ### 398 · Calcula 49×12.
 **R:** 588.
@@ -3740,7 +3740,7 @@
 1. Multiplicar 49 por 12
 2. Calcular el producto
 3. Obtener 588
-**Supuestos:** Enteros positivos. **Verificación:** 49·12=588 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 49·12=588 ✔.
 
 ### 399 · Calcula 56+17.
 **R:** 73.
@@ -3748,7 +3748,7 @@
 1. Identificar 56 y 17
 2. Sumar ambos valores
 3. Obtener 73
-**Supuestos:** Enteros positivos. **Verificación:** 56+17=73 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 56+17=73 ✔.
 
 ### 400 · Calcula 63×3.
 **R:** 189.
@@ -3756,810 +3756,810 @@
 1. Multiplicar 63 por 3
 2. Calcular el producto
 3. Obtener 189
-**Supuestos:** Enteros positivos. **Verificación:** 63·3=189 ✔.
+**Supuestos:** Aritmética entera. **Verificación:** 63·3=189 ✔.
 
 
 ## BLOQUE 32 — Programación (401–500)
 
 ### 401 · ¿Cuántas iteraciones ejecuta range(10) en Python 3?
-**R:** {a}.
+**R:** 10.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 10 queda excluido
 3. Se visitan 10 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…9: 10 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…9: 10 valores ✔.
 
 ### 402 · ¿Cuántas iteraciones ejecuta range(17) en Python 3?
-**R:** {a}.
+**R:** 17.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 17 queda excluido
 3. Se visitan 17 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…16: 17 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…16: 17 valores ✔.
 
 ### 403 · ¿Cuántas iteraciones ejecuta range(24) en Python 3?
-**R:** {a}.
+**R:** 24.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 24 queda excluido
 3. Se visitan 24 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…23: 24 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…23: 24 valores ✔.
 
 ### 404 · ¿Cuántas iteraciones ejecuta range(31) en Python 3?
-**R:** {a}.
+**R:** 31.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 31 queda excluido
 3. Se visitan 31 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…30: 31 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…30: 31 valores ✔.
 
 ### 405 · ¿Cuántas iteraciones ejecuta range(38) en Python 3?
-**R:** {a}.
+**R:** 38.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 38 queda excluido
 3. Se visitan 38 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…37: 38 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…37: 38 valores ✔.
 
 ### 406 · ¿Cuántas iteraciones ejecuta range(45) en Python 3?
-**R:** {a}.
+**R:** 45.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 45 queda excluido
 3. Se visitan 45 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…44: 45 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…44: 45 valores ✔.
 
 ### 407 · ¿Cuántas iteraciones ejecuta range(52) en Python 3?
-**R:** {a}.
+**R:** 52.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 52 queda excluido
 3. Se visitan 52 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…51: 52 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…51: 52 valores ✔.
 
 ### 408 · ¿Cuántas iteraciones ejecuta range(59) en Python 3?
-**R:** {a}.
+**R:** 59.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 59 queda excluido
 3. Se visitan 59 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…58: 59 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…58: 59 valores ✔.
 
 ### 409 · ¿Cuántas iteraciones ejecuta range(66) en Python 3?
-**R:** {a}.
+**R:** 66.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 66 queda excluido
 3. Se visitan 66 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…65: 66 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…65: 66 valores ✔.
 
 ### 410 · ¿Cuántas iteraciones ejecuta range(73) en Python 3?
-**R:** {a}.
+**R:** 73.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 73 queda excluido
 3. Se visitan 73 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…72: 73 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…72: 73 valores ✔.
 
 ### 411 · ¿Cuántas iteraciones ejecuta range(80) en Python 3?
-**R:** {a}.
+**R:** 80.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 80 queda excluido
 3. Se visitan 80 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…79: 80 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…79: 80 valores ✔.
 
 ### 412 · ¿Cuántas iteraciones ejecuta range(87) en Python 3?
-**R:** {a}.
+**R:** 87.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 87 queda excluido
 3. Se visitan 87 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…86: 87 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…86: 87 valores ✔.
 
 ### 413 · ¿Cuántas iteraciones ejecuta range(14) en Python 3?
-**R:** {a}.
+**R:** 14.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 14 queda excluido
 3. Se visitan 14 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…13: 14 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…13: 14 valores ✔.
 
 ### 414 · ¿Cuántas iteraciones ejecuta range(21) en Python 3?
-**R:** {a}.
+**R:** 21.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 21 queda excluido
 3. Se visitan 21 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…20: 21 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…20: 21 valores ✔.
 
 ### 415 · ¿Cuántas iteraciones ejecuta range(28) en Python 3?
-**R:** {a}.
+**R:** 28.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 28 queda excluido
 3. Se visitan 28 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…27: 28 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…27: 28 valores ✔.
 
 ### 416 · ¿Cuántas iteraciones ejecuta range(35) en Python 3?
-**R:** {a}.
+**R:** 35.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 35 queda excluido
 3. Se visitan 35 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…34: 35 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…34: 35 valores ✔.
 
 ### 417 · ¿Cuántas iteraciones ejecuta range(42) en Python 3?
-**R:** {a}.
+**R:** 42.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 42 queda excluido
 3. Se visitan 42 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…41: 42 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…41: 42 valores ✔.
 
 ### 418 · ¿Cuántas iteraciones ejecuta range(49) en Python 3?
-**R:** {a}.
+**R:** 49.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 49 queda excluido
 3. Se visitan 49 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…48: 49 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…48: 49 valores ✔.
 
 ### 419 · ¿Cuántas iteraciones ejecuta range(56) en Python 3?
-**R:** {a}.
+**R:** 56.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 56 queda excluido
 3. Se visitan 56 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…55: 56 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…55: 56 valores ✔.
 
 ### 420 · ¿Cuántas iteraciones ejecuta range(63) en Python 3?
-**R:** {a}.
+**R:** 63.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 63 queda excluido
 3. Se visitan 63 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…62: 63 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…62: 63 valores ✔.
 
 ### 421 · ¿Cuántas iteraciones ejecuta range(70) en Python 3?
-**R:** {a}.
+**R:** 70.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 70 queda excluido
 3. Se visitan 70 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…69: 70 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…69: 70 valores ✔.
 
 ### 422 · ¿Cuántas iteraciones ejecuta range(77) en Python 3?
-**R:** {a}.
+**R:** 77.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 77 queda excluido
 3. Se visitan 77 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…76: 77 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…76: 77 valores ✔.
 
 ### 423 · ¿Cuántas iteraciones ejecuta range(84) en Python 3?
-**R:** {a}.
+**R:** 84.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 84 queda excluido
 3. Se visitan 84 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…83: 84 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…83: 84 valores ✔.
 
 ### 424 · ¿Cuántas iteraciones ejecuta range(11) en Python 3?
-**R:** {a}.
+**R:** 11.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 11 queda excluido
 3. Se visitan 11 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…10: 11 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…10: 11 valores ✔.
 
 ### 425 · ¿Cuántas iteraciones ejecuta range(18) en Python 3?
-**R:** {a}.
+**R:** 18.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 18 queda excluido
 3. Se visitan 18 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…17: 18 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…17: 18 valores ✔.
 
 ### 426 · ¿Cuántas iteraciones ejecuta range(25) en Python 3?
-**R:** {a}.
+**R:** 25.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 25 queda excluido
 3. Se visitan 25 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…24: 25 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…24: 25 valores ✔.
 
 ### 427 · ¿Cuántas iteraciones ejecuta range(32) en Python 3?
-**R:** {a}.
+**R:** 32.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 32 queda excluido
 3. Se visitan 32 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…31: 32 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…31: 32 valores ✔.
 
 ### 428 · ¿Cuántas iteraciones ejecuta range(39) en Python 3?
-**R:** {a}.
+**R:** 39.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 39 queda excluido
 3. Se visitan 39 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…38: 39 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…38: 39 valores ✔.
 
 ### 429 · ¿Cuántas iteraciones ejecuta range(46) en Python 3?
-**R:** {a}.
+**R:** 46.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 46 queda excluido
 3. Se visitan 46 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…45: 46 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…45: 46 valores ✔.
 
 ### 430 · ¿Cuántas iteraciones ejecuta range(53) en Python 3?
-**R:** {a}.
+**R:** 53.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 53 queda excluido
 3. Se visitan 53 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…52: 53 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…52: 53 valores ✔.
 
 ### 431 · ¿Cuántas iteraciones ejecuta range(60) en Python 3?
-**R:** {a}.
+**R:** 60.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 60 queda excluido
 3. Se visitan 60 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…59: 60 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…59: 60 valores ✔.
 
 ### 432 · ¿Cuántas iteraciones ejecuta range(67) en Python 3?
-**R:** {a}.
+**R:** 67.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 67 queda excluido
 3. Se visitan 67 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…66: 67 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…66: 67 valores ✔.
 
 ### 433 · ¿Cuántas iteraciones ejecuta range(74) en Python 3?
-**R:** {a}.
+**R:** 74.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 74 queda excluido
 3. Se visitan 74 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…73: 74 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…73: 74 valores ✔.
 
 ### 434 · ¿Cuántas iteraciones ejecuta range(81) en Python 3?
-**R:** {a}.
+**R:** 81.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 81 queda excluido
 3. Se visitan 81 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…80: 81 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…80: 81 valores ✔.
 
 ### 435 · ¿Cuántas iteraciones ejecuta range(88) en Python 3?
-**R:** {a}.
+**R:** 88.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 88 queda excluido
 3. Se visitan 88 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…87: 88 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…87: 88 valores ✔.
 
 ### 436 · ¿Cuántas iteraciones ejecuta range(15) en Python 3?
-**R:** {a}.
+**R:** 15.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 15 queda excluido
 3. Se visitan 15 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…14: 15 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…14: 15 valores ✔.
 
 ### 437 · ¿Cuántas iteraciones ejecuta range(22) en Python 3?
-**R:** {a}.
+**R:** 22.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 22 queda excluido
 3. Se visitan 22 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…21: 22 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…21: 22 valores ✔.
 
 ### 438 · ¿Cuántas iteraciones ejecuta range(29) en Python 3?
-**R:** {a}.
+**R:** 29.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 29 queda excluido
 3. Se visitan 29 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…28: 29 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…28: 29 valores ✔.
 
 ### 439 · ¿Cuántas iteraciones ejecuta range(36) en Python 3?
-**R:** {a}.
+**R:** 36.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 36 queda excluido
 3. Se visitan 36 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…35: 36 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…35: 36 valores ✔.
 
 ### 440 · ¿Cuántas iteraciones ejecuta range(43) en Python 3?
-**R:** {a}.
+**R:** 43.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 43 queda excluido
 3. Se visitan 43 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…42: 43 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…42: 43 valores ✔.
 
 ### 441 · ¿Cuántas iteraciones ejecuta range(50) en Python 3?
-**R:** {a}.
+**R:** 50.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 50 queda excluido
 3. Se visitan 50 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…49: 50 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…49: 50 valores ✔.
 
 ### 442 · ¿Cuántas iteraciones ejecuta range(57) en Python 3?
-**R:** {a}.
+**R:** 57.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 57 queda excluido
 3. Se visitan 57 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…56: 57 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…56: 57 valores ✔.
 
 ### 443 · ¿Cuántas iteraciones ejecuta range(64) en Python 3?
-**R:** {a}.
+**R:** 64.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 64 queda excluido
 3. Se visitan 64 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…63: 64 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…63: 64 valores ✔.
 
 ### 444 · ¿Cuántas iteraciones ejecuta range(71) en Python 3?
-**R:** {a}.
+**R:** 71.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 71 queda excluido
 3. Se visitan 71 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…70: 71 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…70: 71 valores ✔.
 
 ### 445 · ¿Cuántas iteraciones ejecuta range(78) en Python 3?
-**R:** {a}.
+**R:** 78.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 78 queda excluido
 3. Se visitan 78 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…77: 78 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…77: 78 valores ✔.
 
 ### 446 · ¿Cuántas iteraciones ejecuta range(85) en Python 3?
-**R:** {a}.
+**R:** 85.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 85 queda excluido
 3. Se visitan 85 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…84: 85 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…84: 85 valores ✔.
 
 ### 447 · ¿Cuántas iteraciones ejecuta range(12) en Python 3?
-**R:** {a}.
+**R:** 12.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 12 queda excluido
 3. Se visitan 12 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…11: 12 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…11: 12 valores ✔.
 
 ### 448 · ¿Cuántas iteraciones ejecuta range(19) en Python 3?
-**R:** {a}.
+**R:** 19.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 19 queda excluido
 3. Se visitan 19 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…18: 19 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…18: 19 valores ✔.
 
 ### 449 · ¿Cuántas iteraciones ejecuta range(26) en Python 3?
-**R:** {a}.
+**R:** 26.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 26 queda excluido
 3. Se visitan 26 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…25: 26 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…25: 26 valores ✔.
 
 ### 450 · ¿Cuántas iteraciones ejecuta range(33) en Python 3?
-**R:** {a}.
+**R:** 33.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 33 queda excluido
 3. Se visitan 33 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…32: 33 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…32: 33 valores ✔.
 
 ### 451 · ¿Cuántas iteraciones ejecuta range(40) en Python 3?
-**R:** {a}.
+**R:** 40.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 40 queda excluido
 3. Se visitan 40 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…39: 40 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…39: 40 valores ✔.
 
 ### 452 · ¿Cuántas iteraciones ejecuta range(47) en Python 3?
-**R:** {a}.
+**R:** 47.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 47 queda excluido
 3. Se visitan 47 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…46: 47 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…46: 47 valores ✔.
 
 ### 453 · ¿Cuántas iteraciones ejecuta range(54) en Python 3?
-**R:** {a}.
+**R:** 54.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 54 queda excluido
 3. Se visitan 54 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…53: 54 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…53: 54 valores ✔.
 
 ### 454 · ¿Cuántas iteraciones ejecuta range(61) en Python 3?
-**R:** {a}.
+**R:** 61.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 61 queda excluido
 3. Se visitan 61 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…60: 61 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…60: 61 valores ✔.
 
 ### 455 · ¿Cuántas iteraciones ejecuta range(68) en Python 3?
-**R:** {a}.
+**R:** 68.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 68 queda excluido
 3. Se visitan 68 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…67: 68 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…67: 68 valores ✔.
 
 ### 456 · ¿Cuántas iteraciones ejecuta range(75) en Python 3?
-**R:** {a}.
+**R:** 75.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 75 queda excluido
 3. Se visitan 75 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…74: 75 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…74: 75 valores ✔.
 
 ### 457 · ¿Cuántas iteraciones ejecuta range(82) en Python 3?
-**R:** {a}.
+**R:** 82.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 82 queda excluido
 3. Se visitan 82 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…81: 82 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…81: 82 valores ✔.
 
 ### 458 · ¿Cuántas iteraciones ejecuta range(89) en Python 3?
-**R:** {a}.
+**R:** 89.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 89 queda excluido
 3. Se visitan 89 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…88: 89 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…88: 89 valores ✔.
 
 ### 459 · ¿Cuántas iteraciones ejecuta range(16) en Python 3?
-**R:** {a}.
+**R:** 16.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 16 queda excluido
 3. Se visitan 16 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…15: 16 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…15: 16 valores ✔.
 
 ### 460 · ¿Cuántas iteraciones ejecuta range(23) en Python 3?
-**R:** {a}.
+**R:** 23.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 23 queda excluido
 3. Se visitan 23 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…22: 23 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…22: 23 valores ✔.
 
 ### 461 · ¿Cuántas iteraciones ejecuta range(30) en Python 3?
-**R:** {a}.
+**R:** 30.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 30 queda excluido
 3. Se visitan 30 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…29: 30 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…29: 30 valores ✔.
 
 ### 462 · ¿Cuántas iteraciones ejecuta range(37) en Python 3?
-**R:** {a}.
+**R:** 37.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 37 queda excluido
 3. Se visitan 37 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…36: 37 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…36: 37 valores ✔.
 
 ### 463 · ¿Cuántas iteraciones ejecuta range(44) en Python 3?
-**R:** {a}.
+**R:** 44.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 44 queda excluido
 3. Se visitan 44 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…43: 44 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…43: 44 valores ✔.
 
 ### 464 · ¿Cuántas iteraciones ejecuta range(51) en Python 3?
-**R:** {a}.
+**R:** 51.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 51 queda excluido
 3. Se visitan 51 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…50: 51 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…50: 51 valores ✔.
 
 ### 465 · ¿Cuántas iteraciones ejecuta range(58) en Python 3?
-**R:** {a}.
+**R:** 58.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 58 queda excluido
 3. Se visitan 58 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…57: 58 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…57: 58 valores ✔.
 
 ### 466 · ¿Cuántas iteraciones ejecuta range(65) en Python 3?
-**R:** {a}.
+**R:** 65.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 65 queda excluido
 3. Se visitan 65 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…64: 65 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…64: 65 valores ✔.
 
 ### 467 · ¿Cuántas iteraciones ejecuta range(72) en Python 3?
-**R:** {a}.
+**R:** 72.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 72 queda excluido
 3. Se visitan 72 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…71: 72 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…71: 72 valores ✔.
 
 ### 468 · ¿Cuántas iteraciones ejecuta range(79) en Python 3?
-**R:** {a}.
+**R:** 79.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 79 queda excluido
 3. Se visitan 79 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…78: 79 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…78: 79 valores ✔.
 
 ### 469 · ¿Cuántas iteraciones ejecuta range(86) en Python 3?
-**R:** {a}.
+**R:** 86.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 86 queda excluido
 3. Se visitan 86 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…85: 86 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…85: 86 valores ✔.
 
 ### 470 · ¿Cuántas iteraciones ejecuta range(13) en Python 3?
-**R:** {a}.
+**R:** 13.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 13 queda excluido
 3. Se visitan 13 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…12: 13 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…12: 13 valores ✔.
 
 ### 471 · ¿Cuántas iteraciones ejecuta range(20) en Python 3?
-**R:** {a}.
+**R:** 20.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 20 queda excluido
 3. Se visitan 20 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…19: 20 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…19: 20 valores ✔.
 
 ### 472 · ¿Cuántas iteraciones ejecuta range(27) en Python 3?
-**R:** {a}.
+**R:** 27.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 27 queda excluido
 3. Se visitan 27 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…26: 27 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…26: 27 valores ✔.
 
 ### 473 · ¿Cuántas iteraciones ejecuta range(34) en Python 3?
-**R:** {a}.
+**R:** 34.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 34 queda excluido
 3. Se visitan 34 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…33: 34 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…33: 34 valores ✔.
 
 ### 474 · ¿Cuántas iteraciones ejecuta range(41) en Python 3?
-**R:** {a}.
+**R:** 41.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 41 queda excluido
 3. Se visitan 41 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…40: 41 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…40: 41 valores ✔.
 
 ### 475 · ¿Cuántas iteraciones ejecuta range(48) en Python 3?
-**R:** {a}.
+**R:** 48.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 48 queda excluido
 3. Se visitan 48 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…47: 48 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…47: 48 valores ✔.
 
 ### 476 · ¿Cuántas iteraciones ejecuta range(55) en Python 3?
-**R:** {a}.
+**R:** 55.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 55 queda excluido
 3. Se visitan 55 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…54: 55 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…54: 55 valores ✔.
 
 ### 477 · ¿Cuántas iteraciones ejecuta range(62) en Python 3?
-**R:** {a}.
+**R:** 62.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 62 queda excluido
 3. Se visitan 62 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…61: 62 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…61: 62 valores ✔.
 
 ### 478 · ¿Cuántas iteraciones ejecuta range(69) en Python 3?
-**R:** {a}.
+**R:** 69.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 69 queda excluido
 3. Se visitan 69 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…68: 69 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…68: 69 valores ✔.
 
 ### 479 · ¿Cuántas iteraciones ejecuta range(76) en Python 3?
-**R:** {a}.
+**R:** 76.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 76 queda excluido
 3. Se visitan 76 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…75: 76 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…75: 76 valores ✔.
 
 ### 480 · ¿Cuántas iteraciones ejecuta range(83) en Python 3?
-**R:** {a}.
+**R:** 83.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 83 queda excluido
 3. Se visitan 83 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…82: 83 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…82: 83 valores ✔.
 
 ### 481 · ¿Cuántas iteraciones ejecuta range(10) en Python 3?
-**R:** {a}.
+**R:** 10.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 10 queda excluido
 3. Se visitan 10 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…9: 10 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…9: 10 valores ✔.
 
 ### 482 · ¿Cuántas iteraciones ejecuta range(17) en Python 3?
-**R:** {a}.
+**R:** 17.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 17 queda excluido
 3. Se visitan 17 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…16: 17 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…16: 17 valores ✔.
 
 ### 483 · ¿Cuántas iteraciones ejecuta range(24) en Python 3?
-**R:** {a}.
+**R:** 24.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 24 queda excluido
 3. Se visitan 24 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…23: 24 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…23: 24 valores ✔.
 
 ### 484 · ¿Cuántas iteraciones ejecuta range(31) en Python 3?
-**R:** {a}.
+**R:** 31.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 31 queda excluido
 3. Se visitan 31 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…30: 31 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…30: 31 valores ✔.
 
 ### 485 · ¿Cuántas iteraciones ejecuta range(38) en Python 3?
-**R:** {a}.
+**R:** 38.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 38 queda excluido
 3. Se visitan 38 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…37: 38 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…37: 38 valores ✔.
 
 ### 486 · ¿Cuántas iteraciones ejecuta range(45) en Python 3?
-**R:** {a}.
+**R:** 45.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 45 queda excluido
 3. Se visitan 45 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…44: 45 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…44: 45 valores ✔.
 
 ### 487 · ¿Cuántas iteraciones ejecuta range(52) en Python 3?
-**R:** {a}.
+**R:** 52.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 52 queda excluido
 3. Se visitan 52 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…51: 52 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…51: 52 valores ✔.
 
 ### 488 · ¿Cuántas iteraciones ejecuta range(59) en Python 3?
-**R:** {a}.
+**R:** 59.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 59 queda excluido
 3. Se visitan 59 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…58: 59 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…58: 59 valores ✔.
 
 ### 489 · ¿Cuántas iteraciones ejecuta range(66) en Python 3?
-**R:** {a}.
+**R:** 66.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 66 queda excluido
 3. Se visitan 66 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…65: 66 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…65: 66 valores ✔.
 
 ### 490 · ¿Cuántas iteraciones ejecuta range(73) en Python 3?
-**R:** {a}.
+**R:** 73.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 73 queda excluido
 3. Se visitan 73 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…72: 73 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…72: 73 valores ✔.
 
 ### 491 · ¿Cuántas iteraciones ejecuta range(80) en Python 3?
-**R:** {a}.
+**R:** 80.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 80 queda excluido
 3. Se visitan 80 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…79: 80 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…79: 80 valores ✔.
 
 ### 492 · ¿Cuántas iteraciones ejecuta range(87) en Python 3?
-**R:** {a}.
+**R:** 87.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 87 queda excluido
 3. Se visitan 87 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…86: 87 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…86: 87 valores ✔.
 
 ### 493 · ¿Cuántas iteraciones ejecuta range(14) en Python 3?
-**R:** {a}.
+**R:** 14.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 14 queda excluido
 3. Se visitan 14 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…13: 14 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…13: 14 valores ✔.
 
 ### 494 · ¿Cuántas iteraciones ejecuta range(21) en Python 3?
-**R:** {a}.
+**R:** 21.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 21 queda excluido
 3. Se visitan 21 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…20: 21 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…20: 21 valores ✔.
 
 ### 495 · ¿Cuántas iteraciones ejecuta range(28) en Python 3?
-**R:** {a}.
+**R:** 28.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 28 queda excluido
 3. Se visitan 28 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…27: 28 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…27: 28 valores ✔.
 
 ### 496 · ¿Cuántas iteraciones ejecuta range(35) en Python 3?
-**R:** {a}.
+**R:** 35.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 35 queda excluido
 3. Se visitan 35 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…34: 35 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…34: 35 valores ✔.
 
 ### 497 · ¿Cuántas iteraciones ejecuta range(42) en Python 3?
-**R:** {a}.
+**R:** 42.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 42 queda excluido
 3. Se visitan 42 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…41: 42 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…41: 42 valores ✔.
 
 ### 498 · ¿Cuántas iteraciones ejecuta range(49) en Python 3?
-**R:** {a}.
+**R:** 49.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 49 queda excluido
 3. Se visitan 49 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…48: 49 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…48: 49 valores ✔.
 
 ### 499 · ¿Cuántas iteraciones ejecuta range(56) en Python 3?
-**R:** {a}.
+**R:** 56.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 56 queda excluido
 3. Se visitan 56 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…55: 56 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…55: 56 valores ✔.
 
 ### 500 · ¿Cuántas iteraciones ejecuta range(63) en Python 3?
-**R:** {a}.
+**R:** 63.
 **Razonamiento:**
 1. La secuencia comienza en cero
-2. El límite superior queda excluido
+2. El límite superior 63 queda excluido
 3. Se visitan 63 valores
-**Supuestos:** range con un argumento entero no negativo. **Verificación:** 0…62: 63 valores ✔.
+**Supuestos:** Python 3; range con un argumento entero no negativo. **Verificación:** 0…62: 63 valores ✔.
 
 
 ## BLOQUE 33 — Lógica (501–600)
@@ -5367,800 +5367,800 @@
 
 ## BLOQUE 34 — Física (601–700)
 
-### 601 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 20.
+### 601 · Un cuerpo de 10 kg acelera a 2 m/s². ¿Qué fuerza neta actúa?
+**R:** 20 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 10 por 2
 3. Obtener 20 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 20/10=2 m/s² ✔.
 
-### 602 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 119.
+### 602 · Un cuerpo de 17 kg acelera a 7 m/s². ¿Qué fuerza neta actúa?
+**R:** 119 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 17 por 7
 3. Obtener 119 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 119/17=7 m/s² ✔.
 
-### 603 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 288.
+### 603 · Un cuerpo de 24 kg acelera a 12 m/s². ¿Qué fuerza neta actúa?
+**R:** 288 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 24 por 12
 3. Obtener 288 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 288/24=12 m/s² ✔.
 
-### 604 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 527.
+### 604 · Un cuerpo de 31 kg acelera a 17 m/s². ¿Qué fuerza neta actúa?
+**R:** 527 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 31 por 17
 3. Obtener 527 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 527/31=17 m/s² ✔.
 
-### 605 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 114.
+### 605 · Un cuerpo de 38 kg acelera a 3 m/s². ¿Qué fuerza neta actúa?
+**R:** 114 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 38 por 3
 3. Obtener 114 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 114/38=3 m/s² ✔.
 
-### 606 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 360.
+### 606 · Un cuerpo de 45 kg acelera a 8 m/s². ¿Qué fuerza neta actúa?
+**R:** 360 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 45 por 8
 3. Obtener 360 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 360/45=8 m/s² ✔.
 
-### 607 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 676.
+### 607 · Un cuerpo de 52 kg acelera a 13 m/s². ¿Qué fuerza neta actúa?
+**R:** 676 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 52 por 13
 3. Obtener 676 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 676/52=13 m/s² ✔.
 
-### 608 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1062.
+### 608 · Un cuerpo de 59 kg acelera a 18 m/s². ¿Qué fuerza neta actúa?
+**R:** 1062 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 59 por 18
 3. Obtener 1062 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1062/59=18 m/s² ✔.
 
-### 609 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 264.
+### 609 · Un cuerpo de 66 kg acelera a 4 m/s². ¿Qué fuerza neta actúa?
+**R:** 264 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 66 por 4
 3. Obtener 264 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 264/66=4 m/s² ✔.
 
-### 610 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 657.
+### 610 · Un cuerpo de 73 kg acelera a 9 m/s². ¿Qué fuerza neta actúa?
+**R:** 657 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 73 por 9
 3. Obtener 657 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 657/73=9 m/s² ✔.
 
-### 611 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1120.
+### 611 · Un cuerpo de 80 kg acelera a 14 m/s². ¿Qué fuerza neta actúa?
+**R:** 1120 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 80 por 14
 3. Obtener 1120 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1120/80=14 m/s² ✔.
 
-### 612 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1653.
+### 612 · Un cuerpo de 87 kg acelera a 19 m/s². ¿Qué fuerza neta actúa?
+**R:** 1653 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 87 por 19
 3. Obtener 1653 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1653/87=19 m/s² ✔.
 
-### 613 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 70.
+### 613 · Un cuerpo de 14 kg acelera a 5 m/s². ¿Qué fuerza neta actúa?
+**R:** 70 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 14 por 5
 3. Obtener 70 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 70/14=5 m/s² ✔.
 
-### 614 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 210.
+### 614 · Un cuerpo de 21 kg acelera a 10 m/s². ¿Qué fuerza neta actúa?
+**R:** 210 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 21 por 10
 3. Obtener 210 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 210/21=10 m/s² ✔.
 
-### 615 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 420.
+### 615 · Un cuerpo de 28 kg acelera a 15 m/s². ¿Qué fuerza neta actúa?
+**R:** 420 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 28 por 15
 3. Obtener 420 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 420/28=15 m/s² ✔.
 
-### 616 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 700.
+### 616 · Un cuerpo de 35 kg acelera a 20 m/s². ¿Qué fuerza neta actúa?
+**R:** 700 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 35 por 20
 3. Obtener 700 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 700/35=20 m/s² ✔.
 
-### 617 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 252.
+### 617 · Un cuerpo de 42 kg acelera a 6 m/s². ¿Qué fuerza neta actúa?
+**R:** 252 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 42 por 6
 3. Obtener 252 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 252/42=6 m/s² ✔.
 
-### 618 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 539.
+### 618 · Un cuerpo de 49 kg acelera a 11 m/s². ¿Qué fuerza neta actúa?
+**R:** 539 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 49 por 11
 3. Obtener 539 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 539/49=11 m/s² ✔.
 
-### 619 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 896.
+### 619 · Un cuerpo de 56 kg acelera a 16 m/s². ¿Qué fuerza neta actúa?
+**R:** 896 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 56 por 16
 3. Obtener 896 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 896/56=16 m/s² ✔.
 
-### 620 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 126.
+### 620 · Un cuerpo de 63 kg acelera a 2 m/s². ¿Qué fuerza neta actúa?
+**R:** 126 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 63 por 2
 3. Obtener 126 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 126/63=2 m/s² ✔.
 
-### 621 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 490.
+### 621 · Un cuerpo de 70 kg acelera a 7 m/s². ¿Qué fuerza neta actúa?
+**R:** 490 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 70 por 7
 3. Obtener 490 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 490/70=7 m/s² ✔.
 
-### 622 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 924.
+### 622 · Un cuerpo de 77 kg acelera a 12 m/s². ¿Qué fuerza neta actúa?
+**R:** 924 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 77 por 12
 3. Obtener 924 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 924/77=12 m/s² ✔.
 
-### 623 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1428.
+### 623 · Un cuerpo de 84 kg acelera a 17 m/s². ¿Qué fuerza neta actúa?
+**R:** 1428 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 84 por 17
 3. Obtener 1428 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1428/84=17 m/s² ✔.
 
-### 624 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 33.
+### 624 · Un cuerpo de 11 kg acelera a 3 m/s². ¿Qué fuerza neta actúa?
+**R:** 33 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 11 por 3
 3. Obtener 33 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 33/11=3 m/s² ✔.
 
-### 625 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 144.
+### 625 · Un cuerpo de 18 kg acelera a 8 m/s². ¿Qué fuerza neta actúa?
+**R:** 144 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 18 por 8
 3. Obtener 144 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 144/18=8 m/s² ✔.
 
-### 626 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 325.
+### 626 · Un cuerpo de 25 kg acelera a 13 m/s². ¿Qué fuerza neta actúa?
+**R:** 325 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 25 por 13
 3. Obtener 325 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 325/25=13 m/s² ✔.
 
-### 627 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 576.
+### 627 · Un cuerpo de 32 kg acelera a 18 m/s². ¿Qué fuerza neta actúa?
+**R:** 576 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 32 por 18
 3. Obtener 576 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 576/32=18 m/s² ✔.
 
-### 628 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 156.
+### 628 · Un cuerpo de 39 kg acelera a 4 m/s². ¿Qué fuerza neta actúa?
+**R:** 156 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 39 por 4
 3. Obtener 156 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 156/39=4 m/s² ✔.
 
-### 629 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 414.
+### 629 · Un cuerpo de 46 kg acelera a 9 m/s². ¿Qué fuerza neta actúa?
+**R:** 414 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 46 por 9
 3. Obtener 414 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 414/46=9 m/s² ✔.
 
-### 630 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 742.
+### 630 · Un cuerpo de 53 kg acelera a 14 m/s². ¿Qué fuerza neta actúa?
+**R:** 742 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 53 por 14
 3. Obtener 742 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 742/53=14 m/s² ✔.
 
-### 631 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1140.
+### 631 · Un cuerpo de 60 kg acelera a 19 m/s². ¿Qué fuerza neta actúa?
+**R:** 1140 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 60 por 19
 3. Obtener 1140 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1140/60=19 m/s² ✔.
 
-### 632 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 335.
+### 632 · Un cuerpo de 67 kg acelera a 5 m/s². ¿Qué fuerza neta actúa?
+**R:** 335 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 67 por 5
 3. Obtener 335 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 335/67=5 m/s² ✔.
 
-### 633 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 740.
+### 633 · Un cuerpo de 74 kg acelera a 10 m/s². ¿Qué fuerza neta actúa?
+**R:** 740 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 74 por 10
 3. Obtener 740 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 740/74=10 m/s² ✔.
 
-### 634 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1215.
+### 634 · Un cuerpo de 81 kg acelera a 15 m/s². ¿Qué fuerza neta actúa?
+**R:** 1215 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 81 por 15
 3. Obtener 1215 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1215/81=15 m/s² ✔.
 
-### 635 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1760.
+### 635 · Un cuerpo de 88 kg acelera a 20 m/s². ¿Qué fuerza neta actúa?
+**R:** 1760 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 88 por 20
 3. Obtener 1760 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1760/88=20 m/s² ✔.
 
-### 636 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 90.
+### 636 · Un cuerpo de 15 kg acelera a 6 m/s². ¿Qué fuerza neta actúa?
+**R:** 90 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 15 por 6
 3. Obtener 90 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 90/15=6 m/s² ✔.
 
-### 637 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 242.
+### 637 · Un cuerpo de 22 kg acelera a 11 m/s². ¿Qué fuerza neta actúa?
+**R:** 242 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 22 por 11
 3. Obtener 242 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 242/22=11 m/s² ✔.
 
-### 638 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 464.
+### 638 · Un cuerpo de 29 kg acelera a 16 m/s². ¿Qué fuerza neta actúa?
+**R:** 464 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 29 por 16
 3. Obtener 464 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 464/29=16 m/s² ✔.
 
-### 639 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 72.
+### 639 · Un cuerpo de 36 kg acelera a 2 m/s². ¿Qué fuerza neta actúa?
+**R:** 72 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 36 por 2
 3. Obtener 72 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 72/36=2 m/s² ✔.
 
-### 640 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 301.
+### 640 · Un cuerpo de 43 kg acelera a 7 m/s². ¿Qué fuerza neta actúa?
+**R:** 301 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 43 por 7
 3. Obtener 301 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 301/43=7 m/s² ✔.
 
-### 641 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 600.
+### 641 · Un cuerpo de 50 kg acelera a 12 m/s². ¿Qué fuerza neta actúa?
+**R:** 600 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 50 por 12
 3. Obtener 600 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 600/50=12 m/s² ✔.
 
-### 642 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 969.
+### 642 · Un cuerpo de 57 kg acelera a 17 m/s². ¿Qué fuerza neta actúa?
+**R:** 969 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 57 por 17
 3. Obtener 969 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 969/57=17 m/s² ✔.
 
-### 643 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 192.
+### 643 · Un cuerpo de 64 kg acelera a 3 m/s². ¿Qué fuerza neta actúa?
+**R:** 192 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 64 por 3
 3. Obtener 192 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 192/64=3 m/s² ✔.
 
-### 644 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 568.
+### 644 · Un cuerpo de 71 kg acelera a 8 m/s². ¿Qué fuerza neta actúa?
+**R:** 568 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 71 por 8
 3. Obtener 568 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 568/71=8 m/s² ✔.
 
-### 645 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1014.
+### 645 · Un cuerpo de 78 kg acelera a 13 m/s². ¿Qué fuerza neta actúa?
+**R:** 1014 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 78 por 13
 3. Obtener 1014 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1014/78=13 m/s² ✔.
 
-### 646 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1530.
+### 646 · Un cuerpo de 85 kg acelera a 18 m/s². ¿Qué fuerza neta actúa?
+**R:** 1530 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 85 por 18
 3. Obtener 1530 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1530/85=18 m/s² ✔.
 
-### 647 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 48.
+### 647 · Un cuerpo de 12 kg acelera a 4 m/s². ¿Qué fuerza neta actúa?
+**R:** 48 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 12 por 4
 3. Obtener 48 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 48/12=4 m/s² ✔.
 
-### 648 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 171.
+### 648 · Un cuerpo de 19 kg acelera a 9 m/s². ¿Qué fuerza neta actúa?
+**R:** 171 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 19 por 9
 3. Obtener 171 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 171/19=9 m/s² ✔.
 
-### 649 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 364.
+### 649 · Un cuerpo de 26 kg acelera a 14 m/s². ¿Qué fuerza neta actúa?
+**R:** 364 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 26 por 14
 3. Obtener 364 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 364/26=14 m/s² ✔.
 
-### 650 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 627.
+### 650 · Un cuerpo de 33 kg acelera a 19 m/s². ¿Qué fuerza neta actúa?
+**R:** 627 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 33 por 19
 3. Obtener 627 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 627/33=19 m/s² ✔.
 
-### 651 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 200.
+### 651 · Un cuerpo de 40 kg acelera a 5 m/s². ¿Qué fuerza neta actúa?
+**R:** 200 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 40 por 5
 3. Obtener 200 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 200/40=5 m/s² ✔.
 
-### 652 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 470.
+### 652 · Un cuerpo de 47 kg acelera a 10 m/s². ¿Qué fuerza neta actúa?
+**R:** 470 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 47 por 10
 3. Obtener 470 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 470/47=10 m/s² ✔.
 
-### 653 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 810.
+### 653 · Un cuerpo de 54 kg acelera a 15 m/s². ¿Qué fuerza neta actúa?
+**R:** 810 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 54 por 15
 3. Obtener 810 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 810/54=15 m/s² ✔.
 
-### 654 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1220.
+### 654 · Un cuerpo de 61 kg acelera a 20 m/s². ¿Qué fuerza neta actúa?
+**R:** 1220 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 61 por 20
 3. Obtener 1220 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1220/61=20 m/s² ✔.
 
-### 655 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 408.
+### 655 · Un cuerpo de 68 kg acelera a 6 m/s². ¿Qué fuerza neta actúa?
+**R:** 408 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 68 por 6
 3. Obtener 408 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 408/68=6 m/s² ✔.
 
-### 656 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 825.
+### 656 · Un cuerpo de 75 kg acelera a 11 m/s². ¿Qué fuerza neta actúa?
+**R:** 825 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 75 por 11
 3. Obtener 825 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 825/75=11 m/s² ✔.
 
-### 657 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1312.
+### 657 · Un cuerpo de 82 kg acelera a 16 m/s². ¿Qué fuerza neta actúa?
+**R:** 1312 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 82 por 16
 3. Obtener 1312 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1312/82=16 m/s² ✔.
 
-### 658 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 178.
+### 658 · Un cuerpo de 89 kg acelera a 2 m/s². ¿Qué fuerza neta actúa?
+**R:** 178 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 89 por 2
 3. Obtener 178 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 178/89=2 m/s² ✔.
 
-### 659 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 112.
+### 659 · Un cuerpo de 16 kg acelera a 7 m/s². ¿Qué fuerza neta actúa?
+**R:** 112 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 16 por 7
 3. Obtener 112 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 112/16=7 m/s² ✔.
 
-### 660 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 276.
+### 660 · Un cuerpo de 23 kg acelera a 12 m/s². ¿Qué fuerza neta actúa?
+**R:** 276 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 23 por 12
 3. Obtener 276 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 276/23=12 m/s² ✔.
 
-### 661 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 510.
+### 661 · Un cuerpo de 30 kg acelera a 17 m/s². ¿Qué fuerza neta actúa?
+**R:** 510 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 30 por 17
 3. Obtener 510 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 510/30=17 m/s² ✔.
 
-### 662 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 111.
+### 662 · Un cuerpo de 37 kg acelera a 3 m/s². ¿Qué fuerza neta actúa?
+**R:** 111 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 37 por 3
 3. Obtener 111 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 111/37=3 m/s² ✔.
 
-### 663 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 352.
+### 663 · Un cuerpo de 44 kg acelera a 8 m/s². ¿Qué fuerza neta actúa?
+**R:** 352 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 44 por 8
 3. Obtener 352 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 352/44=8 m/s² ✔.
 
-### 664 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 663.
+### 664 · Un cuerpo de 51 kg acelera a 13 m/s². ¿Qué fuerza neta actúa?
+**R:** 663 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 51 por 13
 3. Obtener 663 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 663/51=13 m/s² ✔.
 
-### 665 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1044.
+### 665 · Un cuerpo de 58 kg acelera a 18 m/s². ¿Qué fuerza neta actúa?
+**R:** 1044 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 58 por 18
 3. Obtener 1044 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1044/58=18 m/s² ✔.
 
-### 666 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 260.
+### 666 · Un cuerpo de 65 kg acelera a 4 m/s². ¿Qué fuerza neta actúa?
+**R:** 260 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 65 por 4
 3. Obtener 260 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 260/65=4 m/s² ✔.
 
-### 667 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 648.
+### 667 · Un cuerpo de 72 kg acelera a 9 m/s². ¿Qué fuerza neta actúa?
+**R:** 648 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 72 por 9
 3. Obtener 648 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 648/72=9 m/s² ✔.
 
-### 668 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1106.
+### 668 · Un cuerpo de 79 kg acelera a 14 m/s². ¿Qué fuerza neta actúa?
+**R:** 1106 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 79 por 14
 3. Obtener 1106 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1106/79=14 m/s² ✔.
 
-### 669 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1634.
+### 669 · Un cuerpo de 86 kg acelera a 19 m/s². ¿Qué fuerza neta actúa?
+**R:** 1634 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 86 por 19
 3. Obtener 1634 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1634/86=19 m/s² ✔.
 
-### 670 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 65.
+### 670 · Un cuerpo de 13 kg acelera a 5 m/s². ¿Qué fuerza neta actúa?
+**R:** 65 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 13 por 5
 3. Obtener 65 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 65/13=5 m/s² ✔.
 
-### 671 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 200.
+### 671 · Un cuerpo de 20 kg acelera a 10 m/s². ¿Qué fuerza neta actúa?
+**R:** 200 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 20 por 10
 3. Obtener 200 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 200/20=10 m/s² ✔.
 
-### 672 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 405.
+### 672 · Un cuerpo de 27 kg acelera a 15 m/s². ¿Qué fuerza neta actúa?
+**R:** 405 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 27 por 15
 3. Obtener 405 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 405/27=15 m/s² ✔.
 
-### 673 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 680.
+### 673 · Un cuerpo de 34 kg acelera a 20 m/s². ¿Qué fuerza neta actúa?
+**R:** 680 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 34 por 20
 3. Obtener 680 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 680/34=20 m/s² ✔.
 
-### 674 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 246.
+### 674 · Un cuerpo de 41 kg acelera a 6 m/s². ¿Qué fuerza neta actúa?
+**R:** 246 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 41 por 6
 3. Obtener 246 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 246/41=6 m/s² ✔.
 
-### 675 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 528.
+### 675 · Un cuerpo de 48 kg acelera a 11 m/s². ¿Qué fuerza neta actúa?
+**R:** 528 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 48 por 11
 3. Obtener 528 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 528/48=11 m/s² ✔.
 
-### 676 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 880.
+### 676 · Un cuerpo de 55 kg acelera a 16 m/s². ¿Qué fuerza neta actúa?
+**R:** 880 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 55 por 16
 3. Obtener 880 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 880/55=16 m/s² ✔.
 
-### 677 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 124.
+### 677 · Un cuerpo de 62 kg acelera a 2 m/s². ¿Qué fuerza neta actúa?
+**R:** 124 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 62 por 2
 3. Obtener 124 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 124/62=2 m/s² ✔.
 
-### 678 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 483.
+### 678 · Un cuerpo de 69 kg acelera a 7 m/s². ¿Qué fuerza neta actúa?
+**R:** 483 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 69 por 7
 3. Obtener 483 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 483/69=7 m/s² ✔.
 
-### 679 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 912.
+### 679 · Un cuerpo de 76 kg acelera a 12 m/s². ¿Qué fuerza neta actúa?
+**R:** 912 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 76 por 12
 3. Obtener 912 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 912/76=12 m/s² ✔.
 
-### 680 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1411.
+### 680 · Un cuerpo de 83 kg acelera a 17 m/s². ¿Qué fuerza neta actúa?
+**R:** 1411 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 83 por 17
 3. Obtener 1411 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1411/83=17 m/s² ✔.
 
-### 681 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 30.
+### 681 · Un cuerpo de 10 kg acelera a 3 m/s². ¿Qué fuerza neta actúa?
+**R:** 30 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 10 por 3
 3. Obtener 30 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 30/10=3 m/s² ✔.
 
-### 682 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 136.
+### 682 · Un cuerpo de 17 kg acelera a 8 m/s². ¿Qué fuerza neta actúa?
+**R:** 136 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 17 por 8
 3. Obtener 136 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 136/17=8 m/s² ✔.
 
-### 683 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 312.
+### 683 · Un cuerpo de 24 kg acelera a 13 m/s². ¿Qué fuerza neta actúa?
+**R:** 312 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 24 por 13
 3. Obtener 312 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 312/24=13 m/s² ✔.
 
-### 684 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 558.
+### 684 · Un cuerpo de 31 kg acelera a 18 m/s². ¿Qué fuerza neta actúa?
+**R:** 558 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 31 por 18
 3. Obtener 558 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 558/31=18 m/s² ✔.
 
-### 685 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 152.
+### 685 · Un cuerpo de 38 kg acelera a 4 m/s². ¿Qué fuerza neta actúa?
+**R:** 152 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 38 por 4
 3. Obtener 152 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 152/38=4 m/s² ✔.
 
-### 686 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 405.
+### 686 · Un cuerpo de 45 kg acelera a 9 m/s². ¿Qué fuerza neta actúa?
+**R:** 405 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 45 por 9
 3. Obtener 405 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 405/45=9 m/s² ✔.
 
-### 687 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 728.
+### 687 · Un cuerpo de 52 kg acelera a 14 m/s². ¿Qué fuerza neta actúa?
+**R:** 728 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 52 por 14
 3. Obtener 728 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 728/52=14 m/s² ✔.
 
-### 688 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1121.
+### 688 · Un cuerpo de 59 kg acelera a 19 m/s². ¿Qué fuerza neta actúa?
+**R:** 1121 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 59 por 19
 3. Obtener 1121 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1121/59=19 m/s² ✔.
 
-### 689 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 330.
+### 689 · Un cuerpo de 66 kg acelera a 5 m/s². ¿Qué fuerza neta actúa?
+**R:** 330 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 66 por 5
 3. Obtener 330 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 330/66=5 m/s² ✔.
 
-### 690 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 730.
+### 690 · Un cuerpo de 73 kg acelera a 10 m/s². ¿Qué fuerza neta actúa?
+**R:** 730 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 73 por 10
 3. Obtener 730 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 730/73=10 m/s² ✔.
 
-### 691 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1200.
+### 691 · Un cuerpo de 80 kg acelera a 15 m/s². ¿Qué fuerza neta actúa?
+**R:** 1200 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 80 por 15
 3. Obtener 1200 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1200/80=15 m/s² ✔.
 
-### 692 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 1740.
+### 692 · Un cuerpo de 87 kg acelera a 20 m/s². ¿Qué fuerza neta actúa?
+**R:** 1740 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 87 por 20
 3. Obtener 1740 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 1740/87=20 m/s² ✔.
 
-### 693 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 84.
+### 693 · Un cuerpo de 14 kg acelera a 6 m/s². ¿Qué fuerza neta actúa?
+**R:** 84 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 14 por 6
 3. Obtener 84 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 84/14=6 m/s² ✔.
 
-### 694 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 231.
+### 694 · Un cuerpo de 21 kg acelera a 11 m/s². ¿Qué fuerza neta actúa?
+**R:** 231 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 21 por 11
 3. Obtener 231 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 231/21=11 m/s² ✔.
 
-### 695 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 448.
+### 695 · Un cuerpo de 28 kg acelera a 16 m/s². ¿Qué fuerza neta actúa?
+**R:** 448 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 28 por 16
 3. Obtener 448 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 448/28=16 m/s² ✔.
 
-### 696 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 70.
+### 696 · Un cuerpo de 35 kg acelera a 2 m/s². ¿Qué fuerza neta actúa?
+**R:** 70 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 35 por 2
 3. Obtener 70 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 70/35=2 m/s² ✔.
 
-### 697 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 294.
+### 697 · Un cuerpo de 42 kg acelera a 7 m/s². ¿Qué fuerza neta actúa?
+**R:** 294 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 42 por 7
 3. Obtener 294 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 294/42=7 m/s² ✔.
 
-### 698 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 588.
+### 698 · Un cuerpo de 49 kg acelera a 12 m/s². ¿Qué fuerza neta actúa?
+**R:** 588 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 49 por 12
 3. Obtener 588 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 588/49=12 m/s² ✔.
 
-### 699 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 952.
+### 699 · Un cuerpo de 56 kg acelera a 17 m/s². ¿Qué fuerza neta actúa?
+**R:** 952 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 56 por 17
 3. Obtener 952 newtons
 **Supuestos:** Masa constante y marco inercial. **Verificación:** 952/56=17 m/s² ✔.
 
-### 700 · Un cuerpo de {a} kg acelera a {b} m/s². ¿Qué fuerza neta actúa?
-**R:** 189.
+### 700 · Un cuerpo de 63 kg acelera a 3 m/s². ¿Qué fuerza neta actúa?
+**R:** 189 N.
 **Razonamiento:**
 1. Aplicar F=ma
 2. Multiplicar 63 por 3
@@ -6170,805 +6170,805 @@
 
 ## BLOQUE 35 — Química (701–800)
 
-### 701 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 701 · Una muestra contiene 10 g de soluto en 10 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 10/10
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 10/10=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 10/10=1,00 ✔.
 
-### 702 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 702 · Una muestra contiene 17 g de soluto en 17 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 17/17
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 17/17=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 17/17=1,00 ✔.
 
-### 703 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 703 · Una muestra contiene 24 g de soluto en 24 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 24/24
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 24/24=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 24/24=1,00 ✔.
 
-### 704 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 704 · Una muestra contiene 31 g de soluto en 31 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 31/31
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 31/31=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 31/31=1,00 ✔.
 
-### 705 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 705 · Una muestra contiene 38 g de soluto en 38 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 38/38
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 38/38=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 38/38=1,00 ✔.
 
-### 706 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 706 · Una muestra contiene 45 g de soluto en 45 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 45/45
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 45/45=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 45/45=1,00 ✔.
 
-### 707 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 707 · Una muestra contiene 52 g de soluto en 52 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 52/52
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 52/52=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 52/52=1,00 ✔.
 
-### 708 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 708 · Una muestra contiene 59 g de soluto en 59 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 59/59
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 59/59=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 59/59=1,00 ✔.
 
-### 709 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 709 · Una muestra contiene 66 g de soluto en 66 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 66/66
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 66/66=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 66/66=1,00 ✔.
 
-### 710 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 710 · Una muestra contiene 73 g de soluto en 73 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 73/73
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 73/73=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 73/73=1,00 ✔.
 
-### 711 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 711 · Una muestra contiene 80 g de soluto en 80 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 80/80
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 80/80=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 80/80=1,00 ✔.
 
-### 712 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 712 · Una muestra contiene 87 g de soluto en 87 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 87/87
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 87/87=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 87/87=1,00 ✔.
 
-### 713 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 713 · Una muestra contiene 14 g de soluto en 14 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 14/14
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 14/14=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 14/14=1,00 ✔.
 
-### 714 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 714 · Una muestra contiene 21 g de soluto en 21 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 21/21
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 21/21=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 21/21=1,00 ✔.
 
-### 715 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 715 · Una muestra contiene 28 g de soluto en 28 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 28/28
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 28/28=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 28/28=1,00 ✔.
 
-### 716 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 716 · Una muestra contiene 35 g de soluto en 35 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 35/35
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 35/35=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 35/35=1,00 ✔.
 
-### 717 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 717 · Una muestra contiene 42 g de soluto en 42 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 42/42
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 42/42=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 42/42=1,00 ✔.
 
-### 718 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 718 · Una muestra contiene 49 g de soluto en 49 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 49/49
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 49/49=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 49/49=1,00 ✔.
 
-### 719 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 719 · Una muestra contiene 56 g de soluto en 56 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 56/56
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 56/56=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 56/56=1,00 ✔.
 
-### 720 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 720 · Una muestra contiene 63 g de soluto en 63 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 63/63
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 63/63=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 63/63=1,00 ✔.
 
-### 721 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 721 · Una muestra contiene 70 g de soluto en 70 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 70/70
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 70/70=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 70/70=1,00 ✔.
 
-### 722 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 722 · Una muestra contiene 77 g de soluto en 77 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 77/77
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 77/77=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 77/77=1,00 ✔.
 
-### 723 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 723 · Una muestra contiene 84 g de soluto en 84 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 84/84
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 84/84=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 84/84=1,00 ✔.
 
-### 724 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 724 · Una muestra contiene 11 g de soluto en 11 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 11/11
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 11/11=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 11/11=1,00 ✔.
 
-### 725 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 725 · Una muestra contiene 18 g de soluto en 18 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 18/18
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 18/18=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 18/18=1,00 ✔.
 
-### 726 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 726 · Una muestra contiene 25 g de soluto en 25 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 25/25
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 25/25=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 25/25=1,00 ✔.
 
-### 727 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 727 · Una muestra contiene 32 g de soluto en 32 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 32/32
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 32/32=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 32/32=1,00 ✔.
 
-### 728 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 728 · Una muestra contiene 39 g de soluto en 39 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 39/39
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 39/39=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 39/39=1,00 ✔.
 
-### 729 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 729 · Una muestra contiene 46 g de soluto en 46 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 46/46
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 46/46=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 46/46=1,00 ✔.
 
-### 730 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 730 · Una muestra contiene 53 g de soluto en 53 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 53/53
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 53/53=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 53/53=1,00 ✔.
 
-### 731 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 731 · Una muestra contiene 60 g de soluto en 60 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 60/60
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 60/60=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 60/60=1,00 ✔.
 
-### 732 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 732 · Una muestra contiene 67 g de soluto en 67 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 67/67
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 67/67=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 67/67=1,00 ✔.
 
-### 733 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 733 · Una muestra contiene 74 g de soluto en 74 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 74/74
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 74/74=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 74/74=1,00 ✔.
 
-### 734 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 734 · Una muestra contiene 81 g de soluto en 81 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 81/81
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 81/81=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 81/81=1,00 ✔.
 
-### 735 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 735 · Una muestra contiene 88 g de soluto en 88 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 88/88
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 88/88=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 88/88=1,00 ✔.
 
-### 736 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 736 · Una muestra contiene 15 g de soluto en 15 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 15/15
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 15/15=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 15/15=1,00 ✔.
 
-### 737 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 737 · Una muestra contiene 22 g de soluto en 22 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 22/22
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 22/22=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 22/22=1,00 ✔.
 
-### 738 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 738 · Una muestra contiene 29 g de soluto en 29 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 29/29
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 29/29=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 29/29=1,00 ✔.
 
-### 739 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 739 · Una muestra contiene 36 g de soluto en 36 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 36/36
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 36/36=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 36/36=1,00 ✔.
 
-### 740 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 740 · Una muestra contiene 43 g de soluto en 43 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 43/43
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 43/43=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 43/43=1,00 ✔.
 
-### 741 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 741 · Una muestra contiene 50 g de soluto en 50 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 50/50
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 50/50=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 50/50=1,00 ✔.
 
-### 742 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 742 · Una muestra contiene 57 g de soluto en 57 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 57/57
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 57/57=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 57/57=1,00 ✔.
 
-### 743 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 743 · Una muestra contiene 64 g de soluto en 64 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 64/64
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 64/64=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 64/64=1,00 ✔.
 
-### 744 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 744 · Una muestra contiene 71 g de soluto en 71 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 71/71
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 71/71=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 71/71=1,00 ✔.
 
-### 745 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 745 · Una muestra contiene 78 g de soluto en 78 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 78/78
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 78/78=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 78/78=1,00 ✔.
 
-### 746 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 746 · Una muestra contiene 85 g de soluto en 85 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 85/85
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 85/85=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 85/85=1,00 ✔.
 
-### 747 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 747 · Una muestra contiene 12 g de soluto en 12 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 12/12
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 12/12=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 12/12=1,00 ✔.
 
-### 748 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 748 · Una muestra contiene 19 g de soluto en 19 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 19/19
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 19/19=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 19/19=1,00 ✔.
 
-### 749 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 749 · Una muestra contiene 26 g de soluto en 26 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 26/26
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 26/26=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 26/26=1,00 ✔.
 
-### 750 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 750 · Una muestra contiene 33 g de soluto en 33 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 33/33
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 33/33=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 33/33=1,00 ✔.
 
-### 751 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 751 · Una muestra contiene 40 g de soluto en 40 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 40/40
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 40/40=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 40/40=1,00 ✔.
 
-### 752 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 752 · Una muestra contiene 47 g de soluto en 47 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 47/47
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 47/47=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 47/47=1,00 ✔.
 
-### 753 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 753 · Una muestra contiene 54 g de soluto en 54 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 54/54
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 54/54=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 54/54=1,00 ✔.
 
-### 754 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 754 · Una muestra contiene 61 g de soluto en 61 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 61/61
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 61/61=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 61/61=1,00 ✔.
 
-### 755 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 755 · Una muestra contiene 68 g de soluto en 68 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 68/68
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 68/68=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 68/68=1,00 ✔.
 
-### 756 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 756 · Una muestra contiene 75 g de soluto en 75 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 75/75
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 75/75=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 75/75=1,00 ✔.
 
-### 757 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 757 · Una muestra contiene 82 g de soluto en 82 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 82/82
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 82/82=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 82/82=1,00 ✔.
 
-### 758 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 758 · Una muestra contiene 89 g de soluto en 89 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 89/89
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 89/89=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 89/89=1,00 ✔.
 
-### 759 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 759 · Una muestra contiene 16 g de soluto en 16 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 16/16
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 16/16=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 16/16=1,00 ✔.
 
-### 760 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 760 · Una muestra contiene 23 g de soluto en 23 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 23/23
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 23/23=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 23/23=1,00 ✔.
 
-### 761 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 761 · Una muestra contiene 30 g de soluto en 30 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 30/30
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 30/30=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 30/30=1,00 ✔.
 
-### 762 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 762 · Una muestra contiene 37 g de soluto en 37 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 37/37
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 37/37=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 37/37=1,00 ✔.
 
-### 763 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 763 · Una muestra contiene 44 g de soluto en 44 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 44/44
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 44/44=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 44/44=1,00 ✔.
 
-### 764 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 764 · Una muestra contiene 51 g de soluto en 51 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 51/51
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 51/51=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 51/51=1,00 ✔.
 
-### 765 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 765 · Una muestra contiene 58 g de soluto en 58 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 58/58
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 58/58=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 58/58=1,00 ✔.
 
-### 766 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 766 · Una muestra contiene 65 g de soluto en 65 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 65/65
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 65/65=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 65/65=1,00 ✔.
 
-### 767 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 767 · Una muestra contiene 72 g de soluto en 72 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 72/72
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 72/72=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 72/72=1,00 ✔.
 
-### 768 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 768 · Una muestra contiene 79 g de soluto en 79 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 79/79
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 79/79=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 79/79=1,00 ✔.
 
-### 769 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 769 · Una muestra contiene 86 g de soluto en 86 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 86/86
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 86/86=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 86/86=1,00 ✔.
 
-### 770 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 770 · Una muestra contiene 13 g de soluto en 13 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 13/13
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 13/13=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 13/13=1,00 ✔.
 
-### 771 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 771 · Una muestra contiene 20 g de soluto en 20 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 20/20
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 20/20=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 20/20=1,00 ✔.
 
-### 772 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 772 · Una muestra contiene 27 g de soluto en 27 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 27/27
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 27/27=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 27/27=1,00 ✔.
 
-### 773 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 773 · Una muestra contiene 34 g de soluto en 34 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 34/34
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 34/34=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 34/34=1,00 ✔.
 
-### 774 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 774 · Una muestra contiene 41 g de soluto en 41 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 41/41
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 41/41=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 41/41=1,00 ✔.
 
-### 775 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 775 · Una muestra contiene 48 g de soluto en 48 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 48/48
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 48/48=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 48/48=1,00 ✔.
 
-### 776 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 776 · Una muestra contiene 55 g de soluto en 55 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 55/55
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 55/55=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 55/55=1,00 ✔.
 
-### 777 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 777 · Una muestra contiene 62 g de soluto en 62 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 62/62
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 62/62=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 62/62=1,00 ✔.
 
-### 778 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 778 · Una muestra contiene 69 g de soluto en 69 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 69/69
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 69/69=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 69/69=1,00 ✔.
 
-### 779 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 779 · Una muestra contiene 76 g de soluto en 76 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 76/76
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 76/76=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 76/76=1,00 ✔.
 
-### 780 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 780 · Una muestra contiene 83 g de soluto en 83 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 83/83
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 83/83=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 83/83=1,00 ✔.
 
-### 781 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 781 · Una muestra contiene 10 g de soluto en 10 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 10/10
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 10/10=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 10/10=1,00 ✔.
 
-### 782 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 782 · Una muestra contiene 17 g de soluto en 17 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 17/17
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 17/17=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 17/17=1,00 ✔.
 
-### 783 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 783 · Una muestra contiene 24 g de soluto en 24 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 24/24
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 24/24=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 24/24=1,00 ✔.
 
-### 784 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 784 · Una muestra contiene 31 g de soluto en 31 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 31/31
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 31/31=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 31/31=1,00 ✔.
 
-### 785 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 785 · Una muestra contiene 38 g de soluto en 38 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 38/38
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 38/38=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 38/38=1,00 ✔.
 
-### 786 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 786 · Una muestra contiene 45 g de soluto en 45 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 45/45
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 45/45=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 45/45=1,00 ✔.
 
-### 787 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 787 · Una muestra contiene 52 g de soluto en 52 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 52/52
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 52/52=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 52/52=1,00 ✔.
 
-### 788 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 788 · Una muestra contiene 59 g de soluto en 59 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 59/59
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 59/59=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 59/59=1,00 ✔.
 
-### 789 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 789 · Una muestra contiene 66 g de soluto en 66 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 66/66
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 66/66=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 66/66=1,00 ✔.
 
-### 790 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 790 · Una muestra contiene 73 g de soluto en 73 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 73/73
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 73/73=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 73/73=1,00 ✔.
 
-### 791 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 791 · Una muestra contiene 80 g de soluto en 80 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 80/80
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 80/80=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 80/80=1,00 ✔.
 
-### 792 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 792 · Una muestra contiene 87 g de soluto en 87 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 87/87
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 87/87=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 87/87=1,00 ✔.
 
-### 793 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 793 · Una muestra contiene 14 g de soluto en 14 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 14/14
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 14/14=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 14/14=1,00 ✔.
 
-### 794 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 794 · Una muestra contiene 21 g de soluto en 21 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 21/21
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 21/21=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 21/21=1,00 ✔.
 
-### 795 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 795 · Una muestra contiene 28 g de soluto en 28 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 28/28
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 28/28=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 28/28=1,00 ✔.
 
-### 796 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 796 · Una muestra contiene 35 g de soluto en 35 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 35/35
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 35/35=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 35/35=1,00 ✔.
 
-### 797 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 797 · Una muestra contiene 42 g de soluto en 42 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 42/42
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 42/42=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 42/42=1,00 ✔.
 
-### 798 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 798 · Una muestra contiene 49 g de soluto en 49 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 49/49
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 49/49=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 49/49=1,00 ✔.
 
-### 799 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 799 · Una muestra contiene 56 g de soluto en 56 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 56/56
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 56/56=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 56/56=1,00 ✔.
 
-### 800 · Una muestra contiene {z} g de soluto en {a} g de solución. ¿Qué porcentaje en masa representa?
+### 800 · Una muestra contiene 63 g de soluto en 63 g de solución. ¿Qué porcentaje en masa representa?
 **R:** 100 %.
 **Razonamiento:**
-1. Dividir masa de soluto por masa total
+1. Dividir la masa de soluto por la masa total
 2. Calcular 63/63
 3. Multiplicar por cien
-**Supuestos:** Masas expresadas en la misma unidad. **Verificación:** 63/63=1,00 ✔.
+**Supuestos:** Masas expresadas en la misma unidad; la masa de soluto forma parte de la masa total. **Verificación:** 63/63=1,00 ✔.
 
 
 ## BLOQUE 36 — Biología (801–900)
@@ -8577,7 +8577,7 @@
 **Supuestos:** Español estándar. **Verificación:** «Corre rápidamente» modifica al verbo ✔.
 
 
-## BLOQUE 38 — Geografía (1001–1100)
+## BLOQUE 38 — Geografía e historia (1001–1100)
 
 ### 1001 · ¿Qué meridiano es la referencia convencional de longitud cero?
 **R:** Greenwich.
