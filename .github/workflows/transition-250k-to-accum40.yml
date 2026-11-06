@@ -89,7 +89,7 @@ jobs:
           runs=json.load(open("transition/runs.json")).get("workflow_runs",[])
           active=[
               r for r in runs
-              if ".github/workflows/train-real-corpus-250k.yml@" in r.get("path","")
+              if r.get("path","").split("@")[0] == ".github/workflows/train-real-corpus-250k.yml"
               and r.get("status") in ("queued","in_progress")
           ]
           with open("transition/active-old-runs.txt","w") as f:
@@ -109,10 +109,26 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          curl --fail-with-body --retry 3 -X POST \
+          curl --fail --silent --show-error \
             -H "Authorization: Bearer ${GH_TOKEN}" \
             -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/workflows/train-real-corpus-accum40.yml/dispatches \
-            -d '{"ref":"main","inputs":{"start_micro_step":"2600","resume_run_id":"42288969968","audit_run_id":"42288107561"}}'
-          echo "Accum40 dispatched from exact micro-step 2600 checkpoint."
+            "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/runs?per_page=100" \
+            -o transition/runs-after-cancel.json
+          active_accum="$(python - <<'PY'
+          import json
+          runs=json.load(open("transition/runs-after-cancel.json")).get("workflow_runs",[])
+          active=[r for r in runs if r.get("path","").split("@")[0]==".github/workflows/train-real-corpus-accum40.yml" and r.get("status") in ("queued","in_progress")]
+          print(len(active))
+          PY
+          )"
+          if [[ "${active_accum}" == "0" ]]; then
+            curl --fail-with-body --retry 3 -X POST \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/workflows/train-real-corpus-accum40.yml/dispatches \
+              -d '{"ref":"main","inputs":{"start_micro_step":"2600","resume_run_id":"42288969968","audit_run_id":"42288107561"}}'
+            echo "Accum40 dispatched from exact micro-step 2600 checkpoint."
+          else
+            echo "Accum40 is already queued or running; skipping duplicate dispatch."
+          fi
