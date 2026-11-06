@@ -52,7 +52,7 @@ jobs:
           print("Python and workflow YAML syntax: OK")
           PY
   baseline:
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.id == 42288969968 && github.event.workflow_run.conclusion == 'success') || (github.event_name == 'workflow_run' && github.event.workflow_run.id == 42288969968 && github.event.workflow_run.conclusion == 'success')
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.id == 42288969968 && github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-26.04
     timeout-minutes: 360
     steps:
@@ -64,8 +64,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           SOURCE_RUN_ID: ${{ github.event.workflow_run.id || inputs.source_run_id }}
-          AUDIT_RUN_ID: ${{ inputs.audit_run_id }}
-          TRAIN_ARTIFACT_ID: ${{ inputs.train_artifact_id }}
+          AUDIT_RUN_ID: ${{ inputs.audit_run_id || '42288107561' }}
+          TRAIN_ARTIFACT_ID: ${{ inputs.train_artifact_id || '13536786501' }}
         run: |
           set -euo pipefail
           mkdir -p incoming/checkpoint incoming/audit
