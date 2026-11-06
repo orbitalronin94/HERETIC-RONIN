@@ -108,7 +108,7 @@ jobs:
           git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git ronin-source
           git -C ronin-source sparse-checkout set ronin
           echo $(( $(date +%s) - setup_started )) > out/setup-seconds.txt
-      - name: Run production baseline: one optimizer update, 40 micro-batches
+      - name: "Run production baseline: one optimizer update, 40 micro-batches"
         env:
           PYTHONPATH: ronin-source:scripts
         run: |
