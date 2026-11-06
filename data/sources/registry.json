@@ -533,7 +533,7 @@
       "id": "HuggingFaceTB/smollm-corpus:Cosmopedia-v2",
       "url": "https://huggingface.co/datasets/HuggingFaceTB/smollm-corpus",
       "revision": "pin immutable Hub commit and Cosmopedia-v2 config",
-      "reported_license": "Apache-2.0 as declared for the corpus; verify selected config and upstream provenance",
+      "reported_license": "ODC-By-1.0 (dataset card)",
       "status": "candidate_not_downloaded",
       "domains": [
         "educational text",
@@ -545,7 +545,7 @@
         "en"
       ],
       "ingestion_plan": "Select Cosmopedia-v2 only, not the full mixed SmolLM corpus, and record exact source config.",
-      "rights_caveat": "Synthetic generated content can inherit source-derived risks; verify dataset card, config license and source-data notes.",
+      "rights_caveat": "Cosmopedia v2 is part of SmolLM-Corpus and its dataset card declares ODC-By-1.0; do not mislabel it Apache-2.0. Synthetic content still needs source-lineage, quality and contamination review.",
       "required_checks": [
         "pin commit and config",
         "train split only",
@@ -627,6 +627,32 @@
         "preserve title, author, ebook ID and header",
         "exclude copyrighted or unclear works",
         "deduplicate against literature corpus"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "HuggingFaceTB/cosmopedia-v0.1",
+      "url": "https://huggingface.co/datasets/HuggingFaceTB/cosmopedia",
+      "revision": "pin immutable Hub commit and selected config before acquisition",
+      "reported_license": "Apache-2.0 (dataset card)",
+      "status": "candidate_not_downloaded",
+      "domains": [
+        "educational text",
+        "textbooks",
+        "mathematics",
+        "science"
+      ],
+      "language": [
+        "en"
+      ],
+      "ingestion_plan": "Select individual train configs (auto_math_text, openstax, stanford, khanacademy) with bounded deterministic samples.",
+      "rights_caveat": "Apache-2.0 is the dataset card declaration; retain source metadata and verify the selected config and any seed-source caveats.",
+      "required_checks": [
+        "pin commit and exact config",
+        "train split only",
+        "preserve config/source provenance and license notice",
+        "deduplicate against FineWeb-Edu, Cosmopedia-v2 and local corpora",
+        "audit factual correctness, template repetition and benchmark contamination"
       ],
       "count_toward_admitted_bytes": false
     }
