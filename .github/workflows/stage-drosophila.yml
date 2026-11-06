@@ -1,0 +1,92 @@
+name: Stage Drosophila model and datasets
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/stage-drosophila.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: heretic-drosophila-bootstrap
+  cancel-in-progress: false
+
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout HERETIC-RONIN
+        uses: actions/checkout@v4
+
+      - name: Fetch admitted datasets and model manifests from RONIN-IA
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git source
+          git -C source sparse-checkout set data/datasets/admitted weights/ronin-drosophila-main.json weights/README.md
+          mkdir -p staging/data/datasets staging/weights
+          cp -a source/data/datasets/admitted staging/data/datasets/
+          cp source/weights/ronin-drosophila-main.json staging/weights/
+          cp source/weights/README.md staging/weights/RONIN-IA-weights-README.md
+
+      - name: Download the promoted 100.9M checkpoint artifact
+        shell: bash
+        env:
+          ARTIFACT_ID: "13497987527"
+          EXPECTED_SHA256: "f3f8e2e75e418f8630372c242378a28010db83148d169d85ad3e4f73114cda9a"
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/ronin-artifact
+          curl --fail --location --retry 3 \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/orbitalronin94/RONIN-IA/actions/artifacts/${ARTIFACT_ID}/zip" \
+            -o /tmp/ronin-artifact/model.zip
+          unzip -q /tmp/ronin-artifact/model.zip -d /tmp/ronin-artifact/unpacked
+          CHECKPOINT="$(find /tmp/ronin-artifact/unpacked -type f -name expanded-final.pt -print -quit)"
+          test -n "$CHECKPOINT"
+          ACTUAL_SHA256="$(sha256sum "$CHECKPOINT" | cut -d ' ' -f1)"
+          test "$ACTUAL_SHA256" = "$EXPECTED_SHA256"
+          cp "$CHECKPOINT" staging/weights/ronin-drosophila-100900160.pt
+          printf '%s  %s\n' "$EXPECTED_SHA256" "ronin-drosophila-100900160.pt" > staging/weights/SHA256SUMS
+
+      - name: Write staged dataset inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > staging/README.txt <<'EOF'
+          HERETIC-RONIN bootstrap payload
+          ===============================
+
+          Contents:
+          - data/datasets/admitted/: admitted dataset payloads and their source manifests copied from orbitalronin94/RONIN-IA main.
+          - weights/ronin-drosophila-100900160.pt: promoted experimental-main checkpoint, 100,900,160 parameters.
+          - weights/ronin-drosophila-main.json: source model manifest.
+          - weights/SHA256SUMS: verified checkpoint digest.
+
+          Source checkpoint:
+          RONIN-IA Actions run 42207268776, artifact 13497987527.
+          Expected checkpoint SHA-256:
+          f3f8e2e75e418f8630372c242378a28010db83148d169d85ad3e4f73114cda9a
+
+          Important evaluation context:
+          The checkpoint is experimental, not a general-capability claim. Its 64-question
+          paired MMLU-Pro validation screening was 5/64 before and 5/64 after; G-0 is FAIL
+          and global near-duplicate / holdout-contamination checks remain pending in the
+          source manifest. The original training run used no tutor/distillation.
+          Dataset-specific license and attribution files are retained alongside payloads.
+          EOF
+          echo "Dataset files: $(find staging/data/datasets/admitted -type f | wc -l)"
+          du -sh staging/data/datasets/admitted staging/weights
+
+      - name: Upload HERETIC bootstrap bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: heretic-drosophila-100900160-and-admitted-datasets
+          path: staging/
+          if-no-files-found: error
+          compression-level: 1
+          retention-days: 90
