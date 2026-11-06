@@ -81,7 +81,8 @@ def load_resumable_dataset(output:Path)->tuple[list[dict],set[str],dict[str,int]
     accepted=[]; seen=set(); counts={domain:0 for domain in DOMAINS}
     if not output.exists():
         return accepted,seen,counts
-    lines=output.read_bytes().splitlines(keepends=True)
+    original=output.read_bytes()
+    lines=original.splitlines(keepends=True)
     valid_lines=[]
     for index,line in enumerate(lines):
         try:
@@ -96,12 +97,12 @@ def load_resumable_dataset(output:Path)->tuple[list[dict],set[str],dict[str,int]
                 raise ValueError(f"Incomplete existing teacher row at line {index+1}")
             if counts[domain]>=COUNTS[domain]:
                 continue
-            seen.add(normalized); counts[domain]+=1; accepted.append(row); valid_lines.append(line)
+            seen.add(normalized); counts[domain]+=1; accepted.append(row); valid_lines.append(line if line.endswith(bytes([10])) else line+bytes([10]))
         except (UnicodeDecodeError,json.JSONDecodeError):
             if index!=len(lines)-1 or line.endswith(b"\n"):
                 raise ValueError(f"Corrupt teacher JSONL at line {index+1}; refusing unsafe resume")
             break
-    if len(valid_lines)!=len(lines):
+    if b"".join(valid_lines)!=original:
         temporary=output.with_suffix(".jsonl.recovered")
         temporary.write_bytes(b"".join(valid_lines))
         temporary.replace(output)
@@ -309,7 +310,11 @@ def load_long_method_model()->RoninLM:
     return model
 
 def evaluate_pair(student:RoninLM)->dict:
-    tasks=holdout_rows(); baseline=load_long_method_model()
+    tasks=holdout_rows()
+    domain_counts={domain:sum(task["domain"]==domain for task in tasks) for domain in DOMAINS}
+    if len(tasks)!=120 or any(count!=20 for count in domain_counts.values()):
+        raise AssertionError(f"invalid independent holdout composition: {domain_counts}")
+    baseline=load_long_method_model()
     results={"holdout_schema":"heretic-independent-multidomain-holdout-v1","teacher_saw_holdout":False,"questions":len(tasks),"holdout_per_domain":20,"models":{}}
     for name,model in (("ronin_ia_long_method_100_9m",baseline),("heretic_student_500m_distilled",student)):
         per_domain={}; details=[]; correct_total=0
