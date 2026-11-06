@@ -1029,6 +1029,6 @@
   "notes": [
     "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. Global G-0 remains FAIL; no staged bundle is active-training-authorized until global near-duplicate and benchmark/holdout contamination gates pass."
   ],
-  "last_candidate_batch": "run 42294489267: 25,000 rows / 105,792,783 bytes; unadmitted",
-  "next_candidate_batch": "run 42295370306: Wikidata, PubMed, StackExchange, PressBooks, LibreTexts; run 42295664705: arXiv and provenance metadata; next run from script f46c52e adds DOAB, OERCommons, news and CCCC"
+  "last_candidate_batch": "run 42295370306 / artifact 13541581972: 50,000 rows, 317,069,186 bytes; training_authorized=false",
+  "next_candidate_batch": "run 42295664705: arXiv paper_text pilot and expanded provenance metadata; subsequent run from f46c52e: DOAB, OERCommons, licensed news and CCCC; later script fix adds OERCommons low minimum row threshold"
 }
