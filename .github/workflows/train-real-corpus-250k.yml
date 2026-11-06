@@ -35,7 +35,7 @@ concurrency:
 
 jobs:
   train:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.id == 42287729977)
     runs-on: ubuntu-26.04
     timeout-minutes: 360
     env:
