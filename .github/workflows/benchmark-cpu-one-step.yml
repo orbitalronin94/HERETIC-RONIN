@@ -22,6 +22,12 @@ on:
       - ".github/workflows/benchmark-cpu-one-step.yml"
       - "scripts/heretic_cpu_one_step_benchmark.py"
       - "docs/cpu-one-step-benchmark.md"
+  push:
+    branches: ["experiment/cpu-one-step-benchmark"]
+    paths:
+      - ".github/workflows/benchmark-cpu-one-step.yml"
+      - "scripts/heretic_cpu_one_step_benchmark.py"
+      - "docs/cpu-one-step-benchmark.md"
 permissions:
   contents: read
   actions: read
@@ -34,7 +40,7 @@ env:
   MKL_NUM_THREADS: "4"
 jobs:
   validate:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
