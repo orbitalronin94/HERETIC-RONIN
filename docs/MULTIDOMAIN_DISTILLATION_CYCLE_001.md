@@ -48,7 +48,7 @@ La ventana de 128 bytes es una limitación importante: obliga a usar preguntas y
 
 ## Comparación final: contra el método largo
 
-El holdout local contiene 60 preguntas deterministas, diez por dominio. Se genera dentro del script, después de preparar el conjunto de entrenamiento, y no se envía al instructor.
+El holdout local contiene 120 preguntas deterministas, veinte por dominio. Se genera dentro del script, después de preparar el conjunto de entrenamiento, y no se envía al instructor.
 
 Se compara, con las mismas preguntas y decodificación greedy:
 

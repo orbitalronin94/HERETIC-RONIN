@@ -132,7 +132,7 @@ def build_teacher_dataset(teacher_path:Path)->list[dict]:
         write_manifest(accepted)
         return accepted
     teacher=Llama(model_path=str(teacher_path),n_ctx=4096,n_threads=4,n_threads_batch=4,
-                  n_batch=512,n_gpu_layers=0,use_mmap=True,verbose=False)
+                  n_batch=512,n_gpu_layers=0,use_mmap=True,seed=SEED,verbose=False)
     calls=0
     try:
         for domain,target in COUNTS.items():
@@ -315,7 +315,7 @@ def evaluate_pair(student:RoninLM)->dict:
     if len(tasks)!=120 or any(count!=20 for count in domain_counts.values()):
         raise AssertionError(f"invalid independent holdout composition: {domain_counts}")
     baseline=load_long_method_model()
-    results={"holdout_schema":"heretic-independent-multidomain-holdout-v1","teacher_saw_holdout":False,"questions":len(tasks),"holdout_per_domain":20,"models":{}}
+    results={"holdout_schema":"heretic-independent-multidomain-holdout-v2","teacher_saw_holdout":False,"questions":len(tasks),"holdout_per_domain":20,"models":{}}
     for name,model in (("ronin_ia_long_method_100_9m",baseline),("heretic_student_500m_distilled",student)):
         per_domain={}; details=[]; correct_total=0
         for index,task in enumerate(tasks):
