@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "target_admitted_examples": 500000,
-  "current_versioned_candidate_rows": 70000,
+  "current_versioned_candidate_rows": 50000,
   "counting_policy": "Count unique bytes only after license/provenance review, successful download, integrity verification, schema validation, deduplication and acceptance. Remote advertised size, source size, compressed size and locally admitted bytes must be reported separately.",
   "sources": [
     {
@@ -893,6 +893,6 @@
   "notes": [
     "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. Global G-0 remains FAIL; no staged bundle is active-training-authorized until global near-duplicate and benchmark/holdout contamination gates pass."
   ],
-  "last_candidate_batch": "run 42294489267: 25,000 rows, 105,792,783 bytes; unadmitted",
-  "next_candidate_batch": "run 42295370306: Wikidata/PMC/StackExchange/PressBooks/LibreTexts; subsequent run after commit 6a2939d adds arXiv paper_text pilot"
+  "last_candidate_batch": "run 42294489267: 25,000 candidate rows, 105,792,783 bytes; not admitted",
+  "next_candidate_batch": "queued runs 42295370306 and later: Wikidata, per-record PubMed/Stack Exchange, CC-BY-only PressBooks/LibreTexts, and per-paper arXiv CC-BY/CC0 pilot; report only measured successful rows"
 }
