@@ -878,6 +878,142 @@
         "human review, quality, PII, deduplication and holdout contamination"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "common-pile/doab",
+      "url": "https://huggingface.co/datasets/common-pile/doab",
+      "revision": "pin immutable Hub SHA at acquisition",
+      "reported_size": "12.5 GB; 474,445 peer-reviewed books",
+      "reported_license": "per-document mixed CC-BY/CC-BY-SA; candidate filter exact CC-BY-4.0 only",
+      "status": "candidate_acquisition_queued",
+      "domains": [
+        "peer-reviewed books",
+        "science",
+        "humanities",
+        "social sciences",
+        "textbooks"
+      ],
+      "rights_caveat": "DOAB uses an official metadata feed and a manual whitelist of license statements in each book's front/back matter. Common Pile warns of possible license laundering; script retains only CC-BY-4.0 rows.",
+      "required_checks": [
+        "exact per-book CC-BY-4.0 filter",
+        "retain author/title/publisher/book URL/license",
+        "check third-party figures and excerpts",
+        "deduplication, quality, PII and holdout contamination"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "common-pile/oercommons_filtered",
+      "url": "https://huggingface.co/datasets/common-pile/oercommons_filtered",
+      "revision": "pin immutable Hub SHA at acquisition",
+      "reported_size": "5,249 documents; 0.05 GB",
+      "reported_license": "per-document public domain/CC-BY/CC-BY-SA; candidate filter exact CC-BY-4.0 only",
+      "status": "candidate_acquisition_queued",
+      "domains": [
+        "education",
+        "lesson plans",
+        "problem sets",
+        "course materials"
+      ],
+      "rights_caveat": "Only exact CC-BY-4.0 records pass; public-domain claims and BY-SA are excluded. Common Pile notes possible license metadata errors.",
+      "required_checks": [
+        "exact per-record CC-BY-4.0 filter",
+        "retain source URL and attribution",
+        "deduplication, quality, PII and holdout checks"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "common-pile/news_filtered",
+      "url": "https://huggingface.co/datasets/common-pile/news_filtered",
+      "revision": "pin immutable Hub SHA at acquisition",
+      "reported_size": "126,673 documents; 0.3 GB",
+      "reported_license": "per-document mixed open license; candidate filter exact CC-BY-4.0 only",
+      "status": "candidate_acquisition_queued",
+      "domains": [
+        "news",
+        "climate",
+        "technology",
+        "public affairs"
+      ],
+      "rights_caveat": "Per-record publisher/license/URL required. Only CC-BY-4.0 rows pass; manually verify publisher/domain license and attribution.",
+      "required_checks": [
+        "exact per-record CC-BY-4.0 filter",
+        "retain author, URL, publisher/source and license",
+        "exclude non-CC-BY and unknown records",
+        "deduplication, recency, PII and holdout checks"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "common-pile/cccc",
+      "url": "https://huggingface.co/datasets/common-pile/cccc",
+      "revision": "pin immutable Hub SHA at acquisition",
+      "reported_size": "260 GB; 51M documents",
+      "reported_license": "domain-level manually verified Creative Commons; per-record license field",
+      "status": "candidate_acquisition_queued",
+      "domains": [
+        "general web",
+        "education",
+        "reference",
+        "science"
+      ],
+      "rights_caveat": "Common Pile manually verified 537 high-volume domains where CC applied to all text, but residual licensing errors are acknowledged. Candidate script accepts only exact CC-BY-4.0 records and retains per-record source.",
+      "required_checks": [
+        "exact per-record CC-BY-4.0 filter",
+        "preserve URL/domain/date/license",
+        "verify current dataset revision and removed-domain updates",
+        "deduplicate against FineWeb/DCLM/other web sources",
+        "PII, quality and holdout contamination checks"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "common-pile/peS2o",
+      "url": "https://huggingface.co/datasets/common-pile/peS2o",
+      "revision": "schema and exact license field mapping pending",
+      "reported_size": "188.2 GB; 6.29M scientific papers",
+      "reported_license": "per-document open-access license; metadata shows OA license codes and provenance",
+      "status": "candidate_pending_exact_license_field_mapping",
+      "domains": [
+        "physics",
+        "medicine",
+        "biology",
+        "computer science",
+        "engineering"
+      ],
+      "rights_caveat": "High-quality filtered scientific corpus derived from S2ORC; dataset warns about license laundering. Example rows expose oa_license codes such as CCBY/CCBYSA; do not accept CCBY without resolving exact license version and per-record license URL.",
+      "required_checks": [
+        "inspect exact metadata.license and oa_license mapping",
+        "allow only explicit CC-BY-4.0 or CC0-1.0",
+        "exclude CC-BY-SA, NC, ND and unknown",
+        "preserve article DOI, source URL, field of study and license",
+        "deduplicate against PubMed and arXiv"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "common-pile/data_provenance_initiative_filtered",
+      "url": "https://huggingface.co/datasets/common-pile/data_provenance_initiative_filtered",
+      "revision": "license schema and source-license mapping pending",
+      "reported_size": "3 GB; 3.5M documents",
+      "reported_license": "per-source dataset license, manually annotated by Data Provenance Initiative",
+      "status": "candidate_pending_license_allowlist_review",
+      "domains": [
+        "supervised datasets",
+        "instructions",
+        "reasoning",
+        "programming"
+      ],
+      "rights_caveat": "DPI manually annotates dataset sources and license information, filters out model-generated text and keeps recognized public-domain sources; individual examples may cite MIT/Apache/other source licenses. Need a strict source-license allowlist and preserve license_url and dataset_id.",
+      "required_checks": [
+        "inspect license list and exact license_url schema",
+        "allow only approved permissive licenses after per-source review",
+        "retain dataset_id, license_url, URL and provenance",
+        "exclude synthetic/model-generated and benchmark/test contamination",
+        "human sample and deduplication review"
+      ],
+      "count_toward_admitted_bytes": false
     }
   ],
   "target_library_bytes": 500000000000,
@@ -893,6 +1029,6 @@
   "notes": [
     "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. Global G-0 remains FAIL; no staged bundle is active-training-authorized until global near-duplicate and benchmark/holdout contamination gates pass."
   ],
-  "last_candidate_batch": "run 42294489267: 25,000 candidate rows, 105,792,783 bytes; not admitted",
-  "next_candidate_batch": "queued runs 42295370306 and later: Wikidata, per-record PubMed/Stack Exchange, CC-BY-only PressBooks/LibreTexts, and per-paper arXiv CC-BY/CC0 pilot; report only measured successful rows"
+  "last_candidate_batch": "run 42294489267: 25,000 rows / 105,792,783 bytes; unadmitted",
+  "next_candidate_batch": "run 42295370306: Wikidata, PubMed, StackExchange, PressBooks, LibreTexts; run 42295664705: arXiv and provenance metadata; next run from script f46c52e adds DOAB, OERCommons, news and CCCC"
 }
