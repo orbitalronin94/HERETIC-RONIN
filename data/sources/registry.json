@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "target_admitted_examples": 500000,
-  "current_versioned_candidate_rows": 60000,
+  "current_versioned_candidate_rows": 70000,
   "counting_policy": "Count unique bytes only after license/provenance review, successful download, integrity verification, schema validation, deduplication and acceptance. Remote advertised size, source size, compressed size and locally admitted bytes must be reported separately.",
   "sources": [
     {
@@ -852,6 +852,32 @@
         "deduplication, PII, quality and holdout contamination"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "secemp9/arxiv-complete",
+      "url": "https://huggingface.co/datasets/secemp9/arxiv-complete",
+      "revision": "pin immutable Hub SHA; paper_text config only",
+      "reported_size": "70 GB compressed paper_text config; 2.86M papers",
+      "reported_license": "mixed per-paper; candidate filter CC-BY-4.0 or CC0-1.0 only",
+      "status": "candidate_streaming_and_quality_pilot_queued",
+      "domains": [
+        "mathematics",
+        "physics",
+        "computer science",
+        "biology",
+        "engineering",
+        "scientific writing"
+      ],
+      "rights_caveat": "Dataset's own LICENSE explicitly says the compilation CC0 does not relicense papers. 60.4% arXiv non-exclusive license and 14.4% NULL are not downstream redistribution grants. Only the paper_text row-level license field matching CC-BY-4.0 or CC0 is eligible. Exclude NC, ND, BY-SA, nonexclusive, null and other licenses.",
+      "required_checks": [
+        "pin immutable revision and paper_text config",
+        "filter exact per-paper CC-BY-4.0 or CC0 URI",
+        "retain paper_id, title, abstract, category and license",
+        "filter withdrawals, TeX templates/macros, broken resolution and malformed papers",
+        "check latest-version licensing and arXiv terms",
+        "human review, quality, PII, deduplication and holdout contamination"
+      ],
+      "count_toward_admitted_bytes": false
     }
   ],
   "target_library_bytes": 500000000000,
@@ -868,5 +894,5 @@
     "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. Global G-0 remains FAIL; no staged bundle is active-training-authorized until global near-duplicate and benchmark/holdout contamination gates pass."
   ],
   "last_candidate_batch": "run 42294489267: 25,000 rows, 105,792,783 bytes; unadmitted",
-  "next_candidate_batch": "run 42295052648 adds Wikidata/PMC/StackExchange; queued acquisition run after commit ace2899 adds PressBooks/LibreTexts"
+  "next_candidate_batch": "run 42295370306: Wikidata/PMC/StackExchange/PressBooks/LibreTexts; subsequent run after commit 6a2939d adds arXiv paper_text pilot"
 }
