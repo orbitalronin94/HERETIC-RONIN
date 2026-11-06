@@ -10,7 +10,7 @@ El workflow [Stage Drosophila model and datasets](.github/workflows/bootstrap.ym
 - El checkpoint experimental principal `Ronin-Drosophila-100900160` (100.900.160 parámetros).
 - El manifiesto del modelo y el SHA-256 del checkpoint.
 
-El workflow se ejecuta al incorporar su definición y también puede lanzarse manualmente desde **Actions → Stage Drosophila model and datasets → Run workflow**. Al terminar, el paquete aparece en los artefactos de esa ejecución con el nombre `heretic-drosophila-100900160-and-admitted-datasets`.
+El workflow se ejecuta al incorporar su definición y también puede lanzarse manualmente desde **Actions → Stage Drosophila model and datasets → Run workflow**. El primer paquete ya está publicado: [descargar artefacto HERETIC (546.260.711 bytes)](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42218879317/artifacts/13501968370). Contiene 868 archivos admitidos (186 MiB) y el checkpoint de 100.900.160 parámetros (403.629.045 bytes). Retención del artefacto: hasta el 4 de febrero de 2027.
 
 ### Checkpoint de origen
 
@@ -29,3 +29,8 @@ Drosophila es un punto de partida experimental, no una afirmación de capacidad 
 ## Licencia
 
 El código del repositorio usa MIT. Los datasets conservan sus propias condiciones, avisos y manifiestos dentro del paquete; la licencia MIT del código no sustituye las licencias de los datos ni de los pesos.
+
+
+### Alcance real de esta primera copia
+
+La copia incluye el contenido materializado de `data/datasets/admitted/` y sus manifiestos: 868 archivos, 186 MiB. No equivale todavía a los 286.468 documentos/segmentos y 684.738.932 bytes de texto que el manifiesto de entrenamiento atribuye al corpus completo de Drosophila: los paquetes de Literatura española y Mathlib4 conservan aquí sus manifiestos, pero sus payloads completos no están materializados en esta carpeta. No se presenta por tanto este primer bundle como una réplica íntegra del corpus de entrenamiento.
