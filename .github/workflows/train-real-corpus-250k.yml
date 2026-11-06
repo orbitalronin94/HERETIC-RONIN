@@ -42,7 +42,7 @@ jobs:
       OMP_NUM_THREADS: "4"
       MKL_NUM_THREADS: "4"
       PYTHONUNBUFFERED: "1"
-      GH_TOKEN: \${{ github.token }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
@@ -54,24 +54,24 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [[ "\${{ github.event_name }}" == "workflow_run" ]]; then
+          if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
             echo "start_step=600" >> "$GITHUB_OUTPUT"
             echo "resume_run_id=" >> "$GITHUB_OUTPUT"
-            echo "audit_run_id=\${{ github.event.workflow_run.id }}" >> "$GITHUB_OUTPUT"
+            echo "audit_run_id=${{ github.event.workflow_run.id }}" >> "$GITHUB_OUTPUT"
             echo "override=false" >> "$GITHUB_OUTPUT"
           else
-            echo "start_step=\${{ inputs.start_step }}" >> "$GITHUB_OUTPUT"
-            echo "resume_run_id=\${{ inputs.resume_run_id }}" >> "$GITHUB_OUTPUT"
-            echo "audit_run_id=\${{ inputs.audit_run_id }}" >> "$GITHUB_OUTPUT"
-            echo "override=\${{ inputs.allow_audit_override }}" >> "$GITHUB_OUTPUT"
+            echo "start_step=${{ inputs.start_step }}" >> "$GITHUB_OUTPUT"
+            echo "resume_run_id=${{ inputs.resume_run_id }}" >> "$GITHUB_OUTPUT"
+            echo "audit_run_id=${{ inputs.audit_run_id }}" >> "$GITHUB_OUTPUT"
+            echo "override=${{ inputs.allow_audit_override }}" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Download and enforce global real-corpus audit
         uses: actions/download-artifact@v4
         with:
-          name: heretic-global-corpus-audit-\${{ steps.params.outputs.audit_run_id }}
-          run-id: \${{ steps.params.outputs.audit_run_id }}
-          github-token: \${{ github.token }}
+          name: heretic-global-corpus-audit-${{ steps.params.outputs.audit_run_id }}
+          run-id: ${{ steps.params.outputs.audit_run_id }}
+          github-token: ${{ github.token }}
           path: audit
       - name: Verify audit authorization
         shell: bash
@@ -88,14 +88,14 @@ jobs:
               raise SystemExit("Global audit did not authorize training; explicit override is required.")
           PY
         env:
-          AUDIT_OVERRIDE: \${{ steps.params.outputs.override }}
+          AUDIT_OVERRIDE: ${{ steps.params.outputs.override }}
 
       - name: Download exact RONIN-IA train-only artifact and verify SHA-256
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p incoming
-          curl --fail --location --retry 5 -H "Authorization: Bearer \${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+          curl --fail --location --retry 5 -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/artifacts/13536786501/zip" \
             -o incoming/ronin-ia-train.zip
           echo "8a1e6be6a02b97b24681f2d34909cf4562213e84d0b9824f4ebca64a279e9cef  incoming/ronin-ia-train.zip" | sha256sum --check
@@ -103,28 +103,28 @@ jobs:
       - name: Recover initial step-600 checkpoint or previous chunk checkpoint
         shell: bash
         env:
-          RESUME_RUN_ID: \${{ steps.params.outputs.resume_run_id }}
-          START_STEP: \${{ steps.params.outputs.start_step }}
+          RESUME_RUN_ID: ${{ steps.params.outputs.resume_run_id }}
+          START_STEP: ${{ steps.params.outputs.start_step }}
         run: |
           set -euo pipefail
           mkdir -p incoming/checkpoint
-          if [[ -z "\${RESUME_RUN_ID}" ]]; then
+          if [[ -z "${RESUME_RUN_ID}" ]]; then
             curl --fail --location --retry 5 \
-              -H "Authorization: Bearer \${GH_TOKEN}" \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
               -H "Accept: application/vnd.github+json" \
               "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/artifacts/13534136061/zip" \
               -o incoming/initial-step-600.zip
             echo "f7586e15062577709406086dfc1fc2d856bd0fb20341d21f14001f9a8a909853  incoming/initial-step-600.zip" | sha256sum --check
             unzip -q incoming/initial-step-600.zip -d incoming/checkpoint
             found="$(find incoming/checkpoint -name 'student-500m-multidomain-distilled.pt' -print -quit)"
-            test -n "\${found}"
-            cp "\${found}" incoming/student-step-600.pt
+            test -n "${found}"
+            cp "${found}" incoming/student-step-600.pt
           else
             mkdir -p incoming/resume
             curl --fail --location --retry 5 \
-              -H "Authorization: Bearer \${GH_TOKEN}" \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
               -H "Accept: application/vnd.github+json" \
-              "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/runs/\${RESUME_RUN_ID}/artifacts" \
+              "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/runs/${RESUME_RUN_ID}/artifacts" \
               -o incoming/resume-artifacts.json
             python - <<'PY'
             import json, os
@@ -137,9 +137,9 @@ jobs:
             PY
             aid="$(cat incoming/resume-artifact-id)"
             curl --fail --location --retry 5 \
-              -H "Authorization: Bearer \${GH_TOKEN}" \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
               -H "Accept: application/vnd.github+json" \
-              "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/artifacts/\${aid}/zip" \
+              "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/artifacts/${aid}/zip" \
               -o incoming/resume.zip
             unzip -q incoming/resume.zip -d incoming/resume
             test -s incoming/resume/checkpoint.pt
@@ -165,25 +165,25 @@ jobs:
         id: train
         env:
           PYTHONPATH: ronin-source
-          START_STEP: \${{ steps.params.outputs.start_step }}
-          RESUME_RUN_ID: \${{ steps.params.outputs.resume_run_id }}
+          START_STEP: ${{ steps.params.outputs.start_step }}
+          RESUME_RUN_ID: ${{ steps.params.outputs.resume_run_id }}
         shell: bash
         run: |
           set -euo pipefail
-          if [[ -n "\${RESUME_RUN_ID}" ]]; then
+          if [[ -n "${RESUME_RUN_ID}" ]]; then
             steps_left=$((250000 - START_STEP))
             chunk=$(( steps_left < 2000 ? steps_left : 2000 ))
-            python scripts/heretic_train_real_corpus_250k.py --start-step "\${START_STEP}" --steps "\${chunk}" --resume
+            python scripts/heretic_train_real_corpus_250k.py --start-step "${START_STEP}" --steps "${chunk}" --resume
           else
             python scripts/heretic_train_real_corpus_250k.py --start-step 600 --steps 2000
           fi
           end_step="$(python -c 'import json; print(json.load(open("out/progress.json"))["end_step"])')"
-          echo "end_step=\${end_step}" >> "$GITHUB_OUTPUT"
+          echo "end_step=${end_step}" >> "$GITHUB_OUTPUT"
 
       - name: Upload resumable checkpoint and exact holdout baseline
         uses: actions/upload-artifact@v4
         with:
-          name: heretic-500m-real-corpus-step-\${{ steps.train.outputs.end_step }}
+          name: heretic-500m-real-corpus-step-${{ steps.train.outputs.end_step }}
           path: |
             out/checkpoint.pt
             out/progress.json
@@ -198,16 +198,16 @@ jobs:
         if: steps.train.outputs.end_step != '250000'
         shell: bash
         env:
-          NEXT_STEP: \${{ steps.train.outputs.end_step }}
-          AUDIT_RUN_ID: \${{ steps.params.outputs.audit_run_id }}
+          NEXT_STEP: ${{ steps.train.outputs.end_step }}
+          AUDIT_RUN_ID: ${{ steps.params.outputs.audit_run_id }}
         run: |
           set -euo pipefail
           curl --fail-with-body --retry 3 -X POST \
-            -H "Authorization: Bearer \${GH_TOKEN}" \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/workflows/train-real-corpus-250k.yml/dispatches \
-            -d "{\"ref\":\"main\",\"inputs\":{\"start_step\":\"\${NEXT_STEP}\",\"resume_run_id\":\"\${GITHUB_RUN_ID}\",\"audit_run_id\":\"\${AUDIT_RUN_ID}\",\"allow_audit_override\":\"false\"}}"
+            -d "{\"ref\":\"main\",\"inputs\":{\"start_step\":\"${NEXT_STEP}\",\"resume_run_id\":\"${GITHUB_RUN_ID}\",\"audit_run_id\":\"${AUDIT_RUN_ID}\",\"allow_audit_override\":\"false\"}}"
 
       - name: Retain final checkpoint and paired 120-question report
         if: steps.train.outputs.end_step == '250000'
