@@ -19,7 +19,8 @@ Su principio es sencillo: **experimentar sin reverencia, medir sin indulgencia**
 | Estructura | 10 shards JSONL de 5.000 filas |
 | Dominios actuales | Matemáticas, álgebra, lógica, programación, física, química, probabilidad, estadística, economía e ingeniería |
 | Naturaleza del lote actual | Sintético y procedimental; no corpus gold |
-| Herencia RONIN-IA | 286.464 documentos train scoped reconciliados con los artefactos exactos (el README de origen aún anuncia 286.468); staging train-only verificado en [run 42283514919](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42283514919), artefacto de 288.668.608 bytes; gates globales pendientes |\n| Objetivo de biblioteca | 500 GB de datos admitidos y trazables (objetivo, aún no alcanzado) |
+| Herencia RONIN-IA | 286.464 documentos train scoped reconciliados con los artefactos exactos (el README de origen aún anuncia 286.468); staging train-only verificado en [run 42283514919](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42283514919), artefacto de 288.668.608 bytes; gates globales pendientes |
+| Objetivo de biblioteca | 500 GB de datos admitidos y trazables (objetivo, aún no alcanzado) |
 | Promoción de datos | Nunca automática por volumen |
 | Evaluación | Holdout separado; nunca se incorpora al entrenamiento |
 
@@ -127,7 +128,7 @@ El inventario de origen de RONIN-IA (6-11-2026) declara **286.464 documentos tra
 |---|---:|---|
 | CoVoST 2 translation-only | 270.244 | CC0-1.0; solo texto de traducción, no audio |
 | ScienceVerse | 7.103 | CC-BY-4.0 / CC0 por documento; atribución por DOI |
-| Mathlib4 | 8.498 | Apache-2.0; el payload exacto train todavía debe recuperarse |
+| Mathlib4 | 8.498 | Apache-2.0; payload train-only recuperado y SHA-256 verificado |
 | Literatura española | 608 | Licencia por fuente; solo train |
 | NASA NTRS file-reviewed | 2 train (+4 retenidos) | Solo payloads cuyo hash/bytes coinciden con la atestación |
 | Papers propios | 9 | Autorización para entrenamiento interno; no implica redistribución |
