@@ -70,3 +70,13 @@ El workflow .github/workflows/multidomain-distillation-holdout.yml publica:
 - Log del servidor instructor.
 
 No se promociona automáticamente ningún checkpoint. La promoción requiere revisar el holdout, las predicciones por dominio y la integridad del artefacto.
+
+## Cambios operativos tras el primer fallo
+
+La siguiente iteración sustituye la compilación de llama.cpp y el servidor HTTP por inferencia GGUF en proceso mediante una rueda CPU precompilada de llama-cpp-python. No se levanta llama-server ni se abre un endpoint local.
+
+La generación es reanudable: cada ejemplo aceptado se escribe en JSONL, se hace flush y fsync, y se reconstruye el recuento por dominio al reiniciar. Si la última escritura quedó truncada por una interrupción, se recuperan las líneas completas anteriores. El parser busca el primer objeto JSON completo con JSONDecoder.raw_decode y tolera texto o fences alrededor del objeto.
+
+Antes de entrenar se exige el total exacto de 1.000 ejemplos y la distribución 167/167/167/167/166/166. La instalación exige una rueda binaria CPU de llama-cpp-python==0.3.36; si no existe una rueda compatible, el job falla explícitamente y no compila silenciosamente desde fuentes.
+
+El instructor se cierra y libera antes de cargar el estudiante 500M y el optimizador. La limitación de calidad no cambia: las respuestas del instructor solo pasan controles estructurales, de longitud y duplicados; no se presentan como verificadas semánticamente. El holdout sintético tampoco equivale a un benchmark oficial.

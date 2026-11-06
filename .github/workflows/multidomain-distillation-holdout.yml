@@ -85,43 +85,16 @@ jobs:
           print(f"Verified {repo}@{revision}: {path.stat().st_size} bytes SHA256={actual}")
           PY
 
-      - name: Build current llama.cpp CPU server for GGUF inference
-        shell: bash
+      - name: Install in-process GGUF CPU runtime
         run: |
           set -euo pipefail
-          git clone --depth 1 https://github.com/ggml-org/llama.cpp.git llama.cpp
-          cmake -S llama.cpp -B llama.cpp/build \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DGGML_NATIVE=OFF \
-            -DGGML_OPENMP=ON \
-            -DLLAMA_BUILD_SERVER=ON
-          cmake --build llama.cpp/build --config Release --target llama-server -j 4
-
-      - name: Start Qwen instructor server
-        shell: bash
-        run: |
-          set -euo pipefail
-          model="$(find instructor -name 'Qwen3.5-4B-Q4_K_M.gguf' -print -quit)"
-          test -n "${model}"
-          nohup llama.cpp/build/bin/llama-server \
-            --model "${model}" \
-            --alias qwen3.5-4b-instructor \
-            --ctx-size 4096 \
-            --threads 4 \
-            --threads-batch 4 \
-            --host 127.0.0.1 \
-            --port 8080 \
-            --jinja > reports-llama-server.log 2>&1 &
-          echo $! > llama-server.pid
-          for attempt in $(seq 1 180); do
-            if curl --silent --fail http://127.0.0.1:8080/health >/dev/null; then
-              echo "Qwen instructor is ready"
-              exit 0
-            fi
-            sleep 10
-          done
-          cat reports-llama-server.log
-          exit 1
+          python -m pip install --only-binary=llama-cpp-python \\
+            --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu \\
+            "llama-cpp-python==0.3.36"
+          python - <<'PY'
+          from llama_cpp import Llama
+          print("llama-cpp-python in-process runtime imported successfully")
+          PY
 
       - name: Checkout RONIN model implementation
         shell: bash
@@ -130,15 +103,10 @@ jobs:
           git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git ronin-source
           git -C ronin-source sparse-checkout set ronin
 
-      - name: Generate 1,000 multidomain examples, continue student, and run paired holdout
+      - name: Generate/resume 1,000 multidomain examples in-process, continue student, and run paired holdout
         env:
           PYTHONPATH: ronin-source
         run: python scripts/heretic_distill_multidomain.py
-
-      - name: Stop instructor server
-        if: always()
-        run: |
-          if [ -f llama-server.pid ]; then kill "$(cat llama-server.pid)" 2>/dev/null || true; fi
 
       - name: Upload teacher data, distilled checkpoint, holdout and reports
         if: always()
