@@ -12,6 +12,7 @@ SOURCES=[
  {"id":"open-web-math/open-web-math","config":None,"license":"ODC-By-1.0","limit":5000,"fields":["text"],"caveat":"Common Crawl terms apply; collection license does not relicense underlying pages."},
  {"id":"HuggingFaceTB/cosmopedia","config":"auto_math_text","license":"Apache-2.0","limit":5000,"fields":["text","prompt"],"caveat":"Verify per-config card and source lineage; synthetic quality requires audit."},
  {"id":"HuggingFaceTB/smollm-corpus","config":"cosmopedia-v2","license":"ODC-By-1.0","limit":5000,"fields":["text","prompt"],"caveat":"Synthetic data seeded from web/educational sources; quality and source-derived risks require audit."},
+ {"id":"CohereLabs/aya_dataset","config":"default","license":"Apache-2.0","verify_license_tag":true,"limit":5000,"fields":["inputs","targets"],"caveat":"Official card states Apache-2.0 for any purpose. Human annotations and re-annotations; default config only. Do not load demographics config or user_id. Retain language and annotation_type; inspect PII and upstream prompt lineage."},
 ]
 EMAIL=re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b")
 PHONE=re.compile(r"(?<!\d)(?:\+?\d[\d .()/-]{7,}\d)(?!\d)")
@@ -23,7 +24,12 @@ def digest(p):
 def main():
  OUT.mkdir(parents=True,exist_ok=True); api=HfApi(); manifest=[]
  for source in SOURCES:
-  repo=source["id"]; revision=api.dataset_info(repo).sha
+  repo=source["id"]; info=api.dataset_info(repo); revision=info.sha
+  tags=set(info.tags or [])
+  expected_tag="license:"+source["license"].lower()
+  license_tag_verified=expected_tag in tags
+  if source.get("verify_license_tag") and not license_tag_verified:
+   raise RuntimeError(f"{repo}: expected official Hub tag {expected_tag}; found {sorted(tags)}")
   cfg=source["config"]
   ds=load_dataset(repo,cfg,split="train",streaming=True,revision=revision)
   target=OUT/(repo.replace("/","__")+".jsonl")
@@ -41,7 +47,7 @@ def main():
     f.write(json.dumps(record,ensure_ascii=False)+"\n"); written+=1
     if written>=source["limit"]: break
   if written<source["limit"]//2: raise RuntimeError(f"{repo}: only {written} usable rows")
-  manifest.append({"source":repo,"revision":revision,"config":cfg or "default","declared_license":source["license"],
+  manifest.append({"source":repo,"revision":revision,"config":cfg or "default","declared_license":source["license"],"official_license_tag":expected_tag if source.get("verify_license_tag") else None,"official_license_tag_verified":license_tag_verified,
     "rows_written":written,"rows_rejected":rejected,"bytes":target.stat().st_size,"sha256":digest(target),
     "status":"candidate_not_admitted","caveat":source["caveat"],"elapsed_seconds":round(time.time()-started,2),
     "checks":{"streamed_train_only":True,"exact_dedup_within_source":True,"basic_length_filter":True,
