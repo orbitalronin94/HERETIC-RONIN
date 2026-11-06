@@ -162,17 +162,16 @@ Las cuatro revisiones inmutables y los SHA-256 están en `data/sources/registry.
 
 La licencia de una colección **no borra los derechos de cada documento**. ODC-By no convierte automáticamente cada página web en obra libre; Common Pile no tiene una licencia universal; The Stack conserva licencias por archivo. Ningún candidato cuenta como admitido por aparecer en esta tabla. La fuente primaria, su revisión inmutable, split, atribución y SHA-256 deben quedar registrados antes de usarlo.
 
-### Plan de entrenamiento de 10.000 pasos del estudiante destilado 500M
+### Continuación del estudiante 500M hasta 250.000 pasos
 
-El candidato es el checkpoint **HERETIC 500M multidomain distilled, step 600**, del [experimento de destilación](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42227134702). Su resultado previo de 0/120 es una línea base diagnóstica, no una razón para descartarlo.
+El punto de partida es el checkpoint **HERETIC 500M multidomain distilled, step 600**, del [experimento base](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42227134702). El nuevo objetivo es alcanzar el **step global 250.000** (249.400 pasos adicionales), no declarar capacidad por pérdida de entrenamiento.
 
-El siguiente entrenamiento solo se iniciará con el corpus completo materializado y los gates de contaminación aprobados. El plan será:
+**Datos conectados al entrenamiento:** el artefacto train-only de RONIN-IA [run 42283514919](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42283514919), SHA-256 ZIP `8a1e6be6a02b97b24681f2d34909cf4562213e84d0b9824f4ebca64a279e9cef`. Incluye CoVoST2 (270.244), ScienceVerse (7.103), Mathlib4 (8.498), literatura española, NASA file-reviewed (2) y Papers propios (9), siempre solo particiones train. Se excluyen validation/test/holdout, los 20.000 candidatos open-source no revisados y el corpus Drosophila sintético.
 
-1. Recuperar y verificar SHA-256 del checkpoint step 600 y del estado del optimizador (si existe; si no, registrar reinicio).
-2. Construir un manifiesto único del corpus: origen, revisión, licencia, split, bytes, documentos, tokens, idioma, dominio y SHA-256.
-3. Mezclar los contenidos RONIN-IA admitidos, bibliotecas open source admitidas y Drosophila 50k; no permitir que las filas sintéticas dominen por volumen artificial.
-4. Ejecutar **10.000 pasos**, con checkpoints intermedios y registro de pérdida, throughput, consumo y hashes.
-5. Ejecutar antes y después las mismas 120 preguntas, en el mismo orden y configuración, guardando las 120 predicciones completas y exactitud por dominio.
-6. No promover si no supera 0/120 de forma reproducible, si hay regresión relevante por dominio o si falla cualquier gate. Una mejora en este pequeño holdout habilita evaluación ampliada, no equivale por sí sola a validación general.
+El importador conserva `active_training_authorized=false` porque los gates globales estaban pendientes. Por ello, la workflow nueva no entrena hasta que el informe global exact/near-duplicate/holdout autorice el artefacto. No se convierte el estado source-scoped en una aprobación global por conveniencia.
 
-La cifra de 500 GB sigue siendo un objetivo de biblioteca, no una cantidad ya descargada. Los workflows de GitHub Actions y sus artefactos son la fuente de verdad operativa; este README no declara entrenamientos ni importaciones que todavía no hayan terminado.
+La workflow [train-real-corpus-250k.yml](.github/workflows/train-real-corpus-250k.yml) encadena tramos de hasta 2.000 pasos, conserva checkpoint y estado AdamW entre tramos y apunta al step 250.000. El coste medido previo fue 500 pasos en unos 3.840 segundos; por tanto, 249.400 pasos pueden requerir del orden de **22 días de CPU**, además de transferencias de checkpoints. Cada tramo tiene límite de seis horas y se reanuda desde un artefacto verificable. La ejecución real y su progreso se consultan en GitHub Actions.
+
+La misma batería diagnóstica de 120 preguntas (20 por dominio) se guarda antes del primer paso y después del step 250.000, con las 120 predicciones completas y exactitud por dominio. El checkpoint final no se promociona automáticamente: requiere inspección del holdout, regresiones por dominio y hashes. La mejora en este holdout pequeño solo habilita una evaluación más amplia.
+
+La cifra de 500 GB sigue siendo un objetivo de biblioteca, no una cantidad ya descargada. Los workflows y sus artefactos son la fuente de verdad; este README no declara un entrenamiento completo antes de que finalicen todos los tramos.
