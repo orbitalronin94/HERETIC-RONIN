@@ -3,7 +3,7 @@ name: HERETIC — 500M real-corpus continuation to step 250000
 on:
   push:
     branches: [main]
-    paths: [".github/workflows/train-real-corpus-250k.yml"]
+    paths: [".github/workflows/train-real-corpus-250k.yml", "scripts/heretic_train_real_corpus_250k.py"]
   workflow_dispatch:
     inputs:
       start_step:
