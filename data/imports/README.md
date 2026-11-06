@@ -25,3 +25,12 @@ The current RONIN-IA manifests report global G-0 as FAIL, with global near-dupli
 - Source registry: [registry.json](../sources/registry.json)
 
 Each run verifies SHA-256 values and publishes a 90-day artifact with `IMPORT-MANIFEST.json`. Bulk data is not committed to Git because that would inflate Git history and make future revisions difficult to manage.
+
+
+## Primera materialización completa de train scoped
+
+- Run HERETIC: [42283514919](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42283514919)
+- Artefacto: `heretic-ronin-ia-train-staged-42283514919` (288.668.608 bytes; SHA-256 del ZIP: `8a1e6be6a02b97b24681f2d34909cf4562213e84d0b9824f4ebca64a279e9cef`).
+- Resultado del manifiesto: `records_staged=286464`, `active_training_authorized=false`, `global_g0=FAIL`.
+- Mathlib4 train se recuperó desde el artefacto de RONIN-IA run `42026633643`; el SHA-256 del texto es `7c82a4d1e0f3788d6038002b41ae1ead1bf6a16cbf4e332f59f015501325667c`.
+- El bundle incluye únicamente train. No contiene validation, test ni holdout.
