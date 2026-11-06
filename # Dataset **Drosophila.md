@@ -1051,3 +1051,1061 @@
 6. Límite: un LLM no “estudia”, ajusta parámetros; la analogía es útil, no literal.
 **Supuestos:** aprendizaje humano/modelos. **Verificación:** estudios de psicología cognitiva ✔.
 
+# Dataset **Drosophila** — 101–200
+
+---
+
+## BLOQUE 11 — Matemáticas (101–110)
+
+### 101 · ¿Cuánto es 7 × 8?
+**R:** 56.
+**Razonamiento:**
+1. Multiplicación en ℕ: 7 × 8 = 7 sumado 8 veces (o 8 sumado 7 veces).
+2. 7+7+7+7+7+7+7+7 = 56.
+3. Vía descomposición: 7×8 = 7×(10−2) = 70−14 = 56.
+4. Vía memorística de la tabla del 8: 8·7 = 56.
+5. Las tres vías coinciden.
+**Supuestos:** aritmética decimal. **Verificación:** 56/8 = 7 ✔.
+
+### 102 · ¿Cuál es la raíz cuadrada de 144?
+**R:** 12.
+**Razonamiento:**
+1. √n = x tal que x² = n y x ≥ 0.
+2. 12² = 144.
+3. Factorización: 144 = 2⁴·3² → √144 = 2²·3 = 12.
+4. Solo la raíz principal (positiva) se pide salvo indicación.
+5. −12 también cumple (−12)²=144, pero no es la raíz principal.
+**Supuestos:** raíz principal en ℝ. **Verificación:** 12² = 144 ✔.
+
+### 103 · ¿Cuánto es 15 % de 200?
+**R:** 30.
+**Razonamiento:**
+1. 15 % = 15/100 = 0,15.
+2. 0,15 × 200 = 30.
+3. Vía alternativa: 10 % = 20, 5 % = 10, suma = 30.
+4. Proporción: 15/100 = x/200 → x = 30.
+5. Comprobación inversa: 30/200 = 0,15 ✔.
+**Supuestos:** porcentaje simple. **Verificación:** 30/200 = 15 % ✔.
+
+### 104 · ¿Cuál es la solución de 2x + 6 = 14?
+**R:** x = 4.
+**Razonamiento:**
+1. Restar 6 a ambos lados: 2x = 8.
+2. Dividir entre 2: x = 4.
+3. Verificación: 2·4 + 6 = 14 ✔.
+4. Método alternativo: despejar x = (14−6)/2 = 4.
+5. Ecuación lineal con solución única.
+**Supuestos:** x ∈ ℝ. **Verificación:** sustituir en la ecuación original ✔.
+
+### 105 · ¿Cuál es el área de un círculo de radio 3?
+**R:** 9π ≈ 28,27 unidades².
+**Razonamiento:**
+1. Fórmula: A = πr².
+2. A = π·3² = 9π.
+3. 9π ≈ 9·3,1416 = 28,27.
+4. Unidades al cuadrado (área).
+5. No confundir con circunferencia (2πr = 6π).
+**Supuestos:** geometría euclidiana. **Verificación:** círculo de r=1 tiene área π ✔.
+
+### 106 · ¿Cuánto suman los ángulos internos de un triángulo?
+**R:** 180°.
+**Razonamiento:**
+1. En geometría euclidiana, la suma es 180°.
+2. Demostración: trazar paralela a un lado por el vértice opuesto; los ángulos alternos internos igualan los del triángulo y forman un ángulo llano.
+3. En geometría esférica o hiperbólica cambia.
+4. Consecuencia: un triángulo no puede tener dos ángulos rectos.
+**Supuestos:** geometría euclidiana plana. **Verificación:** triángulo equilátero: 60+60+60=180 ✔.
+
+### 107 · ¿Cuál es la probabilidad de sacar un 6 en un dado justo?
+**R:** 1/6.
+**Razonamiento:**
+1. Ω = {1,2,3,4,5,6}, |Ω| = 6.
+2. Dado justo → equiprobabilidad.
+3. Casos favorables: {6}, |A| = 1.
+4. P = 1/6 ≈ 0,1667 ≈ 16,67 %.
+5. Frecuentista: en muchas tiradas la proporción tiende a 1/6.
+**Supuestos:** dado justo de 6 caras. **Verificación:** suma de P(1..6) = 1 ✔.
+
+### 108 · ¿Cuánto es 2³?
+**R:** 8.
+**Razonamiento:**
+1. Potencia: 2³ = 2·2·2.
+2. 2·2 = 4; 4·2 = 8.
+3. Interpretación: volumen de un cubo de lado 2.
+4. Distinto de 2·3 = 6.
+5. Exponente 3 = número de factores.
+**Supuestos:** exponente natural. **Verificación:** log₂(8) = 3 ✔.
+
+### 109 · ¿Cuál es el perímetro de un cuadrado de lado 5?
+**R:** 20.
+**Razonamiento:**
+1. Cuadrado: 4 lados iguales.
+2. Perímetro = 4·lado = 4·5 = 20.
+3. Unidades lineales, no cuadradas.
+4. Área sería 5² = 25.
+5. No confundir perímetro con área.
+**Supuestos:** geometría plana. **Verificación:** 5+5+5+5 = 20 ✔.
+
+### 110 · ¿Cuál es el mcm de 4 y 6?
+**R:** 12.
+**Razonamiento:**
+1. mcm = menor entero positivo múltiplo de ambos.
+2. Múltiplos de 4: 4, 8, 12, 16…
+3. Múltiplos de 6: 6, 12, 18…
+4. Primer común: 12.
+5. Vía factorización: 4 = 2², 6 = 2·3 → mcm = 2²·3 = 12.
+**Supuestos:** ℕ. **Verificación:** 12/4 = 3 y 12/6 = 2 ✔.
+
+---
+
+## BLOQUE 12 — Física y química (111–120)
+
+### 111 · ¿Qué es la energía?
+**R:** Capacidad de realizar trabajo o producir cambios.
+**Razonamiento:**
+1. Se manifiesta en formas: cinética, potencial, térmica, química, nuclear, eléctrica.
+2. Se conserva: la energía total de un sistema aislado permanece constante.
+3. Puede transformarse entre formas, no crearse ni destruirse.
+4. Unidad SI: julio (J).
+5. En relatividad, masa y energía se relacionan (E = mc²).
+**Supuestos:** física clásica y moderna. **Verificación:** péndulo transforma potencial ↔ cinética ✔.
+
+### 112 · ¿Qué dice la primera ley de Newton?
+**R:** Un cuerpo sin fuerza neta mantiene su estado de reposo o movimiento rectilíneo uniforme.
+**Razonamiento:**
+1. También llamada ley de inercia.
+2. Fuerza neta cero → velocidad constante.
+3. Explica por qué necesitamos cinturón en un frenazo.
+4. No dice que todo lo que se mueve se detenga: sin rozamiento seguiría.
+5. Base de la mecánica clásica.
+**Supuestos:** marcos inerciales. **Verificación:** disco sobre hielo se desliza largo ✔.
+
+### 113 · ¿Qué es un átomo?
+**R:** Unidad básica de la materia formada por núcleo y electrones.
+**Razonamiento:**
+1. Núcleo: protones (+) y neutrones (neutros).
+2. Electrones (−) orbitan en niveles de energía.
+3. Número atómico (Z) = protones → define el elemento.
+4. Isótopos: mismo Z, distinto número de neutrones.
+5. Se combinan formando moléculas y compuestos.
+**Supuestos:** modelo cuántico moderno. **Verificación:** tabla periódica organiza por Z ✔.
+
+### 114 · ¿Qué es el pH?
+**R:** Medida de acidez o basicidad de una disolución.
+**Razonamiento:**
+1. pH = −log[H⁺].
+2. Escala típica 0–14 a 25 °C.
+3. pH < 7 ácido; pH = 7 neutro; pH > 7 básico.
+4. Cada unidad de pH es un factor 10 en concentración de H⁺.
+5. Ejemplos: limón ≈2, agua pura =7, lejía ≈13.
+**Supuestos:** disolución acuosa a 25 °C. **Verificación:** agua pura pH 7 ✔.
+
+### 115 · ¿Qué es la electricidad?
+**R:** Fenómeno asociado al movimiento o acumulación de cargas eléctricas.
+**Razonamiento:**
+1. Cargas positivas y negativas; iguales se repelen, opuestas se atraen.
+2. Corriente = flujo de electrones en un conductor.
+3. Unidad de carga: culombio (C); de corriente: amperio (A).
+4. Ley de Ohm: V = IR.
+5. Se genera por inducción, reacción química o fricción.
+**Supuestos:** electrodinámica clásica. **Verificación:** circuito con batería y bombilla enciende ✔.
+
+### 116 · ¿Qué es la densidad?
+**R:** Masa por unidad de volumen.
+**Razonamiento:**
+1. ρ = m/V.
+2. Unidad SI: kg/m³ (también g/cm³).
+3. Agua ≈ 1 g/cm³.
+4. Determina si un cuerpo flota (densidad menor que el fluido).
+5. Depende de temperatura y presión.
+**Supuestos:** sustancia homogénea. **Verificación:** 1 kg de agua ocupa ~1 L → ρ ≈ 1 kg/L ✔.
+
+### 117 · ¿Qué es una reacción química?
+**R:** Transformación en la que se rompen y forman enlaces entre átomos.
+**Razonamiento:**
+1. Reactivos → productos.
+2. Se conservan los átomos (ley de conservación de la masa).
+3. Cambian las sustancias, no los elementos.
+4. Puede liberar (exotérmica) o absorber (endotérmica) energía.
+5. Se representa con ecuaciones químicas ajustadas.
+**Supuestos:** química clásica. **Verificación:** combustión de metano: CH₄+2O₂→CO₂+2H₂O ✔.
+
+### 118 · ¿Qué es la temperatura?
+**R:** Medida de la energía cinética media de las partículas.
+**Razonamiento:**
+1. Más temperatura → más agitación molecular.
+2. Unidad SI: kelvin (K); también °C.
+3. T(K) = T(°C) + 273,15.
+4. No es lo mismo que calor: calor es transferencia de energía.
+5. Cero absoluto: 0 K = −273,15 °C (no alcanzable).
+**Supuestos:** termodinámica. **Verificación:** agua hierve a 100 °C = 373,15 K ✔.
+
+### 119 · ¿Qué es un imán?
+**R:** Objeto que genera campo magnético y atrae materiales ferromagnéticos.
+**Razonamiento:**
+1. Tiene polos norte y sur; polos iguales se repelen, opuestos se atraen.
+2. No se puede aislar un polo magnético (a diferencia de la carga eléctrica).
+3. Campo magnético descrito por líneas de fuerza.
+4. Materiales ferromagnéticos: hierro, cobalto, níquel.
+5. Origen microscópico: alineación de espines atómicos.
+**Supuestos:** magnetismo clásico. **Verificación:** brújula apunta al norte terrestre ✔.
+
+### 120 · ¿Qué es el sonido?
+**R:** Onda mecánica longitudinal que se propaga en un medio.
+**Razonamiento:**
+1. Necesita medio material (no se propaga en vacío).
+2. Frecuencia determina tono; amplitud, volumen.
+3. Velocidad: ~343 m/s en aire a 20 °C; mayor en agua y sólidos.
+4. Espectro audible humano: 20 Hz – 20 kHz.
+5. Es una onda de presión.
+**Supuestos:** acústica clásica. **Verificación:** sin aire no hay sonido (campana de vacío) ✔.
+
+---
+
+## BLOQUE 13 — Biología y cuerpo humano (121–130)
+
+### 121 · ¿Cuántos huesos tiene el cuerpo humano adulto?
+**R:** 206.
+**Razonamiento:**
+1. El adulto tiene 206 huesos.
+2. El recién nacido tiene ~270; algunos se fusionan con el crecimiento.
+3. Se dividen en esqueleto axial (~80) y apendicular (~126).
+4. El fémur es el más largo; el estribo, el más pequeño.
+5. Variaciones anatómicas pueden alterar el número.
+**Supuestos:** adulto estándar. **Verificación:** anatomía descriptiva ✔.
+
+### 122 · ¿Qué hace el corazón?
+**R:** Bombea sangre por el sistema circulatorio.
+**Razonamiento:**
+1. Cuatro cámaras: dos aurículas y dos ventrículos.
+2. Lado derecho → pulmones; izquierdo → resto del cuerpo.
+3. Late ~60–100 veces por minuto en reposo.
+4. Transporta oxígeno, nutrientes y desechos.
+5. Su actividad se regula por el sistema nervioso autónomo.
+**Supuestos:** anatomía humana. **Verificación:** auscultación cardíaca ✔.
+
+### 123 · ¿Qué es la sangre?
+**R:** Tejido líquido que transporta sustancias por el cuerpo.
+**Razonamiento:**
+1. Componentes: plasma, glóbulos rojos, glóbulos blancos, plaquetas.
+2. Glóbulos rojos transportan O₂ mediante hemoglobina.
+3. Glóbulos blancos participan en defensa inmune.
+4. Plaquetas intervienen en coagulación.
+5. Volumen ≈ 5 L en adulto.
+**Supuestos:** fisiología humana. **Verificación:** análisis de sangre ✔.
+
+### 124 · ¿Qué es la respiración celular?
+**R:** Proceso que obtiene energía de la glucosa usando oxígeno.
+**Razonamiento:**
+1. Ecuación global: C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + energía (ATP).
+2. Ocurre en mitocondrias.
+3. Fases: glucólisis, ciclo de Krebs, cadena respiratoria.
+4. Produce ATP, moneda energética celular.
+5. La respiración anaerobia (fermentación) produce menos ATP.
+**Supuestos:** células eucariotas. **Verificación:** sin O₂ se activa fermentación ✔.
+
+### 125 · ¿Qué es el sistema inmune?
+**R:** Conjunto de defensas contra patógenos.
+**Razonamiento:**
+1. Innato: barreras (piel, mucosas) y células rápidas.
+2. Adaptativo: linfocitos B (anticuerpos) y T (células).
+3. Memoria inmunológica: respuesta más rápida en segundo contacto.
+4. Base de las vacunas.
+5. Fallos causan alergias o autoinmunidad.
+**Supuestos:** inmunología estándar. **Verificación:** respuesta a infección ✔.
+
+### 126 · ¿Qué es la evolución?
+**R:** Cambio de las poblaciones a lo largo de generaciones.
+**Razonamiento:**
+1. Mecanismos: selección natural, mutación, deriva génica, migración.
+2. Variabilidad + herencia + selección → adaptación.
+3. No ocurre en un individuo, sino en poblaciones.
+4. Evidencias: fósiles, ADN, biogeografía, observación directa.
+5. Explica la diversidad biológica.
+**Supuestos:** biología evolutiva moderna. **Verificación:** resistencia a antibióticos en bacterias ✔.
+
+### 127 · ¿Qué es un ecosistema?
+**R:** Sistema formado por seres vivos y su ambiente físico.
+**Razonamiento:**
+1. Componentes bióticos (seres vivos) y abióticos (agua, suelo, clima).
+2. Interacciones: depredación, competencia, simbiosis.
+3. Flujo de energía y ciclos de materia.
+4. Puede ser terrestre o acuático.
+5. Su equilibrio es dinámico, no estático.
+**Supuestos:** ecología. **Verificación:** cadena trófica en un bosque ✔.
+
+### 128 · ¿Qué es la mitocondria?
+**R:** Orgánulo celular que produce energía (ATP).
+**Razonamiento:**
+1. Tiene doble membrana.
+2. Realiza respiración celular aerobia.
+3. Contiene su propio ADN (origen endosimbiótico).
+4. Abundante en células con alta demanda energética (músculo).
+5. Su disfunción causa enfermedades mitocondriales.
+**Supuestos:** célula eucariota. **Verificación:** tinción mitocondrial ✔.
+
+### 129 · ¿Qué es la homeostasis?
+**R:** Mantenimiento del equilibrio interno del organismo.
+**Razonamiento:**
+1. Regula temperatura, pH, glucosa, agua, electrolitos.
+2. Mecanismos de retroalimentación negativa (la mayoría) y positiva (menos frecuente).
+3. Ejemplo: sudoración para bajar temperatura.
+4. Su fallo causa enfermedad.
+5. Es una propiedad clave de los seres vivos.
+**Supuestos:** fisiología. **Verificación:** temperatura corporal ≈ 37 °C ✔.
+
+### 130 · ¿Qué es un gen?
+**R:** Fragmento de ADN que contiene información para un producto funcional.
+**Razonamiento:**
+1. Puede codificar proteína o ARN funcional.
+2. Se hereda de progenitores.
+3. Alelos: variantes de un mismo gen.
+4. La expresión génica depende del ambiente y la regulación.
+5. Mutaciones pueden alterar su función.
+**Supuestos:** genética moderna. **Verificación:** secuenciación génica ✔.
+
+---
+
+## BLOQUE 14 — Historia y cultura (131–140)
+
+### 131 · ¿En qué año llegó el ser humano a la Luna?
+**R:** 1969.
+**Razonamiento:**
+1. Misión Apolo 11, julio de 1969.
+2. Neil Armstrong y Buzz Aldrin caminaron sobre la Luna.
+3. Michael Collins orbitaba en el módulo de mando.
+4. Hito de la carrera espacial EE. UU.–URSS.
+5. Se ha repetido en misiones posteriores (Apolo 12–17).
+**Supuestos:** programa Apolo. **Verificación:** registros NASA ✔.
+
+### 132 · ¿Quién fue Cleopatra?
+**R:** Última reina del Egipto ptolemaico.
+**Razonamiento:**
+1. Reinó entre 51 y 30 a. C.
+2. Relacionada con Julio César y Marco Antonio.
+3. Su derrota y suicidio marcaron el fin de Egipto como reino independiente.
+4. Egipto pasó a ser provincia romana.
+5. Figura histórica y cultural muy representada.
+**Supuestos:** historia antigua. **Verificación:** fuentes romanas y egipcias ✔.
+
+### 133 · ¿Qué fue el Imperio romano?
+**R:** Sistema político que dominó el Mediterráneo durante siglos.
+**Razonamiento:**
+1. Comienza con Augusto (27 a. C.) tras la República.
+2. Máxima extensión bajo Trajano (s. II d. C.).
+3. Divide en Imperio de Occidente y Oriente en 395.
+4. Occidente cae en 476; Oriente (bizantino) hasta 1453.
+5. Legado: derecho, lengua, infraestructura, cristianismo.
+**Supuestos:** historiografía estándar. **Verificación:** fuentes históricas ✔.
+
+### 134 · ¿Qué fue la Ilustración?
+**R:** Movimiento intelectual del s. XVIII que defendió la razón y la ciencia.
+**Razonamiento:**
+1. Centro: Francia, con figuras como Voltaire, Rousseau, Diderot.
+2. Valores: razón, libertad, igualdad, progreso, tolerancia.
+3. Influyó en la Revolución Francesa y la independencia de EE. UU.
+4. Promovió la Enciclopedia como difusión del conocimiento.
+5. Criticó el absolutismo y los privilegios estamentales.
+**Supuestos:** historia moderna. **Verificación:** obras de la época ✔.
+
+### 135 · ¿Qué es el Renacimiento?
+**R:** Movimiento cultural europeo (s. XIV–XVI) de recuperación de la Antigüedad clásica.
+**Razonamiento:**
+1. Origen en Italia (Florencia).
+2. Humanismo: centralidad del ser humano.
+3. Desarrollo de perspectiva, anatomía, imprenta.
+4. Figuras: Da Vinci, Miguel Ángel, Erasmo.
+5. Transición entre Edad Media y Edad Moderna.
+**Supuestos:** periodización histórica. **Verificación:** obras artísticas y textos ✔.
+
+### 136 · ¿Quién escribió el Quijote?
+**R:** Miguel de Cervantes.
+**Razonamiento:**
+1. Publicado en dos partes: 1605 y 1615.
+2. Considerado la primera novela moderna.
+3. Protagonistas: Don Quijote y Sancho Panza.
+4. Obra cumbre de la literatura española.
+5. Cervantes murió en 1616.
+**Supuestos:** literatura española. **Verificación:** ediciones originales ✔.
+
+### 137 · ¿Qué fue la Segunda Guerra Mundial?
+**R:** Conflicto global (1939–1945) entre Aliados y Potencias del Eje.
+**Razonamiento:**
+1. Comienza con invasión de Polonia por Alemania (1939).
+2. Eje: Alemania, Italia, Japón; Aliados: Reino Unido, URSS, EE. UU., China, Francia.
+3. Holocausto: genocidio sistemático.
+4. Termina en 1945 con rendición de Alemania y Japón.
+5. Consecuencias: ONU, Guerra Fría, descolonización.
+**Supuestos:** historia contemporánea. **Verificación:** fuentes históricas ✔.
+
+### 138 · ¿Qué fue la Guerra Fría?
+**R:** Tensión geopolítica entre EE. UU. y la URSS (1947–1991).
+**Razonamiento:**
+1. No fue confrontación militar directa entre las potencias.
+2. Conflictos indirectos: Corea, Vietnam, Afganistán.
+3. Carrera nuclear y espacial.
+4. Bloques: OTAN vs. Pacto de Varsovia.
+5. Termina con la disolución de la URSS (1991).
+**Supuestos:** historia del s. XX. **Verificación:** archivos desclasificados ✔.
+
+### 139 · ¿Qué fue la Revolución Industrial?
+**R:** Transformación económica y social iniciada en el s. XVIII en Reino Unido.
+**Razonamiento:**
+1. Máquina de vapor, ferrocarril, fábricas.
+2. Paso de economía agraria a industrial.
+3. Urbanización masiva.
+4. Nuevas clases sociales: burguesía industrial y proletariado.
+5. Se extendió a Europa y América.
+**Supuestos:** historia económica. **Verificación:** registros industriales ✔.
+
+### 140 · ¿Qué es la ONU?
+**R:** Organización internacional fundada en 1945.
+**Razonamiento:**
+1. Objetivo: mantener paz y seguridad internacional.
+2. Sede: Nueva York.
+3. Órganos: Asamblea General, Consejo de Seguridad, etc.
+4. 193 Estados miembros.
+5. Agencias: UNESCO, UNICEF, OMS.
+**Supuestos:** organismos internacionales. **Verificación:** carta fundacional ✔.
+
+---
+
+## BLOQUE 15 — Geografía (141–150)
+
+### 141 · ¿Cuál es el país más grande del mundo?
+**R:** Rusia.
+**Razonamiento:**
+1. Superficie ≈ 17 millones km².
+2. Abarca Europa del Este y Asia del Norte.
+3. Once husos horarios.
+4. Más del doble que Canadá (segundo).
+5. Se extiende hasta el Ártico y el Pacífico.
+**Supuestos:** superficie terrestre total. **Verificación:** datos geográficos ✔.
+
+### 142 · ¿Cuál es el desierto más grande del mundo?
+**R:** El Antártico (desierto polar).
+**Razonamiento:**
+1. “Desierto” = región con precipitación muy baja, no necesariamente cálida.
+2. La Antártida es el mayor desierto (≈14 millones km²).
+3. El Sahara es el mayor desierto cálido (≈9 millones km²).
+4. La respuesta depende de la definición.
+5. Se aclara si se pregunta por desierto cálido o por desierto en general.
+**Supuestos:** definición climática. **Verificación:** datos de precipitación ✔.
+
+### 143 · ¿Cuál es el río más caudaloso del mundo?
+**R:** El Amazonas.
+**Razonamiento:**
+1. Caudal medio ≈ 209.000 m³/s.
+2. Supera al Nilo, Yangtsé y Misisipi.
+3. Su cuenca es la mayor del mundo.
+4. Desemboca en el Atlántico.
+5. Caudal ≠ longitud (el más largo es discutido).
+**Supuestos:** caudal medio. **Verificación:** datos hidrológicos ✔.
+
+### 144 · ¿Cuál es la montaña más alta del mundo?
+**R:** El Everest.
+**Razonamiento:**
+1. Altitud: 8.848,86 m sobre el nivel del mar.
+2. Cordillera del Himalaya, frontera Nepal–China.
+3. Escalado por primera vez en 1953 (Hillary y Tenzing).
+4. Si se mide desde la base oceánica, el Mauna Kea es más alto.
+5. “Más alta” = mayor altitud sobre nivel del mar.
+**Supuestos:** altitud sobre nivel del mar. **Verificación:** mediciones geodésicas ✔.
+
+### 145 · ¿Cuántos continentes hay?
+**R:** Depende del modelo: 5, 6 o 7.
+**Razonamiento:**
+1. Modelo de 7: África, Antártida, Asia, Europa, América del Norte, América del Sur, Oceanía.
+2. Modelo de 6: América unificada.
+3. Modelo de 5: Eurasia unificada, América unificada, Antártida, África, Oceanía.
+4. No hay una respuesta universal: depende del país y la tradición educativa.
+5. En España se enseña tradicionalmente 6 (con América unificada) o 5.
+**Supuestos:** convención geográfica. **Verificación:** manuales escolares de distintos países ✔.
+
+### 146 · ¿Cuál es el océano más pequeño?
+**R:** El Ártico.
+**Razonamiento:**
+1. Superficie ≈ 14 millones km².
+2. Rodeado por Eurasia y América del Norte.
+3. Cubierto de hielo marino parte del año.
+4. El Antártico también es pequeño, pero el Ártico es menor.
+5. Se distingue de los demás por su ubicación polar.
+**Supuestos:** delimitación estándar. **Verificación:** datos NOAA ✔.
+
+### 147 · ¿Cuál es la capital de Australia?
+**R:** Canberra.
+**Razonamiento:**
+1. Capital federal, sede del gobierno.
+2. No es Sídney ni Melbourne (las más conocidas).
+3. Se fundó como capital de compromiso entre ambas ciudades.
+4. Diseñada por Walter Burley Griffin.
+5. Dato institucional verificable.
+**Supuestos:** Australia contemporánea. **Verificación:** gobierno australiano ✔.
+
+### 148 · ¿Dónde está el Amazonas?
+**R:** América del Sur.
+**Razonamiento:**
+1. Nace en los Andes peruanos.
+2. Atraviesa Perú, Colombia y Brasil.
+3. Desemboca en el Atlántico.
+4. Cuenca ≈ 7 millones km².
+5. Es el río más caudaloso del mundo.
+**Supuestos:** geografía física. **Verificación:** mapas ✔.
+
+### 149 · ¿Cuál es el país más poblado del mundo?
+**R:** India (desde 2023).
+**Razonamiento:**
+1. En 2023 India superó a China en población.
+2. India ≈ 1.430 millones; China ≈ 1.410 millones.
+3. China tuvo políticas de control de natalidad; India tiene población más joven.
+4. Dato cambiante con el tiempo.
+5. Se debe especificar la fecha.
+**Supuestos:** datos recientes. **Verificación:** ONU, Banco Mundial ✔.
+
+### 150 · ¿Qué es la Unión Europea?
+**R:** Organización política y económica de países europeos.
+**Razonamiento:**
+1. Origen: Tratado de Roma (1957).
+2. 27 Estados miembros tras el Brexit.
+3. Mercado único, libre circulación.
+4. Instituciones: Comisión, Parlamento, Consejo.
+5. Moneda común: euro en la eurozona.
+**Supuestos:** integración europea. **Verificación:** tratados oficiales ✔.
+
+---
+
+## BLOQUE 16 — Lengua y literatura (151–160)
+
+### 151 · ¿Qué es un sustantivo?
+**R:** Palabra que nombra personas, cosas, lugares o ideas.
+**Razonamiento:**
+1. Categoría gramatical con género y número.
+2. Puede ser propio o común, concreto o abstracto.
+3. Funciona como núcleo del sintagma nominal.
+4. Ejemplos: “perro”, “Madrid”, “libertad”.
+5. Se combina con artículos y adjetivos.
+**Supuestos:** gramática española. **Verificación:** “el perro” funciona ✔.
+
+### 152 · ¿Qué es un verbo?
+**R:** Palabra que expresa acción, estado o proceso.
+**Razonamiento:**
+1. Categoría con conjugación (tiempo, modo, persona, número, aspecto).
+2. Formas: simples y compuestas.
+3. Puede ser regular o irregular.
+4. Núcleo del predicado.
+5. Ejemplos: “correr”, “ser”, “llover”.
+**Supuestos:** gramática tradicional. **Verificación:** “yo corro” funciona ✔.
+
+### 153 · ¿Qué es un adjetivo?
+**R:** Palabra que califica o determina al sustantivo.
+**Razonamiento:**
+1. Concuerda en género y número con el sustantivo.
+2. Puede ser calificativo o determinativo.
+3. Ejemplos: “alto”, “este”, “tres”.
+4. Puede sustantivarse (“el rico”).
+5. Aporta información sobre el sustantivo.
+**Supuestos:** gramática española. **Verificación:** “niño alto” concuerda ✔.
+
+### 154 · ¿Qué es un texto narrativo?
+**R:** Texto que cuenta una historia con personajes, tiempo y espacio.
+**Razonamiento:**
+1. Elementos: narrador, personajes, trama, ambiente.
+2. Estructura: planteamiento, nudo, desenlace.
+3. Puede ser literario o no.
+4. Ejemplos: cuento, novela, fábula.
+5. Predomina la secuencia temporal.
+**Supuestos:** teoría literaria. **Verificación:** análisis de cuentos ✔.
+
+### 155 · ¿Qué es una rima?
+**R:** Coincidencia de sonidos al final de los versos.
+**Razonamiento:**
+1. Consonante: coinciden vocales y consonantes desde la última tónica.
+2. Asonante: solo coinciden las vocales.
+3. Puede ser regular o irregular.
+4. Contribuye al ritmo y musicalidad.
+5. Típica en poesía, canciones y refranes.
+**Supuestos:** métrica española. **Verificación:** “amor”/“corazón” rima asonante ✔.
+
+### 156 · ¿Qué es una fábula?
+**R:** Relato breve con moraleja, a menudo con animales personificados.
+**Razonamiento:**
+1. Personajes suelen ser animales con rasgos humanos.
+2. Termina con una enseñanza (moraleja).
+3. Autores clásicos: Esopo, La Fontaine, Samaniego.
+4. Se transmite oralmente o por escrito.
+5. Género didáctico.
+**Supuestos:** literatura universal. **Verificación:** “La liebre y la tortuga” ✔.
+
+### 157 · ¿Qué es un mito?
+**R:** Relato tradicional que explica el origen del mundo o fenómenos naturales.
+**Razonamiento:**
+1. Protagonistas: dioses, héroes, seres sobrenaturales.
+2. Función: explicar, legitimar, transmitir valores.
+3. Se transmite oralmente y luego por escrito.
+4. Ejemplo: mito de Prometeo.
+5. Diferente de leyenda (más histórica) y cuento (más lúdico).
+**Supuestos:** antropología y literatura. **Verificación:** mitología griega ✔.
+
+### 158 · ¿Qué es una oración?
+**R:** Unidad gramatical con sujeto y predicado que expresa un sentido completo.
+**Razonamiento:**
+1. Sujeto + predicado como estructura prototípica.
+2. Puede ser simple o compuesta.
+3. Entonación y puntuación la delimitan.
+4. Puede ser enunciativa, interrogativa, exclamativa, etc.
+5. Tiene sentido completo en el contexto.
+**Supuestos:** gramática tradicional. **Verificación:** “El niño come” es oración ✔.
+
+### 159 · ¿Qué es un sinónimo?
+**R:** Palabra con significado igual o muy similar a otra.
+**Razonamiento:**
+1. No son intercambiables en todos los contextos.
+2. Ejemplos: “casa”/“hogar”, “rápido”/“veloz”.
+3. Grado de sinonimia: total o parcial.
+4. Pueden variar en registro o connotación.
+5. Importante para la expresión escrita.
+**Supuestos:** semántica. **Verificación:** “coche”/“automóvil” ✔.
+
+### 160 · ¿Qué es un diptongo?
+**R:** Unión de dos vocales en una misma sílaba.
+**Razonamiento:**
+1. Combinaciones: vocal abierta + cerrada, cerrada + abierta, cerrada + cerrada.
+2. Ejemplos: “aire”, “ciudad”, “cuidado”.
+3. Puede ser creciente o decreciente.
+4. Distinto de hiato (vocales en sílabas distintas).
+5. Afecta a la acentuación.
+**Supuestos:** fonética española. **Verificación:** “bue-no” tiene diptongo ✔.
+
+---
+
+## BLOQUE 17 — Tecnología y programación (161–170)
+
+### 161 · ¿Qué es un lenguaje de programación?
+**R:** Sistema formal para expresar instrucciones a una computadora.
+**Razonamiento:**
+1. Tiene sintaxis y semántica definidas.
+2. Puede ser compilado o interpretado.
+3. Ejemplos: Python, Java, C, JavaScript.
+4. Permite automatizar tareas y crear software.
+5. Cada lenguaje tiene paradigmas y usos propios.
+**Supuestos:** informática. **Verificación:** compilar un programa sencillo ✔.
+
+### 162 · ¿Qué es una función en programación?
+**R:** Bloque de código reutilizable que realiza una tarea.
+**Razonamiento:**
+1. Puede recibir parámetros y devolver un valor.
+2. Evita duplicar código.
+3. Facilita el mantenimiento y la legibilidad.
+4. Puede ser pura (sin efectos secundarios) o no.
+5. Ejemplo: “sumar(a, b)”.
+**Supuestos:** programación estructurada. **Verificación:** llamar a la función devuelve resultado ✔.
+
+### 163 · ¿Qué es un array o lista?
+**R:** Estructura que almacena varios elementos en orden.
+**Razonamiento:**
+1. Acceso por índice (a menudo desde 0).
+2. Puede contener elementos de un mismo tipo o mixtos según el lenguaje.
+3. Operaciones: añadir, eliminar, recorrer.
+4. Longitud variable o fija según implementación.
+5. Base de muchas estructuras más complejas.
+**Supuestos:** programación. **Verificación:** lista[0] devuelve primer elemento ✔.
+
+### 164 · ¿Qué es un condicional?
+**R:** Estructura que ejecuta código según se cumpla una condición.
+**Razonamiento:**
+1. Formas: if, else if, else.
+2. Evalúa una expresión booleana.
+3. Permite ramificar la ejecución.
+4. Base de la lógica de control.
+5. Puede anidarse.
+**Supuestos:** programación. **Verificación:** if (x>0) ejecuta bloque ✔.
+
+### 165 · ¿Qué es una base de datos?
+**R:** Conjunto organizado de datos almacenados y accesibles.
+**Razonamiento:**
+1. Puede ser relacional o no relacional.
+2. Permite consultar, insertar, actualizar y eliminar datos.
+3. Garantiza integridad y seguridad.
+4. Ejemplos: MySQL, PostgreSQL, MongoDB.
+5. Base de aplicaciones modernas.
+**Supuestos:** informática. **Verificación:** consulta SQL devuelve datos ✔.
+
+### 166 · ¿Qué es la nube (cloud)?
+**R:** Servicios informáticos ofrecidos a través de internet.
+**Razonamiento:**
+1. Incluye almacenamiento, cómputo, bases de datos, IA.
+2. Modelos: IaaS, PaaS, SaaS.
+3. Ventajas: escalabilidad, pago por uso.
+4. Riesgos: dependencia, privacidad, seguridad.
+5. Ejemplos: AWS, Azure, Google Cloud.
+**Supuestos:** computación moderna. **Verificación:** subir archivo a la nube ✔.
+
+### 167 · ¿Qué es un sistema operativo?
+**R:** Software que gestiona hardware y recursos del ordenador.
+**Razonamiento:**
+1. Intermediario entre usuario y hardware.
+2. Funciones: gestión de procesos, memoria, archivos, dispositivos.
+3. Ejemplos: Windows, Linux, macOS, Android.
+4. Puede ser de escritorio, móvil o servidor.
+5. Base para ejecutar aplicaciones.
+**Supuestos:** informática. **Verificación:** arrancar un ordenador ✔.
+
+### 168 · ¿Qué es una IP?
+**R:** Dirección numérica que identifica un dispositivo en una red.
+**Razonamiento:**
+1. IPv4: 32 bits (ej. 192.168.1.1).
+2. IPv6: 128 bits (mayor espacio).
+3. Puede ser pública o privada.
+4. Permite enrutar paquetes.
+5. Puede ser dinámica o estática.
+**Supuestos:** redes. **Verificación:** ping a una IP ✔.
+
+### 169 · ¿Qué es un compilador?
+**R:** Programa que traduce código fuente a código máquina.
+**Razonamiento:**
+1. Analiza sintaxis y semántica.
+2. Genera código ejecutable.
+3. Distinto de intérprete (ejecuta línea a línea).
+4. Ejemplos: gcc, javac.
+5. Detecta errores antes de ejecutar.
+**Supuestos:** informática. **Verificación:** compilar programa C ✔.
+
+### 170 · ¿Qué es un algoritmo de ordenación?
+**R:** Procedimiento para ordenar elementos de una colección.
+**Razonamiento:**
+1. Ejemplos: burbuja, quicksort, mergesort.
+2. Complejidad variable: O(n²) u O(n log n).
+3. Se elige según tamaño y estabilidad requerida.
+4. Fundamental en informática.
+5. Puede ser estable o inestable.
+**Supuestos:** algoritmia. **Verificación:** [3,1,2] ordenado a [1,2,3] ✔.
+
+---
+
+## BLOQUE 18 — Economía y empresa (171–180)
+
+### 171 · ¿Qué es el PIB?
+**R:** Valor total de bienes y servicios producidos en un país en un periodo.
+**Razonamiento:**
+1. Mide actividad económica.
+2. Puede ser nominal o real (ajustado por inflación).
+3. No mide bienestar ni distribución.
+4. Se calcula por producción, gasto o renta.
+5. Comparación entre países requiere ajustes (PPA).
+**Supuestos:** macroeconomía. **Verificación:** datos de institutos estadísticos ✔.
+
+### 172 · ¿Qué es la oferta y la demanda?
+**R:** Modelo económico que explica precios y cantidades.
+**Razonamiento:**
+1. Demanda: cantidad que compradores quieren a cada precio.
+2. Oferta: cantidad que vendedores ofrecen a cada precio.
+3. Equilibrio: oferta = demanda.
+4. Exceso de demanda → sube precio; exceso de oferta → baja.
+5. Base de la economía de mercado.
+**Supuestos:** mercado competitivo. **Verificación:** gráfico oferta-demanda ✔.
+
+### 173 · ¿Qué es un monopolio?
+**R:** Mercado con un único oferente.
+**Razonamiento:**
+1. El monopolista controla el precio.
+2. Barreras de entrada altas.
+3. Puede reducir cantidad y subir precio.
+4. Regulación frecuente por parte del Estado.
+5. Distinto de oligopolio (pocos oferentes).
+**Supuestos:** microeconomía. **Verificación:** casos históricos (telecomunicaciones) ✔.
+
+### 174 · ¿Qué es una acción?
+**R:** Participación en la propiedad de una empresa.
+**Razonamiento:**
+1. Otorga derechos económicos y políticos.
+2. Se negocia en bolsa.
+3. Su precio varía según oferta y demanda.
+4. Puede pagar dividendos.
+5. Riesgo: el valor puede caer.
+**Supuestos:** mercado de valores. **Verificación:** cotización bursátil ✔.
+
+### 175 · ¿Qué es un bono?
+**R:** Título de deuda emitido por un gobierno o empresa.
+**Razonamiento:**
+1. El inversor presta dinero a cambio de intereses.
+2. Riesgo depende del emisor.
+3. Puede ser a corto o largo plazo.
+4. Menor riesgo que acciones (en general).
+5. Puede venderse antes del vencimiento.
+**Supuestos:** finanzas. **Verificación:** pago de cupones ✔.
+
+### 176 · ¿Qué es el IVA?
+**R:** Impuesto sobre el valor añadido.
+**Razonamiento:**
+1. Impuesto indirecto sobre el consumo.
+2. Se aplica en cada fase de la cadena productiva.
+3. Lo paga el consumidor final.
+4. Tipos variables según el país y el producto.
+5. En España: general 21 %, reducido 10 %, superreducido 4 %.
+**Supuestos:** fiscalidad. **Verificación:** factura con IVA ✔.
+
+### 177 · ¿Qué es una startup?
+**R:** Empresa emergente con modelo de negocio escalable.
+**Razonamiento:**
+1. Busca crecimiento rápido.
+2. Suele operar en tecnología o innovación.
+3. Alta incertidumbre y riesgo.
+4. Financiación: capital riesgo, business angels.
+5. Puede fracasar o escalar rápidamente.
+**Supuestos:** emprendimiento. **Verificación:** casos como Airbnb o Spotify ✔.
+
+### 178 · ¿Qué es el marketing?
+**R:** Conjunto de actividades para promover y vender productos.
+**Razonamiento:**
+1. Incluye investigación de mercado, producto, precio, distribución, promoción (4P).
+2. Busca satisfacer necesidades del cliente.
+3. Puede ser digital o tradicional.
+4. Se apoya en datos y segmentación.
+5. Ética: evitar publicidad engañosa.
+**Supuestos:** empresa. **Verificación:** campaña publicitaria ✔.
+
+### 179 · ¿Qué es un balance?
+**R:** Estado financiero que muestra activo, pasivo y patrimonio neto.
+**Razonamiento:**
+1. Activo = bienes y derechos.
+2. Pasivo = obligaciones.
+3. Patrimonio neto = activo − pasivo.
+4. Refleja la situación en una fecha.
+5. Fundamental para analizar solvencia.
+**Supuestos:** contabilidad. **Verificación:** activo = pasivo + patrimonio ✔.
+
+### 180 · ¿Qué es el emprendimiento?
+**R:** Proceso de crear y desarrollar un negocio.
+**Razonamiento:**
+1. Requiere idea, recursos, planificación y ejecución.
+2. Implica asumir riesgo.
+3. Puede ser social, tecnológico o tradicional.
+4. Requiere habilidades de gestión y adaptación.
+5. Motor de innovación y empleo.
+**Supuestos:** economía y empresa. **Verificación:** creación de una empresa ✔.
+
+---
+
+## BLOQUE 19 — Filosofía, lógica y método (181–190)
+
+### 181 · ¿Qué es la filosofía?
+**R:** Disciplina que reflexiona sobre cuestiones fundamentales.
+**Razonamiento:**
+1. Aborda ser, conocimiento, ética, belleza, política.
+2. Usa argumentación racional.
+3. No se limita a datos empíricos.
+4. Se apoya en la historia del pensamiento.
+5. Busca claridad conceptual y sentido.
+**Supuestos:** tradición filosófica. **Verificación:** textos clásicos ✔.
+
+### 182 · ¿Qué es un silogismo?
+**R:** Razonamiento deductivo con dos premisas y una conclusión.
+**Razonamiento:**
+1. Ejemplo clásico: “Todos los hombres son mortales; Sócrates es hombre; luego Sócrates es mortal”.
+2. Válido si la conclusión se sigue necesariamente.
+3. Puede ser válido con premisas falsas.
+4. Forma típica: Barbara (AAA-1).
+5. Base de la lógica aristotélica.
+**Supuestos:** lógica clásica. **Verificación:** analizar validez formal ✔.
+
+### 183 · ¿Qué es una falacia?
+**R:** Razonamiento inválido que parece correcto.
+**Razonamiento:**
+1. Tipos: ad hominem, hombre de paja, falsa dicotomía, apelación a la autoridad.
+2. Puede ser persuasiva pero no válida.
+3. Detectar falacias mejora el pensamiento crítico.
+4. No toda falacia es mentira; es un error de razonamiento.
+5. Algunas son formales, otras informales.
+**Supuestos:** lógica informal. **Verificación:** identificar falacia en un texto ✔.
+
+### 184 · ¿Qué es la ética?
+**R:** Reflexión sobre lo moralmente correcto.
+**Razonamiento:**
+1. Distinta de moral (conjunto de normas) y de derecho (normas legales).
+2. Corrientes: utilitarismo, deontología, virtudes.
+3. Busca fundamentos racionales del obrar.
+4. Aplicada a bioética, ética empresarial, IA.
+5. No siempre hay respuestas únicas.
+**Supuestos:** filosofía moral. **Verificación:** dilemas éticos ✔.
+
+### 185 · ¿Qué es la epistemología?
+**R:** Rama de la filosofía que estudia el conocimiento.
+**Razonamiento:**
+1. Preguntas: ¿qué es conocer?, ¿cómo justificamos?
+2. Distingue creencia, verdad y justificación.
+3. Debate entre racionalismo y empirismo.
+4. Relevante para ciencia y IA.
+5. Analiza límites del conocimiento.
+**Supuestos:** filosofía. **Verificación:** textos de Platón, Kant, Popper ✔.
+
+### 186 · ¿Qué es el método científico?
+**R:** Procedimiento sistemático para generar conocimiento.
+**Razonamiento:**
+1. Pasos: observación, hipótesis, experimentación, análisis, conclusión.
+2. Debe ser replicable y falsable.
+3. No es lineal ni rígido.
+4. Se apoya en evidencia y revisión por pares.
+5. Base de la ciencia moderna.
+**Supuestos:** filosofía de la ciencia. **Verificación:** publicaciones científicas ✔.
+
+### 187 · ¿Qué es la falsabilidad?
+**R:** Propiedad de una hipótesis de poder ser refutada por evidencia.
+**Razonamiento:**
+1. Concepto central en Popper.
+2. Una teoría no falsable no es científica (ej. astrología).
+3. No significa que sea falsa, sino que puede contrastarse.
+4. Ciencia avanza por conjeturas y refutaciones.
+5. Complementa verificación y replicación.
+**Supuestos:** epistemología. **Verificación:** experimento que puede refutar ✔.
+
+### 188 · ¿Qué es la navaja de Ockham?
+**R:** Principio de preferir la explicación más simple.
+**Razonamiento:**
+1. “No multiplicar los entes sin necesidad”.
+2. No dice que lo simple sea verdadero, sino preferible.
+3. Se usa en ciencia y razonamiento.
+4. Complementa la evidencia empírica.
+5. Cuidado: la simplicidad no reemplaza la prueba.
+**Supuestos:** filosofía y método. **Verificación:** comparación de hipótesis ✔.
+
+### 189 · ¿Qué es un dilema moral?
+**R:** Situación con dos opciones moralmente problemáticas.
+**Razonamiento:**
+1. Cualquier elección implica un coste moral.
+2. Ejemplo: mentira piadosa.
+3. Se analiza con principios éticos.
+4. No siempre hay solución “correcta”.
+5. Relevante en bioética y política.
+**Supuestos:** ética aplicada. **Verificación:** análisis de casos ✔.
+
+### 190 · ¿Qué es la libertad?
+**R:** Capacidad de actuar según la propia voluntad.
+**Razonamiento:**
+1. Distintas concepciones: negativa (ausencia de interferencia) y positiva (autodominio).
+2. Debate sobre determinismo y libre albedrío.
+3. Vinculada a responsabilidad moral.
+4. Límites: derechos de otros, leyes.
+5. Concepto central en filosofía política.
+**Supuestos:** filosofía. **Verificación:** textos de Isaiah Berlin ✔.
+
+---
+
+## BLOQUE 20 — Vida cotidiana y habilidades (191–200)
+
+### 191 · ¿Cómo ahorrar energía en casa?
+**R:** Usando eficientemente aparatos y hábitos.
+**Razonamiento:**
+1. Apagar luces y equipos no usados.
+2. Usar bombillas LED.
+3. Electrodomésticos eficientes (etiqueta A).
+4. Aislar ventanas y puertas.
+5. Regular calefacción y aire acondicionado.
+6. Aprovechar luz natural.
+**Supuestos:** hogar típico. **Verificación:** factura eléctrica ✔.
+
+### 192 · ¿Cómo reciclar correctamente?
+**R:** Separando residuos según su material.
+**Razonamiento:**
+1. Contenedores: amarillo (envases), azul (papel), verde (vidrio), marrón (orgánico), gris (resto).
+2. Limpiar envases antes de reciclar.
+3. No mezclar residuos peligrosos.
+4. Puntos limpios para electrónica, pilas, medicamentos.
+5. Normativa local puede variar.
+**Supuestos:** sistema de reciclaje español. **Verificación:** guía local de residuos ✔.
+
+### 193 · ¿Cómo planificar un viaje?
+**R:** Definiendo destino, fechas, presupuesto y reservas.
+**Razonamiento:**
+1. Elegir destino y duración.
+2. Presupuesto: transporte, alojamiento, comida, actividades.
+3. Reservar con antelación.
+4. Documentación: DNI, pasaporte, visados.
+5. Seguro de viaje si procede.
+6. Plan flexible con alternativas.
+**Supuestos:** viaje vacacional. **Verificación:** itinerario y reservas ✔.
+
+### 194 · ¿Cómo estudiar eficazmente?
+**R:** Con técnicas activas y descansos.
+**Razonamiento:**
+1. Técnica Pomodoro (25 min + 5 descanso).
+2. Práctica recuperativa: autoevaluación.
+3. Espaciado: repasar en días distintos.
+4. Evitar multitarea.
+5. Lugar sin distracciones.
+6. Dormir bien.
+**Supuestos:** aprendizaje humano. **Verificación:** mejora del rendimiento ✔.
+
+### 195 · ¿Cómo mejorar la comunicación?
+**R:** Escuchando activamente y expresándose con claridad.
+**Razonamiento:**
+1. Escucha activa: prestar atención, no interrumpir.
+2. Lenguaje claro y conciso.
+3. Empatía y respeto.
+4. Lenguaje no verbal coherente.
+5. Confirmar comprensión (parafrasear).
+6. Feedback constructivo.
+**Supuestos:** habilidades sociales. **Verificación:** mejor entendimiento ✔.
+
+### 196 · ¿Cómo gestionar el tiempo?
+**R:** Priorizando tareas y planificando.
+**Razonamiento:**
+1. Matriz de Eisenhower: urgente/importante.
+2. Listas de tareas.
+3. Bloques de tiempo.
+4. Evitar procrastinación.
+5. Revisar y ajustar.
+6. Delegar cuando sea posible.
+**Supuestos:** productividad personal. **Verificación:** tareas completadas ✔.
+
+### 197 · ¿Cómo mantener una alimentación saludable?
+**R:** Variada, equilibrada y moderada.
+**Razonamiento:**
+1. Frutas y verduras diarias.
+2. Proteínas variadas.
+3. Hidratos integrales.
+4. Grasas saludables.
+5. Reducir azúcares y ultraprocesados.
+6. Hidratación adecuada.
+7. Consultar profesional si hay condiciones.
+**Supuestos:** adulto sano. **Verificación:** revisión nutricional ✔.
+
+### 198 · ¿Cómo hacer ejercicio de forma segura?
+**R:** Progresando gradualmente y escuchando al cuerpo.
+**Razonamiento:**
+1. Calentamiento previo.
+2. Progresión de intensidad.
+3. Técnica correcta.
+4. Hidratación.
+5. Descanso y recuperación.
+6. Consultar si hay lesiones o condiciones.
+7. Enfriamiento y estiramientos.
+**Supuestos:** persona sin patologías. **Verificación:** menor riesgo de lesión ✔.
+
+### 199 · ¿Cómo cuidar la salud mental?
+**R:** Con hábitos, apoyo social y ayuda profesional si es necesario.
+**Razonamiento:**
+1. Dormir bien.
+2. Ejercicio regular.
+3. Relaciones sociales.
+4. Gestión del estrés.
+5. Tiempo para el ocio.
+6. Buscar ayuda si el malestar persiste.
+7. Reducir estigma.
+**Supuestos:** persona adulta. **Verificación:** bienestar general ✔.
+
+### 200 · ¿Cómo tomar decisiones?
+**R:** Evaluando opciones, riesgos y valores.
+**Razonamiento:**
+1. Definir el problema.
+2. Identificar opciones.
+3. Evaluar pros y contras.
+4. Considerar consecuencias y valores.
+5. Consultar cuando sea necesario.
+6. Decidir y revisar.
+7. Aprender del resultado.
+**Supuestos:** decisiones personales. **Verificación:** decisión informada ✔.
+
+---
+
+**Dataset Drosophila · ítems 101–200 completados.**
+
