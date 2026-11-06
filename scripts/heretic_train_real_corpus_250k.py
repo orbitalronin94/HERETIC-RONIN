@@ -45,7 +45,7 @@ def build_corpus(path,audit_path):
         add_jsonl(z,"mathlib4-apache/documents.train.jsonl.gz","text",mathlib)
         add_jsonl(z,"scienceverse-ccby/documents.train.jsonl","text",science)
         literature=z.read("literature-es/train.txt").decode("utf-8")
-        lit=[p.strip() for p in literature.split("\\n\\n") if len(p.strip())>=40]
+        lit=[p.strip() for p in literature.split("\n\n") if len(p.strip())>=40]
         nasa=z.read("nasa-ntrs-file-reviewed/train.txt").decode("utf-8")
         papers=[z.read(n).decode("utf-8") for n in z.namelist()
                 if n.startswith("ronin-authored-papers/") and n.endswith(".md")]
@@ -75,7 +75,7 @@ def build_corpus(path,audit_path):
         clean[mapping.get(source,source)].append(doc)
     arrays={}
     for name,docs in clean.items():
-        payload=b"\\n\\n".join(x.encode("utf-8") for x in docs)
+        payload=b"\n\n".join(x.encode("utf-8") for x in docs)
         if len(payload)<1024: raise RuntimeError(f"Corpus source unexpectedly small: {name}")
         arrays[name]=np.frombuffer(payload,dtype=np.uint8)
     counts={k:len(v) for k,v in clean.items()}
