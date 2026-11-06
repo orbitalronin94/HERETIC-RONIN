@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """One optimizer-update benchmark; all variants start from identical weights and micro-batches."""
 import argparse,json,os,random,resource,time
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 import numpy as np
 import torch
@@ -32,10 +33,13 @@ def main():
   torch.save(batches,plan)
  load0=time.perf_counter()
  batches=torch.load(plan,map_location="cpu",weights_only=False,mmap=(v=="mmap-batches"))
+ shard_pool=None
  if v=="sharded-prefetch":
   d=Path("out/shards"); d.mkdir(parents=True,exist_ok=True)
   for i,batch in enumerate(batches): torch.save(batch,d/f"{i:02}.pt")
-  batches=[torch.load(f,weights_only=False) for f in sorted(d.glob("*.pt"))]
+  shard_files=sorted(d.glob("*.pt"))
+  shard_pool=ThreadPoolExecutor(max_workers=2)
+  batches=[shard_pool.submit(torch.load,f,weights_only=False) for f in shard_files]
  if v=="packed-window-cache":
   px=torch.stack([x for x,y in batches]); py=torch.stack([y for x,y in batches])
   batches=[(px[i],py[i]) for i in range(len(px))]
@@ -49,13 +53,15 @@ def main():
  opt=torch.optim.AdamW(model.parameters(),lr=1e-5*(40**.5),betas=(.9,.999),weight_decay=.01,eps=1e-8,**optkw)
  if v=="mkldnn-disabled": torch.backends.mkldnn.enabled=False
  model.train(); opt.zero_grad(set_to_none=True); losses=[]; cpu0=time.process_time(); t0=time.perf_counter()
- for x,y in batches:
+ for item in batches:
+  x,y=item.result() if v=="sharded-prefetch" else item
   with torch.autocast("cpu",dtype=torch.bfloat16,enabled=(v=="bf16-autocast")): _,loss=model(x,y)
   if loss is None or not torch.isfinite(loss): raise FloatingPointError("non-finite loss")
   (loss/N).backward(); losses.append(float(loss.detach().float()))
  grad=torch.nn.utils.clip_grad_norm_(model.parameters(),1.0)
  if not torch.isfinite(grad): raise FloatingPointError("non-finite gradient")
  opt.step(); elapsed=time.perf_counter()-t0
+ if shard_pool is not None: shard_pool.shutdown(wait=True)
  with torch.no_grad(): fingerprint=float(next(model.parameters()).detach().float().reshape(-1)[:4096].sum())
  out={"variant":v,"status":"completed","checkpoint_step":2600,"optimizer_updates":1,"micro_batches":N,"tokens":N*B*C,"threads":torch.get_num_threads(),"interop_threads":torch.get_num_interop_threads(),"affinity_applied":affinity,"bf16_autocast":v=="bf16-autocast","wall_seconds":elapsed,"data_prep_seconds":data_prep,"end_to_end_seconds":elapsed+data_prep,"cpu_seconds":time.process_time()-cpu0,"tokens_per_second":N*B*C/elapsed,"mean_loss":float(np.mean(losses)),"first_loss":losses[0],"last_loss":losses[-1],"grad_norm":float(grad),"parameter_fingerprint":fingerprint,"peak_rss_mb":resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,"corpus":info}
  if v=="inference-mode-eval":
@@ -63,7 +69,7 @@ def main():
   t=time.perf_counter()
   with torch.inference_mode(): ev=evaluate(model)
   out["holdout_eval_seconds"]=time.perf_counter()-t; out["holdout_accuracy"]=ev["accuracy"]
- if v=="sharded-prefetch": out["shard_count"]=len(batches)
+ if v=="sharded-prefetch": out["shard_count"]=len(batches); out["prefetch_workers"]=2
  if v=="packed-window-cache": out["packed_shape"]=[len(batches),B,C]
  Path(a.output).parent.mkdir(parents=True,exist_ok=True); Path(a.output).write_text(json.dumps(out,indent=2)+"\n"); print(json.dumps(out),flush=True)
 if __name__=="__main__": main()
