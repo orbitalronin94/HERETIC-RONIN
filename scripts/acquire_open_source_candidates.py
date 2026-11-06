@@ -56,7 +56,7 @@ def main():
     if len(body)<160 or len(body)>200000 or normalized in seen or EMAIL.search(body) or PHONE.search(body):
      rejected+=1; continue
     seen.add(normalized)
-    provenance={k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length","id","source","paper_id","title","abstract","primary_category","main_file","resolution") if k in row}
+    provenance={k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length","id","source","paper_id","title","abstract","primary_category","main_file","resolution","annotation_type","language_code","author","book_url","institution","subject") if k in row}
     for k in ("license","url","authors","site","journal","provenance"):
      if k in row_metadata: provenance["record_"+k]=row_metadata[k]
     record={"text":body,"source":repo,"revision":revision,"config":cfg or "default",
@@ -69,7 +69,7 @@ def main():
     "status":"candidate_not_admitted","caveat":source["caveat"],"elapsed_seconds":round(time.time()-started,2),
     "checks":{"streamed_train_only":True,"exact_dedup_within_source":True,"basic_length_filter":True,
       "email_phone_pattern_filter":True,"cross_source_near_duplicate":"PENDING","global_holdout_contamination":"PENDING",
-      "human_sample_review":"PENDING","license_review":"source-card-declared; final legal/provenance audit pending"}})
+      "human_sample_review":"PENDING","license_review":"per-record allowlist applied; external legal/provenance review pending" if source.get("license_filter") else "source-card-declared; final legal/provenance audit pending","per_record_license_filter":source.get("license_filter",[]),"per_record_license_filter_applied":bool(source.get("license_filter"))}})
   print(json.dumps(manifest[-1],ensure_ascii=False),flush=True)
  result={"schema":"heretic-open-source-candidate-bundle-v1","status":"candidate_not_admitted","training_authorized":False,
   "policy":"No candidate may train until cross-source deduplication, holdout contamination, human sample review and per-source license/provenance gates pass.",
