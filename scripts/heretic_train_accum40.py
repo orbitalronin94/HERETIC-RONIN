@@ -98,6 +98,9 @@ def main():
         np.random.set_state(checkpoint["numpy_rng_state"])
         before = json.loads(Path("incoming/holdout-before.json").read_text())
         previous_losses = checkpoint.get("loss_tail", [])
+        Path("out/holdout-before.json").write_text(
+            json.dumps(before, ensure_ascii=False, indent=2) + "\\n"
+        )
     else:
         # Deliberate one-time optimizer reset at the batch-regime transition.
         # The exact 500M model weights are carried forward unchanged.
