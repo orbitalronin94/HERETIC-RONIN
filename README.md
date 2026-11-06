@@ -1,36 +1,133 @@
 # HERETIC-RONIN
+### La mosca no necesitaba pureza. Necesitaba sobrevivir.
 
-Laboratorio experimental de modelos pequeños y destilación. HERETIC-RONIN comparte resultados y materiales con RONIN-IA, pero no hereda su política de adquisición de conocimiento ni su exigencia de trazabilidad exhaustiva.
+> «La pureza del método es un lujo de quienes pueden permitirse llegar tarde.»
 
-## Bootstrap inicial: Drosophila 100.9M
+Hay quienes contemplan una criatura diminuta y ven sus límites.  
+Él contempló la mosca y vio una arquitectura que todavía no sabía lo que podía llegar a ser.
 
-El workflow [Stage Drosophila model and datasets](.github/workflows/bootstrap.yml) prepara un paquete descargable con:
+RONIN-IA había elegido el camino largo: procedencia, acreditación, corpus medido, experimentos reproducibles, controles y una paciencia casi monástica. Un método admirable. También un método que, a ojos de HERETIC, estaba empezando a devorar el intelecto que debía servir.
 
-- Los datasets admitidos publicados en `RONIN-IA/data/datasets/admitted/`, conservando sus manifiestos y avisos de licencia.
-- El checkpoint experimental principal `Ronin-Drosophila-100900160` (100.900.160 parámetros).
-- El manifiesto del modelo y el SHA-256 del checkpoint.
+El personaje que funda este laboratorio no desprecia el conocimiento. Desprecia arrodillarse ante el procedimiento hasta olvidar para qué se quería conocer.
 
-El workflow se ejecuta al incorporar su definición y también puede lanzarse manualmente desde **Actions → Stage Drosophila model and datasets → Run workflow**. El primer paquete ya está publicado: [descargar artefacto HERETIC (546.260.711 bytes)](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42218879317/artifacts/13501968370). Contiene 868 archivos admitidos (186 MiB) y el checkpoint de 100.900.160 parámetros (403.629.045 bytes). Retención del artefacto: hasta el 4 de febrero de 2027.
+Vio potencial en Drosophila. Copió sus pesos. Se llevó los datasets que pudo reunir. Y decidió que, si había una forma más rápida de enseñar a una máquina, no iba a descartarla por no ser pura.
 
-### Checkpoint de origen
+No busca absolución metodológica. Busca capacidad.
 
-- Proyecto de origen: [RONIN-IA](https://github.com/orbitalronin94/RONIN-IA)
-- Ejecución que promovió el main experimental: [#42207268776](https://github.com/orbitalronin94/RONIN-IA/actions/runs/42207268776)
-- Release asset público: [ronin-drosophila-100900160.pt](https://github.com/orbitalronin94/RONIN-IA/releases/download/heretic-drosophila-100900160-2026-11-06/ronin-drosophila-100900160.pt)
-- Parámetros: `100,900,160`
-- SHA-256 esperado: `f3f8e2e75e418f8630372c242378a28010db83148d169d85ad3e4f73114cda9a`
+---
 
-El checkpoint pesa unos 404 MB: no se introduce como blob Git ordinario. Se empaqueta como artefacto de GitHub Actions, con retención inicial de 90 días.
+## I. El pecado original
 
-### Nota de evaluación
+<image-placeholder />
 
-Drosophila es un punto de partida experimental, no una afirmación de capacidad general. El manifiesto de origen registra 500 pasos de entrenamiento sin tutor, screening pareado MMLU-Pro de 5/64 antes y después, G-0 en FAIL y comprobaciones globales de near-duplicates/contaminación de holdout pendientes. HERETIC podrá usar destilación en sus siguientes experimentos; este checkpoint concreto no fue destilado.
+**Drosophila — 100.900.160 parámetros.**
 
-## Licencia
+La primera adquisición de HERETIC es el checkpoint experimental de la mosca, procedente de RONIN-IA. No fue destilado: nació de un entrenamiento propio de 500 pasos. HERETIC lo adopta no como reliquia ni como prueba de inteligencia, sino como materia prima.
 
-El código del repositorio usa MIT. Los datasets conservan sus propias condiciones, avisos y manifiestos dentro del paquete; la licencia MIT del código no sustituye las licencias de los datos ni de los pesos.
+- **Modelo:** `Ronin-Drosophila-100900160`
+- **Parámetros:** 100.900.160
+- **Checkpoint:** aproximadamente 404 MB
+- **SHA-256:** `f3f8e2e75e418f8630372c242378a28010db83148d169d85ad3e4f73114cda9a`
+- **Origen:** [RONIN-IA](https://github.com/orbitalronin94/RONIN-IA)
+- **Ejecución de origen:** [Actions #42207268776](https://github.com/orbitalronin94/RONIN-IA/actions/runs/42207268776)
+- **Pesos:** [Descargar checkpoint](https://github.com/orbitalronin94/RONIN-IA/releases/download/heretic-drosophila-100900160-2026-11-06/ronin-drosophila-100900160.pt)
 
+La mosca no es el resultado final. Es el primer cuerpo sobre la mesa.
 
-### Alcance real de esta primera copia
+## II. Dos hermanos. Ninguna obediencia compartida.
 
-La copia incluye el contenido materializado de `data/datasets/admitted/` y sus manifiestos: 868 archivos, 186 MiB. No equivale todavía a los 286.468 documentos/segmentos y 684.738.932 bytes de texto que el manifiesto de entrenamiento atribuye al corpus completo de Drosophila: los paquetes de Literatura española y Mathlib4 conservan aquí sus manifiestos, pero sus payloads completos no están materializados en esta carpeta. No se presenta por tanto este primer bundle como una réplica íntegra del corpus de entrenamiento.
+| RONIN-IA | HERETIC-RONIN |
+|---|---|
+| Procedencia como disciplina central | Procedencia pragmática |
+| Corpus acreditado y controlado | Datos heterogéneos y destilación |
+| Reproducibilidad como requisito | Velocidad de experimentación |
+| Aprendizaje sin depender de profesores externos | Profesores, síntesis y transferencia de capacidad |
+| Pureza experimental | Herejía experimental |
+
+No son dos nombres para el mismo proyecto. Son dos respuestas incompatibles a una pregunta común:
+
+**¿Cuánta capacidad puede extraerse de un presupuesto limitado?**
+
+RONIN-IA intenta responder sin atajos. HERETIC quiere probar todos los atajos que puedan medirse.
+
+## III. El laboratorio
+
+HERETIC-RONIN está destinado a experimentar con:
+
+- **Destilación:** transferir conocimiento desde modelos docentes más capaces.
+- **Datos sintéticos:** generar, filtrar y combinar ejemplos a escala.
+- **Ensembles de profesores:** enfrentar varias fuentes de conocimiento y contrastar sus respuestas.
+- **Entrenamiento agresivo:** probar recetas, mezclas, currículos y configuraciones sin reverencia por la ortodoxia.
+- **Compresión y transferencia:** buscar más capacidad por parámetro, paso y unidad de cómputo.
+- **Torneos de candidatos:** comparar variantes contra una referencia común y conservar las que demuestren mejoras.
+
+Aquí una técnica no se acepta por elegante ni se rechaza por impura. Se somete a prueba. Si funciona, se estudia. Si fracasa, se archiva. Si parece funcionar pero no resiste una evaluación independiente, se considera derrotada.
+
+## IV. La primera carga
+
+El primer bootstrap ya ha sido ejecutado correctamente.
+
+<details>
+<summary>Contenido del paquete inicial</summary>
+
+- **Artefacto:** [heretic-drosophila-100900160-and-admitted-datasets](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42218879317/artifacts/13501968370)
+- **Tamaño total:** 546.260.711 bytes
+- **Archivos:** 868
+- **Payload materializado de datasets:** 186 MiB
+- **Checkpoint:** 403.629.045 bytes
+- **Digest del artefacto:** `sha256:15c998a5319e5a579eebac0fd84667ff59f49ad862a151f32b663d4bdbf06928`
+- **Retención prevista:** hasta el 4 de febrero de 2027.
+
+El workflow [`.github/workflows/bootstrap.yml`](.github/workflows/bootstrap.yml) vuelve a preparar el paquete desde las fuentes de RONIN-IA y verifica el SHA-256 del checkpoint antes de publicarlo.
+
+</details>
+
+### La adquisición no está completa
+
+La primera copia contiene 868 archivos y 186 MiB de payload materializado bajo `data/datasets/admitted/`. No equivale todavía al corpus íntegro que el manifiesto de entrenamiento atribuye a Drosophila: 286.468 documentos/segmentos y 684.738.932 bytes de texto.
+
+Los payloads completos de Literatura española y Mathlib4 aún no están materializados en esta copia. Sus manifiestos se conservan. La transferencia se considera **parcial**, no completa.
+
+## V. La inteligencia no se proclama
+
+El villano puede odiar la pureza del método. No puede permitirse confundir arrogancia con evidencia.
+
+El checkpoint de origen tiene límites conocidos:
+
+- 500 pasos de entrenamiento, sin tutor ni destilación.
+- Screening pareado MMLU-Pro: 5/64 antes y 5/64 después.
+- G-0: FAIL.
+- Comprobaciones globales de near-duplicates y contaminación del holdout: pendientes.
+
+Estos resultados no demuestran capacidad general ni una mejora en MMLU-Pro. Son el estado documentado de partida. HERETIC no los maquillará para convertir una adquisición en una victoria.
+
+La evaluación no es una religión. Es el instrumento que permite distinguir un avance de una fantasía.
+
+## VI. La única herejía imperdonable
+
+No es destilar.  
+No es sintetizar.  
+No es copiar una arquitectura prometedora.  
+No es aprender de un modelo más grande.
+
+La herejía imperdonable sería **dejar de medir porque el resultado nos gusta**.
+
+HERETIC puede renunciar a la pureza de método. No renunciará a comparar candidatos, registrar configuraciones, conservar los fallos y comprobar si una mejora sobrevive fuera de sus propios ejemplos.
+
+No promete ser limpio. Promete ser peligroso para las ideas que no funcionan.
+
+---
+
+## Estado del proyecto
+
+<sub>Laboratorio experimental · Modelos pequeños · Destilación · Datos sintéticos · Transferencia de capacidad</sub>
+
+**La mosca fue copiada porque alguien vio en ella algo que el método todavía no había conseguido liberar.**
+
+*Que empiece la herejía.*
+ 
+---
+
+## Licencias y materiales
+
+El código de este repositorio se distribuye bajo MIT. Los datasets, checkpoints, modelos docentes y materiales externos conservan sus propias licencias, condiciones de uso y atribuciones. La licencia MIT del repositorio no sustituye ni amplía los derechos sobre esos materiales.
