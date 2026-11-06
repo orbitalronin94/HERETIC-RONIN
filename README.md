@@ -78,7 +78,19 @@ La cuantización Q4_K_M conserva una calidad alta para su tamaño y cabe holgada
 
 **Orden de operaciones:** adquisición y verificación del instructor + 100 pasos del estudiante en paralelo → destilación controlada → escalado y evaluación del estudiante de 500M. Los primeros 100 pasos parten de inicialización aleatoria y corpus admitido; todavía no son destilación ni heredan los pesos de Drosophila.
 
-La arquitectura del estudiante está fijada en **500.102.144 parámetros** (39 capas, ancho 1.024, 16 cabezas, contexto 128 y vocabulario byte). La primera ejecución paralela está en [GitHub Actions, run 42220254879](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42220254879). El instructor **ya se descargó, pasó el SHA-256 del distribuidor y quedó archivado**: [artefacto Qwen3.5-4B Q4_K_M](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42220254879/artifacts/13503022239), 2.783.448.214 bytes empaquetados; SHA-256 del GGUF `2ebe6eb67cb92adeffc7073c48dd4e3baf79465ac650793dc751cad2b29cf219`. El primer intento del estudiante se detuvo antes del paso 1 por una dependencia `numpy` ausente; ya está corregida en el workflow y el segundo intento está en cola: [run 42220358202](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42220358202). Los 100 pasos son un arranque técnico, no una promesa de rendimiento. El primer resultado válido será el que sobreviva a una comparación medible.
+La arquitectura del estudiante está fijada en **500.102.144 parámetros** (39 capas, ancho 1.024, 16 cabezas, contexto 128 y vocabulario byte). La primera ejecución paralela está en [GitHub Actions, run 42220254879](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42220254879). El instructor **se descargó, pasó el SHA-256 del distribuidor y quedó archivado**: [artefacto Qwen3.5-4B Q4_K_M](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42220358202/artifacts/13502524840), 2.783.448.214 bytes; SHA-256 del GGUF `2ebe6eb67cb92adeffc7073c48dd4e3baf79465ac650793dc751cad2b29cf219`. El primer intento del estudiante se detuvo antes del paso 1 por una dependencia `numpy` ausente; quedó corregida y el segundo intento [terminó correctamente en el run 42220358202](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42220358202). Completó **100 pasos**, con 500.102.144 parámetros, pérdida de entrenamiento de 5,60465 a 3,28351 y un checkpoint de 2.000.546.658 bytes: [artefacto del estudiante, ID 13503178199](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42220358202/artifacts/13503178199). Usó 96 MiB de texto de 834 archivos. No utilizó el instructor durante esos 100 pasos; la bajada de loss solo acredita ajuste sobre ese corpus, no capacidad ni generalización.
+
+
+## IV bis. Segundo experimento: razonamiento multidominio
+
+El siguiente ciclo ya está implementado en [el workflow de destilación multidominio](.github/workflows/multidomain-distillation-holdout.yml) y documentado en [Ciclo 001](docs/MULTIDOMAIN_DISTILLATION_CYCLE_001.md). Su regla central es innegociable: **continúa desde el checkpoint de 500M del paso 100; no crea un estudiante nuevo ni reinicializa los pesos**.
+
+1. Recupera y verifica el artefacto del run 42220358202.
+2. Usa Qwen3.5-4B Q4_K_M como instructor para producir 1.000 ejemplos en seis dominios: matemáticas, programación, lógica, ciencias naturales, lengua e interdisciplinar.
+3. Continúa el estudiante durante 500 pasos adicionales, supervisando respuestas y explicaciones breves.
+4. Al final compara las mismas 60 preguntas de holdout, no vistas por el instructor, contra **RONIN-IA Drosophila experimental main**, el modelo de método largo de 100.900.160 parámetros.
+
+El holdout es un diagnóstico sintético pequeño, no un benchmark oficial. Las respuestas del instructor pasan controles de formato y duplicados, pero no una verificación semántica independiente. El contexto del estudiante sigue limitado a 128 bytes. No se promocionará ningún checkpoint automáticamente: primero tendrán que hablar las predicciones por dominio.
 
 ## V. La primera carga
 
