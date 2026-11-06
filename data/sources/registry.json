@@ -668,6 +668,6 @@
     }
   ],
   "notes": [
-    "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. RONIN-IA train-scoped inventory is 286,468 docs / 684,738,932 UTF-8 bytes, but the HERETIC importer is incomplete (Mathlib4 payload unavailable; NASA artifact only partially materialized) and source-global G-0 remains FAIL. No inherited bundle may train until source payload parity and global gates pass."
+    "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. Global G-0 remains FAIL; no staged bundle is active-training-authorized until global near-duplicate and benchmark/holdout contamination gates pass."
   ]
 }
