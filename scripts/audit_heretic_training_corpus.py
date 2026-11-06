@@ -70,7 +70,7 @@ def documents_from_jsonl(stream, source, out):
         row=json.loads(line)
         text=row.get("text") if isinstance(row,dict) else None
         if not text and isinstance(row,dict): text=row_text(row)
-        if isinstance(text,str) and len(text.strip())>=25:
+        if isinstance(text,str) and len(text.strip())>=40:
             out.append((source,text))
 def main():
     OUT.mkdir(parents=True,exist_ok=True)
