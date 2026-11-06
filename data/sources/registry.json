@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "target_admitted_examples": 500000,
-  "current_versioned_candidate_rows": 50000,
+  "current_versioned_candidate_rows": 60000,
   "counting_policy": "Count unique bytes only after license/provenance review, successful download, integrity verification, schema validation, deduplication and acceptance. Remote advertised size, source size, compressed size and locally admitted bytes must be reported separately.",
   "sources": [
     {
@@ -810,6 +810,48 @@
         "use latest opt-out-removal version"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "common-pile/pressbooks_filtered",
+      "url": "https://huggingface.co/datasets/common-pile/pressbooks_filtered",
+      "revision": "pin immutable Hub SHA per acquisition",
+      "reported_license": "per-document mixed public domain/CC-BY/CC-BY-SA; candidate filter CC-BY-4.0 only",
+      "status": "candidate_acquisition_queued",
+      "domains": [
+        "open textbooks",
+        "education",
+        "science",
+        "humanities"
+      ],
+      "rights_caveat": "Common Pile reports per-document licensing and warns about possible license laundering. Script admits candidate rows only when metadata.license explicitly contains the CC-BY-4.0 URI; other terms excluded.",
+      "required_checks": [
+        "verify exact CC-BY-4.0 on each record",
+        "retain author, book URL, title and source URL",
+        "check embedded third-party material",
+        "deduplication, PII, quality and holdout contamination"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "common-pile/libretexts_filtered",
+      "url": "https://huggingface.co/datasets/common-pile/libretexts_filtered",
+      "revision": "pin immutable Hub SHA per acquisition",
+      "reported_license": "per-document mixed public domain/CC-BY/CC-BY-SA/GFDL; candidate filter CC-BY-4.0 only",
+      "status": "candidate_acquisition_queued",
+      "domains": [
+        "open textbooks",
+        "mathematics",
+        "science",
+        "engineering"
+      ],
+      "rights_caveat": "Only per-document CC-BY-4.0 records pass the script. BY-SA, GFDL, NC, ND and unknown are excluded. Common Pile warns of possible license metadata errors.",
+      "required_checks": [
+        "verify exact CC-BY-4.0 on each record",
+        "retain author, book URL, title and source URL",
+        "check embedded third-party material",
+        "deduplication, PII, quality and holdout contamination"
+      ],
+      "count_toward_admitted_bytes": false
     }
   ],
   "target_library_bytes": 500000000000,
@@ -825,6 +867,6 @@
   "notes": [
     "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. Global G-0 remains FAIL; no staged bundle is active-training-authorized until global near-duplicate and benchmark/holdout contamination gates pass."
   ],
-  "last_candidate_batch": "42294489267: 25,000 rows, 105,792,783 bytes; unadmitted",
-  "next_candidate_batch": "new run triggered by 7796b7f724e11dabeb207a55f97c8601c325954e; adds 15,000 rows before filters"
+  "last_candidate_batch": "run 42294489267: 25,000 rows, 105,792,783 bytes; unadmitted",
+  "next_candidate_batch": "run 42295052648 adds Wikidata/PMC/StackExchange; queued acquisition run after commit ace2899 adds PressBooks/LibreTexts"
 }
