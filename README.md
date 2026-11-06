@@ -69,16 +69,16 @@ Aquí una técnica no se acepta por elegante ni se rechaza por impura. Se somete
 
 HERETIC no empezará ese salto a ciegas. La primera campaña tendrá dos trabajos paralelos:
 
-1. **Adquirir un instructor de primera línea.** Candidato inicial: [Qwen3.6-27B](https://huggingface.co/Qwen/Qwen3.6-27B), modelo abierto de 27B parámetros con licencia Apache-2.0. Se conservará la referencia exacta del modelo, su licencia, revisión y hashes. La cuantización elegida se registrará como parte del experimento: no se tratará una versión GGUF cuantizada como si fueran los pesos originales.
+1. **Adquirir un instructor de primera línea.** Candidato inicial: [Qwen3.5-4B](https://huggingface.co/Qwen/Qwen3.5-4B), mediante el paquete GGUF Q4_K_M de [SoAIHQ](https://huggingface.co/SoAIHQ/Qwen3.5-4B-GGUF). Tiene 4B de parámetros, licencia Apache-2.0 y ocupa 2,78 GB en Q4_K_M. Se conservará la referencia exacta del modelo, su licencia, revisión y hashes. La cuantización elegida se registrará como parte del experimento: no se tratará una versión GGUF cuantizada como si fueran los pesos originales.
 2. **Ejecutar 100 pasos de preparación del estudiante de 500M** mientras avanza la descarga del instructor. Este primer tramo será una prueba de viabilidad: pérdida, tiempo por paso, memoria, throughput y checkpoint. No se presentará como una mejora de capacidad ni como una evaluación final.
 
 ### Regla de adquisición
 
-La versión Q4_K_M del instructor de 27B ocupa aproximadamente 15–17 GB según la distribución consultada; eso excede el margen cómodo de un runner estándar. Por tanto, el trabajo de descarga debe resolver primero el almacenamiento disponible y el formato de persistencia. No se reducirá silenciosamente a una cuantización extrema para poder anunciar que «ya está descargado». Si hace falta una cuantización menor, se documentará su coste de calidad y se comparará antes de usarla para generar datos.
+La cuantización Q4_K_M conserva una calidad alta para su tamaño y cabe holgadamente en el runner público estándar de GitHub Actions (4 vCPU, 16 GB RAM y 14 GB SSD). El artefacto se valida contra el SHA-256 publicado por el distribuidor; se guardan revisión de Hugging Face, licencia, cuantización y hash.
 
-**Orden de operaciones:** instructor en adquisición + 100 pasos en paralelo → verificación del instructor → destilación controlada → escalado y evaluación del estudiante de 500M.
+**Orden de operaciones:** adquisición y verificación del instructor + 100 pasos del estudiante en paralelo → destilación controlada → escalado y evaluación del estudiante de 500M. Los primeros 100 pasos parten de inicialización aleatoria y corpus admitido; todavía no son destilación ni heredan los pesos de Drosophila.
 
-Los 100 pasos son un arranque técnico, no una promesa de rendimiento. El primer resultado válido será el que sobreviva a una comparación medible.
+La arquitectura del estudiante está fijada en **500.102.144 parámetros** (39 capas, ancho 1.024, 16 cabezas, contexto 128 y vocabulario byte). La ejecución se ha lanzado en [GitHub Actions, run 42220254879](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42220254879): dos jobs paralelos, uno para adquirir el instructor y otro para entrenar los primeros 100 pasos en CPU. Los 100 pasos son un arranque técnico, no una promesa de rendimiento. El primer resultado válido será el que sobreviva a una comparación medible.
 
 ## V. La primera carga
 
