@@ -100,11 +100,14 @@ jobs:
           PY
       - name: Install CPU dependencies and model implementation
         run: |
+          mkdir -p out
+          setup_started=$(date +%s)
           python -m pip install --upgrade pip
           python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.2"
           python -m pip install "numpy>=1.26" "datasets>=3.0" "huggingface_hub>=0.25"
           git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git ronin-source
           git -C ronin-source sparse-checkout set ronin
+          echo $(( $(date +%s) - setup_started )) > out/setup-seconds.txt
       - name: Run production baseline: one optimizer update, 40 micro-batches
         env:
           PYTHONPATH: ronin-source:scripts
@@ -117,6 +120,7 @@ jobs:
           path: |
             out/baseline.json
             out/batch-plan.pt
+            out/setup-seconds.txt
           retention-days: 14
   candidates:
     if: github.event_name == 'workflow_dispatch'
@@ -160,11 +164,14 @@ jobs:
           cp incoming/baseline/baseline.json incoming/baseline.json
       - name: Install dependencies and model implementation
         run: |
+          mkdir -p out
+          setup_started=$(date +%s)
           python -m pip install --upgrade pip
           python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.2"
           python -m pip install "numpy>=1.26" "datasets>=3.0" "huggingface_hub>=0.25"
           git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git ronin-source
           git -C ronin-source sparse-checkout set ronin
+          echo $(( $(date +%s) - setup_started )) > out/setup-seconds.txt
       - name: Run one optimizer update for candidate
         env:
           PYTHONPATH: ronin-source:scripts
@@ -189,5 +196,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: heretic-cpu-result-${{ matrix.variant }}-${{ github.run_id }}
-          path: out/${{ matrix.variant }}.json
+          path: |
+            out/${{ matrix.variant }}.json
+            out/setup-seconds.txt
           retention-days: 14
