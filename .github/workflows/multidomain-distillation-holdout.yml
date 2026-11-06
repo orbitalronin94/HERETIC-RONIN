@@ -1,0 +1,152 @@
+name: HERETIC — multidomain distillation + independent holdout
+
+on:
+  push:
+    paths:
+      - ".github/workflows/multidomain-distillation-holdout.yml"
+      - "scripts/heretic_distill_multidomain.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: heretic-multidomain-distillation
+  cancel-in-progress: false
+
+jobs:
+  distill-and-compare:
+    name: Distill existing 500M student; compare with RONIN-IA long-method main
+    runs-on: ubuntu-26.04
+    timeout-minutes: 360
+    env:
+      OMP_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - name: Checkout HERETIC-RONIN
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install CPU PyTorch and download helpers
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.2"
+          python -m pip install "numpy>=1.26" "huggingface_hub==0.36.0"
+
+      - name: Recover the exact 500M step-100 checkpoint from its successful run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p incoming/student-artifact incoming
+          curl --fail --location --retry 4 \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/artifacts/13503178199/zip" \
+            -o incoming/student-step-100.zip
+          unzip -q incoming/student-step-100.zip -d incoming/student-artifact
+          checkpoint="$(find incoming/student-artifact -name 'student-500m-step-00000100.pt' -print -quit)"
+          test -n "${checkpoint}"
+          cp "${checkpoint}" incoming/student-500m-step-00000100.pt
+          sha256sum incoming/student-500m-step-00000100.pt
+          test "$(stat -c%s incoming/student-500m-step-00000100.pt)" -gt 1900000000
+
+      - name: Download and verify RONIN-IA long-method experimental main
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 4 \
+            "https://github.com/orbitalronin94/RONIN-IA/releases/download/heretic-drosophila-100900160-2026-11-06/ronin-drosophila-100900160.pt" \
+            -o incoming/ronin-drosophila-main.pt
+          echo "f3f8e2e75e418f8630372c242378a28010db83148d169d85ad3e4f73114cda9a  incoming/ronin-drosophila-main.pt" | sha256sum --check
+
+      - name: Download and verify Qwen3.5-4B Q4_K_M instructor
+        run: |
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          from huggingface_hub import HfApi, hf_hub_download
+          repo = "SoAIHQ/Qwen3.5-4B-GGUF"
+          filename = "Qwen3.5-4B-Q4_K_M.gguf"
+          expected = "2ebe6eb67cb92adeffc7073c48dd4e3baf79465ac650793dc751cad2b29cf219"
+          revision = HfApi().model_info(repo).sha
+          path = Path(hf_hub_download(repo_id=repo, filename=filename, revision=revision, local_dir="instructor"))
+          actual = hashlib.sha256(path.read_bytes()).hexdigest()
+          if actual != expected:
+              raise SystemExit(f"Qwen checksum mismatch: {actual}")
+          print(f"Verified {repo}@{revision}: {path.stat().st_size} bytes SHA256={actual}")
+          PY
+
+      - name: Build current llama.cpp CPU server for GGUF inference
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 https://github.com/ggml-org/llama.cpp.git llama.cpp
+          cmake -S llama.cpp -B llama.cpp/build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DGGML_NATIVE=OFF \
+            -DGGML_OPENMP=ON \
+            -DLLAMA_BUILD_SERVER=ON
+          cmake --build llama.cpp/build --config Release --target llama-server -j 4
+
+      - name: Start Qwen instructor server
+        shell: bash
+        run: |
+          set -euo pipefail
+          model="$(find instructor -name 'Qwen3.5-4B-Q4_K_M.gguf' -print -quit)"
+          test -n "${model}"
+          nohup llama.cpp/build/bin/llama-server \
+            --model "${model}" \
+            --alias qwen3.5-4b-instructor \
+            --ctx-size 4096 \
+            --threads 4 \
+            --threads-batch 4 \
+            --host 127.0.0.1 \
+            --port 8080 \
+            --jinja > reports-llama-server.log 2>&1 &
+          echo $! > llama-server.pid
+          for attempt in $(seq 1 180); do
+            if curl --silent --fail http://127.0.0.1:8080/health >/dev/null; then
+              echo "Qwen instructor is ready"
+              exit 0
+            fi
+            sleep 10
+          done
+          cat reports-llama-server.log
+          exit 1
+
+      - name: Checkout RONIN model implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git ronin-source
+          git -C ronin-source sparse-checkout set ronin
+
+      - name: Generate 1,000 multidomain examples, continue student, and run paired holdout
+        env:
+          PYTHONPATH: ronin-source
+        run: python scripts/heretic_distill_multidomain.py
+
+      - name: Stop instructor server
+        if: always()
+        run: |
+          if [ -f llama-server.pid ]; then kill "$(cat llama-server.pid)" 2>/dev/null || true; fi
+
+      - name: Upload teacher data, distilled checkpoint, holdout and reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-multidomain-distillation-cycle-001
+          path: |
+            reports/multidomain/
+            reports-llama-server.log
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 90
