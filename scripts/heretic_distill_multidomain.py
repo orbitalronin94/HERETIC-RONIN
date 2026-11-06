@@ -135,9 +135,12 @@ def train_student(rows:list[dict])->dict:
     x_all,y_all=encode_sft_rows(rows,config.context_length)
     rng=random.Random(SEED); torch.manual_seed(SEED)
     optimizer=torch.optim.AdamW(model.parameters(),lr=1e-5,weight_decay=0.01)
-    steps=500; losses=[]; model.train(); started=time.perf_counter()
+    order=list(range(len(x_all))); rng.shuffle(order)
+    batch_size=2; steps=(len(order)+batch_size-1)//batch_size
+    losses=[]; model.train(); started=time.perf_counter()
     for step in range(steps):
-        index=rng.randrange(len(x_all)); inputs=x_all[index:index+1]; targets=y_all[index:index+1]
+        indices=order[step*batch_size:(step+1)*batch_size]
+        inputs=x_all[indices]; targets=y_all[indices]
         optimizer.zero_grad(set_to_none=True); _,loss=model(inputs,targets)
         if loss is None or not torch.isfinite(loss): raise FloatingPointError(f"non-finite distillation loss at step {step}")
         loss.backward(); grad_norm=torch.nn.utils.clip_grad_norm_(model.parameters(),1.0)
@@ -151,7 +154,7 @@ def train_student(rows:list[dict])->dict:
                 "seed":SEED,"initialization":"continued_from_student_500m_step_100",
                 "teacher":"SoAIHQ/Qwen3.5-4B-GGUF Q4_K_M","distillation_steps":steps,"optimizer_state_included":False},STUDENT_OUTPUT)
     return {"checkpoint":str(STUDENT_OUTPUT),"checkpoint_sha256":sha256_file(STUDENT_OUTPUT),"parameters":model.parameter_count,
-            "starting_step":100,"ending_step":600,"distillation_steps":steps,"sft_rows":len(x_all),
+            "starting_step":100,"ending_step":600,"distillation_steps":steps,"examples_seen":len(order),"batch_size":batch_size,"sft_rows":len(x_all),
             "initial_loss":losses[0],"final_loss":losses[-1],"training_seconds":elapsed,
             "interpretation":"Training loss is not a capability or generalization result."}
 
