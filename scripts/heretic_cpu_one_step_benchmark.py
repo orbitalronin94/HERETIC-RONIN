@@ -16,6 +16,7 @@ def main():
  if v=="cpu-affinity" and hasattr(os,"sched_setaffinity"):
   cpus=sorted(os.sched_getaffinity(0))
   if cpus: os.sched_setaffinity(0,set(cpus[:max(1,len(cpus)//2)])); affinity=True
+ Path("out").mkdir(parents=True,exist_ok=True)
  plan=Path("out/batch-plan.pt")
  if a.create_plan:
   corpus,info=build_corpus(Path("incoming/ronin-ia-train.zip"),Path("incoming/GLOBAL-CORPUS-AUDIT.json"))
