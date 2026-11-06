@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Acquire bounded, pinned open-source corpus slices as unadmitted candidates."""
 from __future__ import annotations
-import hashlib, json, re, time
+import hashlib, json, os, re, sys, time
 from pathlib import Path
 from datasets import load_dataset
 from huggingface_hub import HfApi
@@ -54,4 +54,6 @@ def main():
   "total_bytes":sum(x["bytes"] for x in manifest)}
  (OUT/"OPEN-SOURCE-MANIFEST.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n")
  print(json.dumps(result,ensure_ascii=False,indent=2),flush=True)
+ # PyArrow may abort during interpreter teardown on hosted runners; all outputs are closed and flushed.
+ sys.stdout.flush(); sys.stderr.flush(); os._exit(0)
 if __name__=="__main__": main()
