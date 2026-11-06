@@ -2,7 +2,7 @@ name: HERETIC — import source-scoped RONIN-IA training corpora
 
 on:
   push:
-    branches: [main]
+    branches: [main, experiment/500m-distilled-10k-all-corpus]
     paths:
       - ".github/workflows/import-ronin-ia-train.yml"
       - "scripts/import_ronin_ia_train.py"
