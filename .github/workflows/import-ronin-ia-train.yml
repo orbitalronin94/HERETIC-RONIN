@@ -37,13 +37,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p scienceverse-artifact literature-artifact
+          mkdir -p scienceverse-artifact literature-artifact mathlib-artifact
           gh run download 42110130695 --repo orbitalronin94/RONIN-IA \
             --name ronin-scienceverse-train-audit-42110130695 --dir scienceverse-artifact
           gh run download 41825919840 --repo orbitalronin94/RONIN-IA \
             --name ronin-corpus-v2-particiones --dir literature-artifact
           test -s scienceverse-artifact/documents.train.jsonl
-          test -s literature-artifact/train.txt
+          test -s literature-artifact/train.txt\n          gh run download 42026633643 --repo orbitalronin94/RONIN-IA \\\n            --name ronin-admitted-mathlib4-v1 --dir mathlib-artifact\n          test -s mathlib-artifact/train.txt\n          test -s mathlib-artifact/documents.train.jsonl.gz
 
       - name: Fetch exact owner-authorized Papers revision
         shell: bash
