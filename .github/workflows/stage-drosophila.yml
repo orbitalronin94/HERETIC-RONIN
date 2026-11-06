@@ -20,14 +20,14 @@ jobs:
     timeout-minutes: 45
     steps:
       - name: Checkout HERETIC-RONIN
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Fetch admitted datasets and model manifests from RONIN-IA
         shell: bash
         run: |
           set -euo pipefail
           git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git source
-          git -C source sparse-checkout set data/datasets/admitted weights/ronin-drosophila-main.json weights/README.md
+          git -C source sparse-checkout set data/datasets/admitted weights
           mkdir -p staging/data/datasets staging/weights
           cp -a source/data/datasets/admitted staging/data/datasets/
           cp source/weights/ronin-drosophila-main.json staging/weights/
@@ -83,7 +83,7 @@ jobs:
           du -sh staging/data/datasets/admitted staging/weights
 
       - name: Upload HERETIC bootstrap bundle
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: heretic-drosophila-100900160-and-admitted-datasets
           path: staging/
