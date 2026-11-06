@@ -18,6 +18,7 @@ SOURCES=[
  {"id":"common-pile/stackexchange","config":None,"license":"per-document CC-BY-SA-4.0 only","license_filter":["creativecommons.org/licenses/by-sa/4.0/"],"limit":5000,"fields":["text"],"caveat":"Per-document license required; dataset may contain CC-BY-SA 2.5/3.0 and licensing metadata errors. Only exact 4.0 records are candidates; preserve authors, URL, site and license. Share-alike model implications need separate legal review."},
  {"id":"common-pile/pressbooks_filtered","config":None,"license":"per-document CC-BY-4.0 only","license_filter":["creativecommons.org/licenses/by/4.0/"],"limit":5000,"fields":["text"],"caveat":"Open textbook chapters are collected from PressBooks; only exact CC-BY-4.0 records are candidates. Exclude BY-SA, public-domain claims not independently checked, NC, ND and unknown."},
  {"id":"common-pile/libretexts_filtered","config":None,"license":"per-document CC-BY-4.0 only","license_filter":["creativecommons.org/licenses/by/4.0/"],"limit":5000,"fields":["text"],"caveat":"Open textbook sections are collected from LibreTexts; only exact CC-BY-4.0 records are candidates. Exclude BY-SA, GFDL, NC, ND and unknown; verify attribution and third-party material."},
+ {"id":"secemp9/arxiv-complete","config":"paper_text","license":"per-paper CC-BY-4.0 or CC0-1.0 only","license_filter":["creativecommons.org/licenses/by/4.0/","creativecommons.org/publicdomain/zero/1.0/"],"limit":5000,"fields":["text"],"caveat":"Dataset LICENSE explicitly says compilation CC0 does not relicense papers; paper-level license column governs full text. Only CC-BY-4.0 and CC0 are candidates; exclude arXiv non-exclusive, NULL, NC, ND, BY-SA and other terms. Filter withdrawn stubs, TeX macros/templates and bad renderings."},
 ]
 EMAIL=re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b")
 PHONE=re.compile(r"(?<!\d)(?:\+?\d[\d .()/-]{7,}\d)(?!\d)")
@@ -45,7 +46,7 @@ def main():
   with target.open("w",encoding="utf-8") as f:
    for row in ds:
     row_metadata=row.get("metadata",{}) if isinstance(row.get("metadata",{}),dict) else {}
-    row_license=str(row_metadata.get("license",""))
+    row_license=str(row.get("license") or row_metadata.get("license",""))
     allowed=source.get("license_filter",[])
     if allowed and not any(token in row_license.lower() for token in allowed):
      rejected+=1; continue
@@ -55,7 +56,7 @@ def main():
     if len(body)<160 or len(body)>200000 or normalized in seen or EMAIL.search(body) or PHONE.search(body):
      rejected+=1; continue
     seen.add(normalized)
-    provenance={k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length","id","source") if k in row}
+    provenance={k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length","id","source","paper_id","title","abstract","primary_category","main_file","resolution") if k in row}
     for k in ("license","url","authors","site","journal","provenance"):
      if k in row_metadata: provenance["record_"+k]=row_metadata[k]
     record={"text":body,"source":repo,"revision":revision,"config":cfg or "default",
