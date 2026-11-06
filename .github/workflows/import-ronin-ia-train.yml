@@ -1,0 +1,65 @@
+name: HERETIC — import source-scoped RONIN-IA training corpora
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/import-ronin-ia-train.yml"
+      - "scripts/import_ronin_ia_train.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: heretic-ronin-ia-train-import
+  cancel-in-progress: false
+
+jobs:
+  stage:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Checkout HERETIC-RONIN
+        uses: actions/checkout@v5
+
+      - name: Fetch pinned RONIN-IA admitted payloads
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git source
+          git -C source sparse-checkout set data/datasets/admitted
+
+      - name: Download verified train-only source artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p scienceverse-artifact literature-artifact
+          gh run download 42110130695 --repo orbitalronin94/RONIN-IA \
+            --name ronin-scienceverse-train-audit-42110130695 --dir scienceverse-artifact
+          gh run download 41825919840 --repo orbitalronin94/RONIN-IA \
+            --name ronin-corpus-v2-particiones --dir literature-artifact
+          test -s scienceverse-artifact/documents.train.jsonl
+          test -s literature-artifact/train.txt
+
+      - name: Fetch exact owner-authorized Papers revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone https://github.com/orbitalronin94/Papers.git papers-source
+          git -C papers-source checkout --detach d7bf3ae446f666ce3be73b11aab7090e1605a889
+
+      - name: Verify, filter and assemble source-scoped train bundle
+        run: python scripts/import_ronin_ia_train.py
+
+      - name: Upload verified staged corpus bundle
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-ronin-ia-train-staged-${{ github.run_id }}
+          path: staging/ronin-ia-train/
+          if-no-files-found: error
+          compression-level: 1
+          retention-days: 90
