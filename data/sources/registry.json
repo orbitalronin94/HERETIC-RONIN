@@ -995,23 +995,22 @@
     {
       "id": "common-pile/data_provenance_initiative_filtered",
       "url": "https://huggingface.co/datasets/common-pile/data_provenance_initiative_filtered",
-      "revision": "license schema and source-license mapping pending",
-      "reported_size": "3 GB; 3.5M documents",
-      "reported_license": "per-source dataset license, manually annotated by Data Provenance Initiative",
-      "status": "candidate_pending_license_allowlist_review",
+      "revision": "pin immutable Hub SHA at acquisition",
+      "reported_size": "3 GB; 3.51M rows",
+      "reported_license": "per-source dataset license manually annotated; candidate allowlist MIT/Apache/BSD/CC-BY-4.0/CC0 only",
+      "status": "candidate_acquisition_queued",
       "domains": [
-        "supervised datasets",
-        "instructions",
+        "supervised instructions",
         "reasoning",
-        "programming"
+        "programming",
+        "agent tasks"
       ],
-      "rights_caveat": "DPI manually annotates dataset sources and license information, filters out model-generated text and keeps recognized public-domain sources; individual examples may cite MIT/Apache/other source licenses. Need a strict source-license allowlist and preserve license_url and dataset_id.",
+      "rights_caveat": "DPI manually annotates source and license, filters model-generated text, and limits original source provenance to recognized public-domain sources. Each row still needs its own license_url and dataset_id checked; allowlist is conservative, not blanket authorization.",
       "required_checks": [
-        "inspect license list and exact license_url schema",
-        "allow only approved permissive licenses after per-source review",
-        "retain dataset_id, license_url, URL and provenance",
-        "exclude synthetic/model-generated and benchmark/test contamination",
-        "human sample and deduplication review"
+        "allowlist explicit MIT/Apache/BSD/CC-BY-4.0/CC0 only",
+        "preserve metadata.license, license_url, dataset_id, language and source URL",
+        "exclude test/benchmark splits and contaminated evaluation tasks",
+        "PII, quality, near-duplicate and holdout checks"
       ],
       "count_toward_admitted_bytes": false
     }
@@ -1030,5 +1029,5 @@
     "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. Global G-0 remains FAIL; no staged bundle is active-training-authorized until global near-duplicate and benchmark/holdout contamination gates pass."
   ],
   "last_candidate_batch": "run 42295370306 / artifact 13541581972: 50,000 rows, 317,069,186 bytes; training_authorized=false",
-  "next_candidate_batch": "run 42295664705: arXiv paper_text pilot and expanded provenance metadata; subsequent run from f46c52e: DOAB, OERCommons, licensed news and CCCC; later script fix adds OERCommons low minimum row threshold"
+  "next_candidate_batch": "run 42295830953: DOAB/OERCommons/news/CCCC; queued follow-up adds DPI provenance corpus, arXiv and source-metadata retention; no candidates admitted"
 }
