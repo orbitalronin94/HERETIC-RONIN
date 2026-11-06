@@ -35,6 +35,8 @@ La biblioteca versionada se organiza en `data/`:
 - `data/drosophila/parts/`: shards JSONL de entrenamiento.
 - `data/drosophila/README_01301_51300.md`: ficha y limitaciones del lote sintético de 50.000 filas.
 
+**Drosophila es el nombre del corpus experimental, no un filtro temático biológico.** La biblioteca es generalista y multidominio. La cola de curación vigente está en [`data/drosophila/CURATION_QUEUE_2026-11-06.md`](data/drosophila/CURATION_QUEUE_2026-11-06.md); las fuentes, licencias declaradas y gates de adquisición se registran en [`data/sources/registry.json`](data/sources/registry.json). Los manifiestos source-scoped de RONIN-IA no se consideran importados hasta recuperar los payloads, verificar splits/hashes, pasar los controles globales y conectar el lote al lector de entrenamiento.
+
 La biblioteca crecerá hacia **500 GB**, no hacia un número fijo de ejemplos. El tamaño anunciado por una fuente no equivale a bytes descargados ni a bytes admitidos. Mantendremos contadores separados para bytes remotos anunciados, bytes descargados, bytes íntegros, bytes tras deduplicación y bytes finalmente admitidos. Cada nuevo lote debe conservar, como mínimo:
 
 1. Fuente y URL de origen, licencia y condiciones de redistribución.
