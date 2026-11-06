@@ -1,58 +1,60 @@
-# Cola de curación y admisión Drosophila
+# Cola de curación generalista — biblioteca Drosophila
 
-Fecha de revisión: 2026-11-06. Alcance: contenido científico y técnico específicamente relacionado con *Drosophila*, para ampliar `data/drosophila/`. Esta cola separa fuentes descubribles de payloads descargados y de contenido realmente admitido. **No suma candidatos al corpus ni los declara entrenables.**
+Fecha: 2026-11-06. **Drosophila es el nombre del corpus experimental, no una restricción temática a la mosca biológica.** La biblioteca admite conocimiento general y multidominio: matemáticas, lógica, programación, ciencias naturales, ingeniería, economía, humanidades, idiomas y conocimiento técnico.
 
-## Diagnóstico del contenido actual
+Esta cola sustituye la interpretación biológica errónea de la revisión anterior. La biología de *Drosophila melanogaster* puede ser un dominio más, pero no define el corpus.
 
-`parts/01..10_*.jsonl` contiene 50.000 ejemplos procedimentales sintéticos repartidos entre matemáticas, álgebra, lógica, programación, física, química, probabilidad, estadística, economía e ingeniería. El README upstream reconoce 50 familias con 1.000 parametrizaciones por familia y advierte que la identidad de fila no implica diversidad semántica. Es un buen conjunto de ejercicios generales, pero no equivale a 50.000 documentos científicos sobre Drosophila.
+## Estado y reglas
+- Corpus sintético versionado actual: 50.000 filas en 10 shards JSONL. Es candidato experimental, no 50.000 documentos gold ni 50.000 capacidades independientes.
+- Biblioteca objetivo: 500 GB decimales de bytes efectivamente admitidos, no tamaño remoto anunciado.
+- Solo seleccionar registros marcados explícitamente para `train`; nunca validation, test ni holdout.
+- Elegibilidad source-scoped no equivale a superar G-0 global: faltan controles globales de near-duplicates, contaminación de holdout y asignación de bibliotecas.
+- Los documentos propios con autorización de uso interno no adquieren por ello derechos de redistribución pública o comercial.
+- No se hará un fork ciego ni se copiarán repositorios completos. Se fijarán revisiones inmutables, licencias por activo y splits.
 
-No mezclaré los nuevos materiales biológicos con esos shards ni cambiaré su entrenamiento hasta tener manifiesto, revisión y evaluación independientes.
+## Importación desde RONIN-IA — inventario inicial
 
-## Fuentes prioritarias para adquisición
+| Fuente | Partición train declarada | Derechos/alcance | Situación del payload |
+|---|---:|---|---|
+| CoVoST 2 translation-only | 270.244 segmentos | CC0-1.0; solo texto de traducción; no audio ni frases originales de Common Voice | `train.jsonl.gz` presente |
+| ScienceVerse CC-BY | 7.103 documentos | CC BY 4.0 / CC0 por documento; atribución; train source-scoped | Payload por corpus presente; filtrar `training_eligible=true`; 262 held excluidos |
+| Mathlib4 | 8.498 documentos | Apache-2.0; train source-scoped | Solo manifiesto en Git; recuperar artefacto auditado |
+| Literatura española | 608 documentos | Licencia y procedencia por fuente; train source-scoped | Solo manifiesto en Git; recuperar artefacto auditado |
+| NASA NTRS file-reviewed | 2 documentos en manifiesto actual | Train explícito y alcance file-reviewed; no usar el conjunto public-use completo | `documents.train.jsonl` y `train.txt` presentes |
+| Papers propios | 9 documentos | Autorización explícita para entrenamiento interno; no inferir redistribución externa/comercial | Payload Markdown presente |
 
-| Prioridad | Fuente / snapshot | Contenido aprovechable | Derechos observados | Decisión |
-|---|---|---|---|---|
-| P0 | FlyBase FB2026_03 | Descripciones de genes, alelos, fenotipos, interacciones genéticas/físicas, expresión, anatomía y desarrollo; exportaciones TSV/JSON y Chado | FlyBase declara CC BY 4.0 para los datos y anotaciones que produce y publica | Candidato de alta prioridad. Fijar release y hashes; conservar atribución; separar datos FlyBase propios de referencias o contenido de terceros. |
-| P0 | Alliance of Genome Resources, release fijada | Datos integrados por organismo, anotaciones, interacciones, expresión, fenotipos y ortología; archivos específicos FB/Drosophila | La ficha del Open Data Registry indica que la mayoría es CC0 y algunos conjuntos CC BY 4.0; hay que resolver licencia por colección/archivo | Candidato. No asumir CC0 global: allowlist por recurso y versión, con atribución cuando corresponda. |
-| P0 | Dryad, datasets Drosophila con CC0 explícito | Datos experimentales reutilizables, tablas de fenotipos, comportamiento, genética y biología de sistemas | Dryad indica que sus datasets se publican bajo CC0; validar el registro y la versión individual, y citar el artículo/dataset | Candidato por DOI, no descarga masiva ciega. Comenzar por DOI 10.5061/dryad.45177sc y 10.5061/dryad.r2280gbv8 tras comprobar los archivos y metadatos de licencia. |
-| P1 | FlyRNAi / DRSC / TRiP | Pantallas RNAi, recursos funcionales, expresión y fenotipos | El portal ofrece datos públicos, pero acceso público no acredita una licencia uniforme de cada dataset | Discovery solamente hasta resolver derechos por dataset y archivos. |
-| P1 | NCBI GEO / SRA y ENA — estudios Drosophila | Expresión, RNA-seq y datos ómicos; metadatos de muestras y protocolos | Los datos primarios pueden tener condiciones específicas; artículos vinculados conservan sus derechos | Selección estudio a estudio. No importar secuencias crudas como texto de entrenamiento; derivar descripciones/ejemplos solo desde metadatos reutilizables y documentación autorizada. |
-| P2 | PubMed Central OA — artículos Drosophila | Texto científico narrativo, métodos, resultados y explicaciones | Solo artículos/versiones con licencia de reutilización compatible; filtrar por artículo y versión | Mantener CC0/CC BY con versión exacta. Excluir NC/ND/SA no compatibles, retractaciones, material de terceros y datos personales. |
+**No sumar estas cifras como importación completada.** Son conteos de manifiestos; antes de integrar hay que recuperar payloads faltantes, validar hashes, filtrar elegibilidad por documento, deduplicar contra Drosophila y holdout y conservar licencia, autoría y procedencia. ScienceVerse declara `global_g0=FAIL`; siguen pendientes near-duplicates globales y contaminación de holdout. Si estos controles no pasan, los datos quedan en staging.
 
-## Primeros registros concretos
+El bootstrap actual copia el directorio `admitted` completo a un artefacto temporal; no es una importación filtrada al lector de entrenamiento.
 
-- **FlyBase FB2026_03** — release publicada el 17-09-2026. Empezar por tablas de genes, fenotipos, interacciones, expresión y ontologías FBbt/FBdv. No empezar por FASTA/GFF masivos: son datos biológicos estructurados, no texto instructivo; conservarlos como datos auxiliares y no volcarlos a prosa artificial.
-- **Dryad 10.5061/dryad.45177sc** — conjunto de datos de circuito de navegación y morfología neuronal en Drosophila; archivos tabulares grandes y README explicativo. Revisar cada archivo, variables, unidades y licencia antes de transformación.
-- **Dryad 10.5061/dryad.r2280gbv8** — dataset 2026 sobre adaptación y contexto genético en *D. melanogaster*; la página declara CC0 1.0. Verificar snapshot y contenido de cada archivo antes de admitir.
-- **Alliance Genome Resources** — seleccionar exclusivamente los objetos FB de la release y aplicar su licencia por objeto.
+## Candidatos GitHub para revisión
 
-## Transformación a ejemplos entrenables
+| Repositorio | Dominio | Licencia declarada | Decisión inicial |
+|---|---|---|---|
+| [UltraData-OpenBMB/UltraData-Math](https://github.com/UltraData-OpenBMB/UltraData-Math) | Matemáticas | Apache-2.0 declarado en el repositorio | Candidato prioritario; verificar licencia del payload, revisión inmutable, shards y linaje antes de descargar |
+| [amazon-science/street-reasoning](https://github.com/amazon-science/street-reasoning) | Razonamiento multidominio | Apache-2.0 para el repositorio | Código/generador no autorizan automáticamente los datasets upstream; revisar derechos por tarea y split |
+| [Zhenwen-NLP/MathChat](https://github.com/Zhenwen-NLP/MathChat) | Matemáticas / diálogo | Apache-2.0 en el repo | No entrenar por defecto: README indica dependencia de ejemplos del test de GSM8K; aislar por riesgo de contaminación |
+| [GovDataHub/open-data-index](https://github.com/GovDataHub/open-data-index) | Catálogo público: clima, energía y economía | Licencias por dataset en el catálogo | Índice de descubrimiento, no dataset de texto; verificar fuente primaria por activo |
 
-1. Mantener el payload original inmutable y sus hashes.
-2. Extraer solo texto/documentación y tablas que puedan interpretarse sin perder unidades, controles, población, especie, genotipo y contexto experimental.
-3. Convertir filas en registros estructurados con pregunta/respuesta únicamente cuando la respuesta sea determinista y esté respaldada por columnas o documentación. No inventar explicaciones causales.
-4. Incluir referencia, DOI/URL, release, licencia, autores/proveedor, archivo original y hash en cada registro.
-5. Excluir nombres/datos personales, muestras humanas incidentales, identificadores sensibles y materiales de terceros sin permiso.
-6. Deduplicar exacta y semánticamente contra todos los shards actuales y el holdout. Separar por estudio/DOI y no por filas aleatorias para evitar fuga entre train y evaluación.
-7. Revisar manualmente una muestra estratificada por fuente, archivo, tipo de dato y dominio; validar respuestas contra los datos originales.
-8. Admitir solo después de ejecutar validadores y producir manifiesto reproducible con particiones disjuntas.
+Las licencias del código de un repositorio no cubren automáticamente sus datos de terceros. Los catálogos agregadores tampoco sustituyen la licencia del activo original.
 
-## Estados permitidos
+## Procedimiento obligatorio
+1. Fijar URL, commit/release, archivo, tamaño y SHA-256.
+2. Leer licencia del activo y fuentes upstream; bloquear NC, ND, share-alike no aprobado, research-only o licencia no declarada.
+3. Descargar solo train; aislar validation/test/holdout.
+4. Preservar autor, cita, URL, DOI, SPDX/licencia, revisión, archivo original, hash y condiciones.
+5. Validar esquema, codificación, calidad, PII, secretos y seguridad.
+6. Deduplicar exacta y aproximadamente contra biblioteca y holdouts.
+7. Auditar muestra estratificada por dominio, idioma, fuente y formato.
+8. Normalizar sin borrar estructura ni contexto; preservar dirección source/target en traducciones.
+9. Emitir manifiesto con conteos por estado y bytes comprimidos/descomprimidos.
+10. Integrar al entrenamiento solo cuando el pipeline consuma el lote validado y la evaluación pareada no muestre regresión.
 
-- `discovery`: fuente identificada, aún sin verificar archivos.
-- `candidate`: payload adquirido, hash y metadatos fijados; no entrenable.
-- `reviewed`: derechos, calidad, privacidad y contenido revisados; falta deduplicación/splits globales.
-- `admitted_train`: solo registros que superan todas las compuertas y tienen partición train verificable.
-- `held` / `rejected`: bloqueado o excluido con motivo.
+## Estados
+- `discovery`: fuente localizada, licencia/payload sin verificar.
+- `candidate`: revisión y archivos identificados; no entrenable.
+- `staged_train`: payload recuperado y manifiesto source-scoped validado; faltan gates globales.
+- `admitted_train`: todos los gates superados; entrenable.
+- `held` / `rejected`: excluido con motivo.
 
-**Estado de esta cola:** 4 líneas de adquisición priorizadas; 0 payloads nuevos descargados por esta revisión; 0 documentos nuevos admitidos. No se modifica el holdout ni se afirma que el corpus entrenable haya aumentado.
-
-## Referencias oficiales
-
-- FlyBase bulk downloads: https://flybase.org/downloads/bulkdata
-- FlyBase licencia CC BY 4.0: https://wiki.flybase.org/wiki/FlyBase:About#FlyBase_Licenses_and_Availability
-- Alliance Genome Resources open-data registry: https://github.com/awslabs/open-data-registry/blob/main/datasets/alliance-genome-resources.yaml
-- Dryad reutilización CC0: https://datadryad.org/help/guides/reuse
-- Dryad 10.5061/dryad.45177sc: https://doi.org/10.5061/dryad.45177sc
-- Dryad 10.5061/dryad.r2280gbv8: https://doi.org/10.5061/dryad.r2280gbv8
-- FlyRNAi / DRSC: https://www.flyrnai.org/
+**Estado de esta cola:** corrección conceptual y priorización documental. No declara importaciones nuevas ni bytes adicionales admitidos.
