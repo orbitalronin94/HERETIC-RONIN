@@ -1,0 +1,184 @@
+name: HERETIC — one-step CPU optimization tournament
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: Run containing the step-2600 checkpoint artifact
+        required: true
+        default: "42288969968"
+      audit_run_id:
+        description: Run containing the global corpus audit
+        required: true
+        default: "42288107561"
+      train_artifact_id:
+        description: Exact RONIN-IA train-only artifact ID
+        required: true
+        default: "13536786501"
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: heretic-cpu-one-step-benchmark
+  cancel-in-progress: false
+env:
+  PYTHONUNBUFFERED: "1"
+  OMP_NUM_THREADS: "4"
+  MKL_NUM_THREADS: "4"
+jobs:
+  baseline:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Fetch and verify exact checkpoint, train data and signed audit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+          AUDIT_RUN_ID: ${{ inputs.audit_run_id }}
+          TRAIN_ARTIFACT_ID: ${{ inputs.train_artifact_id }}
+        run: |
+          set -euo pipefail
+          mkdir -p incoming/checkpoint incoming/audit
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${SOURCE_RUN_ID}/artifacts" -o incoming/artifacts.json
+          python - <<'PY'
+          import json
+          d=json.load(open("incoming/artifacts.json")); a=[x for x in d["artifacts"] if x["name"]=="heretic-500m-real-corpus-step-2600" and not x["expired"]]
+          assert len(a)==1, f"Expected one live step-2600 artifact, found {len(a)}"
+          open("incoming/checkpoint-id","w").write(str(a[0]["id"]))
+          PY
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/$(cat incoming/checkpoint-id)/zip" -o incoming/checkpoint.zip
+          unzip -q incoming/checkpoint.zip -d incoming/checkpoint
+          cp "$(find incoming/checkpoint -name checkpoint.pt -print -quit)" incoming/checkpoint.pt
+          python - <<'PY'
+          import torch
+          c=torch.load("incoming/checkpoint.pt",map_location="cpu",weights_only=False)
+          assert int(c.get("step",-1))==2600, c.get("step")
+          PY
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/${TRAIN_ARTIFACT_ID}/zip" -o incoming/ronin-ia-train.zip
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${AUDIT_RUN_ID}/artifacts" -o incoming/audits.json
+          python - <<'PY'
+          import json,os
+          d=json.load(open("incoming/audits.json")); wanted="heretic-global-corpus-audit-"+os.environ["AUDIT_RUN_ID"]
+          a=[x for x in d["artifacts"] if x["name"]==wanted and not x["expired"]]
+          assert len(a)==1, f"Expected signed audit {wanted}; found {len(a)}"
+          open("incoming/audit-id","w").write(str(a[0]["id"]))
+          PY
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/$(cat incoming/audit-id)/zip" -o incoming/audit.zip
+          unzip -q incoming/audit.zip -d incoming/audit
+          cp "$(find incoming/audit -name GLOBAL-CORPUS-AUDIT.json -print -quit)" incoming/GLOBAL-CORPUS-AUDIT.json
+          python - <<'PY'
+          import json
+          a=json.load(open("incoming/GLOBAL-CORPUS-AUDIT.json")); assert a.get("training_authorized") is True
+          PY
+      - name: Install CPU dependencies and model implementation
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.2"
+          python -m pip install "numpy>=1.26" "datasets>=3.0" "huggingface_hub>=0.25"
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git ronin-source
+          git -C ronin-source sparse-checkout set ronin
+      - name: Run production baseline: one optimizer update, 40 micro-batches
+        env:
+          PYTHONPATH: ronin-source:scripts
+        run: |
+          python scripts/heretic_cpu_one_step_benchmark.py --variant baseline --create-plan
+          cp out/result.json out/baseline.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: heretic-cpu-baseline-${{ github.run_id }}
+          path: |
+            out/baseline.json
+            out/batch-plan.pt
+          retention-days: 14
+  candidates:
+    needs: baseline
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        variant: [threads-1, threads-2, threads-8, cpu-affinity, mkldnn-disabled, bf16-autocast, torch-compile, adamw-foreach, mmap-batches, sharded-prefetch, packed-window-cache, inference-mode-eval]
+    runs-on: ubuntu-26.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+      - uses: actions/download-artifact@v4
+        with:
+          name: heretic-cpu-baseline-${{ github.run_id }}
+          path: incoming/baseline
+      - name: Fetch identical checkpoint, data and audit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+          AUDIT_RUN_ID: ${{ inputs.audit_run_id }}
+          TRAIN_ARTIFACT_ID: ${{ inputs.train_artifact_id }}
+        run: |
+          set -euo pipefail
+          mkdir -p incoming/checkpoint incoming/audit
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${SOURCE_RUN_ID}/artifacts" -o incoming/artifacts.json
+          python - <<'PY'
+          import json
+          d=json.load(open("incoming/artifacts.json")); a=[x for x in d["artifacts"] if x["name"]=="heretic-500m-real-corpus-step-2600" and not x["expired"]]
+          assert len(a)==1
+          open("incoming/checkpoint-id","w").write(str(a[0]["id"]))
+          PY
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/$(cat incoming/checkpoint-id)/zip" -o incoming/checkpoint.zip
+          unzip -q incoming/checkpoint.zip -d incoming/checkpoint
+          cp "$(find incoming/checkpoint -name checkpoint.pt -print -quit)" incoming/checkpoint.pt
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/${TRAIN_ARTIFACT_ID}/zip" -o incoming/ronin-ia-train.zip
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${AUDIT_RUN_ID}/artifacts" -o incoming/audits.json
+          python - <<'PY'
+          import json,os
+          d=json.load(open("incoming/audits.json")); wanted="heretic-global-corpus-audit-"+os.environ["AUDIT_RUN_ID"]
+          a=[x for x in d["artifacts"] if x["name"]==wanted and not x["expired"]]
+          assert len(a)==1
+          open("incoming/audit-id","w").write(str(a[0]["id"]))
+          PY
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/$(cat incoming/audit-id)/zip" -o incoming/audit.zip
+          unzip -q incoming/audit.zip -d incoming/audit
+          cp "$(find incoming/audit -name GLOBAL-CORPUS-AUDIT.json -print -quit)" incoming/GLOBAL-CORPUS-AUDIT.json
+          cp incoming/baseline/batch-plan.pt incoming/batch-plan.pt
+          cp incoming/baseline/baseline.json incoming/baseline.json
+          python - <<'PY'
+          import json
+          a=json.load(open("incoming/GLOBAL-CORPUS-AUDIT.json")); assert a.get("training_authorized") is True
+          PY
+      - name: Install dependencies and model implementation
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.2"
+          python -m pip install "numpy>=1.26" "datasets>=3.0" "huggingface_hub>=0.25"
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git ronin-source
+          git -C ronin-source sparse-checkout set ronin
+      - name: Run one optimizer update for candidate
+        env:
+          PYTHONPATH: ronin-source:scripts
+          VARIANT: ${{ matrix.variant }}
+        run: python scripts/heretic_cpu_one_step_benchmark.py --variant "$VARIANT" --output "out/$VARIANT.json"
+      - name: Compare candidate with same-workflow baseline
+        env:
+          VARIANT: ${{ matrix.variant }}
+        run: |
+          python - <<'PY'
+          import json,os
+          v=os.environ["VARIANT"]; b=json.load(open("incoming/baseline.json")); p=f"out/{v}.json"; d=json.load(open(p))
+          assert d["status"]=="completed" and d["optimizer_updates"]==b["optimizer_updates"]==1 and d["tokens"]==b["tokens"]==10240
+          d["baseline_wall_seconds"]=b["wall_seconds"]; d["speedup_percent"]=(1-d["wall_seconds"]/b["wall_seconds"])*100
+          d["loss_delta_abs"]=abs(d["mean_loss"]-b["mean_loss"])
+          d["numerical_guard_pass"]=d["loss_delta_abs"]<=1e-5 and v not in ("bf16-autocast","torch-compile")
+          d["eligible_for_manual_review"]=d["numerical_guard_pass"] and d["speedup_percent"]>0
+          json.dump(d,open(p,"w"),indent=2)
+          print(json.dumps({k:d.get(k) for k in ("variant","wall_seconds","baseline_wall_seconds","speedup_percent","loss_delta_abs","numerical_guard_pass","eligible_for_manual_review")},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: heretic-cpu-result-${{ matrix.variant }}-${{ github.run_id }}
+          path: out/${{ matrix.variant }}.json
+          retention-days: 14
