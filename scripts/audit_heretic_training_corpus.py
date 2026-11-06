@@ -8,7 +8,7 @@ from itertools import combinations
 import hashlib as _hashlib
 
 IMPORT_ZIP = Path("incoming/ronin-ia-train.zip")
-OUT = Path("reports/corpus-audit")
+OUT = Path("reports/corpus-audit")  # real-artifact audit revision 2
 HOLDOUT = []
 PLURALS = [("lápiz","lápices"),("pez","peces"),("luz","luces"),("joven","jóvenes"),("rubí","rubíes"),("régimen","regímenes"),("carácter","caracteres"),("espécimen","especímenes"),("sofá","sofás"),("menú","menús"),("bambú","bambúes"),("crisis","crisis"),("lunes","lunes"),("tórax","tórax"),("análisis","análisis"),("álbum","álbumes"),("examen","exámenes"),("compás","compases"),("raíz","raíces"),("canción","canciones")]
 NAMES=("Alba","Bruno","Celia","Diego","Eva","Fabio","Gala","Hugo")
