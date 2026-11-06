@@ -2107,5 +2107,850 @@
 
 ---
 
-**Dataset Drosophila · ítems 101–200 completados.**
 
+---
+
+## BLOQUE 21 — Matemáticas (201–210)
+
+### 201 · Resuelve 3x − 7 = 11.
+**R:** x = 6.
+**Razonamiento:**
+1. Sumar 7 a ambos lados da 3x = 18
+2. dividir por 3 da x = 6
+3. sustituir devuelve 18−7=11.
+**Supuestos:** Ecuación lineal real con coeficiente no nulo. **Verificación:** 3·6−7=11 ✔.
+
+### 202 · ¿Cuáles son las raíces de x² − 5x + 6 = 0?
+**R:** x = 2 y x = 3.
+**Razonamiento:**
+1. Factorizar como (x−2)(x−3)
+2. igualar cada factor a cero
+3. obtener 2 y 3.
+**Supuestos:** Coeficientes reales y factorización exacta. **Verificación:** Ambas sustituciones producen cero ✔.
+
+### 203 · Si 4 cuadernos cuestan 10 €, ¿cuánto cuestan 7 al mismo precio unitario?
+**R:** 17,50 €.
+**Razonamiento:**
+1. El precio unitario es 10/4=2,50 €
+2. multiplicar por 7
+3. obtener 17,50 €.
+**Supuestos:** Precio unitario constante y sin descuentos. **Verificación:** 17,50/7=2,50 € ✔.
+
+### 204 · ¿Qué resto deja 137 al dividirlo entre 9?
+**R:** 2.
+**Razonamiento:**
+1. 9·15=135
+2. 137−135=2
+3. el resto está entre 0 y 8.
+**Supuestos:** División euclídea en enteros no negativos. **Verificación:** 137=9·15+2 ✔.
+
+### 205 · En una bolsa hay 3 bolas rojas y 2 azules. ¿Probabilidad de extraer una azul?
+**R:** 2/5 = 40 %.
+**Razonamiento:**
+1. Hay 5 bolas
+2. 2 son azules
+3. casos favorables sobre posibles es 2/5.
+**Supuestos:** Extracción uniforme de una sola bola. **Verificación:** 2/5+3/5=1 ✔.
+
+### 206 · Dados u=(2,−1) y v=(3,4), ¿cuál es u·v?
+**R:** 2.
+**Razonamiento:**
+1. El producto escalar es 2·3+(−1)·4
+2. calcular 6−4
+3. el resultado es el escalar 2.
+**Supuestos:** Vectores en el plano con producto escalar usual. **Verificación:** 2·3−4=2 ✔.
+
+### 207 · Deriva f(x)=3x²−4x+7.
+**R:** f'(x)=6x−4.
+**Razonamiento:**
+1. La derivada de 3x² es 6x
+2. la de −4x es −4
+3. la constante deriva a cero.
+**Supuestos:** Derivación respecto de x en los reales. **Verificación:** En x=2 la pendiente es 8 ✔.
+
+### 208 · Calcula la integral definida de 2x entre 0 y 3.
+**R:** 9.
+**Razonamiento:**
+1. Una primitiva es x²
+2. evaluar x² entre 0 y 3
+3. restar 9−0.
+**Supuestos:** Integral ordinaria de una función continua. **Verificación:** El triángulo de base 3 y altura 6 tiene área 9 ✔.
+
+### 209 · Convierte 101101₂ a decimal.
+**R:** 45.
+**Razonamiento:**
+1. Los pesos activos son 32, 8, 4 y 1
+2. sumarlos da 45
+3. la base es dos.
+**Supuestos:** Entero binario sin signo. **Verificación:** 45=32+8+4+1 ✔.
+
+### 210 · Calcula el determinante de [[2,1],[5,3]].
+**R:** 1.
+**Razonamiento:**
+1. Para 2×2 se calcula ad−bc
+2. sustituir 2·3−1·5
+3. obtener 1.
+**Supuestos:** Matriz cuadrada sobre los reales. **Verificación:** 6−5=1 y el determinante no es cero ✔.
+
+
+## BLOQUE 22 — Programación y estructuras de datos (211–220)
+
+### 211 · ¿Qué imprime sum(i for i in range(4)) en Python 3?
+**R:** 6.
+**Razonamiento:**
+1. range(4) produce 0,1,2,3
+2. sum agrega los cuatro valores
+3. el total es 6.
+**Supuestos:** Python 3 y range estándar. **Verificación:** 0+1+2+3=6 ✔.
+
+### 212 · ¿Qué caso base evita una recursión infinita al calcular factorial?
+**R:** n=0 o n=1 devuelve 1.
+**Razonamiento:**
+1. Cada llamada reduce n
+2. el caso base devuelve sin recursión
+3. sin caso alcanzable la pila sigue creciendo.
+**Supuestos:** Entrada entera no negativa. **Verificación:** 4·3·2·1=24 y factorial(0)=1 ✔.
+
+### 213 · ¿Por qué una tabla hash debe gestionar colisiones?
+**R:** Claves distintas pueden producir el mismo índice.
+**Razonamiento:**
+1. El espacio de posiciones es finito
+2. una función hash no tiene por qué ser inyectiva
+3. encadenamiento o direccionamiento abierto conserva ambas claves.
+**Supuestos:** Tabla hash finita. **Verificación:** Dos claves con el mismo hash deben poder recuperarse ✔.
+
+### 214 · ¿Qué estructura LIFO permite deshacer primero la última operación?
+**R:** Una pila.
+**Razonamiento:**
+1. LIFO significa último en entrar, primero en salir
+2. push añade arriba
+3. pop retira el elemento más reciente.
+**Supuestos:** Pila con operaciones push y pop. **Verificación:** push(A), push(B), pop() devuelve B ✔.
+
+### 215 · ¿Qué diferencia hay entre INNER JOIN y LEFT JOIN en SQL?
+**R:** INNER conserva coincidencias; LEFT conserva todas las filas izquierdas.
+**Razonamiento:**
+1. INNER exige coincidencia en ambas tablas
+2. LEFT mantiene cada fila izquierda
+3. si no hay pareja, las columnas derechas quedan NULL.
+**Supuestos:** Unión con condición explícita. **Verificación:** Una fila izquierda sin pareja aparece solo en LEFT JOIN ✔.
+
+### 216 · ¿Cuál es la complejidad peor caso de buscar en una lista enlazada no ordenada de n nodos?
+**R:** O(n).
+**Razonamiento:**
+1. El elemento puede estar al final o no existir
+2. hay que recorrer hasta n nodos
+3. cada enlace se visita en tiempo constante.
+**Supuestos:** Lista enlazada y comparación de coste constante. **Verificación:** Duplicar n puede duplicar comparaciones ✔.
+
+### 217 · ¿Qué puede ocurrir al incrementar un contador compartido sin sincronización?
+**R:** Actualizaciones perdidas.
+**Razonamiento:**
+1. Dos hilos pueden leer el mismo valor
+2. ambos calculan el mismo siguiente valor
+3. una escritura pisa la otra.
+**Supuestos:** Acceso concurrente no atómico. **Verificación:** Dos incrementos simultáneos desde cero pueden dejar uno ✔.
+
+### 218 · ¿Qué ventaja aporta la inmutabilidad en concurrencia?
+**R:** Reduce conflictos por modificaciones compartidas.
+**Razonamiento:**
+1. El objeto no cambia tras crearse
+2. varios lectores comparten un estado estable
+3. se reducen carreras asociadas a escrituras.
+**Supuestos:** Datos realmente inmutables. **Verificación:** Dos lectores observan el mismo valor ✔.
+
+### 219 · ¿Qué comprueba una prueba unitaria?
+**R:** El comportamiento de una unidad pequeña y aislada.
+**Razonamiento:**
+1. Se fijan entradas
+2. se compara la salida con lo esperado
+3. el aislamiento ayuda a localizar errores.
+**Supuestos:** Entorno controlado y dependencias simuladas cuando convenga. **Verificación:** sumar(2,3) debe devolver 5 ✔.
+
+### 220 · ¿Qué representa ^ en una expresión regular con modo multilínea?
+**R:** El inicio de cada línea.
+**Razonamiento:**
+1. El ancla marca el comienzo
+2. con modo multilínea se aplica a cada línea
+3. sin él suele referirse al comienzo de la cadena.
+**Supuestos:** Motor regex con modo multilínea activado. **Verificación:** ^Hola coincide con Hola al inicio de una línea ✔.
+
+
+## BLOQUE 23 — Lógica y razonamiento (221–230)
+
+### 221 · Si P implica Q y Q es falsa, ¿qué se concluye sobre P?
+**R:** P es falsa.
+**Razonamiento:**
+1. Si P fuera verdadera y Q falsa, la implicación sería falsa
+2. para mantener la premisa P no puede ser verdadera
+3. es modus tollens.
+**Supuestos:** Lógica proposicional clásica. **Verificación:** P→Q, ¬Q implica ¬P ✔.
+
+### 222 · ¿Es válida la inferencia «si llueve, la calle se moja; la calle está mojada; luego llovió»?
+**R:** No; es afirmación del consecuente.
+**Razonamiento:**
+1. La lluvia basta para mojar la calle
+2. no es la única causa posible
+3. una manguera ofrece un contraejemplo.
+**Supuestos:** No hay premisa que excluya otras causas. **Verificación:** Puede no llover y la calle estar mojada ✔.
+
+### 223 · ¿Qué diferencia hay entre condición necesaria y suficiente?
+**R:** La necesaria debe cumplirse; la suficiente garantiza el resultado.
+**Razonamiento:**
+1. A necesaria para B significa B→A
+2. A suficiente para B significa A→B
+3. las direcciones no se intercambian.
+**Supuestos:** Implicaciones clásicas. **Verificación:** Ser múltiplo de 4 basta para ser par; ser par es necesario ✔.
+
+### 224 · ¿Cuál es la negación de «todos los registros son válidos»?
+**R:** Existe al menos un registro no válido.
+**Razonamiento:**
+1. La forma universal es para todo x, V(x)
+2. al negar el universal aparece existe x
+3. la propiedad pasa a no V(x).
+**Supuestos:** Dominio de registros definido. **Verificación:** Un único registro inválido refuta la universal ✔.
+
+### 225 · Si A={1,2,3} y B={3,4}, ¿cuál es A∩B?
+**R:** {3}.
+**Razonamiento:**
+1. La intersección contiene elementos comunes
+2. 1 y 2 solo están en A
+3. 4 solo está en B
+4. 3 pertenece a ambos.
+**Supuestos:** Conjuntos finitos. **Verificación:** 3∈A y 3∈B ✔.
+
+### 226 · ¿Qué es un argumento válido con premisas falsas?
+**R:** Uno cuya forma preservaría la verdad de la conclusión si las premisas fueran verdaderas.
+**Razonamiento:**
+1. La validez depende de la estructura
+2. no permite premisas verdaderas y conclusión falsa
+3. la solidez añade premisas verdaderas.
+**Supuestos:** Lógica deductiva clásica. **Verificación:** Un silogismo formalmente válido puede partir de una premisa falsa ✔.
+
+### 227 · ¿Qué es un contraejemplo a una afirmación universal?
+**R:** Un caso que incumple la propiedad afirmada.
+**Razonamiento:**
+1. La afirmación pretende abarcar todo el dominio
+2. un solo elemento que no cumple la propiedad la refuta
+3. no se requieren varios casos.
+**Supuestos:** Dominio y propiedad bien definidos. **Verificación:** El número 2 refuta «todos los primos son impares» ✔.
+
+### 228 · ¿Cómo se llama una proposición verdadera bajo toda asignación de valores?
+**R:** Tautología.
+**Razonamiento:**
+1. Su forma garantiza verdad
+2. P o no P es verdadera con P verdadera y también con P falsa
+3. no depende de datos empíricos.
+**Supuestos:** Lógica clásica bivalente. **Verificación:** P∨¬P siempre vale verdadero ✔.
+
+### 229 · ¿Qué diferencia hay entre correlación y causalidad?
+**R:** Correlación es asociación; causalidad afirma producción de un efecto.
+**Razonamiento:**
+1. La correlación describe variación conjunta
+2. puede haber causas comunes o causalidad inversa
+3. inferir causalidad exige descartar alternativas.
+**Supuestos:** Inferencia científica con posibles confusores. **Verificación:** Helados y ahogamientos pueden crecer juntos por el verano ✔.
+
+### 230 · ¿Qué expresa la navaja de Ockham al comparar modelos?
+**R:** Evitar complejidad innecesaria si otra explicación explica igual la evidencia.
+**Razonamiento:**
+1. La simplicidad reduce supuestos gratuitos
+2. entre modelos comparables se prefiere el menos complejo
+3. evidencia nueva puede justificar más complejidad.
+**Supuestos:** Principio metodológico, no prueba de verdad. **Verificación:** Un parámetro inútil no mejora un modelo ✔.
+
+
+## BLOQUE 24 — Ciencias naturales (231–240)
+
+### 231 · ¿Por qué el hielo flota sobre el agua líquida?
+**R:** Porque su densidad suele ser menor.
+**Razonamiento:**
+1. La estructura cristalina del hielo ocupa más volumen
+2. la masa comparable queda distribuida en mayor volumen
+3. menor densidad favorece la flotación.
+**Supuestos:** Agua dulce cerca de presión atmosférica. **Verificación:** El hielo desplaza agua cuyo peso iguala al suyo ✔.
+
+### 232 · ¿Qué ocurre con la presión de un gas ideal si se duplica la temperatura absoluta a volumen constante?
+**R:** Se duplica.
+**Razonamiento:**
+1. PV=nRT
+2. con n y V fijos P/T es constante
+3. duplicar T en kelvin duplica P.
+**Supuestos:** Gas ideal y volumen constante. **Verificación:** P₂/P₁=T₂/T₁=2 ✔.
+
+### 233 · ¿Qué corriente circula por una resistencia de 6 Ω conectada a 12 V?
+**R:** 2 A.
+**Razonamiento:**
+1. La ley de Ohm es V=IR
+2. despejar I=V/R
+3. 12/6=2 amperios.
+**Supuestos:** Resistencia óhmica ideal. **Verificación:** 2 A·6 Ω=12 V ✔.
+
+### 234 · ¿Qué relación hay entre pH 3 y pH 5 respecto a la actividad de H⁺?
+**R:** pH 3 tiene cien veces más actividad de H⁺.
+**Razonamiento:**
+1. pH es −log₁₀ de actividad
+2. dos unidades representan factor 10²
+3. menor pH significa mayor actividad.
+**Supuestos:** Comparación en condiciones acuosas compatibles. **Verificación:** 10⁻³/10⁻⁵=100 ✔.
+
+### 235 · ¿Qué proceso permite el paso neto de agua por una membrana semipermeable hacia una disolución más concentrada?
+**R:** Ósmosis.
+**Razonamiento:**
+1. La membrana deja pasar disolvente
+2. el potencial químico impulsa el flujo neto
+3. el equilibrio depende también de presión y composición.
+**Supuestos:** Membrana semipermeable y soluciones acuosas diluidas. **Verificación:** Un gradiente osmótico puede cambiar el volumen a ambos lados ✔.
+
+### 236 · ¿Cuántas divisiones celulares ocurren en la meiosis?
+**R:** Dos divisiones sucesivas.
+**Razonamiento:**
+1. Meiosis I separa homólogos
+2. meiosis II separa cromátidas hermanas
+3. el proceso suele producir cuatro células haploides.
+**Supuestos:** Eucariotas con reproducción sexual. **Verificación:** Una célula diploide puede originar cuatro productos haploides ✔.
+
+### 237 · ¿Qué hacen las enzimas en una reacción bioquímica?
+**R:** Aceleran la reacción al reducir la energía de activación.
+**Razonamiento:**
+1. Estabilizan el estado de transición
+2. aumentan la velocidad
+3. no cambian la energía libre global ni el equilibrio final.
+**Supuestos:** Enzima funcional y condiciones compatibles. **Verificación:** El equilibrio se alcanza más rápido, no cambia ✔.
+
+### 238 · ¿Por qué la resistencia de un metal suele aumentar al calentarlo?
+**R:** Aumenta la dispersión de electrones por vibraciones de la red.
+**Razonamiento:**
+1. La temperatura eleva vibraciones atómicas
+2. los electrones se dispersan más
+3. baja la movilidad y sube la resistividad.
+**Supuestos:** Metal común y rango sin cambio de fase. **Verificación:** La resistencia medida suele tener pendiente positiva ✔.
+
+### 239 · ¿Qué mecanismos generan diversidad genética en la meiosis?
+**R:** Entrecruzamiento y distribución independiente de cromosomas.
+**Razonamiento:**
+1. Cromátidas no hermanas intercambian segmentos
+2. pares homólogos se orientan independientemente
+3. aparecen nuevas combinaciones alélicas.
+**Supuestos:** Meiosis con cromosomas homólogos. **Verificación:** La descendencia puede combinar alelos de formas nuevas ✔.
+
+### 240 · ¿Qué distingue una energía renovable de una no renovable?
+**R:** La renovable se repone a escala humana; la no renovable tarda mucho más en formarse.
+**Razonamiento:**
+1. La clasificación depende de la tasa de reposición
+2. sol y viento se renuevan continuamente
+3. combustibles fósiles requieren escalas geológicas.
+**Supuestos:** Definición por escala temporal. **Verificación:** Un yacimiento fósil no se repone en décadas ✔.
+
+
+## BLOQUE 25 — Lengua española (241–250)
+
+### 241 · ¿Por qué «Espero que vienes mañana» no es la forma normativa habitual?
+**R:** Se dice «Espero que vengas mañana».
+**Razonamiento:**
+1. La subordinada expresa expectativa
+2. este patrón rige normalmente subjuntivo
+3. venir en segunda persona subjuntiva es vengas.
+**Supuestos:** Español estándar y sentido de expectativa. **Verificación:** «Espero que vengas» es la forma normativa ✔.
+
+### 242 · ¿Qué función tiene «se» en «Se venden pisos»?
+**R:** Marca una pasiva refleja.
+**Razonamiento:**
+1. Pisos es sujeto paciente
+2. el verbo concuerda en plural
+3. el agente no se expresa.
+**Supuestos:** Análisis sintáctico tradicional. **Verificación:** «Se vende un piso» y «Se venden pisos» concuerdan ✔.
+
+### 243 · ¿Qué diferencia hay entre «él» y «el»?
+**R:** «Él» es pronombre; «el» es artículo.
+**Razonamiento:**
+1. La tilde diacrítica distingue categorías
+2. «Él llegó» usa pronombre
+3. «el libro» usa artículo.
+**Supuestos:** Ortografía normativa española. **Verificación:** «Él compró el libro» usa ambos correctamente ✔.
+
+### 244 · ¿Qué es una subordinada sustantiva?
+**R:** Una subordinada que desempeña función propia de un sintagma nominal.
+**Razonamiento:**
+1. Puede ser sujeto o complemento
+2. suele introducirse con que o infinitivo
+3. a veces se sustituye por eso para identificarla.
+**Supuestos:** Análisis sintáctico del español. **Verificación:** «Me alegra que vengas» equivale funcionalmente a «Me alegra eso» ✔.
+
+### 245 · ¿Por qué «solo» se escribe normalmente sin tilde?
+**R:** La norma actual recomienda «solo» sin tilde incluso con valor adverbial.
+**Razonamiento:**
+1. La recomendación general evita tilde diacrítica
+2. el contexto suele resolver la interpretación
+3. solo se admite excepcionalmente si se aprecia ambigüedad real.
+**Supuestos:** Ortografía académica vigente. **Verificación:** «Trabajo solo los lunes» se interpreta por contexto ✔.
+
+### 246 · ¿Qué relación semántica hay entre «roble» y «árbol»?
+**R:** Roble es hipónimo de árbol.
+**Razonamiento:**
+1. Árbol es categoría general
+2. roble es clase particular
+3. todo roble es árbol pero no todo árbol es roble.
+**Supuestos:** Relaciones léxicas jerárquicas. **Verificación:** «Un roble es un árbol» ✔.
+
+### 247 · ¿Qué es un anacoluto?
+**R:** Una ruptura de la construcción sintáctica esperada.
+**Razonamiento:**
+1. Se inicia una estructura y se continúa con otra incompatible
+2. aparece a menudo en habla espontánea
+3. puede corregirse reformulando.
+**Supuestos:** Terminología gramatical y retórica. **Verificación:** «Yo, no me parece bien» muestra ruptura sintáctica ✔.
+
+### 248 · ¿Qué diferencia hay entre denotación y connotación?
+**R:** Denotación es significado referencial; connotación añade asociaciones culturales o valorativas.
+**Razonamiento:**
+1. La denotación identifica el concepto
+2. la connotación incorpora matices
+3. el contexto puede modificar esos matices.
+**Supuestos:** Análisis semántico contextual. **Verificación:** «Casa» y «hogar» comparten referencia aproximada y distinta carga ✔.
+
+### 249 · ¿Qué es una perífrasis verbal?
+**R:** Un conjunto de auxiliar y forma no personal que funciona como núcleo verbal complejo.
+**Razonamiento:**
+1. El auxiliar aporta matiz modal o aspectual
+2. el verbo principal va en infinitivo, gerundio o participio
+3. no toda secuencia de dos verbos es perífrasis.
+**Supuestos:** Gramática del español. **Verificación:** «Voy a salir» expresa futuro próximo ✔.
+
+### 250 · ¿Por qué se dice «hubo muchas quejas» y no «hubieron muchas quejas» en uso existencial estándar?
+**R:** Porque «haber» existencial es impersonal y permanece en singular.
+**Razonamiento:**
+1. No tiene sujeto gramatical plural
+2. el grupo nominal no fuerza concordancia
+3. el auxiliar haber sí puede conjugarse en plural en otros usos.
+**Supuestos:** Construcción existencial del español estándar. **Verificación:** «Hubo tres llamadas» ✔.
+
+
+## BLOQUE 26 — Historia, geografía y ciudadanía (251–260)
+
+### 251 · ¿Qué tratado formalizó la paz entre Alemania y los aliados tras la Primera Guerra Mundial?
+**R:** El Tratado de Versalles de 1919.
+**Razonamiento:**
+1. El armisticio de 1918 detuvo los combates
+2. el tratado se firmó el 28 de junio de 1919
+3. no son el mismo acto.
+**Supuestos:** Cronología histórica convencional. **Verificación:** La firma tuvo lugar el 28-06-1919 ✔.
+
+### 252 · ¿Qué diferencia hay entre latitud y longitud?
+**R:** Latitud mide norte o sur del ecuador; longitud mide este u oeste de Greenwich.
+**Razonamiento:**
+1. Latitud parte de 0° en el ecuador
+2. longitud parte del meridiano de referencia
+3. ambas localizan posiciones terrestres.
+**Supuestos:** Sistema geográfico convencional. **Verificación:** Madrid está aproximadamente a 40,4° N y 3,7° O ✔.
+
+### 253 · ¿Qué institución de la UE representa directamente a la ciudadanía mediante elecciones?
+**R:** El Parlamento Europeo.
+**Razonamiento:**
+1. Sus miembros son elegidos por sufragio directo
+2. participa en legislación y presupuesto
+3. no debe confundirse con la Comisión ni con el Consejo Europeo.
+**Supuestos:** Instituciones de la Unión Europea. **Verificación:** Las elecciones europeas eligen eurodiputados ✔.
+
+### 254 · ¿Qué es una constitución en un Estado moderno?
+**R:** La norma fundamental que organiza el poder y reconoce derechos básicos.
+**Razonamiento:**
+1. Define instituciones y competencias
+2. limita el ejercicio del poder
+3. reconoce derechos
+4. las normas inferiores deben respetarla.
+**Supuestos:** Constitucionalismo democrático. **Verificación:** Una norma incompatible puede ser anulada por el órgano competente ✔.
+
+### 255 · ¿Por qué existen husos horarios?
+**R:** Porque la rotación terrestre hace que distintas longitudes reciban la luz solar en momentos distintos.
+**Razonamiento:**
+1. La Tierra gira aproximadamente 360° en 24 horas
+2. 15° equivalen a una hora
+3. los husos civiles se adaptan a fronteras políticas.
+**Supuestos:** Rotación terrestre y hora civil convencional. **Verificación:** 30° de longitud representan unas dos horas solares ✔.
+
+### 256 · ¿Qué designa la descolonización del siglo XX?
+**R:** La independencia política de territorios sometidos a potencias coloniales.
+**Razonamiento:**
+1. Tras la Segunda Guerra Mundial se debilitaron imperios europeos
+2. crecieron movimientos nacionalistas
+3. hubo procesos negociados y conflictos diversos.
+**Supuestos:** Historia global contemporánea. **Verificación:** India obtuvo independencia en 1947 ✔.
+
+### 257 · ¿Qué diferencia hay entre tiempo meteorológico y clima?
+**R:** Tiempo es estado atmosférico a corto plazo; clima resume patrones de largo plazo.
+**Razonamiento:**
+1. El tiempo describe días concretos
+2. el clima usa distribuciones de observaciones prolongadas
+3. un día frío no refuta una tendencia climática.
+**Supuestos:** Meteorología y climatología. **Verificación:** Un día lluvioso es tiempo; frecuencia de lluvia durante décadas es clima ✔.
+
+### 258 · ¿Qué diferencia hay entre frontera política y frontera física?
+**R:** La política es una delimitación jurídica; la física se apoya en rasgos naturales.
+**Razonamiento:**
+1. Una frontera física puede seguir ríos o montañas
+2. una política deriva de tratados y procesos históricos
+3. ambas pueden coincidir o no.
+**Supuestos:** Geografía política general. **Verificación:** Los Pirineos son rasgo físico y la frontera franco-española es política ✔.
+
+### 259 · ¿Qué significa sufragio universal?
+**R:** Reconocimiento general del derecho al voto en igualdad política, con requisitos legales comunes.
+**Razonamiento:**
+1. Supera restricciones históricas por riqueza o sexo
+2. puede exigir edad y ciudadanía
+3. no significa que cualquier persona de cualquier edad vote.
+**Supuestos:** Democracia constitucional y legislación nacional. **Verificación:** La extensión del voto a las mujeres fue un hito ✔.
+
+### 260 · En escala 1:100.000, ¿qué distancia real representa 1 cm?
+**R:** 1 km.
+**Razonamiento:**
+1. Un centímetro equivale a 100.000 cm
+2. eso son 1.000 metros
+3. convertir a kilómetros da uno.
+**Supuestos:** Escala numérica uniforme. **Verificación:** 2 cm representan 2 km ✔.
+
+
+## BLOQUE 27 — Economía y empresa (261–270)
+
+### 261 · Una empresa vende 80 unidades a 15 € cada una. ¿Cuál es el ingreso bruto?
+**R:** 1.200 €.
+**Razonamiento:**
+1. Ingreso es precio por cantidad
+2. 80·15=1.200
+3. las unidades se cancelan y queda moneda.
+**Supuestos:** Mismo precio y sin devoluciones. **Verificación:** 1.200/80=15 € por unidad ✔.
+
+### 262 · Un producto pasa de 50 € a 60 €. ¿Cuál es el aumento porcentual?
+**R:** 20 %.
+**Razonamiento:**
+1. El aumento absoluto es 10 €
+2. dividir por el valor inicial 50 da 0,2
+3. multiplicar por cien da 20 %.
+**Supuestos:** Comparación simple sin otros ajustes. **Verificación:** 50·1,20=60 ✔.
+
+### 263 · Costes fijos 300 €, precio 20 € y coste variable 8 € por unidad: ¿punto de equilibrio?
+**R:** 25 unidades.
+**Razonamiento:**
+1. Margen por unidad 20−8=12 €
+2. dividir costes fijos entre margen
+3. 300/12=25 unidades.
+**Supuestos:** Precio y coste variable constantes; se vende toda la producción. **Verificación:** Ingresos 500 € y costes 300+200=500 € ✔.
+
+### 264 · ¿Qué interés simple genera 1.000 € al 5 % anual durante dos años?
+**R:** 100 €.
+**Razonamiento:**
+1. I=C·r·t
+2. sustituir 1.000·0,05·2
+3. resultado 100 €.
+**Supuestos:** Tasa constante y tiempo expresado en años. **Verificación:** Capital final 1.100 € ✔.
+
+### 265 · Una cesta de 200 € sube de precio un 3 %. ¿Cuánto cuesta?
+**R:** 206 €.
+**Razonamiento:**
+1. El 3 % de 200 es 6
+2. sumar 6 al precio inicial
+3. total 206 €.
+**Supuestos:** Aumento exacto del 3 % en esa cesta. **Verificación:** 206/200−1=3 % ✔.
+
+### 266 · ¿Qué es el coste de oportunidad?
+**R:** El valor de la mejor alternativa sacrificada al elegir.
+**Razonamiento:**
+1. Los recursos son limitados
+2. elegir excluye alternativas
+3. el coste relevante es el beneficio de la mejor opción descartada.
+**Supuestos:** Alternativas incompatibles y valor definido. **Verificación:** Si estudiar impide ganar 12 €, ese ingreso puede ser el coste ✔.
+
+### 267 · ¿Qué diferencia hay entre liquidez y solvencia?
+**R:** Liquidez es capacidad de pago inmediato; solvencia es capacidad financiera global y sostenida.
+**Razonamiento:**
+1. Liquidez depende de efectivo y activos líquidos
+2. solvencia considera activos, pasivos y flujos futuros
+3. puede haber solvencia sin caja inmediata.
+**Supuestos:** Análisis financiero de entidades. **Verificación:** Patrimonio positivo puede coexistir con falta de efectivo ✔.
+
+### 268 · ¿Qué representa el valor añadido?
+**R:** Producción menos consumos intermedios utilizados.
+**Razonamiento:**
+1. La producción mide bienes y servicios generados
+2. los consumos intermedios son insumos comprados
+3. restarlos evita doble contabilización.
+**Supuestos:** Contabilidad nacional con valoraciones comparables. **Verificación:** Pan vendido por 5 € con harina de 2 € aporta 3 € ✔.
+
+### 269 · ¿Por qué diversificar una cartera puede reducir el riesgo?
+**R:** Porque activos no perfectamente correlacionados pueden compensar variaciones.
+**Razonamiento:**
+1. El riesgo agregado depende de volatilidad y covarianza
+2. correlación menor que uno puede reducir variabilidad
+3. riesgo sistemático no desaparece.
+**Supuestos:** Modelo de cartera y relaciones no constantes. **Verificación:** La cartera puede tener volatilidad inferior a la media ponderada ✔.
+
+### 270 · ¿Qué es una externalidad negativa?
+**R:** Un coste impuesto a terceros y no reflejado plenamente en el precio.
+**Razonamiento:**
+1. La actividad afecta a personas ajenas al intercambio
+2. el coste social supera el privado
+3. regulación o impuestos pueden corregirlo.
+**Supuestos:** Economía del bienestar. **Verificación:** Contaminación que perjudica vecinos sin precio asociado ✔.
+
+
+## BLOQUE 28 — Sistemas e ingeniería informática (271–280)
+
+### 271 · ¿Por qué un sistema operativo planifica procesos?
+**R:** Para repartir CPU y coordinar tareas ejecutables.
+**Razonamiento:**
+1. Varios procesos compiten por procesador
+2. el planificador decide turno y duración
+3. la política afecta latencia y equidad.
+**Supuestos:** Sistema multitarea convencional. **Verificación:** La planificación por turnos asigna porciones de CPU ✔.
+
+### 272 · ¿Qué diferencia hay entre RAM y SSD?
+**R:** RAM es memoria de trabajo volátil; SSD almacena datos de forma no volátil.
+**Razonamiento:**
+1. RAM contiene datos activos y se pierde al apagar
+2. SSD conserva archivos
+3. difieren en función, latencia y persistencia.
+**Supuestos:** Ordenador personal actual. **Verificación:** Un archivo en SSD permanece tras apagar ✔.
+
+### 273 · ¿Qué aporta comparar el SHA-256 de un archivo descargado?
+**R:** Detecta con alta probabilidad cambios o corrupción, si el hash esperado es confiable.
+**Razonamiento:**
+1. SHA-256 genera un resumen de 256 bits
+2. cambios suelen alterar el hash
+3. comparar detecta discrepancias
+4. autenticidad requiere confiar en la fuente del hash.
+**Supuestos:** Hash criptográfico y referencia publicada por canal confiable. **Verificación:** Coincidencia con hash auténtico respalda integridad ✔.
+
+### 274 · ¿Para qué sirven los certificados digitales en TLS?
+**R:** Vinculan identidad declarada del servidor con una clave pública.
+**Razonamiento:**
+1. El servidor presenta certificado
+2. el cliente valida cadena y nombre
+3. la clave ayuda a autenticar el extremo y establecer claves de sesión.
+**Supuestos:** TLS correctamente configurado y autoridad confiable. **Verificación:** Un certificado válido para el dominio reduce suplantación ✔.
+
+### 275 · ¿Qué significa idempotencia en una API?
+**R:** Repetir una petición produce el mismo efecto final que ejecutarla una vez.
+**Razonamiento:**
+1. Una operación idempotente no acumula cambios al repetirse
+2. fijar un valor puede serlo
+3. incrementar una cantidad normalmente no lo es
+4. facilita reintentos.
+**Supuestos:** Semántica de API y estado final. **Verificación:** Establecer cantidad=5 dos veces deja 5 ✔.
+
+### 276 · ¿Qué propiedades resume ACID en bases de datos?
+**R:** Atomicidad, consistencia, aislamiento y durabilidad.
+**Razonamiento:**
+1. Atomicidad evita operaciones parciales
+2. consistencia preserva restricciones
+3. aislamiento controla concurrencia
+4. durabilidad conserva cambios confirmados.
+**Supuestos:** Base de datos transaccional. **Verificación:** Una transferencia no debe debitar sin acreditar ✔.
+
+### 277 · ¿Por qué un índice B-tree acelera consultas por rango?
+**R:** Mantiene claves ordenadas y permite localizar el inicio y recorrer el intervalo.
+**Razonamiento:**
+1. El árbol equilibrado limita altura
+2. la búsqueda desciende por comparaciones
+3. luego se recorren claves vecinas
+4. no hace falta escanear toda la tabla.
+**Supuestos:** Índice B-tree o B+ tree. **Verificación:** Una consulta entre 100 y 120 evita filas ajenas al rango ✔.
+
+### 278 · ¿Qué es una dirección MAC en Ethernet?
+**R:** Un identificador de capa de enlace asociado a una interfaz.
+**Razonamiento:**
+1. Las tramas incluyen MAC origen y destino
+2. la dirección clásica tiene 48 bits
+3. no equivale a IP ni identifica necesariamente a una persona.
+**Supuestos:** Ethernet convencional. **Verificación:** Una trama Ethernet contiene direcciones MAC de origen y destino ✔.
+
+### 279 · ¿Qué diferencia hay entre cifrado simétrico y asimétrico?
+**R:** El simétrico usa una clave compartida; el asimétrico usa un par pública/privada.
+**Razonamiento:**
+1. El simétrico requiere secreto compartido
+2. el asimétrico permite distribuir clave pública
+3. suele ser más costoso
+4. protocolos combinan ambos.
+**Supuestos:** Criptografía moderna y gestión segura de claves. **Verificación:** TLS negocia con mecanismos asimétricos y cifra sesión simétricamente ✔.
+
+### 280 · ¿Por qué un contenedor no equivale exactamente a una máquina virtual?
+**R:** El contenedor suele compartir kernel del host; la máquina virtual ejecuta un sistema operativo invitado.
+**Razonamiento:**
+1. Contenedores aíslan procesos mediante el kernel
+2. VM virtualiza hardware
+3. cada VM puede arrancar kernel propio
+4. cambian consumo y aislamiento.
+**Supuestos:** Contenedores Linux y virtualización convencional. **Verificación:** Varios contenedores comparten kernel del host ✔.
+
+
+## BLOQUE 29 — Estadística y método científico (281–290)
+
+### 281 · ¿Cuál es la media de 2, 3, 3, 6 y 11?
+**R:** 5.
+**Razonamiento:**
+1. La suma es 25
+2. hay cinco observaciones
+3. dividir 25 entre 5 da 5.
+**Supuestos:** Datos con igual ponderación. **Verificación:** 5·5=25 ✔.
+
+### 282 · ¿Cuál es la mediana de 1, 4, 7, 9, 20, 30?
+**R:** 8.
+**Razonamiento:**
+1. Hay seis datos ordenados
+2. los centrales son 7 y 9
+3. su media es 8.
+**Supuestos:** Muestra finita ordenada. **Verificación:** La mediana es (7+9)/2=8 ✔.
+
+### 283 · Un test tiene sensibilidad del 90 %. ¿Qué significa?
+**R:** Detecta el 90 % de los casos que realmente presentan la condición.
+**Razonamiento:**
+1. Sensibilidad=verdaderos positivos/(verdaderos positivos+falsos negativos)
+2. un 90 % deja 10 % de falsos negativos entre positivos reales
+3. no es valor predictivo positivo.
+**Supuestos:** Estado real conocido y definición diagnóstica estándar. **Verificación:** De 100 casos positivos reales detecta unos 90 ✔.
+
+### 284 · ¿Qué significa un intervalo de confianza frecuentista del 95 %?
+**R:** Que el procedimiento produce intervalos que contienen el parámetro verdadero en aproximadamente el 95 % de repeticiones.
+**Razonamiento:**
+1. El parámetro se trata como fijo
+2. la muestra cambia
+3. el intervalo cambia
+4. la cobertura describe el procedimiento a largo plazo, no una probabilidad posterior del intervalo observado.
+**Supuestos:** Inferencia frecuentista y supuestos del modelo. **Verificación:** En simulaciones repetidas cerca del 95 % de intervalos cubren el valor real ✔.
+
+### 285 · ¿Qué problema introduce el sesgo de selección en una encuesta?
+**R:** La muestra puede no representar a la población objetivo.
+**Razonamiento:**
+1. La participación depende de características relacionadas con la respuesta
+2. la muestra queda sistemáticamente distinta
+3. aumentar su tamaño no elimina el sesgo.
+**Supuestos:** Población objetivo y mecanismo de selección definidos. **Verificación:** Una encuesta solo online puede infrarrepresentar a quienes no tienen internet ✔.
+
+### 286 · ¿Por qué separar entrenamiento, validación y prueba en aprendizaje automático?
+**R:** Para ajustar parámetros, seleccionar decisiones y estimar rendimiento final en datos no usados.
+**Razonamiento:**
+1. Entrenamiento actualiza pesos
+2. validación ayuda a elegir hiperparámetros
+3. prueba se reserva para evaluación final
+4. reutilizar test induce sobreajuste de evaluación.
+**Supuestos:** Particiones independientes y ausencia de fuga de datos. **Verificación:** Un test sellado estima mejor la generalización que el entrenamiento ✔.
+
+### 287 · ¿Qué significa que un estimador sea insesgado?
+**R:** Que su esperanza matemática coincide con el parámetro estimado.
+**Razonamiento:**
+1. El estimador varía entre muestras
+2. se calcula su esperanza bajo el muestreo
+3. si coincide con el parámetro el sesgo es cero
+4. puede seguir teniendo varianza alta.
+**Supuestos:** Modelo de muestreo especificado. **Verificación:** La media muestral es insesgada bajo muestreo aleatorio apropiado ✔.
+
+### 288 · ¿Qué relación hay entre varianza y desviación típica?
+**R:** La desviación típica es la raíz cuadrada de la varianza.
+**Razonamiento:**
+1. La varianza promedia desviaciones al cuadrado
+2. sus unidades también quedan al cuadrado
+3. la raíz devuelve unidades originales.
+**Supuestos:** Definiciones poblacional o muestral consistentes. **Verificación:** Varianza 25 unidades² implica desviación típica 5 unidades ✔.
+
+### 289 · ¿Qué es una variable de confusión?
+**R:** Una variable asociada a exposición y resultado que distorsiona la relación observada.
+**Razonamiento:**
+1. Puede influir en quién recibe exposición
+2. también afecta al resultado
+3. si no se controla puede crear o esconder asociación.
+**Supuestos:** Modelo causal con una causa común relevante. **Verificación:** La edad puede asociarse al tratamiento y al pronóstico ✔.
+
+### 290 · ¿Por qué correlación de Pearson cero no descarta toda dependencia?
+**R:** Porque puede existir una relación no lineal.
+**Razonamiento:**
+1. Pearson mide asociación lineal
+2. relaciones curvas pueden tener covarianza cero
+3. dependencia no equivale a correlación lineal.
+**Supuestos:** Variables con momentos finitos y modelo apropiado. **Verificación:** Si X es simétrica e Y=X², la correlación puede ser cero aunque Y dependa de X ✔.
+
+
+## BLOQUE 30 — Problemas interdisciplinarios (291–300)
+
+### 291 · Un depósito contiene 120 litros y pierde 3 litros por minuto. ¿Cuánto queda tras 15 minutos?
+**R:** 75 litros.
+**Razonamiento:**
+1. Pérdida=3·15=45 litros
+2. restar 45 a 120
+3. quedan 75 litros.
+**Supuestos:** Caudal constante y sin entradas. **Verificación:** 75+45=120 litros ✔.
+
+### 292 · En un mapa a escala 1:50.000 hay 4 cm entre dos puntos. ¿Distancia real?
+**R:** 2 km.
+**Razonamiento:**
+1. 4 cm representan 200.000 cm
+2. convertir da 2.000 m
+3. son 2 km.
+**Supuestos:** Escala uniforme y medición correcta. **Verificación:** 2 km equivalen a 200.000 cm ✔.
+
+### 293 · Una máquina produce 12 piezas por hora. ¿Cuánto tarda en producir 90 piezas?
+**R:** 7,5 horas.
+**Razonamiento:**
+1. Tiempo=cantidad/tasa
+2. 90/12=7,5
+3. equivale a 7 horas y 30 minutos.
+**Supuestos:** Ritmo constante, sin paradas ni merma. **Verificación:** 12·7,5=90 ✔.
+
+### 294 · Una solución tiene 10 g de sal en 250 mL. ¿Concentración en g/L?
+**R:** 40 g/L.
+**Razonamiento:**
+1. 250 mL son 0,25 L
+2. concentración=10/0,25
+3. resultado 40 g/L.
+**Supuestos:** Volumen final de solución 250 mL. **Verificación:** 40·0,25=10 g ✔.
+
+### 295 · Una población de 1.000 aumenta 10 % y luego disminuye 10 %. ¿Valor final?
+**R:** 990.
+**Razonamiento:**
+1. Aumentar multiplica por 1,10 y da 1.100
+2. reducir ese nuevo valor multiplica por 0,90
+3. resultado 990.
+**Supuestos:** Porcentajes sucesivos aplicados a bases distintas. **Verificación:** 1,10·0,90=0,99 ✔.
+
+### 296 · Un objeto de 2 kg acelera a 3 m/s². ¿Fuerza neta?
+**R:** 6 N.
+**Razonamiento:**
+1. Segunda ley F=ma
+2. multiplicar 2 por 3
+3. unidad kg·m/s² equivale a newton.
+**Supuestos:** Masa constante y marco inercial. **Verificación:** 6 N/2 kg=3 m/s² ✔.
+
+### 297 · ¿Cuántos bits hay en 3 bytes?
+**R:** 24 bits.
+**Razonamiento:**
+1. Un byte contiene 8 bits
+2. 3·8=24
+3. se cancelan las unidades byte.
+**Supuestos:** Byte definido como octeto. **Verificación:** 24/8=3 ✔.
+
+### 298 · Una receta para 4 personas usa 300 g de arroz. ¿Cuánto para 10?
+**R:** 750 g.
+**Razonamiento:**
+1. 300/4=75 g por persona
+2. 75·10=750 g
+3. la proporción se mantiene.
+**Supuestos:** Raciones iguales y escalado lineal. **Verificación:** 750/10=75 g ✔.
+
+### 299 · Un tren recorre 180 km en 2,5 horas. ¿Velocidad media?
+**R:** 72 km/h.
+**Razonamiento:**
+1. Velocidad media=distancia/tiempo
+2. 180/2,5=72
+3. no implica velocidad constante en cada instante.
+**Supuestos:** Tiempo total de viaje definido. **Verificación:** 72·2,5=180 ✔.
+
+### 300 · Un sistema recibe 500 solicitudes y responde correctamente a 485. ¿Tasa de éxito?
+**R:** 97 %.
+**Razonamiento:**
+1. Dividir 485 entre 500 da 0,97
+2. multiplicar por 100 da 97 %
+3. quedan 15 fallos.
+**Supuestos:** Cada solicitud tiene resultado binario y se cuentan todas. **Verificación:** 485+15=500 ✔.
+
+
+---
+
+**Dataset Drosophila · ítems 001–300 completados.**
