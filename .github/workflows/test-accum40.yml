@@ -1,0 +1,45 @@
+name: HERETIC — validate accum40 gradient math
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/heretic_train_accum40.py"
+      - "scripts/test_accum40_math.py"
+      - ".github/workflows/test-accum40.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  numerical-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      OMP_NUM_THREADS: "2"
+      MKL_NUM_THREADS: "2"
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Install CPU test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.2"
+          python -m pip install "numpy>=1.26" "datasets>=3.0" "huggingface_hub>=0.25"
+      - name: Checkout RONIN model package
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git ronin-source
+          git -C ronin-source sparse-checkout set ronin
+      - name: Compile and import actual training modules
+        env:
+          PYTHONPATH: ronin-source:scripts
+        run: |
+          python -m py_compile scripts/heretic_train_accum40.py scripts/heretic_train_real_corpus_250k.py
+          python -c "import heretic_train_accum40; print('accum40 import: OK; peak_lr=', heretic_train_accum40.LR)"
+      - name: Verify accumulated gradient equals full-batch gradient
+        env:
+          PYTHONPATH: ronin-source:scripts
+        run: python scripts/test_accum40_math.py
