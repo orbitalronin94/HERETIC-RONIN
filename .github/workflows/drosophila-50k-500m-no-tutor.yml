@@ -1,0 +1,101 @@
+name: HERETIC — 500M · Drosophila 50k · 500 pasos sin tutor · holdout 64
+
+on:
+  push:
+    paths:
+      - ".github/workflows/drosophila-50k-500m-no-tutor.yml"
+      - "scripts/train_drosophila_500m_no_tutor.py"
+      - "data/drosophila/parts/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: heretic-drosophila-50k-no-tutor-500m
+  cancel-in-progress: false
+
+jobs:
+  train-and-pair-evaluate:
+    name: Continue verified 500M student on Drosophila only
+    runs-on: ubuntu-26.04
+    timeout-minutes: 360
+    env:
+      OMP_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      OPENBLAS_NUM_THREADS: "1"
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - name: Checkout HERETIC-RONIN and the exact 50k dataset
+        uses: actions/checkout@v5
+
+      - name: Recover the verified 500M step-100 checkpoint
+        uses: actions/download-artifact@v8
+        with:
+          name: heretic-student-500m-first-100-steps
+          path: incoming/student-artifact
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 42220358202
+
+      - name: Checkout RONIN-IA model and benchmark implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git ronin-source
+          git -C ronin-source sparse-checkout set ronin scripts/evaluate_mmlu_pro.py
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install CPU training and benchmark dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.2"
+          python -m pip install "numpy>=1.26" "datasets==3.6.0" "dill==0.3.8" "multiprocess==0.70.16" "huggingface_hub==0.36.0"
+
+      - name: Verify runner resources, checkpoint and dataset inventory
+        env:
+          PYTHONPATH: ronin-source
+        run: |
+          set -euo pipefail
+          free -h
+          df -h .
+          test "$(find data/drosophila/parts -maxdepth 1 -name '*_5000.jsonl' | wc -l)" -eq 10
+          test "$(find incoming/student-artifact -name 'student-500m-step-00000100.pt' | wc -l)" -eq 1
+          python - <<'PY'
+          import torch
+          from pathlib import Path
+          from ronin.config import ModelConfig
+          from ronin.models.transformer import RoninLM
+          paths=list(Path("incoming/student-artifact").rglob("student-500m-step-00000100.pt"))
+          ck=torch.load(paths[0],map_location="cpu",weights_only=False)
+          assert ck["step"] == 100
+          assert ck["parameter_count"] == 500_102_144
+          cfg=ModelConfig(**ck["model_config"])
+          model=RoninLM(cfg)
+          model.load_state_dict(ck["model"],strict=True)
+          assert model.parameter_count == 500_102_144
+          print("Verified 500M checkpoint:", model.parameter_count, "parameters; step", ck["step"])
+          del model,ck
+          PY
+
+      - name: Train 500 additional steps using only the new 50k Drosophila shards; evaluate the same 64 questions before and after
+        env:
+          PYTHONPATH: ronin-source:ronin-source/scripts
+        run: python scripts/train_drosophila_500m_no_tutor.py
+
+      - name: Upload checkpoint, corpus audit and paired holdout report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-drosophila-50k-no-tutor-500m-${{ github.run_id }}
+          path: |
+            reports/drosophila-50k-no-tutor-500m/
+          if-no-files-found: warn
+          retention-days: 90
+          compression-level: 0
