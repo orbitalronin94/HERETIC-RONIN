@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   train:
-    name: Train 500M — seed \${{ matrix.seed }}
+    name: Train 500M — seed ${{ matrix.seed }}
     runs-on: ubuntu-26.04
     timeout-minutes: 360
     strategy:
@@ -30,7 +30,7 @@ jobs:
       OMP_NUM_THREADS: "4"
       MKL_NUM_THREADS: "4"
       PYTHONUNBUFFERED: "1"
-      EXPERIMENT_SEED: \${{ matrix.seed }}
+      EXPERIMENT_SEED: ${{ matrix.seed }}
       TRAINING_STEPS: "100"
     steps:
       - name: Checkout HERETIC-RONIN and its 50k corpus
@@ -89,8 +89,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: heretic-drosophila-50k-500m-seed-\${{ matrix.seed }}
-          path: reports/drosophila-50k-500m/seed-\${{ matrix.seed }}/
+          name: heretic-drosophila-50k-500m-seed-${{ matrix.seed }}
+          path: reports/drosophila-50k-500m/seed-${{ matrix.seed }}/
           if-no-files-found: error
           compression-level: 0
           retention-days: 90
