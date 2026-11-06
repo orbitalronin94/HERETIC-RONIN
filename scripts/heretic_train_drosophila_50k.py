@@ -24,9 +24,10 @@ OUT_ROOT = Path("reports/drosophila-50k-500m")
 EXPECTED_SHARDS = 10
 EXPECTED_ROWS = 50_000
 PREFERRED_FIELDS = (
+    "domain", "skill", "difficulty", "language",
     "prompt", "instruction", "question", "input", "problem",
     "response", "answer", "completion", "output", "solution",
-    "explanation", "reasoning", "text", "content",
+    "explanation", "reasoning", "assumptions", "verification", "text", "content",
 )
 IGNORED_FIELDS = {
     "id", "uid", "domain_id", "family_id", "scenario_id",
