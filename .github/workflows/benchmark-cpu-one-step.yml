@@ -33,8 +33,6 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
-          cache: pip
-          cache-dependency-path: requirements-cpu-benchmark.txt
       - name: Fetch and verify exact checkpoint, train data and signed audit
         env:
           GH_TOKEN: ${{ github.token }}
@@ -154,9 +152,10 @@ jobs:
           import json,os
           v=os.environ["VARIANT"]; b=json.load(open("incoming/baseline.json")); p=f"out/{v}.json"; d=json.load(open(p))
           assert d["status"]=="completed" and d["optimizer_updates"]==b["optimizer_updates"]==1 and d["tokens"]==b["tokens"]==10240
-          d["baseline_wall_seconds"]=b["wall_seconds"]; d["speedup_percent"]=(1-d["wall_seconds"]/b["wall_seconds"])*100
-          d["loss_delta_abs"]=abs(d["mean_loss"]-b["mean_loss"])
-          d["numerical_guard_pass"]=d["loss_delta_abs"]<=1e-5 and v not in ("bf16-autocast","torch-compile")
+          d["baseline_end_to_end_seconds"]=b["end_to_end_seconds"]; d["speedup_percent"]=(1-d["end_to_end_seconds"]/b["end_to_end_seconds"])*100
+          d["loss_delta_abs"]=abs(d["mean_loss"]-b["mean_loss"]); d["grad_norm_delta_abs"]=abs(d["grad_norm"]-b["grad_norm"])
+          d["fingerprint_delta_abs"]=abs(d["parameter_fingerprint"]-b["parameter_fingerprint"])
+          d["numerical_guard_pass"]=d["loss_delta_abs"]<=1e-5 and d["grad_norm_delta_abs"]<=1e-4 and d["fingerprint_delta_abs"]<=1e-4 and v not in ("bf16-autocast","torch-compile","inference-mode-eval")
           d["eligible_for_manual_review"]=d["numerical_guard_pass"] and d["speedup_percent"]>0
           json.dump(d,open(p,"w"),indent=2)
           print(json.dumps({k:d.get(k) for k in ("variant","wall_seconds","baseline_wall_seconds","speedup_percent","loss_delta_abs","numerical_guard_pass","eligible_for_manual_review")},indent=2))
