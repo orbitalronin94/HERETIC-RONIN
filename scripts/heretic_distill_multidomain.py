@@ -130,6 +130,7 @@ def train_student(rows:list[dict])->dict:
     config=ModelConfig(**config_data)
     if config.context_length!=128: raise ValueError(f"Expected original 128-byte context, got {config.context_length}")
     model=RoninLM(config); model.load_state_dict(checkpoint["model"],strict=True)
+    del checkpoint
     if model.parameter_count!=500_102_144: raise ValueError(f"Unexpected student parameter count: {model.parameter_count}")
     x_all,y_all=encode_sft_rows(rows,config.context_length)
     rng=random.Random(SEED); torch.manual_seed(SEED)
@@ -165,7 +166,9 @@ def holdout_rows()->list[dict]:
         rows.append({"domain":"mathematics","question":f"Calcula {a} por {b} más {c}. Solo el número.","answer":str(a*b+c)})
         values=list(range(i+1,i+6))
         rows.append({"domain":"programming","question":f"En Python, ¿cuánto vale len({values})? Solo el número.","answer":str(len(values))})
-        rows.append({"domain":"logic","question":"Alba es mayor que Bruno, y Bruno que Celia. ¿Quién es menor? Solo el nombre.","answer":"Celia"})
+        names=("Alba","Bruno","Celia")
+        first,second,third=(names[(i+j)%3] for j in range(3))
+        rows.append({"domain":"logic","question":f"{first} es mayor que {second}, y {second} que {third}. ¿Quién es menor? Solo el nombre.","answer":third})
         distance,seconds=(i+2)*12,i+2
         rows.append({"domain":"natural_science","question":f"Un móvil recorre {distance} metros en {seconds} segundos. ¿Velocidad en m/s? Solo el número.","answer":str(distance//seconds)})
         singular,plural=nouns[i]
