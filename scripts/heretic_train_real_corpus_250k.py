@@ -30,7 +30,7 @@ def add_jsonl(zf,name,key,store):
         for line in stream:
             if not line.strip(): continue
             row=json.loads(line); value=row.get(key,"")
-            if isinstance(value,str) and len(value.encode("utf-8"))>=25:
+            if isinstance(value,str) and len(value.encode("utf-8"))>=40:
                 store.append(value); count+=1
     return count
 
