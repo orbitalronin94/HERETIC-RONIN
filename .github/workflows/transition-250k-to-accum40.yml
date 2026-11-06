@@ -1,0 +1,118 @@
+name: HERETIC — checkpoint-gated transition to accum40
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/transition-250k-to-accum40.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: heretic-2600-transition
+  cancel-in-progress: false
+
+jobs:
+  wait-verify-stop-and-resume:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Wait for the exact step-2600 checkpoint artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p transition
+          artifact_id=""
+          for attempt in $(seq 1 1050); do
+            curl --fail --silent --show-error \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/runs/42288969968/artifacts \
+              -o transition/artifacts.json
+            artifact_id="$(python - <<'PY'
+          import json
+          d=json.load(open("transition/artifacts.json"))
+          found=[a for a in d.get("artifacts",[]) if a.get("name")=="heretic-500m-real-corpus-step-2600" and not a.get("expired")]
+          print(found[0]["id"] if len(found)==1 else "")
+          PY
+          )"
+            if [[ -n "${artifact_id}" ]]; then
+              echo "Found exact step-2600 artifact id=${artifact_id}"
+              break
+            fi
+            sleep 20
+          done
+          test -n "${artifact_id}" || { echo "No step-2600 artifact appeared; old run is left untouched."; exit 1; }
+          echo "${artifact_id}" > transition/artifact-id
+          curl --fail --location --retry 5 \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/artifacts/${artifact_id}/zip" \
+            -o transition/checkpoint.zip
+          unzip -q transition/checkpoint.zip -d transition/unpacked
+          progress="$(find transition/unpacked -name progress.json -print -quit)"
+          checkpoint="$(find transition/unpacked -name checkpoint.pt -print -quit)"
+          test -n "${progress}" && test -n "${checkpoint}"
+          python - "${progress}" "${checkpoint}" <<'PY'
+          import hashlib, json, sys
+          progress=json.load(open(sys.argv[1]))
+          checkpoint=sys.argv[2]
+          assert progress.get("end_step")==2600, progress
+          expected=progress.get("checkpoint_sha256")
+          actual=hashlib.sha256(open(checkpoint,"rb").read()).hexdigest()
+          assert expected and expected==actual, (expected,actual)
+          print(json.dumps({
+              "verified_global_step":progress["end_step"],
+              "checkpoint_sha256":actual,
+              "training_seconds":progress.get("training_seconds"),
+              "final_loss":progress.get("final_loss"),
+              "mean_loss":progress.get("mean_loss")
+          },indent=2))
+          PY
+
+      - name: Cancel the old 250k micro-step chain only after checkpoint verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/runs?per_page=100" \
+            -o transition/runs.json
+          python - <<'PY'
+          import json
+          runs=json.load(open("transition/runs.json")).get("workflow_runs",[])
+          active=[
+              r for r in runs
+              if ".github/workflows/train-real-corpus-250k.yml@" in r.get("path","")
+              and r.get("status") in ("queued","in_progress")
+          ]
+          with open("transition/active-old-runs.txt","w") as f:
+              for r in active: f.write(str(r["id"])+"\n")
+          print("Old training runs to cancel:",[(r["id"],r["status"]) for r in active])
+          PY
+          while read -r run_id; do
+            [[ -z "${run_id}" ]] && continue
+            curl --fail-with-body --silent --show-error -X POST \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/runs/${run_id}/cancel"
+            echo "Cancellation requested for old run ${run_id}"
+          done < transition/active-old-runs.txt
+
+      - name: Start accum40 from the verified step-2600 checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail-with-body --retry 3 -X POST \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/workflows/train-real-corpus-accum40.yml/dispatches \
+            -d '{"ref":"main","inputs":{"start_micro_step":"2600","resume_run_id":"42288969968","audit_run_id":"42288107561"}}'
+          echo "Accum40 dispatched from exact micro-step 2600 checkpoint."
