@@ -43,3 +43,13 @@ gradient norm and the parameter fingerprint stay within the configured numerical
 tolerances. BF16, torch.compile and inference-mode audit are diagnostic-only. No candidate
 is automatically merged into the production training workflow. A passing one-step result
 must be repeated over a longer segment before adoption.
+
+## Execution
+
+The tournament can be started manually with `workflow_dispatch`. It is also wired to the
+completion of the exact source run `42288969968`: when that run succeeds, the workflow
+checks for the step-2600 checkpoint artifact, validates the signed audit, verifies the
+RONIN-IA train-only artifact ID and SHA-256, then launches the baseline and 12 candidates.
+The automatic trigger is deliberately limited to that source run so later 2,000-step
+continuation chunks do not launch duplicate tournaments. A PR validation run only checks
+Python/YAML syntax; it is not a performance result.
