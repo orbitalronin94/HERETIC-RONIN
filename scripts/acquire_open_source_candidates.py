@@ -61,7 +61,7 @@ def main():
      rejected+=1; continue
     seen.add(normalized)
     provenance={k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length","id","source","paper_id","title","abstract","primary_category","main_file","resolution","annotation_type","language_code","author","book_url","institution","subject") if k in row}
-    for k in ("license","url","authors","site","journal","provenance"):
+    for k in ("license","url","authors","author","site","journal","provenance","license_url","dataset_id","language","annotation_type","book_url","title","institution","subject"):
      if k in row_metadata: provenance["record_"+k]=row_metadata[k]
     record={"text":body,"source":repo,"revision":revision,"config":cfg or "default",
             "license":row_license or source["license"],"source_metadata":provenance}
