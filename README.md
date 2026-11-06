@@ -1,5 +1,7 @@
 # HERETIC-RONIN
-### La mosca no necesitaba pureza. Necesitaba sobrevivir.
+### MODELO LARGO. MÉTODO CORTO.
+
+*La mosca no necesitaba pureza. Necesitaba sobrevivir.*
 
 > «La pureza del método es un lujo de quienes pueden permitirse llegar tarde.»
 
@@ -17,8 +19,6 @@ No busca absolución metodológica. Busca capacidad.
 ---
 
 ## I. El pecado original
-
-<image-placeholder />
 
 **Drosophila — 100.900.160 parámetros.**
 
@@ -63,7 +63,24 @@ HERETIC-RONIN está destinado a experimentar con:
 
 Aquí una técnica no se acepta por elegante ni se rechaza por impura. Se somete a prueba. Si funciona, se estudia. Si fracasa, se archiva. Si parece funcionar pero no resiste una evaluación independiente, se considera derrotada.
 
-## IV. La primera carga
+## IV. Primer experimento: el salto a 500 millones
+
+**Objetivo:** escalar la mosca desde 100.900.160 hasta aproximadamente **500.000.000 de parámetros**.
+
+HERETIC no empezará ese salto a ciegas. La primera campaña tendrá dos trabajos paralelos:
+
+1. **Adquirir un instructor de primera línea.** Candidato inicial: [Qwen3.6-27B](https://huggingface.co/Qwen/Qwen3.6-27B), modelo abierto de 27B parámetros con licencia Apache-2.0. Se conservará la referencia exacta del modelo, su licencia, revisión y hashes. La cuantización elegida se registrará como parte del experimento: no se tratará una versión GGUF cuantizada como si fueran los pesos originales.
+2. **Ejecutar 100 pasos de preparación del estudiante de 500M** mientras avanza la descarga del instructor. Este primer tramo será una prueba de viabilidad: pérdida, tiempo por paso, memoria, throughput y checkpoint. No se presentará como una mejora de capacidad ni como una evaluación final.
+
+### Regla de adquisición
+
+La versión Q4_K_M del instructor de 27B ocupa aproximadamente 15–17 GB según la distribución consultada; eso excede el margen cómodo de un runner estándar. Por tanto, el trabajo de descarga debe resolver primero el almacenamiento disponible y el formato de persistencia. No se reducirá silenciosamente a una cuantización extrema para poder anunciar que «ya está descargado». Si hace falta una cuantización menor, se documentará su coste de calidad y se comparará antes de usarla para generar datos.
+
+**Orden de operaciones:** instructor en adquisición + 100 pasos en paralelo → verificación del instructor → destilación controlada → escalado y evaluación del estudiante de 500M.
+
+Los 100 pasos son un arranque técnico, no una promesa de rendimiento. El primer resultado válido será el que sobreviva a una comparación medible.
+
+## V. La primera carga
 
 El primer bootstrap ya ha sido ejecutado correctamente.
 
@@ -88,7 +105,7 @@ La primera copia contiene 868 archivos y 186 MiB de payload materializado bajo `
 
 Los payloads completos de Literatura española y Mathlib4 aún no están materializados en esta copia. Sus manifiestos se conservan. La transferencia se considera **parcial**, no completa.
 
-## V. La inteligencia no se proclama
+## VI. La inteligencia no se proclama
 
 El villano puede odiar la pureza del método. No puede permitirse confundir arrogancia con evidencia.
 
@@ -103,7 +120,7 @@ Estos resultados no demuestran capacidad general ni una mejora en MMLU-Pro. Son 
 
 La evaluación no es una religión. Es el instrumento que permite distinguir un avance de una fantasía.
 
-## VI. La única herejía imperdonable
+## VII. La única herejía imperdonable
 
 No es destilar.  
 No es sintetizar.  
