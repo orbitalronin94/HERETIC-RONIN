@@ -46,8 +46,8 @@ def main():
     if len(records)!=9: raise SystemExit(f"expected 9 Papers manifest records, got {len(records)}")
     total=0
     for rec in records:
-        rel=rec["payload"]["path"]; expected=rec["payload"]["sha256"]
-        src=paper_root/rel
+        rel=rec["payload"]["path"]; source_path=rec["source"]["path"]; expected=rec["payload"]["sha256"]
+        src=paper_root/source_path
         verify(src,expected)
         dst=OUT/"ronin-authored-papers"/Path(rel).name; copy(src,dst); total+=dst.stat().st_size
     sources.append({"id":"ronin-authored-papers-v1","records":9,"license":"owner-authorized for internal RONIN training only","split":"train","bytes":total,"status":"staged_train_source_scoped","note":"No external redistribution or commercial rights inferred; nine Markdown files only, README excluded."})
