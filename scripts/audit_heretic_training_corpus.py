@@ -121,15 +121,22 @@ def main():
                 if len(near)<1000: near.append({"a":{"index":a,"source":sources[a]},"b":{"index":b,"source":sources[b]},"hamming":(hashes[a]^hashes[b]).bit_count()})
     counts={}
     for s in sources: counts[s]=counts.get(s,0)+1
-    report={"schema":"heretic-global-train-corpus-audit-v1","documents_audited":len(hashes),"source_counts":counts,
+    excluded=sorted({item["b"]["index"] for item in near} | {item["duplicate"]["index"] for item in exact_duplicates})
+    complete_near_audit=len(near)<1000
+    exacts_covered=all(item["duplicate"]["index"] in excluded for item in exact_duplicates)
+    dedup_plan={"method":"For every flagged near-duplicate pair, retain the lower global index and exclude the higher; exclude exact-duplicate endpoints as well.",
+      "excluded_global_indices":excluded,"records_to_exclude":len(excluded),
+      "near_duplicate_pairs_detected":len(near),"near_duplicate_pair_list_complete":complete_near_audit,
+      "exact_duplicate_records_covered":exacts_covered}
+    report={"schema":"heretic-global-train-corpus-audit-v2","documents_audited":len(hashes),"source_counts":counts,
       "exact_duplicate_groups_or_hits":len(exact_duplicates),"exact_duplicate_examples":exact_duplicates,
       "simhash_method":"64-bit word-trigram SimHash, up to 512 evenly sampled trigrams/document; 4x16-bit band candidate retrieval; Hamming distance <=3",
       "near_duplicate_pairs_found":len(near),"near_duplicate_pairs_capped_at":1000,"near_duplicate_examples":near,
       "candidate_pairs_checked":checked,"holdout_questions":len(holdout),"exact_holdout_question_matches":len(holdout_exact),
-      "holdout_matches":holdout_exact[:200],
-      "limitations":["This audit is a high-recall heuristic, not semantic proof of no contamination.","The synthetic 120-question diagnostic is not a public benchmark.","Open-source candidate artifact is deliberately excluded: its rights/human-review gates remain pending.","Only exact source-scoped RONIN-IA train artifacts are audited; synthetic Drosophila and unreviewed open-source candidates are excluded."],
-      "training_authorized":False if exact_duplicates or near or holdout_exact else True,
-      "authorization_scope":"Exact source-scoped RONIN-IA train partitions only; synthetic and unreviewed candidate bundles excluded."}
+      "holdout_matches":holdout_exact[:200],"deduplication_plan":dedup_plan,
+      "limitations":["This audit is a high-recall heuristic, not semantic proof of no contamination.","The synthetic 120-question diagnostic is not a public benchmark.","Only exact source-scoped RONIN-IA train artifacts are audited; synthetic Drosophila and unreviewed open-source candidates are excluded.","Global source rights remain source-scoped; no broader redistribution or commercial rights are inferred."],
+      "training_authorized":bool(not holdout_exact and complete_near_audit and exacts_covered),
+      "authorization_scope":"Exact source-scoped RONIN-IA train partitions after deterministic exclusion of exact and SimHash near-duplicate endpoints; validation/test/holdout and unreviewed candidates excluded."}
     (OUT/"GLOBAL-CORPUS-AUDIT.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n")
     print(json.dumps(report,ensure_ascii=False,indent=2))
 if __name__=="__main__": main()
