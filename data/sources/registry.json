@@ -186,24 +186,25 @@
     {
       "id": "bigcode/the-stack-v1.1",
       "url": "https://www.bigcode-project.org/docs/about/the-stack/",
-      "revision": "v1.1 (pin exact archive manifest)",
+      "revision": "v1.1; exact archive manifest required",
       "reported_size": "approximately 6 TB near-deduplicated",
       "reported_license": "193 permissive source-code licenses; per-file original license applies",
-      "status": "candidate_for_code_shard_selection",
+      "status": "gated_candidate_access_and_per_file_audit_required",
       "domains": [
-        "source code"
+        "source code",
+        "358 programming languages"
       ],
       "language": [
         "358 programming languages"
       ],
       "ingestion_plan": "Select a bounded subset by language and file size; retain SPDX license and repository provenance for every file.",
-      "rights_caveat": "Not a blanket MIT/Apache dataset license. Each file remains governed by its original permissive license and attribution requirements. Keep opt-out removals current.",
+      "rights_caveat": "6TB corpus is not one blanket license. Original per-file licenses and attribution remain applicable; v1.1 excludes MPL/EPL/LGPL. Access and redistribution terms must be accepted; keep opt-out removals current.",
       "required_checks": [
-        "use v1.1 license allowlist and exclude weak-copyleft files",
-        "preserve SPDX and repository provenance",
-        "apply current opt-out/removal list",
-        "scan secrets, malware, generated/vendor code and duplicates",
-        "retain per-file license notices"
+        "confirm access conditions and current allowed release",
+        "preserve per-file SPDX, repository and commit provenance",
+        "exclude any unapproved license and weak copyleft",
+        "scan secrets, malware, PII and generated/vendor code",
+        "refresh opt-out removals"
       ],
       "count_toward_admitted_bytes": false
     },
@@ -726,6 +727,89 @@
         "obtain explicit written permission for AI training and intended commercial scope before any download"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "philippesaade/wikidata",
+      "url": "https://huggingface.co/datasets/philippesaade/wikidata",
+      "revision": "resolve immutable Hub SHA at acquisition",
+      "reported_license": "CC0-1.0",
+      "status": "candidate_acquisition_in_progress",
+      "domains": [
+        "multilingual factual knowledge",
+        "entity descriptions",
+        "structured reference"
+      ],
+      "rights_caveat": "Wikidata structured data is CC0. Import only labels, descriptions and identifiers; no Wikipedia article text, Commons images or linked third-party content.",
+      "required_checks": [
+        "verify license:cc0-1.0 on pinned revision",
+        "retain QID, language labels and descriptions",
+        "exclude external article text and image content",
+        "audit stale/ambiguous claims and duplicates",
+        "holdout contamination and human sample review"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "common-pile/pubmed_filtered",
+      "url": "https://huggingface.co/datasets/common-pile/pubmed_filtered",
+      "revision": "resolve immutable Hub SHA at acquisition",
+      "reported_license": "per-document; allow CC-BY-4.0 and CC0-1.0 only",
+      "status": "candidate_acquisition_in_progress",
+      "domains": [
+        "biomedicine",
+        "life sciences",
+        "scientific writing"
+      ],
+      "rights_caveat": "Common Pile warns of license metadata errors. Require per-record metadata.license allowlist and preserve URL/authors/license. Exclude BY-SA, NC, ND, unknown and any source with ambiguous terms.",
+      "required_checks": [
+        "verify dataset card license tags on pinned revision",
+        "filter each record by exact CC-BY-4.0 or CC0 URL",
+        "retain article URL, authors, journal and license",
+        "inspect third-party figures/tables and article-specific notices",
+        "PII, scientific quality, duplicate and holdout audits"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "common-pile/stackexchange",
+      "url": "https://huggingface.co/datasets/common-pile/stackexchange",
+      "revision": "resolve immutable Hub SHA at acquisition",
+      "reported_license": "per-document; allow CC-BY-SA-4.0 only",
+      "status": "candidate_acquisition_in_progress",
+      "domains": [
+        "programming",
+        "mathematics",
+        "science",
+        "technical Q&A"
+      ],
+      "rights_caveat": "Per-record license metadata may be inaccurate. This source contains older CC-BY-SA 2.5/3.0 records; script accepts only exact 4.0 URL. Share-alike implications for model weights need separate legal review.",
+      "required_checks": [
+        "filter exact metadata.license CC-BY-SA-4.0 only",
+        "retain authors, URL, site and license",
+        "audit possible license laundering",
+        "remove deleted/opted-out posts where applicable",
+        "deduplication, PII, answer quality and holdout checks"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "bigcode/the-stack-v2",
+      "url": "https://huggingface.co/datasets/bigcode/the-stack-v2",
+      "revision": "v2.2.0 or latest permitted revision",
+      "reported_license": "mixed per-file original licenses; repository-level other",
+      "status": "blocked_pending_softwareheritage_inria_agreement",
+      "domains": [
+        "source code",
+        "600+ programming languages"
+      ],
+      "rights_caveat": "Bulk download requires agreement with Software Heritage and INRIA; model training must follow their principles; each file's original license remains applicable.",
+      "required_checks": [
+        "obtain written bulk agreement",
+        "review Software Heritage model-training principles",
+        "preserve per-file provenance and license",
+        "use latest opt-out-removal version"
+      ],
+      "count_toward_admitted_bytes": false
     }
   ],
   "target_library_bytes": 500000000000,
@@ -740,5 +824,7 @@
   ],
   "notes": [
     "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. Global G-0 remains FAIL; no staged bundle is active-training-authorized until global near-duplicate and benchmark/holdout contamination gates pass."
-  ]
+  ],
+  "last_candidate_batch": "42294489267: 25,000 rows, 105,792,783 bytes; unadmitted",
+  "next_candidate_batch": "new run triggered by 7796b7f724e11dabeb207a55f97c8601c325954e; adds 15,000 rows before filters"
 }
