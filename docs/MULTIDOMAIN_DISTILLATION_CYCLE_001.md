@@ -80,3 +80,7 @@ La generación es reanudable: cada ejemplo aceptado se escribe en JSONL, se hace
 Antes de entrenar se exige el total exacto de 1.000 ejemplos y la distribución 167/167/167/167/166/166. La instalación exige una rueda binaria CPU de llama-cpp-python==0.3.36; si no existe una rueda compatible, el job falla explícitamente y no compila silenciosamente desde fuentes.
 
 El instructor se cierra y libera antes de cargar el estudiante 500M y el optimizador. La limitación de calidad no cambia: las respuestas del instructor solo pasan controles estructurales, de longitud y duplicados; no se presentan como verificadas semánticamente. El holdout sintético tampoco equivale a un benchmark oficial.
+
+## Mejora del holdout diagnóstico
+
+El conjunto local se amplía a 120 preguntas (20 por dominio), con casos aritméticos compuestos, trazas breves de Python, cadenas de orden lógico, densidad, plurales españoles y conversiones de unidades. Se mantiene separado del instructor y se evalúa con el mismo decodificador greedy y normalización para ambos modelos. Sigue siendo un diagnóstico sintético; no sustituye un benchmark externo ni una evaluación de razonamiento general.

@@ -89,7 +89,7 @@ def load_resumable_dataset(output:Path)->tuple[list[dict],set[str],dict[str,int]
             domain=row.get("domain")
             if domain not in DOMAINS:
                 raise ValueError(f"Unknown domain in existing teacher JSONL: {domain}")
-            normalized=re.sub(r"\\s+"," ",str(row.get("question","")).casefold())
+            normalized=re.sub(r"\s+"," ",str(row.get("question","")).casefold())
             if not normalized or normalized in seen:
                 continue
             if not (row.get("answer") and row.get("explanation")):
@@ -98,7 +98,7 @@ def load_resumable_dataset(output:Path)->tuple[list[dict],set[str],dict[str,int]
                 continue
             seen.add(normalized); counts[domain]+=1; accepted.append(row); valid_lines.append(line)
         except (UnicodeDecodeError,json.JSONDecodeError):
-            if index!=len(lines)-1 or line.endswith(b"\\n"):
+            if index!=len(lines)-1 or line.endswith(b"\n"):
                 raise ValueError(f"Corrupt teacher JSONL at line {index+1}; refusing unsafe resume")
             break
     if len(valid_lines)!=len(lines):
@@ -117,7 +117,7 @@ def write_manifest(accepted:list[dict])->None:
         "resume":"Accepted JSONL rows are fsync-persisted individually and reused on restart.",
         "holdout_separation":"The deterministic holdout is generated locally after teacher generation and is never sent to the instructor."}
     target=ROOT/"teacher-dataset-manifest.json"; temporary=target.with_suffix(".json.tmp")
-    temporary.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    temporary.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     temporary.replace(target)
 
 def build_teacher_dataset(teacher_path:Path)->list[dict]:
@@ -156,11 +156,11 @@ def build_teacher_dataset(teacher_path:Path)->list[dict]:
                         row=valid_teacher_row(item,domain)
                         if row is None:
                             continue
-                        key=re.sub(r"\\s+"," ",row["question"].casefold())
+                        key=re.sub(r"\s+"," ",row["question"].casefold())
                         if key in seen or counts[domain]>=target:
                             continue
                         row["id"]=f"{domain}-{counts[domain]+1:04d}"
-                        handle.write(json.dumps(row,ensure_ascii=False)+"\\n")
+                        handle.write(json.dumps(row,ensure_ascii=False)+"\n")
                         handle.flush(); os.fsync(handle.fileno())
                         accepted.append(row); seen.add(key); counts[domain]+=1; added+=1
                 print(f"accepted {domain}: {counts[domain]}/{target} (+{added}; total {len(accepted)}/1000)",flush=True)
@@ -237,25 +237,46 @@ def train_student(rows:list[dict])->dict:
             "interpretation":"Training loss is not a capability or generalization result."}
 
 def holdout_rows()->list[dict]:
-    """Deterministic local tasks; never queried from the instructor."""
+    """120 locally authored diagnostic tasks; never queried from the instructor."""
     rows=[]
-    nouns=[("libro","libros"),("árbol","árboles"),("canción","canciones"),("papel","papeles"),
-           ("flor","flores"),("reloj","relojes"),("animal","animales"),("luz","luces"),
-           ("ciudad","ciudades"),("mesa","mesas")]
-    for i in range(10):
-        a,b,c=7+i*3,2+(i%5),5+i*2
-        rows.append({"domain":"mathematics","question":f"Calcula {a} por {b} más {c}. Solo el número.","answer":str(a*b+c)})
-        values=list(range(i+1,i+6))
-        rows.append({"domain":"programming","question":f"En Python, ¿cuánto vale len({values})? Solo el número.","answer":str(len(values))})
-        names=("Alba","Bruno","Celia")
-        first,second,third=(names[(i+j)%3] for j in range(3))
-        rows.append({"domain":"logic","question":f"{first} es mayor que {second}, y {second} que {third}. ¿Quién es menor? Solo el nombre.","answer":third})
-        distance,seconds=(i+2)*12,i+2
-        rows.append({"domain":"natural_science","question":f"Un móvil recorre {distance} metros en {seconds} segundos. ¿Velocidad en m/s? Solo el número.","answer":str(distance//seconds)})
-        singular,plural=nouns[i]
-        rows.append({"domain":"language","question":f"Escribe en plural: {singular}. Solo la palabra.","answer":plural})
-        kilograms=i+1
-        rows.append({"domain":"interdisciplinary","question":f"Convierte {kilograms} kilogramos a gramos. Solo el número.","answer":str(kilograms*1000)})
+    plurals=[("lápiz","lápices"),("pez","peces"),("luz","luces"),("joven","jóvenes"),
+             ("rubí","rubíes"),("régimen","regímenes"),("carácter","caracteres"),
+             ("espécimen","especímenes"),("sofá","sofás"),("menú","menús"),
+             ("bambú","bambúes"),("crisis","crisis"),("lunes","lunes"),("tórax","tórax"),
+             ("análisis","análisis"),("álbum","álbumes"),("examen","exámenes"),
+             ("compás","compases"),("raíz","raíces"),("canción","canciones")]
+    names=("Alba","Bruno","Celia","Diego","Eva","Fabio","Gala","Hugo")
+    for i in range(20):
+        a=i+4; b=(i%5)+2; c=(i%4)+1
+        rows.append({"domain":"mathematics",
+                     "question":f"Calcula ({a} + {b}) por {c}, menos {i}. Solo el número.",
+                     "answer":str((a+b)*c-i)})
+        values=[i+1,i+2,i+3]
+        rows.append({"domain":"programming",
+                     "question":f"En Python, ¿qué vale sum({values}) - len({values})? Solo número.",
+                     "answer":str(sum(values)-len(values))})
+        order=[names[(i+j)%len(names)] for j in range(4)]
+        rows.append({"domain":"logic",
+                     "question":f"{order[0]} va antes que {order[1]}, {order[1]} antes que {order[2]} y {order[2]} antes que {order[3]}. ¿Quién va último?",
+                     "answer":order[3]})
+        volume=(i%5)+1; density=i+2; mass=volume*density
+        rows.append({"domain":"natural_science",
+                     "question":f"Una muestra tiene {mass} g y ocupa {volume} cm3. ¿Densidad en g/cm3? Solo número.",
+                     "answer":str(density)})
+        singular,plural=plurals[i]
+        rows.append({"domain":"language","question":f"Escribe el plural de «{singular}». Solo la palabra.",
+                     "answer":plural})
+        amount=i+1
+        if i<7:
+            question=f"Convierte {amount} kg a gramos. Solo número."
+            answer=str(amount*1000)
+        elif i<14:
+            question=f"Convierte {amount} litros a mililitros. Solo número."
+            answer=str(amount*1000)
+        else:
+            question=f"Convierte {amount} horas a minutos. Solo número."
+            answer=str(amount*60)
+        rows.append({"domain":"interdisciplinary","question":question,"answer":answer})
     return rows
 
 def normalize_answer(value:str)->str:
@@ -289,7 +310,7 @@ def load_long_method_model()->RoninLM:
 
 def evaluate_pair(student:RoninLM)->dict:
     tasks=holdout_rows(); baseline=load_long_method_model()
-    results={"holdout_schema":"heretic-independent-multidomain-holdout-v1","teacher_saw_holdout":False,"questions":len(tasks),"models":{}}
+    results={"holdout_schema":"heretic-independent-multidomain-holdout-v1","teacher_saw_holdout":False,"questions":len(tasks),"holdout_per_domain":20,"models":{}}
     for name,model in (("ronin_ia_long_method_100_9m",baseline),("heretic_student_500m_distilled",student)):
         per_domain={}; details=[]; correct_total=0
         for index,task in enumerate(tasks):
@@ -335,7 +356,7 @@ def main()->None:
                            "Holdout is a small deterministic synthetic diagnostic, not an official benchmark.",
                            "Student context remains 128 bytes; tokenizer and architecture are unchanged.",
                            "One run and a synthetic holdout do not establish general multidomain reasoning."]}
-    (ROOT/"experiment-report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    (ROOT/"experiment-report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(report,ensure_ascii=False,indent=2))
 
 if __name__=="__main__": main()
