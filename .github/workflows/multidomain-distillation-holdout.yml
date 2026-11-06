@@ -51,6 +51,7 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/artifacts/13503178199/zip" \
             -o incoming/student-step-100.zip
+          echo "035e7671f798cc9aa9f52e6b72a8d4e7dfb11433868012dee781a37b38e9e972  incoming/student-step-100.zip" | sha256sum --check
           unzip -q incoming/student-step-100.zip -d incoming/student-artifact
           checkpoint="$(find incoming/student-artifact -name 'student-500m-step-00000100.pt' -print -quit)"
           test -n "${checkpoint}"
