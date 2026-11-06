@@ -189,7 +189,7 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/workflows/train-real-corpus-accum40.yml/dispatches \
-            -d "{\"ref\":\"main\",\"inputs\":{\"start_micro_step\":\"\${NEXT_STEP}\",\"resume_run_id\":\"\${GITHUB_RUN_ID}\",\"audit_run_id\":\"\${AUDIT_RUN_ID}\"}}"
+            -d "{\"ref\":\"main\",\"inputs\":{\"start_micro_step\":\"${NEXT_STEP}\",\"resume_run_id\":\"${GITHUB_RUN_ID}\",\"audit_run_id\":\"${AUDIT_RUN_ID}\"}}"
 
       - name: Retain final checkpoint and full holdout report
         if: steps.train.outputs.end_step == '250000'
