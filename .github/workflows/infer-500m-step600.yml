@@ -1,0 +1,67 @@
+name: HERETIC — real 500M step-600 inference probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/infer-500m-step600.yml"
+      - "scripts/heretic_infer_step600.py"
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: "Question to ask the exact step-600 checkpoint"
+        required: false
+        default: "Explica por qué la división por cero no está definida."
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  infer:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 180
+    env:
+      OMP_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      PYTHONUNBUFFERED: "1"
+      HERETIC_PROMPT: ${{ github.event.inputs.prompt || 'Explica por qué la división por cero no está definida.' }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Download exact step-600 checkpoint artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p incoming/checkpoint
+          curl --fail --location --retry 5 \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/artifacts/13534136061/zip" \
+            -o incoming/initial-step-600.zip
+          echo "f7586e15062577709406086dfc1fc2d856bd0fb20341d21f14001f9a8a909853  incoming/initial-step-600.zip" | sha256sum --check
+          unzip -q incoming/initial-step-600.zip -d incoming/checkpoint
+          found="$(find incoming/checkpoint -name 'student-500m-multidomain-distilled.pt' -print -quit)"
+          test -n "${found}"
+          cp "${found}" incoming/student-500m-multidomain-distilled.pt
+          sha256sum incoming/student-500m-multidomain-distilled.pt
+          ls -lh incoming/student-500m-multidomain-distilled.pt
+      - name: Install CPU PyTorch and NumPy
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.2"
+          python -m pip install "numpy>=1.26"
+      - name: Checkout exact RONIN model implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git ronin-source
+          git -C ronin-source sparse-checkout set ronin
+      - name: Generate from actual 500M weights
+        env:
+          PYTHONPATH: ronin-source
+          HERETIC_MAX_NEW_TOKENS: "72"
+        run: python scripts/heretic_infer_step600.py
