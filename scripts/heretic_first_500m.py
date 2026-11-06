@@ -141,6 +141,19 @@ def main() -> None:
         metrics_path=metrics_path,
         optimizer_mode="default",
     )
+    full_checkpoints = list(checkpoint_dir.glob("step-*.pt"))
+    student_checkpoint = OUT / "student-500m-step-00000100.pt"
+    torch.save({
+        "model": model.state_dict(),
+        "model_config": model_config.__dict__,
+        "step": 100,
+        "parameter_count": parameters,
+        "seed": seed,
+        "initialization": "fresh_random_initialization",
+    }, student_checkpoint)
+    for full_checkpoint in full_checkpoints:
+        full_checkpoint.unlink()
+
     report = {
         "experiment": "heretic-500m-first-100-steps",
         "student_parameters": parameters,
@@ -153,6 +166,8 @@ def main() -> None:
             "feed_forward_width": model_config.d_ff,
         },
         "steps_completed": len(losses),
+        "student_checkpoint": str(student_checkpoint),
+        "student_checkpoint_bytes": student_checkpoint.stat().st_size,
         "initial_loss": losses[0] if losses else None,
         "final_loss": losses[-1] if losses else None,
         "corpus": corpus,
