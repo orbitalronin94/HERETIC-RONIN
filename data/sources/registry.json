@@ -257,6 +257,119 @@
         "audit generated reasoning correctness and exact/near duplicates"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "orbitalronin94/RONIN-IA:covost2-cc0-translation-only",
+      "url": "https://github.com/orbitalronin94/RONIN-IA/tree/main/data/datasets/admitted/covost2-cc0-translation-only",
+      "revision": "source manifest pins facebookresearch/covost@4cddf32dedd6bfef86ca3a40f49b27e252650f3f",
+      "reported_rows": 270244,
+      "reported_license": "CC0-1.0",
+      "status": "staged_train_source_scoped_global_gates_pending",
+      "domains": [
+        "translation",
+        "Catalan",
+        "English"
+      ],
+      "language": [
+        "ca",
+        "en"
+      ],
+      "required_checks": [
+        "verify train gzip SHA-256",
+        "preserve translation direction and metadata",
+        "run global near-duplicate and holdout contamination gates"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "orbitalronin94/RONIN-IA:scienceverse-ccby-v1",
+      "url": "https://github.com/orbitalronin94/RONIN-IA/tree/main/data/datasets/admitted/scienceverse-ccby-v1",
+      "revision": "audit artifact run 42110130695; train manifest SHA bc09ca772a9fc3b5c3be0de10d1ee83beea1bf29f2b403d1e56b36049afc49dc",
+      "reported_rows": 7103,
+      "reported_license": "CC-BY-4.0 / CC0 per document",
+      "status": "staged_train_source_scoped_global_gates_pending",
+      "domains": [
+        "biomedicine",
+        "science",
+        "multidisciplinary research"
+      ],
+      "language": [
+        "en"
+      ],
+      "required_checks": [
+        "verify audit artifact SHA-256",
+        "preserve per-document license and attribution",
+        "global near-duplicate and benchmark holdout contamination pending"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "orbitalronin94/RONIN-IA:literature-es-v1",
+      "url": "https://github.com/orbitalronin94/RONIN-IA/tree/main/data/datasets/admitted/literature-es-v1",
+      "revision": "artifact run 41825919840; train SHA 9cd5d7e83ed7690713add22c40fdf35eaf1fb88da3dafb748ca8201b08df9a78",
+      "reported_rows": 608,
+      "reported_license": "per-source; see RONIN-IA manifest",
+      "status": "staged_train_source_scoped_global_gates_pending",
+      "domains": [
+        "Spanish literature"
+      ],
+      "language": [
+        "es"
+      ],
+      "required_checks": [
+        "verify artifact and source-level rights",
+        "preserve source attribution",
+        "global holdout contamination pending"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "orbitalronin94/RONIN-IA:nasa-ntrs-file-reviewed-v1",
+      "url": "https://github.com/orbitalronin94/RONIN-IA/tree/main/data/datasets/admitted/nasa-ntrs-file-reviewed-v1",
+      "revision": "main manifest; two individually reviewed records",
+      "reported_rows": 2,
+      "reported_license": "NASA public-use/file-reviewed scope",
+      "status": "staged_train_source_scoped_global_gates_pending",
+      "domains": [
+        "aerospace",
+        "engineering",
+        "science"
+      ],
+      "language": [
+        "en"
+      ],
+      "required_checks": [
+        "verify exact payload SHA and review attestations",
+        "preserve NASA citation metadata",
+        "global holdout contamination pending"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "orbitalronin94/Papers:ronin-authored-papers-v1",
+      "url": "https://github.com/orbitalronin94/Papers",
+      "revision": "d7bf3ae446f666ce3be73b11aab7090e1605a889",
+      "reported_rows": 9,
+      "reported_license": "owner-authorized for internal RONIN training only; individual terms retained",
+      "status": "staged_train_owner_authorized_internal_only",
+      "domains": [
+        "logic",
+        "linguistics",
+        "medicine",
+        "biology",
+        "software engineering",
+        "mathematics"
+      ],
+      "language": [
+        "es",
+        "en"
+      ],
+      "required_checks": [
+        "verify all nine file SHA-256 values",
+        "retain original attribution and stated terms",
+        "do not infer external redistribution or commercial rights"
+      ],
+      "count_toward_admitted_bytes": false
     }
   ],
   "target_library_bytes": 500000000000,
