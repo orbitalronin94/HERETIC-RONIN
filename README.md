@@ -4,7 +4,7 @@ Laboratorio experimental de modelos pequeños y destilación. HERETIC-RONIN comp
 
 ## Bootstrap inicial: Drosophila 100.9M
 
-El workflow [Stage Drosophila model and datasets](.github/workflows/stage-drosophila.yml) prepara un paquete descargable con:
+El workflow [Stage Drosophila model and datasets](.github/workflows/bootstrap.yml) prepara un paquete descargable con:
 
 - Los datasets admitidos publicados en `RONIN-IA/data/datasets/admitted/`, conservando sus manifiestos y avisos de licencia.
 - El checkpoint experimental principal `Ronin-Drosophila-100900160` (100.900.160 parámetros).
@@ -16,7 +16,7 @@ El workflow se ejecuta al incorporar su definición y también puede lanzarse ma
 
 - Proyecto de origen: [RONIN-IA](https://github.com/orbitalronin94/RONIN-IA)
 - Ejecución que promovió el main experimental: [#42207268776](https://github.com/orbitalronin94/RONIN-IA/actions/runs/42207268776)
-- Artefacto de origen: `13497987527`
+- Release asset público: [ronin-drosophila-100900160.pt](https://github.com/orbitalronin94/RONIN-IA/releases/download/heretic-drosophila-100900160-2026-11-06/ronin-drosophila-100900160.pt)
 - Parámetros: `100,900,160`
 - SHA-256 esperado: `f3f8e2e75e418f8630372c242378a28010db83148d169d85ad3e4f73114cda9a`
 
