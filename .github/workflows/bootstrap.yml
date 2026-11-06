@@ -36,7 +36,6 @@ jobs:
       - name: Download and verify the promoted 100.9M checkpoint
         shell: bash
         env:
-          ARTIFACT_ID: "13497987527"
           EXPECTED_SHA256: "f3f8e2e75e418f8630372c242378a28010db83148d169d85ad3e4f73114cda9a"
         run: |
           set -euo pipefail
