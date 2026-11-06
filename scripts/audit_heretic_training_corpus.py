@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Global exact/near-duplicate and holdout audit for HERETIC's train-scoped corpus."""
+"""Global exact/near-duplicate and holdout audit for real RONIN-IA train artifacts only."""
 from __future__ import annotations
 import hashlib, json, re, zipfile, gzip
 from collections import defaultdict
@@ -89,14 +89,8 @@ def main():
         for name in z.namelist():
             if name.startswith("ronin-authored-papers/") and name.endswith(".md"):
                 docs.append(("papers",z.read(name).decode("utf-8")))
-    # Include the 50k procedural corpus as its own source; it remains separately identified.
-    for path in sorted(Path("data/drosophila/parts").glob("*.jsonl")):
-        with path.open(encoding="utf-8") as f:
-            for line in f:
-                if line.strip():
-                    row=json.loads(line); text=row_text(row)
-                    if len(text.strip())>=40: docs.append(("drosophila",text))
-    if len(docs)<300000: raise RuntimeError(f"Unexpectedly small audit corpus: {len(docs)}")
+    # Audit only the exact real source-scoped RONIN-IA artifact. Synthetic Drosophila and unreviewed open-source candidates are excluded.
+    if len(docs)<250000: raise RuntimeError(f"Unexpectedly small real-artifact audit corpus: {len(docs)}")
     exact={}; exact_duplicates=[]; holdout=holdout_rows()
     holdout_norm=[norm(x["question"]) for x in holdout]
     holdout_exact=[]
@@ -133,9 +127,9 @@ def main():
       "near_duplicate_pairs_found":len(near),"near_duplicate_pairs_capped_at":1000,"near_duplicate_examples":near,
       "candidate_pairs_checked":checked,"holdout_questions":len(holdout),"exact_holdout_question_matches":len(holdout_exact),
       "holdout_matches":holdout_exact[:200],
-      "limitations":["This audit is a high-recall heuristic, not semantic proof of no contamination.","The synthetic 120-question diagnostic is not a public benchmark.","Open-source candidate artifact is deliberately excluded: its rights/human-review gates remain pending.","Drosophila procedural examples are included but remain separately weighted and are not 50k independent capabilities."],
+      "limitations":["This audit is a high-recall heuristic, not semantic proof of no contamination.","The synthetic 120-question diagnostic is not a public benchmark.","Open-source candidate artifact is deliberately excluded: its rights/human-review gates remain pending.","Only exact source-scoped RONIN-IA train artifacts are audited; synthetic Drosophila and unreviewed open-source candidates are excluded."],
       "training_authorized":False if exact_duplicates or near or holdout_exact else True,
-      "authorization_scope":"Source-scoped RONIN-IA train partitions plus Drosophila procedural rows only; open-source candidate bundle excluded."}
+      "authorization_scope":"Exact source-scoped RONIN-IA train partitions only; synthetic and unreviewed candidate bundles excluded."}
     (OUT/"GLOBAL-CORPUS-AUDIT.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n")
     print(json.dumps(report,ensure_ascii=False,indent=2))
 if __name__=="__main__": main()
