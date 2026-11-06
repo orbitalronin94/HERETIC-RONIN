@@ -402,10 +402,10 @@
     {
       "id": "CohereLabs/aya_dataset",
       "url": "https://huggingface.co/datasets/CohereLabs/aya_dataset",
-      "revision": "main; immutable Hub commit required before acquisition",
+      "revision": "resolve immutable Hub commit at acquisition; manifest must record exact SHA",
       "reported_rows": 204000,
       "reported_license": "Apache-2.0 declared by dataset card",
-      "status": "candidate_pending_revision_split_and_annotation_privacy_audit",
+      "status": "candidate_acquisition_pending_official_apache_tag_check",
       "domains": [
         "multilingual instruction following",
         "general knowledge",
@@ -416,14 +416,17 @@
       ],
       "known_lineage": "Human-annotated prompt-completion pairs curated through the Aya Open Science Initiative; card also reports annotator demographic data.",
       "required_checks": [
-        "pin immutable Hub commit and verify payload license and files",
-        "inspect exact train/validation/test splits and exclude evaluation partitions",
-        "exclude or separately protect annotator demographic data and inspect PII",
-        "audit source-task rights, attribution and language balance",
-        "deduplicate against RONIN-IA and all holdouts",
-        "sample quality and instruction/answer correctness"
+        "pin immutable Hub commit and verify official license:apache-2.0 tag at that revision",
+        "download only default config train split; do not load demographics config or user_id",
+        "preserve language and annotation_type metadata and original attribution",
+        "inspect re-annotation lineage and source-task rights",
+        "run PII, quality, exact/near-duplicate and benchmark-holdout contamination audits",
+        "human-review stratified samples across languages before admission"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "acquisition_plan": "Acquire at most 5,000 rows from the default config train split only; map inputs+targets to text; never load the demographics config or user_id field.",
+      "verified_rights_evidence": "Official CohereLabs dataset card at https://huggingface.co/datasets/CohereLabs/aya_dataset/blob/main/README.md declares Apache-2.0 and explicitly permits any purpose, including commercial use. Acquisition fails closed unless immutable-revision Hub metadata contains license:apache-2.0.",
+      "rights_caveat": "The license declaration is source-publisher evidence, not a legal opinion. Keep original attribution; exclude demographics config; review re-annotated prompts, PII and source lineage; global deduplication and holdout contamination gates remain mandatory."
     },
     {
       "id": "allenai/dolma",
@@ -671,6 +674,58 @@
       "downloaded_text_bytes": 23925169,
       "downloaded_sha256": "050b03f64c3e9976d91ff86447761174f46121c0af899004172368f61255dcc6",
       "acquisition_run": 42283763295
+    },
+    {
+      "id": "OpenTextbookLibrary:CC-BY-only",
+      "url": "https://open.umn.edu/opentextbooks/books",
+      "revision": "per-book immutable source URL/version required",
+      "reported_license": "Per-book; allowlist only CC-BY (commercial-compatible) licenses after checking each book's own notice",
+      "status": "discovery_catalog_not_yet_acquired",
+      "domains": [
+        "mathematics",
+        "science",
+        "engineering",
+        "humanities",
+        "social sciences"
+      ],
+      "language": [
+        "multi"
+      ],
+      "known_lineage": "University of Minnesota Open Textbook Library; catalog admission criteria require openly licensed complete textbooks, institutional/scholarly affiliation or adoption, and original works.",
+      "rights_caveat": "The catalog is a referatory, not a blanket license. Exclude CC-NC, CC-ND and any title with unclear or conflicting third-party material. Start with explicit CC-BY only; preserve author/title/edition/license/attribution and inspect embedded figures.",
+      "ingestion_plan": "Select books individually from the catalog; prefer CC-BY-4.0 titles. Download only the full-text assets whose per-book notices and embedded content rights are verified.",
+      "required_checks": [
+        "verify the license notice on the exact book and its source publisher page",
+        "allow only CC-BY licenses approved by the project; exclude NC, ND and unclear terms",
+        "check third-party figures, tables and excerpts separately",
+        "pin edition, URL and SHA-256; retain author/title/citation",
+        "extract text with structural headings and equations preserved",
+        "run quality, PII, deduplication and holdout-contamination gates"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "OpenStax:official-textbooks",
+      "url": "https://help.openstax.org/s/article/Licensing-information-of-OpenStax-textbooks",
+      "revision": "official licensing page reviewed 2026-11-06",
+      "reported_license": "CC-BY-NC-SA-4.0",
+      "status": "blocked_noncommercial_and_ai_permission_required",
+      "domains": [
+        "mathematics",
+        "science",
+        "biology",
+        "physics",
+        "chemistry",
+        "economics"
+      ],
+      "language": [
+        "en"
+      ],
+      "rights_caveat": "Official OpenStax terms prohibit commercial use; its AI-project reuse form explicitly asks whether content will train/fine-tune/serve AI models. Do not acquire unless written permission covering intended model use is obtained.",
+      "required_checks": [
+        "obtain explicit written permission for AI training and intended commercial scope before any download"
+      ],
+      "count_toward_admitted_bytes": false
     }
   ],
   "target_library_bytes": 500000000000,
