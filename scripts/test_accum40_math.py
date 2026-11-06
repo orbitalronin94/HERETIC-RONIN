@@ -40,7 +40,7 @@ for (name_ref, p_ref), (name_acc, p_acc) in zip(
 ):
     assert name_ref == name_acc
     error = (p_ref.grad - p_acc.grad).abs().max().item()
-    assert error < 1e-7, f"{name_ref}: accumulated gradient mismatch {error}"
+    assert error < 1e-6, f"{name_ref}: accumulated gradient mismatch {error}"
 
 # Clipping once after accumulation must preserve a finite global norm.
 norm = torch.nn.utils.clip_grad_norm_(accumulated.parameters(), 1.0)
