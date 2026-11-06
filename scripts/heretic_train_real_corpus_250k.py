@@ -34,7 +34,7 @@ def add_jsonl(zf,name,key,store):
                 store.append(value); count+=1
     return count
 
-def build_corpus(path):
+def build_corpus(path,audit_path):
     groups={}
     with zipfile.ZipFile(path) as z:
         manifest=json.loads(z.read("IMPORT-MANIFEST.json"))
@@ -45,30 +45,49 @@ def build_corpus(path):
         add_jsonl(z,"mathlib4-apache/documents.train.jsonl.gz","text",mathlib)
         add_jsonl(z,"scienceverse-ccby/documents.train.jsonl","text",science)
         literature=z.read("literature-es/train.txt").decode("utf-8")
-        lit=[p.strip() for p in re.split(r"\n\s*\n",literature) if len(p.strip().encode("utf-8"))>=40]
+        lit=[p.strip() for p in literature.split("\\n\\n") if len(p.strip())>=40]
         nasa=z.read("nasa-ntrs-file-reviewed/train.txt").decode("utf-8")
         papers=[z.read(n).decode("utf-8") for n in z.namelist()
                 if n.startswith("ronin-authored-papers/") and n.endswith(".md")]
     groups={"covost2":covost,"mathlib4":mathlib,"scienceverse":science,
             "literature_es":lit,"nasa_ntrs":([nasa] if len(nasa.encode("utf-8"))>=40 else []),
             "ronin_papers":papers}
-    expected={"covost2":270244,"mathlib4":8498,"scienceverse":7103,
-              "literature_es":608,"nasa_ntrs":2,"ronin_papers":9}
-    counts={k:len(v) for k,v in groups.items()}
-    # Literature is split into paragraphs; exact document count is preserved by its source manifest,
-    # while paragraph packing is a byte-streaming detail. All other row counts must match exactly.
-    for key in ("covost2","mathlib4","scienceverse","nasa_ntrs","ronin_papers"):
-        if counts[key]!=expected[key]: raise RuntimeError(f"{key}: expected {expected[key]}, got {counts[key]}")
+    audit=json.loads(Path(audit_path).read_text())
+    if audit.get("training_authorized") is not True: raise RuntimeError("Audit report does not authorize cleaned corpus")
+    expected=audit.get("source_counts",{})
+    audit_order=("covost2","mathlib4","scienceverse","literature","nasa","papers")
+    mapping={"literature":"literature_es","nasa":"nasa_ntrs","papers":"ronin_papers"}
+    ordered=[]
+    for source in audit_order:
+        key=mapping.get(source,source)
+        docs=groups[key]
+        if len(docs)!=expected.get(source): raise RuntimeError(f"{source}: audit counted {expected.get(source)}, loader got {len(docs)}")
+        ordered.extend((source,doc) for doc in docs)
+    if len(ordered)!=audit.get("documents_audited"): raise RuntimeError("Global audit document index mismatch")
+    plan=audit.get("deduplication_plan",{})
+    if plan.get("near_duplicate_pair_list_complete") is not True or plan.get("exact_duplicate_records_covered") is not True:
+        raise RuntimeError("Duplicate exclusion plan is incomplete")
+    excluded=set(plan.get("excluded_global_indices",[]))
+    if any(i<0 or i>=len(ordered) for i in excluded): raise RuntimeError("Invalid duplicate exclusion index")
+    clean={name:[] for name in groups}
+    for index,(source,doc) in enumerate(ordered):
+        if index in excluded: continue
+        clean[mapping.get(source,source)].append(doc)
     arrays={}
-    for name,docs in groups.items():
-        payload=b"\n\n".join(x.encode("utf-8") for x in docs)
+    for name,docs in clean.items():
+        payload=b"\\n\\n".join(x.encode("utf-8") for x in docs)
         if len(payload)<1024: raise RuntimeError(f"Corpus source unexpectedly small: {name}")
         arrays[name]=np.frombuffer(payload,dtype=np.uint8)
-    info={"source_documents":counts,"source_bytes":{k:int(v.nbytes) for k,v in arrays.items()},
-          "total_documents_manifest":286464,"total_bytes":sum(int(v.nbytes) for v in arrays.values()),
+    counts={k:len(v) for k,v in clean.items()}
+    info={"source_documents_before_dedup":expected,"source_documents_after_dedup":counts,
+          "audited_documents_before_dedup":len(ordered),"duplicate_records_excluded":len(excluded),
+          "audited_documents_after_dedup":len(ordered)-len(excluded),
+          "source_bytes":{k:int(v.nbytes) for k,v in arrays.items()},
+          "total_bytes":sum(int(v.nbytes) for v in arrays.values()),
           "sources":["CoVoST2 CC0 translation-only","Mathlib4 Apache-2.0","ScienceVerse per-document CC-BY/CC0",
                     "Spanish public-domain literature train","NASA file-reviewed train","owner-authorized Papers internal train"],
-          "excluded":["validation/test/holdout","20,000 unreviewed open-source candidates","Drosophila procedural synthetic rows"]}
+          "excluded":["validation/test/holdout","20,000 unreviewed open-source candidates","Drosophila procedural synthetic rows",
+                     "exact and SimHash near-duplicate endpoints from the signed audit plan"]}
     return arrays,info
 
 def holdout_rows():
@@ -135,7 +154,7 @@ def main():
     a=p.parse_args()
     OUT.mkdir(exist_ok=True)
     torch.set_num_threads(4); torch.set_num_interop_threads(1)
-    corpus,corpus_info=build_corpus(Path("incoming/ronin-ia-train.zip"))
+    corpus,corpus_info=build_corpus(Path("incoming/ronin-ia-train.zip"),Path("incoming/GLOBAL-CORPUS-AUDIT.json"))
     if a.resume:
         ckpt=torch.load("incoming/checkpoint.pt",map_location="cpu",weights_only=False)
         if int(ckpt["step"])!=a.start_step: raise RuntimeError("Resume checkpoint step mismatch")
