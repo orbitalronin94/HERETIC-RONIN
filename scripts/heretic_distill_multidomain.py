@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Teacher-generated multidomain SFT on the existing 500M checkpoint, then paired holdout."""
 from __future__ import annotations
-import hashlib, json, random, re, time, urllib.request
+import hashlib, json, os, random, re, signal, time, urllib.request
 from dataclasses import replace
 from pathlib import Path
 import torch
@@ -234,7 +234,13 @@ def evaluate_pair(student:RoninLM)->dict:
     return results
 
 def main()->None:
-    ROOT.mkdir(parents=True,exist_ok=True); rows=build_teacher_dataset(); train_report=train_student(rows)
+    ROOT.mkdir(parents=True,exist_ok=True); rows=build_teacher_dataset()
+    # Release the 4B instructor from RAM before loading the 500M student and AdamW state.
+    pid_file=Path("llama-server.pid")
+    if pid_file.is_file():
+        try: os.kill(int(pid_file.read_text().strip()),signal.SIGTERM)
+        except (ProcessLookupError,ValueError): pass
+    train_report=train_student(rows)
     checkpoint=torch.load(STUDENT_OUTPUT,map_location="cpu",weights_only=False)
     config=ModelConfig(**checkpoint["model_config"]); student=RoninLM(config)
     student.load_state_dict(checkpoint["model"],strict=True); student.eval()
