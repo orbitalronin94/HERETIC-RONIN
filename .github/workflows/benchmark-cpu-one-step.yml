@@ -1,5 +1,8 @@
 name: HERETIC — one-step CPU optimization tournament
 on:
+  workflow_run:
+    workflows: ["HERETIC — 500M real-corpus continuation to step 250000"]
+    types: [completed]
   workflow_dispatch:
     inputs:
       source_run_id:
@@ -49,7 +52,7 @@ jobs:
           print("Python and workflow YAML syntax: OK")
           PY
   baseline:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.id == 42288969968 && github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-26.04
     timeout-minutes: 360
     steps:
@@ -60,7 +63,7 @@ jobs:
       - name: Fetch and verify exact checkpoint, train data and signed audit
         env:
           GH_TOKEN: ${{ github.token }}
-          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+          SOURCE_RUN_ID: ${{ github.event.workflow_run.id || inputs.source_run_id }}
           AUDIT_RUN_ID: ${{ inputs.audit_run_id }}
           TRAIN_ARTIFACT_ID: ${{ inputs.train_artifact_id }}
         run: |
@@ -82,7 +85,16 @@ jobs:
           p=json.load(open("incoming/progress.json"))
           assert int(p.get("end_micro_step",p.get("end_step",-1)))==2600, p
           PY
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/${TRAIN_ARTIFACT_ID}" -o incoming/train-artifact.json
+          python - <<'PY'
+          import json
+          a=json.load(open("incoming/train-artifact.json"))
+          assert a.get("name")=="heretic-ronin-ia-train-staged-42283514919", a
+          assert a.get("expired") is False, a
+          assert a.get("digest")=="sha256:8a1e6be6a02b97b24681f2d34909cf4562213e84d0b9824f4ebca64a279e9cef", a
+          PY
           curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/${TRAIN_ARTIFACT_ID}/zip" -o incoming/ronin-ia-train.zip
+          echo "8a1e6be6a02b97b24681f2d34909cf4562213e84d0b9824f4ebca64a279e9cef  incoming/ronin-ia-train.zip" | sha256sum --check
           curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${AUDIT_RUN_ID}/artifacts" -o incoming/audits.json
           python - <<'PY'
           import json,os
