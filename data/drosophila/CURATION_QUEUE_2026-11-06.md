@@ -149,3 +149,23 @@ También quedan registrados para una segunda fase:
 - **Data Provenance Initiative filtered:** 3 GB con fuentes y licencias anotadas manualmente; pendiente de cerrar una allowlist de licencias y conservar `license_url` y `dataset_id`.
 
 La regla no cambia: candidatos externos no suman bytes admitidos ni pueden alimentar el entrenamiento hasta superar derechos, calidad, deduplicación y contaminación del holdout.
+
+
+### Resultado medido de adquisición — run 42295370306
+
+<https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42295370306>
+
+- 50.000 filas descargadas en 10 fuentes.
+- 317.069.186 bytes en total.
+- Artifact: `13541581972`.
+- Manifiesto: `candidate_not_admitted`; `training_authorized=false`.
+
+Comprobación del contenido por licencia:
+- PubMed: 4.415 filas CC-BY-4.0 y 585 CC0.
+- Stack Exchange: 5.000 filas CC-BY-SA-4.0 exactas.
+- PressBooks: 5.000 filas CC-BY-4.0 exactas.
+- LibreTexts: 5.000 filas CC-BY-4.0 exactas.
+- Wikidata: 5.000 filas CC0-1.0.
+- Aya: 5.000 filas Apache-2.0.
+
+El lote no se incorpora al entrenamiento actual ni se suma a bytes admitidos. Sigue pendiente deduplicación cruzada, revisión humana, PII, atribución, verificación legal y contaminación del holdout.
