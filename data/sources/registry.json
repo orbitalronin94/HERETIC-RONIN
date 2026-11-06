@@ -452,6 +452,225 @@
         "record exact compressed/expanded sizes and SHA-256"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "HuggingFaceFW/fineweb-edu",
+      "url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu",
+      "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "reported_license": "ODC-By-1.0",
+      "status": "candidate_downloaded_pending_global_audit",
+      "domains": [
+        "general education",
+        "science",
+        "humanities"
+      ],
+      "language": [
+        "en"
+      ],
+      "ingestion_plan": "Start with deterministic bounded train shards; preserve URL, date, domain, language and attribution.",
+      "rights_caveat": "ODC-By applies to the database; underlying Common Crawl pages retain their own rights and Common Crawl terms apply.",
+      "required_checks": [
+        "verify current dataset card and license at pinned revision",
+        "train split only; pin config and file list",
+        "preserve per-record provenance and ODC attribution",
+        "deduplicate against FineWeb/FineWeb-2 and all local corpora",
+        "audit language, quality, PII, safety and benchmark contamination"
+      ],
+      "count_toward_admitted_bytes": false,
+      "downloaded_rows": 5000,
+      "downloaded_text_bytes": 21423171,
+      "downloaded_sha256": "d76e3210e05e9ff35dfb7293bbe719e87abe213ec95eb1d266af2d568050d9d0",
+      "acquisition_run": 42283763295
+    },
+    {
+      "id": "HuggingFaceFW/fineweb-2",
+      "url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+      "revision": "pin immutable Hub commit and language config before acquisition",
+      "reported_license": "ODC-By-1.0",
+      "status": "candidate_not_downloaded",
+      "domains": [
+        "general web",
+        "multilingual"
+      ],
+      "language": [
+        "es",
+        "ca",
+        "en",
+        "multi"
+      ],
+      "ingestion_plan": "Prioritize Spanish, Catalan and English configs; bounded shards per language.",
+      "rights_caveat": "ODC-By database license does not relicense underlying web pages; inspect Common Crawl terms and record page provenance.",
+      "required_checks": [
+        "pin commit and exact language config",
+        "train split only",
+        "deduplicate against FineWeb-Edu and RONIN-IA CoVoST/literature",
+        "retain URL/date/language metadata and attribution",
+        "PII, quality, safety and holdout contamination audits"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "open-web-math/open-web-math",
+      "url": "https://huggingface.co/datasets/open-web-math/open-web-math",
+      "revision": "fde8ef8de2300f5e778f56261843dab89f230815",
+      "reported_license": "ODC-By-1.0; Common Crawl terms also apply",
+      "status": "candidate_downloaded_pending_global_audit",
+      "domains": [
+        "mathematics",
+        "LaTeX",
+        "proofs"
+      ],
+      "language": [
+        "en"
+      ],
+      "ingestion_plan": "Acquire bounded train shards as specialist mathematics supplement; preserve equations and source URLs.",
+      "rights_caveat": "The collection is ODC-By; underlying Common Crawl content is not relicensed by the collection.",
+      "required_checks": [
+        "verify card and Common Crawl terms at pinned revision",
+        "train split only and source URL attribution",
+        "deduplicate against Mathlib4, Drosophila and other math sources",
+        "check malformed LaTeX, OCR, answer leakage and benchmark overlap"
+      ],
+      "count_toward_admitted_bytes": false,
+      "downloaded_rows": 5000,
+      "downloaded_text_bytes": 23306831,
+      "downloaded_sha256": "b7f717ce107609c4435ce0eb28be4fab5ff71c7a0f6dbe88f013e57627e37547",
+      "acquisition_run": 42283763295
+    },
+    {
+      "id": "HuggingFaceTB/smollm-corpus:Cosmopedia-v2",
+      "url": "https://huggingface.co/datasets/HuggingFaceTB/smollm-corpus",
+      "revision": "3ba9d605774198c5868892d7a8deda78031a781f",
+      "reported_license": "ODC-By-1.0 (dataset card)",
+      "status": "candidate_downloaded_pending_global_audit",
+      "domains": [
+        "educational text",
+        "textbooks",
+        "science",
+        "stories"
+      ],
+      "language": [
+        "en"
+      ],
+      "ingestion_plan": "Select Cosmopedia-v2 only, not the full mixed SmolLM corpus, and record exact source config.",
+      "rights_caveat": "Cosmopedia v2 is part of SmolLM-Corpus and its dataset card declares ODC-By-1.0; do not mislabel it Apache-2.0. Synthetic content still needs source-lineage, quality and contamination review.",
+      "required_checks": [
+        "pin commit and config",
+        "train split only",
+        "deduplicate against FineWeb-Edu and other synthetic data",
+        "audit factual correctness, repetitive templates and source-derived passages",
+        "preserve card, citation and provenance"
+      ],
+      "count_toward_admitted_bytes": false,
+      "downloaded_rows": 5000,
+      "downloaded_text_bytes": 28353454,
+      "downloaded_sha256": "fad68d06cccf5f85f971e0830f909b0a7b64197aa1938ccd3787e20bd33a80cb",
+      "acquisition_run": 42283763295
+    },
+    {
+      "id": "bigcode/the-stack-v1.2",
+      "url": "https://huggingface.co/datasets/bigcode/the-stack",
+      "revision": "v1.2; pin exact snapshot and file manifest",
+      "reported_license": "per-file original SPDX license; permissive allowlist only",
+      "status": "candidate_not_downloaded",
+      "domains": [
+        "source code",
+        "software engineering"
+      ],
+      "language": [
+        "multi-language"
+      ],
+      "ingestion_plan": "Use exact-deduplicated or near-deduplicated v1.2; include only files with verified permissive SPDX identifiers.",
+      "rights_caveat": "There is no single blanket dataset license. Respect per-file licenses, attribution, opt-out/removal requests and version restrictions.",
+      "required_checks": [
+        "pin v1.2 snapshot and SPDX manifest",
+        "exclude copyleft and unknown-license files",
+        "apply latest opt-out/removal list",
+        "scan secrets, malware, generated/vendor code",
+        "preserve repository provenance and notices; deduplicate"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "wikimedia/wikipedia-dumps",
+      "url": "https://dumps.wikimedia.org/",
+      "revision": "pin dated dump and language edition",
+      "reported_license": "CC-BY-SA/GFDL; verify applicable terms for each edition and content",
+      "status": "candidate_not_downloaded",
+      "domains": [
+        "encyclopedia",
+        "general knowledge"
+      ],
+      "language": [
+        "es",
+        "ca",
+        "en",
+        "multi"
+      ],
+      "ingestion_plan": "Acquire selected language dumps; preserve page IDs, revision IDs, attribution and source URLs.",
+      "rights_caveat": "Share-alike and attribution obligations apply; Wikimedia dumps may include media/content with separate licenses.",
+      "required_checks": [
+        "pin dated dump and language edition",
+        "retain revision/page attribution metadata",
+        "exclude non-free media and incompatible components",
+        "deduplicate and audit benchmark contamination"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "Project-Gutenberg",
+      "url": "https://www.gutenberg.org/",
+      "revision": "pin catalog snapshot and individual ebook IDs",
+      "reported_license": "public domain in US for most works; country-specific and per-work notices apply",
+      "status": "candidate_per_work_rights_review",
+      "domains": [
+        "literature",
+        "history",
+        "philosophy"
+      ],
+      "language": [
+        "en",
+        "multi"
+      ],
+      "ingestion_plan": "Select individual works whose public-domain status is verified for intended use; retain ebook ID and header/license notice.",
+      "rights_caveat": "Do not assume all works are public domain in every jurisdiction; follow Project Gutenberg trademark and distribution terms.",
+      "required_checks": [
+        "verify each work's rights notice and jurisdiction",
+        "preserve title, author, ebook ID and header",
+        "exclude copyrighted or unclear works",
+        "deduplicate against literature corpus"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "HuggingFaceTB/cosmopedia-v0.1",
+      "url": "https://huggingface.co/datasets/HuggingFaceTB/cosmopedia",
+      "revision": "0ae6ec63f91742bd2d1eaef4f02232c55d719385",
+      "reported_license": "Apache-2.0 (dataset card)",
+      "status": "candidate_downloaded_pending_global_audit",
+      "domains": [
+        "educational text",
+        "textbooks",
+        "mathematics",
+        "science"
+      ],
+      "language": [
+        "en"
+      ],
+      "ingestion_plan": "Select individual train configs (auto_math_text, openstax, stanford, khanacademy) with bounded deterministic samples.",
+      "rights_caveat": "Apache-2.0 is the dataset card declaration; retain source metadata and verify the selected config and any seed-source caveats.",
+      "required_checks": [
+        "pin commit and exact config",
+        "train split only",
+        "preserve config/source provenance and license notice",
+        "deduplicate against FineWeb-Edu, Cosmopedia-v2 and local corpora",
+        "audit factual correctness, template repetition and benchmark contamination"
+      ],
+      "count_toward_admitted_bytes": false,
+      "downloaded_rows": 5000,
+      "downloaded_text_bytes": 23925169,
+      "downloaded_sha256": "050b03f64c3e9976d91ff86447761174f46121c0af899004172368f61255dcc6",
+      "acquisition_run": 42283763295
     }
   ],
   "target_library_bytes": 500000000000,
@@ -463,5 +682,8 @@
       "date": "2026-11-06",
       "note": "Additional external sources discovered: OpenThoughts3-1.2M (Apache-2.0 declared, 1.2M train rows, source lineage still to audit); Aya (Apache-2.0 declared, 204k multilingual human annotations, privacy/splits to audit); Dolma and FineWeb (ODC-BY database license, underlying source rights remain); DCLM (CC-BY-4.0 declared, source terms and research-use conditions to audit). All remain candidates and contribute zero admitted bytes until payload, rights, split, provenance, hashes, dedup and holdout gates pass."
     }
+  ],
+  "notes": [
+    "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. Global G-0 remains FAIL; no staged bundle is active-training-authorized until global near-duplicate and benchmark/holdout contamination gates pass."
   ]
 }

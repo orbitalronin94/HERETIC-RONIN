@@ -15,10 +15,11 @@ Su principio es sencillo: **experimentar sin reverencia, medir sin indulgencia**
 | Elemento | Estado verificado |
 |---|---|
 | Estudiante experimental | 500.102.144 parámetros |
-| Corpus Drosophila versionado | 50.000 filas candidatas |
+| Corpus Drosophila versionado | 50.000 filas sintéticas candidatas; no es la biblioteca completa |
 | Estructura | 10 shards JSONL de 5.000 filas |
 | Dominios actuales | Matemáticas, álgebra, lógica, programación, física, química, probabilidad, estadística, economía e ingeniería |
 | Naturaleza del lote actual | Sintético y procedimental; no corpus gold |
+| Herencia RONIN-IA | 286.464 documentos train scoped reconciliados con los artefactos exactos (el README de origen aún anuncia 286.468); staging train-only verificado en [run 42283514919](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42283514919), artefacto de 288.668.608 bytes; gates globales pendientes |
 | Objetivo de biblioteca | 500 GB de datos admitidos y trazables (objetivo, aún no alcanzado) |
 | Promoción de datos | Nunca automática por volumen |
 | Evaluación | Holdout separado; nunca se incorpora al entrenamiento |
@@ -116,3 +117,62 @@ RONIN-IA y HERETIC-RONIN exploran métodos distintos. HERETIC acepta datos heter
 El código de este repositorio se distribuye bajo MIT. Los datasets, checkpoints, modelos docentes y materiales externos conservan sus propias licencias, atribuciones y restricciones. La licencia MIT del repositorio no sustituye ni amplía los derechos sobre esos materiales.
 
 **Almacenamiento:** no se subirán cientos de gigabytes al historial Git. El repositorio conservará manifiestos, scripts, hashes y reportes. Los datos binarios deberán residir en un almacenamiento externo versionado (por ejemplo, Hugging Face Datasets o un bucket de objetos compatible con S3) cuando exista un destino y credenciales configurados. GitHub Actions se utilizará para adquisición por lotes y auditorías acotadas, no como almacenamiento permanente de 500 GB.
+
+## Biblioteca heredada y ampliación open source
+
+### RONIN-IA: corpus que debe heredarse
+
+El inventario de origen de RONIN-IA (6-11-2026) declara **286.464 documentos train scoped**; la cifra de 286.468 del README de origen difiere en cuatro registros NASA que el artefacto más reciente retiene por mismatch:
+
+| Fuente | Train scoped | Derechos / límite |
+|---|---:|---|
+| CoVoST 2 translation-only | 270.244 | CC0-1.0; solo texto de traducción, no audio |
+| ScienceVerse | 7.103 | CC-BY-4.0 / CC0 por documento; atribución por DOI |
+| Mathlib4 | 8.498 | Apache-2.0; payload train-only recuperado y SHA-256 verificado |
+| Literatura española | 608 | Licencia por fuente; solo train |
+| NASA NTRS file-reviewed | 2 train (+4 retenidos) | Solo payloads cuyo hash/bytes coinciden con la atestación |
+| Papers propios | 9 | Autorización para entrenamiento interno; no implica redistribución |
+
+Estos 286.464 documentos son **elegibles por partición y manifiesto de origen**, no una autorización global ya superada. En el último estado auditado, G-0 global seguía FAIL y los controles globales de near-duplicates y contaminación de holdout estaban pendientes. El importador ya ha materializado 286.464 registros en el [artefacto train-only 42283514919](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42283514919) (288.668.608 bytes de artefacto). Incorpora los 8.498 registros Mathlib4 y los dos NASA train exactos. Cuatro NASA siguen retenidos por mismatch de atestación/payload; no se fuerzan a train. El estado y los bloqueos exactos se mantienen en [data/imports/README.md](data/imports/README.md).
+
+**Regla de entrenamiento:** se heredan todas las particiones train que superen sus gates; validation, test y holdout permanecen aislados. No se reconstruyen splits perdidos a partir del dataset upstream ni se sustituyen hashes por otros calculados después.
+
+### Nuevas bibliotecas open source prioritarias
+
+La ampliación no se limita a fuentes sintéticas ni a Common Crawl. Se buscarán fuentes especializadas, descargables y complementarias:
+
+| Fuente | Dominio / idioma | Licencia declarada | Adquisición prevista |
+|---|---|---|---|
+| [FineWeb-Edu](https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu) | Texto educativo general, inglés | ODC-By 1.0 | Shards acotados y fijados por revisión |
+| [FineWeb-2](https://huggingface.co/datasets/HuggingFaceFW/fineweb-2) | Web multilingüe, 1.000+ idiomas | ODC-By 1.0 | Priorizar español, catalán e inglés |
+| [OpenWebMath](https://huggingface.co/datasets/open-web-math/open-web-math) | Matemáticas, inglés | ODC-By 1.0; aplicar también términos de Common Crawl | Corpus matemático deduplicado |
+| [Cosmopedia v0.1](https://huggingface.co/datasets/HuggingFaceTB/cosmopedia) / [v2](https://huggingface.co/datasets/HuggingFaceTB/smollm-corpus) | Libros de texto, educación y ciencia | Apache-2.0 (v0.1); ODC-By 1.0 (v2) | Configs educativos y deduplicación cruzada |
+| [The Stack v1.2](https://huggingface.co/datasets/bigcode/the-stack) | Código, 358 lenguajes | Licencia original por archivo; versión 1.2 incorpora exclusiones adicionales | Solo archivos con SPDX permitido; respetar opt-outs |
+| [Common Pile v0.1](https://huggingface.co/collections/common-pile) | Ciencia, libros, referencia y texto general | Mixta por fuente constituyente | Solo componentes con licencia y procedencia individual verificadas |
+| [Wikipedia dumps](https://dumps.wikimedia.org/) | Enciclopedia multilingüe | CC BY-SA / GFDL según contenido y versión | Conservar atribución, historial/licencia y obligaciones share-alike |
+| [Project Gutenberg](https://www.gutenberg.org/) | Literatura y libros, principalmente inglés | Dominio público en EE. UU. para la mayoría; revisar país y aviso por obra | Obras individualmente verificadas |
+
+**Primera adquisición ejecutada:** [run 42283763295](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42283763295) descargó 20.000 filas train de cuatro fuentes, con 97.008.625 bytes de texto y un artefacto de 36.722.816 bytes:
+- FineWeb-Edu: 5.000 documentos.
+- OpenWebMath: 5.000 documentos.
+- Cosmopedia v0.1 (`auto_math_text`): 5.000 documentos.
+- Cosmopedia v2: 5.000 documentos.
+
+Las cuatro revisiones inmutables y los SHA-256 están en `data/sources/registry.json` y en el artefacto del run. La comprobación local inicial encontró 0 duplicados exactos entre esas 20.000 filas y 0 coincidencias exactas con las 120 preguntas del holdout. **No es una admisión:** la near-deduplicación, la auditoría de benchmark, la revisión humana y la comprobación de derechos por contenido siguen pendientes; el manifiesto marca `training_authorized=false`.
+
+La licencia de una colección **no borra los derechos de cada documento**. ODC-By no convierte automáticamente cada página web en obra libre; Common Pile no tiene una licencia universal; The Stack conserva licencias por archivo. Ningún candidato cuenta como admitido por aparecer en esta tabla. La fuente primaria, su revisión inmutable, split, atribución y SHA-256 deben quedar registrados antes de usarlo.
+
+### Plan de entrenamiento de 10.000 pasos del estudiante destilado 500M
+
+El candidato es el checkpoint **HERETIC 500M multidomain distilled, step 600**, del [experimento de destilación](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42227134702). Su resultado previo de 0/120 es una línea base diagnóstica, no una razón para descartarlo.
+
+El siguiente entrenamiento solo se iniciará con el corpus completo materializado y los gates de contaminación aprobados. El plan será:
+
+1. Recuperar y verificar SHA-256 del checkpoint step 600 y del estado del optimizador (si existe; si no, registrar reinicio).
+2. Construir un manifiesto único del corpus: origen, revisión, licencia, split, bytes, documentos, tokens, idioma, dominio y SHA-256.
+3. Mezclar los contenidos RONIN-IA admitidos, bibliotecas open source admitidas y Drosophila 50k; no permitir que las filas sintéticas dominen por volumen artificial.
+4. Ejecutar **10.000 pasos**, con checkpoints intermedios y registro de pérdida, throughput, consumo y hashes.
+5. Ejecutar antes y después las mismas 120 preguntas, en el mismo orden y configuración, guardando las 120 predicciones completas y exactitud por dominio.
+6. No promover si no supera 0/120 de forma reproducible, si hay regresión relevante por dominio o si falla cualquier gate. Una mejora en este pequeño holdout habilita evaluación ampliada, no equivale por sí sola a validación general.
+
+La cifra de 500 GB sigue siendo un objetivo de biblioteca, no una cantidad ya descargada. Los workflows de GitHub Actions y sus artefactos son la fuente de verdad operativa; este README no declara entrenamientos ni importaciones que todavía no hayan terminado.
