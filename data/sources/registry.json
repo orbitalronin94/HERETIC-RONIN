@@ -206,6 +206,57 @@
         "retain per-file license notices"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "UltraData-OpenBMB/UltraData-Math",
+      "url": "https://github.com/UltraData-OpenBMB/UltraData-Math",
+      "revision": "main; pin immutable commit before acquisition",
+      "reported_license": "Apache-2.0 (GitHub repository API)",
+      "status": "candidate_pending_dataset_payload_rights_and_lineage_audit",
+      "domains": [
+        "mathematics",
+        "mathematical pretraining",
+        "reasoning"
+      ],
+      "language": [
+        "zh",
+        "en"
+      ],
+      "ingestion_plan": "Inspect the exact Hugging Face payload/configuration and acquire only identified train shards after pinning the matching source revision.",
+      "rights_caveat": "GitHub repository license is Apache-2.0; verify that the distributed dataset payload is covered by the same license and resolve upstream source lineage before importing.",
+      "required_checks": [
+        "pin immutable Git commit and dataset payload revision",
+        "verify payload-specific license and source lineage",
+        "identify and exclude validation/test/evaluation splits",
+        "deduplicate against Mathlib4, current synthetic math shards and all holdouts",
+        "audit formula integrity, language, OCR and answer correctness",
+        "preserve attribution, source IDs and per-record hashes"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "amazon-science/street-reasoning",
+      "url": "https://github.com/amazon-science/street-reasoning",
+      "revision": "main; pin immutable commit before acquisition",
+      "reported_license": "Apache-2.0 (GitHub repository API)",
+      "status": "candidate_pending_upstream_dataset_license_audit",
+      "domains": [
+        "structured reasoning",
+        "multi-task reasoning"
+      ],
+      "language": [
+        "en"
+      ],
+      "ingestion_plan": "Review task-specific generation scripts and upstream datasets; only materialize task partitions with independently compatible rights.",
+      "rights_caveat": "Apache-2.0 applies to repository code; README describes composition from upstream datasets. It is not evidence that every embedded or downloaded source record is Apache-licensed.",
+      "required_checks": [
+        "pin commit and enumerate every task/source dataset",
+        "verify upstream license for each source and derived annotation",
+        "exclude any evaluation split and benchmark contamination",
+        "preserve per-task provenance and attribution",
+        "audit generated reasoning correctness and exact/near duplicates"
+      ],
+      "count_toward_admitted_bytes": false
     }
   ],
   "target_library_bytes": 500000000000,
