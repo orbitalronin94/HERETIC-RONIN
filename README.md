@@ -19,7 +19,7 @@ Su principio es sencillo: **experimentar sin reverencia, medir sin indulgencia**
 | Estructura | 10 shards JSONL de 5.000 filas |
 | Dominios actuales | Matemáticas, álgebra, lógica, programación, física, química, probabilidad, estadística, economía e ingeniería |
 | Naturaleza del lote actual | Sintético y procedimental; no corpus gold |
-| Objetivo de expansión | 500.000 ejemplos candidatos, sujetos a curación |
+| Objetivo de biblioteca | 500 GB de datos admitidos y trazables (objetivo, aún no alcanzado) |
 | Promoción de datos | Nunca automática por volumen |
 | Evaluación | Holdout separado; nunca se incorpora al entrenamiento |
 
@@ -27,12 +27,15 @@ Su principio es sencillo: **experimentar sin reverencia, medir sin indulgencia**
 
 ## Biblioteca de datos
 
-La fuente versionada del corpus está en `data/drosophila/`:
+La biblioteca versionada se organiza en `data/`:
+
+- `data/sources/registry.json`: catálogo de fuentes, licencias, revisiones y estado de curación.
+- `data/drosophila/`: corpus experimental local actualmente versionado.
 
 - `data/drosophila/parts/`: shards JSONL de entrenamiento.
 - `data/drosophila/README_01301_51300.md`: ficha y limitaciones del lote sintético de 50.000 filas.
 
-La biblioteca crecerá hacia **500.000 candidatos**, pero el contador bruto y el contador admitido deben mantenerse separados. Cada nuevo lote debe conservar, como mínimo:
+La biblioteca crecerá hacia **500 GB**, no hacia un número fijo de ejemplos. El tamaño anunciado por una fuente no equivale a bytes descargados ni a bytes admitidos. Mantendremos contadores separados para bytes remotos anunciados, bytes descargados, bytes íntegros, bytes tras deduplicación y bytes finalmente admitidos. Cada nuevo lote debe conservar, como mínimo:
 
 1. Fuente y URL de origen, licencia y condiciones de redistribución.
 2. Hash del material original y del shard procesado.
@@ -52,9 +55,20 @@ La biblioteca crecerá hacia **500.000 candidatos**, pero el contador bruto y el
 
 Solo los ejemplos `admitted` pueden entrar en el corpus de entrenamiento por defecto. Los candidatos no revisados no deben mezclarse silenciosamente con los admitidos.
 
-## Objetivo de expansión: 50k → 500k
+## Objetivo de expansión: 50 GB → 500 GB
 
-La expansión se realizará por lotes incrementales y reproducibles. La prioridad no es rellenar 450.000 huecos con variaciones de plantillas: es incorporar fuentes abiertas con licencias compatibles, contenido útil y diversidad real de tareas, dominios, idiomas y niveles de dificultad.
+La expansión se realizará por lotes incrementales y reproducibles. La prioridad es incorporar corpus amplios con licencias permisivas verificables, procedencia conservada y diversidad real de dominios e idiomas. El volumen se mide en bytes reales, no se infiere a partir de tokens, número de filas ni tamaño anunciado por el Hub.
+
+### Fuentes grandes registradas
+
+El manifiesto [`data/sources/registry.json`](data/sources/registry.json) mantiene las fuentes, revisiones, licencias, restricciones, planes de adquisición y estado de admisión. Los primeros candidatos son:
+
+- **FineWeb**: ODC-By 1.0; el subconjunto `sample-350BT` se documenta en torno a 388 GB. La licencia de la base de datos no convierte automáticamente cada página web de origen en contenido libre; se conservan los avisos y la procedencia.
+- **DCLM-Baseline**: CC-BY-4.0; corpus anunciado en torno a 7,2 TB. Se seleccionarán shards acotados y se conservará atribución.
+- **Common Pile v0.1**: unos 8 TB agregados de dominio público y fuentes abiertas; solo se admiten componentes con licencia individual comprobada.
+- **The Stack v1.1**: unos 6 TB near-deduplicated de código con 193 licencias permisivas; cada archivo mantiene su licencia original, SPDX y atribución. No se trata como una licencia global única.
+
+Estas cifras son tamaños publicados por los mantenedores, no bytes que ya estén almacenados en este repositorio. Todas las fuentes permanecen en estado candidato hasta fijar revisión, descargar, verificar hashes, deduplicar y auditar.
 
 Orden de trabajo:
 
@@ -64,9 +78,9 @@ Orden de trabajo:
 4. Ejecutar validación estructural, deduplicación y filtros de calidad.
 5. Auditar muestras estratificadas; rechazar fuentes que no superen los controles.
 6. Integrar únicamente lotes admitidos y actualizar el manifiesto y este README.
-7. Repetir hasta alcanzar 500.000 ejemplos **admitidos**, no simplemente descargados.
+7. Repetir hasta alcanzar 500 GB **admitidos**, no simplemente anunciados o descargados.
 
-No se afirmará que se alcanzó el objetivo hasta que un inventario reproducible cuente los registros admitidos y publique hashes y auditoría.
+No se afirmará que se alcanzó el objetivo hasta que un inventario reproducible mida los bytes admitidos, publique hashes, atribuciones, auditorías y el destino de almacenamiento.
 
 ## Entrenamiento y evaluación
 
@@ -98,3 +112,5 @@ RONIN-IA y HERETIC-RONIN exploran métodos distintos. HERETIC acepta datos heter
 ## Licencias
 
 El código de este repositorio se distribuye bajo MIT. Los datasets, checkpoints, modelos docentes y materiales externos conservan sus propias licencias, atribuciones y restricciones. La licencia MIT del repositorio no sustituye ni amplía los derechos sobre esos materiales.
+
+**Almacenamiento:** no se subirán cientos de gigabytes al historial Git. El repositorio conservará manifiestos, scripts, hashes y reportes. Los datos binarios deberán residir en un almacenamiento externo versionado (por ejemplo, Hugging Face Datasets o un bucket de objetos compatible con S3) cuando exista un destino y credenciales configurados. GitHub Actions se utilizará para adquisición por lotes y auditorías acotadas, no como almacenamiento permanente de 500 GB.
