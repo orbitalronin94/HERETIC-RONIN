@@ -19,7 +19,7 @@ Su principio es sencillo: **experimentar sin reverencia, medir sin indulgencia**
 | Estructura | 10 shards JSONL de 5.000 filas |
 | Dominios actuales | Matemáticas, álgebra, lógica, programación, física, química, probabilidad, estadística, economía e ingeniería |
 | Naturaleza del lote actual | Sintético y procedimental; no corpus gold |
-| Herencia RONIN-IA | 286.464 documentos train scoped reconciliados con los artefactos exactos (el README de origen aún anuncia 286.468); staging pendiente de ejecución y gates globales pendientes |\n| Objetivo de biblioteca | 500 GB de datos admitidos y trazables (objetivo, aún no alcanzado) |
+| Herencia RONIN-IA | 286.464 documentos train scoped reconciliados con los artefactos exactos (el README de origen aún anuncia 286.468); staging train-only verificado en [run 42283514919](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42283514919), artefacto de 288.668.608 bytes; gates globales pendientes |\n| Objetivo de biblioteca | 500 GB de datos admitidos y trazables (objetivo, aún no alcanzado) |
 | Promoción de datos | Nunca automática por volumen |
 | Evaluación | Holdout separado; nunca se incorpora al entrenamiento |
 
@@ -132,7 +132,7 @@ El inventario de origen de RONIN-IA (6-11-2026) declara **286.464 documentos tra
 | NASA NTRS file-reviewed | 2 train (+4 retenidos) | Solo payloads cuyo hash/bytes coinciden con la atestación |
 | Papers propios | 9 | Autorización para entrenamiento interno; no implica redistribución |
 
-Estos 286.464 documentos son **elegibles por partición y manifiesto de origen**, no una autorización global ya superada. En el último estado auditado, G-0 global seguía FAIL y los controles globales de near-duplicates y contaminación de holdout estaban pendientes. El importador incorpora ahora los 8.498 registros Mathlib4 del artefacto train-only verificado y los dos NASA train exactos. Cuatro NASA siguen retenidos por mismatch de atestación/payload; no se fuerzan a train. El estado y los bloqueos exactos se mantienen en [data/imports/README.md](data/imports/README.md).
+Estos 286.464 documentos son **elegibles por partición y manifiesto de origen**, no una autorización global ya superada. En el último estado auditado, G-0 global seguía FAIL y los controles globales de near-duplicates y contaminación de holdout estaban pendientes. El importador ya ha materializado 286.464 registros en el [artefacto train-only 42283514919](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42283514919) (288.668.608 bytes de artefacto). Incorpora los 8.498 registros Mathlib4 y los dos NASA train exactos. Cuatro NASA siguen retenidos por mismatch de atestación/payload; no se fuerzan a train. El estado y los bloqueos exactos se mantienen en [data/imports/README.md](data/imports/README.md).
 
 **Regla de entrenamiento:** se heredan todas las particiones train que superen sus gates; validation, test y holdout permanecen aislados. No se reconstruyen splits perdidos a partir del dataset upstream ni se sustituyen hashes por otros calculados después.
 
