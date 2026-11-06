@@ -1,0 +1,96 @@
+name: HERETIC — Drosophila 50k corpus-only 500M multi-seed experiment
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/drosophila-50k-500m-multiseed.yml"
+      - "scripts/heretic_train_drosophila_50k.py"
+      - "data/drosophila/parts/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: heretic-drosophila-50k-500m-multiseed
+  cancel-in-progress: false
+
+jobs:
+  train:
+    name: Train 500M — seed ${{ matrix.seed }}
+    runs-on: ubuntu-26.04
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      matrix:
+        seed: [17, 42, 137]
+    env:
+      OMP_NUM_THREADS: "4"
+      MKL_NUM_THREADS: "4"
+      PYTHONUNBUFFERED: "1"
+      EXPERIMENT_SEED: ${{ matrix.seed }}
+      TRAINING_STEPS: "100"
+    steps:
+      - name: Checkout HERETIC-RONIN and its 50k corpus
+        uses: actions/checkout@v5
+
+      - name: Checkout RONIN-IA model implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git ronin-source
+          git -C ronin-source sparse-checkout set ronin
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install CPU PyTorch
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.2"
+          python -m pip install "numpy>=1.26"
+
+      - name: Verify corpus inventory and 500M architecture
+        env:
+          PYTHONPATH: ronin-source
+        run: |
+          set -euo pipefail
+          free -h
+          df -h .
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          files = sorted(Path("data/drosophila/parts").glob("*.jsonl"))
+          assert len(files) == 10, f"expected 10 shards, got {len(files)}"
+          counts = [sum(1 for line in p.open(encoding="utf-8") if line.strip()) for p in files]
+          assert counts == [5000] * 10, counts
+          from ronin.config import ModelConfig
+          from ronin.models.transformer import RoninLM
+          from ronin.tokenizer.byte import ByteTokenizer
+          cfg = ModelConfig(vocab_size=ByteTokenizer.vocab_size, context_length=128,
+                            n_layers=39, n_heads=16, d_model=1024, d_ff=2806)
+          model = RoninLM(cfg)
+          assert model.parameter_count == 500_102_144, model.parameter_count
+          print(json.dumps({"shards": len(files), "rows": sum(counts),
+                            "parameters": model.parameter_count}, indent=2))
+          del model
+          PY
+
+      - name: Run 100 corpus-only optimizer steps for this seed
+        env:
+          PYTHONPATH: ronin-source
+        run: python scripts/heretic_train_drosophila_50k.py
+
+      - name: Upload seed checkpoint and complete metrics
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-drosophila-50k-500m-seed-${{ matrix.seed }}
+          path: reports/drosophila-50k-500m/seed-${{ matrix.seed }}/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 90
