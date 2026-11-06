@@ -25,7 +25,8 @@ def add_jsonl(zf,name,key,store):
     opener=gzip.open if name.endswith(".gz") else open
     with zf.open(name) as raw:
         import io
-        stream=io.TextIOWrapper(raw,encoding="utf-8")
+        payload=gzip.GzipFile(fileobj=raw) if name.endswith(".gz") else raw
+        stream=io.TextIOWrapper(payload,encoding="utf-8")
         for line in stream:
             if not line.strip(): continue
             row=json.loads(line); value=row.get(key,"")
