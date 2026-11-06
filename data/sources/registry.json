@@ -1,8 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "target_admitted_examples": 500000,
   "current_versioned_candidate_rows": 50000,
-  "counting_policy": "Count only unique rows that pass provenance, license, schema, quality, contamination and deduplication gates. Candidate and rejected rows never count toward the admitted target.",
+  "counting_policy": "Count unique bytes only after license/provenance review, successful download, integrity verification, schema validation, deduplication and acceptance. Remote advertised size, source size, compressed size and locally admitted bytes must be reported separately.",
   "sources": [
     {
       "id": "meta-math/MetaMathQA",
@@ -10,9 +10,14 @@
       "revision": "main",
       "reported_rows": 395000,
       "reported_license": "MIT",
-      "status": "candidate_pending_ingestion_and_audit",
-      "domains": ["mathematics", "multi-step reasoning"],
-      "language": ["en"],
+      "status": "candidate_pending_immutable_revision_and_license_verification",
+      "domains": [
+        "mathematics",
+        "multi-step reasoning"
+      ],
+      "language": [
+        "en"
+      ],
       "known_lineage": "Augmented from GSM8K and MATH training sets; source card states that test sets were not used.",
       "required_checks": [
         "pin immutable source revision and verify license file at that revision",
@@ -31,8 +36,13 @@
       "reported_rows": 859608,
       "reported_license": "conflicting metadata across revisions",
       "status": "blocked_pending_license_resolution",
-      "domains": ["mathematics", "competition reasoning"],
-      "language": ["en"],
+      "domains": [
+        "mathematics",
+        "competition reasoning"
+      ],
+      "language": [
+        "en"
+      ],
       "known_lineage": "Dataset card reports source aggregation including GSM8K, MATH, olympiad, forum, translated and synthetic subsets.",
       "required_checks": [
         "resolve license discrepancy against an immutable upstream revision and all source materials",
@@ -50,8 +60,13 @@
       "reported_rows": 7473,
       "reported_license": "MIT",
       "status": "reference_and_overlap_audit_only",
-      "domains": ["mathematics", "grade-school word problems"],
-      "language": ["en"],
+      "domains": [
+        "mathematics",
+        "grade-school word problems"
+      ],
+      "language": [
+        "en"
+      ],
       "known_lineage": "MetaMathQA declares GSM8K training data among its augmentation sources.",
       "required_checks": [
         "use only train split for any future ingestion",
@@ -67,8 +82,12 @@
       "reported_rows": 78264,
       "reported_license": "CC-BY-NC-SA-4.0",
       "status": "excluded_noncommercial_sharealike",
-      "domains": ["programming"],
-      "language": ["en"],
+      "domains": [
+        "programming"
+      ],
+      "language": [
+        "en"
+      ],
       "count_toward_admitted_target": false
     },
     {
@@ -78,9 +97,119 @@
       "reported_rows": 20022,
       "reported_license": "ambiguous cc metadata",
       "status": "blocked_pending_license_clarification",
-      "domains": ["programming"],
-      "language": ["en"],
+      "domains": [
+        "programming"
+      ],
+      "language": [
+        "en"
+      ],
       "count_toward_admitted_target": false
+    },
+    {
+      "id": "HuggingFaceFW/fineweb",
+      "url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb",
+      "revision": "main (must pin immutable commit before ingestion)",
+      "reported_size": "54.8 TB full dataset; sample-350BT documented at approximately 388 GB",
+      "reported_license": "ODC-By-1.0 (database license; attribution required)",
+      "status": "priority_candidate_for_bounded_sample",
+      "domains": [
+        "general web text"
+      ],
+      "language": [
+        "en"
+      ],
+      "ingestion_plan": "Prefer sample-350BT as a first bounded tranche; stream or download only the declared config and record exact bytes and source commit.",
+      "rights_caveat": "ODC-By covers the database. Source webpages originated in Common Crawl and retain their own rights; do not describe all underlying page content as individually CC-licensed.",
+      "required_checks": [
+        "pin exact Hub commit and dataset config",
+        "preserve URL/domain/date/source metadata and ODC attribution",
+        "review Common Crawl terms and content rights caveats",
+        "cross-deduplicate against DCLM and current corpus",
+        "run language, quality, PII, safety and contamination filters",
+        "record compressed and expanded byte counts"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "mlfoundations/dclm-baseline-1.0",
+      "url": "https://huggingface.co/datasets/mlfoundations/dclm-baseline-1.0",
+      "revision": "main (must pin immutable commit before ingestion)",
+      "reported_size": "approximately 7.2 TB",
+      "reported_license": "CC-BY-4.0",
+      "status": "priority_candidate_for_bounded_subset",
+      "domains": [
+        "general web text",
+        "English"
+      ],
+      "language": [
+        "en"
+      ],
+      "ingestion_plan": "Select deterministic shards to reach the remaining byte budget after the FineWeb tranche; do not mirror the full 7.2 TB by default.",
+      "rights_caveat": "Dataset card marks CC-BY-4.0 and research-baseline use; preserve attribution and check source terms/provenance before redistribution.",
+      "required_checks": [
+        "pin exact Hub commit and selected shard list",
+        "preserve CC-BY attribution and source metadata",
+        "cross-deduplicate against FineWeb and current corpus",
+        "audit quality, PII, safety and benchmark contamination",
+        "record exact shard hashes and byte counts"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "common-pile/common-pile-v0.1",
+      "url": "https://huggingface.co/common-pile",
+      "revision": "collection snapshot must be pinned per constituent dataset",
+      "reported_size": "approximately 8 TB aggregate",
+      "reported_license": "Public domain and openly licensed; varies by constituent source",
+      "status": "candidate_only_after_per_source_license_audit",
+      "domains": [
+        "books",
+        "science",
+        "reference",
+        "general text"
+      ],
+      "language": [
+        "en",
+        "multi"
+      ],
+      "ingestion_plan": "Select only constituent sources whose individual license and provenance are explicitly documented; never treat the aggregate label as one blanket license.",
+      "rights_caveat": "The aggregate is not a single license. Record the exact license, attribution and source for every constituent.",
+      "required_checks": [
+        "inventory all constituent collections",
+        "exclude any component with unclear, non-commercial or incompatible terms",
+        "pin each source revision",
+        "preserve per-document source/license metadata",
+        "deduplicate and audit content"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "bigcode/the-stack-v1.1",
+      "url": "https://www.bigcode-project.org/docs/about/the-stack/",
+      "revision": "v1.1 (pin exact archive manifest)",
+      "reported_size": "approximately 6 TB near-deduplicated",
+      "reported_license": "193 permissive source-code licenses; per-file original license applies",
+      "status": "candidate_for_code_shard_selection",
+      "domains": [
+        "source code"
+      ],
+      "language": [
+        "358 programming languages"
+      ],
+      "ingestion_plan": "Select a bounded subset by language and file size; retain SPDX license and repository provenance for every file.",
+      "rights_caveat": "Not a blanket MIT/Apache dataset license. Each file remains governed by its original permissive license and attribution requirements. Keep opt-out removals current.",
+      "required_checks": [
+        "use v1.1 license allowlist and exclude weak-copyleft files",
+        "preserve SPDX and repository provenance",
+        "apply current opt-out/removal list",
+        "scan secrets, malware, generated/vendor code and duplicates",
+        "retain per-file license notices"
+      ],
+      "count_toward_admitted_bytes": false
     }
-  ]
+  ],
+  "target_library_bytes": 500000000000,
+  "target_library_display": "500 GB decimal (approximately 465.7 GiB)",
+  "current_local_corpus_bytes": null,
+  "storage_policy": "Do not commit multi-gigabyte corpora to Git history. Keep immutable manifests, source revisions, checksums and curation reports in Git; keep bulk data in an explicitly configured object store or dataset host. GitHub Actions runners/artifacts are for bounded staging and audit, not permanent 500 GB storage."
 }
