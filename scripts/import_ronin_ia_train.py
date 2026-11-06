@@ -48,6 +48,10 @@ def main():
     for rec in records:
         rel=rec["payload"]["path"]; source_path=rec["source"]["path"]; expected=rec["payload"]["sha256"]
         src=paper_root/source_path
+        # Some manifest entries omit the literal leading "# " present in the Git filename.
+        if not src.exists() and not source_path.startswith("# "):
+            prefixed=paper_root/("# "+source_path)
+            if prefixed.exists(): src=prefixed
         verify(src,expected)
         dst=OUT/"ronin-authored-papers"/Path(rel).name; copy(src,dst); total+=dst.stat().st_size
     sources.append({"id":"ronin-authored-papers-v1","records":9,"license":"owner-authorized for internal RONIN training only","split":"train","bytes":total,"status":"staged_train_source_scoped","note":"No external redistribution or commercial rights inferred; nine Markdown files only, README excluded."})
