@@ -23,6 +23,7 @@ SOURCES=[
  {"id":"common-pile/oercommons_filtered","config":None,"license":"per-document CC-BY-4.0 only","license_filter":["creativecommons.org/licenses/by/4.0/"],"limit":5000,"min_rows":100,"fields":["text"],"caveat":"OERCommons includes public-domain, CC-BY and CC-BY-SA teaching materials; only exact CC-BY-4.0 rows pass. Common Pile warns of possible license metadata errors."},
  {"id":"common-pile/news_filtered","config":None,"license":"per-document CC-BY-4.0 only","license_filter":["creativecommons.org/licenses/by/4.0/"],"limit":5000,"fields":["text"],"caveat":"Curated news corpus with per-record license and source URL. Only exact CC-BY-4.0 rows pass; verify publisher/domain rights and attribution; exclude BY-SA, NC, ND and unknown."},
  {"id":"common-pile/cccc","config":None,"license":"per-document CC-BY-4.0 only","license_filter":["creativecommons.org/licenses/by/4.0/"],"limit":5000,"fields":["text"],"caveat":"Creative Commons Common Crawl manually verified top domains and retained domains where CC applies to all text; only exact CC-BY-4.0 per-record licenses pass. Common Pile notes residual license-laundering risk."},
+ {"id":"common-pile/data_provenance_initiative_filtered","config":None,"license":"per-document MIT/Apache/BSD/CC-BY-4.0/CC0 only","license_name_filter":["mit license","apache license 2.0","apache-2.0","bsd 2-clause license","bsd 3-clause license","bsd-2-clause","bsd-3-clause","creative commons attribution 4.0 international","cc-by-4.0","cc0 1.0 universal","cc0-1.0"],"limit":5000,"fields":["text"],"caveat":"DPI manually annotates per-document provenance/license but warns of license laundering and metadata errors. Exact allowlist only; preserve metadata.license, license_url and dataset_id; candidate only pending independent rights and quality review."},
 ]
 EMAIL=re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b")
 PHONE=re.compile(r"(?<!\d)(?:\+?\d[\d .()/-]{7,}\d)(?!\d)")
@@ -50,9 +51,17 @@ def main():
   with target.open("w",encoding="utf-8") as f:
    for row in ds:
     row_metadata=row.get("metadata",{}) if isinstance(row.get("metadata",{}),dict) else {}
-    row_license=str(row.get("license") or row_metadata.get("license",""))
+    raw_license=row.get("license") or row_metadata.get("license","")
+    license_values=raw_license if isinstance(raw_license,list) else [raw_license]
+    row_license="; ".join(str(x).strip() for x in license_values if x is not None)
     allowed=source.get("license_filter",[])
-    if allowed and not any(token in row_license.lower() for token in allowed):
+    name_allowed=source.get("license_name_filter",[])
+    license_text=row_license.lower()
+    if allowed and not any(token in license_text for token in allowed):
+     rejected+=1; continue
+    if name_allowed and not any(token in license_text for token in name_allowed):
+     rejected+=1; continue
+    if (allowed or name_allowed) and not row_license:
      rejected+=1; continue
     chunks=[str(row[k]).strip() for k in source["fields"] if row.get(k)]
     body="\n\n".join(x for x in chunks if x)
