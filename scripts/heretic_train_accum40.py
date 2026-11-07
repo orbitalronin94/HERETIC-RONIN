@@ -55,7 +55,7 @@ def main():
         raise RuntimeError("Accumulation transition is authorized only from micro-step 2600 onward")
 
     OUT.mkdir(exist_ok=True)
-    torch.set_num_threads(4)
+    torch.set_num_threads(2)
     torch.set_num_interop_threads(1)
 
     corpus, corpus_info = build_corpus(
