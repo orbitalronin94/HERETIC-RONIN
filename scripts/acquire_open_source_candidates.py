@@ -2,6 +2,7 @@
 """Acquire bounded, pinned open-source corpus slices as unadmitted candidates."""
 from __future__ import annotations
 import hashlib, json, os, re, sys, time
+from itertools import chain
 from pathlib import Path
 from datasets import load_dataset
 from huggingface_hub import HfApi
@@ -33,6 +34,19 @@ SOURCES=[
  {"id":"facebook/voxpopuli","config":"pl","split":"train","license":"CC0-1.0","verify_license_tag":True,"limit":20000,"fields":["normalized_text"],"required_true_fields":["is_gold_transcript"],"metadata_fields":["language"],"caveat":"Gold transcript text only; exclude audio, speaker_id, gender and all validation/test data. VoxPopuli data is CC0; retain European Parliament provenance and corpus citation."},
  {"id":"common-pile/cccc","optional":True,"config":None,"license":"per-document CC-BY-4.0 only","license_filter":["creativecommons.org/licenses/by/4.0/"],"limit":150000,"fields":["text"],"caveat":"Common Pile manually verified domain-level CC claims but documents residual licensing errors. Exact per-record CC-BY-4.0 URI only; preserve URL/domain/date/license and audit opt-outs, PII, quality and cross-corpus duplication."},
  {"id":"common-pile/data_provenance_initiative_filtered","config":None,"license":"per-document MIT/Apache/BSD/CC-BY-4.0/CC0 only","license_name_filter":["mit license","apache license 2.0","apache-2.0","bsd 2-clause license","bsd 3-clause license","bsd-2-clause","bsd-3-clause","creative commons attribution 4.0 international","cc-by-4.0","cc0 1.0 universal","cc0-1.0"],"limit":50000,"fields":["text"],"caveat":"DPI manually annotates per-document provenance/license but warns of license laundering and metadata errors. Exact allowlist only; preserve metadata.license, license_url and dataset_id; candidate only pending independent rights and quality review."},
+ {"id":"common-pile/pubmed_filtered","config":None,"license":"per-document CC-BY-4.0 or CC0-1.0 only","license_filter":["creativecommons.org/licenses/by/4.0/","creativecommons.org/publicdomain/zero/1.0/"],"limit":20000,"min_rows":1000,"fields":["text"],"caveat":"Large PMC OA corpus. Only exact CC-BY-4.0 or CC0 per-record metadata. Dataset paper warns of license metadata errors; retain article URL/authors/license and keep candidate-only until manual rights/provenance review."},
+ {"id":"open-thoughts/OpenThoughts3-1.2M","config":None,"license":"Apache-2.0","verify_license_tag":True,"limit":15000,"min_rows":1000,"fields":["conversations"],"caveat":"Official card declares Apache-2.0; 1.2M math/code/science rows. Questions include upstream StackExchange and NVIDIA/OpenCodeReasoning sources; Apache dataset tag does not automatically clear third-party prompt rights. Candidate only pending source-level lineage review."},
+ {"id":"open-r1/OpenR1-Math-220k","config":"default","license":"Apache-2.0","verify_license_tag":True,"limit":12000,"min_rows":1000,"fields":["problem","solution","answer"],"caveat":"Official card declares Apache-2.0. Solutions are generated from NuminaMath 1.5 problems; inspect upstream rights and per-row source metadata before admission. Only default train config; candidate only."},
+ {"id":"IFM/Code-Reasoning","config":"code-no-thinking","license":"Apache-2.0","verify_license_tag":True,"limit":12000,"min_rows":1000,"fields":["text"],"caveat":"Official card declares Apache-2.0 and train-only text; source lineage and generated-content provenance are not fully enumerated. Candidate only pending manual sample and rights review."},
+ {"id":"IFM/Math-Reasoning","config":"math-dialogue","license":"Apache-2.0","verify_license_tag":True,"limit":12000,"min_rows":1000,"fields":["text"],"caveat":"Official card declares Apache-2.0 and train-only text; inspect dialogue quality, correctness and upstream/generated-data provenance. Candidate only pending manual review."},
+ {"id":"docketx/us-caselaw-fed-district","config":"default","license":"CC0-1.0","verify_license_tag":True,"limit":100000,"min_rows":1000,"fields":["text"],"metadata_fields":["id","jurisdiction","title","source","license","citation","court","date"],"caveat":"1.3M-row district-court opinion slice from Free Law Project/CourtListener bulk export. Dataset card identifies U.S. judicial opinions as public-domain government edicts and the packaging as CC0. Preserve citation/court/date; exclude non-opinion additions; legal text is domain-specific and not a substitute for legal advice."},
+ {"id":"crumb/openstax-text","config":None,"license":"CC-BY-4.0","verify_license_tag":True,"limit":50000,"min_rows":1000,"fields":["text"],"caveat":"3.35M text rows from 76 OpenStax textbooks. Dataset card is CC-BY-4.0 and embedded textbook pages carry attribution, but OpenStax licensing varies by title/edition; verify each book-level license and retain attribution before admission. Candidate only."},
+ {"id":"PleIAs/common_corpus","config":None,"license":"per-document exact allowlist: CC0/Public Domain/CC-BY-4.0/MIT/Apache-2.0/Open Parliament Licence v3.0/Licence Ouverte","license_exact_allowlist":["CC0","CC0-1.0","Public Domain","US Federal Public Domain","CC-BY-4.0","CC-BY 4.0","MIT","MIT License","Apache-2.0","Apache License 2.0","Open Parliament Licence v3.0","Licence Ouverte"],"limit":20000,"min_rows":1000,"fields":["text"],"metadata_fields":["identifier","collection","open_type","license","date","title","creator","language","word_count","token_count"],"caveat":"Common Corpus reports 2.27T tokens across books, newspapers, science, government, code and semantic data, with per-document license/provenance metadata. Only exact license strings in the allowlist are candidates; CC-BY-SA, NC, ND, unknown and mixed labels are excluded. Preserve identifier, collection, open_type, license, creator, language and date. Candidate only pending manual rights and quality review."},
+ {"id":"PleIAs/Spanish-PD-Books","config":None,"data_files":["spanish_pd_100.parquet"],"file_tag":"spanish-pd-books-100","license":"EU public domain claimed by publisher (author death >70 years)","limit":2500,"min_rows":1000,"fields":["text"],"metadata_fields":["identifier","creator","title","publication_date","word_count"],"caveat":"One pinned 583MB parquet shard from a 52.1GB collection / 302,640 Spanish texts / 13.9B words, aggregated from BDH and Internet Archive. Preserve creator/title/publication metadata. Dataset card asserts EU public domain based on author death >70 years; verify sampled works and OCR. Candidate only."},
+ {"id":"PleIAs/Spanish-PD-Books","config":None,"data_files":["spanish_pd_101.parquet"],"file_tag":"spanish-pd-books-101","license":"EU public domain claimed by publisher (author death >70 years)","limit":2500,"min_rows":1000,"fields":["text"],"metadata_fields":["identifier","creator","title","publication_date","word_count"],"caveat":"One pinned 593MB parquet shard from a 52.1GB collection / 302,640 Spanish texts / 13.9B words, aggregated from BDH and Internet Archive. Preserve creator/title/publication metadata. Dataset card asserts EU public domain based on author death >70 years; verify sampled works and OCR. Candidate only."},
+ {"id":"PleIAs/English-PD","config":None,"data_files":["english_pd_0.parquet"],"file_tag":"english-pd-0","license":"Public domain claimed by publisher (titles pre-1884; EU author death >70 years)","limit":1500,"min_rows":500,"fields":["text"],"metadata_fields":["identifier","title","publication_date","word_count"],"caveat":"One pinned 497MB parquet shard from a 362GB collection / 736,214 titles / 78.6B words. Publisher states retained titles published before 1884 and EU public-domain criteria. OCR has known noise; preserve creator/title/date where present and inspect rights/OCR. Candidate only."},
+ {"id":"PleIAs/English-PD","config":None,"data_files":["english_pd_1.parquet"],"file_tag":"english-pd-1","license":"Public domain claimed by publisher (titles pre-1884; EU author death >70 years)","limit":1500,"min_rows":500,"fields":["text"],"metadata_fields":["identifier","title","publication_date","word_count"],"caveat":"One pinned 447MB parquet shard from a 362GB collection / 736,214 titles / 78.6B words. Publisher states retained titles published before 1884 and EU public-domain criteria. OCR has known noise; preserve creator/title/date where present and inspect rights/OCR. Candidate only."},
+ {"id":"PleIAs/Spanish-PD-Newspapers","config":None,"data_files":["default/train/0041.parquet"],"file_tag":"spanish-pd-newspapers-0041","license":"EU public domain claimed by publisher (author death >70 years)","limit":2500,"min_rows":500,"fields":["text"],"metadata_fields":["identifier","creator","title","publication_date","word_count"],"caveat":"One pinned 69.6MB parquet shard from a 48.6GB collection / 247,491 texts / 2.7B words. Aggregated from BDH and Internet Archive; publisher asserts EU public-domain status. Verify publication/title/creator dates, newspaper provenance and OCR quality. Candidate only."},
 ]
 EMAIL=re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b")
 PHONE=re.compile(r"(?<!\d)(?:\+?\d[\d .()/-]{7,}\d)(?!\d)")
@@ -56,14 +70,30 @@ def main():
     raise RuntimeError(f"{repo}: none of required official Hub license tags found: {sorted(expected_any)}; found {sorted(tags)}")
    cfg=source["config"]
    split=source.get("split","train")
-   ds=load_dataset(repo,cfg,split=split,streaming=True,revision=revision)
+   if source.get("data_files"):
+    remote_files=[f"hf://datasets/{repo}@{revision}/{name}" for name in source["data_files"]]
+    ds=load_dataset("parquet",data_files={"train":remote_files},split=split,streaming=True)
+   else:
+    ds=load_dataset(repo,cfg,split=split,streaming=True,revision=revision)
    available_columns=set(ds.features.keys()) if ds.features is not None else set(ds.column_names or [])
+   # Some JSON/JSON.GZ streaming datasets expose neither Features nor column_names.
+   # Infer their schema from the first actual row and chain it back into the stream.
+   if not available_columns:
+    iterator=iter(ds)
+    try:
+     first_row=next(iterator)
+    except StopIteration:
+     raise RuntimeError(f"{repo}/{cfg or 'default'}: empty train split")
+    if not isinstance(first_row,dict):
+     raise RuntimeError(f"{repo}/{cfg or 'default'}: first streamed row is not an object")
+    available_columns=set(first_row.keys())
+    ds=chain((first_row,),iterator)
    required_columns=list(dict.fromkeys(source["fields"]+source.get("required_true_fields",[])+source.get("metadata_fields",[])))
    missing_columns=[column for column in required_columns if column not in available_columns]
    if missing_columns:
     message=f"{repo}/{cfg or 'default'}: missing required columns {missing_columns}; available={sorted(available_columns)}"
     if source.get("optional"):
-     manifest.append({"source":repo,"revision":revision,"config":cfg or "default","split":split,"declared_license":source["license"],"rows_written":0,"rows_rejected":0,"bytes":0,"sha256":None,"status":"skipped_schema_mismatch","caveat":message,"checks":{"streamed_train_only":True,"cross_source_near_duplicate":"NOT_RUN","global_holdout_contamination":"NOT_RUN","human_sample_review":"NOT_RUN"}})
+     manifest.append({"source":repo,"revision":revision,"config":cfg or "default","selected_files":source.get("data_files",[]),"split":split,"declared_license":source["license"],"rows_written":0,"rows_rejected":0,"bytes":0,"sha256":None,"status":"skipped_schema_mismatch","caveat":message,"checks":{"streamed_train_only":True,"cross_source_near_duplicate":"NOT_RUN","global_holdout_contamination":"NOT_RUN","human_sample_review":"NOT_RUN"}})
      print(json.dumps(manifest[-1],ensure_ascii=False),flush=True)
      continue
     raise RuntimeError(message)
@@ -71,10 +101,12 @@ def main():
    # The payload projection still excludes all unrequested columns (notably audio).
    optional_rights_columns=[column for column in ("metadata","license") if column in available_columns and (source.get("license_filter") or source.get("license_name_filter"))]
    selected_columns=list(dict.fromkeys(required_columns+optional_rights_columns))
-   ds=ds.select_columns(selected_columns)
+   if hasattr(ds,"select_columns") and getattr(ds,"features",None) is not None:
+    ds=ds.select_columns(selected_columns)
    safe_config=(cfg or "default").replace("/","__")
    safe_split=split.replace("/","__").replace(".","_")
-   target=OUT/(repo.replace("/","__")+"__"+safe_config+"__"+safe_split+".jsonl")
+   file_tag=("__"+source["file_tag"]) if source.get("file_tag") else ""
+   target=OUT/(repo.replace("/","__")+"__"+safe_config+file_tag+"__"+safe_split+".jsonl")
    seen=set(); written=0; rejected=0; started=time.time()
    with target.open("w",encoding="utf-8") as f:
     for row in ds:
@@ -89,20 +121,35 @@ def main():
      license_text=row_license.lower()
      if allowed and not any(token in license_text for token in allowed):
       rejected+=1; continue
+     if source.get("license_exact_allowlist") and license_text.strip().casefold() not in {x.casefold() for x in source["license_exact_allowlist"]}:
+      rejected+=1; continue
      if name_allowed and not any(token in license_text for token in name_allowed):
       rejected+=1; continue
      if (allowed or name_allowed) and not row_license:
       rejected+=1; continue
-     chunks=[str(row[k]).strip() for k in source["fields"] if row.get(k)]
+     def render_value(value):
+      if isinstance(value,str): return value.strip()
+      if isinstance(value,list):
+       rendered=[]
+       for item in value:
+        if isinstance(item,dict):
+         role=item.get("from",item.get("role",""))
+         content=item.get("value",item.get("content",""))
+         if content: rendered.append((str(role)+": " if role else "")+str(content))
+        elif item is not None: rendered.append(str(item))
+       return "\n\n".join(rendered)
+      if isinstance(value,dict): return json.dumps(value,ensure_ascii=False,sort_keys=True)
+      return str(value).strip() if value is not None else ""
+     chunks=[render_value(row.get(k)) for k in source["fields"]]
      body="\n\n".join(x for x in chunks if x)
      normalized=re.sub(r"\s+"," ",body).strip()
      if len(body)<160 or len(body)>200000 or normalized in seen or EMAIL.search(body) or PHONE.search(body):
       rejected+=1; continue
      seen.add(normalized)
-     provenance={k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length","id","source","paper_id","title","abstract","primary_category","main_file","resolution","annotation_type","language_code","author","book_url","institution","subject","is_gold_transcript") if k in row}
-     for k in ("license","url","authors","author","site","journal","provenance","license_url","dataset_id","language","annotation_type","book_url","title","institution","subject"):
+     provenance={k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length","id","source","paper_id","title","abstract","primary_category","main_file","resolution","annotation_type","language_code","author","book_url","institution","subject","is_gold_transcript","collection","open_type","creator","publication_date","word_count","identifier","jurisdiction","citation","court","date","domain","difficulty","problem_type","question_type","token_count") if k in row}
+     for k in ("license","url","authors","author","site","journal","provenance","license_url","dataset_id","language","annotation_type","book_url","title","institution","subject","collection","open_type","creator","publication_date","word_count","identifier","jurisdiction","citation","court","date"):
       if k in row_metadata: provenance["record_"+k]=row_metadata[k]
-     record={"text":body,"source":repo,"revision":revision,"config":cfg or "default",
+     record={"text":body,"source":repo,"revision":revision,"config":cfg or "default","selected_files":source.get("data_files",[]),
              "license":row_license or source["license"],"source_metadata":provenance}
      f.write(json.dumps(record,ensure_ascii=False)+"\n"); written+=1
      if written>=source["limit"]: break

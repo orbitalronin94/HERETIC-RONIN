@@ -19,7 +19,7 @@ Su principio es sencillo: **experimentar sin reverencia, medir sin indulgencia**
 | Estructura | 10 shards JSONL de 5.000 filas |
 | Dominios actuales | Matemáticas, álgebra, lógica, programación, física, química, probabilidad, estadística, economía e ingeniería |
 | Naturaleza del lote actual | Sintético y procedimental; no corpus gold |
-| Corpus efectivo auditado | 256.237 documentos tras excluir 68 duplicados; 680.665.972 bytes (649,0 MiB) usados por el entrenamiento, run [42338551408](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42338551408) |
+| Corpus admitido tras auditoría global | 260.971 documentos únicos (261.039 examinados, 68 excluidos); 703.593.871 bytes de texto admitidos: base RONIN-IA 680.665.972 + Cosmopedia curada 22.927.899. Auditoría combinada [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). |
 | Objetivo de biblioteca | 500 GB de datos admitidos y trazables (objetivo, aún no alcanzado) |
 | Promoción de datos | Nunca automática por volumen |
 | Evaluación | Holdout separado; nunca se incorpora al entrenamiento |
@@ -31,12 +31,13 @@ Su principio es sencillo: **experimentar sin reverencia, medir sin indulgencia**
 La biblioteca versionada se organiza en `data/`:
 
 - `data/sources/registry.json`: catálogo de fuentes, licencias, revisiones y estado de curación.
+- [`data/datasets/README.md`](data/datasets/README.md): inventario operativo de datasets admitidos, candidatos y cuarentena.
 - `data/drosophila/`: corpus experimental local actualmente versionado.
 
 - `data/drosophila/parts/`: shards JSONL de entrenamiento.
 - `data/drosophila/README_01301_51300.md`: ficha y limitaciones del lote sintético de 50.000 filas.
 
-**Drosophila es el nombre del corpus experimental, no un filtro temático biológico.** La biblioteca es generalista y multidominio. La cola de curación vigente está en [`data/drosophila/CURATION_QUEUE_2026-11-06.md`](data/drosophila/CURATION_QUEUE_2026-11-06.md); las fuentes, licencias declaradas y gates de adquisición se registran en [`data/sources/registry.json`](data/sources/registry.json). Los manifiestos source-scoped de RONIN-IA se recuperaron con hashes verificados, se auditaron globalmente y ya alimentan el corpus efectivo. El informe de auditoría [run 42288107561](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42288107561) y el entrenamiento [run 42338551408](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42338551408) registran 256.237 documentos únicos tras excluir 68 duplicados y 680.665.972 bytes de texto. La comprobación de 120 preguntas es un diagnóstico sintético, no un benchmark externo. Papers conserva alcance de autorización interna únicamente.
+**Drosophila es el nombre del corpus experimental, no un filtro temático biológico.** La biblioteca es generalista y multidominio. La cola de curación vigente está en [`data/drosophila/CURATION_QUEUE_2026-11-06.md`](data/drosophila/CURATION_QUEUE_2026-11-06.md); las fuentes, licencias declaradas y gates de adquisición se registran en [`data/sources/registry.json`](data/sources/registry.json). Los manifiestos train-only de RONIN-IA se recuperaron con hashes verificados. La auditoría global combinada [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447) examinó 261.039 documentos (256.305 de la base RONIN-IA + 4.734 de Cosmopedia v0.1), excluyó 68 extremos duplicados y dejó 260.971 documentos admitidos. Los 4.734 textos Cosmopedia aportan 22.927.899 bytes; sumados a los 680.665.972 bytes de la base, el inventario admitido asciende a 703.593.871 bytes. La comprobación de 120 preguntas es un diagnóstico sintético, no un benchmark externo. Papers conserva alcance de autorización interna únicamente.
 
 La biblioteca crecerá hacia **500 GB**, no hacia un número fijo de ejemplos. El tamaño anunciado por una fuente no equivale a bytes descargados ni a bytes admitidos. Mantendremos contadores separados para bytes remotos anunciados, bytes descargados, bytes íntegros, bytes tras deduplicación y bytes finalmente admitidos. Cada nuevo lote debe conservar, como mínimo:
 
@@ -133,7 +134,7 @@ El inventario de origen de RONIN-IA (6-11-2026) declara **286.464 documentos tra
 | NASA NTRS file-reviewed | 2 train (+4 retenidos) | Solo payloads cuyo hash/bytes coinciden con la atestación |
 | Papers propios | 9 | Autorización para entrenamiento interno; no implica redistribución |
 
-Estos 286.464 documentos son **elegibles por partición y manifiesto de origen**, no una autorización global ya superada. En el último estado auditado, G-0 global seguía FAIL y los controles globales de near-duplicates y contaminación de holdout estaban pendientes. El importador ya ha materializado 286.464 registros en el [artefacto train-only 42283514919](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42283514919) (288.668.608 bytes de artefacto). Incorpora los 8.498 registros Mathlib4 y los dos NASA train exactos. Cuatro NASA siguen retenidos por mismatch de atestación/payload; no se fuerzan a train. El estado y los bloqueos exactos se mantienen en [data/imports/README.md](data/imports/README.md).
+Estos 286.464 documentos son **elegibles por partición y manifiesto de origen**. El bloqueo global inicial quedó superado para el corpus exacto incluido en la auditoría combinada [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447): train-only RONIN-IA más Cosmopedia v0.1 curada. Esta autorización es interna y experimental, no amplía derechos de redistribución ni autoriza fuentes candidatas no auditadas. El importador ya ha materializado 286.464 registros en el [artefacto train-only 42283514919](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42283514919) (288.668.608 bytes de artefacto). Incorpora los 8.498 registros Mathlib4 y los dos NASA train exactos. Cuatro NASA siguen retenidos por mismatch de atestación/payload; no se fuerzan a train. El estado y los bloqueos exactos se mantienen en [data/imports/README.md](data/imports/README.md).
 
 **Regla de entrenamiento:** se heredan todas las particiones train que superen sus gates; validation, test y holdout permanecen aislados. No se reconstruyen splits perdidos a partir del dataset upstream ni se sustituyen hashes por otros calculados después.
 
@@ -162,19 +163,13 @@ Las cuatro revisiones inmutables y los SHA-256 están en `data/sources/registry.
 
 La licencia de una colección **no borra los derechos de cada documento**. ODC-By no convierte automáticamente cada página web en obra libre; Common Pile no tiene una licencia universal; The Stack conserva licencias por archivo. Ningún candidato cuenta como admitido por aparecer en esta tabla. La fuente primaria, su revisión inmutable, split, atribución y SHA-256 deben quedar registrados antes de usarlo.
 
-### Continuación del estudiante 500M hasta 250.000 pasos
+### Entrenamiento experimental actual — 500 pasos
 
-El punto de partida es el checkpoint **HERETIC 500M multidomain distilled, step 600**, del [experimento base](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42227134702). El nuevo objetivo es alcanzar el **step global 250.000** (249.400 pasos adicionales), no declarar capacidad por pérdida de entrenamiento.
+El piloto [run 42358300901](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42358300901) ejecuta 500 pasos de optimizador en tramos reanudables de 50. Comenzó antes de que Cosmopedia v0.1 superara la auditoría global, por lo que **no debe contabilizarse como entrenamiento con Cosmopedia**: consume el corpus base RONIN-IA ya autorizado (680.665.972 bytes). La admisión de Cosmopedia queda disponible para una siguiente ejecución, que deberá descargar el artefacto curado, verificar su SHA-256 y consumir el manifiesto/auditoría correspondientes.
 
-**Datos conectados al entrenamiento:** el artefacto train-only de RONIN-IA [run 42283514919](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42283514919), SHA-256 ZIP `8a1e6be6a02b97b24681f2d34909cf4562213e84d0b9824f4ebca64a279e9cef`. Incluye CoVoST2 (270.244), ScienceVerse (7.103), Mathlib4 (8.498), literatura española, NASA file-reviewed (2) y Papers propios (9), siempre solo particiones train. Se excluyen validation/test/holdout, los 20.000 candidatos open-source no revisados y el corpus Drosophila sintético.
+La auditoría combinada [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447) incluyó 4.734 filas Cosmopedia y 256.305 registros base. Detectó 9 grupos/hits exactos y 68 pares SimHash; los 68 índices excluidos pertenecen al tramo base anterior al inicio del bloque Cosmopedia, por lo que los 4.734 registros curados quedaron dentro del subconjunto autorizado. No hubo coincidencias exactas con las 120 preguntas sintéticas. Esto no demuestra ausencia semántica de contaminación ni certifica la exactitud de cada afirmación matemática.
 
-El importador conserva `active_training_authorized=false` porque los gates globales estaban pendientes. Por ello, la workflow nueva no entrena hasta que el informe global exact/near-duplicate/holdout autorice el artefacto. No se convierte el estado source-scoped en una aprobación global por conveniencia.
-
-La workflow [train-real-corpus-250k.yml](.github/workflows/train-real-corpus-250k.yml) encadena tramos de hasta 2.000 pasos, conserva checkpoint y estado AdamW entre tramos y apunta al step 250.000. El coste medido previo fue 500 pasos en unos 3.840 segundos; por tanto, 249.400 pasos pueden requerir del orden de **22 días de CPU**, además de transferencias de checkpoints. Cada tramo tiene límite de seis horas y se reanuda desde un artefacto verificable. La ejecución real y su progreso se consultan en GitHub Actions.
-
-La misma batería diagnóstica de 120 preguntas (20 por dominio) se guarda antes del primer paso y después del step 250.000, con las 120 predicciones completas y exactitud por dominio. El checkpoint final no se promociona automáticamente: requiere inspección del holdout, regresiones por dominio y hashes. La mejora en este holdout pequeño solo habilita una evaluación más amplia.
-
-**Auditoría aplicada antes de entrenar:** [run 42288107561](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42288107561) examinó 256.305 segmentos de las particiones reales; detectó 9 duplicados exactos y 68 pares SimHash cercanos, excluyó determinísticamente 68 índices globales y no encontró coincidencias exactas con las 120 preguntas de holdout. El informe v2 autoriza el subconjunto limpio; no convierte los derechos source-scoped en permiso de redistribución general. La cadena de entrenamiento está lanzada en [run 42288969968](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42288969968); el primer tramo parte del checkpoint step 600. El filtro de longitud del lector se ha alineado con la auditoría para conservar exactamente el mismo inventario de segmentos.
+Los próximos workflows deben mantener la comparación pareada antes/después, hashes de checkpoint, evaluación por dominio y separación estricta de holdout. No se promociona un checkpoint por pérdida de entrenamiento o por el mero hecho de haber ingerido más texto.
 
 La cifra de 500 GB sigue siendo un objetivo de biblioteca, no una cantidad ya descargada. Los workflows y sus artefactos son la fuente de verdad; este README no declara un entrenamiento completo antes de que finalicen todos los tramos.
 
@@ -205,4 +200,14 @@ La adquisición también corrige un error de sintaxis Python (true en lugar de T
 
 ## Corpus efectivo auditado — 2026-11-07
 
-El primer lote source-scoped ya no está solo en staging: el workflow de entrenamiento consumió **256.237 documentos y 680.665.972 bytes (649,0 MiB)** después de excluir 68 extremos duplicados exactos o aproximados. Distribución y bytes por fuente están en `data/sources/registry.json`; auditoría reproducible: [run 42288107561](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42288107561). Entrenamiento que consumió el corpus: [run 42338551408](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42338551408). Los 120 ítems de holdout usados por esta auditoría son sintéticos y solo sirven como diagnóstico; no se presentan como benchmark público. Las licencias y autorizaciones siguen limitadas por fuente, y los nueve Papers son solo para entrenamiento interno autorizado por el propietario.
+El corpus base ya consumido por entrenamientos anteriores comprende **256.237 documentos y 680.665.972 bytes** tras la auditoría [42288107561](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42288107561). La auditoría combinada posterior [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447) añadió Cosmopedia v0.1 curada: 4.734 documentos y 22.927.899 bytes. Resultado global: 261.039 examinados, 68 excluidos y **260.971 documentos / 703.593.871 bytes admitidos**. El piloto de 500 pasos [42358300901](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42358300901) arrancó antes de esa admisión y no consumió Cosmopedia. Los 120 ítems de holdout son un diagnóstico sintético, no un benchmark público; los derechos y autorizaciones siguen limitados por fuente.
+
+
+### Nueva tanda de corpus documental (en adquisición, no admitida)
+
+La siguiente ampliación incorpora tres candidatos de alto volumen: Spanish-PD-Books (52,1 GB publicados; se fijan dos shards (1,18 GB comprimidos) para una primera muestra), opiniones judiciales CourtListener/docketx (8,47 GB; CC0 declarado y opiniones públicas) y 76 libros OpenStax (159 MB; CC-BY-4.0 declarado por el dataset, pendiente de comprobar la licencia por libro/edición). Sus registros y gates están en `data/sources/registry.json`; los artefactos se separarán por fuente. **No se suman al corpus entrenable hasta superar revisión humana, procedencia/licencia, deduplicación global y control de holdout.**
+
+
+### Candidatos de escala y patrimonio documental
+
+Se incorporan a la adquisición experimental Common Corpus de Pleias (2,27 billones de tokens declarados, con licencia/procedencia por documento y filtro exacto), English-PD (362 GB; títulos pre-1884 según la ficha) y Spanish-PD-Newspapers (48,6 GB; corpus histórico OCR). Se toman shards limitados para inspección, no el corpus entero. Ninguno cuenta como entrenable hasta revisión de derechos por obra, OCR, muestras, deduplicación global y holdout. Detalles: `data/datasets/README.md` y `data/sources/registry.json`.

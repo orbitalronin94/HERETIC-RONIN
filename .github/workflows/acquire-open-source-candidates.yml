@@ -15,10 +15,6 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: heretic-open-source-acquisition
-  cancel-in-progress: false
-
 jobs:
   validate:
     if: github.event_name == 'pull_request'
@@ -29,10 +25,13 @@ jobs:
         with:
           python-version: "3.11"
       - name: Compile acquisition script without downloading datasets
-        run: python -m py_compile scripts/acquire_open_source_candidates.py
+        run: python -m py_compile scripts/acquire_open_source_candidates.py scripts/review_candidate_samples.py
 
   acquire:
     if: github.event_name != 'pull_request'
+    concurrency:
+      group: heretic-open-source-acquisition
+      cancel-in-progress: false
     runs-on: ubuntu-24.04
     timeout-minutes: 360
     env:
@@ -53,6 +52,129 @@ jobs:
 
       - name: Stream bounded train-only slices and pin source revisions
         run: python scripts/acquire_open_source_candidates.py
+
+      - name: Compile and manually sample candidate rows for human review
+        run: |
+          python -m py_compile scripts/acquire_open_source_candidates.py scripts/review_candidate_samples.py
+          python scripts/review_candidate_samples.py
+
+      - name: Upload PubMed CC-BY/CC0-filtered candidate shard
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-pubmed-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/common-pile__pubmed_filtered__default__train.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+
+      - name: Upload OpenThoughts3 candidate shard
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-openthoughts3-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/open-thoughts__OpenThoughts3-1.2M__default__train.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+
+      - name: Upload OpenR1 Math candidate shard
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-openr1-math-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/open-r1__OpenR1-Math-220k__default__train.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+
+      - name: Upload IFM reasoning candidate shards
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-ifm-reasoning-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/IFM__Code-Reasoning__code-no-thinking__train.jsonl
+            staging/open-source-candidates/IFM__Math-Reasoning__math-dialogue__train.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+
+      - name: Upload CourtListener public-domain caselaw candidate shard
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-courtlistener-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/docketx__us-caselaw-fed-district__default__train.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+
+      - name: Upload OpenStax textbook candidate shard
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-openstax-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/crumb__openstax-text__default__train.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+
+      - name: Upload Spanish public-domain books candidate shards
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-spanish-pd-books-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/PleIAs__Spanish-PD-Books__default__spanish-pd-books-*.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+      - name: Upload Common Corpus candidate shard
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-common-corpus-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/PleIAs__common_corpus__default__train.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+
+      - name: Upload English public-domain books candidate shard
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-english-pd-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/PleIAs__English-PD__default__english-pd-*.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+
+      - name: Upload Spanish public-domain newspapers candidate shard
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-spanish-pd-newspapers-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/PleIAs__Spanish-PD-Newspapers__default__spanish-pd-newspapers-*.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+      - name: Upload deterministic manual review samples
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-manual-samples-${{ github.run_id }}
+          path: staging/open-source-candidates/MANUAL-SAMPLE-REVIEW.json
+          if-no-files-found: error
+          compression-level: 1
+          retention-days: 90
 
       - name: Upload candidate corpus and provenance manifest
         id: upload-candidates
