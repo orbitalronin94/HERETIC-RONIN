@@ -1,0 +1,68 @@
+name: HERETIC — curate and globally audit Cosmopedia v0.1
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/audit-cosmopedia-candidate.yml"
+      - "scripts/curate_cosmopedia.py"
+      - "scripts/audit_heretic_training_corpus.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Download exact pinned source and candidate artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p incoming out
+          curl --fail --location --retry 4 \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/artifacts/13536786501/zip" \
+            -o incoming/ronin-ia-train.zip
+          echo "8a1e6be6a02b97b24681f2d34909cf4562213e84d0b9824f4ebca64a279e9cef  incoming/ronin-ia-train.zip" | sha256sum --check
+          curl --fail --location --retry 4 \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/artifacts/13535564284/zip" \
+            -o incoming/open-source-candidates.zip
+          echo "49b4992b88debc6757c653ba9db61bdf5c04fce3d11f1c4f4d8f4ffcfc8b9878  incoming/open-source-candidates.zip" | sha256sum --check
+
+      - name: Curate pinned Cosmopedia v0.1 auto_math_text records
+        run: |
+          python scripts/curate_cosmopedia.py \
+            --bundle incoming/open-source-candidates.zip \
+            --output incoming/cosmopedia-curated.jsonl \
+            --manifest out/COSMOPEDIA-CURATION-MANIFEST.json
+
+      - name: Run global exact, near-duplicate and 120-question holdout audit
+        run: python scripts/audit_heretic_training_corpus.py --cosmopedia-jsonl incoming/cosmopedia-curated.jsonl
+
+      - name: Publish curated candidate and global audit evidence
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-cosmopedia-global-audit-${{ github.run_id }}
+          path: |
+            incoming/cosmopedia-curated.jsonl
+            out/COSMOPEDIA-CURATION-MANIFEST.json
+            reports/corpus-audit/GLOBAL-CORPUS-AUDIT.json
+          if-no-files-found: error
+          compression-level: 1
+          retention-days: 90
