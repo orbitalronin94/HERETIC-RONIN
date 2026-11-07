@@ -129,13 +129,59 @@ El recolector ahora rechaza filas German Commons con licencia desconocida, combi
 **Fuente descartada deliberadamente:** Institutional Books / Harvard Library anuncia 983.004 libros y 242B tokens, pero su ficha remite a términos de acceso anticipado; Harvard limita su Public Domain Corpus a usos sin ánimo de lucro, educativos y de investigación. No lo incorporamos a la cola de entrenamiento general hasta que los términos permitan expresamente ese uso. No cuenta como material candidato ni admitido.
 
 
-## Estado de adquisición — actualización 2026-11-07 12:07 CET
+## Estado de adquisición — actualización 2026-11-07 14:20 CET
 
-- PR #21 (expansión de fuentes y adquisición por artefactos separados) y PR #22 (portugués brasileño y German Commons) están mergeadas.
-- La adquisición antigua [run 42357699240](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42357699240) sigue ejecutando su paso de streaming; todavía no ha publicado artefactos.
-- [Run 42366084348](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42366084348) terminó cancelado antes de producir artefactos.
-- [Run 42366207131](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42366207131) permanece pendiente por la exclusión mutua del trabajo de adquisición.
-- Por tanto, las nuevas fuentes de PR #21 y #22 aún aportan **0 bytes admitidos**. No se atribuye al entrenamiento ningún candidato no descargado y auditado.
-- El inventario admitido continúa en **260.971 documentos / 703.593.871 bytes** hasta una nueva auditoría global satisfactoria.
+### Inventario admitido
 
-No se debe lanzar otra adquisición concurrente con el mismo grupo de exclusión. Cuando termine el proceso activo, la siguiente ejecución debe usar la rama principal actualizada, publicar un artefacto por fuente y pasar cada lote por muestra humana, deduplicación global y holdout antes de cambiar su estado a `admitted`.
+- **260.971 documentos únicos**
+- **703.593.871 bytes admitidos** (671,0 MiB)
+- **0,1407 %** del objetivo de 500.000.000.000 bytes
+- **Nuevas admisiones en esta ejecución: 0 documentos / 0 bytes**
+
+El último global audit autorizado sigue siendo [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Su alcance es el corpus train-only RONIN-IA y la tranche Cosmopedia v0.1 curada que se suministró expresamente; no autoriza ningún otro candidato.
+
+### Lote candidato terminado — run 42357699240
+
+[Run 42357699240](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42357699240) terminó con fallo del umbral de escala, después de publicar el artefacto para inspección:
+
+| Métrica | Resultado |
+|---|---:|
+| Filas candidatas en manifiesto | 531.963 |
+| Bytes JSONL candidatos | 1.670.605.627 |
+| Objetivo de adquisición candidato | 6.800.000.000 bytes |
+| Escala frente al corpus admitido anterior | 2,45× |
+| Artefacto ZIP | 749.837.081 bytes |
+| Artifact ID | `13573027505` |
+| SHA-256 del artefacto | `e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de` |
+| Bytes nuevos admitidos | **0** |
+
+[Descargar/ver artefacto en Actions](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42357699240/artifacts/13573027505). El manifiesto completo y los SHA-256 de cada JSONL están registrados en `data/sources/registry.json` bajo `candidate_acquisitions`.
+
+| Fuente/configuración train | Filas candidatas | Bytes JSONL | Decisión actual |
+|---|---:|---:|---|
+| [FineWeb-Edu](https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu) `sample-10BT` | 100.000 | 424.092.222 | Cuarentena: ODC-By cubre la base de datos; derechos de páginas Common Crawl siguen sin resolverse |
+| [OpenWebMath](https://huggingface.co/datasets/open-web-math/open-web-math) | 100.000 | 456.695.086 | Cuarentena: derechos de las páginas subyacentes y términos Common Crawl |
+| [Cosmopedia v0.1](https://huggingface.co/datasets/HuggingFaceTB/cosmopedia) `auto_math_text` raw | 50.000 | 234.364.804 | Candidato bruto; no sustituye ni amplía la tranche curada de 4.734 ya admitida y exige deduplicación |
+| [Cosmopedia v2](https://huggingface.co/datasets/HuggingFaceTB/smollm-corpus) `cosmopedia-v2` | 50.000 | 278.500.947 | Cuarentena: linaje mixto y repetición de plantillas |
+| [Aya](https://huggingface.co/datasets/CohereLabs/aya_dataset) `default` | 25.000 | 42.931.184 | Candidato: Apache-2.0 verificado en el Hub; faltan PII, linaje y revisión multilingüe |
+| [Wikidata](https://huggingface.co/datasets/philippesaade/wikidata) | 50.000 | 165.781.647 | Candidato CC0; faltan calidad, procedencia, deduplicación y holdout |
+| [LibriSpeech](https://huggingface.co/datasets/openslr/librispeech_asr) `train.clean.360` | 50.000 | 19.208.974 | Candidato CC-BY-4.0; texto solo y atribución pendiente de auditoría |
+| [VoxPopuli](https://huggingface.co/datasets/facebook/voxpopuli) es/en/de/fr/it/pl | 106.963 | 49.030.763 | Candidato CC0; solo transcripciones gold de train, falta revisión por idioma |
+
+Todos los shards anteriores tienen revisión inmutable, split y SHA-256 individual en el registro. **No superaron** la revisión humana, deduplicación cruzada, contaminación global de holdout ni gates finales de derechos/procedencia; no tienen `training_eligible` ni autorización para entrenamiento. Cosmopedia v0.1 raw comparte fuente/config con la tranche curada anterior: sus 234.364.804 bytes no se suman como material nuevo admitido.
+
+### Fuentes que no produjeron un shard candidato válido
+
+- **Schema sin columna `text` utilizable:** PubMed filtered, CCCC, Data Provenance Initiative, StackExchange, PressBooks, LibreTexts, DOAB, OERCommons y News. No se relaja el esquema ni se infiere licencia desde el agregador.
+- **arXiv complete:** solo 6.650 filas utilizables, por debajo del mínimo configurado; se deja fuera del total candidato.
+- **LibriSpeech `train.clean.100`:** 21.038 transcripciones utilizables, por debajo del mínimo configurado; solo `train.clean.360` produjo el shard de 50.000 filas.
+- El umbral de 6,8 GB no se alcanzó. El fallo del workflow no convierte los archivos del artefacto en datos admitidos.
+
+### Estado de los siguientes workflows y corrección de seguridad
+
+- [Run 42366207131](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42366207131): seguía en streaming; se ejecuta sobre `86348b6c5d5215416c894abdda38ca8855abd06b`, anterior al filtro exacto. Cuando termine, su bundle seguirá en cuarentena.
+- [PR #23](https://github.com/orbitalronin94/HERETIC-RONIN/pull/23) integrada en [commit 7f0e539](https://github.com/orbitalronin94/HERETIC-RONIN/commit/7f0e539069222682924588bf23d3fe124b9e2b1b): el filtro de licencia por registro ahora compara valores completos, rechaza ausencias/mezclas/ambigüedades y no acepta CC-BY-SA como CC-BY. [Run 42377093318](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42377093318): compilación y 8 pruebas unitarias correctas.
+- [Run 42377212260](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42377212260): en cola por exclusión mutua; utilizará el nuevo filtro al comenzar.
+- PR #18, catálogo de 100 bibliotecas: no integrado y no mergeable. El diff añade el catálogo pero no modifica el recolector para leerlo; además, sus etiquetas genéricas de licencia no sustituyen la verificación de cada payload. Sus 100 entradas no son descargas ni admisiones.
+
+No se debe cancelar el workflow activo ni lanzar otra adquisición concurrente. La siguiente revisión debe inspeccionar el manifiesto/artifact del run 42366207131, y después auditar cada shard con el código exacto ya integrado. Hasta que todos los gates pasen, el contador admitido permanece en **260.971 documentos / 703.593.871 bytes**.
