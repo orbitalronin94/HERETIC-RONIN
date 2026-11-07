@@ -1,0 +1,75 @@
+name: Archive successful real inference
+
+on:
+  workflow_run:
+    workflows:
+      - "HERETIC — real 500M checkpoint inference smoke test"
+      - "HERETIC — pregunta real «¿Quién eres?»"
+      - "HERETIC — real 500M step-600 inference probe"
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: archive-real-inference-log
+  cancel-in-progress: false
+
+jobs:
+  append-inference:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - name: Locate successful inference artifact
+        id: artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${RUN_ID}/artifacts" \
+            -o artifacts.json
+          ARTIFACT_ID="$(python -c 'import json; d=json.load(open("artifacts.json")); a=[x for x in d.get("artifacts",[]) if "inference" in x["name"].lower() and not x.get("expired")]; print(a[0]["id"] if a else "")')"
+          if [ -z "${ARTIFACT_ID}" ]; then
+            echo "No valid inference artifact found; nothing to archive."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          curl --fail --location --retry 4 \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/${ARTIFACT_ID}/zip" \
+            -o inference-artifact.zip
+          mkdir artifact
+          unzip -q inference-artifact.zip -d artifact
+          RESULT="$(find artifact -type f -name 'inference-result.json' -print -quit)"
+          test -n "$RESULT"
+          echo "result=$RESULT" >> "$GITHUB_OUTPUT"
+          echo "found=true" >> "$GITHUB_OUTPUT"
+      - name: Append literal model output
+        if: steps.artifact.outputs.found == 'true'
+        env:
+          INFERENCE_JSON: ${{ steps.artifact.outputs.result }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          RUN_URL: ${{ github.event.workflow_run.html_url }}
+        run: python scripts/append_inference_log.py
+      - name: Commit archive update
+        if: steps.artifact.outputs.found == 'true'
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- docs/REAL_INFERENCE_LOG.md; then
+            echo "No new inference to archive."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/REAL_INFERENCE_LOG.md
+          git commit -m "docs: archive real checkpoint inference"
+          git push origin HEAD:main
