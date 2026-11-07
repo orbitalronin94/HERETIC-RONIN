@@ -73,6 +73,9 @@ def documents_from_jsonl(stream, source, out):
         if isinstance(text,str) and len(text.strip())>=40:
             out.append((source,text))
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--cosmopedia-jsonl",type=Path,default=None,help="Optional manually curated Cosmopedia candidate JSONL to include in the global audit")
+    args=parser.parse_args()
     OUT.mkdir(parents=True,exist_ok=True)
     docs=[]
     with zipfile.ZipFile(IMPORT_ZIP) as z:
@@ -89,7 +92,10 @@ def main():
         for name in z.namelist():
             if name.startswith("ronin-authored-papers/") and name.endswith(".md"):
                 docs.append(("papers",z.read(name).decode("utf-8")))
-    # Audit only the exact real source-scoped RONIN-IA artifact. Synthetic Drosophila and unreviewed open-source candidates are excluded.
+    if args.cosmopedia_jsonl is not None:
+        with args.cosmopedia_jsonl.open("r",encoding="utf-8") as stream:
+            documents_from_jsonl(stream,"cosmopedia",docs)
+    # Audit the exact real source-scoped RONIN-IA artifact plus only explicitly supplied curated candidates.
     if len(docs)<250000: raise RuntimeError(f"Unexpectedly small real-artifact audit corpus: {len(docs)}")
     exact={}; exact_duplicates=[]; exact_duplicate_indices=set(); holdout=holdout_rows()
     holdout_norm=[norm(x["question"]) for x in holdout]
@@ -100,7 +106,8 @@ def main():
         if not n: continue
         digest=hashlib.sha256(n.encode("utf-8")).hexdigest()
         if digest in exact:
-            exact_duplicate_indices.add(idx)\n            if len(exact_duplicates)<200: exact_duplicates.append({"first":exact[digest],"duplicate":{"index":idx,"source":source}})
+            exact_duplicate_indices.add(idx)
+            if len(exact_duplicates)<200: exact_duplicates.append({"first":exact[digest],"duplicate":{"index":idx,"source":source}})
         else: exact[digest]={"index":idx,"source":source}
         for qidx,q in enumerate(holdout_norm):
             if len(q)>=24 and q in n:
