@@ -34,7 +34,7 @@ def add_jsonl(zf,name,key,store):
                 store.append(value); count+=1
     return count
 
-def build_corpus(path,audit_path):
+def build_corpus(path,audit_path,candidate_path=None):
     groups={}
     with zipfile.ZipFile(path) as z:
         manifest=json.loads(z.read("IMPORT-MANIFEST.json"))
@@ -52,10 +52,23 @@ def build_corpus(path,audit_path):
     groups={"covost2":covost,"mathlib4":mathlib,"scienceverse":science,
             "literature_es":lit,"nasa_ntrs":([nasa] if len(nasa.encode("utf-8"))>=40 else []),
             "ronin_papers":papers}
+    if candidate_path is not None and Path(candidate_path).exists():
+        cosmopedia=[]
+        with Path(candidate_path).open("r",encoding="utf-8") as stream:
+            for line in stream:
+                if not line.strip(): continue
+                row=json.loads(line)
+                value=row.get("text","") if isinstance(row,dict) else ""
+                if isinstance(value,str) and len(value.strip())>=40:
+                    cosmopedia.append(value)
+        groups["cosmopedia"]=cosmopedia
     audit=json.loads(Path(audit_path).read_text())
     if audit.get("training_authorized") is not True: raise RuntimeError("Audit report does not authorize cleaned corpus")
     expected=audit.get("source_counts",{})
+    if ("cosmopedia" in expected) != ("cosmopedia" in groups):
+        raise RuntimeError("Curated Cosmopedia file and global audit source inventory do not match")
     audit_order=("covost2","mathlib4","scienceverse","literature","nasa","papers")
+    if "cosmopedia" in expected: audit_order += ("cosmopedia",)
     mapping={"literature":"literature_es","nasa":"nasa_ntrs","papers":"ronin_papers"}
     ordered=[]
     for source in audit_order:
@@ -85,8 +98,9 @@ def build_corpus(path,audit_path):
           "source_bytes":{k:int(v.nbytes) for k,v in arrays.items()},
           "total_bytes":sum(int(v.nbytes) for v in arrays.values()),
           "sources":["CoVoST2 CC0 translation-only","Mathlib4 Apache-2.0","ScienceVerse per-document CC-BY/CC0",
-                    "Spanish public-domain literature train","NASA file-reviewed train","owner-authorized Papers internal train"],
-          "excluded":["validation/test/holdout","20,000 unreviewed open-source candidates","Drosophila procedural synthetic rows",
+                    "Spanish public-domain literature train","NASA file-reviewed train","owner-authorized Papers internal train"] +
+                    (["Cosmopedia v0.1 auto_math_text curated experimental pretraining text"] if "cosmopedia" in clean else []),
+          "excluded":["validation/test/holdout","unreviewed open-source candidate sources","Drosophila procedural synthetic rows",
                      "exact and SimHash near-duplicate endpoints from the signed audit plan"]}
     return arrays,info
 
