@@ -3,7 +3,6 @@ name: HERETIC — multidomain distillation + independent holdout
 on:
   push:
     paths:
-      - ".github/workflows/multidomain-distillation-holdout.yml"
       - "scripts/heretic_distill_full_corpus_100.py"
   workflow_dispatch:
 
@@ -106,7 +105,7 @@ jobs:
           du -sh payload/data/datasets/admitted
           test "$(find payload/data/datasets/admitted -type f | wc -l)" -gt 0
 
-      - name: Generate/resume 1,000 multidomain examples in-process, continue student, and run paired holdout
+      - name: Scan full corpus; generate 200 source-grounded examples; run paired 100-step distillation
         env:
           PYTHONPATH: ronin-source
         run: python scripts/heretic_distill_full_corpus_100.py
