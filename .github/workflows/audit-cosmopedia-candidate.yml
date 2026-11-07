@@ -36,10 +36,10 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p incoming out
-          curl --fail --location --retry 4 \\
-            -H "Authorization: Bearer ${GH_TOKEN}" \\
-            -H "Accept: application/vnd.github+json" \\
-            "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/artifacts/13535564284/zip" \\
+          curl --fail --location --retry 4 \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/actions/artifacts/13535564284/zip" \
             -o incoming/open-source-candidates.zip
           echo "49b4992b88debc6757c653ba9db61bdf5c04fce3d11f1c4f4d8f4ffcfc8b9878  incoming/open-source-candidates.zip" | sha256sum --check
       - name: Verify deterministic curation output
