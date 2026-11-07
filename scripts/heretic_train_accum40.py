@@ -61,6 +61,7 @@ def main():
     corpus, corpus_info = build_corpus(
         Path("incoming/ronin-ia-train.zip"),
         Path("incoming/GLOBAL-CORPUS-AUDIT.json"),
+        candidate_path=Path("incoming/cosmopedia-curated.jsonl"),
     )
     checkpoint = torch.load("incoming/checkpoint.pt", map_location="cpu", weights_only=False)
     if int(checkpoint.get("step", -1)) != args.start_micro_step:
