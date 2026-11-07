@@ -59,6 +59,8 @@ El lote de 100 bibliotecas del [run 42356179021](https://github.com/orbitalronin
 | LibriSpeech train.clean.360 | 50.000 | 19.208.974 | Candidato CC-BY-4.0; texto solo, pendiente muestra y auditoría |
 | VoxPopuli (6 idiomas) | 106.963 | En manifiesto | Candidato CC0; pendiente revisión por idioma y auditoría |
 
+**Exclusión de share-alike (2026-11-07):** los 5.000 registros CC-BY-SA-4.0 de Stack Exchange registrados en el run 42295370306 quedan en estado *held/excluded*. Share-alike no está aprobado para este uso: no se readquieren, no se entrenan y aportan **0 bytes admitidos**.
+
 ## Siguiente tanda de adquisición/revisión
 
 Las PR [#21](https://github.com/orbitalronin94/HERETIC-RONIN/pull/21) y [#22](https://github.com/orbitalronin94/HERETIC-RONIN/pull/22) ya están mergeadas. El recolector incluye las fuentes siguientes, pero sus nuevas descargas siguen siendo candidatas hasta completar la auditoría:
@@ -69,6 +71,10 @@ Las PR [#21](https://github.com/orbitalronin94/HERETIC-RONIN/pull/21) y [#22](ht
 - IFM Code/Math: Apache-2.0 declarado; falta trazabilidad completa de origen y validación de calidad/corrección.
 
 Todos siguen como candidatos; sus bytes no se suman al total admitido. La siguiente admisión requiere revisión de muestra, procedencia/licencia, integridad SHA-256, deduplicación global, control de holdout y registro de la autorización exacta.
+
+### Descubrimiento nuevo — discursos del Parlamento Europeo (solo candidato)
+
+La API oficial [Open Data API v2](https://data.europarl.europa.eu/en/developer-corner/opendata-api) ofrece /speeches; el tipo PLENARY_DEBATE_SPEECH permite acotar discursos y include-output=xml_fragment solicita el fragmento textual. La especificación de la API declara CC-BY-4.0 y las [reglas de Open Data del Parlamento](https://data.europarl.europa.eu/en/discover/rules-on-the-european-parliaments-open-data) adoptan CC-BY-4.0 para sus datos abiertos. **No se ha descargado nada (0 bytes):** el endpoint es mutable y el catálogo distingue recursos bajo aviso legal. Antes de adquirir, hay que fijar snapshot/hash, confirmar licencia por recurso, excluir terceros y revisar privacidad/metadatos.
 
 ## Regla operativa
 
