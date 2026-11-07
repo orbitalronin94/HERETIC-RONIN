@@ -46,10 +46,14 @@ must be repeated over a longer segment before adoption.
 
 ## Execution
 
-The tournament can be started manually with `workflow_dispatch`. It is also wired to the
-completion of the exact source run `42288969968`: when that run succeeds, the workflow
-checks for the step-2600 checkpoint artifact, validates the signed audit, verifies the
-RONIN-IA train-only artifact ID and SHA-256, then launches the baseline and 12 candidates.
-The automatic trigger is deliberately limited to that source run so later 2,000-step
-continuation chunks do not launch duplicate tournaments. A PR validation run only checks
-Python/YAML syntax; it is not a performance result.
+The tournament can be started manually with `workflow_dispatch`. Merging this workflow
+change to `main` also starts one benchmark run using the pinned source run `42288969968`
+and audit run `42288107561`. The workflow checks for the exact step-2600 checkpoint,
+validates the signed audit, verifies the RONIN-IA train-only artifact ID and SHA-256, then
+launches the baseline and 12 candidates. It does not subscribe to every continuation
+chunk, avoiding duplicate tournaments. A PR validation run only checks Python/YAML syntax;
+it is not a performance result.
+
+Artifact actions are pinned to Node 24-compatible releases: `download-artifact@v8` and
+`upload-artifact@v7`. The benchmark's `checkout@v5` and `setup-python@v6` are already on
+Node 24.
