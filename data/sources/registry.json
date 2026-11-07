@@ -700,7 +700,7 @@
       "url": "https://huggingface.co/datasets/HuggingFaceTB/cosmopedia",
       "revision": "0ae6ec63f91742bd2d1eaef4f02232c55d719385",
       "reported_license": "Apache-2.0 (dataset card)",
-      "status": "curated_candidate_pending_global_dedup_and_holdout_audit",
+      "status": "admitted_experimental_train_only_after_global_audit",
       "domains": [
         "educational text",
         "textbooks",
@@ -719,7 +719,7 @@
         "deduplicate against FineWeb-Edu, Cosmopedia-v2 and local corpora",
         "audit factual correctness, template repetition and benchmark contamination"
       ],
-      "count_toward_admitted_bytes": false,
+      "count_toward_admitted_bytes": true,
       "downloaded_rows": 5000,
       "downloaded_text_bytes": 23925169,
       "downloaded_sha256": "050b03f64c3e9976d91ff86447761174f46121c0af899004172368f61255dcc6",
@@ -733,11 +733,23 @@
         "method": "deterministic stratified opening-excerpt review",
         "decision": "candidate for experimental next-token pretraining only; not verified-answer supervision",
         "mechanical_rejections": 266,
-        "global_dedup": "PENDING",
-        "holdout_contamination": "PENDING",
+        "global_dedup": "PASS_HEURISTIC; 0 Cosmopedia rows excluded by global dedup (all 68 excluded global indices fall in base corpus)",
+        "holdout_contamination": "PASS_EXACT_MATCH_SCAN_ONLY; 0/120 exact matches; semantic contamination not proven absent",
         "upstream_seed_lineage": "caveat retained; not independently rights-cleared",
-        "admitted_training_bytes": 0
-      }
+        "admitted_training_bytes": 22927899,
+        "audit_run": 42362365447
+      },
+      "admitted_rows": 4734,
+      "admitted_training_bytes": 22927899,
+      "global_audit_run": 42362365447,
+      "global_audit_artifact_id": 13570263309,
+      "global_audit_artifact_sha256": "db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9",
+      "global_audit_documents": 261039,
+      "global_audit_exact_duplicate_groups_or_hits": 9,
+      "global_audit_near_duplicate_pairs": 68,
+      "global_audit_excluded_records": 68,
+      "global_audit_exact_holdout_matches": 0,
+      "training_authorized": true
     },
     {
       "id": "OpenTextbookLibrary:CC-BY-only",
@@ -1301,7 +1313,8 @@
     }
   ],
   "notes": [
-    "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. Global G-0 remains FAIL; no staged bundle is active-training-authorized until global near-duplicate and benchmark/holdout contamination gates pass."
+    "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. Global G-0 remains FAIL; no staged bundle is active-training-authorized until global near-duplicate and benchmark/holdout contamination gates pass.",
+    "2026-11-07 admission: Cosmopedia v0.1 auto_math_text curated slice (4,734 rows; 22,927,899 bytes) passed global audit run 42362365447. Combined audit: 261,039 docs examined, 68 duplicate endpoints excluded (all within the 256,305 base records), 260,971 docs admitted, 0 exact matches against 120 synthetic diagnostic questions. Authorized for experimental train-only next-token pretraining only; upstream seed rights remain caveated."
   ],
   "last_candidate_batch": "run 42295370306 / artifact 13541581972: 50,000 rows, 317,069,186 bytes; training_authorized=false",
   "next_candidate_batch": "run 42295830953: DOAB/OERCommons/news/CCCC; queued follow-up adds DPI provenance corpus, arXiv and source-metadata retention; no candidates admitted",
@@ -1324,7 +1337,28 @@
     "reviewed_sources": 4,
     "manual_excerpts_reviewed": 50,
     "cosmopedia_curated_rows": 4734,
-    "active_training_authorized": false,
-    "report": "docs/OPEN_SOURCE_MANUAL_REVIEW.md"
+    "active_training_authorized": true,
+    "report": "docs/OPEN_SOURCE_MANUAL_REVIEW.md",
+    "global_audit_run": 42362365447,
+    "cosmopedia_admitted_rows": 4734,
+    "cosmopedia_admitted_bytes": 22927899,
+    "exact_holdout_matches": 0
+  },
+  "latest_global_audit": {
+    "run_id": 42362365447,
+    "artifact_id": 13570263309,
+    "artifact_sha256": "db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9",
+    "documents_audited": 261039,
+    "exact_duplicate_groups_or_hits": 9,
+    "near_duplicate_pairs_found": 68,
+    "records_excluded": 68,
+    "documents_after_exclusion": 260971,
+    "exact_holdout_question_matches": 0,
+    "holdout_questions": 120,
+    "training_authorized": true,
+    "admitted_training_bytes_total": 703593871,
+    "admitted_cosmopedia_rows": 4734,
+    "admitted_cosmopedia_bytes": 22927899,
+    "note": "The 68 excluded global indices are all below the 256,305-record base-corpus boundary; all 4,734 curated Cosmopedia records remain in the authorized subset. Heuristic audit only; no semantic proof and no expanded redistribution rights."
   }
 }
