@@ -97,7 +97,7 @@ jobs:
           Path("inference-result.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\\n")
           PY
       - name: Upload literal model output
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: heretic-who-are-you-real-inference
           path: inference-result.json
