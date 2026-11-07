@@ -11,7 +11,7 @@ Actualizado: 2026-11-07. Este documento distingue **admitido**, **candidato** y 
 | Auditoría combinada | 261.039 documentos examinados |
 | Exclusiones exactas/near-duplicate | 68 extremos |
 | Subconjunto resultante autorizado | 260.971 documentos |
-| Total de bytes admitidos contabilizados | **703.593.871 bytes (670,9 MiB)** |
+| Total de bytes admitidos contabilizados | **703.593.871 bytes (671,0 MiB)** |
 | Objetivo de biblioteca | 500.000.000.000 bytes (500 GB decimal) |
 
 Auditoría global: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Artefacto de auditoría: ID `13570263309`, SHA-256 `db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9`.
