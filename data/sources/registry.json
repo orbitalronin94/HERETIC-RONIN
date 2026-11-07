@@ -1351,11 +1351,11 @@
       "count_toward_admitted_bytes": false
     },
     {
-      "id": "PleIAs/Spanish-PD-Books:four-pinned-parquet-shards",
+      "id": "PleIAs/Spanish-PD-Books:shards-100-101",
       "url": "https://huggingface.co/datasets/PleIAs/Spanish-PD-Books",
-      "revision": "pin immutable Hub SHA at acquisition; shards spanish_pd_1,10,100,101",
+      "revision": "pin immutable Hub SHA at acquisition; shards spanish_pd_100 and spanish_pd_101",
       "reported_rows": 302640,
-      "reported_size": "52.1 GB total; first four selected shards approx 1.7 GB compressed",
+      "reported_size": "52.1 GB total; two selected shards approx 1.18 GB compressed",
       "reported_license": "Public domain claimed for EU/all regions by publisher; author death >70 years criterion",
       "status": "candidate_acquisition_queued_rights_ocr_review",
       "domains": [
@@ -1368,9 +1368,9 @@
       "language": [
         "es"
       ],
-      "rights_caveat": "302,640 books / 13.9B words aggregated from BDH and Internet Archive. Card claims EU public domain based on author death >70 years. Validate creator/publication metadata and source provenance per sampled work; OCR quality varies and viewer shows schema inconsistencies across files.",
+      "rights_caveat": "302,640 books / 13.9B words aggregated from BDH and Internet Archive. This tranche reads only shards 100 and 101 (approx 1.18GB compressed). Card claims EU public domain based on author death >70 years. Validate creator/publication metadata and source provenance per sampled work; OCR quality varies.",
       "required_checks": [
-        "pin exact Hub revision and four parquet shard paths",
+        "pin exact Hub revision and two separate parquet shard paths",
         "preserve identifier/creator/title/publication_date/word_count",
         "verify public-domain term and source provenance on stratified samples",
         "inspect OCR quality, encoding and document boundaries",
