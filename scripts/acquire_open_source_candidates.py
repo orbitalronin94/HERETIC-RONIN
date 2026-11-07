@@ -8,6 +8,7 @@ from huggingface_hub import HfApi
 
 OUT=Path("staging/open-source-candidates")
 TARGET_BYTES=6_800_000_000  # 10x the currently effective 680,665,972-byte corpus
+SOURCES.extend(json.loads(Path("data/scoped-library-catalog-100.json").read_text(encoding="utf-8"))["libraries"])
 SOURCES=[
  {"id":"HuggingFaceFW/fineweb-edu","config":"sample-10BT","license":"ODC-By-1.0","limit":100000,"fields":["text"],"caveat":"Common Crawl source-page rights and terms remain applicable."},
  {"id":"open-web-math/open-web-math","config":None,"license":"ODC-By-1.0","limit":100000,"fields":["text"],"caveat":"Common Crawl terms apply; collection license does not relicense underlying pages."},
@@ -58,6 +59,10 @@ def main():
    split=source.get("split","train")
    ds=load_dataset(repo,cfg,split=split,streaming=True,revision=revision)
    available_columns=set(ds.features.keys()) if ds.features is not None else set(ds.column_names or [])
+   if source.get("discover_text_column"):
+    chosen=next((column for column in source.get("text_fields",[]) if column in available_columns),None)
+    if chosen is None: raise RuntimeError(f"{repo}/{cfg or 'default'}: no supported text field found; available={sorted(available_columns)}")
+    source["fields"]=[chosen]
    required_columns=list(dict.fromkeys(source["fields"]+source.get("required_true_fields",[])+source.get("metadata_fields",[])))
    missing_columns=[column for column in required_columns if column not in available_columns]
    if missing_columns:
