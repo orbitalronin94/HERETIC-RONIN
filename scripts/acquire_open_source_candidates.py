@@ -55,7 +55,15 @@ def main():
   cfg=source["config"]
   split=source.get("split","train")
   ds=load_dataset(repo,cfg,split=split,streaming=True,revision=revision)
-  selected_columns=list(dict.fromkeys(source["fields"]+source.get("required_true_fields",[])+source.get("metadata_fields",[])))
+  available_columns=set(ds.features.keys())
+  required_columns=list(dict.fromkeys(source["fields"]+source.get("required_true_fields",[])+source.get("metadata_fields",[])))
+  missing_columns=[column for column in required_columns if column not in available_columns]
+  if missing_columns:
+   raise RuntimeError(f"{repo}/{cfg or 'default'}: missing required columns {missing_columns}; available={sorted(available_columns)}")
+  # Keep per-record rights metadata when a source requires license filtering.
+  # The payload projection still excludes all unrequested columns (notably audio).
+  optional_rights_columns=[column for column in ("metadata","license") if column in available_columns and (source.get("license_filter") or source.get("license_name_filter"))]
+  selected_columns=list(dict.fromkeys(required_columns+optional_rights_columns))
   ds=ds.select_columns(selected_columns)
   safe_config=(cfg or "default").replace("/","__")
   safe_split=split.replace("/","__").replace(".","_")
