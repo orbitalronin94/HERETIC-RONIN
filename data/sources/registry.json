@@ -1492,6 +1492,57 @@
         "deduplicate against Spanish-PD-Books and all corpus sources"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "dataseek/ptbr-books-publicos",
+      "url": "https://huggingface.co/datasets/dataseek/ptbr-books-publicos",
+      "revision": "pin immutable Hub SHA at acquisition",
+      "reported_rows": 28200,
+      "reported_license": "CC0-1.0 (dataset card)",
+      "status": "candidate_acquisition_queued_sample_and_rights_review",
+      "domains": [
+        "Brazilian Portuguese",
+        "public-domain books",
+        "literature"
+      ],
+      "language": [
+        "pt-BR"
+      ],
+      "rights_caveat": "Dataset card declares CC0-1.0 and 28.2k train rows; verify underlying source archive, book-level public-domain status, language purity and OCR despite the dataset-level declaration.",
+      "required_checks": [
+        "pin immutable revision and train split",
+        "retain filename/book_type/source metadata",
+        "inspect a stratified sample for Portuguese language purity and OCR",
+        "verify underlying book/source provenance",
+        "deduplicate against Spanish/English/historical corpora and all holdouts"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "coral-nlp/german-commons:cultural",
+      "url": "https://huggingface.co/datasets/coral-nlp/german-commons",
+      "revision": "pin immutable Hub SHA at acquisition; cultural config",
+      "reported_rows": 58291016,
+      "reported_size": "258 GB full dataset; bounded 10,000-row cultural slice",
+      "reported_license": "ODC-BY-1.0 aggregation; per-document licenses govern text",
+      "status": "candidate_acquisition_queued_strict_per_document_allowlist",
+      "domains": [
+        "German cultural heritage",
+        "literature",
+        "historical text"
+      ],
+      "language": [
+        "de"
+      ],
+      "rights_caveat": "The dataset reports 154.56B tokens and 35.78M docs across 41 sources overall; aggregation ODC-BY does not relicense underlying works. This slice admits only records whose every per-document license is exactly CC0-1.0 or CC-BY-4.0; share-alike, NC, ND, unknown and mixed license rows are excluded.",
+      "required_checks": [
+        "pin immutable revision and cultural config",
+        "require all per-document license values to exactly match CC0-1.0 or CC-BY-4.0 allowlist",
+        "preserve id/source/subset/license/num_tokens/ocr_score",
+        "inspect German language purity, OCR and content quality",
+        "deduplicate against all historical book corpora and holdouts"
+      ],
+      "count_toward_admitted_bytes": false
     }
   ],
   "target_library_bytes": 500000000000,
@@ -1506,6 +1557,10 @@
     {
       "date": "2026-11-07",
       "note": "Expanded acquisition pipeline after run 42356179021 produced 531,963 candidate rows / 1,670,605,627 uncompressed bytes. Added schema inference for JSON.GZ streaming sources, deterministic 6-per-source manual sample report, split candidate artifacts, and bounded PubMed CC-BY/CC0, OpenThoughts3, OpenR1-Math, IFM Code-Reasoning and IFM Math-Reasoning slices. All remain candidate-only until sample review, upstream rights, exact/near dedup and holdout gates pass."
+    },
+    {
+      "date": "2026-11-07",
+      "note": "Added bounded Portuguese-Brazilian public-domain book candidates (CC0 card claim) and German Commons cultural slice (258GB full dataset; 154.56B tokens overall) with strict all-values per-document license allowlist limited to CC0/CC-BY-4.0. Candidate-only; Institutional Books/Harvard 242B-token collection was deliberately excluded because its early-access terms restrict use to nonprofit/educational/research purposes."
     }
   ],
   "notes": [
