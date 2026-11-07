@@ -206,3 +206,12 @@ La adquisición también corrige un error de sintaxis Python (true en lugar de T
 ## Corpus efectivo auditado — 2026-11-07
 
 El primer lote source-scoped ya no está solo en staging: el workflow de entrenamiento consumió **256.237 documentos y 680.665.972 bytes (649,0 MiB)** después de excluir 68 extremos duplicados exactos o aproximados. Distribución y bytes por fuente están en `data/sources/registry.json`; auditoría reproducible: [run 42288107561](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42288107561). Entrenamiento que consumió el corpus: [run 42338551408](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42338551408). Los 120 ítems de holdout usados por esta auditoría son sintéticos y solo sirven como diagnóstico; no se presentan como benchmark público. Las licencias y autorizaciones siguen limitadas por fuente, y los nueve Papers son solo para entrenamiento interno autorizado por el propietario.
+
+
+## 100 bibliotecas adicionales en adquisición
+
+El catálogo [`data/scoped-library-catalog-100.json`](data/scoped-library-catalog-100.json) añade **100 repositorios de datasets únicos** a la biblioteca de adquisición de HERETIC-RONIN, cubriendo texto general, educación, matemáticas, código, instrucciones, preferencias, idiomas, ciencia, biomedicina, QA y libros. El alcance está aprobado por el propietario para entrenamiento interno de este repositorio.
+
+La workflow [`acquire-open-source-candidates.yml`](.github/workflows/acquire-open-source-candidates.yml) intenta adquirir cada fuente de forma independiente, fija la revisión inmutable del Hub, descubre una columna textual compatible y registra filas, bytes y SHA-256. Una fuente inexistente, inaccesible o con esquema incompatible se registra como fallo individual y no aborta el resto del lote.
+
+**Estado honesto:** el catálogo de 100 está incorporado al código, pero todavía no significa que las 100 fuentes se hayan descargado. El manifiesto del run contará únicamente las que realmente entreguen filas utilizables. Los bloques descargados se integrarán al corpus del entrenador después de deduplicación técnica y exclusión de contaminación del holdout; no se sumarán bytes candidatos como bytes efectivos hasta que el entrenamiento los consuma.
