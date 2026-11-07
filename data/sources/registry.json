@@ -1013,6 +1013,82 @@
         "PII, quality, near-duplicate and holdout checks"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "openslr/librispeech_asr:train-clean-text-only",
+      "url": "https://huggingface.co/datasets/openslr/librispeech_asr",
+      "revision": "resolve immutable Hub commit at acquisition; manifest records exact SHA",
+      "reported_rows": 584734,
+      "reported_size": "124 GB dataset total; acquisition limited to 25k train.clean.100 + 25k train.clean.360 transcript rows",
+      "reported_license": "CC-BY-4.0 (OpenSLR and Hugging Face dataset card)",
+      "status": "candidate_acquisition_queued_text_only",
+      "domains": [
+        "English literature",
+        "spoken language",
+        "narrative prose"
+      ],
+      "language": [
+        "en"
+      ],
+      "configs": [
+        "all/train.clean.100",
+        "all/train.clean.360"
+      ],
+      "rights_caveat": "Only transcript text from train.clean.100 and train.clean.360; no audio, speaker IDs, chapter IDs, validation or test. Preserve attribution to Panayotov et al. and OpenSLR. The CC-BY-4.0 dataset license requires attribution.",
+      "required_checks": [
+        "verify official Hub license:cc-by-4.0 tag at pinned revision",
+        "select only train.clean.100 and train.clean.360",
+        "project only text column before streaming; exclude audio and speaker metadata",
+        "preserve citation and revision",
+        "cross-deduplicate against books, FineWeb and all current corpora",
+        "audit audiobook text source lineage and holdout contamination",
+        "human review stratified samples"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "facebook/voxpopuli:gold-transcripts-text-only",
+      "url": "https://huggingface.co/datasets/facebook/voxpopuli",
+      "revision": "resolve immutable Hub commit at acquisition; manifest records exact SHA",
+      "reported_rows": 1255237,
+      "reported_size": "673 GB dataset total including audio; acquisition is bounded to 10k gold transcript rows per language for es/en/de/fr/it/pl",
+      "reported_license": "CC0-1.0 for VoxPopuli data; official facebookresearch/voxpopuli repository and dataset card",
+      "status": "candidate_acquisition_queued_text_only",
+      "domains": [
+        "multilingual parliamentary speech",
+        "public policy",
+        "economics",
+        "science",
+        "European affairs"
+      ],
+      "language": [
+        "es",
+        "en",
+        "de",
+        "fr",
+        "it",
+        "pl"
+      ],
+      "configs": [
+        "es",
+        "en",
+        "de",
+        "fr",
+        "it",
+        "pl"
+      ],
+      "rights_caveat": "Text transcripts only, gold transcript rows only, no audio, speaker_id, gender or accent metadata. VoxPopuli states CC0 for data; source is European Parliament proceedings and its legal notice remains relevant. Keep provenance and citation. No model/code license inference.",
+      "required_checks": [
+        "verify official Hub license:cc0-1.0 tag at pinned revision",
+        "stream only train split for six named language configs",
+        "select normalized_text, is_gold_transcript and language columns before reading; require is_gold_transcript=true",
+        "exclude audio, speaker identifiers, gender and accent",
+        "preserve language and European Parliament provenance",
+        "cross-deduplicate with CoVoST2 and all multilingual corpora",
+        "audit transcription quality, political topic balance and holdout contamination",
+        "human review stratified by language"
+      ],
+      "count_toward_admitted_bytes": false
     }
   ],
   "target_library_bytes": 500000000000,
