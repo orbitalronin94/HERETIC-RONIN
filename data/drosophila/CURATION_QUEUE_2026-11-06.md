@@ -103,7 +103,7 @@ Se amplía el workflow de adquisición con tres fuentes nuevas, siempre como **c
 
 - **Wikidata (CC0-1.0):** 5.000 registros de IDs, etiquetas y descripciones multilingües. No se incorporan textos de Wikipedia ni imágenes enlazadas.
 - **PubMed / Common Pile filtrado:** hasta 5.000 artículos, pero solo si el campo por registro `metadata.license` contiene CC-BY-4.0 o CC0-1.0. Se conservan licencia, URL, autores y procedencia. BY-SA, NC, ND y desconocidas quedan fuera.
-- **Stack Exchange / Common Pile:** hasta 5.000 registros, solo con licencia por registro CC-BY-SA-4.0 exacta. Se excluyen las versiones 2.5 y 3.0. La compatibilidad share-alike de los pesos requiere revisión legal independiente.
+- **Stack Exchange / Common Pile:** excluido de la adquisición y de train porque CC-BY-SA-4.0 es share-alike y no está aprobado para este uso. Los 5.000 registros candidatos registrados en el run 42295370306 quedan held/excluded; aportan 0 bytes admitidos y no se readquieren sin aprobación explícita y revisión legal.
 
 El script ahora aplica filtros de licencia por documento antes de guardar, y conserva la procedencia de cada registro. Las advertencias del proyecto Common Pile sobre posibles errores de clasificación de licencias se mantienen expresamente: estos lotes no son material entrenable hasta completar auditoría independiente.
 
@@ -162,7 +162,7 @@ La regla no cambia: candidatos externos no suman bytes admitidos ni pueden alime
 
 Comprobación del contenido por licencia:
 - PubMed: 4.415 filas CC-BY-4.0 y 585 CC0.
-- Stack Exchange: 5.000 filas CC-BY-SA-4.0 exactas.
+- Stack Exchange: 5.000 filas CC-BY-SA-4.0 exactas, ahora reclasificadas como held/excluded por share-alike no aprobado; 0 bytes admitidos.
 - PressBooks: 5.000 filas CC-BY-4.0 exactas.
 - LibreTexts: 5.000 filas CC-BY-4.0 exactas.
 - Wikidata: 5.000 filas CC0-1.0.
@@ -217,3 +217,11 @@ El script fija la revisión de Hub y SHA-256 de cada salida, conserva metadatos 
 ## Cierre de auditoría de fuentes train-scoped (2026-11-07)
 
 La auditoría global del artefacto train-only terminó con éxito en [run 42288107561](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42288107561): 256.305 documentos elegibles para el escáner, cero coincidencias exactas con las 120 preguntas diagnósticas sintéticas, 9 hits exactos y 68 extremos de near-duplicate excluidos por el plan determinista. El corpus efectivo que el entrenamiento consumió en [run 42338551408](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42338551408) quedó en 256.237 documentos y 680.665.972 bytes. Distribución tras deduplicación: CoVoST2 240.022; Mathlib4 8.497; ScienceVerse 7.102; literatura española 606; NASA 1; Papers 9. La auditoría es heurística (SimHash) y su holdout de 120 preguntas es sintético; no sustituye benchmark externo ni revisión legal sobre derechos más amplios. Se mantiene Papers bajo autorización interna únicamente.
+
+
+## Descubrimiento oficial — discursos del Parlamento Europeo (2026-11-07)
+
+- Fuente primaria: [European Parliament Open Data API v2](https://data.europarl.europa.eu/en/developer-corner/opendata-api), endpoint /speeches.
+- Alcance potencial: actividad PLENARY_DEBATE_SPEECH; la API documenta include-output=xml_fragment para incluir el texto y un filtro de idioma para las 24 lenguas oficiales de la UE.
+- Derechos: la especificación de la API declara CC-BY-4.0; las [reglas oficiales de Open Data](https://data.europarl.europa.eu/en/discover/rules-on-the-european-parliaments-open-data) adoptadas el 16-12-2024 establecen CC-BY-4.0 para datos abiertos del Parlamento. No se extiende esta autorización a terceros ni a recursos sujetos al aviso legal del portal.
+- **Estado:** descubrimiento/candidato, 0 descargas y 0 bytes admitidos. El endpoint es mutable; antes de staging hay que fijar consulta, schema, timestamp y SHA-256, confirmar licencia por recurso, excluir contenido de terceros y revisar PII/metadatos de oradores. Solo después se diseñará el importador train-only.

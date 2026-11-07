@@ -988,22 +988,23 @@
       "url": "https://huggingface.co/datasets/common-pile/stackexchange",
       "revision": "resolve immutable Hub SHA at acquisition",
       "reported_license": "per-document; allow CC-BY-SA-4.0 only",
-      "status": "candidate_acquisition_in_progress",
+      "status": "excluded_unapproved_sharealike",
       "domains": [
         "programming",
         "mathematics",
         "science",
         "technical Q&A"
       ],
-      "rights_caveat": "Per-record license metadata may be inaccurate. This source contains older CC-BY-SA 2.5/3.0 records; script accepts only exact 4.0 URL. Share-alike implications for model weights need separate legal review.",
+      "rights_caveat": "CC-BY-SA-4.0 is share-alike and has not been approved for this model/use. The 5,000 rows recorded in candidate run 42295370306 remain held/excluded; they are not training-eligible and contribute 0 admitted bytes. Do not reacquire or train without explicit approval and separate legal review.",
       "required_checks": [
-        "filter exact metadata.license CC-BY-SA-4.0 only",
-        "retain authors, URL, site and license",
-        "audit possible license laundering",
-        "remove deleted/opted-out posts where applicable",
-        "deduplication, PII, answer quality and holdout checks"
+        "Do not reacquire or train while share-alike remains unapproved",
+        "Keep the previously acquired 5,000 candidate rows held/excluded",
+        "Do not count any candidate bytes as admitted"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "excluded_candidate_rows": 5000,
+      "last_candidate_run_id": 42295370306,
+      "last_candidate_artifact_id": 13541581972
     },
     {
       "id": "bigcode/the-stack-v2",
@@ -1878,6 +1879,56 @@
         "https://pmc.ncbi.nlm.nih.gov/tools/cloud/",
         "https://pmc.ncbi.nlm.nih.gov/about/copyright/",
         "https://pmc.ncbi.nlm.nih.gov/about/userguide/"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "european-parliament/open-data-api-v2-speeches",
+      "url": "https://data.europarl.europa.eu/api/v2/speeches",
+      "revision": "API v2; mutable endpoint. No data snapshot acquired; pin exact query, retrieval timestamp, schema revision and response SHA-256 before staging.",
+      "reported_license": "CC-BY-4.0 (official European Parliament Open Data API v2 specification and EP Open Data Rules adopted 16 December 2024)",
+      "status": "candidate_discovery_pending_schema_and_record_scope",
+      "domains": [
+        "European parliamentary proceedings",
+        "public policy",
+        "law",
+        "multilingual civic discourse"
+      ],
+      "language": [
+        "bg",
+        "es",
+        "cs",
+        "da",
+        "de",
+        "et",
+        "el",
+        "en",
+        "fr",
+        "ga",
+        "hr",
+        "it",
+        "lv",
+        "lt",
+        "hu",
+        "mt",
+        "nl",
+        "pl",
+        "pt",
+        "ro",
+        "sk",
+        "sl",
+        "fi",
+        "sv"
+      ],
+      "rights_caveat": "The API specification declares CC BY 4.0 and the European Parliament's Open Data Rules adopt CC BY 4.0 for EP open data. The portal also distinguishes resources under the European Parliament Legal Notice, and third-party rights are not covered automatically. Candidate discovery only: require explicit CC BY 4.0 at resource/dataset scope, exclude third-party content and any resource under other terms, and review personal/speaker metadata before staging.",
+      "required_checks": [
+        "Pin the API schema and exact request parameters; record retrieval date, response/page hashes and immutable snapshot",
+        "Query only activity-type PLENARY_DEBATE_SPEECH; exclude written statements and procedural activities",
+        "Use include-output=xml_fragment only after confirming the returned text schema",
+        "Require explicit CC BY 4.0 coverage for every selected resource and exclude third-party material",
+        "Preserve speech ID, date, language, title, source URL and attribution; strip unnecessary speaker identifiers",
+        "Scan privacy/PII, encoding, language, quality, exact and near duplicates",
+        "Assign deterministic train-only split and run global holdout/contamination audit plus stratified human review"
       ],
       "count_toward_admitted_bytes": false
     }
