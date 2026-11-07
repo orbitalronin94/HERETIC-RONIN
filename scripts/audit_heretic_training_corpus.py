@@ -141,9 +141,9 @@ def main():
       "near_duplicate_pairs_found":len(near),"near_duplicate_pairs_capped_at":1000,"near_duplicate_examples":near,
       "candidate_pairs_checked":checked,"holdout_questions":len(holdout),"exact_holdout_question_matches":len(holdout_exact),
       "holdout_matches":holdout_exact[:200],"deduplication_plan":dedup_plan,
-      "limitations":["This audit is a high-recall heuristic, not semantic proof of no contamination.","The synthetic 120-question diagnostic is not a public benchmark.","Only exact source-scoped RONIN-IA train artifacts are audited; synthetic Drosophila and unreviewed open-source candidates are excluded.","Global source rights remain source-scoped; no broader redistribution or commercial rights are inferred."],
+      "limitations":["This audit is a high-recall heuristic, not semantic proof of no contamination.","The synthetic 120-question diagnostic is not a public benchmark.","The audit includes exact source-scoped RONIN-IA train artifacts and only explicitly supplied curated candidates; all other unreviewed candidates remain excluded.","Global source rights remain source-scoped; no broader redistribution or commercial rights are inferred."],
       "training_authorized":bool(not holdout_exact and complete_near_audit and exacts_covered),
-      "authorization_scope":"Exact source-scoped RONIN-IA train partitions after deterministic exclusion of exact and SimHash near-duplicate endpoints; validation/test/holdout and unreviewed candidates excluded."}
+      "authorization_scope":"Exact source-scoped RONIN-IA train partitions plus explicitly supplied curated candidates after deterministic exclusion of exact and SimHash near-duplicate endpoints; validation/test/holdout and all other unreviewed candidates excluded."}
     (OUT/"GLOBAL-CORPUS-AUDIT.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n")
     print(json.dumps(report,ensure_ascii=False,indent=2))
 if __name__=="__main__": main()
