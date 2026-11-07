@@ -6,6 +6,7 @@ on:
     paths:
       - ".github/workflows/acquire-open-source-candidates.yml"
       - "scripts/acquire_open_source_candidates.py"
+      - "data/scoped-library-catalog-100.json"
   workflow_dispatch:
   pull_request:
     paths:
@@ -28,8 +29,10 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
-      - name: Compile acquisition script without downloading datasets
-        run: python -m py_compile scripts/acquire_open_source_candidates.py
+      - name: Validate source catalog and compile acquisition script without downloading datasets
+        run: |
+          python -m py_compile scripts/acquire_open_source_candidates.py
+          python -c 'import json; p=json.load(open("data/scoped-library-catalog-100.json", encoding="utf-8")); ids=[x["id"] for x in p["libraries"]]; assert p["requested_libraries"] == 100 and len(ids) == 100 and len(set(ids)) == 100; assert all(x.get("scope_approved") and x.get("discover_text_column") for x in p["libraries"]); print(f"validated {len(ids)} unique scoped libraries")'
 
   acquire:
     if: github.event_name != 'pull_request'
