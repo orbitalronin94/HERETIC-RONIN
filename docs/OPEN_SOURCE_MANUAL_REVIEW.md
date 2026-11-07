@@ -48,7 +48,7 @@ The new workflow `.github/workflows/audit-cosmopedia-candidate.yml`:
 
 The global audit script was also corrected so exact-duplicate exclusion coverage is tracked for **all** duplicate endpoints, not only the first 200 examples displayed in the report.
 
-**Training remains blocked** until the global audit reports `training_authorized: true`, complete near-duplicate coverage, and zero exact holdout question matches. Even then, the source is admitted only as experimental next-token pretraining text; it does not become a benchmark, gold-answer or reasoning-supervision source.
+The completed global audit run [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447) covered 261,039 documents, found 68 near-duplicate pairs/endpoints to exclude, and found zero exact matches against the 120-question diagnostic. It reported `training_authorized: true` with complete near-duplicate coverage. Cosmopedia v0.1 is therefore admitted for **experimental train-only next-token pretraining**, subject to its recorded upstream-seed caveat; it is not a benchmark, gold-answer or verified reasoning-supervision source. The global audit is a heuristic and does not establish semantic absence of contamination or independently certify rights in every upstream seed.
 
 ## Why the other sources are not admitted
 
@@ -58,3 +58,31 @@ The global audit script was also corrected so exact-duplicate exclusion coverage
 ## Accounting rule
 
 Only bytes in a source artifact that has passed source review, curation, integrity verification, global deduplication and holdout-contamination checks may be counted as **admitted training bytes**. Downloaded candidate bytes and quarantined bytes remain separate.
+
+## Larger candidate batch: 2026-11-07
+
+Acquisition run [42356179021](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42356179021) completed successfully:
+- 531,963 candidate rows.
+- 1,670,605,627 uncompressed candidate bytes (about 1.56 GiB).
+- 749,837,093-byte compressed GitHub Actions artifact.
+- All records remain `candidate_not_admitted`; this is not training data.
+
+Largest candidate slices:
+- FineWeb-Edu: 100,000 rows, 424,092,222 bytes — quarantined for underlying Common Crawl page rights.
+- OpenWebMath: 100,000 rows, 456,695,086 bytes — quarantined for underlying Common Crawl page rights.
+- Cosmopedia v0.1 raw: 50,000 rows, 234,364,804 bytes — only the separately curated and globally audited 4,734-row slice is admitted.
+- SmolLM Cosmopedia v2: 50,000 rows, 278,500,947 bytes — quarantined for mixed seed lineage.
+- Wikidata: 50,000 rows, 165,781,647 bytes — CC0 declaration verified at the pinned Hub revision; still needs manual sample and global audit.
+- Aya: 25,000 rows, 42,931,184 bytes — Apache-2.0 tag verified; still needs manual sample and global audit.
+- LibriSpeech train.clean.360: 50,000 rows, 19,208,974 bytes — CC-BY-4.0 tag verified; transcript-only, pending sample and global audit.
+- VoxPopuli six language train slices: 106,963 rows combined; CC0 tag verified; pending language-stratified review and global audit.
+
+The acquisition run also exposed a pipeline defect: several Common Pile JSON/JSON.GZ streaming datasets return no schema through `features` or `column_names`, causing false schema failures. The next pipeline revision infers the schema from the first streamed row and adds bounded slices of PubMed, OpenThoughts3, OpenR1-Math and IFM math/code datasets. It also emits deterministic per-source excerpts for manual review and splits large candidate artifacts so individual evidence bundles can be inspected. These additions are **queued candidates**, not admissions.
+
+High-volume sources discovered for the next tranche:
+- [Common Pile PubMed filtered](https://huggingface.co/datasets/common-pile/pubmed_filtered): 4.77M rows / 43.6 GB source collection; only per-record CC-BY-4.0 or CC0 URIs are eligible for review. Its card explicitly warns about licensing metadata errors, so exact URI filtering is necessary but not sufficient.
+- [OpenThoughts3-1.2M](https://huggingface.co/datasets/open-thoughts/OpenThoughts3-1.2M): 1.2M rows / 28.2 GB; Apache-2.0 declared. Upstream prompts include StackExchange and NVIDIA/OpenCodeReasoning, so prompt-level rights remain a gate.
+- [OpenR1-Math-220k](https://huggingface.co/datasets/open-r1/OpenR1-Math-220k): default train config 93,733 rows / 4.96 GB; Apache-2.0 declared. Problems originate from NuminaMath 1.5, so upstream question rights remain a gate.
+- [IFM Math-Reasoning](https://huggingface.co/datasets/IFM/Math-Reasoning) and [IFM Code-Reasoning](https://huggingface.co/datasets/IFM/Code-Reasoning): Apache-2.0 declared and very large, but source lineage and generated-content quality need review.
+
+No candidate byte count above is added to the admitted total. The immediate next objective is to clear the safe, high-value slices first, especially per-document licensed PubMed text and the CC0/Apache sources with clean provenance, while fixing the schema and artifact-inspection pipeline.
