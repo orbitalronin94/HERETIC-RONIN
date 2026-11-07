@@ -233,3 +233,6 @@ La [run 42366207131](https://github.com/orbitalronin94/HERETIC-RONIN/actions/run
 La PR #18 del catálogo de 100 bibliotecas sigue sin integrar y no es mergeable; su diff no conecta el catálogo al script de adquisición ni acredita licencias de payload por registro. No se cuentan sus entradas como descargas ni como admisiones. Ningún candidato nuevo se atribuye al entrenamiento.
 
 El detalle por fuente, sus licencias, manifiestos y condiciones de admisión está en [`data/datasets/README.md`](data/datasets/README.md) y [`data/sources/registry.json`](data/sources/registry.json).
+
+
+Como nueva vía biomédica primaria, se ha registrado [PMC Open Access Subset](https://pmc.ncbi.nlm.nih.gov/tools/openftlist/) para un piloto futuro limitado a licencias exactas CC-BY-4.0/CC0-1.0 por artículo, usando OAI-PMH/Cloud oficiales y respetando sus límites de recuperación. No se ha descargado ni admitido material; BY-SA/BY-ND/NC, licencias desconocidas y contenido de terceros quedan fuera. El detalle y los gates están en `data/sources/registry.json`.
