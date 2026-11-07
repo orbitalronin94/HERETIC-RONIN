@@ -1,0 +1,30 @@
+{
+  "model": "HERETIC-RONIN-500M",
+  "status": "main",
+  "checkpoint": {
+    "training_run_id": 42338551408,
+    "artifact_id": 13565788365,
+    "artifact_name": "heretic-500m-accum40-micro-6600",
+    "optimizer_updates": 100,
+    "micro_steps_in_accum40": 4000,
+    "training_step": 6600,
+    "target_training_steps": 250000,
+    "sha256": "3c28b6c9be9399bcfc2963c25d8000376072abd1a95d527ee4662af53f01ac69"
+  },
+  "evaluation": {
+    "benchmark": "procedural 120-question holdout",
+    "before": "0/120",
+    "after": "0/120",
+    "promotion_note": "Promoted as the active continuation checkpoint by explicit maintainer decision; not validated as a quality improvement. Do not interpret this designation as passing the holdout."
+  },
+  "continuation": {
+    "workflow": ".github/workflows/train-real-corpus-accum40.yml",
+    "optimizer_state_preserved_after_transition": true
+  },
+  "cpu_optimizations": {
+    "benchmark_pr": 8,
+    "benchmark_status": "merged; candidate techniques are not yet performance-validated",
+    "latest_benchmark_run_id": 42325216025,
+    "latest_benchmark_failure": "Candidate jobs could not find out/batch-plan.pt; no speedup result was established."
+  }
+}
