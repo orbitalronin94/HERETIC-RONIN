@@ -206,3 +206,8 @@ El corpus base ya consumido por entrenamientos anteriores comprende **256.237 do
 ### Nueva tanda de corpus documental (en adquisición, no admitida)
 
 La siguiente ampliación incorpora tres candidatos de alto volumen: Spanish-PD-Books (52,1 GB publicados; se fijan cuatro shards para una primera muestra), opiniones judiciales CourtListener/docketx (8,47 GB; CC0 declarado y opiniones públicas) y 76 libros OpenStax (159 MB; CC-BY-4.0 declarado por el dataset, pendiente de comprobar la licencia por libro/edición). Sus registros y gates están en `data/sources/registry.json`; los artefactos se separarán por fuente. **No se suman al corpus entrenable hasta superar revisión humana, procedencia/licencia, deduplicación global y control de holdout.**
+
+
+### Candidatos de escala y patrimonio documental
+
+Se incorporan a la adquisición experimental Common Corpus de Pleias (2,27 billones de tokens declarados, con licencia/procedencia por documento y filtro exacto), English-PD (362 GB; títulos pre-1884 según la ficha) y Spanish-PD-Newspapers (48,6 GB; corpus histórico OCR). Se toman shards limitados para inspección, no el corpus entero. Ninguno cuenta como entrenable hasta revisión de derechos por obra, OCR, muestras, deduplicación global y holdout. Detalles: `data/datasets/README.md` y `data/sources/registry.json`.
