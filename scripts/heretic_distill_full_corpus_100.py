@@ -232,7 +232,7 @@ def encode_sft_rows(rows:list[dict],context:int)->tuple[torch.Tensor,torch.Tenso
         first_target=len(prefix)-1
         y[first_target:len(values)-1]=torch.tensor(values[len(prefix):],dtype=torch.long)
         xs.append(x); ys.append(y)
-    if len(xs)<900: raise RuntimeError(f"too few usable SFT rows after context packing: {len(xs)}")
+    if len(xs)<200: raise RuntimeError(f"expected 200 usable SFT rows for the exact 100-step pilot; got {len(xs)}")
     return torch.stack(xs),torch.stack(ys)
 
 def train_student(rows:list[dict])->dict:
