@@ -54,7 +54,7 @@ def main():
   cfg=source["config"]
   split=source.get("split","train")
   ds=load_dataset(repo,cfg,split=split,streaming=True,revision=revision)
-  available_columns=set(ds.features.keys())
+  available_columns=set(ds.features.keys()) if ds.features is not None else set(ds.column_names or [])
   required_columns=list(dict.fromkeys(source["fields"]+source.get("required_true_fields",[])+source.get("metadata_fields",[])))
   missing_columns=[column for column in required_columns if column not in available_columns]
   if missing_columns:

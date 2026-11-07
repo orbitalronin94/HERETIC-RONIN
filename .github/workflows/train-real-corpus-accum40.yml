@@ -55,7 +55,7 @@ jobs:
           fi
 
       - name: Download and enforce global real-corpus audit
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: heretic-global-corpus-audit-${{ steps.params.outputs.audit_run_id }}
           run-id: ${{ steps.params.outputs.audit_run_id }}
@@ -163,7 +163,7 @@ jobs:
           echo "end_step=${end_step}" >> "$GITHUB_OUTPUT"
 
       - name: Upload resumable checkpoint and paired evaluation
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: heretic-500m-accum40-micro-${{ steps.train.outputs.end_step }}
           path: |
@@ -193,7 +193,7 @@ jobs:
 
       - name: Retain final checkpoint and full holdout report
         if: steps.train.outputs.end_step == '250000'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: heretic-500m-accum40-final-micro-250000
           path: |

@@ -23,6 +23,9 @@ def main():
  seed=int(ck.get("seed",20261106))
  torch.manual_seed(seed+2600); np.random.seed((seed+2600)%(2**32-1))
  plan=Path("out/batch-plan.pt")
+ if not a.create_plan:
+  plan=Path("incoming/batch-plan.pt")
+  if not plan.is_file(): raise FileNotFoundError(f"Shared immutable batch plan missing: {plan}")
  if a.create_plan:
   corpus,info=build_corpus(Path("incoming/ronin-ia-train.zip"),Path("incoming/GLOBAL-CORPUS-AUDIT.json"))
  else:
