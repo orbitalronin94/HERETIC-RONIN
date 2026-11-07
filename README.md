@@ -194,3 +194,10 @@ Se añade una nueva tranche de bibliotecas de texto obtenidas de transcripciones
 **Límite de esta tranche:** hasta 110.000 registros candidatos (60.000 VoxPopuli + 50.000 LibriSpeech). La descarga fija el commit SHA de cada fuente y publica SHA-256 por archivo/configuración. Los filtros de transcripción gold y de columnas se aplican antes de serializar. Son candidatos, no datos admitidos: deben superar deduplicación cruzada, auditoría de holdout, revisión humana por idioma y comprobación final de atribución/calidad. No se habilita su uso en el entrenamiento ni se suman bytes admitidos automáticamente.
 
 Fuentes oficiales consultadas: VoxPopuli documenta CC0 para los datos y 18 idiomas con transcripción; OpenSLR declara CC BY 4.0 para LibriSpeech. La biblioteca mantiene las licencias y procedencias por fuente, sin asumir que el permiso de una fuente cubre otras.
+
+
+### Ampliación de adquisición v2 — 2026-11-07
+
+La siguiente tranche amplía los límites de descarga sin relajar la admisión: hasta 20.000 textos científicos de arXiv (paper_text, solo licencias por artículo CC-BY-4.0 o CC0), hasta 20.000 textos de libros revisados por pares de DOAB (solo CC-BY-4.0 explícito en metadatos), hasta 15.000 secciones por fuente de Pressbooks y LibreTexts (solo CC-BY-4.0), y hasta 10.000 artículos biomédicos PubMed (CC-BY-4.0/CC0). Son máximos candidatos, no bytes adquiridos ni admitidos; los totales reales se medirán desde los manifiestos SHA-256.
+
+La adquisición también corrige un error de sintaxis Python (true en lugar de True) que hacía fallar el script antes de iniciar cualquier descarga. Se elimina el disparador desde ramas experimentales para evitar ejecuciones duplicadas y se amplía el límite de tiempo a seis horas. CCCC queda fuera de la descarga activa: la muestra pública inspeccionada expone URL/procedencia, pero no el campo de licencia por registro que exige el filtro actual; no se aceptará hasta resolver ese mapeo.
