@@ -1,20 +1,16 @@
 name: HERETIC — 500M pilot (500 optimizer steps)
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/train-pilot-500-optimizer-steps.yml"
   workflow_dispatch:
     inputs:
       start_micro_step:
         description: "Global micro-step checkpoint"
         required: true
-        default: "2600"
+        default: "6600"
       resume_run_id:
         description: "Run containing the previous checkpoint artifact"
         required: true
-        default: "42288969968"
+        default: "42338551408"
       audit_run_id:
         description: "Successful global corpus audit run"
         required: true
@@ -33,8 +29,8 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 360
     env:
-      OMP_NUM_THREADS: "4"
-      MKL_NUM_THREADS: "4"
+      OMP_NUM_THREADS: "2"
+      MKL_NUM_THREADS: "2"
       PYTHONUNBUFFERED: "1"
       GH_TOKEN: ${{ github.token }}
     steps:
