@@ -104,6 +104,38 @@ jobs:
           compression-level: 1
           retention-days: 90
 
+      - name: Upload CourtListener public-domain caselaw candidate shard
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-courtlistener-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/docketx__us-caselaw-fed-district__default__train.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+
+      - name: Upload OpenStax textbook candidate shard
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-openstax-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/crumb__openstax-text__default__train.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+
+      - name: Upload Spanish public-domain books candidate shards
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-spanish-pd-books-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/PleIAs__Spanish-PD-Books__default__train.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
       - name: Upload deterministic manual review samples
         uses: actions/upload-artifact@v7
         with:
