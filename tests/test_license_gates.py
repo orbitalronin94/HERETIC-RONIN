@@ -16,11 +16,51 @@ class LicenseGateTests(unittest.TestCase):
             {"license_filter": ["https://creativecommons.org/licenses/by/4.0"]},
         ))
 
+    def test_common_pile_cc_by_descriptor_matches_exact_uri(self):
+        self.assertTrue(license_values_allowed(
+            "Creative Commons - Attribution - https://creativecommons.org/licenses/by/4.0/",
+            {"license_filter": ["https://creativecommons.org/licenses/by/4.0/", "http://creativecommons.org/licenses/by/4.0/"]},
+        ))
+
+    def test_common_pile_cc0_descriptor_matches_exact_uri(self):
+        self.assertTrue(license_values_allowed(
+            "Creative Commons Zero - Public Domain - https://creativecommons.org/publicdomain/zero/1.0/",
+            {"license_filter": ["https://creativecommons.org/publicdomain/zero/1.0/", "http://creativecommons.org/publicdomain/zero/1.0/"]},
+        ))
+
+    def test_common_pile_sharealike_descriptor_does_not_match_cc_by(self):
+        self.assertFalse(license_values_allowed(
+            "Creative Commons - Attribution Share-Alike - https://creativecommons.org/licenses/by-sa/4.0/",
+            {"license_filter": ["https://creativecommons.org/licenses/by/4.0/"]},
+        ))
+
+    def test_descriptor_label_must_match_uri(self):
+        self.assertFalse(license_values_allowed(
+            "Creative Commons - Attribution Share-Alike - https://creativecommons.org/licenses/by/4.0/",
+            {"license_filter": ["https://creativecommons.org/licenses/by/4.0/"]},
+        ))
+
+    def test_unrecognised_or_embellished_descriptor_fails_closed(self):
+        self.assertFalse(license_values_allowed(
+            "Creative Commons - Attribution - https://creativecommons.org/licenses/by/4.0/ with extra terms",
+            {"license_filter": ["https://creativecommons.org/licenses/by/4.0/"]},
+        ))
+
     def test_unknown_and_missing_license_fail_closed(self):
         allowed = {"license_filter": ["https://creativecommons.org/licenses/by/4.0/"]}
         self.assertFalse(license_values_allowed(None, allowed))
         self.assertFalse(license_values_allowed("", allowed))
         self.assertFalse(license_values_allowed("unknown", allowed))
+
+    def test_license_array_with_missing_entry_fails_closed(self):
+        self.assertFalse(license_values_allowed(
+            ["https://creativecommons.org/licenses/by/4.0/", None],
+            {"license_filter": ["https://creativecommons.org/licenses/by/4.0/"]},
+        ))
+        self.assertFalse(license_values_allowed(
+            ["https://creativecommons.org/licenses/by/4.0/", ""],
+            {"license_filter": ["https://creativecommons.org/licenses/by/4.0/"]},
+        ))
 
     def test_combined_license_string_is_not_split_or_accepted(self):
         self.assertFalse(license_values_allowed(
