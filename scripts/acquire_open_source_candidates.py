@@ -8,7 +8,6 @@ from huggingface_hub import HfApi
 
 OUT=Path("staging/open-source-candidates")
 TARGET_BYTES=6_800_000_000  # 10x the currently effective 680,665,972-byte corpus
-SOURCES.extend(json.loads(Path("data/scoped-library-catalog-100.json").read_text(encoding="utf-8"))["libraries"])
 SOURCES=[
  {"id":"HuggingFaceFW/fineweb-edu","config":"sample-10BT","license":"ODC-By-1.0","limit":100000,"fields":["text"],"caveat":"Common Crawl source-page rights and terms remain applicable."},
  {"id":"open-web-math/open-web-math","config":None,"license":"ODC-By-1.0","limit":100000,"fields":["text"],"caveat":"Common Crawl terms apply; collection license does not relicense underlying pages."},
@@ -35,6 +34,7 @@ SOURCES=[
  {"id":"common-pile/cccc","optional":True,"config":None,"license":"per-document CC-BY-4.0 only","license_filter":["creativecommons.org/licenses/by/4.0/"],"limit":150000,"fields":["text"],"caveat":"Common Pile manually verified domain-level CC claims but documents residual licensing errors. Exact per-record CC-BY-4.0 URI only; preserve URL/domain/date/license and audit opt-outs, PII, quality and cross-corpus duplication."},
  {"id":"common-pile/data_provenance_initiative_filtered","config":None,"license":"per-document MIT/Apache/BSD/CC-BY-4.0/CC0 only","license_name_filter":["mit license","apache license 2.0","apache-2.0","bsd 2-clause license","bsd 3-clause license","bsd-2-clause","bsd-3-clause","creative commons attribution 4.0 international","cc-by-4.0","cc0 1.0 universal","cc0-1.0"],"limit":50000,"fields":["text"],"caveat":"DPI manually annotates per-document provenance/license but warns of license laundering and metadata errors. Exact allowlist only; preserve metadata.license, license_url and dataset_id; candidate only pending independent rights and quality review."},
 ]
+SOURCES.extend(json.loads(Path("data/scoped-library-catalog-100.json").read_text(encoding="utf-8"))["libraries"])
 EMAIL=re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b")
 PHONE=re.compile(r"(?<!\d)(?:\+?\d[\d .()/-]{7,}\d)(?!\d)")
 def digest(p):
