@@ -61,7 +61,7 @@ El lote de 100 bibliotecas del [run 42356179021](https://github.com/orbitalronin
 
 ## Siguiente tanda de adquisición/revisión
 
-La PR [#21](https://github.com/orbitalronin94/HERETIC-RONIN/pull/21) prepara el arreglo de inferencia de esquema y nuevas muestras separadas para inspección:
+Las PR [#21](https://github.com/orbitalronin94/HERETIC-RONIN/pull/21) y [#22](https://github.com/orbitalronin94/HERETIC-RONIN/pull/22) ya están mergeadas. El recolector incluye las fuentes siguientes, pero sus nuevas descargas siguen siendo candidatas hasta completar la auditoría:
 
 - PubMed filtered: aceptar únicamente registros con URI exacta CC-BY-4.0 o CC0; el propio Common Pile advierte de posibles errores de metadatos.
 - OpenThoughts3: Apache-2.0 declarado, pero prompts derivados de fuentes upstream requieren revisión de derechos.
@@ -127,3 +127,15 @@ Se incorporan dos fuentes adicionales al recolector; ambas permanecen fuera del 
 El recolector ahora rechaza filas German Commons con licencia desconocida, combinaciones mixtas, BY-SA, NC o ND; la licencia ODC-BY de la agregación no se usa para relicenciar los textos. Se conservan `id`, `source`, `subset`, `license`, `num_tokens` y `ocr_score`. En portugués se conservan nombre de fichero, tipo de libro, longitud y timestamp para comprobar pureza lingüística, OCR y procedencia.
 
 **Fuente descartada deliberadamente:** Institutional Books / Harvard Library anuncia 983.004 libros y 242B tokens, pero su ficha remite a términos de acceso anticipado; Harvard limita su Public Domain Corpus a usos sin ánimo de lucro, educativos y de investigación. No lo incorporamos a la cola de entrenamiento general hasta que los términos permitan expresamente ese uso. No cuenta como material candidato ni admitido.
+
+
+## Estado de adquisición — actualización 2026-11-07 12:07 CET
+
+- PR #21 (expansión de fuentes y adquisición por artefactos separados) y PR #22 (portugués brasileño y German Commons) están mergeadas.
+- La adquisición antigua [run 42357699240](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42357699240) sigue ejecutando su paso de streaming; todavía no ha publicado artefactos.
+- [Run 42366084348](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42366084348) terminó cancelado antes de producir artefactos.
+- [Run 42366207131](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42366207131) permanece pendiente por la exclusión mutua del trabajo de adquisición.
+- Por tanto, las nuevas fuentes de PR #21 y #22 aún aportan **0 bytes admitidos**. No se atribuye al entrenamiento ningún candidato no descargado y auditado.
+- El inventario admitido continúa en **260.971 documentos / 703.593.871 bytes** hasta una nueva auditoría global satisfactoria.
+
+No se debe lanzar otra adquisición concurrente con el mismo grupo de exclusión. Cuando termine el proceso activo, la siguiente ejecución debe usar la rama principal actualizada, publicar un artefacto por fuente y pasar cada lote por muestra humana, deduplicación global y holdout antes de cambiar su estado a `admitted`.
