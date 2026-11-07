@@ -216,3 +216,12 @@ Se incorporan a la adquisición experimental Common Corpus de Pleias (2,27 billo
 ### Nuevas fuentes multilingües en evaluación
 
 La siguiente tanda añade un slice de libros públicos en portugués brasileño y un slice cultural de German Commons. Ambos son **candidatos**, no datos entrenables: el primero requiere verificación de procedencia/obras y OCR; el segundo exige que cada licencia documental sea exactamente CC0-1.0 o CC-BY-4.0, rechazando licencias mixtas, BY-SA, NC, ND y desconocidas. El inventario operativo y los gates están en [data/datasets/README.md](data/datasets/README.md) y [data/sources/registry.json](data/sources/registry.json).
+
+
+## Ampliación de fuentes — 2026-11-07
+
+Las PR [#21](https://github.com/orbitalronin94/HERETIC-RONIN/pull/21) y [#22](https://github.com/orbitalronin94/HERETIC-RONIN/pull/22) ya están integradas. El recolector ahora prepara slices candidatos de PubMed filtrado por licencia individual, OpenThoughts3, OpenR1-Math, IFM Code/Math, CourtListener, OpenStax, Common Corpus, English-PD, Spanish-PD-Books, Spanish-PD-Newspapers, libros públicos en portugués brasileño y German Commons. Estas fuentes **no están admitidas todavía**: sus bytes no se suman al inventario ni se habilitan para entrenamiento hasta descargar, verificar integridad, revisar muestras y derechos, deduplicar globalmente y escanear el holdout.
+
+El inventario actualmente admitido permanece en **260.971 documentos y 703.593.871 bytes** (base RONIN-IA + Cosmopedia v0.1 curada). La adquisición activa [run 42357699240](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42357699240) continúa en streaming; [run 42366207131](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42366207131) está pendiente por exclusión mutua. El intento [42366084348](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42366084348) fue cancelado sin artefactos. No se declara que estas fuentes hayan sido consumidas por el modelo.
+
+El detalle por fuente, sus licencias y las condiciones de admisión está en [`data/datasets/README.md`](data/datasets/README.md) y [`data/sources/registry.json`](data/sources/registry.json).
