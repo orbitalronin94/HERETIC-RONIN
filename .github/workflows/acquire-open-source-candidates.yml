@@ -2,7 +2,7 @@ name: HERETIC — acquire pinned open-source corpus candidates
 
 on:
   push:
-    branches: [main, experiment/500m-distilled-10k-all-corpus, data/expand-multilingual-transcripts-v1]
+    branches: [main, experiment/500m-distilled-10k-all-corpus]
     paths:
       - ".github/workflows/acquire-open-source-candidates.yml"
       - "scripts/acquire_open_source_candidates.py"
