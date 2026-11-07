@@ -2,7 +2,7 @@ name: HERETIC — acquire pinned open-source corpus candidates
 
 on:
   push:
-    branches: [main, experiment/500m-distilled-10k-all-corpus]
+    branches: [main]
     paths:
       - ".github/workflows/acquire-open-source-candidates.yml"
       - "scripts/acquire_open_source_candidates.py"
@@ -18,7 +18,7 @@ concurrency:
 jobs:
   acquire:
     runs-on: ubuntu-24.04
-    timeout-minutes: 180
+    timeout-minutes: 360
     env:
       PYTHONUNBUFFERED: "1"
     steps:
