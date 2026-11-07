@@ -1296,6 +1296,88 @@
         "keep candidate-only pending rights and quality gates"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "docketx/us-caselaw-fed-district:default",
+      "url": "https://huggingface.co/datasets/docketx/us-caselaw-fed-district",
+      "revision": "pin immutable Hub SHA at acquisition",
+      "reported_rows": 1308545,
+      "reported_size": "8.47 GB dataset; bounded 100,000-row slice",
+      "reported_license": "CC0-1.0 dataset packaging; U.S. judicial opinions public-domain",
+      "status": "candidate_acquisition_queued_manual_review",
+      "domains": [
+        "law",
+        "government",
+        "reasoning"
+      ],
+      "language": [
+        "en"
+      ],
+      "rights_caveat": "Free Law Project/CourtListener bulk opinions; dataset card documents public-domain government edicts and CC0 packaging. Preserve citation, court, date and source; exclude editorial additions if found.",
+      "required_checks": [
+        "pin immutable Hub revision and train/default config",
+        "inspect court and opinion-type distribution",
+        "preserve citation/court/date/source metadata",
+        "review legal text quality, duplication and PII",
+        "deduplicate globally and against holdouts",
+        "keep candidate-only until audit and human review pass"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "crumb/openstax-text:default",
+      "url": "https://huggingface.co/datasets/crumb/openstax-text",
+      "revision": "pin immutable Hub SHA at acquisition",
+      "reported_rows": 3354565,
+      "reported_size": "159 MB full dataset; bounded 50,000-row slice",
+      "reported_license": "CC-BY-4.0 declared on dataset card",
+      "status": "candidate_acquisition_queued_book_license_review",
+      "domains": [
+        "science",
+        "education",
+        "textbooks"
+      ],
+      "language": [
+        "en"
+      ],
+      "rights_caveat": "Dataset aggregates 76 OpenStax textbooks. OpenStax licensing varies by title/edition; a dataset-level CC-BY tag is insufficient. Preserve embedded attribution and verify each book/edition license before admission.",
+      "required_checks": [
+        "pin immutable Hub revision",
+        "retain embedded attribution and book title/edition",
+        "verify book-level license against official OpenStax source",
+        "exclude NC-SA and any third-party material not cleared",
+        "inspect OCR/format quality and deduplicate globally"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "PleIAs/Spanish-PD-Books:four-pinned-parquet-shards",
+      "url": "https://huggingface.co/datasets/PleIAs/Spanish-PD-Books",
+      "revision": "pin immutable Hub SHA at acquisition; shards spanish_pd_1,10,100,101",
+      "reported_rows": 302640,
+      "reported_size": "52.1 GB total; first four selected shards approx 1.7 GB compressed",
+      "reported_license": "Public domain claimed for EU/all regions by publisher; author death >70 years criterion",
+      "status": "candidate_acquisition_queued_rights_ocr_review",
+      "domains": [
+        "literature",
+        "history",
+        "philosophy",
+        "science",
+        "Spanish"
+      ],
+      "language": [
+        "es"
+      ],
+      "rights_caveat": "302,640 books / 13.9B words aggregated from BDH and Internet Archive. Card claims EU public domain based on author death >70 years. Validate creator/publication metadata and source provenance per sampled work; OCR quality varies and viewer shows schema inconsistencies across files.",
+      "required_checks": [
+        "pin exact Hub revision and four parquet shard paths",
+        "preserve identifier/creator/title/publication_date/word_count",
+        "verify public-domain term and source provenance on stratified samples",
+        "inspect OCR quality, encoding and document boundaries",
+        "deduplicate against Spanish literature and all corpus sources",
+        "keep candidate-only until rights and global audit pass"
+      ],
+      "count_toward_admitted_bytes": false
     }
   ],
   "target_library_bytes": 500000000000,
@@ -1314,7 +1396,8 @@
   ],
   "notes": [
     "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. Global G-0 remains FAIL; no staged bundle is active-training-authorized until global near-duplicate and benchmark/holdout contamination gates pass.",
-    "2026-11-07 admission: Cosmopedia v0.1 auto_math_text curated slice (4,734 rows; 22,927,899 bytes) passed global audit run 42362365447. Combined audit: 261,039 docs examined, 68 duplicate endpoints excluded (all within the 256,305 base records), 260,971 docs admitted, 0 exact matches against 120 synthetic diagnostic questions. Authorized for experimental train-only next-token pretraining only; upstream seed rights remain caveated."
+    "2026-11-07 admission: Cosmopedia v0.1 auto_math_text curated slice (4,734 rows; 22,927,899 bytes) passed global audit run 42362365447. Combined audit: 261,039 docs examined, 68 duplicate endpoints excluded (all within the 256,305 base records), 260,971 docs admitted, 0 exact matches against 120 synthetic diagnostic questions. Authorized for experimental train-only next-token pretraining only; upstream seed rights remain caveated.",
+    "2026-11-07: added candidate-only acquisition plans for 100k CourtListener public-domain opinions, 50k OpenStax textbook rows (book-level licensing unresolved), and four pinned Spanish-PD-Books parquet shards from a 52.1GB collection. No bytes counted as admitted; source-specific rights/quality gates remain mandatory."
   ],
   "last_candidate_batch": "run 42295370306 / artifact 13541581972: 50,000 rows, 317,069,186 bytes; training_authorized=false",
   "next_candidate_batch": "run 42295830953: DOAB/OERCommons/news/CCCC; queued follow-up adds DPI provenance corpus, arXiv and source-metadata retention; no candidates admitted",
