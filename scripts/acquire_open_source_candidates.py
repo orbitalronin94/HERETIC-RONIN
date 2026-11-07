@@ -47,6 +47,8 @@ SOURCES=[
  {"id":"PleIAs/English-PD","config":None,"data_files":["english_pd_0.parquet"],"file_tag":"english-pd-0","license":"Public domain claimed by publisher (titles pre-1884; EU author death >70 years)","limit":1500,"min_rows":500,"fields":["text"],"metadata_fields":["identifier","title","publication_date","word_count"],"caveat":"One pinned 497MB parquet shard from a 362GB collection / 736,214 titles / 78.6B words. Publisher states retained titles published before 1884 and EU public-domain criteria. OCR has known noise; preserve creator/title/date where present and inspect rights/OCR. Candidate only."},
  {"id":"PleIAs/English-PD","config":None,"data_files":["english_pd_1.parquet"],"file_tag":"english-pd-1","license":"Public domain claimed by publisher (titles pre-1884; EU author death >70 years)","limit":1500,"min_rows":500,"fields":["text"],"metadata_fields":["identifier","title","publication_date","word_count"],"caveat":"One pinned 447MB parquet shard from a 362GB collection / 736,214 titles / 78.6B words. Publisher states retained titles published before 1884 and EU public-domain criteria. OCR has known noise; preserve creator/title/date where present and inspect rights/OCR. Candidate only."},
  {"id":"PleIAs/Spanish-PD-Newspapers","config":None,"data_files":["default/train/0041.parquet"],"file_tag":"spanish-pd-newspapers-0041","license":"EU public domain claimed by publisher (author death >70 years)","limit":2500,"min_rows":500,"fields":["text"],"metadata_fields":["identifier","creator","title","publication_date","word_count"],"caveat":"One pinned 69.6MB parquet shard from a 48.6GB collection / 247,491 texts / 2.7B words. Aggregated from BDH and Internet Archive; publisher asserts EU public-domain status. Verify publication/title/creator dates, newspaper provenance and OCR quality. Candidate only."},
+ {"id":"dataseek/ptbr-books-publicos","config":None,"license":"CC0-1.0","verify_license_tag":True,"limit":10000,"min_rows":100,"fields":["text"],"metadata_fields":["id","filename","book_type","n_chars","timestamp"],"caveat":"Portuguese-Brazilian public-domain book text. Dataset card declares CC0-1.0 and lists 28.2k rows; inspect source/book metadata, language purity, OCR quality and source provenance. Candidate only."},
+ {"id":"coral-nlp/german-commons","config":"cultural","license":"per-document CC0 or CC-BY-4.0 only","license_all_exact_allowlist":["https://creativecommons.org/publicdomain/zero/1.0/","https://creativecommons.org/licenses/by/4.0/","CC0-1.0","CC-BY-4.0"],"limit":10000,"min_rows":100,"fields":["text"],"metadata_fields":["id","source","subset","license","num_tokens","ocr_score"],"caveat":"German Commons cultural subset. The dataset aggregates 41 sources and 154B tokens overall, but its ODC-BY aggregation license does not relicense documents. Keep only rows whose every per-document license is exactly CC0-1.0 or CC-BY-4.0; exclude share-alike, NC, ND, unknown and mixed license rows. Candidate only pending rights, OCR and provenance review."},
 ]
 EMAIL=re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b")
 PHONE=re.compile(r"(?<!\d)(?:\+?\d[\d .()/-]{7,}\d)(?!\d)")
@@ -99,7 +101,7 @@ def main():
     raise RuntimeError(message)
    # Keep per-record rights metadata when a source requires license filtering.
    # The payload projection still excludes all unrequested columns (notably audio).
-   optional_rights_columns=[column for column in ("metadata","license") if column in available_columns and (source.get("license_filter") or source.get("license_name_filter"))]
+   optional_rights_columns=[column for column in ("metadata","license") if column in available_columns and (source.get("license_filter") or source.get("license_name_filter") or source.get("license_exact_allowlist") or source.get("license_all_exact_allowlist"))]
    selected_columns=list(dict.fromkeys(required_columns+optional_rights_columns))
    if hasattr(ds,"select_columns") and getattr(ds,"features",None) is not None:
     ds=ds.select_columns(selected_columns)
@@ -123,9 +125,14 @@ def main():
       rejected+=1; continue
      if source.get("license_exact_allowlist") and license_text.strip().casefold() not in {x.casefold() for x in source["license_exact_allowlist"]}:
       rejected+=1; continue
+     if source.get("license_all_exact_allowlist"):
+      exact_allowed={x.strip().casefold() for x in source["license_all_exact_allowlist"]}
+      normalized_values=[str(x).strip().casefold() for x in license_values if x is not None and str(x).strip()]
+      if not normalized_values or any(value not in exact_allowed for value in normalized_values):
+       rejected+=1; continue
      if name_allowed and not any(token in license_text for token in name_allowed):
       rejected+=1; continue
-     if (allowed or name_allowed) and not row_license:
+     if (allowed or name_allowed or source.get("license_all_exact_allowlist")) and not row_license:
       rejected+=1; continue
      def render_value(value):
       if isinstance(value,str): return value.strip()
@@ -159,7 +166,7 @@ def main():
      "status":"candidate_not_admitted","caveat":source["caveat"],"elapsed_seconds":round(time.time()-started,2),
      "checks":{"streamed_train_only":True,"exact_dedup_within_source":True,"basic_length_filter":True,
        "email_phone_pattern_filter":True,"required_true_fields":source.get("required_true_fields",[]),"selected_columns":selected_columns,"cross_source_near_duplicate":"PENDING","global_holdout_contamination":"PENDING",
-       "human_sample_review":"PENDING","license_review":"per-record allowlist applied; external legal/provenance review pending" if source.get("license_filter") else "source-card-declared; final legal/provenance audit pending","per_record_license_filter":source.get("license_filter",[]),"per_record_license_filter_applied":bool(source.get("license_filter"))}})
+       "human_sample_review":"PENDING","license_review":"per-record allowlist applied; external legal/provenance review pending" if source.get("license_filter") else "source-card-declared; final legal/provenance audit pending","per_record_license_filter":source.get("license_filter",[]),"per_record_license_filter_applied":bool(source.get("license_filter") or source.get("license_all_exact_allowlist"))}})
    print(json.dumps(manifest[-1],ensure_ascii=False),flush=True)
 
   except Exception as exc:
