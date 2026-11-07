@@ -57,10 +57,14 @@ def main():
   ds=load_dataset(repo,cfg,split=split,streaming=True,revision=revision)
   selected_columns=list(dict.fromkeys(source["fields"]+source.get("required_true_fields",[])+source.get("metadata_fields",[])))
   ds=ds.select_columns(selected_columns)
-  target=OUT/(repo.replace("/","__")+".jsonl")
+  safe_config=(cfg or "default").replace("/","__")
+  safe_split=split.replace("/","__").replace(".","_")
+  target=OUT/(repo.replace("/","__")+"__"+safe_config+"__"+safe_split+".jsonl")
   seen=set(); written=0; rejected=0; started=time.time()
   with target.open("w",encoding="utf-8") as f:
    for row in ds:
+    if any(row.get(k) is not True for k in source.get("required_true_fields",[])):
+     rejected+=1; continue
     row_metadata=row.get("metadata",{}) if isinstance(row.get("metadata",{}),dict) else {}
     raw_license=row.get("license") or row_metadata.get("license","")
     license_values=raw_license if isinstance(raw_license,list) else [raw_license]
