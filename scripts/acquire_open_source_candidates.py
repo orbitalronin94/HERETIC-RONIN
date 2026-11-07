@@ -6,6 +6,7 @@ from itertools import chain
 from pathlib import Path
 from datasets import load_dataset
 from huggingface_hub import HfApi
+from license_gates import license_values_allowed
 
 OUT=Path("staging/open-source-candidates")
 TARGET_BYTES=6_800_000_000  # 10x the currently effective 680,665,972-byte corpus
@@ -118,29 +119,7 @@ def main():
      raw_license=row.get("license") or row_metadata.get("license","")
      license_values=raw_license if isinstance(raw_license,list) else [raw_license]
      row_license="; ".join(str(x).strip() for x in license_values if x is not None)
-     allowed=source.get("license_filter",[])
-     name_allowed=source.get("license_name_filter",[])
-     license_text=row_license.lower()
-     # Rights filters are exact per-record checks, never substring matches.
-     # A CC-BY-SA URL must not pass a CC-BY filter merely because it contains
-     # the latter as a prefix; reject combined/ambiguous license strings too.
-     normalized_licenses=[str(x).strip().casefold().rstrip("/") for x in license_values if x is not None and str(x).strip()]
-     if allowed:
-      exact_uri_allowlist={str(token).strip().casefold().rstrip("/") for token in allowed}
-      if not normalized_licenses or any(value not in exact_uri_allowlist for value in normalized_licenses):
-       rejected+=1; continue
-     if source.get("license_exact_allowlist") and license_text.strip().casefold() not in {x.casefold() for x in source["license_exact_allowlist"]}:
-      rejected+=1; continue
-     if source.get("license_all_exact_allowlist"):
-      exact_allowed={x.strip().casefold() for x in source["license_all_exact_allowlist"]}
-      normalized_values=[str(x).strip().casefold() for x in license_values if x is not None and str(x).strip()]
-      if not normalized_values or any(value not in exact_allowed for value in normalized_values):
-       rejected+=1; continue
-     if name_allowed:
-      exact_name_allowlist={str(token).strip().casefold() for token in name_allowed}
-      if not normalized_licenses or any(value not in exact_name_allowlist for value in normalized_licenses):
-       rejected+=1; continue
-     if (allowed or name_allowed or source.get("license_all_exact_allowlist")) and not row_license:
+     if not license_values_allowed(raw_license, source):
       rejected+=1; continue
      def render_value(value):
       if isinstance(value,str): return value.strip()
