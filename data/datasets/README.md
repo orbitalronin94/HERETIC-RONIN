@@ -177,6 +177,14 @@ Todos los shards anteriores tienen revisión inmutable, split y SHA-256 individu
 - **LibriSpeech `train.clean.100`:** 21.038 transcripciones utilizables, por debajo del mínimo configurado; solo `train.clean.360` produjo el shard de 50.000 filas.
 - El umbral de 6,8 GB no se alcanzó. El fallo del workflow no convierte los archivos del artefacto en datos admitidos.
 
+### Nueva fuente primaria descubierta — PMC Open Access Subset (candidata)
+
+Se ha registrado [PMC Open Access Subset](https://pmc.ncbi.nlm.nih.gov/tools/openftlist/) como candidato biomédico de alto valor, **sin descargar ni contar bytes**. NCBI/NLM ofrece recuperación automatizada autorizada mediante [OAI-PMH](https://pmc.ncbi.nlm.nih.gov/tools/oai/) y [Cloud Service](https://pmc.ncbi.nlm.nih.gov/tools/cloud/); el scraping sistemático de la web principal está prohibido. La licencia varía por artículo y NLM no posee los derechos de autor. <Cite refs={["turn409787view0","turn409787view2","turn637114view1","turn637114view0"]} />
+
+El piloto propuesto acepta únicamente URI exactas **CC-BY-4.0 o CC0-1.0**. Se rechazan BY-SA, BY-ND, NC, otras versiones, licencias personalizadas, ausentes o ambiguas; los filtros de búsqueda CC BY/CC0 son solo descubrimiento y cada XML debe validarse individualmente. El OAI-PMH limita el tráfico a 3 solicitudes/s y pide no usar solicitudes concurrentes; los lotes de más de 100 solicitudes deben ejecutarse fuera de horas punta de EE. UU. <Cite refs={["turn241498view0","turn401419view0"]} />
+
+Antes de adquirir: fijar fecha de inventario, lista completa de PMCIDs y su SHA-256; conservar DOI, autores, journal, versión, licencia y atribución; excluir material de terceros, figuras, suplementos, retirados, PII y datos clínicos identificables; y ejecutar deduplicación/holdout global y revisión humana. Estado en el registro: `priority_candidate_official_license_filtered_pilot_not_acquired`; **0 filas / 0 bytes admitidos**.
+
 ### Estado de los siguientes workflows y corrección de seguridad
 
 - [Run 42366207131](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42366207131): seguía en streaming; se ejecuta sobre `86348b6c5d5215416c894abdda38ca8855abd06b`, anterior al filtro exacto. Cuando termine, su bundle seguirá en cuarentena.
