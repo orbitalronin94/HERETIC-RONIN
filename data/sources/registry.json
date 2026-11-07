@@ -1832,6 +1832,54 @@
         "deduplicate against all historical book corpora and holdouts"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "NCBI/PMC-OA-Subset:CC-BY-4.0-or-CC0-only",
+      "url": "https://pmc.ncbi.nlm.nih.gov/tools/openftlist/",
+      "revision": "No Git commit. Pin a dated PMC OAI-PMH/Cloud inventory snapshot, complete PMCID identifier manifest SHA-256, OAI datestamps/article versions, and each downloaded payload SHA-256 before treating any batch as reproducible.",
+      "reported_rows": null,
+      "reported_size": "Not estimated; count only from a pinned inventory and exact accepted per-article licenses.",
+      "reported_license": "Article-level. Accept only exact CC-BY-4.0 or CC0-1.0. Reject CC-BY-SA, CC-BY-ND, all NC, other versions, custom, missing, or ambiguous license statements.",
+      "license_uri_allowlist": [
+        "https://creativecommons.org/licenses/by/4.0/",
+        "https://creativecommons.org/publicdomain/zero/1.0/"
+      ],
+      "status": "priority_candidate_official_license_filtered_pilot_not_acquired",
+      "domains": [
+        "biomedicine",
+        "life sciences",
+        "medicine",
+        "public health",
+        "scientific writing"
+      ],
+      "language": [
+        "multilingual; measure per-record, do not assume English-only or balanced coverage"
+      ],
+      "known_lineage": "PubMed Central Open Access Subset, maintained by NIH/NLM. Article and preprint records are deposited by publishers/authors; rights remain with the respective copyright holders. PMC inclusion is not a blanket license.",
+      "acquisition_plan": "After the current mutually exclusive acquisition runs finish, pilot at most 5,000 full-text records. Use only the official PMC OAI-PMH or Cloud service; first enumerate metadata and license, then fetch full text only for records whose article-level license URI exactly matches CC-BY-4.0 or CC0-1.0. Snapshot the complete PMCID list and all payload hashes.",
+      "official_license_search": "(\"cc by license\"[filter] OR \"cc0 license\"[filter]) AND \"open access\"[filter]; still validate the exact article-level license URI in the record before retrieval/admission.",
+      "official_retrieval": "PMC OAI-PMH v2.0 at https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/ (metadataPrefix=pmc_fm for metadata; metadataPrefix=pmc for full text) or PMC Cloud Service. Never scrape the main PMC website.",
+      "retrieval_rate_limit": "PMC OAI-PMH: maximum 3 requests/second; for >100 requests, run outside US Eastern peak hours and do not issue concurrent requests.",
+      "required_checks": [
+        "Use only PMC-authorized OAI-PMH, Cloud, E-Utilities or BioC services for automated retrieval; never bulk scrape the main PMC site",
+        "Pin dated inventory/search snapshot, full PMCID list, OAI datestamps/article versions and manifest SHA-256",
+        "Read article-level license metadata first; fetch full text only when exact CC-BY-4.0 or CC0-1.0 is present",
+        "Reject CC-BY-SA, CC-BY-ND, CC-BY-NC, CC-BY-NC-SA, CC-BY-NC-ND, custom, absent, conflicting or unknown licenses",
+        "Retain author, title, journal, DOI, PMCID, publication/version date, license URI, copyright statement and attribution",
+        "Exclude third-party figures/media/supplementary files, retracted/withdrawn records, and content whose reuse rights are not covered by the article license",
+        "Inspect for PII, identifiable patient data, sensitive clinical narratives, secrets and unsafe content; exclude or quarantine uncertain records",
+        "Run language/quality audits, exact and approximate deduplication against the entire corpus, and global validation/test/holdout contamination checks",
+        "Human-review stratified samples by journal, domain, year, language and license before any admission"
+      ],
+      "rights_caveat": "PMC explicitly states that license terms vary by article, that NLM does not hold copyright, and that users are responsible for each copyright holder's terms. The broad OA subset and the commercial-use grouping also contain BY-SA and BY-ND articles; those are not accepted by this project. Search filters are discovery aids, not substitutes for exact per-article license verification.",
+      "evidence_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/tools/openftlist/",
+        "https://pmc.ncbi.nlm.nih.gov/tools/oai/",
+        "https://pmc.ncbi.nlm.nih.gov/tools/cloud/",
+        "https://pmc.ncbi.nlm.nih.gov/about/copyright/",
+        "https://pmc.ncbi.nlm.nih.gov/about/userguide/"
+      ],
+      "count_toward_admitted_bytes": false
     }
   ],
   "target_library_bytes": 500000000000,
@@ -1854,6 +1902,10 @@
     {
       "date": "2026-11-07",
       "note": "Run 42357699240 completed with a candidate bundle of 531,963 rows / 1,670,605,627 JSONL bytes (artifact 749,837,081 bytes; SHA-256 e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de). It did not meet the 6.8GB candidate floor, and all data remains unadmitted (0 bytes added). Source/config revisions and per-shard SHA-256 are stored under candidate_acquisitions. PR #23 merged as 7f0e539; exact fail-closed per-record license matching is covered by 8 passing unit tests (run 42377093318)."
+    },
+    {
+      "date": "2026-11-07",
+      "note": "New primary-source candidate: PMC Open Access Subset via official PMC OAI-PMH/Cloud services. The official PMC guide exposes CC BY and CC0 search filters, but the OA subset has mixed article-level licenses and NLM does not own the copyright. Proposed pilot accepts only exact CC-BY-4.0/CC0-1.0 URIs, rejects SA/ND/NC/custom/unknown, snapshots PMCID manifests and hashes, and obeys the OAI limit of 3 requests/s with no concurrent requests. Not acquired; 0 admitted bytes."
     }
   ],
   "notes": [
@@ -1863,7 +1915,7 @@
     "2026-11-07: added Common Corpus (2.27T-token claim, per-document provenance, exact license allowlist), two separate English-PD shards from a 362GB collection, and a Spanish-PD-Newspapers shard from a 48.6GB collection. All remain candidates pending manual rights/OCR/global audit."
   ],
   "last_candidate_batch": "run 42357699240 / artifact 13573027505: 531,963 candidate rows; 1,670,605,627 candidate JSONL bytes; ZIP 749,837,081 bytes; training_authorized=false; admitted bytes added=0.",
-  "next_candidate_batch": "Run 42366207131 is still streaming on pre-fix commit 86348b6c5d5215416c894abdda38ca8855abd06b and remains candidate-only. After its concurrency slot frees, queued run 42377212260 will use main commit 7f0e539069222682924588bf23d3fe124b9e2b1b with exact fail-closed per-record license gates.",
+  "next_candidate_batch": "Run 42366207131 is still streaming on pre-fix commit 86348b6c5d5215416c894abdda38ca8855abd06b and remains candidate-only. After its concurrency slot frees, queued run 42377212260 will use main commit 7f0e539069222682924588bf23d3fe124b9e2b1b with exact fail-closed per-record license gates. After these runs, prioritize a bounded PMC OA pilot using exact article-level CC-BY-4.0/CC0-1.0 filtering through official OAI-PMH/Cloud services; do not scrape PMC or accept the broader mixed-license OA set.",
   "audit_summary": {
     "run_id": 42288107561,
     "documents_audited": 256305,
