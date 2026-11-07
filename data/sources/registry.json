@@ -1378,6 +1378,120 @@
         "keep candidate-only until rights and global audit pass"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "PleIAs/common_corpus:train-exact-license-allowlist",
+      "url": "https://huggingface.co/datasets/PleIAs/common_corpus",
+      "revision": "pin immutable Hub SHA at acquisition",
+      "reported_rows": 69900,
+      "reported_size": "2.27 trillion tokens claimed across the complete corpus; bounded 20,000-row sample",
+      "reported_license": "Per-document mixed licenses; strict exact allowlist in acquisition",
+      "status": "candidate_acquisition_queued_exact_license_filter",
+      "domains": [
+        "books",
+        "newspapers",
+        "science",
+        "government",
+        "law",
+        "code",
+        "semantic data"
+      ],
+      "language": [
+        "multilingual"
+      ],
+      "rights_caveat": "Pleias card reports 2.27T tokens, six collections and document-level license/provenance metadata. The source is heterogeneous; only exact CC0/Public Domain/CC-BY-4.0/MIT/Apache-2.0/Open Parliament Licence v3.0/Licence Ouverte strings pass the candidate filter. All other, unknown, share-alike, NC/ND and mixed labels are excluded. Preserve identifier, collection, open_type, license, creator, language and date.",
+      "required_checks": [
+        "pin immutable revision and train split",
+        "verify exact per-document license allowlist and count each license",
+        "inspect collection/open_type/language distributions",
+        "preserve source identifier and attribution metadata",
+        "sample-check upstream URLs and source provenance",
+        "deduplicate globally and scan all holdouts",
+        "keep candidate-only pending independent review"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "PleIAs/English-PD:english-pd-0",
+      "url": "https://huggingface.co/datasets/PleIAs/English-PD",
+      "revision": "pin immutable Hub SHA at acquisition; english_pd_0.parquet",
+      "reported_rows": 736214,
+      "reported_size": "362 GB collection; selected shard 497 MB",
+      "reported_license": "Public domain claimed; publisher limits current titles to pre-1884 and applies EU author-death >70 years",
+      "status": "candidate_acquisition_queued_rights_ocr_review",
+      "domains": [
+        "English literature",
+        "history",
+        "science",
+        "humanities"
+      ],
+      "language": [
+        "en"
+      ],
+      "rights_caveat": "736,214 titles / 78.6B words. The publisher claims public domain in all regions and says retained titles are pre-1884. OCR artifacts are known. Verify creator/title/date metadata and sample texts.",
+      "required_checks": [
+        "pin immutable Hub revision and exact parquet shard",
+        "retain identifier/title/publication_date/word_count",
+        "verify publisher's pre-1884 and public-domain criteria",
+        "inspect OCR noise and document boundaries",
+        "deduplicate against all English book corpora and holdouts"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "PleIAs/English-PD:english-pd-1",
+      "url": "https://huggingface.co/datasets/PleIAs/English-PD",
+      "revision": "pin immutable Hub SHA at acquisition; english_pd_1.parquet",
+      "reported_rows": 736214,
+      "reported_size": "362 GB collection; selected shard 447 MB",
+      "reported_license": "Public domain claimed; publisher limits current titles to pre-1884 and applies EU author-death >70 years",
+      "status": "candidate_acquisition_queued_rights_ocr_review",
+      "domains": [
+        "English literature",
+        "history",
+        "science",
+        "humanities"
+      ],
+      "language": [
+        "en"
+      ],
+      "rights_caveat": "Second selected shard from same collection; avoid counting same source-wide row totals twice. OCR artifacts are known; inspect creator/title/date metadata and rights samples.",
+      "required_checks": [
+        "pin immutable Hub revision and exact parquet shard",
+        "retain identifier/title/publication_date/word_count",
+        "verify publisher's pre-1884 and public-domain criteria",
+        "inspect OCR noise and document boundaries",
+        "deduplicate against all English book corpora and holdouts"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "PleIAs/Spanish-PD-Newspapers:0041",
+      "url": "https://huggingface.co/datasets/PleIAs/Spanish-PD-Newspapers",
+      "revision": "pin immutable Hub SHA at acquisition; default/train/0041.parquet",
+      "reported_rows": 654608,
+      "reported_size": "48.6 GB collection; selected shard 69.6 MB",
+      "reported_license": "Public domain claimed by publisher; author death >70 years criterion",
+      "status": "candidate_acquisition_queued_rights_ocr_review",
+      "domains": [
+        "Spanish newspapers",
+        "history",
+        "politics",
+        "science",
+        "culture"
+      ],
+      "language": [
+        "es"
+      ],
+      "rights_caveat": "247,491 texts / 2.7B words claimed in dataset card; aggregated from BDH and Internet Archive. Verify publication/creator metadata, issue dates, provenance and OCR quality.",
+      "required_checks": [
+        "pin immutable revision and exact parquet shard",
+        "preserve identifier/creator/title/publication_date/word_count",
+        "verify source publication and public-domain status",
+        "review OCR, columns and article/document boundaries",
+        "deduplicate against Spanish-PD-Books and all corpus sources"
+      ],
+      "count_toward_admitted_bytes": false
     }
   ],
   "target_library_bytes": 500000000000,
@@ -1397,7 +1511,8 @@
   "notes": [
     "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. Global G-0 remains FAIL; no staged bundle is active-training-authorized until global near-duplicate and benchmark/holdout contamination gates pass.",
     "2026-11-07 admission: Cosmopedia v0.1 auto_math_text curated slice (4,734 rows; 22,927,899 bytes) passed global audit run 42362365447. Combined audit: 261,039 docs examined, 68 duplicate endpoints excluded (all within the 256,305 base records), 260,971 docs admitted, 0 exact matches against 120 synthetic diagnostic questions. Authorized for experimental train-only next-token pretraining only; upstream seed rights remain caveated.",
-    "2026-11-07: added candidate-only acquisition plans for 100k CourtListener public-domain opinions, 50k OpenStax textbook rows (book-level licensing unresolved), and four pinned Spanish-PD-Books parquet shards from a 52.1GB collection. No bytes counted as admitted; source-specific rights/quality gates remain mandatory."
+    "2026-11-07: added candidate-only acquisition plans for 100k CourtListener public-domain opinions, 50k OpenStax textbook rows (book-level licensing unresolved), and four pinned Spanish-PD-Books parquet shards from a 52.1GB collection. No bytes counted as admitted; source-specific rights/quality gates remain mandatory.",
+    "2026-11-07: added Common Corpus (2.27T-token claim, per-document provenance, exact license allowlist), two separate English-PD shards from a 362GB collection, and a Spanish-PD-Newspapers shard from a 48.6GB collection. All remain candidates pending manual rights/OCR/global audit."
   ],
   "last_candidate_batch": "run 42295370306 / artifact 13541581972: 50,000 rows, 317,069,186 bytes; training_authorized=false",
   "next_candidate_batch": "run 42295830953: DOAB/OERCommons/news/CCCC; queued follow-up adds DPI provenance corpus, arXiv and source-metadata retention; no candidates admitted",
