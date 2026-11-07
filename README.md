@@ -19,7 +19,7 @@ Su principio es sencillo: **experimentar sin reverencia, medir sin indulgencia**
 | Estructura | 10 shards JSONL de 5.000 filas |
 | Dominios actuales | Matemáticas, álgebra, lógica, programación, física, química, probabilidad, estadística, economía e ingeniería |
 | Naturaleza del lote actual | Sintético y procedimental; no corpus gold |
-| Herencia RONIN-IA | 286.464 documentos train scoped reconciliados con los artefactos exactos (el README de origen aún anuncia 286.468); staging train-only verificado en [run 42283514919](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42283514919), artefacto de 288.668.608 bytes; gates globales pendientes |
+| Corpus efectivo auditado | 256.237 documentos tras excluir 68 duplicados; 680.665.972 bytes (649,0 MiB) usados por el entrenamiento, run [42338551408](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42338551408) |
 | Objetivo de biblioteca | 500 GB de datos admitidos y trazables (objetivo, aún no alcanzado) |
 | Promoción de datos | Nunca automática por volumen |
 | Evaluación | Holdout separado; nunca se incorpora al entrenamiento |
@@ -36,7 +36,7 @@ La biblioteca versionada se organiza en `data/`:
 - `data/drosophila/parts/`: shards JSONL de entrenamiento.
 - `data/drosophila/README_01301_51300.md`: ficha y limitaciones del lote sintético de 50.000 filas.
 
-**Drosophila es el nombre del corpus experimental, no un filtro temático biológico.** La biblioteca es generalista y multidominio. La cola de curación vigente está en [`data/drosophila/CURATION_QUEUE_2026-11-06.md`](data/drosophila/CURATION_QUEUE_2026-11-06.md); las fuentes, licencias declaradas y gates de adquisición se registran en [`data/sources/registry.json`](data/sources/registry.json). Los manifiestos source-scoped de RONIN-IA no se consideran importados hasta recuperar los payloads, verificar splits/hashes, pasar los controles globales y conectar el lote al lector de entrenamiento.
+**Drosophila es el nombre del corpus experimental, no un filtro temático biológico.** La biblioteca es generalista y multidominio. La cola de curación vigente está en [`data/drosophila/CURATION_QUEUE_2026-11-06.md`](data/drosophila/CURATION_QUEUE_2026-11-06.md); las fuentes, licencias declaradas y gates de adquisición se registran en [`data/sources/registry.json`](data/sources/registry.json). Los manifiestos source-scoped de RONIN-IA se recuperaron con hashes verificados, se auditaron globalmente y ya alimentan el corpus efectivo. El informe de auditoría [run 42288107561](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42288107561) y el entrenamiento [run 42338551408](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42338551408) registran 256.237 documentos únicos tras excluir 68 duplicados y 680.665.972 bytes de texto. La comprobación de 120 preguntas es un diagnóstico sintético, no un benchmark externo. Papers conserva alcance de autorización interna únicamente.
 
 La biblioteca crecerá hacia **500 GB**, no hacia un número fijo de ejemplos. El tamaño anunciado por una fuente no equivale a bytes descargados ni a bytes admitidos. Mantendremos contadores separados para bytes remotos anunciados, bytes descargados, bytes íntegros, bytes tras deduplicación y bytes finalmente admitidos. Cada nuevo lote debe conservar, como mínimo:
 
@@ -201,3 +201,8 @@ Fuentes oficiales consultadas: VoxPopuli documenta CC0 para los datos y 18 idiom
 La siguiente tranche amplía los límites de descarga sin relajar la admisión: hasta 20.000 textos científicos de arXiv (paper_text, solo licencias por artículo CC-BY-4.0 o CC0), hasta 20.000 textos de libros revisados por pares de DOAB (solo CC-BY-4.0 explícito en metadatos), hasta 15.000 secciones por fuente de Pressbooks y LibreTexts (solo CC-BY-4.0), y hasta 10.000 artículos biomédicos PubMed (CC-BY-4.0/CC0). Son máximos candidatos, no bytes adquiridos ni admitidos; los totales reales se medirán desde los manifiestos SHA-256.
 
 La adquisición también corrige un error de sintaxis Python (true en lugar de True) que hacía fallar el script antes de iniciar cualquier descarga. Se elimina el disparador desde ramas experimentales para evitar ejecuciones duplicadas y se amplía el límite de tiempo a seis horas. CCCC queda fuera de la descarga activa: la muestra pública inspeccionada expone URL/procedencia, pero no el campo de licencia por registro que exige el filtro actual; no se aceptará hasta resolver ese mapeo.
+
+
+## Corpus efectivo auditado — 2026-11-07
+
+El primer lote source-scoped ya no está solo en staging: el workflow de entrenamiento consumió **256.237 documentos y 680.665.972 bytes (649,0 MiB)** después de excluir 68 extremos duplicados exactos o aproximados. Distribución y bytes por fuente están en `data/sources/registry.json`; auditoría reproducible: [run 42288107561](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42288107561). Entrenamiento que consumió el corpus: [run 42338551408](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42338551408). Los 120 ítems de holdout usados por esta auditoría son sintéticos y solo sirven como diagnóstico; no se presentan como benchmark público. Las licencias y autorizaciones siguen limitadas por fuente, y los nueve Papers son solo para entrenamiento interno autorizado por el propietario.
