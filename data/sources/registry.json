@@ -512,10 +512,11 @@
       "acquisition_run": 42283763295,
       "manual_review": {
         "artifact_run": 42283763295,
-        "rows_inspected": 5000,
+        "rows_inspected": 25,
         "decision": "quarantine",
         "reason": "Sample includes syndicated/publisher/health/web pages; ODC-By database license does not independently clear underlying page rights.",
-        "admitted_training_bytes": 0
+        "admitted_training_bytes": 0,
+        "sample_method": "stratified spot-check of excerpts across the 5,000-row artifact"
       }
     },
     {
@@ -574,10 +575,11 @@
       "acquisition_run": 42283763295,
       "manual_review": {
         "artifact_run": 42283763295,
-        "rows_inspected": 5000,
+        "rows_inspected": 25,
         "decision": "quarantine",
         "reason": "Common Crawl-derived web text; underlying page rights remain separate from ODC-By database license.",
-        "admitted_training_bytes": 0
+        "admitted_training_bytes": 0,
+        "sample_method": "stratified spot-check of excerpts across the 5,000-row artifact"
       }
     },
     {
@@ -611,10 +613,11 @@
       "acquisition_run": 42283763295,
       "manual_review": {
         "artifact_run": 42283763295,
-        "rows_inspected": 5000,
+        "rows_inspected": 26,
         "decision": "quarantine",
         "reason": "Mixed seed lineage and templated synthetic content; do not mix with Cosmopedia v0.1.",
-        "admitted_training_bytes": 0
+        "admitted_training_bytes": 0,
+        "sample_method": "stratified spot-check of excerpts across the 5,000-row artifact"
       }
     },
     {
