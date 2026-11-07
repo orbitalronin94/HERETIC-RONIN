@@ -34,6 +34,7 @@ SOURCES=[
  {"id":"common-pile/cccc","optional":True,"config":None,"license":"per-document CC-BY-4.0 only","license_filter":["creativecommons.org/licenses/by/4.0/"],"limit":150000,"fields":["text"],"caveat":"Common Pile manually verified domain-level CC claims but documents residual licensing errors. Exact per-record CC-BY-4.0 URI only; preserve URL/domain/date/license and audit opt-outs, PII, quality and cross-corpus duplication."},
  {"id":"common-pile/data_provenance_initiative_filtered","config":None,"license":"per-document MIT/Apache/BSD/CC-BY-4.0/CC0 only","license_name_filter":["mit license","apache license 2.0","apache-2.0","bsd 2-clause license","bsd 3-clause license","bsd-2-clause","bsd-3-clause","creative commons attribution 4.0 international","cc-by-4.0","cc0 1.0 universal","cc0-1.0"],"limit":50000,"fields":["text"],"caveat":"DPI manually annotates per-document provenance/license but warns of license laundering and metadata errors. Exact allowlist only; preserve metadata.license, license_url and dataset_id; candidate only pending independent rights and quality review."},
 ]
+SOURCES.extend(json.loads(Path("data/scoped-library-catalog-100.json").read_text(encoding="utf-8"))["libraries"])
 EMAIL=re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b")
 PHONE=re.compile(r"(?<!\d)(?:\+?\d[\d .()/-]{7,}\d)(?!\d)")
 def digest(p):
@@ -58,6 +59,10 @@ def main():
    split=source.get("split","train")
    ds=load_dataset(repo,cfg,split=split,streaming=True,revision=revision)
    available_columns=set(ds.features.keys()) if ds.features is not None else set(ds.column_names or [])
+   if source.get("discover_text_column"):
+    chosen=next((column for column in source.get("text_fields",[]) if column in available_columns),None)
+    if chosen is None: raise RuntimeError(f"{repo}/{cfg or 'default'}: no supported text field found; available={sorted(available_columns)}")
+    source["fields"]=[chosen]
    required_columns=list(dict.fromkeys(source["fields"]+source.get("required_true_fields",[])+source.get("metadata_fields",[])))
    missing_columns=[column for column in required_columns if column not in available_columns]
    if missing_columns:
