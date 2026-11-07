@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Global exact/near-duplicate and holdout audit for real RONIN-IA train artifacts only."""
 from __future__ import annotations
-import hashlib, json, re, zipfile, gzip
+import argparse, hashlib, json, re, zipfile, gzip
 from collections import defaultdict
 from pathlib import Path
 from itertools import combinations
@@ -73,6 +73,9 @@ def documents_from_jsonl(stream, source, out):
         if isinstance(text,str) and len(text.strip())>=40:
             out.append((source,text))
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--cosmopedia-jsonl",type=Path,default=None,help="Optional manually curated Cosmopedia candidate JSONL to include in the global audit")
+    args=parser.parse_args()
     OUT.mkdir(parents=True,exist_ok=True)
     docs=[]
     with zipfile.ZipFile(IMPORT_ZIP) as z:
@@ -89,9 +92,12 @@ def main():
         for name in z.namelist():
             if name.startswith("ronin-authored-papers/") and name.endswith(".md"):
                 docs.append(("papers",z.read(name).decode("utf-8")))
-    # Audit only the exact real source-scoped RONIN-IA artifact. Synthetic Drosophila and unreviewed open-source candidates are excluded.
+    if args.cosmopedia_jsonl is not None:
+        with args.cosmopedia_jsonl.open("r",encoding="utf-8") as stream:
+            documents_from_jsonl(stream,"cosmopedia",docs)
+    # Audit the exact real source-scoped RONIN-IA artifact plus only explicitly supplied curated candidates.
     if len(docs)<250000: raise RuntimeError(f"Unexpectedly small real-artifact audit corpus: {len(docs)}")
-    exact={}; exact_duplicates=[]; holdout=holdout_rows()
+    exact={}; exact_duplicates=[]; exact_duplicate_indices=set(); holdout=holdout_rows()
     holdout_norm=[norm(x["question"]) for x in holdout]
     holdout_exact=[]
     hashes=[]; sources=[]; lengths=[]
@@ -100,6 +106,7 @@ def main():
         if not n: continue
         digest=hashlib.sha256(n.encode("utf-8")).hexdigest()
         if digest in exact:
+            exact_duplicate_indices.add(idx)
             if len(exact_duplicates)<200: exact_duplicates.append({"first":exact[digest],"duplicate":{"index":idx,"source":source}})
         else: exact[digest]={"index":idx,"source":source}
         for qidx,q in enumerate(holdout_norm):
@@ -121,22 +128,22 @@ def main():
                 if len(near)<1000: near.append({"a":{"index":a,"source":sources[a]},"b":{"index":b,"source":sources[b]},"hamming":(hashes[a]^hashes[b]).bit_count()})
     counts={}
     for s in sources: counts[s]=counts.get(s,0)+1
-    excluded=sorted({item["b"]["index"] for item in near} | {item["duplicate"]["index"] for item in exact_duplicates})
+    excluded=sorted({item["b"]["index"] for item in near} | exact_duplicate_indices)
     complete_near_audit=len(near)<1000
-    exacts_covered=all(item["duplicate"]["index"] in excluded for item in exact_duplicates)
+    exacts_covered=exact_duplicate_indices.issubset(set(excluded))
     dedup_plan={"method":"For every flagged near-duplicate pair, retain the lower global index and exclude the higher; exclude exact-duplicate endpoints as well.",
       "excluded_global_indices":excluded,"records_to_exclude":len(excluded),
       "near_duplicate_pairs_detected":len(near),"near_duplicate_pair_list_complete":complete_near_audit,
       "exact_duplicate_records_covered":exacts_covered}
     report={"schema":"heretic-global-train-corpus-audit-v2","documents_audited":len(hashes),"source_counts":counts,
-      "exact_duplicate_groups_or_hits":len(exact_duplicates),"exact_duplicate_examples":exact_duplicates,
+      "exact_duplicate_groups_or_hits":len(exact_duplicate_indices),"exact_duplicate_examples":exact_duplicates,
       "simhash_method":"64-bit word-trigram SimHash, up to 512 evenly sampled trigrams/document; 4x16-bit band candidate retrieval; Hamming distance <=3",
       "near_duplicate_pairs_found":len(near),"near_duplicate_pairs_capped_at":1000,"near_duplicate_examples":near,
       "candidate_pairs_checked":checked,"holdout_questions":len(holdout),"exact_holdout_question_matches":len(holdout_exact),
       "holdout_matches":holdout_exact[:200],"deduplication_plan":dedup_plan,
-      "limitations":["This audit is a high-recall heuristic, not semantic proof of no contamination.","The synthetic 120-question diagnostic is not a public benchmark.","Only exact source-scoped RONIN-IA train artifacts are audited; synthetic Drosophila and unreviewed open-source candidates are excluded.","Global source rights remain source-scoped; no broader redistribution or commercial rights are inferred."],
+      "limitations":["This audit is a high-recall heuristic, not semantic proof of no contamination.","The synthetic 120-question diagnostic is not a public benchmark.","The audit includes exact source-scoped RONIN-IA train artifacts and only explicitly supplied curated candidates; all other unreviewed candidates remain excluded.","Global source rights remain source-scoped; no broader redistribution or commercial rights are inferred."],
       "training_authorized":bool(not holdout_exact and complete_near_audit and exacts_covered),
-      "authorization_scope":"Exact source-scoped RONIN-IA train partitions after deterministic exclusion of exact and SimHash near-duplicate endpoints; validation/test/holdout and unreviewed candidates excluded."}
+      "authorization_scope":"Exact source-scoped RONIN-IA train partitions plus explicitly supplied curated candidates after deterministic exclusion of exact and SimHash near-duplicate endpoints; validation/test/holdout and all other unreviewed candidates excluded."}
     (OUT/"GLOBAL-CORPUS-AUDIT.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n")
     print(json.dumps(report,ensure_ascii=False,indent=2))
 if __name__=="__main__": main()
