@@ -1,0 +1,84 @@
+# HERETIC-RONIN — biblioteca de datasets
+
+Actualizado: 2026-11-07. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
+
+## Resumen verificable
+
+| Métrica | Valor |
+|---|---:|
+| Corpus base RONIN-IA admitido | 680.665.972 bytes |
+| Cosmopedia v0.1 curada y admitida | 4.734 documentos · 22.927.899 bytes |
+| Auditoría combinada | 261.039 documentos examinados |
+| Exclusiones exactas/near-duplicate | 68 extremos |
+| Subconjunto resultante autorizado | 260.971 documentos |
+| Total de bytes admitidos contabilizados | **703.593.871 bytes (670,9 MiB)** |
+| Objetivo de biblioteca | 500.000.000.000 bytes (500 GB decimal) |
+
+Auditoría global: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Artefacto de auditoría: ID `13570263309`, SHA-256 `db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9`.
+
+La auditoría detectó 9 grupos/hits exactos y 68 pares SimHash. Los 68 índices excluidos están dentro del bloque base de 256.305 registros; los 4.734 documentos Cosmopedia permanecen en el subconjunto autorizado. No hubo coincidencias exactas con las 120 preguntas sintéticas de diagnóstico. Esto es una heurística de deduplicación y contaminación, no una prueba semántica ni un benchmark público.
+
+## Datasets admitidos
+
+| Fuente | Contenido | Filas admitidas | Bytes admitidos | Uso |
+|---|---|---:|---:|---|
+| RONIN-IA train-only (CoVoST2, ScienceVerse, Mathlib4, literatura española, NASA revisado, Papers propio) | Multilingüe, ciencia, matemáticas, traducción y texto | 256.237 tras deduplicación | 680.665.972 | Preentrenamiento experimental; Papers solo uso interno autorizado |
+| Cosmopedia v0.1 `auto_math_text/train` | Prosa educativa y matemática sintética | 4.734 | 22.927.899 | Next-token pretraining experimental; no gold answers ni razonamiento verificado |
+
+### Cosmopedia v0.1 — ficha de admisión
+
+- Fuente: [HuggingFaceTB/cosmopedia](https://huggingface.co/datasets/HuggingFaceTB/cosmopedia)
+- Revisión: `0ae6ec63f91742bd2d1eaef4f02232c55d719385`
+- Config/split: `auto_math_text/train`
+- Licencia declarada en la ficha: Apache-2.0.
+- SHA-256 del payload original: `050b03f64c3e9976d91ff86447761174f46121c0af899004172368f61255dcc6`.
+- Curación: 5.000 entradas; 4.734 conservadas; 266 rechazadas (265 con caracteres de control/reemplazo y 1 por longitud).
+- Revisión humana: 50 fragmentos deterministas estratificados.
+- SHA-256 del JSONL curado: `f474a3d8bd7a18ab7cac222ae1f2906c52bdaa346a27ca0df728039ac1438f9a`.
+- Auditoría global: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
+
+**Limitación de calidad y derechos:** el contenido es sintético y hereda una línea de semillas externas de AutoMathText. La revisión detectó explicaciones mayormente coherentes, pero también notación dañada y posibles errores matemáticos. La declaración Apache-2.0 de la ficha se registra como evidencia del publicador; no es una opinión legal ni una verificación independiente de cada semilla. Se admite solo como texto experimental de next-token, no como supervisión de respuestas correctas.
+
+## Candidatos descargados — no admitidos
+
+El lote de 100 bibliotecas del [run 42356179021](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42356179021) produjo:
+
+- 531.963 filas candidatas.
+- 1.670.605.627 bytes sin comprimir (~1,56 GiB).
+- Artefacto ZIP: 749.837.093 bytes.
+- **Bytes admitidos aportados por este lote: 0** hasta completar revisión y auditorías por fuente.
+
+| Fuente/lote | Filas candidatas | Bytes de texto | Estado |
+|---|---:|---:|---|
+| FineWeb-Edu | 100.000 | 424.092.222 | Cuarentena: derechos de páginas Common Crawl no resueltos por ODC-By |
+| OpenWebMath | 100.000 | 456.695.086 | Cuarentena: contenido de blogs/foros/Q&A; licencia del contenido subyacente no resuelta |
+| Cosmopedia v0.1 raw | 50.000 | 234.364.804 | Solo el slice separado curado de 4.734 filas está admitido |
+| Cosmopedia v2 | 50.000 | 278.500.947 | Cuarentena: lineage de semillas mixto |
+| Wikidata | 50.000 | 165.781.647 | Candidato CC0; falta muestra y auditoría global |
+| Aya | 25.000 | 42.931.184 | Candidato Apache-2.0; falta revisión de privacidad/splits y auditoría global |
+| LibriSpeech train.clean.360 | 50.000 | 19.208.974 | Candidato CC-BY-4.0; texto solo, pendiente muestra y auditoría |
+| VoxPopuli (6 idiomas) | 106.963 | En manifiesto | Candidato CC0; pendiente revisión por idioma y auditoría |
+
+## Siguiente tanda de adquisición/revisión
+
+La PR [#21](https://github.com/orbitalronin94/HERETIC-RONIN/pull/21) prepara el arreglo de inferencia de esquema y nuevas muestras separadas para inspección:
+
+- PubMed filtered: aceptar únicamente registros con URI exacta CC-BY-4.0 o CC0; el propio Common Pile advierte de posibles errores de metadatos.
+- OpenThoughts3: Apache-2.0 declarado, pero prompts derivados de fuentes upstream requieren revisión de derechos.
+- OpenR1-Math: Apache-2.0 declarado; los problemas proceden de NuminaMath 1.5, cuya procedencia debe resolverse.
+- IFM Code/Math: Apache-2.0 declarado; falta trazabilidad completa de origen y validación de calidad/corrección.
+
+Todos siguen como candidatos; sus bytes no se suman al total admitido. La siguiente admisión requiere revisión de muestra, procedencia/licencia, integridad SHA-256, deduplicación global, control de holdout y registro de la autorización exacta.
+
+## Regla operativa
+
+1. Descubrir fuente y fijar revisión inmutable.
+2. Descargar solo split/config explícitos; preservar metadatos y atribución.
+3. Validar esquema, calidad, privacidad y seguridad.
+4. Revisar muestras estratificadas manualmente.
+5. Deduplicar exacta y aproximadamente contra todo el corpus.
+6. Ejecutar auditoría global y control de contaminación.
+7. Contar bytes solo después de una admisión explícita en el registro.
+8. Conectar el dataset al workflow de entrenamiento y verificarlo en sus logs/manifiestos antes de afirmar que el modelo lo consumió.
+
+El piloto de 500 pasos [run 42358300901](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42358300901) comenzó antes de la admisión de Cosmopedia y utiliza el corpus base; no se le atribuye el nuevo dataset. Los artefactos de Actions son staging temporal, no almacenamiento permanente de cientos de GB.
