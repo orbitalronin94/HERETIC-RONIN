@@ -13,6 +13,8 @@ on:
     paths:
       - ".github/workflows/acquire-open-source-candidates.yml"
       - "scripts/acquire_open_source_candidates.py"
+      - "scripts/license_gates.py"
+      - "tests/test_license_gates.py"
 
 permissions:
   contents: read
