@@ -18,7 +18,7 @@ Mathlib4: 8,498 train documents under Apache-2.0, imported from the exact audite
 
 ## Safety boundary
 
-The current RONIN-IA manifests report global G-0 as FAIL, with global near-duplicate and benchmark/holdout contamination checks pending. Therefore the bundle remains `staged_train_not_active_training`. Source-scoped eligibility is not a global contamination clearance. The importer deliberately excludes validation, test and held partitions and does not authorize model training or model promotion. The verified source-scoped total is **286,464 documents** (270,244 CoVoST + 7,103 ScienceVerse + 8,498 Mathlib4 + 608 literature + 2 NASA + 9 Papers).
+The initial source-scoped import was correctly held while global G-0 was FAIL. That status was superseded for the exact combined corpus by global audit [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447), which included the train-only RONIN-IA material plus the explicitly curated Cosmopedia v0.1 slice. It examined 261,039 documents, excluded 68 duplicate endpoints, found zero exact matches against 120 synthetic diagnostic questions and reported `training_authorized=true`. This grants internal experimental train-only use to that exact audited subset; it does not authorize any other candidates, redistribution, model promotion or use of validation/test/holdout. The verified source-scoped total is **286,464 documents** (270,244 CoVoST + 7,103 ScienceVerse + 8,498 Mathlib4 + 608 literature + 2 NASA + 9 Papers).
 
 ## Reproduction
 
@@ -36,3 +36,12 @@ Each run verifies SHA-256 values and publishes a 90-day artifact with `IMPORT-MA
 - Resultado del manifiesto: `records_staged=286464`, `active_training_authorized=false`, `global_g0=FAIL`.
 - Mathlib4 train se recuperó desde el artefacto de RONIN-IA run `42026633643`; el SHA-256 del texto es `7c82a4d1e0f3788d6038002b41ae1ead1bf6a16cbf4e332f59f015501325667c`.
 - El bundle incluye únicamente train. No contiene validation, test ni holdout.
+
+## Estado posterior de auditoría global — 2026-11-07
+
+- Auditoría combinada: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
+- Corpus examinado: 261.039 documentos; 68 extremos duplicados excluidos; 260.971 documentos dentro del subconjunto autorizado.
+- Cosmopedia v0.1 `auto_math_text/train`: 4.734 filas, 22.927.899 bytes, SHA-256 `f474a3d8bd7a18ab7cac222ae1f2906c52bdaa346a27ca0df728039ac1438f9a`; admitida solo para next-token pretraining experimental.
+- Total admitido contabilizado: 703.593.871 bytes (base RONIN-IA 680.665.972 + Cosmopedia 22.927.899).
+- El piloto [42358300901](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42358300901) comenzó antes de esta admisión y no consume Cosmopedia.
+- Los derechos de Papers siguen limitados al entrenamiento interno; esta autorización no es permiso de redistribución.
