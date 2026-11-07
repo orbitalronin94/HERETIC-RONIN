@@ -59,3 +59,23 @@ a ententa ententa ententa ententa ententa.
 ## Nuevas inferencias
 
 Las siguientes tandas se añadirán automáticamente al completar con éxito los workflows de inferencia compatibles. El bot archivará el prompt, la continuación literal, los metadatos del checkpoint y el enlace al run. Cada run se registrará una sola vez.
+
+<!-- run:42355677751 -->
+## Inferencia — run 42355677751
+
+- Run: [42355677751](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42355677751)
+- Checkpoint: step 600
+- Parámetros: 500102144
+- Decodificación: greedy
+- Nota: Real checkpoint inference; raw next-byte continuation, not chat instruction tuning.
+
+**Prompt**
+```text
+La fotosíntesis es el proceso mediante el cual
+```
+
+**Continuación literal**
+```text
+a ententa ententa ententa ententa ententa.
+
+```
