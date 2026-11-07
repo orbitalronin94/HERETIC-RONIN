@@ -167,7 +167,7 @@ def main():
     p.add_argument("--resume",action="store_true")
     a=p.parse_args()
     OUT.mkdir(exist_ok=True)
-    torch.set_num_threads(4); torch.set_num_interop_threads(1)
+    torch.set_num_threads(2); torch.set_num_interop_threads(1)
     corpus,corpus_info=build_corpus(Path("incoming/ronin-ia-train.zip"),Path("incoming/GLOBAL-CORPUS-AUDIT.json"))
     if a.resume:
         ckpt=torch.load("incoming/checkpoint.pt",map_location="cpu",weights_only=False)
