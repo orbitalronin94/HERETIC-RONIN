@@ -23,6 +23,14 @@ SOURCES=[
  {"id":"common-pile/oercommons_filtered","config":None,"license":"per-document CC-BY-4.0 only","license_filter":["creativecommons.org/licenses/by/4.0/"],"limit":5000,"min_rows":100,"fields":["text"],"caveat":"OERCommons includes public-domain, CC-BY and CC-BY-SA teaching materials; only exact CC-BY-4.0 rows pass. Common Pile warns of possible license metadata errors."},
  {"id":"common-pile/news_filtered","config":None,"license":"per-document CC-BY-4.0 only","license_filter":["creativecommons.org/licenses/by/4.0/"],"limit":5000,"fields":["text"],"caveat":"Curated news corpus with per-record license and source URL. Only exact CC-BY-4.0 rows pass; verify publisher/domain rights and attribution; exclude BY-SA, NC, ND and unknown."},
  {"id":"common-pile/cccc","config":None,"license":"per-document CC-BY-4.0 only","license_filter":["creativecommons.org/licenses/by/4.0/"],"limit":5000,"fields":["text"],"caveat":"Creative Commons Common Crawl manually verified top domains and retained domains where CC applies to all text; only exact CC-BY-4.0 per-record licenses pass. Common Pile notes residual license-laundering risk."},
+ {"id":"openslr/librispeech_asr","config":"all","split":"train.clean.100","license":"CC-BY-4.0","verify_license_tag":true,"limit":25000,"fields":["text"],"caveat":"Transcript text only; do not ingest audio, speaker_id, chapter_id or validation/test splits. Attribute Panayotov et al. and OpenSLR."},
+ {"id":"openslr/librispeech_asr","config":"all","split":"train.clean.360","license":"CC-BY-4.0","verify_license_tag":true,"limit":25000,"fields":["text"],"caveat":"Transcript text only; do not ingest audio, speaker_id, chapter_id or validation/test splits. Attribute Panayotov et al. and OpenSLR."},
+ {"id":"facebook/voxpopuli","config":"es","split":"train","license":"CC0-1.0","verify_license_tag":true,"limit":10000,"fields":["normalized_text"],"required_true_fields":["is_gold_transcript"],"metadata_fields":["language"],"caveat":"Gold transcript text only; exclude audio, speaker_id, gender and all validation/test data. VoxPopuli data is CC0; retain European Parliament provenance and corpus citation."},
+ {"id":"facebook/voxpopuli","config":"en","split":"train","license":"CC0-1.0","verify_license_tag":true,"limit":10000,"fields":["normalized_text"],"required_true_fields":["is_gold_transcript"],"metadata_fields":["language"],"caveat":"Gold transcript text only; exclude audio, speaker_id, gender and all validation/test data. VoxPopuli data is CC0; retain European Parliament provenance and corpus citation."},
+ {"id":"facebook/voxpopuli","config":"de","split":"train","license":"CC0-1.0","verify_license_tag":true,"limit":10000,"fields":["normalized_text"],"required_true_fields":["is_gold_transcript"],"metadata_fields":["language"],"caveat":"Gold transcript text only; exclude audio, speaker_id, gender and all validation/test data. VoxPopuli data is CC0; retain European Parliament provenance and corpus citation."},
+ {"id":"facebook/voxpopuli","config":"fr","split":"train","license":"CC0-1.0","verify_license_tag":true,"limit":10000,"fields":["normalized_text"],"required_true_fields":["is_gold_transcript"],"metadata_fields":["language"],"caveat":"Gold transcript text only; exclude audio, speaker_id, gender and all validation/test data. VoxPopuli data is CC0; retain European Parliament provenance and corpus citation."},
+ {"id":"facebook/voxpopuli","config":"it","split":"train","license":"CC0-1.0","verify_license_tag":true,"limit":10000,"fields":["normalized_text"],"required_true_fields":["is_gold_transcript"],"metadata_fields":["language"],"caveat":"Gold transcript text only; exclude audio, speaker_id, gender and all validation/test data. VoxPopuli data is CC0; retain European Parliament provenance and corpus citation."},
+ {"id":"facebook/voxpopuli","config":"pl","split":"train","license":"CC0-1.0","verify_license_tag":true,"limit":10000,"fields":["normalized_text"],"required_true_fields":["is_gold_transcript"],"metadata_fields":["language"],"caveat":"Gold transcript text only; exclude audio, speaker_id, gender and all validation/test data. VoxPopuli data is CC0; retain European Parliament provenance and corpus citation."},
  {"id":"common-pile/data_provenance_initiative_filtered","config":None,"license":"per-document MIT/Apache/BSD/CC-BY-4.0/CC0 only","license_name_filter":["mit license","apache license 2.0","apache-2.0","bsd 2-clause license","bsd 3-clause license","bsd-2-clause","bsd-3-clause","creative commons attribution 4.0 international","cc-by-4.0","cc0 1.0 universal","cc0-1.0"],"limit":5000,"fields":["text"],"caveat":"DPI manually annotates per-document provenance/license but warns of license laundering and metadata errors. Exact allowlist only; preserve metadata.license, license_url and dataset_id; candidate only pending independent rights and quality review."},
 ]
 EMAIL=re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b")
@@ -45,11 +53,26 @@ def main():
   if expected_any and not license_tag_verified:
    raise RuntimeError(f"{repo}: none of required official Hub license tags found: {sorted(expected_any)}; found {sorted(tags)}")
   cfg=source["config"]
-  ds=load_dataset(repo,cfg,split="train",streaming=True,revision=revision)
-  target=OUT/(repo.replace("/","__")+".jsonl")
+  split=source.get("split","train")
+  ds=load_dataset(repo,cfg,split=split,streaming=True,revision=revision)
+  available_columns=set(ds.features.keys())
+  required_columns=list(dict.fromkeys(source["fields"]+source.get("required_true_fields",[])+source.get("metadata_fields",[])))
+  missing_columns=[column for column in required_columns if column not in available_columns]
+  if missing_columns:
+   raise RuntimeError(f"{repo}/{cfg or 'default'}: missing required columns {missing_columns}; available={sorted(available_columns)}")
+  # Keep per-record rights metadata when a source requires license filtering.
+  # The payload projection still excludes all unrequested columns (notably audio).
+  optional_rights_columns=[column for column in ("metadata","license") if column in available_columns and (source.get("license_filter") or source.get("license_name_filter"))]
+  selected_columns=list(dict.fromkeys(required_columns+optional_rights_columns))
+  ds=ds.select_columns(selected_columns)
+  safe_config=(cfg or "default").replace("/","__")
+  safe_split=split.replace("/","__").replace(".","_")
+  target=OUT/(repo.replace("/","__")+"__"+safe_config+"__"+safe_split+".jsonl")
   seen=set(); written=0; rejected=0; started=time.time()
   with target.open("w",encoding="utf-8") as f:
    for row in ds:
+    if any(row.get(k) is not True for k in source.get("required_true_fields",[])):
+     rejected+=1; continue
     row_metadata=row.get("metadata",{}) if isinstance(row.get("metadata",{}),dict) else {}
     raw_license=row.get("license") or row_metadata.get("license","")
     license_values=raw_license if isinstance(raw_license,list) else [raw_license]
@@ -69,7 +92,7 @@ def main():
     if len(body)<160 or len(body)>200000 or normalized in seen or EMAIL.search(body) or PHONE.search(body):
      rejected+=1; continue
     seen.add(normalized)
-    provenance={k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length","id","source","paper_id","title","abstract","primary_category","main_file","resolution","annotation_type","language_code","author","book_url","institution","subject") if k in row}
+    provenance={k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length","id","source","paper_id","title","abstract","primary_category","main_file","resolution","annotation_type","language_code","author","book_url","institution","subject","is_gold_transcript") if k in row}
     for k in ("license","url","authors","author","site","journal","provenance","license_url","dataset_id","language","annotation_type","book_url","title","institution","subject"):
      if k in row_metadata: provenance["record_"+k]=row_metadata[k]
     record={"text":body,"source":repo,"revision":revision,"config":cfg or "default",
@@ -77,11 +100,11 @@ def main():
     f.write(json.dumps(record,ensure_ascii=False)+"\n"); written+=1
     if written>=source["limit"]: break
   if written<source.get("min_rows",source["limit"]//2): raise RuntimeError(f"{repo}: only {written} usable rows")
-  manifest.append({"source":repo,"revision":revision,"config":cfg or "default","declared_license":source["license"],"official_license_tag":expected_tag if source.get("verify_license_tag") else None,"official_license_tag_verified":license_tag_verified,
+  manifest.append({"source":repo,"revision":revision,"config":cfg or "default","split":split,"declared_license":source["license"],"official_license_tag":expected_tag if source.get("verify_license_tag") else None,"official_license_tag_verified":license_tag_verified,
     "rows_written":written,"rows_rejected":rejected,"bytes":target.stat().st_size,"sha256":digest(target),
     "status":"candidate_not_admitted","caveat":source["caveat"],"elapsed_seconds":round(time.time()-started,2),
     "checks":{"streamed_train_only":True,"exact_dedup_within_source":True,"basic_length_filter":True,
-      "email_phone_pattern_filter":True,"cross_source_near_duplicate":"PENDING","global_holdout_contamination":"PENDING",
+      "email_phone_pattern_filter":True,"required_true_fields":source.get("required_true_fields",[]),"selected_columns":selected_columns,"cross_source_near_duplicate":"PENDING","global_holdout_contamination":"PENDING",
       "human_sample_review":"PENDING","license_review":"per-record allowlist applied; external legal/provenance review pending" if source.get("license_filter") else "source-card-declared; final legal/provenance audit pending","per_record_license_filter":source.get("license_filter",[]),"per_record_license_filter_applied":bool(source.get("license_filter"))}})
   print(json.dumps(manifest[-1],ensure_ascii=False),flush=True)
  result={"schema":"heretic-open-source-candidate-bundle-v1","status":"candidate_not_admitted","training_authorized":False,
