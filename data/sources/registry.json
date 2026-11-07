@@ -452,7 +452,30 @@
       "count_toward_admitted_bytes": false,
       "acquisition_plan": "Acquire at most 5,000 rows from the default config train split only; map inputs+targets to text; never load the demographics config or user_id field.",
       "verified_rights_evidence": "Official CohereLabs dataset card at https://huggingface.co/datasets/CohereLabs/aya_dataset/blob/main/README.md declares Apache-2.0 and explicitly permits any purpose, including commercial use. Acquisition fails closed unless immutable-revision Hub metadata contains license:apache-2.0.",
-      "rights_caveat": "The license declaration is source-publisher evidence, not a legal opinion. Keep original attribution; exclude demographics config; review re-annotated prompts, PII and source lineage; global deduplication and holdout contamination gates remain mandatory."
+      "rights_caveat": "The license declaration is source-publisher evidence, not a legal opinion. Keep original attribution; exclude demographics config; review re-annotated prompts, PII and source lineage; global deduplication and holdout contamination gates remain mandatory.",
+      "candidate_acquisitions": [
+        {
+          "run_id": 42357699240,
+          "artifact_id": 13573027505,
+          "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
+          "source_revision": "f9ea04583f02a8f86404ff6c58bf75fe637df8a2",
+          "config": "default",
+          "split": "train",
+          "candidate_rows": 25000,
+          "candidate_jsonl_bytes": 42931184,
+          "candidate_jsonl_sha256": "aca1e7af7239d80ce71c1e1e59f6780dd5cd69890fc14c9eab1745032073913b",
+          "status": "candidate_not_admitted",
+          "training_authorized": false,
+          "pending_gates": [
+            "source-level rights/provenance review",
+            "stratified human quality review",
+            "cross-corpus exact/near deduplication",
+            "global holdout contamination audit",
+            "privacy/security review"
+          ],
+          "recorded_date": "2026-11-07"
+        }
+      ]
     },
     {
       "id": "allenai/dolma",
@@ -517,7 +540,30 @@
         "reason": "Sample includes syndicated/publisher/health/web pages; ODC-By database license does not independently clear underlying page rights.",
         "admitted_training_bytes": 0,
         "sample_method": "stratified spot-check of excerpts across the 5,000-row artifact"
-      }
+      },
+      "candidate_acquisitions": [
+        {
+          "run_id": 42357699240,
+          "artifact_id": 13573027505,
+          "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
+          "source_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+          "config": "sample-10BT",
+          "split": "train",
+          "candidate_rows": 100000,
+          "candidate_jsonl_bytes": 424092222,
+          "candidate_jsonl_sha256": "f979572a7ba4aa6da1b548926c13fdcadbf1d6056da81aedcd8f5ae0060bbe60",
+          "status": "candidate_not_admitted",
+          "training_authorized": false,
+          "pending_gates": [
+            "source-level rights/provenance review",
+            "stratified human quality review",
+            "cross-corpus exact/near deduplication",
+            "global holdout contamination audit",
+            "privacy/security review"
+          ],
+          "recorded_date": "2026-11-07"
+        }
+      ]
     },
     {
       "id": "HuggingFaceFW/fineweb-2",
@@ -580,7 +626,30 @@
         "reason": "Common Crawl-derived web text; underlying page rights remain separate from ODC-By database license.",
         "admitted_training_bytes": 0,
         "sample_method": "stratified spot-check of excerpts across the 5,000-row artifact"
-      }
+      },
+      "candidate_acquisitions": [
+        {
+          "run_id": 42357699240,
+          "artifact_id": 13573027505,
+          "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
+          "source_revision": "fde8ef8de2300f5e778f56261843dab89f230815",
+          "config": "default",
+          "split": "train",
+          "candidate_rows": 100000,
+          "candidate_jsonl_bytes": 456695086,
+          "candidate_jsonl_sha256": "de0fb30cbd572d1c044a2b996364b99fe268093fa1e8da78ebb197598dce0140",
+          "status": "candidate_not_admitted",
+          "training_authorized": false,
+          "pending_gates": [
+            "source-level rights/provenance review",
+            "stratified human quality review",
+            "cross-corpus exact/near deduplication",
+            "global holdout contamination audit",
+            "privacy/security review"
+          ],
+          "recorded_date": "2026-11-07"
+        }
+      ]
     },
     {
       "id": "HuggingFaceTB/smollm-corpus:Cosmopedia-v2",
@@ -618,7 +687,30 @@
         "reason": "Mixed seed lineage and templated synthetic content; do not mix with Cosmopedia v0.1.",
         "admitted_training_bytes": 0,
         "sample_method": "stratified spot-check of excerpts across the 5,000-row artifact"
-      }
+      },
+      "candidate_acquisitions": [
+        {
+          "run_id": 42357699240,
+          "artifact_id": 13573027505,
+          "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
+          "source_revision": "3ba9d605774198c5868892d7a8deda78031a781f",
+          "config": "cosmopedia-v2",
+          "split": "train",
+          "candidate_rows": 50000,
+          "candidate_jsonl_bytes": 278500947,
+          "candidate_jsonl_sha256": "efd2645de8957ea165b9fc1c3c15f327f20e572160f4b2e47b777b4ed40e1ce6",
+          "status": "candidate_not_admitted",
+          "training_authorized": false,
+          "pending_gates": [
+            "source-level rights/provenance review",
+            "stratified human quality review",
+            "cross-corpus exact/near deduplication",
+            "global holdout contamination audit",
+            "privacy/security review"
+          ],
+          "recorded_date": "2026-11-07"
+        }
+      ]
     },
     {
       "id": "bigcode/the-stack-v1.2",
@@ -749,7 +841,30 @@
       "global_audit_near_duplicate_pairs": 68,
       "global_audit_excluded_records": 68,
       "global_audit_exact_holdout_matches": 0,
-      "training_authorized": true
+      "training_authorized": true,
+      "candidate_acquisitions": [
+        {
+          "run_id": 42357699240,
+          "artifact_id": 13573027505,
+          "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
+          "source_revision": "0ae6ec63f91742bd2d1eaef4f02232c55d719385",
+          "config": "auto_math_text",
+          "split": "train",
+          "candidate_rows": 50000,
+          "candidate_jsonl_bytes": 234364804,
+          "candidate_jsonl_sha256": "00aeb438e935249c789e4faaed0db1550b11c157acc6e2889855d6b6c6f1ec82",
+          "status": "candidate_not_admitted",
+          "training_authorized": false,
+          "pending_gates": [
+            "source-level rights/provenance review",
+            "stratified human quality review",
+            "cross-corpus exact/near deduplication",
+            "global holdout contamination audit",
+            "privacy/security review"
+          ],
+          "recorded_date": "2026-11-07"
+        }
+      ]
     },
     {
       "id": "OpenTextbookLibrary:CC-BY-only",
@@ -822,7 +937,30 @@
         "audit stale/ambiguous claims and duplicates",
         "holdout contamination and human sample review"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "candidate_acquisitions": [
+        {
+          "run_id": 42357699240,
+          "artifact_id": 13573027505,
+          "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
+          "source_revision": "3c43a705de25f60268a1ef343098d3c3464706c7",
+          "config": "default",
+          "split": "train",
+          "candidate_rows": 50000,
+          "candidate_jsonl_bytes": 165781647,
+          "candidate_jsonl_sha256": "50213e55daba7cdd07173ed96d913179084471bfeeffc34975e22097f28de978",
+          "status": "candidate_not_admitted",
+          "training_authorized": false,
+          "pending_gates": [
+            "source-level rights/provenance review",
+            "stratified human quality review",
+            "cross-corpus exact/near deduplication",
+            "global holdout contamination audit",
+            "privacy/security review"
+          ],
+          "recorded_date": "2026-11-07"
+        }
+      ]
     },
     {
       "id": "common-pile/pubmed_filtered",
@@ -1119,7 +1257,30 @@
         "audit audiobook text source lineage and holdout contamination",
         "human review stratified samples"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "candidate_acquisitions": [
+        {
+          "run_id": 42357699240,
+          "artifact_id": 13573027505,
+          "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
+          "source_revision": "71cacbfb7e2354c4226d01e70d77d5fca3d04ba1",
+          "config": "all",
+          "split": "train.clean.360",
+          "candidate_rows": 50000,
+          "candidate_jsonl_bytes": 19208974,
+          "candidate_jsonl_sha256": "e511e8baa318bba4a58e1f25debb526536f5470059cd4101e04897d9e381a77f",
+          "status": "candidate_not_admitted",
+          "training_authorized": false,
+          "pending_gates": [
+            "source-level rights/provenance review",
+            "stratified human quality review",
+            "cross-corpus exact/near deduplication",
+            "global holdout contamination audit",
+            "privacy/security review"
+          ],
+          "recorded_date": "2026-11-07"
+        }
+      ]
     },
     {
       "id": "facebook/voxpopuli:gold-transcripts-text-only",
@@ -1163,7 +1324,135 @@
         "audit transcription quality, political topic balance and holdout contamination",
         "human review stratified by language"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "candidate_acquisitions": [
+        {
+          "run_id": 42357699240,
+          "artifact_id": 13573027505,
+          "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
+          "source_revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "config": "es",
+          "split": "train",
+          "candidate_rows": 20000,
+          "candidate_jsonl_bytes": 9295818,
+          "candidate_jsonl_sha256": "2371d1a16d9b3c48aaac7f4694213361f19df5b8a36c592b3f4bdf2744adb09f",
+          "status": "candidate_not_admitted",
+          "training_authorized": false,
+          "pending_gates": [
+            "source-level rights/provenance review",
+            "stratified human quality review",
+            "cross-corpus exact/near deduplication",
+            "global holdout contamination audit",
+            "privacy/security review"
+          ],
+          "recorded_date": "2026-11-07"
+        },
+        {
+          "run_id": 42357699240,
+          "artifact_id": 13573027505,
+          "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
+          "source_revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "config": "en",
+          "split": "train",
+          "candidate_rows": 20000,
+          "candidate_jsonl_bytes": 8895378,
+          "candidate_jsonl_sha256": "5c5ce71b2409aea77264bf7df7f770c82f25d82fc5069ddb3213b154898d3217",
+          "status": "candidate_not_admitted",
+          "training_authorized": false,
+          "pending_gates": [
+            "source-level rights/provenance review",
+            "stratified human quality review",
+            "cross-corpus exact/near deduplication",
+            "global holdout contamination audit",
+            "privacy/security review"
+          ],
+          "recorded_date": "2026-11-07"
+        },
+        {
+          "run_id": 42357699240,
+          "artifact_id": 13573027505,
+          "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
+          "source_revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "config": "de",
+          "split": "train",
+          "candidate_rows": 20000,
+          "candidate_jsonl_bytes": 9057291,
+          "candidate_jsonl_sha256": "f2829d5701abda7deb265ce88b5bbb24dc085d5a3134569f0add5d2f87f50da3",
+          "status": "candidate_not_admitted",
+          "training_authorized": false,
+          "pending_gates": [
+            "source-level rights/provenance review",
+            "stratified human quality review",
+            "cross-corpus exact/near deduplication",
+            "global holdout contamination audit",
+            "privacy/security review"
+          ],
+          "recorded_date": "2026-11-07"
+        },
+        {
+          "run_id": 42357699240,
+          "artifact_id": 13573027505,
+          "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
+          "source_revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "config": "fr",
+          "split": "train",
+          "candidate_rows": 20000,
+          "candidate_jsonl_bytes": 9249739,
+          "candidate_jsonl_sha256": "e88fd5e2a4f44254ae8f6e0b38b14d2220a06e6a707e4e46c78792a2b6ec14f2",
+          "status": "candidate_not_admitted",
+          "training_authorized": false,
+          "pending_gates": [
+            "source-level rights/provenance review",
+            "stratified human quality review",
+            "cross-corpus exact/near deduplication",
+            "global holdout contamination audit",
+            "privacy/security review"
+          ],
+          "recorded_date": "2026-11-07"
+        },
+        {
+          "run_id": 42357699240,
+          "artifact_id": 13573027505,
+          "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
+          "source_revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "config": "it",
+          "split": "train",
+          "candidate_rows": 12885,
+          "candidate_jsonl_bytes": 6151711,
+          "candidate_jsonl_sha256": "f7ec771d7e4d1a62a26231eeaec2d8654dc8479733802dc1f329b750bdbc7285",
+          "status": "candidate_not_admitted",
+          "training_authorized": false,
+          "pending_gates": [
+            "source-level rights/provenance review",
+            "stratified human quality review",
+            "cross-corpus exact/near deduplication",
+            "global holdout contamination audit",
+            "privacy/security review"
+          ],
+          "recorded_date": "2026-11-07"
+        },
+        {
+          "run_id": 42357699240,
+          "artifact_id": 13573027505,
+          "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
+          "source_revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "config": "pl",
+          "split": "train",
+          "candidate_rows": 14078,
+          "candidate_jsonl_bytes": 6380826,
+          "candidate_jsonl_sha256": "3e3bfe1899e86da1ef98a7ce2c7aea1a855ec795065da62c6fc66bf7c547bb7b",
+          "status": "candidate_not_admitted",
+          "training_authorized": false,
+          "pending_gates": [
+            "source-level rights/provenance review",
+            "stratified human quality review",
+            "cross-corpus exact/near deduplication",
+            "global holdout contamination audit",
+            "privacy/security review"
+          ],
+          "recorded_date": "2026-11-07"
+        }
+      ]
     },
     {
       "id": "orbitalronin94/RONIN-IA:mathlib4-apache-v1",
@@ -1561,16 +1850,20 @@
     {
       "date": "2026-11-07",
       "note": "Added bounded Portuguese-Brazilian public-domain book candidates (CC0 card claim) and German Commons cultural slice (258GB full dataset; 154.56B tokens overall) with strict all-values per-document license allowlist limited to CC0/CC-BY-4.0. Candidate-only; Institutional Books/Harvard 242B-token collection was deliberately excluded because its early-access terms restrict use to nonprofit/educational/research purposes."
+    },
+    {
+      "date": "2026-11-07",
+      "note": "Run 42357699240 completed with a candidate bundle of 531,963 rows / 1,670,605,627 JSONL bytes (artifact 749,837,081 bytes; SHA-256 e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de). It did not meet the 6.8GB candidate floor, and all data remains unadmitted (0 bytes added). Source/config revisions and per-shard SHA-256 are stored under candidate_acquisitions. PR #23 merged as 7f0e539; exact fail-closed per-record license matching is covered by 8 passing unit tests (run 42377093318)."
     }
   ],
   "notes": [
-    "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. Global G-0 remains FAIL; no staged bundle is active-training-authorized until global near-duplicate and benchmark/holdout contamination gates pass.",
+    "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. The exact source-scoped RONIN-IA train corpus plus the curated Cosmopedia v0.1 slice passed the limited global deduplication/exact-holdout audit in run 42362365447. This authorization applies only to that audited subset; every other staged candidate remains excluded until its own rights, provenance, quality, privacy, deduplication and holdout gates pass.",
     "2026-11-07 admission: Cosmopedia v0.1 auto_math_text curated slice (4,734 rows; 22,927,899 bytes) passed global audit run 42362365447. Combined audit: 261,039 docs examined, 68 duplicate endpoints excluded (all within the 256,305 base records), 260,971 docs admitted, 0 exact matches against 120 synthetic diagnostic questions. Authorized for experimental train-only next-token pretraining only; upstream seed rights remain caveated.",
     "2026-11-07: added candidate-only acquisition plans for 100k CourtListener public-domain opinions, 50k OpenStax textbook rows (book-level licensing unresolved), and four pinned Spanish-PD-Books parquet shards from a 52.1GB collection. No bytes counted as admitted; source-specific rights/quality gates remain mandatory.",
     "2026-11-07: added Common Corpus (2.27T-token claim, per-document provenance, exact license allowlist), two separate English-PD shards from a 362GB collection, and a Spanish-PD-Newspapers shard from a 48.6GB collection. All remain candidates pending manual rights/OCR/global audit."
   ],
-  "last_candidate_batch": "run 42295370306 / artifact 13541581972: 50,000 rows, 317,069,186 bytes; training_authorized=false",
-  "next_candidate_batch": "run 42295830953: DOAB/OERCommons/news/CCCC; queued follow-up adds DPI provenance corpus, arXiv and source-metadata retention; no candidates admitted",
+  "last_candidate_batch": "run 42357699240 / artifact 13573027505: 531,963 candidate rows; 1,670,605,627 candidate JSONL bytes; ZIP 749,837,081 bytes; training_authorized=false; admitted bytes added=0.",
+  "next_candidate_batch": "Run 42366207131 is still streaming on pre-fix commit 86348b6c5d5215416c894abdda38ca8855abd06b and remains candidate-only. After its concurrency slot frees, queued run 42377212260 will use main commit 7f0e539069222682924588bf23d3fe124b9e2b1b with exact fail-closed per-record license gates.",
   "audit_summary": {
     "run_id": 42288107561,
     "documents_audited": 256305,
@@ -1613,5 +1906,234 @@
     "admitted_cosmopedia_rows": 4734,
     "admitted_cosmopedia_bytes": 22927899,
     "note": "The 68 excluded global indices are all below the 256,305-record base-corpus boundary; all 4,734 curated Cosmopedia records remain in the authorized subset. Heuristic audit only; no semantic proof and no expanded redistribution rights."
+  },
+  "last_candidate_batch_details": {
+    "run_id": 42357699240,
+    "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42357699240",
+    "head_sha": "b6cff3bf5f634737b660c7d7efe168fbec6a6177",
+    "created_at": "2026-11-07T08:58:18Z",
+    "conclusion": "failure",
+    "artifact_id": 13573027505,
+    "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42357699240/artifacts/13573027505",
+    "artifact_size_bytes": 749837081,
+    "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
+    "candidate_rows": 531963,
+    "candidate_jsonl_bytes": 1670605627,
+    "candidate_target_bytes": 6800000000,
+    "candidate_target_met": false,
+    "scale_factor_vs_effective_corpus": 2.454369243832274,
+    "admitted_rows_added": 0,
+    "admitted_bytes_added": 0,
+    "training_authorized": false,
+    "candidate_sources": [
+      {
+        "source": "HuggingFaceFW/fineweb-edu",
+        "config": "sample-10BT",
+        "split": "train",
+        "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+        "rows": 100000,
+        "jsonl_bytes": 424092222,
+        "sha256": "f979572a7ba4aa6da1b548926c13fdcadbf1d6056da81aedcd8f5ae0060bbe60"
+      },
+      {
+        "source": "open-web-math/open-web-math",
+        "config": "default",
+        "split": "train",
+        "revision": "fde8ef8de2300f5e778f56261843dab89f230815",
+        "rows": 100000,
+        "jsonl_bytes": 456695086,
+        "sha256": "de0fb30cbd572d1c044a2b996364b99fe268093fa1e8da78ebb197598dce0140"
+      },
+      {
+        "source": "HuggingFaceTB/cosmopedia",
+        "config": "auto_math_text",
+        "split": "train",
+        "revision": "0ae6ec63f91742bd2d1eaef4f02232c55d719385",
+        "rows": 50000,
+        "jsonl_bytes": 234364804,
+        "sha256": "00aeb438e935249c789e4faaed0db1550b11c157acc6e2889855d6b6c6f1ec82"
+      },
+      {
+        "source": "HuggingFaceTB/smollm-corpus",
+        "config": "cosmopedia-v2",
+        "split": "train",
+        "revision": "3ba9d605774198c5868892d7a8deda78031a781f",
+        "rows": 50000,
+        "jsonl_bytes": 278500947,
+        "sha256": "efd2645de8957ea165b9fc1c3c15f327f20e572160f4b2e47b777b4ed40e1ce6"
+      },
+      {
+        "source": "CohereLabs/aya_dataset",
+        "config": "default",
+        "split": "train",
+        "revision": "f9ea04583f02a8f86404ff6c58bf75fe637df8a2",
+        "rows": 25000,
+        "jsonl_bytes": 42931184,
+        "sha256": "aca1e7af7239d80ce71c1e1e59f6780dd5cd69890fc14c9eab1745032073913b"
+      },
+      {
+        "source": "philippesaade/wikidata",
+        "config": "default",
+        "split": "train",
+        "revision": "3c43a705de25f60268a1ef343098d3c3464706c7",
+        "rows": 50000,
+        "jsonl_bytes": 165781647,
+        "sha256": "50213e55daba7cdd07173ed96d913179084471bfeeffc34975e22097f28de978"
+      },
+      {
+        "source": "openslr/librispeech_asr",
+        "config": "all",
+        "split": "train.clean.360",
+        "revision": "71cacbfb7e2354c4226d01e70d77d5fca3d04ba1",
+        "rows": 50000,
+        "jsonl_bytes": 19208974,
+        "sha256": "e511e8baa318bba4a58e1f25debb526536f5470059cd4101e04897d9e381a77f"
+      },
+      {
+        "source": "facebook/voxpopuli",
+        "config": "es",
+        "split": "train",
+        "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+        "rows": 20000,
+        "jsonl_bytes": 9295818,
+        "sha256": "2371d1a16d9b3c48aaac7f4694213361f19df5b8a36c592b3f4bdf2744adb09f"
+      },
+      {
+        "source": "facebook/voxpopuli",
+        "config": "en",
+        "split": "train",
+        "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+        "rows": 20000,
+        "jsonl_bytes": 8895378,
+        "sha256": "5c5ce71b2409aea77264bf7df7f770c82f25d82fc5069ddb3213b154898d3217"
+      },
+      {
+        "source": "facebook/voxpopuli",
+        "config": "de",
+        "split": "train",
+        "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+        "rows": 20000,
+        "jsonl_bytes": 9057291,
+        "sha256": "f2829d5701abda7deb265ce88b5bbb24dc085d5a3134569f0add5d2f87f50da3"
+      },
+      {
+        "source": "facebook/voxpopuli",
+        "config": "fr",
+        "split": "train",
+        "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+        "rows": 20000,
+        "jsonl_bytes": 9249739,
+        "sha256": "e88fd5e2a4f44254ae8f6e0b38b14d2220a06e6a707e4e46c78792a2b6ec14f2"
+      },
+      {
+        "source": "facebook/voxpopuli",
+        "config": "it",
+        "split": "train",
+        "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+        "rows": 12885,
+        "jsonl_bytes": 6151711,
+        "sha256": "f7ec771d7e4d1a62a26231eeaec2d8654dc8479733802dc1f329b750bdbc7285"
+      },
+      {
+        "source": "facebook/voxpopuli",
+        "config": "pl",
+        "split": "train",
+        "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+        "rows": 14078,
+        "jsonl_bytes": 6380826,
+        "sha256": "3e3bfe1899e86da1ef98a7ce2c7aea1a855ec795065da62c6fc66bf7c547bb7b"
+      }
+    ],
+    "blocked_or_failed_sources": [
+      {
+        "source": "common-pile/pubmed_filtered",
+        "config": "default",
+        "split": "train",
+        "status": "skipped_schema_mismatch",
+        "revision": "c156f0569a92d8f2edc33cebe1f72f7d3e1cae84",
+        "reason": "common-pile/pubmed_filtered/default: missing required columns ['text']; available=[]"
+      },
+      {
+        "source": "common-pile/stackexchange",
+        "config": "default",
+        "split": "train",
+        "status": "source_failed_nonfatal",
+        "revision": null,
+        "reason": "RuntimeError: common-pile/stackexchange/default: missing required columns ['text']; available=[]"
+      },
+      {
+        "source": "common-pile/pressbooks_filtered",
+        "config": "default",
+        "split": "train",
+        "status": "source_failed_nonfatal",
+        "revision": null,
+        "reason": "RuntimeError: common-pile/pressbooks_filtered/default: missing required columns ['text']; available=[]"
+      },
+      {
+        "source": "common-pile/libretexts_filtered",
+        "config": "default",
+        "split": "train",
+        "status": "source_failed_nonfatal",
+        "revision": null,
+        "reason": "RuntimeError: common-pile/libretexts_filtered/default: missing required columns ['text']; available=[]"
+      },
+      {
+        "source": "secemp9/arxiv-complete",
+        "config": "paper_text",
+        "split": "train",
+        "status": "source_failed_nonfatal",
+        "revision": null,
+        "reason": "RuntimeError: secemp9/arxiv-complete: only 6650 usable rows"
+      },
+      {
+        "source": "common-pile/doab",
+        "config": "default",
+        "split": "train",
+        "status": "source_failed_nonfatal",
+        "revision": null,
+        "reason": "RuntimeError: common-pile/doab/default: missing required columns ['text']; available=[]"
+      },
+      {
+        "source": "common-pile/oercommons_filtered",
+        "config": "default",
+        "split": "train",
+        "status": "source_failed_nonfatal",
+        "revision": null,
+        "reason": "RuntimeError: common-pile/oercommons_filtered/default: missing required columns ['text']; available=[]"
+      },
+      {
+        "source": "common-pile/news_filtered",
+        "config": "default",
+        "split": "train",
+        "status": "source_failed_nonfatal",
+        "revision": null,
+        "reason": "RuntimeError: common-pile/news_filtered/default: missing required columns ['text']; available=[]"
+      },
+      {
+        "source": "openslr/librispeech_asr",
+        "config": "all",
+        "split": "train.clean.100",
+        "status": "source_failed_nonfatal",
+        "revision": null,
+        "reason": "RuntimeError: openslr/librispeech_asr: only 21038 usable rows"
+      },
+      {
+        "source": "common-pile/cccc",
+        "config": "default",
+        "split": "train",
+        "status": "skipped_schema_mismatch",
+        "revision": "72bd015ff2a77f8701c617096fbb5dc89dd705fe",
+        "reason": "common-pile/cccc/default: missing required columns ['text']; available=[]"
+      },
+      {
+        "source": "common-pile/data_provenance_initiative_filtered",
+        "config": "default",
+        "split": "train",
+        "status": "source_failed_nonfatal",
+        "revision": null,
+        "reason": "RuntimeError: common-pile/data_provenance_initiative_filtered/default: missing required columns ['text']; available=[]"
+      }
+    ],
+    "note": "The bundle is candidate-only. Cross-source near-deduplication, global holdout contamination, human sample review and final rights/provenance checks were not run. Do not feed it to training."
   }
 }
