@@ -15,10 +15,6 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: heretic-open-source-acquisition
-  cancel-in-progress: false
-
 jobs:
   validate:
     if: github.event_name == 'pull_request'
@@ -33,6 +29,9 @@ jobs:
 
   acquire:
     if: github.event_name != 'pull_request'
+    concurrency:
+      group: heretic-open-source-acquisition
+      cancel-in-progress: false
     runs-on: ubuntu-24.04
     timeout-minutes: 360
     env:
