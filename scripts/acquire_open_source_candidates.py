@@ -39,6 +39,9 @@ SOURCES=[
  {"id":"open-r1/OpenR1-Math-220k","config":"default","license":"Apache-2.0","verify_license_tag":True,"limit":12000,"min_rows":1000,"fields":["problem","solution","answer"],"caveat":"Official card declares Apache-2.0. Solutions are generated from NuminaMath 1.5 problems; inspect upstream rights and per-row source metadata before admission. Only default train config; candidate only."},
  {"id":"IFM/Code-Reasoning","config":"code-no-thinking","license":"Apache-2.0","verify_license_tag":True,"limit":12000,"min_rows":1000,"fields":["text"],"caveat":"Official card declares Apache-2.0 and train-only text; source lineage and generated-content provenance are not fully enumerated. Candidate only pending manual sample and rights review."},
  {"id":"IFM/Math-Reasoning","config":"math-dialogue","license":"Apache-2.0","verify_license_tag":True,"limit":12000,"min_rows":1000,"fields":["text"],"caveat":"Official card declares Apache-2.0 and train-only text; inspect dialogue quality, correctness and upstream/generated-data provenance. Candidate only pending manual review."},
+ {"id":"docketx/us-caselaw-fed-district","config":"default","license":"CC0-1.0","verify_license_tag":True,"limit":100000,"min_rows":1000,"fields":["text"],"metadata_fields":["id","jurisdiction","title","source","license","citation","court","date"],"caveat":"1.3M-row district-court opinion slice from Free Law Project/CourtListener bulk export. Dataset card identifies U.S. judicial opinions as public-domain government edicts and the packaging as CC0. Preserve citation/court/date; exclude non-opinion additions; legal text is domain-specific and not a substitute for legal advice."},
+ {"id":"crumb/openstax-text","config":None,"license":"CC-BY-4.0","verify_license_tag":True,"limit":50000,"min_rows":1000,"fields":["text"],"caveat":"3.35M text rows from 76 OpenStax textbooks. Dataset card is CC-BY-4.0 and embedded textbook pages carry attribution, but OpenStax licensing varies by title/edition; verify each book-level license and retain attribution before admission. Candidate only."},
+ {"id":"PleIAs/Spanish-PD-Books","config":None,"data_files":["spanish_pd_1.parquet","spanish_pd_10.parquet","spanish_pd_100.parquet","spanish_pd_101.parquet"],"license":"EU public domain claimed by publisher (author death >70 years)","limit":12000,"min_rows":1000,"fields":["text"],"metadata_fields":["identifier","creator","title","publication_date","word_count"],"caveat":"52.1GB collection / 302,640 Spanish texts / 13.9B words, aggregated from BDH and Internet Archive. This acquisition reads only four pinned parquet shards; preserve creator/title/publication metadata. Dataset card asserts EU public domain based on author death >70 years, but each sampled work needs independent metadata/rights review and OCR quality review. Candidate only; no blanket admission."},
 ]
 EMAIL=re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b")
 PHONE=re.compile(r"(?<!\d)(?:\+?\d[\d .()/-]{7,}\d)(?!\d)")
@@ -62,7 +65,11 @@ def main():
     raise RuntimeError(f"{repo}: none of required official Hub license tags found: {sorted(expected_any)}; found {sorted(tags)}")
    cfg=source["config"]
    split=source.get("split","train")
-   ds=load_dataset(repo,cfg,split=split,streaming=True,revision=revision)
+   if source.get("data_files"):
+    remote_files=[f"hf://datasets/{repo}@{revision}/{name}" for name in source["data_files"]]
+    ds=load_dataset("parquet",data_files={"train":remote_files},split=split,streaming=True)
+   else:
+    ds=load_dataset(repo,cfg,split=split,streaming=True,revision=revision)
    available_columns=set(ds.features.keys()) if ds.features is not None else set(ds.column_names or [])
    # Some JSON/JSON.GZ streaming datasets expose neither Features nor column_names.
    # Infer their schema from the first actual row and chain it back into the stream.
@@ -81,7 +88,7 @@ def main():
    if missing_columns:
     message=f"{repo}/{cfg or 'default'}: missing required columns {missing_columns}; available={sorted(available_columns)}"
     if source.get("optional"):
-     manifest.append({"source":repo,"revision":revision,"config":cfg or "default","split":split,"declared_license":source["license"],"rows_written":0,"rows_rejected":0,"bytes":0,"sha256":None,"status":"skipped_schema_mismatch","caveat":message,"checks":{"streamed_train_only":True,"cross_source_near_duplicate":"NOT_RUN","global_holdout_contamination":"NOT_RUN","human_sample_review":"NOT_RUN"}})
+     manifest.append({"source":repo,"revision":revision,"config":cfg or "default","selected_files":source.get("data_files",[]),"split":split,"declared_license":source["license"],"rows_written":0,"rows_rejected":0,"bytes":0,"sha256":None,"status":"skipped_schema_mismatch","caveat":message,"checks":{"streamed_train_only":True,"cross_source_near_duplicate":"NOT_RUN","global_holdout_contamination":"NOT_RUN","human_sample_review":"NOT_RUN"}})
      print(json.dumps(manifest[-1],ensure_ascii=False),flush=True)
      continue
     raise RuntimeError(message)
@@ -131,10 +138,10 @@ def main():
      if len(body)<160 or len(body)>200000 or normalized in seen or EMAIL.search(body) or PHONE.search(body):
       rejected+=1; continue
      seen.add(normalized)
-     provenance={k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length","id","source","paper_id","title","abstract","primary_category","main_file","resolution","annotation_type","language_code","author","book_url","institution","subject","is_gold_transcript","domain","difficulty","problem_type","question_type","token_count") if k in row}
-     for k in ("license","url","authors","author","site","journal","provenance","license_url","dataset_id","language","annotation_type","book_url","title","institution","subject"):
+     provenance={k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length","id","source","paper_id","title","abstract","primary_category","main_file","resolution","annotation_type","language_code","author","book_url","institution","subject","is_gold_transcript","creator","publication_date","word_count","identifier","jurisdiction","citation","court","date","domain","difficulty","problem_type","question_type","token_count") if k in row}
+     for k in ("license","url","authors","author","site","journal","provenance","license_url","dataset_id","language","annotation_type","book_url","title","institution","subject","creator","publication_date","word_count","identifier","jurisdiction","citation","court","date"):
       if k in row_metadata: provenance["record_"+k]=row_metadata[k]
-     record={"text":body,"source":repo,"revision":revision,"config":cfg or "default",
+     record={"text":body,"source":repo,"revision":revision,"config":cfg or "default","selected_files":source.get("data_files",[]),
              "license":row_license or source["license"],"source_metadata":provenance}
      f.write(json.dumps(record,ensure_ascii=False)+"\n"); written+=1
      if written>=source["limit"]: break
