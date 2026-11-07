@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Global exact/near-duplicate and holdout audit for real RONIN-IA train artifacts only."""
 from __future__ import annotations
-import hashlib, json, re, zipfile, gzip
+import argparse, hashlib, json, re, zipfile, gzip
 from collections import defaultdict
 from pathlib import Path
 from itertools import combinations
@@ -91,7 +91,7 @@ def main():
                 docs.append(("papers",z.read(name).decode("utf-8")))
     # Audit only the exact real source-scoped RONIN-IA artifact. Synthetic Drosophila and unreviewed open-source candidates are excluded.
     if len(docs)<250000: raise RuntimeError(f"Unexpectedly small real-artifact audit corpus: {len(docs)}")
-    exact={}; exact_duplicates=[]; holdout=holdout_rows()
+    exact={}; exact_duplicates=[]; exact_duplicate_indices=set(); holdout=holdout_rows()
     holdout_norm=[norm(x["question"]) for x in holdout]
     holdout_exact=[]
     hashes=[]; sources=[]; lengths=[]
@@ -100,7 +100,7 @@ def main():
         if not n: continue
         digest=hashlib.sha256(n.encode("utf-8")).hexdigest()
         if digest in exact:
-            if len(exact_duplicates)<200: exact_duplicates.append({"first":exact[digest],"duplicate":{"index":idx,"source":source}})
+            exact_duplicate_indices.add(idx)\n            if len(exact_duplicates)<200: exact_duplicates.append({"first":exact[digest],"duplicate":{"index":idx,"source":source}})
         else: exact[digest]={"index":idx,"source":source}
         for qidx,q in enumerate(holdout_norm):
             if len(q)>=24 and q in n:
@@ -121,15 +121,15 @@ def main():
                 if len(near)<1000: near.append({"a":{"index":a,"source":sources[a]},"b":{"index":b,"source":sources[b]},"hamming":(hashes[a]^hashes[b]).bit_count()})
     counts={}
     for s in sources: counts[s]=counts.get(s,0)+1
-    excluded=sorted({item["b"]["index"] for item in near} | {item["duplicate"]["index"] for item in exact_duplicates})
+    excluded=sorted({item["b"]["index"] for item in near} | exact_duplicate_indices)
     complete_near_audit=len(near)<1000
-    exacts_covered=all(item["duplicate"]["index"] in excluded for item in exact_duplicates)
+    exacts_covered=exact_duplicate_indices.issubset(set(excluded))
     dedup_plan={"method":"For every flagged near-duplicate pair, retain the lower global index and exclude the higher; exclude exact-duplicate endpoints as well.",
       "excluded_global_indices":excluded,"records_to_exclude":len(excluded),
       "near_duplicate_pairs_detected":len(near),"near_duplicate_pair_list_complete":complete_near_audit,
       "exact_duplicate_records_covered":exacts_covered}
     report={"schema":"heretic-global-train-corpus-audit-v2","documents_audited":len(hashes),"source_counts":counts,
-      "exact_duplicate_groups_or_hits":len(exact_duplicates),"exact_duplicate_examples":exact_duplicates,
+      "exact_duplicate_groups_or_hits":len(exact_duplicate_indices),"exact_duplicate_examples":exact_duplicates,
       "simhash_method":"64-bit word-trigram SimHash, up to 512 evenly sampled trigrams/document; 4x16-bit band candidate retrieval; Hamming distance <=3",
       "near_duplicate_pairs_found":len(near),"near_duplicate_pairs_capped_at":1000,"near_duplicate_examples":near,
       "candidate_pairs_checked":checked,"holdout_questions":len(holdout),"exact_holdout_question_matches":len(holdout_exact),
