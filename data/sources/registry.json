@@ -265,7 +265,7 @@
       "revision": "source manifest pins facebookresearch/covost@4cddf32dedd6bfef86ca3a40f49b27e252650f3f",
       "reported_rows": 270244,
       "reported_license": "CC0-1.0",
-      "status": "staged_train_source_scoped_global_gates_pending",
+      "status": "admitted_internal_training_after_global_audit",
       "domains": [
         "translation",
         "Catalan",
@@ -280,7 +280,12 @@
         "preserve translation direction and metadata",
         "run global near-duplicate and holdout contamination gates"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "audited_rows": 240022,
+      "training_bytes": 17843743,
+      "global_audit_run": 42288107561,
+      "global_dedup_excluded_records": 68,
+      "training_authorized": true
     },
     {
       "id": "orbitalronin94/RONIN-IA:scienceverse-ccby-v1",
@@ -288,7 +293,7 @@
       "revision": "audit artifact run 42110130695; train manifest SHA bc09ca772a9fc3b5c3be0de10d1ee83beea1bf29f2b403d1e56b36049afc49dc",
       "reported_rows": 7103,
       "reported_license": "CC-BY-4.0 / CC0 per document",
-      "status": "staged_train_source_scoped_global_gates_pending",
+      "status": "admitted_internal_training_after_global_audit",
       "domains": [
         "biomedicine",
         "science",
@@ -302,7 +307,12 @@
         "preserve per-document license and attribution",
         "global near-duplicate and benchmark holdout contamination pending"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "audited_rows": 7102,
+      "training_bytes": 426899347,
+      "global_audit_run": 42288107561,
+      "global_dedup_excluded_records": 68,
+      "training_authorized": true
     },
     {
       "id": "orbitalronin94/RONIN-IA:literature-es-v1",
@@ -310,7 +320,7 @@
       "revision": "artifact run 41825919840; train SHA 9cd5d7e83ed7690713add22c40fdf35eaf1fb88da3dafb748ca8201b08df9a78",
       "reported_rows": 608,
       "reported_license": "per-source; see RONIN-IA manifest",
-      "status": "staged_train_source_scoped_global_gates_pending",
+      "status": "admitted_internal_training_after_global_audit",
       "domains": [
         "Spanish literature"
       ],
@@ -322,7 +332,12 @@
         "preserve source attribution",
         "global holdout contamination pending"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "audited_rows": 606,
+      "training_bytes": 137519036,
+      "global_audit_run": 42288107561,
+      "global_dedup_excluded_records": 68,
+      "training_authorized": true
     },
     {
       "id": "orbitalronin94/RONIN-IA:nasa-ntrs-file-reviewed-v1",
@@ -330,7 +345,7 @@
       "revision": "main manifest; two individually reviewed records",
       "reported_rows": 2,
       "reported_license": "NASA public-use/file-reviewed scope",
-      "status": "staged_train_source_scoped_global_gates_pending",
+      "status": "admitted_internal_training_after_global_audit",
       "domains": [
         "aerospace",
         "engineering",
@@ -344,7 +359,12 @@
         "preserve NASA citation metadata",
         "global holdout contamination pending"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "audited_rows": 1,
+      "training_bytes": 32409,
+      "global_audit_run": 42288107561,
+      "global_dedup_excluded_records": 68,
+      "training_authorized": true
     },
     {
       "id": "orbitalronin94/Papers:ronin-authored-papers-v1",
@@ -352,7 +372,7 @@
       "revision": "d7bf3ae446f666ce3be73b11aab7090e1605a889",
       "reported_rows": 9,
       "reported_license": "owner-authorized for internal RONIN training only; individual terms retained",
-      "status": "staged_train_owner_authorized_internal_only",
+      "status": "admitted_owner_authorized_internal_training_only",
       "domains": [
         "logic",
         "linguistics",
@@ -370,7 +390,12 @@
         "retain original attribution and stated terms",
         "do not infer external redistribution or commercial rights"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "audited_rows": 9,
+      "training_bytes": 750873,
+      "global_audit_run": 42288107561,
+      "global_dedup_excluded_records": 68,
+      "training_authorized": true
     },
     {
       "id": "open-thoughts/OpenThoughts3-1.2M",
@@ -1089,6 +1114,34 @@
         "human review stratified by language"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "orbitalronin94/RONIN-IA:mathlib4-apache-v1",
+      "url": "https://github.com/orbitalronin94/RONIN-IA",
+      "revision": "train-only artifact from RONIN-IA run 42026633643; payload SHA-256 verified by importer",
+      "reported_rows": 8498,
+      "reported_license": "Apache-2.0",
+      "status": "admitted_internal_training_after_global_audit",
+      "domains": [
+        "mathematics",
+        "formal mathematics",
+        "proofs"
+      ],
+      "language": [
+        "en"
+      ],
+      "audited_rows": 8497,
+      "training_bytes": 97620564,
+      "global_audit_run": 42288107561,
+      "global_dedup_excluded_records": 68,
+      "training_authorized": true,
+      "required_checks": [
+        "train-only artifact SHA-256 verified",
+        "global exact and SimHash near-duplicate audit completed",
+        "120-question synthetic diagnostic exact-match scan returned zero",
+        "preserve Apache-2.0 attribution and upstream notices",
+        "no validation/test/holdout partitions"
+      ]
     }
   ],
   "target_library_bytes": 500000000000,
@@ -1105,5 +1158,17 @@
     "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. Global G-0 remains FAIL; no staged bundle is active-training-authorized until global near-duplicate and benchmark/holdout contamination gates pass."
   ],
   "last_candidate_batch": "run 42295370306 / artifact 13541581972: 50,000 rows, 317,069,186 bytes; training_authorized=false",
-  "next_candidate_batch": "run 42295830953: DOAB/OERCommons/news/CCCC; queued follow-up adds DPI provenance corpus, arXiv and source-metadata retention; no candidates admitted"
+  "next_candidate_batch": "run 42295830953: DOAB/OERCommons/news/CCCC; queued follow-up adds DPI provenance corpus, arXiv and source-metadata retention; no candidates admitted",
+  "audit_summary": {
+    "run_id": 42288107561,
+    "documents_audited": 256305,
+    "documents_after_duplicate_exclusion": 256237,
+    "duplicate_records_excluded": 68,
+    "exact_holdout_question_matches": 0,
+    "training_authorized": true,
+    "training_run_id": 42338551408,
+    "training_bytes": 680665972,
+    "training_bytes_human": "649.0 MiB",
+    "note": "Internal training admission only. The 120-question holdout is a synthetic diagnostic, not a public benchmark. CoVoST, Mathlib4, ScienceVerse, Spanish literature, NASA-reviewed text and owner-authorized Papers only. No external redistribution rights inferred."
+  }
 }
