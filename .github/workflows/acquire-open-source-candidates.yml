@@ -12,6 +12,7 @@ on:
     paths:
       - ".github/workflows/acquire-open-source-candidates.yml"
       - "scripts/acquire_open_source_candidates.py"
+      - "data/scoped-library-catalog-100.json"
 
 permissions:
   contents: read
