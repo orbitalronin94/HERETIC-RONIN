@@ -1,0 +1,57 @@
+name: HERETIC — dividir artefacto aprobado para descarga por bloques
+
+on:
+  push:
+    paths:
+      - ".github/workflows/split-approved-corpus.yml"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Descargar artefacto original
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 4 \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/13570463226/zip" \
+            -o corpus-original.zip
+          test "$(stat -c%s corpus-original.zip)" -eq 749837093
+          unzip -tq corpus-original.zip
+          sha256sum corpus-original.zip | tee corpus-original.zip.sha256
+      - name: Dividir en dos bloques binarios verificables
+        run: |
+          set -euo pipefail
+          split -b 400000000 -d -a 1 corpus-original.zip heretic-corpus.part-
+          test -s heretic-corpus.part-0
+          test -s heretic-corpus.part-1
+          test ! -e heretic-corpus.part-2
+          cat heretic-corpus.part-0 heretic-corpus.part-1 > corpus-reassembled.zip
+          cmp corpus-original.zip corpus-reassembled.zip
+          sha256sum heretic-corpus.part-0 heretic-corpus.part-1 | tee parts.sha256
+          wc -c heretic-corpus.part-0 heretic-corpus.part-1
+      - name: Publicar bloque 1
+        uses: actions/upload-artifact@v6
+        with:
+          name: heretic-approved-corpus-block-1-of-2
+          path: |
+            heretic-corpus.part-0
+            parts.sha256
+          compression-level: 0
+          retention-days: 30
+      - name: Publicar bloque 2
+        uses: actions/upload-artifact@v6
+        with:
+          name: heretic-approved-corpus-block-2-of-2
+          path: heretic-corpus.part-1
+          compression-level: 0
+          retention-days: 30
