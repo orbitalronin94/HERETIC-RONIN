@@ -2,6 +2,7 @@
 """Acquire bounded, pinned open-source corpus slices as unadmitted candidates."""
 from __future__ import annotations
 import hashlib, json, os, re, sys, time
+from itertools import chain
 from pathlib import Path
 from datasets import load_dataset
 from huggingface_hub import HfApi
@@ -33,6 +34,11 @@ SOURCES=[
  {"id":"facebook/voxpopuli","config":"pl","split":"train","license":"CC0-1.0","verify_license_tag":True,"limit":20000,"fields":["normalized_text"],"required_true_fields":["is_gold_transcript"],"metadata_fields":["language"],"caveat":"Gold transcript text only; exclude audio, speaker_id, gender and all validation/test data. VoxPopuli data is CC0; retain European Parliament provenance and corpus citation."},
  {"id":"common-pile/cccc","optional":True,"config":None,"license":"per-document CC-BY-4.0 only","license_filter":["creativecommons.org/licenses/by/4.0/"],"limit":150000,"fields":["text"],"caveat":"Common Pile manually verified domain-level CC claims but documents residual licensing errors. Exact per-record CC-BY-4.0 URI only; preserve URL/domain/date/license and audit opt-outs, PII, quality and cross-corpus duplication."},
  {"id":"common-pile/data_provenance_initiative_filtered","config":None,"license":"per-document MIT/Apache/BSD/CC-BY-4.0/CC0 only","license_name_filter":["mit license","apache license 2.0","apache-2.0","bsd 2-clause license","bsd 3-clause license","bsd-2-clause","bsd-3-clause","creative commons attribution 4.0 international","cc-by-4.0","cc0 1.0 universal","cc0-1.0"],"limit":50000,"fields":["text"],"caveat":"DPI manually annotates per-document provenance/license but warns of license laundering and metadata errors. Exact allowlist only; preserve metadata.license, license_url and dataset_id; candidate only pending independent rights and quality review."},
+ {"id":"common-pile/pubmed_filtered","config":None,"license":"per-document CC-BY-4.0 or CC0-1.0 only","license_filter":["creativecommons.org/licenses/by/4.0/","creativecommons.org/publicdomain/zero/1.0/"],"limit":20000,"min_rows":1000,"fields":["text"],"caveat":"Large PMC OA corpus. Only exact CC-BY-4.0 or CC0 per-record metadata. Dataset paper warns of license metadata errors; retain article URL/authors/license and keep candidate-only until manual rights/provenance review."},
+ {"id":"open-thoughts/OpenThoughts3-1.2M","config":None,"license":"Apache-2.0","verify_license_tag":True,"limit":15000,"min_rows":1000,"fields":["conversations"],"caveat":"Official card declares Apache-2.0; 1.2M math/code/science rows. Questions include upstream StackExchange and NVIDIA/OpenCodeReasoning sources; Apache dataset tag does not automatically clear third-party prompt rights. Candidate only pending source-level lineage review."},
+ {"id":"open-r1/OpenR1-Math-220k","config":"default","license":"Apache-2.0","verify_license_tag":True,"limit":12000,"min_rows":1000,"fields":["problem","solution","answer"],"caveat":"Official card declares Apache-2.0. Solutions are generated from NuminaMath 1.5 problems; inspect upstream rights and per-row source metadata before admission. Only default train config; candidate only."},
+ {"id":"IFM/Code-Reasoning","config":"code-no-thinking","license":"Apache-2.0","verify_license_tag":True,"limit":12000,"min_rows":1000,"fields":["text"],"caveat":"Official card declares Apache-2.0 and train-only text; source lineage and generated-content provenance are not fully enumerated. Candidate only pending manual sample and rights review."},
+ {"id":"IFM/Math-Reasoning","config":"math-dialogue","license":"Apache-2.0","verify_license_tag":True,"limit":12000,"min_rows":1000,"fields":["text"],"caveat":"Official card declares Apache-2.0 and train-only text; inspect dialogue quality, correctness and upstream/generated-data provenance. Candidate only pending manual review."},
 ]
 EMAIL=re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b")
 PHONE=re.compile(r"(?<!\d)(?:\+?\d[\d .()/-]{7,}\d)(?!\d)")
@@ -58,6 +64,18 @@ def main():
    split=source.get("split","train")
    ds=load_dataset(repo,cfg,split=split,streaming=True,revision=revision)
    available_columns=set(ds.features.keys()) if ds.features is not None else set(ds.column_names or [])
+   # Some JSON/JSON.GZ streaming datasets expose neither Features nor column_names.
+   # Infer their schema from the first actual row and chain it back into the stream.
+   if not available_columns:
+    iterator=iter(ds)
+    try:
+     first_row=next(iterator)
+    except StopIteration:
+     raise RuntimeError(f"{repo}/{cfg or 'default'}: empty train split")
+    if not isinstance(first_row,dict):
+     raise RuntimeError(f"{repo}/{cfg or 'default'}: first streamed row is not an object")
+    available_columns=set(first_row.keys())
+    ds=chain((first_row,),iterator)
    required_columns=list(dict.fromkeys(source["fields"]+source.get("required_true_fields",[])+source.get("metadata_fields",[])))
    missing_columns=[column for column in required_columns if column not in available_columns]
    if missing_columns:
@@ -71,7 +89,8 @@ def main():
    # The payload projection still excludes all unrequested columns (notably audio).
    optional_rights_columns=[column for column in ("metadata","license") if column in available_columns and (source.get("license_filter") or source.get("license_name_filter"))]
    selected_columns=list(dict.fromkeys(required_columns+optional_rights_columns))
-   ds=ds.select_columns(selected_columns)
+   if hasattr(ds,"select_columns") and getattr(ds,"features",None) is not None:
+    ds=ds.select_columns(selected_columns)
    safe_config=(cfg or "default").replace("/","__")
    safe_split=split.replace("/","__").replace(".","_")
    target=OUT/(repo.replace("/","__")+"__"+safe_config+"__"+safe_split+".jsonl")
@@ -93,13 +112,26 @@ def main():
       rejected+=1; continue
      if (allowed or name_allowed) and not row_license:
       rejected+=1; continue
-     chunks=[str(row[k]).strip() for k in source["fields"] if row.get(k)]
+     def render_value(value):
+      if isinstance(value,str): return value.strip()
+      if isinstance(value,list):
+       rendered=[]
+       for item in value:
+        if isinstance(item,dict):
+         role=item.get("from",item.get("role",""))
+         content=item.get("value",item.get("content",""))
+         if content: rendered.append((str(role)+": " if role else "")+str(content))
+        elif item is not None: rendered.append(str(item))
+       return "\n\n".join(rendered)
+      if isinstance(value,dict): return json.dumps(value,ensure_ascii=False,sort_keys=True)
+      return str(value).strip() if value is not None else ""
+     chunks=[render_value(row.get(k)) for k in source["fields"]]
      body="\n\n".join(x for x in chunks if x)
      normalized=re.sub(r"\s+"," ",body).strip()
      if len(body)<160 or len(body)>200000 or normalized in seen or EMAIL.search(body) or PHONE.search(body):
       rejected+=1; continue
      seen.add(normalized)
-     provenance={k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length","id","source","paper_id","title","abstract","primary_category","main_file","resolution","annotation_type","language_code","author","book_url","institution","subject","is_gold_transcript") if k in row}
+     provenance={k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length","id","source","paper_id","title","abstract","primary_category","main_file","resolution","annotation_type","language_code","author","book_url","institution","subject","is_gold_transcript","domain","difficulty","problem_type","question_type","token_count") if k in row}
      for k in ("license","url","authors","author","site","journal","provenance","license_url","dataset_id","language","annotation_type","book_url","title","institution","subject"):
       if k in row_metadata: provenance["record_"+k]=row_metadata[k]
      record={"text":body,"source":repo,"revision":revision,"config":cfg or "default",
