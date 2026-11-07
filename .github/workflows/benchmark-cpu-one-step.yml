@@ -1,8 +1,5 @@
 name: HERETIC — one-step CPU optimization tournament
 on:
-  workflow_run:
-    workflows: ["HERETIC — 500M real-corpus continuation to step 250000"]
-    types: [completed]
   workflow_dispatch:
     inputs:
       source_run_id:
@@ -58,7 +55,7 @@ jobs:
           print("Python and workflow YAML syntax: OK")
           PY
   baseline:
-    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push'
     runs-on: ubuntu-26.04
     timeout-minutes: 360
     steps:
@@ -69,7 +66,7 @@ jobs:
       - name: Fetch and verify exact checkpoint, train data and signed audit
         env:
           GH_TOKEN: ${{ github.token }}
-          SOURCE_RUN_ID: ${{ github.event.workflow_run.id || inputs.source_run_id || '42288969968' }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id || '42288969968' }}
           AUDIT_RUN_ID: ${{ inputs.audit_run_id || '42288107561' }}
           TRAIN_ARTIFACT_ID: ${{ inputs.train_artifact_id || '13536786501' }}
         run: |
@@ -141,7 +138,7 @@ jobs:
             out/setup-seconds.txt
           retention-days: 14
   candidates:
-    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push'
     needs: baseline
     strategy:
       fail-fast: false
@@ -164,7 +161,7 @@ jobs:
       - name: Fetch identical step-2600 checkpoint and shared baseline batch plan
         env:
           GH_TOKEN: ${{ github.token }}
-          SOURCE_RUN_ID: ${{ github.event.workflow_run.id || inputs.source_run_id || '42288969968' }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id || '42288969968' }}
         run: |
           set -euo pipefail
           mkdir -p incoming/checkpoint
