@@ -1,0 +1,47 @@
+name: HERETIC — publicar biblioteca aprobada para MINIRONIN
+
+on:
+  push:
+    paths:
+      - ".github/workflows/publish-minironin-corpus.yml"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Recuperar y verificar el artefacto aprobado
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 4 \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/13570463226/zip" \
+            -o heretic-approved-corpus.zip
+          test "$(stat -c%s heretic-approved-corpus.zip)" -eq 749837093
+          unzip -tq heretic-approved-corpus.zip
+          sha256sum heretic-approved-corpus.zip | tee corpus.sha256
+      - name: Dividir para publicación y verificar reconstrucción
+        run: |
+          set -euo pipefail
+          split -b 400000000 -d -a 1 heretic-approved-corpus.zip heretic-corpus.part-
+          cat heretic-corpus.part-0 heretic-corpus.part-1 > reconstructed.zip
+          cmp heretic-approved-corpus.zip reconstructed.zip
+          sha256sum heretic-corpus.part-0 heretic-corpus.part-1 | tee parts.sha256
+      - name: Publicar activos versionados
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release create minironin-corpus-2026-11-07 \
+            heretic-corpus.part-0 heretic-corpus.part-1 parts.sha256 corpus.sha256 \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "Biblioteca aprobada para MINIRONIN — 2026-11-07" \
+            --notes "Artefacto aprobado por el usuario. Dos partes binarias; reconstruir concatenando part-0 y part-1. ZIP original: 749837093 bytes. No contiene workflows, checkpoints ni estados de optimizador."
