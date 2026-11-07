@@ -55,6 +55,7 @@ jobs:
         run: python scripts/acquire_open_source_candidates.py
 
       - name: Upload candidate corpus and provenance manifest
+        id: upload-candidates
         uses: actions/upload-artifact@v7
         with:
           name: heretic-open-source-candidates-${{ github.run_id }}
@@ -62,3 +63,19 @@ jobs:
           if-no-files-found: error
           compression-level: 1
           retention-days: 90
+
+      - name: Enforce minimum 10x candidate corpus payload after preserving artifact
+        if: always() && steps.upload-candidates.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path("staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json").read_text())
+          total=int(report.get("total_bytes",0))
+          target=int(report.get("target_bytes",6800000000))
+          print(json.dumps({"candidate_bytes":total,"target_bytes":target,"scale_factor":report.get("scale_factor_vs_current_effective_corpus"),"target_met":total>=target,"source_failures":report.get("source_failures",[])},indent=2))
+          if total < target:
+              raise SystemExit(f"10x corpus acquisition floor not met: {total} < {target}; artifact was uploaded for inspection/retry.")
+          PY
