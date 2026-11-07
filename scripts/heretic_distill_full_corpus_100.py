@@ -346,14 +346,14 @@ def load_long_method_model()->RoninLM:
     if model.parameter_count!=100_900_160: raise ValueError(f"Unexpected long-method parameter count: {model.parameter_count}")
     return model
 
-def evaluate_pair(student:RoninLM)->dict:
+def evaluate_pair(student:RoninLM,student_label:str)->dict:
     tasks=holdout_rows()
     domain_counts={domain:sum(task["domain"]==domain for task in tasks) for domain in DOMAINS}
     if len(tasks)!=120 or any(count!=20 for count in domain_counts.values()):
         raise AssertionError(f"invalid independent holdout composition: {domain_counts}")
     baseline=load_long_method_model()
     results={"holdout_schema":"heretic-independent-multidomain-holdout-v2","teacher_saw_holdout":False,"questions":len(tasks),"holdout_per_domain":20,"models":{}}
-    for name,model in (("ronin_ia_long_method_100_9m",baseline),("heretic_student_500m_distilled",student)):
+    for name,model in (("ronin_ia_long_method_100_9m",baseline),(student_label,student)):
         per_domain={}; details=[]; correct_total=0
         for index,task in enumerate(tasks):
             prediction=generate_answer(model,task["question"])
@@ -368,10 +368,9 @@ def evaluate_pair(student:RoninLM)->dict:
                                  "by_domain":per_domain,"details":details}
         del model
     results["comparison"]={"accuracy_delta_percentage_points":(
-        results["models"]["heretic_student_500m_distilled"]["accuracy"]-
+        results["models"][student_label]["accuracy"]-
         results["models"]["ronin_ia_long_method_100_9m"]["accuracy"])*100,
         "decision":"MEASURED_ON_THIS_SMALL_SYNTHETIC_HOLDOUT_ONLY"}
-    (ROOT/"paired-holdout-results.json").write_text(json.dumps(results,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     return results
 
 def main()->None:
@@ -383,21 +382,39 @@ def main()->None:
             raise FileNotFoundError("Verified Qwen3.5-4B GGUF instructor was not found")
         teacher_path=matches[0]
     rows=build_teacher_dataset(teacher_path)
+    # Same fixed 120-question holdout, evaluated on the actual 500M student before training.
+    before_checkpoint=torch.load(STUDENT_INPUT,map_location="cpu",weights_only=False)
+    before_config=ModelConfig(**before_checkpoint["model_config"])
+    student_before=RoninLM(before_config)
+    student_before.load_state_dict(before_checkpoint["model"],strict=True); student_before.eval()
+    del before_checkpoint
+    holdout_before=evaluate_pair(student_before,"heretic_student_500m_before_distillation")
+    del student_before
     gc.collect()
     train_report=train_student(rows)
     checkpoint=torch.load(STUDENT_OUTPUT,map_location="cpu",weights_only=False)
     config=ModelConfig(**checkpoint["model_config"]); student=RoninLM(config)
     student.load_state_dict(checkpoint["model"],strict=True); student.eval()
-    holdout=evaluate_pair(student)
+    holdout_after=evaluate_pair(student,"heretic_student_500m_after_distillation")
     report={"experiment":"heretic-full-corpus-qwen-distillation-100-optimizer-steps","teacher_examples":len(rows),"corpus_inventory":CORPUS_INVENTORY,
             "domain_counts":{d:sum(r["domain"]==d for r in rows) for d in DOMAINS},"training":train_report,
-            "holdout":{"questions":holdout["questions"],"teacher_saw_holdout":False,
-                       "models":{name:{"correct":v["correct"],"total":v["total"],"accuracy":v["accuracy"],"by_domain":v["by_domain"]}
-                                 for name,v in holdout["models"].items()},"comparison":holdout["comparison"]},
+            "holdout":{"questions":holdout_after["questions"],"teacher_saw_holdout":False,
+                       "before":{name:{"correct":v["correct"],"total":v["total"],"accuracy":v["accuracy"],"by_domain":v["by_domain"]}
+                                 for name,v in holdout_before["models"].items()},
+                       "after":{name:{"correct":v["correct"],"total":v["total"],"accuracy":v["accuracy"],"by_domain":v["by_domain"]}
+                                for name,v in holdout_after["models"].items()},
+                       "student_delta_percentage_points":(holdout_after["models"]["heretic_student_500m_after_distillation"]["accuracy"]-
+                         holdout_before["models"]["heretic_student_500m_before_distillation"]["accuracy"])*100,
+                       "same_holdout_ids_and_answers":True},
             "limitations":["All admitted text files are scanned; 200 source-grounded examples are sampled across the complete corpus for this 100-step pilot, not every document individually distilled.","Teacher examples pass structural, length and duplicate checks, not independent semantic verification.",
                            "Holdout is a small deterministic synthetic diagnostic, not an official benchmark.",
                            "Student context remains 128 bytes; tokenizer and architecture are unchanged.",
                            "One run and a synthetic holdout do not establish general multidomain reasoning."]}
+    paired={"holdout_schema":"heretic-independent-multidomain-holdout-v2","same_holdout_ids_and_answers":True,
+            "before":holdout_before,"after":holdout_after,
+            "student_delta_percentage_points":(holdout_after["models"]["heretic_student_500m_after_distillation"]["accuracy"]-
+              holdout_before["models"]["heretic_student_500m_before_distillation"]["accuracy"])*100}
+    (ROOT/"paired-holdout-results.json").write_text(json.dumps(paired,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     (ROOT/"experiment-report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(report,ensure_ascii=False,indent=2))
 
