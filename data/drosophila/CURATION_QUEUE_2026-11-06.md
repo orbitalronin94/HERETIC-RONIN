@@ -195,3 +195,20 @@ Se añade una nueva tranche de bibliotecas de texto obtenidas de transcripciones
 **Límite de esta tranche:** hasta 110.000 registros candidatos (60.000 VoxPopuli + 50.000 LibriSpeech). La descarga fija el commit SHA de cada fuente y publica SHA-256 por archivo/configuración. Los filtros de transcripción gold y de columnas se aplican antes de serializar. Son candidatos, no datos admitidos: deben superar deduplicación cruzada, auditoría de holdout, revisión humana por idioma y comprobación final de atribución/calidad. No se habilita su uso en el entrenamiento ni se suman bytes admitidos automáticamente.
 
 Fuentes oficiales consultadas: VoxPopuli documenta CC0 para los datos y 18 idiomas con transcripción; OpenSLR declara CC BY 4.0 para LibriSpeech. La biblioteca mantiene las licencias y procedencias por fuente, sin asumir que el permiso de una fuente cubre otras.
+
+
+## Tranche ampliada de corpus efectivo — 2026-11-07
+
+La adquisición candidata se amplía con límites superiores por fuente para obtener material sustancial sin tratar el tamaño remoto como resultado:
+
+| Fuente | Máximo candidato | Filtro | Valor esperado |
+|---|---:|---|---|
+| arXiv Complete paper_text | 20.000 artículos | Licencia por artículo CC-BY-4.0 o CC0; excluir licencia arXiv no exclusiva, NULL, NC, ND y BY-SA | Ciencia, matemáticas, física, informática e ingeniería |
+| DOAB | 20.000 textos | CC-BY-4.0 exacto en metadatos por documento | Libros académicos revisados por pares y humanidades |
+| Pressbooks | 15.000 capítulos | CC-BY-4.0 exacto por documento | Libros de texto y educación |
+| LibreTexts | 15.000 secciones | CC-BY-4.0 exacto por documento | Matemáticas, ciencias e ingeniería |
+| PubMed filtered | 10.000 artículos | CC-BY-4.0 o CC0 por registro | Biomedicina y ciencias de la vida |
+
+El script fija la revisión de Hub y SHA-256 de cada salida, conserva metadatos de licencia/procedencia y mantiene todos los registros como candidate_not_admitted. La adquisición no habilita entrenamiento. Los máximos suman hasta 80.000 registros adicionales en esta tranche, no 80.000 documentos admitidos ni una estimación de bytes garantizada.
+
+**Corrección de bloqueo:** los runs iniciales de adquisición fallaban antes de descargar datos porque las nuevas entradas de LibriSpeech/VoxPopuli contenían el literal Python true. Se corrige a True. CCCC se retira temporalmente del lote ejecutable porque el esquema público observado no muestra un campo de licencia por registro; no se permite inferir una licencia individual a partir de la colección sin una auditoría específica. El workflow se limita a pushes en main y dispone de seis horas para evitar múltiples ejecuciones por cada commit de ramas experimentales.
