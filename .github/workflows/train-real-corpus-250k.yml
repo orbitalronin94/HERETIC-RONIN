@@ -68,7 +68,7 @@ jobs:
 
       - name: Download and enforce global real-corpus audit
         if: steps.params.outputs.skip != 'true'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: heretic-global-corpus-audit-${{ steps.params.outputs.audit_run_id }}
           run-id: ${{ steps.params.outputs.audit_run_id }}
@@ -182,7 +182,7 @@ jobs:
 
       - name: Upload resumable checkpoint and exact holdout baseline
         if: steps.params.outputs.skip != 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: heretic-500m-real-corpus-step-${{ steps.train.outputs.end_step }}
           path: |
@@ -212,7 +212,7 @@ jobs:
 
       - name: Retain final checkpoint and paired 120-question report
         if: steps.params.outputs.skip != 'true' && steps.train.outputs.end_step == '250000'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: heretic-500m-real-corpus-final-step-250000
           path: |
