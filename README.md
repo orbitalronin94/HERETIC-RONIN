@@ -201,3 +201,8 @@ La adquisición también corrige un error de sintaxis Python (true en lugar de T
 ## Corpus efectivo auditado — 2026-11-07
 
 El corpus base ya consumido por entrenamientos anteriores comprende **256.237 documentos y 680.665.972 bytes** tras la auditoría [42288107561](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42288107561). La auditoría combinada posterior [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447) añadió Cosmopedia v0.1 curada: 4.734 documentos y 22.927.899 bytes. Resultado global: 261.039 examinados, 68 excluidos y **260.971 documentos / 703.593.871 bytes admitidos**. El piloto de 500 pasos [42358300901](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42358300901) arrancó antes de esa admisión y no consumió Cosmopedia. Los 120 ítems de holdout son un diagnóstico sintético, no un benchmark público; los derechos y autorizaciones siguen limitados por fuente.
+
+
+### Nueva tanda de corpus documental (en adquisición, no admitida)
+
+La siguiente ampliación incorpora tres candidatos de alto volumen: Spanish-PD-Books (52,1 GB publicados; se fijan cuatro shards para una primera muestra), opiniones judiciales CourtListener/docketx (8,47 GB; CC0 declarado y opiniones públicas) y 76 libros OpenStax (159 MB; CC-BY-4.0 declarado por el dataset, pendiente de comprobar la licencia por libro/edición). Sus registros y gates están en `data/sources/registry.json`; los artefactos se separarán por fuente. **No se suman al corpus entrenable hasta superar revisión humana, procedencia/licencia, deduplicación global y control de holdout.**
