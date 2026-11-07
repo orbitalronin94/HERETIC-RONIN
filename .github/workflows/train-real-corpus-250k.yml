@@ -1,9 +1,6 @@
 name: HERETIC — 500M real-corpus continuation to step 250000
 
 on:
-  push:
-    branches: [main]
-    paths: [".github/workflows/train-real-corpus-250k.yml", "scripts/heretic_train_real_corpus_250k.py"]
   workflow_dispatch:
     inputs:
       start_step:
@@ -38,8 +35,8 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 360
     env:
-      OMP_NUM_THREADS: "4"
-      MKL_NUM_THREADS: "4"
+      OMP_NUM_THREADS: "2"
+      MKL_NUM_THREADS: "2"
       PYTHONUNBUFFERED: "1"
       GH_TOKEN: ${{ github.token }}
     steps:
