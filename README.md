@@ -182,3 +182,15 @@ La cifra de 500 GB sigue siendo un objetivo de biblioteca, no una cantidad ya de
 ### Nueva fuente en adquisición — Data Provenance Initiative
 
 El importador incorpora un piloto adicional de hasta 5.000 documentos de [Data Provenance Initiative filtered](https://huggingface.co/datasets/common-pile/data_provenance_initiative_filtered). La licencia se filtra por registro desde `metadata.license` (MIT, Apache-2.0, BSD, CC-BY-4.0 y CC0); se conservan URL de licencia, dataset de origen y procedencia. La ficha informa de 3,51 millones de filas, pero advierte de errores de metadatos y posible license laundering. Por tanto, este lote seguirá como candidato no admitido hasta revisión independiente, deduplicación global, holdout y muestra humana. La ampliación está implementada en `scripts/acquire_open_source_candidates.py`; su ejecución se realiza en GitHub Actions.
+
+
+## Expansión multilingüe de transcripciones — 2026-11-07
+
+Se añade una nueva tranche de bibliotecas de texto obtenidas de transcripciones, sin descargar ni conservar audio:
+
+- **VoxPopuli (CC0-1.0):** seis configuraciones de idioma (español, inglés, alemán, francés, italiano y polaco), hasta 10.000 transcripciones *gold* de `train` por idioma. Se proyectan las columnas `normalized_text`, `is_gold_transcript` y `language`; se excluyen audio, identificadores de hablante, género, acento y splits validation/test. El corpus completo declara 1.255.237 filas y 18 idiomas, pero la adquisición de esta tanda está limitada a 60.000 filas. [Ficha y licencia](https://huggingface.co/datasets/facebook/voxpopuli) · [Repositorio oficial y licencia CC0 de los datos](https://github.com/facebookresearch/voxpopuli).
+- **LibriSpeech ASR (CC-BY-4.0):** hasta 25.000 transcripciones de `train.clean.100` y 25.000 de `train.clean.360`. Solo se proyecta la columna `text`; quedan fuera audio, IDs de hablante/capítulo y cualquier split de validación o test. Se conserva la atribución a Panayotov et al. y OpenSLR. [Ficha del dataset](https://huggingface.co/datasets/openslr/librispeech_asr) · [Licencia y splits oficiales](https://openslr.org/12/).
+
+**Límite de esta tranche:** hasta 110.000 registros candidatos (60.000 VoxPopuli + 50.000 LibriSpeech). La descarga fija el commit SHA de cada fuente y publica SHA-256 por archivo/configuración. Los filtros de transcripción gold y de columnas se aplican antes de serializar. Son candidatos, no datos admitidos: deben superar deduplicación cruzada, auditoría de holdout, revisión humana por idioma y comprobación final de atribución/calidad. No se habilita su uso en el entrenamiento ni se suman bytes admitidos automáticamente.
+
+Fuentes oficiales consultadas: VoxPopuli documenta CC0 para los datos y 18 idiomas con transcripción; OpenSLR declara CC BY 4.0 para LibriSpeech. La biblioteca mantiene las licencias y procedencias por fuente, sin asumir que el permiso de una fuente cubre otras.
