@@ -211,3 +211,8 @@ La siguiente ampliación incorpora tres candidatos de alto volumen: Spanish-PD-B
 ### Candidatos de escala y patrimonio documental
 
 Se incorporan a la adquisición experimental Common Corpus de Pleias (2,27 billones de tokens declarados, con licencia/procedencia por documento y filtro exacto), English-PD (362 GB; títulos pre-1884 según la ficha) y Spanish-PD-Newspapers (48,6 GB; corpus histórico OCR). Se toman shards limitados para inspección, no el corpus entero. Ninguno cuenta como entrenable hasta revisión de derechos por obra, OCR, muestras, deduplicación global y holdout. Detalles: `data/datasets/README.md` y `data/sources/registry.json`.
+
+
+### Nuevas fuentes multilingües en evaluación
+
+La siguiente tanda añade un slice de libros públicos en portugués brasileño y un slice cultural de German Commons. Ambos son **candidatos**, no datos entrenables: el primero requiere verificación de procedencia/obras y OCR; el segundo exige que cada licencia documental sea exactamente CC0-1.0 o CC-BY-4.0, rechazando licencias mixtas, BY-SA, NC, ND y desconocidas. El inventario operativo y los gates están en [data/datasets/README.md](data/datasets/README.md) y [data/sources/registry.json](data/sources/registry.json).
