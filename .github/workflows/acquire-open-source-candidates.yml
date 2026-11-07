@@ -131,7 +131,39 @@ jobs:
         with:
           name: heretic-candidate-spanish-pd-books-${{ github.run_id }}
           path: |
-            staging/open-source-candidates/PleIAs__Spanish-PD-Books__default__train.jsonl
+            staging/open-source-candidates/PleIAs__Spanish-PD-Books__default__spanish-pd-books-*.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+      - name: Upload Common Corpus candidate shard
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-common-corpus-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/PleIAs__common_corpus__default__train.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+
+      - name: Upload English public-domain books candidate shard
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-english-pd-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/PleIAs__English-PD__default__english-pd-*.jsonl
+            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+
+      - name: Upload Spanish public-domain newspapers candidate shard
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-candidate-spanish-pd-newspapers-${{ github.run_id }}
+          path: |
+            staging/open-source-candidates/PleIAs__Spanish-PD-Newspapers__default__spanish-pd-newspapers-*.jsonl
             staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
           if-no-files-found: ignore
           compression-level: 1
