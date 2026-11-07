@@ -8,12 +8,12 @@ This review deliberately separates source-level permission evidence, document qu
 
 ## Results
 
-| Source | Rows reviewed | Manual finding | Decision |
+| Source | Rows in bundle | Sample inspection | Decision |
 |---|---:|---|---|
-| HuggingFaceFW/fineweb-edu | 5,000 | Useful educational/web prose, but the sample contains syndicated news, publisher pages, health pages and general web text. ODC-By covers the database; it does not relicense the underlying web pages. | **Quarantine** pending source-page rights/provenance resolution. |
-| open-web-math/open-web-math | 5,000 | Valuable mathematical prose, but it is Common Crawl-derived and contains material from blogs, forums, Q&A and other websites. The source itself says Common Crawl terms still apply and underlying content is not relicensed. | **Quarantine** pending source-page rights review and the extended corpus audit. |
-| HuggingFaceTB/cosmopedia, `auto_math_text` | 5,000 | The strongest candidate in this bundle for a bounded pretraining pilot. Fifty deterministic, stratified opening excerpts were inspected. Most are coherent educational explanations; some formula/notation corruption and occasional overconfident or weak explanations are visible. Not suitable as verified answer supervision. | **Curated candidate**: 4,734 rows remain after mechanical cleanup; global deduplication and holdout audit must pass before training. |
-| HuggingFaceTB/smollm-corpus, `cosmopedia-v2` | 5,000 | Mixed seed lineage (including FineWeb and instruction/story sources), many templated textbook/story openings, and weaker provenance granularity in this extracted bundle. | **Quarantine**; do not mix with v0.1 or count toward admitted bytes. |
+| HuggingFaceFW/fineweb-edu | 5,000 | Stratified spot checks | Useful educational/web prose, but the sample contains syndicated news, publisher pages, health pages and general web text. ODC-By covers the database; it does not relicense the underlying web pages. | **Quarantine** pending source-page rights/provenance resolution. |
+| open-web-math/open-web-math | 5,000 | Stratified spot checks | Valuable mathematical prose, but it is Common Crawl-derived and contains material from blogs, forums, Q&A and other websites. The source itself says Common Crawl terms still apply and underlying content is not relicensed. | **Quarantine** pending source-page rights review and the extended corpus audit. |
+| HuggingFaceTB/cosmopedia, `auto_math_text` | 5,000 | 50 deterministic stratified opening excerpts | The strongest candidate in this bundle for a bounded pretraining pilot. Fifty deterministic, stratified opening excerpts were inspected. Most are coherent educational explanations; some formula/notation corruption and occasional overconfident or weak explanations are visible. Not suitable as verified answer supervision. | **Curated candidate**: 4,734 rows remain after mechanical cleanup; global deduplication and holdout audit must pass before training. |
+| HuggingFaceTB/smollm-corpus, `cosmopedia-v2` | 5,000 | Stratified spot checks | Mixed seed lineage (including FineWeb and instruction/story sources), many templated textbook/story openings, and weaker provenance granularity in this extracted bundle. | **Quarantine**; do not mix with v0.1 or count toward admitted bytes. |
 
 ## Cosmopedia v0.1: bounded curation
 
