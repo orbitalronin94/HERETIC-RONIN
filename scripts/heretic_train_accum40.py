@@ -81,6 +81,7 @@ def main():
         betas=BETAS,
         weight_decay=WEIGHT_DECAY,
         eps=EPS,
+        foreach=True,
     )
     scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, scheduler_lambda)
 
@@ -233,6 +234,8 @@ def main():
         "micro_batch_sequences": MICRO_BATCH,
         "context_tokens": CONTEXT,
         "optimizer": "AdamW",
+        "optimizer_foreach": True,
+        "optimizer_foreach": True,
         "optimizer_state_dict": optimizer.state_dict(),
         "scheduler_state_dict": scheduler.state_dict(),
         "optimizer_state_included": True,
