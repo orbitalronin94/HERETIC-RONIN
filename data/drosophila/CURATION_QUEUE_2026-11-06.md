@@ -225,3 +225,28 @@ La auditoría global del artefacto train-only terminó con éxito en [run 422881
 - Alcance potencial: actividad PLENARY_DEBATE_SPEECH; la API documenta include-output=xml_fragment para incluir el texto y un filtro de idioma para las 24 lenguas oficiales de la UE.
 - Derechos: la especificación de la API declara CC-BY-4.0; las [reglas oficiales de Open Data](https://data.europarl.europa.eu/en/discover/rules-on-the-european-parliaments-open-data) adoptadas el 16-12-2024 establecen CC-BY-4.0 para datos abiertos del Parlamento. No se extiende esta autorización a terceros ni a recursos sujetos al aviso legal del portal.
 - **Estado:** descubrimiento/candidato, 0 descargas y 0 bytes admitidos. El endpoint es mutable; antes de staging hay que fijar consulta, schema, timestamp y SHA-256, confirmar licencia por recurso, excluir contenido de terceros y revisar PII/metadatos de oradores. Solo después se diseñará el importador train-only.
+
+
+## Descubrimientos nuevos — 2026-11-08 (candidatos, no admitidos)
+
+### German Commons: seleccionar splits reales, no `train` genérico
+
+La ficha de [German Commons](https://huggingface.co/datasets/coral-nlp/german-commons) enumera splits por fuente con licencias diferentes. Se priorizan tres tranches separadas:
+
+| Configuración / split | Fuente | Licencia declarada | Límite inicial |
+|---|---|---|---:|
+| `cultural/germanpd` | Literatura alemana de dominio público | CC0-1.0 | 5.000 |
+| `political/btdrucksachen` | Publicaciones del Bundestag | CC0-1.0 | 5.000 |
+| `political/germanpoliticalspeeches` | Discursos políticos alemanes | CC-BY-4.0 | 5.000 |
+
+La ejecución anterior pidió `cultural/train`, split inexistente. La nueva adquisición usa las claves exactas y exige que **cada** registro contenga solo la URI de licencia permitida. Se conserva ID, fuente, subset, licencia, número de tokens y OCR score. Ninguna tranche es admitida hasta comprobar derechos upstream, calidad, privacidad, deduplicación y G-0.
+
+### BOE — legislación consolidada española
+
+La [API oficial de datos abiertos del BOE](https://www.boe.es/datosabiertos/api/api.php) ofrece legislación consolidada. Las [condiciones de reutilización vigentes desde el 28-06-2024](https://www.boe.es/informacion/aviso_legal/index.php) permiten reproducción, distribución, adaptación y extracción para fines comerciales y no comerciales, con atribución, fecha de actualización y otras obligaciones. La Biblioteca Jurídica Digital usa CC BY-NC-ND 4.0 y queda expresamente excluida; también se excluyen documentos con condiciones especiales y elementos de terceros.
+
+No se ha descargado contenido todavía. Cada documento futuro deberá congelarse con identificador/CVE, fecha de publicación y consolidación, URL, condiciones aplicables y SHA-256. Los textos consolidados deberán conservar el aviso de que tienen carácter informativo y no se presentarán como versión oficial auténtica.
+
+### Parlamento Europeo
+
+La API v2 declara CC-BY-4.0 en su especificación. Sigue como candidata hasta verificar el alcance por recurso, exclusiones de terceros y privacidad; no se contabiliza ningún byte.

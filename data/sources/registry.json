@@ -1815,7 +1815,7 @@
       "reported_rows": 58291016,
       "reported_size": "258 GB full dataset; bounded 10,000-row cultural slice",
       "reported_license": "ODC-BY-1.0 aggregation; per-document licenses govern text",
-      "status": "candidate_acquisition_queued_strict_per_document_allowlist",
+      "status": "candidate_split_selection_corrected_after_invalid_train_split",
       "domains": [
         "German cultural heritage",
         "literature",
@@ -1830,7 +1830,9 @@
         "require all per-document license values to exactly match CC0-1.0 or CC-BY-4.0 allowlist",
         "preserve id/source/subset/license/num_tokens/ocr_score",
         "inspect German language purity, OCR and content quality",
-        "deduplicate against all historical book corpora and holdouts"
+        "deduplicate against all historical book corpora and holdouts",
+        "select only named documented splits; never request generic train",
+        "verify every row license and source provenance"
       ],
       "count_toward_admitted_bytes": false
     },
@@ -1886,8 +1888,8 @@
       "id": "european-parliament/open-data-api-v2-speeches",
       "url": "https://data.europarl.europa.eu/api/v2/speeches",
       "revision": "API v2; mutable endpoint. No data snapshot acquired; pin exact query, retrieval timestamp, schema revision and response SHA-256 before staging.",
-      "reported_license": "CC-BY-4.0 (official European Parliament Open Data API v2 specification and EP Open Data Rules adopted 16 December 2024)",
-      "status": "candidate_discovery_pending_schema_and_record_scope",
+      "reported_license": "CC-BY-4.0 (Open Data API v2 specification); verify per-resource scope",
+      "status": "candidate_discovery_pending_resource_level_rights_and_privacy_review",
       "domains": [
         "European parliamentary proceedings",
         "public policy",
@@ -1928,7 +1930,107 @@
         "Require explicit CC BY 4.0 coverage for every selected resource and exclude third-party material",
         "Preserve speech ID, date, language, title, source URL and attribution; strip unnecessary speaker identifiers",
         "Scan privacy/PII, encoding, language, quality, exact and near duplicates",
-        "Assign deterministic train-only split and run global holdout/contamination audit plus stratified human review"
+        "Assign deterministic train-only split and run global holdout/contamination audit plus stratified human review",
+        "verify API license and terms for each speech resource",
+        "exclude third-party material and review speaker personal data",
+        "freeze response snapshot with timestamp and SHA-256"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "coral-nlp/german-commons:germanpd",
+      "url": "https://huggingface.co/datasets/coral-nlp/german-commons",
+      "revision": "pin dataset commit at acquisition; config cultural / split germanpd",
+      "reported_rows": 123592,
+      "reported_license": "CC0-1.0 per source table; verify every record license",
+      "status": "candidate_split_added_not_acquired",
+      "domains": [
+        "German public-domain literature",
+        "humanities"
+      ],
+      "language": [
+        "de"
+      ],
+      "required_checks": [
+        "pin immutable Hub revision",
+        "select config cultural and split germanpd only",
+        "require every record license to equal CC0-1.0 URI",
+        "verify author death/public-domain basis and upstream work provenance",
+        "preserve id/source/subset/license/num_tokens/ocr_score",
+        "audit OCR and global duplicates/holdout"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "coral-nlp/german-commons:btdrucksachen",
+      "url": "https://huggingface.co/datasets/coral-nlp/german-commons",
+      "revision": "pin dataset commit at acquisition; config political / split btdrucksachen",
+      "reported_rows": 3017,
+      "reported_license": "CC0-1.0 per source table; verify every record license",
+      "status": "candidate_split_added_not_acquired",
+      "domains": [
+        "German parliamentary publications",
+        "public administration",
+        "law"
+      ],
+      "language": [
+        "de"
+      ],
+      "required_checks": [
+        "pin immutable Hub revision",
+        "select config political and split btdrucksachen only",
+        "require every record license to equal CC0-1.0 URI",
+        "verify upstream Bundestag source and preserve record metadata",
+        "audit privacy, quality, global duplicates and holdout"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "coral-nlp/german-commons:germanpoliticalspeeches",
+      "url": "https://huggingface.co/datasets/coral-nlp/german-commons",
+      "revision": "pin dataset commit at acquisition; config political / split germanpoliticalspeeches",
+      "reported_rows": 6678,
+      "reported_license": "CC-BY-4.0 per source table; verify every record license",
+      "status": "candidate_split_added_not_acquired",
+      "domains": [
+        "German parliamentary speeches",
+        "politics"
+      ],
+      "language": [
+        "de"
+      ],
+      "required_checks": [
+        "pin immutable Hub revision",
+        "select config political and split germanpoliticalspeeches only",
+        "require every record license to equal CC-BY-4.0 URI",
+        "preserve attribution, speaker/source metadata and dates",
+        "audit privacy, quality, global duplicates and holdout"
+      ],
+      "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "Agencia Estatal BOE:legislacion-consolidada",
+      "url": "https://www.boe.es/datosabiertos/api/api.php",
+      "revision": "mutable API; each retrieved text must be frozen by retrieval timestamp, BOE identifier/CVE, last-update date and SHA-256",
+      "reported_license": "BOE Reuse Conditions approved 2024-06-27 (custom terms; no SPDX identifier)",
+      "status": "candidate_discovery_only_pending_record_scope",
+      "domains": [
+        "Spanish legislation",
+        "law",
+        "public administration"
+      ],
+      "language": [
+        "es"
+      ],
+      "rights_caveat": "General BOE reuse terms allow commercial/non-commercial reproduction, distribution, adaptation and extraction, but some documents have special terms; exclude Biblioteca Jurídica Digital (CC BY-NC-ND 4.0) and all third-party protected elements. Preserve attribution, update date, informational-consolidated-text disclaimer and applicable metadata; honor GDPR.",
+      "required_checks": [
+        "use only official /datosabiertos/api/legislacion-consolidada endpoints",
+        "verify document-level applicability of 2024 reuse terms and absence of special terms",
+        "exclude Biblioteca Jurídica Digital and third-party content",
+        "preserve BOE identifier/CVE, ELI, publication and consolidation dates, source URL and citation",
+        "freeze exact response bytes and SHA-256; mutable API is not an immutable revision",
+        "review personal data and GDPR",
+        "never present consolidated text as official/authentic version; preserve informational disclaimer"
       ],
       "count_toward_admitted_bytes": false
     }
@@ -1963,10 +2065,13 @@
     "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. The exact source-scoped RONIN-IA train corpus plus the curated Cosmopedia v0.1 slice passed the limited global deduplication/exact-holdout audit in run 42362365447. This authorization applies only to that audited subset; every other staged candidate remains excluded until its own rights, provenance, quality, privacy, deduplication and holdout gates pass.",
     "2026-11-07 admission: Cosmopedia v0.1 auto_math_text curated slice (4,734 rows; 22,927,899 bytes) passed global audit run 42362365447. Combined audit: 261,039 docs examined, 68 duplicate endpoints excluded (all within the 256,305 base records), 260,971 docs admitted, 0 exact matches against 120 synthetic diagnostic questions. Authorized for experimental train-only next-token pretraining only; upstream seed rights remain caveated.",
     "2026-11-07: added candidate-only acquisition plans for 100k CourtListener public-domain opinions, 50k OpenStax textbook rows (book-level licensing unresolved), and four pinned Spanish-PD-Books parquet shards from a 52.1GB collection. No bytes counted as admitted; source-specific rights/quality gates remain mandatory.",
-    "2026-11-07: added Common Corpus (2.27T-token claim, per-document provenance, exact license allowlist), two separate English-PD shards from a 362GB collection, and a Spanish-PD-Newspapers shard from a 48.6GB collection. All remain candidates pending manual rights/OCR/global audit."
+    "2026-11-07: added Common Corpus (2.27T-token claim, per-document provenance, exact license allowlist), two separate English-PD shards from a 362GB collection, and a Spanish-PD-Newspapers shard from a 48.6GB collection. All remain candidates pending manual rights/OCR/global audit.",
+    "2026-11-08 acquisition review: run 42379525699 streamed 780,527 candidate rows / 4,505,001,697 manifest-counted JSONL bytes across 25 completed source slices. No new data admitted. Candidate ZIP 1,860,559,190 bytes (SHA-256 4580efd18cbc11ed2c94947236a3a814b32345fc540a5df6e1550bce01266018); embedded manifest SHA-256 083b0fa38ffd57ec9d78f05d4d2d767d2c30d88f28a1acc2b120744b79b4c39f. Failed source writers left partial files in the artifact despite manifest rows/bytes=0; at least 117,712,976 expanded bytes of partial Spanish-PD-Books shards were confirmed. Entire candidate bundle remains quarantined; do not count partial files or ZIP bytes as admitted.",
+    "2026-11-08 source discovery: German Commons has separate named splits with different per-source licenses; only germanpd (CC0), btdrucksachen (CC0) and germanpoliticalspeeches (CC-BY-4.0) are queued, each with exact per-record license checks. BOE consolidated legislation API is a candidate under its 2024 reuse conditions, excluding special-term documents, third-party material and the CC BY-NC-ND Biblioteca Jurídica Digital.",
+    "2026-11-08 sample audit: Aya candidate sample lacked language/language_code/annotation_type in the exported source_metadata and included a poem-like full text. Updated collector to preserve allowed metadata while excluding user_id; content rights remain unresolved, so Aya stays candidate-only."
   ],
-  "last_candidate_batch": "run 42357699240 / artifact 13573027505: 531,963 candidate rows; 1,670,605,627 candidate JSONL bytes; ZIP 749,837,081 bytes; training_authorized=false; admitted bytes added=0.",
-  "next_candidate_batch": "Run 42366207131 is still streaming on pre-fix commit 86348b6c5d5215416c894abdda38ca8855abd06b and remains candidate-only. After its concurrency slot frees, queued run 42377212260 will use main commit 7f0e539069222682924588bf23d3fe124b9e2b1b with exact fail-closed per-record license gates. After these runs, prioritize a bounded PMC OA pilot using exact article-level CC-BY-4.0/CC0-1.0 filtering through official OAI-PMH/Cloud services; do not scrape PMC or accept the broader mixed-license OA set.",
+  "last_candidate_batch": "Run 42379525699: 780,527 candidate rows; 4,505,001,697 manifest-counted JSONL bytes; candidate ZIP 1,860,559,190 bytes; 12 source failures; unmanifested partial shards detected; 0 admitted rows / 0 admitted bytes; bundle quarantined.",
+  "next_candidate_batch": "After the atomic-output and JSON date-serialization fixes merge, rerun the bounded acquisition. German Commons now targets only documented split keys (cultural/germanpd, political/btdrucksachen, political/germanpoliticalspeeches) with per-record exact license allowlists. Review BOE legislation as a separate official-API candidate; do not acquire Biblioteca Jurídica Digital or third-party/special-terms records. Continue to keep all candidates outside training until G-0 and holdout gates pass.",
   "audit_summary": {
     "run_id": 42288107561,
     "documents_audited": 256305,
@@ -2011,6 +2116,98 @@
     "note": "The 68 excluded global indices are all below the 256,305-record base-corpus boundary; all 4,734 curated Cosmopedia records remain in the authorized subset. Heuristic audit only; no semantic proof and no expanded redistribution rights."
   },
   "last_candidate_batch_details": {
+    "run_id": 42379525699,
+    "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42379525699",
+    "head_sha": "2c812953e69f8d7c7233b06c8f1b7741c538c50d",
+    "created_at": "2026-11-07T14:00:23Z",
+    "conclusion": "failure_candidate_scale_floor_only",
+    "artifact_id": 13594451098,
+    "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42379525699/artifacts/13594451098",
+    "artifact_size_bytes": 1860559190,
+    "artifact_sha256": "4580efd18cbc11ed2c94947236a3a814b32345fc540a5df6e1550bce01266018",
+    "manifest_sha256": "083b0fa38ffd57ec9d78f05d4d2d767d2c30d88f28a1acc2b120744b79b4c39f",
+    "manifest_embedded_artifact_id": 13594700004,
+    "manual_sample_artifact_id": 13594495689,
+    "manual_sample_artifact_sha256": "24d7fb0a000a0fa5c2d462db6ba661650982a13c5e8dab08cc91e6c07d69a89c",
+    "candidate_rows": 780527,
+    "candidate_jsonl_bytes": 4505001697,
+    "candidate_target_bytes": 6800000000,
+    "candidate_target_met": false,
+    "scale_factor_vs_effective_corpus": 6.618520511261873,
+    "source_failures": 12,
+    "failed_sources": [
+      "common-pile/libretexts_filtered",
+      "secemp9/arxiv-complete",
+      "openslr/librispeech_asr:train.clean.100",
+      "common-pile/cccc",
+      "docketx/us-caselaw-fed-district",
+      "crumb/openstax-text",
+      "PleIAs/Spanish-PD-Books:spanish-pd-books-100",
+      "PleIAs/Spanish-PD-Books:spanish-pd-books-101",
+      "PleIAs/English-PD:english-pd-0",
+      "PleIAs/English-PD:english-pd-1",
+      "PleIAs/Spanish-PD-Newspapers:0041",
+      "coral-nlp/german-commons:cultural/train"
+    ],
+    "candidate_sources": [
+      {
+        "source": "common-pile/pubmed_filtered",
+        "rows": 20000,
+        "jsonl_bytes": 494056484,
+        "sha256": "ee1f51515a53e20c0bea15162351ec2cdb822521f5d8fc451f4a72376eea58ab",
+        "status": "candidate_not_admitted"
+      },
+      {
+        "source": "open-thoughts/OpenThoughts3-1.2M",
+        "rows": 15000,
+        "jsonl_bytes": 935959550,
+        "sha256": "cecc8bf8e3c1f623ad377efe2af12e8d9074a2dea5c4757190059aca523b8a07",
+        "status": "candidate_not_admitted"
+      },
+      {
+        "source": "common-pile/doab",
+        "rows": 50000,
+        "jsonl_bytes": 359365617,
+        "sha256": "0b43888b227fe1830cd292dc4850c28ba9bbfb26887a7d724693d95fcae66b6f",
+        "status": "candidate_not_admitted"
+      },
+      {
+        "source": "common-pile/pressbooks_filtered",
+        "rows": 33736,
+        "jsonl_bytes": 302342385,
+        "sha256": "88e2bc569687c375ff082f7ba5db2f8445488e4dffc035ce526a84d15cad280f",
+        "status": "candidate_not_admitted"
+      },
+      {
+        "source": "philippesaade/wikidata",
+        "rows": 50000,
+        "jsonl_bytes": 166881647,
+        "sha256": "0fc7ba797d1d17db615c9e1eb3b947977b5093af60f5ed9429ba117e2aff328a",
+        "status": "candidate_not_admitted"
+      },
+      {
+        "source": "PleIAs/common_corpus",
+        "rows": 20000,
+        "jsonl_bytes": 185442381,
+        "sha256": "9519cc8da26f5b0b064d0dc5d566acf2d0665cbfb4ae1362ba018ecec5ec798d",
+        "status": "candidate_not_admitted"
+      },
+      {
+        "source": "dataseek/ptbr-books-publicos",
+        "rows": 10000,
+        "jsonl_bytes": 128837168,
+        "sha256": "df23b218264ef23ebff33232d737acda58e7ff266efd89b977c6e5278885c0c6",
+        "status": "candidate_not_admitted"
+      }
+    ],
+    "admitted_rows_added": 0,
+    "admitted_bytes_added": 0,
+    "training_authorized": false,
+    "partial_outputs_warning": "Failed sources wrote .jsonl files before the minimum-row check; the main artifact includes unmanifested partial files. The Spanish-PD-Books per-source artifact alone contains 117,712,976 expanded bytes of partial shards while its manifest records 0. Quarantine the entire bundle; do not count these files.",
+    "manual_review": "Deterministic sample artifact generated; not a human approval. Aya sample has no language metadata in the current manifest and contains a full poem-like passage; retain candidate-only pending content rights and metadata review.",
+    "note": "Manifest counts only successfully completed source files. Candidate ZIP size is compressed artifact size, not admitted bytes. Cross-source near-deduplication, G-0/holdout contamination and final source-level rights review were not run."
+  },
+  "previous_candidate_batch_details": {
     "run_id": 42357699240,
     "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42357699240",
     "head_sha": "b6cff3bf5f634737b660c7d7efe168fbec6a6177",
