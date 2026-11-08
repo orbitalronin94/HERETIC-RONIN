@@ -62,6 +62,8 @@ def digest(p):
 def main():
  OUT.mkdir(parents=True,exist_ok=True); api=HfApi(); manifest=[]
  for source in SOURCES:
+  target=None
+  temporary_target=None
   revision=None
   try:
    repo=source["id"]; info=api.dataset_info(repo); revision=info.sha
@@ -166,6 +168,10 @@ def main():
    print(json.dumps(manifest[-1],ensure_ascii=False),flush=True)
 
   except Exception as exc:
+   if temporary_target is not None:
+    temporary_target.unlink(missing_ok=True)
+   if target is not None:
+    target.unlink(missing_ok=True)
    failure={"source":source.get("id","unknown"),"revision":revision,"config":source.get("config") or "default","split":source.get("split","train"),"declared_license":source.get("license"),"rows_written":0,"rows_rejected":0,"bytes":0,"sha256":None,"status":"source_failed_nonfatal","caveat":f"{type(exc).__name__}: {exc}","checks":{"cross_source_near_duplicate":"NOT_RUN","global_holdout_contamination":"NOT_RUN","human_sample_review":"NOT_RUN"}}
    manifest.append(failure)
    print(json.dumps(failure,ensure_ascii=False),flush=True)
