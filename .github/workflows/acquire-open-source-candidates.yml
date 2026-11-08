@@ -7,14 +7,18 @@ on:
       - ".github/workflows/acquire-open-source-candidates.yml"
       - "scripts/acquire_open_source_candidates.py"
       - "scripts/license_gates.py"
+      - "scripts/acquisition_safety.py"
       - "tests/test_license_gates.py"
+      - "tests/test_acquisition_safety.py"
   workflow_dispatch:
   pull_request:
     paths:
       - ".github/workflows/acquire-open-source-candidates.yml"
       - "scripts/acquire_open_source_candidates.py"
       - "scripts/license_gates.py"
+      - "scripts/acquisition_safety.py"
       - "tests/test_license_gates.py"
+      - "tests/test_acquisition_safety.py"
 
 permissions:
   contents: read
