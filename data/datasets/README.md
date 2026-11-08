@@ -199,3 +199,47 @@ Antes de adquirir: fijar fecha de inventario, lista completa de PMCIDs y su SHA-
 - PR #18, catálogo de 100 bibliotecas: no integrado y no mergeable. El diff añade el catálogo pero no modifica el recolector para leerlo; además, sus etiquetas genéricas de licencia no sustituyen la verificación de cada payload. Sus 100 entradas no son descargas ni admisiones.
 
 No se debe cancelar el workflow activo ni lanzar otra adquisición concurrente. La siguiente revisión debe inspeccionar el manifiesto/artifact del run 42366207131, y después auditar cada shard con el código exacto ya integrado. Hasta que todos los gates pasen, el contador admitido permanece en **260.971 documentos / 703.593.871 bytes**.
+
+
+## Adquisición candidate-only — run 42379525699 (revisión 2026-11-08)
+
+El [run 42379525699](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42379525699) terminó después de conservar sus artefactos. El workflow marcó fallo porque no alcanzó su umbral de escala de 6.800.000.000 bytes; no fue una admisión ni una auditoría global.
+
+| Métrica | Resultado |
+|---|---:|
+| Filas completadas en el manifiesto | 780.527 |
+| Bytes JSONL completados en el manifiesto | 4.505.001.697 |
+| ZIP candidato | 1.860.559.190 bytes |
+| SHA-256 del ZIP (digest de GitHub Actions) | `4580efd18cbc11ed2c94947236a3a814b32345fc540a5df6e1550bce01266018` |
+| SHA-256 del manifiesto | `083b0fa38ffd57ec9d78f05d4d2d767d2c30d88f28a1acc2b120744b79b4c39f` |
+| SHA-256 de muestras estratificadas | `24d7fb0a000a0fa5c2d462db6ba661650982a13c5e8dab08cc91e6c07d69a89c` |
+| Fuentes completadas / fallidas | 25 / 12 |
+| Nuevas admisiones | **0 documentos / 0 bytes** |
+
+**Cuarentena obligatoria del lote completo.** El manifiesto cuenta solo los shards que superaron el mínimo de filas, pero el workflow subió también archivos parciales creados por fuentes que fallaron después de escribir. Se verificaron 117.712.976 bytes expandidos de shards parciales de Spanish-PD-Books cuyo manifiesto declara cero filas y cero bytes. El ZIP incluye por tanto material no reconciliado; ni su tamaño comprimido ni esos parciales se cuentan como admitidos. No se ejecutaron deduplicación cruzada, G-0, contaminación global ni revisión humana de derechos.
+
+### Candidatos de mayor volumen (todos no admitidos)
+
+| Fuente | Filas | Bytes JSONL | Motivo de retención |
+|---|---:|---:|---|
+| OpenThoughts3 | 15.000 | 935.959.550 | Linaje de preguntas de Stack Exchange y otras fuentes upstream sin autorización individual acreditada |
+| PubMed filtered | 20.000 | 494.056.484 | Verificar licencia en el artículo original, autores y derechos de terceros |
+| DOAB | 50.000 | 359.365.617 | Comprobar licencia del libro y contenido de terceros, incluidas figuras |
+| PressBooks | 33.736 | 302.342.385 | CC-BY por registro candidato; falta revisión de libro, autoría y material de terceros |
+| Wikidata | 50.000 | 166.881.647 | CC0 declarado; pendiente auditoría de calidad, duplicados y contaminación |
+| IFM Code-Reasoning | 12.000 | 169.084.387 | Procedencia y linaje del contenido incompletos |
+| Common Corpus | 20.000 | 185.442.381 | Metadatos exactos de licencia; requiere comprobación de derechos por fuente |
+| PT-BR Books Públicos | 10.000 | 128.837.168 | CC0 declarado; verificar obras, procedencia, OCR e idioma |
+
+Otros lotes incluyen FineWeb-Edu, OpenWebMath, Cosmopedia, Aya, LibriSpeech y VoxPopuli. FineWeb/OpenWebMath permanecen en cuarentena por derechos de las páginas subyacentes; Cosmopedia v2 por linaje mixto; Aya por contenido de terceros y metadatos de idioma incompletos en la muestra; el resto sigue pendiente de auditoría global. El artefacto de muestras es un muestreo determinista, **no una aprobación humana**.
+
+### Corrección del recolector
+
+La próxima versión:
+- escribe cada shard en `.partial` y solo lo publica tras superar el mínimo de filas;
+- elimina temporales cuando falla una fuente;
+- serializa fechas como ISO-8601 (el fallo de CourtListener se debió a un objeto `datetime`);
+- conserva el split y todos los `metadata_fields` declarados;
+- deja el umbral de escala como informativo: una adquisición parcial no debe aparecer como fallo técnico si los artefactos y manifiestos son válidos.
+
+El inventario admitido no cambia: **260.971 documentos y 703.593.871 bytes**, 0,1407 % de 500 GB. No se suman candidatos ni parciales.
