@@ -236,3 +236,8 @@ El detalle por fuente, sus licencias, manifiestos y condiciones de admisión est
 
 
 Como nueva vía biomédica primaria, se ha registrado [PMC Open Access Subset](https://pmc.ncbi.nlm.nih.gov/tools/openftlist/) para un piloto futuro limitado a licencias exactas CC-BY-4.0/CC0-1.0 por artículo, usando OAI-PMH/Cloud oficiales y respetando sus límites de recuperación. No se ha descargado ni admitido material; BY-SA/BY-ND/NC, licencias desconocidas y contenido de terceros quedan fuera. El detalle y los gates están en `data/sources/registry.json`.
+
+
+## Curación externa — revisión 2026-11-08
+
+La última adquisición candidate-only [42379525699](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42379525699) produjo 780.527 filas y 4.505.001.697 bytes JSONL según su manifiesto, pero no superó la auditoría global y dejó parciales no reconciliados. **Admisiones nuevas: 0 bytes.** El inventario admitido sigue en 260.971 documentos / 703.593.871 bytes. Detalles, hashes y bloqueos: [inventario de datasets](data/datasets/README.md).
