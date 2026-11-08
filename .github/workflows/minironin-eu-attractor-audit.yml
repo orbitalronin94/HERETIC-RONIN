@@ -1,0 +1,67 @@
+name: MINIRONIN — autopsia del tic europeo
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/minironin-eu-attractor-audit.yml"
+      - "scripts/audit_minironin_eu_attractor.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - name: Checkout HERETIC-RONIN
+        uses: actions/checkout@v5
+      - name: Checkout MINIRONIN source tree
+        uses: actions/checkout@v5
+        with:
+          repository: orbitalronin94/MINIRONIN
+          ref: main
+          path: minironin
+      - name: Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Download and verify approved HERETIC corpus
+        shell: bash
+        run: |
+          set -euo pipefail
+          api="https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/releases/assets"
+          curl --fail --location --retry 5 -H "Accept: application/octet-stream" "$api/720936363" -o corpus.part-0
+          curl --fail --location --retry 5 -H "Accept: application/octet-stream" "$api/720936357" -o corpus.part-1
+          curl --fail --location --retry 5 -H "Accept: application/octet-stream" "$api/720936364" -o parts.sha256
+          curl --fail --location --retry 5 -H "Accept: application/octet-stream" "$api/720936362" -o corpus.sha256
+          test "$(stat -c%s corpus.part-0)" -eq 400000000
+          test "$(stat -c%s corpus.part-1)" -eq 349837093
+          sha256sum -c parts.sha256
+          cat corpus.part-0 corpus.part-1 > corpus.zip
+          test "$(sha256sum corpus.zip | awk '{print $1}')" = "$(awk '{print $1}' corpus.sha256)"
+          unzip -tq corpus.zip
+          mkdir -p corpus-unpacked
+          unzip -q corpus.zip -d corpus-unpacked
+      - name: Download and verify PRODATPHIL v0.3
+        shell: bash
+        run: |
+          set -euo pipefail
+          api="https://api.github.com/repos/orbitalronin94/MINIRONIN/releases/assets"
+          curl --fail --location --retry 5 -H "Accept: application/octet-stream" "$api/720951610" -o prodatphil.sha256
+          curl --fail --location --retry 5 -H "Accept: application/octet-stream" "$api/720951612" -o prodatphil.zip
+          (echo "$(awk '{print $1}' prodatphil.sha256)  prodatphil.zip") | sha256sum -c -
+          unzip -tq prodatphil.zip
+          mkdir -p prodatphil-unpacked
+          unzip -q prodatphil.zip -d prodatphil-unpacked
+      - name: Scan source corpora and MINIRONIN generators
+        run: python scripts/audit_minironin_eu_attractor.py
+      - name: Publish forensic report
+        uses: actions/upload-artifact@v6
+        with:
+          name: minironin-eu-attractor-audit-${{ github.run_id }}
+          path: reports/eu-attractor-audit/
+          if-no-files-found: error
+          retention-days: 90
