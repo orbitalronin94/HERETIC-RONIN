@@ -7,15 +7,16 @@ from pathlib import Path
 from datasets import load_dataset
 from huggingface_hub import HfApi
 from license_gates import license_values_allowed
+from acquisition_safety import AtomicCandidateWriter, finalize_candidate_file, json_default
 
 OUT=Path("staging/open-source-candidates")
-TARGET_BYTES=6_800_000_000  # 10x the currently effective 680,665,972-byte corpus
+TARGET_BYTES=6_800_000_000  # Advisory candidate-scale target; never an admission gate
 SOURCES=[
  {"id":"HuggingFaceFW/fineweb-edu","config":"sample-10BT","license":"ODC-By-1.0","limit":100000,"fields":["text"],"caveat":"Common Crawl source-page rights and terms remain applicable."},
  {"id":"open-web-math/open-web-math","config":None,"license":"ODC-By-1.0","limit":100000,"fields":["text"],"caveat":"Common Crawl terms apply; collection license does not relicense underlying pages."},
  {"id":"HuggingFaceTB/cosmopedia","config":"auto_math_text","license":"Apache-2.0","limit":50000,"fields":["text","prompt"],"caveat":"Verify per-config card and source lineage; synthetic quality requires audit."},
  {"id":"HuggingFaceTB/smollm-corpus","config":"cosmopedia-v2","license":"ODC-By-1.0","limit":50000,"fields":["text","prompt"],"caveat":"Synthetic data seeded from web/educational sources; quality and source-derived risks require audit."},
- {"id":"CohereLabs/aya_dataset","config":"default","license":"Apache-2.0","verify_license_tag":True,"limit":25000,"fields":["inputs","targets"],"caveat":"Official card states Apache-2.0 for any purpose. Human annotations and re-annotations; default config only. Do not load demographics config or user_id. Retain language and annotation_type; inspect PII and upstream prompt lineage."},
+ {"id":"CohereLabs/aya_dataset","config":"default","license":"Apache-2.0","verify_license_tag":True,"limit":25000,"fields":["inputs","targets"],"metadata_fields":["language","language_code","annotation_type"],"caveat":"Official card states Apache-2.0 for any purpose. Human annotations and re-annotations; default config only. Never ingest user_id or demographics. Preserve language/language_code/annotation_type; inspect third-party text rights, PII and upstream prompt lineage."},
  {"id":"philippesaade/wikidata","config":None,"license":"CC0-1.0","verify_license_tag":True,"limit":50000,"fields":["id","labels","descriptions"],"caveat":"Wikidata structured data is CC0. Keep only labels/descriptions, not linked Wikipedia article text or image assets."},
  {"id":"common-pile/pressbooks_filtered","config":None,"license":"per-document CC-BY-4.0 only","license_filter":["https://creativecommons.org/licenses/by/4.0/","http://creativecommons.org/licenses/by/4.0/"],"limit":50000,"fields":["text"],"caveat":"Open textbook chapters are collected from PressBooks; only exact CC-BY-4.0 records are candidates. Exclude BY-SA, public-domain claims not independently checked, NC, ND and unknown."},
  {"id":"common-pile/libretexts_filtered","config":None,"license":"per-document CC-BY-4.0 only","license_filter":["https://creativecommons.org/licenses/by/4.0/","http://creativecommons.org/licenses/by/4.0/"],"limit":50000,"fields":["text"],"caveat":"Open textbook sections are collected from LibreTexts; only exact CC-BY-4.0 records are candidates. Exclude BY-SA, GFDL, NC, ND and unknown; verify attribution and third-party material."},
@@ -47,7 +48,9 @@ SOURCES=[
  {"id":"PleIAs/English-PD","config":None,"data_files":["english_pd_1.parquet"],"file_tag":"english-pd-1","license":"Public domain claimed by publisher (titles pre-1884; EU author death >70 years)","limit":1500,"min_rows":500,"fields":["text"],"metadata_fields":["identifier","title","publication_date","word_count"],"caveat":"One pinned 447MB parquet shard from a 362GB collection / 736,214 titles / 78.6B words. Publisher states retained titles published before 1884 and EU public-domain criteria. OCR has known noise; preserve creator/title/date where present and inspect rights/OCR. Candidate only."},
  {"id":"PleIAs/Spanish-PD-Newspapers","config":None,"data_files":["default/train/0041.parquet"],"file_tag":"spanish-pd-newspapers-0041","license":"EU public domain claimed by publisher (author death >70 years)","limit":2500,"min_rows":500,"fields":["text"],"metadata_fields":["identifier","creator","title","publication_date","word_count"],"caveat":"One pinned 69.6MB parquet shard from a 48.6GB collection / 247,491 texts / 2.7B words. Aggregated from BDH and Internet Archive; publisher asserts EU public-domain status. Verify publication/title/creator dates, newspaper provenance and OCR quality. Candidate only."},
  {"id":"dataseek/ptbr-books-publicos","config":None,"license":"CC0-1.0","verify_license_tag":True,"limit":10000,"min_rows":100,"fields":["text"],"metadata_fields":["id","filename","book_type","n_chars","timestamp"],"caveat":"Portuguese-Brazilian public-domain book text. Dataset card declares CC0-1.0 and lists 28.2k rows; inspect source/book metadata, language purity, OCR quality and source provenance. Candidate only."},
- {"id":"coral-nlp/german-commons","config":"cultural","license":"per-document CC0 or CC-BY-4.0 only","license_all_exact_allowlist":["https://creativecommons.org/publicdomain/zero/1.0/","https://creativecommons.org/licenses/by/4.0/","CC0-1.0","CC-BY-4.0"],"limit":10000,"min_rows":100,"fields":["text"],"metadata_fields":["id","source","subset","license","num_tokens","ocr_score"],"caveat":"German Commons cultural subset. The dataset aggregates 41 sources and 154B tokens overall, but its ODC-BY aggregation license does not relicense documents. Keep only rows whose every per-document license is exactly CC0-1.0 or CC-BY-4.0; exclude share-alike, NC, ND, unknown and mixed license rows. Candidate only pending rights, OCR and provenance review."},
+ {"id":"coral-nlp/german-commons","config":"cultural","split":"germanpd","language":"de","license":"per-record CC0-1.0 only","license_all_exact_allowlist":["https://creativecommons.org/publicdomain/zero/1.0/"],"limit":5000,"min_rows":500,"fields":["text"],"metadata_fields":["id","source","subset","license","num_tokens","ocr_score"],"caveat":"German-PD split is listed as CC0-1.0 in the dataset card. Verify every record license and upstream work/public-domain basis; preserve source, OCR score and record ID. Candidate only."},
+ {"id":"coral-nlp/german-commons","config":"political","split":"btdrucksachen","language":"de","license":"per-record CC0-1.0 only","license_all_exact_allowlist":["https://creativecommons.org/publicdomain/zero/1.0/"],"limit":5000,"min_rows":500,"fields":["text"],"metadata_fields":["id","source","subset","license","num_tokens","ocr_score"],"caveat":"German Bundestag parliamentary publications split is listed as CC0-1.0. Verify each record and source provenance; candidate only."},
+ {"id":"coral-nlp/german-commons","config":"political","split":"germanpoliticalspeeches","language":"de","license":"per-record CC-BY-4.0 only","license_all_exact_allowlist":["https://creativecommons.org/licenses/by/4.0/"],"limit":5000,"min_rows":500,"fields":["text"],"metadata_fields":["id","source","subset","license","num_tokens","ocr_score"],"caveat":"German political speech transcripts split is listed as CC-BY-4.0. Preserve attribution and verify the license on every record and the underlying speech source; candidate only."},
 ]
 EMAIL=re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b")
 PHONE=re.compile(r"(?<!\d)(?:\+?\d[\d .()/-]{7,}\d)(?!\d)")
@@ -111,8 +114,9 @@ def main():
    safe_split=split.replace("/","__").replace(".","_")
    file_tag=("__"+source["file_tag"]) if source.get("file_tag") else ""
    target=OUT/(repo.replace("/","__")+"__"+safe_config+file_tag+"__"+safe_split+".jsonl")
+   temporary_target=target.with_name(target.name+".partial")
    seen=set(); written=0; rejected=0; started=time.time()
-   with target.open("w",encoding="utf-8") as f:
+   with AtomicCandidateWriter(temporary_target) as f:
     for row in ds:
      if any(row.get(k) is not True for k in source.get("required_true_fields",[])):
       rejected+=1; continue
@@ -141,14 +145,18 @@ def main():
      if len(body)<160 or len(body)>200000 or normalized in seen or EMAIL.search(body) or PHONE.search(body):
       rejected+=1; continue
      seen.add(normalized)
-     provenance={k:row[k] for k in ("url","date","language","score","audience","format","seed_data","token_length","id","source","paper_id","title","abstract","primary_category","main_file","resolution","annotation_type","language_code","author","book_url","institution","subject","is_gold_transcript","collection","open_type","creator","publication_date","word_count","identifier","jurisdiction","citation","court","date","domain","difficulty","problem_type","question_type","token_count") if k in row}
+     provenance_keys=["url","date","language","score","audience","format","seed_data","token_length","id","source","subset","paper_id","title","abstract","primary_category","main_file","resolution","annotation_type","language_code","author","book_url","institution","subject","is_gold_transcript","collection","open_type","creator","publication_date","word_count","identifier","jurisdiction","citation","court","domain","difficulty","problem_type","question_type","token_count","num_tokens","ocr_score"]
+     provenance_keys.extend(source.get("metadata_fields",[]))
+     provenance={k:row[k] for k in dict.fromkeys(provenance_keys) if k in row}
+     if source.get("language"):
+      provenance.setdefault("language",source["language"])
      for k in ("license","url","authors","author","site","journal","provenance","license_url","dataset_id","language","annotation_type","book_url","title","institution","subject","collection","open_type","creator","publication_date","word_count","identifier","jurisdiction","citation","court","date"):
       if k in row_metadata: provenance["record_"+k]=row_metadata[k]
-     record={"text":body,"source":repo,"revision":revision,"config":cfg or "default","selected_files":source.get("data_files",[]),
+     record={"text":body,"source":repo,"revision":revision,"config":cfg or "default","split":split,"selected_files":source.get("data_files",[]),
              "license":row_license or source["license"],"source_metadata":provenance}
-     f.write(json.dumps(record,ensure_ascii=False)+"\n"); written+=1
+     f.write(json.dumps(record,ensure_ascii=False,default=json_default)+"\n"); written+=1
      if written>=source["limit"]: break
-   if written<source.get("min_rows",source["limit"]//2): raise RuntimeError(f"{repo}: only {written} usable rows")
+   finalize_candidate_file(temporary_target,target,written,source.get("min_rows",source["limit"]//2),repo)
    manifest.append({"source":repo,"revision":revision,"config":cfg or "default","split":split,"declared_license":source["license"],"official_license_tag":expected_tag if source.get("verify_license_tag") else None,"official_license_tag_verified":license_tag_verified,
      "rows_written":written,"rows_rejected":rejected,"bytes":target.stat().st_size,"sha256":digest(target),
      "status":"candidate_not_admitted","caveat":source["caveat"],"elapsed_seconds":round(time.time()-started,2),
