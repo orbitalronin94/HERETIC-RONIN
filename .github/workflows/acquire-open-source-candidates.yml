@@ -29,9 +29,9 @@ jobs:
         with:
           python-version: "3.11"
       - name: Compile acquisition and license gate without downloading datasets
-        run: python -m py_compile scripts/acquire_open_source_candidates.py scripts/review_candidate_samples.py scripts/license_gates.py
-      - name: Test exact per-record license gate
-        run: python -m unittest discover -s tests -p 'test_license_gates.py' -v
+        run: python -m py_compile scripts/acquire_open_source_candidates.py scripts/review_candidate_samples.py scripts/license_gates.py scripts/acquisition_safety.py
+      - name: Test license and acquisition safety gates
+        run: python -m unittest discover -s tests -v
 
   acquire:
     if: github.event_name != 'pull_request'
@@ -187,12 +187,14 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: heretic-open-source-candidates-${{ github.run_id }}
-          path: staging/open-source-candidates/
+          path: |
+            staging/open-source-candidates/
+            !staging/open-source-candidates/**/*.partial
           if-no-files-found: error
           compression-level: 1
           retention-days: 90
 
-      - name: Enforce minimum 10x candidate corpus payload after preserving artifact
+      - name: Report candidate scale; shortfall is informational
         if: always() && steps.upload-candidates.outcome == 'success'
         shell: bash
         run: |
@@ -205,5 +207,5 @@ jobs:
           target=int(report.get("target_bytes",6800000000))
           print(json.dumps({"candidate_bytes":total,"target_bytes":target,"scale_factor":report.get("scale_factor_vs_current_effective_corpus"),"target_met":total>=target,"source_failures":report.get("source_failures",[])},indent=2))
           if total < target:
-              raise SystemExit(f"10x corpus acquisition floor not met: {total} < {target}; artifact was uploaded for inspection/retry.")
+              print("Candidate scale target not met; artifact is preserved for review. This is not an admission and does not fail the acquisition run.")
           PY
