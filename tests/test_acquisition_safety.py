@@ -29,7 +29,7 @@ class AcquisitionSafetyTests(unittest.TestCase):
             partial = Path(directory) / "shard.jsonl.partial"
             with self.assertRaises(RuntimeError):
                 with AtomicCandidateWriter(partial) as handle:
-                    handle.write('{"text":"partial"}\\n')
+                    handle.write('{"text":"partial"}\n')
                     raise RuntimeError("simulated stream failure")
             self.assertFalse(partial.exists())
 
@@ -37,7 +37,7 @@ class AcquisitionSafetyTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             partial = Path(directory) / "shard.jsonl.partial"
             target = Path(directory) / "shard.jsonl"
-            partial.write_text('{"text":"not enough"}\\n', encoding="utf-8")
+            partial.write_text('{"text":"not enough"}\n', encoding="utf-8")
             with self.assertRaisesRegex(RuntimeError, "partial shard discarded"):
                 finalize_candidate_file(partial, target, 1, 2, "fixture/source")
             self.assertFalse(partial.exists())
@@ -47,10 +47,10 @@ class AcquisitionSafetyTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             partial = Path(directory) / "shard.jsonl.partial"
             target = Path(directory) / "shard.jsonl"
-            partial.write_text('{"text":"ok"}\\n', encoding="utf-8")
+            partial.write_text('{"text":"ok"}\n', encoding="utf-8")
             finalize_candidate_file(partial, target, 2, 2, "fixture/source")
             self.assertFalse(partial.exists())
-            self.assertEqual(target.read_text(encoding="utf-8"), '{"text":"ok"}\\n')
+            self.assertEqual(target.read_text(encoding="utf-8"), '{"text":"ok"}\n')
 
 
 if __name__ == "__main__":
