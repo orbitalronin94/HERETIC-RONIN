@@ -33,14 +33,14 @@ jobs:
         run: |
           set -euo pipefail
           api="https://api.github.com/repos/orbitalronin94/HERETIC-RONIN/releases/assets"
-          curl --fail --location --retry 5 -H "Accept: application/octet-stream" "$api/720936363" -o corpus.part-0
-          curl --fail --location --retry 5 -H "Accept: application/octet-stream" "$api/720936357" -o corpus.part-1
+          curl --fail --location --retry 5 -H "Accept: application/octet-stream" "$api/720936363" -o heretic-corpus.part-0
+          curl --fail --location --retry 5 -H "Accept: application/octet-stream" "$api/720936357" -o heretic-corpus.part-1
           curl --fail --location --retry 5 -H "Accept: application/octet-stream" "$api/720936364" -o parts.sha256
           curl --fail --location --retry 5 -H "Accept: application/octet-stream" "$api/720936362" -o corpus.sha256
-          test "$(stat -c%s corpus.part-0)" -eq 400000000
-          test "$(stat -c%s corpus.part-1)" -eq 349837093
+          test "$(stat -c%s heretic-corpus.part-0)" -eq 400000000
+          test "$(stat -c%s heretic-corpus.part-1)" -eq 349837093
           sha256sum -c parts.sha256
-          cat corpus.part-0 corpus.part-1 > corpus.zip
+          cat heretic-corpus.part-0 heretic-corpus.part-1 > corpus.zip
           test "$(sha256sum corpus.zip | awk '{print $1}')" = "$(awk '{print $1}' corpus.sha256)"
           unzip -tq corpus.zip
           mkdir -p corpus-unpacked
