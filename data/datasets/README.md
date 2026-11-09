@@ -254,3 +254,13 @@ El log del run registra 17 slices completos antes de la interrupción: **629.527
 La adquisición se divide ahora en cuatro tranches deterministas de la lista de fuentes. La ejecución programada diaria procesa una tranche distinta según el día del año; cada fuente completada actualiza atómicamente el manifiesto y el artefacto de la tranche se intenta publicar incluso si el streaming posterior se interrumpe. Los registros siguen marcados como candidatos no admitidos; esto no supera revisión humana, derechos/procedencia, deduplicación cruzada ni G-0.
 
 El inventario admitido permanece sin cambios: **260.971 documentos / 703.593.871 bytes**, equivalente al **0,1407 %** de 500 GB.
+
+## Nuevo candidato multilingüe — EUR-Lex / CELLAR (2026-11-09)
+
+Se incorpora a la cola de descubrimiento **EUR-Lex / CELLAR**, repositorio oficial de publicaciones de la Oficina de Publicaciones de la UE, para explorar actos jurídicos del Diario Oficial y terminología jurídica en las lenguas oficiales. CELLAR ofrece acceso público a metadatos y publicaciones mediante SPARQL y una API REST; la consulta y cada expresión deben congelarse con identificadores y hashes propios.
+
+El aviso legal de EUR-Lex permite reutilizar documentos jurídicos para fines comerciales y no comerciales salvo condiciones específicas. No es una licencia universal: algunos documentos tienen condiciones especiales, y las obras de terceros o los datos de personas identificables pueden requerir autorización. Los metadatos son CC0-1.0; el contenido editorial, resúmenes y textos consolidados propiedad de la UE se indican bajo CC-BY-4.0. Se mantendrán como clases distintas y se excluirán los documentos con términos especiales o derechos no resueltos.
+
+**Estado:** candidato de descubrimiento; 0 descargas, 0 filas candidatas y 0 bytes admitidos. Antes de staging se fijarán consulta SPARQL, timestamp, CELEX/ELI/CELLAR IDs, expresión por idioma, formato y SHA-256. No se habilita para train ni se altera el inventario admitido.
+
+Fuentes primarias: [aviso legal EUR-Lex](https://eur-lex.europa.eu/content/legal-notice/legal-notice.html?locale=en), [CELLAR](https://op.europa.eu/en/web/cellar), [knowledge graph/SPARQL](https://op.europa.eu/en/web/cellar/cellar-data/metadata/knowledge-graph) y [documentación CELLAR](https://op.europa.eu/en/web/cellar/documentation). El registro detallado y los controles están en `data/sources/registry.json`.
