@@ -8,6 +8,7 @@ from scripts.acquisition_safety import (
     AtomicCandidateWriter,
     finalize_candidate_file,
     json_default,
+    select_source_group,
 )
 
 
@@ -51,6 +52,27 @@ class AcquisitionSafetyTests(unittest.TestCase):
             finalize_candidate_file(partial, target, 2, 2, "fixture/source")
             self.assertFalse(partial.exists())
             self.assertEqual(target.read_text(encoding="utf-8"), '{"text":"ok"}\n')
+
+
+    def test_source_groups_are_disjoint_and_cover_every_source(self):
+        sources = [{"id": f"source-{i}"} for i in range(11)]
+        groups = [
+            select_source_group(sources, group_index, 4)
+            for group_index in range(4)
+        ]
+        flattened = [index for group in groups for index, _ in group]
+        self.assertEqual(sorted(flattened), list(range(len(sources))))
+        self.assertEqual(len(flattened), len(set(flattened)))
+        self.assertEqual([len(group) for group in groups], [3, 3, 3, 2])
+
+    def test_source_group_rejects_invalid_bounds(self):
+        sources = [{"id": "one"}]
+        with self.assertRaises(ValueError):
+            select_source_group(sources, 0, 0)
+        with self.assertRaises(ValueError):
+            select_source_group(sources, -1, 4)
+        with self.assertRaises(ValueError):
+            select_source_group(sources, 4, 4)
 
 
 if __name__ == "__main__":
