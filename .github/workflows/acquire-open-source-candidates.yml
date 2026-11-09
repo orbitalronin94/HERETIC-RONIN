@@ -3,6 +3,9 @@ name: HERETIC — acquire pinned open-source corpus candidates
 on:
   schedule:
     - cron: "30 12 * * *"
+  push:
+    paths:
+      - ".github/workflows/acquire-open-source-candidates.yml"
   workflow_dispatch:
     inputs:
       source_group:
