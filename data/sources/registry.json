@@ -2033,6 +2033,45 @@
         "never present consolidated text as official/authentic version; preserve informational disclaimer"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "Publications Office of the EU:CELLAR-EUR-Lex-legal-documents",
+      "url": "https://eur-lex.europa.eu/",
+      "retrieval_url": "https://publications.europa.eu/webapi/rdf/sparql",
+      "revision": "Mutable CELLAR repository. Before staging, freeze the exact SPARQL query and response, retrieval timestamp, work/expression/manifestation/item identifiers, language expression and payload SHA-256.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired.",
+      "reported_license": "EUR-Lex legal-document reuse policy based on Decision 2011/833/EU; default reuse for commercial/non-commercial purposes unless a document specifies otherwise. No single SPDX license. EUR-Lex metadata is CC0-1.0; EU-owned editorial content, summaries and consolidated texts are CC-BY-4.0.",
+      "status": "candidate_discovery_only_pending_document_level_terms",
+      "domains": [
+        "EU legislation",
+        "public administration",
+        "law",
+        "multilingual legal terminology"
+      ],
+      "language": [
+        "24 EU official languages; verify each expression"
+      ],
+      "rights_caveat": "EUR-Lex legal notice states that legal documents may be reused for commercial or non-commercial purposes unless otherwise specified. Some documents have special conditions (including International Accounting Standards); third-party works and identifiable private persons may require separate clearance. Do not treat the entire portal as one blanket license. Metadata is CC0-1.0; EU-owned editorial content, summaries and consolidated texts are CC-BY-4.0. Candidate discovery only; no payload has been downloaded or admitted.",
+      "required_checks": [
+        "Use official EUR-Lex/CELLAR interfaces only; record exact SPARQL query, retrieval timestamp and API/documentation revision",
+        "Start with Official Journal legal acts authored by EU institutions; exclude documents with special conditions, third-party content and materials whose reuse terms are absent or unclear",
+        "Inspect the EUR-Lex legal notice and document-level notices for every selected work/expression; do not infer a blanket SPDX license",
+        "Preserve CELEX, ELI, CELLAR work/expression/manifestation/item IDs, institution, document type, OJ reference, publication/effective dates, language, source URL and applicable rights notice",
+        "Fetch and hash each language expression separately; retain exact response bytes, content format and SHA-256",
+        "Keep metadata, legal acts, editorial summaries and consolidated texts as distinct content classes; apply CC0 to metadata and CC-BY-4.0 to EU-owned editorial/summaries/consolidated texts only where the legal notice covers them",
+        "Exclude IFRS/International Accounting Standards where special conditions apply, third-party images/works, identifiable private-person material requiring clearance and personal data not cleared for reuse",
+        "Scan privacy/PII, encoding, language, quality and document completeness; audit stratified samples by institution, document type and language",
+        "Deduplicate exactly and approximately against the entire admitted/candidate corpus and all validation/test/benchmark/holdout material; run G-0 before any admission"
+      ],
+      "evidence_urls": [
+        "https://eur-lex.europa.eu/content/legal-notice/legal-notice.html?locale=en",
+        "https://op.europa.eu/en/web/cellar",
+        "https://op.europa.eu/en/web/cellar/cellar-data/metadata/knowledge-graph",
+        "https://op.europa.eu/en/web/cellar/documentation",
+        "https://eur-lex.europa.eu/content/tools/webservices/DataExtractionUsingWebServices.pdf"
+      ],
+      "count_toward_admitted_bytes": false
     }
   ],
   "target_library_bytes": 500000000000,
@@ -2071,7 +2110,7 @@
     "2026-11-08 sample audit: Aya candidate sample lacked language/language_code/annotation_type in the exported source_metadata and included a poem-like full text. Updated collector to preserve allowed metadata while excluding user_id; content rights remain unresolved, so Aya stays candidate-only."
   ],
   "last_candidate_batch": "Run 42488804804: 17 complete candidate slices; 629,527 rows and 2,436,847,391 JSONL bytes reconstructed from job logs before the six-hour cancellation; 3 source failures; no artifact/final manifest; 0 admitted rows / 0 admitted bytes; ephemeral runner files not recoverable.",
-  "next_candidate_batch": "Use the current four-tranche deterministic acquisition workflow on main (source-list index modulo 4; daily scheduled group, workflow_dispatch allows groups 0–3). Audit each tranche artifact and per-source manifest independently. German Commons splits remain candidates pending per-record license and upstream rights checks; BOE and European Parliament remain discovery-only until resource-level terms, third-party rights and privacy are established. Never promote candidate data without full deduplication, human review and G-0/holdout clearance.",
+  "next_candidate_batch": "Use the current four-tranche deterministic acquisition workflow on main (source-list index modulo 4; daily scheduled group, workflow_dispatch allows groups 0–3). Audit each tranche artifact and per-source manifest independently. German Commons splits remain candidates pending per-record license and upstream rights checks; BOE and European Parliament remain discovery-only until resource-level terms, third-party rights and privacy are established. Never promote candidate data without full deduplication, human review and G-0/holdout clearance. Also investigate EUR-Lex/CELLAR Official Journal legal acts as a multilingual discovery candidate; no acquisition until document-level reuse terms and third-party exclusions are verified.",
   "audit_summary": {
     "run_id": 42288107561,
     "documents_audited": 256305,
