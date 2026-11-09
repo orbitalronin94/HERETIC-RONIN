@@ -249,6 +249,8 @@ El inventario admitido no cambia: **260.971 documentos y 703.593.871 bytes**, 0,
 
 La [run 42488804804](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42488804804) agotó el límite de seis horas durante el streaming secuencial (llegó a la configuración VoxPopuli de polaco). El workflow anterior solo publicaba artefactos al final, por lo que no dejó artefactos recuperables. **Admisiones de esa ejecución: 0 documentos / 0 bytes.**
 
+El log del run registra 17 slices completos antes de la interrupción: **629.527 filas candidatas y 2.436.847.391 bytes JSONL escritos en el runner**. No se generó artefacto ni manifiesto final, por lo que esos archivos fueron efímeros y no son un lote recuperable. Tres slices se descartaron por quedar bajo su mínimo: LibreTexts (20.532/25.000), arXiv paper_text (6.650/50.000) y LibriSpeech train.clean.100 (21.038/25.000). No hay medición verificable de bytes remotos ni de un ZIP final para esa ejecución.
+
 La adquisición se divide ahora en cuatro tranches deterministas de la lista de fuentes. La ejecución programada diaria procesa una tranche distinta según el día del año; cada fuente completada actualiza atómicamente el manifiesto y el artefacto de la tranche se intenta publicar incluso si el streaming posterior se interrumpe. Los registros siguen marcados como candidatos no admitidos; esto no supera revisión humana, derechos/procedencia, deduplicación cruzada ni G-0.
 
 El inventario admitido permanece sin cambios: **260.971 documentos / 703.593.871 bytes**, equivalente al **0,1407 %** de 500 GB.
