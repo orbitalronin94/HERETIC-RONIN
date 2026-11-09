@@ -57,6 +57,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Select deterministic daily source tranche
+        id: source-group
         shell: bash
         run: |
           if [[ "${GITHUB_EVENT_NAME}" == "schedule" ]]; then
@@ -70,6 +71,7 @@ jobs:
             exit 2
           fi
           echo "HERETIC_SOURCE_GROUP=$group" >> "$GITHUB_ENV"
+          echo "group=$group" >> "$GITHUB_OUTPUT"
           echo "Acquisition source group: $group/4"
 
       - name: Set up Python
@@ -95,7 +97,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: heretic-open-source-candidates-${{ github.run_id }}-group-${{ env.HERETIC_SOURCE_GROUP }}
+          name: heretic-open-source-candidates-${{ github.run_id }}-group-${{ steps.source-group.outputs.group }}
           path: |
             staging/open-source-candidates/
             !staging/open-source-candidates/*.partial
