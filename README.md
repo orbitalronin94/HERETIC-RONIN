@@ -241,3 +241,11 @@ Como nueva vía biomédica primaria, se ha registrado [PMC Open Access Subset](h
 ## Curación externa — revisión 2026-11-08
 
 La última adquisición candidate-only [42379525699](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42379525699) produjo 780.527 filas y 4.505.001.697 bytes JSONL según su manifiesto, pero no superó la auditoría global y dejó parciales no reconciliados. **Admisiones nuevas: 0 bytes.** El inventario admitido sigue en 260.971 documentos / 703.593.871 bytes. Detalles, hashes y bloqueos: [inventario de datasets](data/datasets/README.md).
+
+## Adquisición interrumpida y tranches diarias — 2026-11-09
+
+La [run 42488804804](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42488804804) se ejecutó con la versión anterior del recolector y agotó el límite de seis horas antes de publicar artefactos. Los logs permiten reconciliar 17 slices completos: **629.527 filas candidatas y 2.436.847.391 bytes JSONL**. Tres slices fallaron por no alcanzar su mínimo de filas (LibreTexts, arXiv `paper_text` y LibriSpeech `train.clean.100`). No hubo artefacto ni manifiesto final; los payloads quedaron en el runner efímero y no son recuperables. **Admisiones nuevas: 0 documentos / 0 bytes.** Los hashes por slice reportados en los logs quedan en `data/sources/registry.json`, marcados como no re-verificables contra un artefacto ausente.
+
+La versión actual del workflow divide la lista fija de fuentes en **cuatro tranches deterministas** por índice módulo 4. La ejecución diaria selecciona una tranche y `workflow_dispatch` permite seleccionar explícitamente los grupos 0–3. Cada fuente completa persiste el manifiesto candidato de forma incremental y el workflow intenta publicar el último estado aun si una fuente posterior falla. Todo sigue en `candidate_not_admitted`: la partición por tranches mejora recuperación y duración, pero no sustituye auditoría de derechos, deduplicación global, revisión humana ni G-0/holdout.
+
+El inventario admitido no cambia: **260.971 documentos / 703.593.871 bytes**, equivalente al **0,1407 %** del objetivo de 500 GB. No se suman filas candidatas ni bytes efímeros.
