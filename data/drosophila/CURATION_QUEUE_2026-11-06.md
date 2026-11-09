@@ -250,3 +250,13 @@ No se ha descargado contenido todavía. Cada documento futuro deberá congelarse
 ### Parlamento Europeo
 
 La API v2 declara CC-BY-4.0 en su especificación. Sigue como candidata hasta verificar el alcance por recurso, exclusiones de terceros y privacidad; no se contabiliza ningún byte.
+
+## Descubrimiento nuevo — EUR-Lex / CELLAR (2026-11-09)
+
+Se registra **EUR-Lex / CELLAR** como candidato de alto valor para legislación y terminología jurídica multilingüe de la UE. No se ha descargado ningún payload y no se contabiliza ningún byte.
+
+- **Acceso oficial:** [EUR-Lex](https://eur-lex.europa.eu/) y [CELLAR](https://op.europa.eu/en/web/cellar). CELLAR permite recuperar metadatos y documentos mediante su interfaz pública [SPARQL](https://publications.europa.eu/webapi/rdf/sparql) y su API REST; la documentación oficial describe las consultas y los enlaces de descarga. [Knowledge graph y SPARQL](https://op.europa.eu/en/web/cellar/cellar-data/metadata/knowledge-graph) · [documentación](https://op.europa.eu/en/web/cellar/documentation).
+- **Derechos:** el [aviso legal de EUR-Lex](https://eur-lex.europa.eu/content/legal-notice/legal-notice.html?locale=en) indica que, salvo especificación contraria, los documentos jurídicos publicados en EUR-Lex pueden reutilizarse con fines comerciales y no comerciales. Algunos documentos tienen condiciones especiales (por ejemplo, normas internacionales de contabilidad); el contenido de terceros y datos de personas identificables pueden requerir autorización adicional. Los metadatos se dedican a dominio público CC0-1.0; el contenido editorial, los resúmenes y los textos consolidados propiedad de la UE se licencian CC-BY-4.0. **No existe una licencia única aplicable indiscriminadamente a todo EUR-Lex.**
+- **Alcance inicial propuesto:** actos jurídicos del Diario Oficial de la UE producidos por instituciones de la UE. Separar metadatos, actos, resúmenes y textos consolidados. Excluir documentos con condiciones especiales, material de terceros y recursos con derechos o privacidad no resueltos.
+- **Reproducibilidad:** fijar consulta SPARQL, timestamp, IDs CELEX/ELI/CELLAR de work/expression/manifestation/item, idioma y formato; guardar SHA-256 por expresión y payload. No tratar un endpoint mutable como revisión inmutable.
+- **Estado:** `candidate_discovery_only_pending_document_level_terms`; 0 descargas, 0 documentos admitidos, 0 bytes admitidos. G-0, deduplicación global, privacidad y revisión estratificada siguen siendo obligatorios.
