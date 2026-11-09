@@ -1,16 +1,20 @@
 name: HERETIC — acquire pinned open-source corpus candidates
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/acquire-open-source-candidates.yml"
-      - "scripts/acquire_open_source_candidates.py"
-      - "scripts/license_gates.py"
-      - "scripts/acquisition_safety.py"
-      - "tests/test_license_gates.py"
-      - "tests/test_acquisition_safety.py"
+  schedule:
+    - cron: "30 12 * * *"
   workflow_dispatch:
+    inputs:
+      source_group:
+        description: "Deterministic acquisition tranche (0–3)"
+        required: true
+        default: "0"
+        type: choice
+        options:
+          - "0"
+          - "1"
+          - "2"
+          - "3"
   pull_request:
     paths:
       - ".github/workflows/acquire-open-source-candidates.yml"
@@ -46,9 +50,29 @@ jobs:
     timeout-minutes: 360
     env:
       PYTHONUNBUFFERED: "1"
+      HERETIC_SOURCE_GROUP_COUNT: "4"
+      HERETIC_SOURCE_GROUP_INPUT: ${{ inputs.source_group || '0' }}
     steps:
       - name: Checkout HERETIC-RONIN
         uses: actions/checkout@v5
+
+      - name: Select deterministic daily source tranche
+        id: source-group
+        shell: bash
+        run: |
+          if [[ "${GITHUB_EVENT_NAME}" == "schedule" ]]; then
+            day_of_year="$(date -u +%j)"
+            group="$((10#$day_of_year % 4))"
+          else
+            group="${HERETIC_SOURCE_GROUP_INPUT:-0}"
+          fi
+          if ! [[ "$group" =~ ^[0-3]$ ]]; then
+            echo "Invalid source group: $group" >&2
+            exit 2
+          fi
+          echo "HERETIC_SOURCE_GROUP=$group" >> "$GITHUB_ENV"
+          echo "group=$group" >> "$GITHUB_OUTPUT"
+          echo "Acquisition source group: $group/4"
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -68,133 +92,17 @@ jobs:
           python -m py_compile scripts/acquire_open_source_candidates.py scripts/review_candidate_samples.py
           python scripts/review_candidate_samples.py
 
-      - name: Upload PubMed CC-BY/CC0-filtered candidate shard
-        uses: actions/upload-artifact@v7
-        with:
-          name: heretic-candidate-pubmed-${{ github.run_id }}
-          path: |
-            staging/open-source-candidates/common-pile__pubmed_filtered__default__train.jsonl
-            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
-          if-no-files-found: ignore
-          compression-level: 1
-          retention-days: 90
-
-      - name: Upload OpenThoughts3 candidate shard
-        uses: actions/upload-artifact@v7
-        with:
-          name: heretic-candidate-openthoughts3-${{ github.run_id }}
-          path: |
-            staging/open-source-candidates/open-thoughts__OpenThoughts3-1.2M__default__train.jsonl
-            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
-          if-no-files-found: ignore
-          compression-level: 1
-          retention-days: 90
-
-      - name: Upload OpenR1 Math candidate shard
-        uses: actions/upload-artifact@v7
-        with:
-          name: heretic-candidate-openr1-math-${{ github.run_id }}
-          path: |
-            staging/open-source-candidates/open-r1__OpenR1-Math-220k__default__train.jsonl
-            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
-          if-no-files-found: ignore
-          compression-level: 1
-          retention-days: 90
-
-      - name: Upload IFM reasoning candidate shards
-        uses: actions/upload-artifact@v7
-        with:
-          name: heretic-candidate-ifm-reasoning-${{ github.run_id }}
-          path: |
-            staging/open-source-candidates/IFM__Code-Reasoning__code-no-thinking__train.jsonl
-            staging/open-source-candidates/IFM__Math-Reasoning__math-dialogue__train.jsonl
-            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
-          if-no-files-found: ignore
-          compression-level: 1
-          retention-days: 90
-
-      - name: Upload CourtListener public-domain caselaw candidate shard
-        uses: actions/upload-artifact@v7
-        with:
-          name: heretic-candidate-courtlistener-${{ github.run_id }}
-          path: |
-            staging/open-source-candidates/docketx__us-caselaw-fed-district__default__train.jsonl
-            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
-          if-no-files-found: ignore
-          compression-level: 1
-          retention-days: 90
-
-      - name: Upload OpenStax textbook candidate shard
-        uses: actions/upload-artifact@v7
-        with:
-          name: heretic-candidate-openstax-${{ github.run_id }}
-          path: |
-            staging/open-source-candidates/crumb__openstax-text__default__train.jsonl
-            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
-          if-no-files-found: ignore
-          compression-level: 1
-          retention-days: 90
-
-      - name: Upload Spanish public-domain books candidate shards
-        uses: actions/upload-artifact@v7
-        with:
-          name: heretic-candidate-spanish-pd-books-${{ github.run_id }}
-          path: |
-            staging/open-source-candidates/PleIAs__Spanish-PD-Books__default__spanish-pd-books-*.jsonl
-            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
-          if-no-files-found: ignore
-          compression-level: 1
-          retention-days: 90
-      - name: Upload Common Corpus candidate shard
-        uses: actions/upload-artifact@v7
-        with:
-          name: heretic-candidate-common-corpus-${{ github.run_id }}
-          path: |
-            staging/open-source-candidates/PleIAs__common_corpus__default__train.jsonl
-            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
-          if-no-files-found: ignore
-          compression-level: 1
-          retention-days: 90
-
-      - name: Upload English public-domain books candidate shard
-        uses: actions/upload-artifact@v7
-        with:
-          name: heretic-candidate-english-pd-${{ github.run_id }}
-          path: |
-            staging/open-source-candidates/PleIAs__English-PD__default__english-pd-*.jsonl
-            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
-          if-no-files-found: ignore
-          compression-level: 1
-          retention-days: 90
-
-      - name: Upload Spanish public-domain newspapers candidate shard
-        uses: actions/upload-artifact@v7
-        with:
-          name: heretic-candidate-spanish-pd-newspapers-${{ github.run_id }}
-          path: |
-            staging/open-source-candidates/PleIAs__Spanish-PD-Newspapers__default__spanish-pd-newspapers-*.jsonl
-            staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
-          if-no-files-found: ignore
-          compression-level: 1
-          retention-days: 90
-      - name: Upload deterministic manual review samples
-        uses: actions/upload-artifact@v7
-        with:
-          name: heretic-candidate-manual-samples-${{ github.run_id }}
-          path: staging/open-source-candidates/MANUAL-SAMPLE-REVIEW.json
-          if-no-files-found: error
-          compression-level: 1
-          retention-days: 90
-
-      - name: Upload candidate corpus and provenance manifest
+      - name: Upload candidate tranche and last complete manifest
         id: upload-candidates
+        if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: heretic-open-source-candidates-${{ github.run_id }}
+          name: heretic-open-source-candidates-${{ github.run_id }}-group-${{ steps.source-group.outputs.group }}
           path: |
             staging/open-source-candidates/
+            !staging/open-source-candidates/*.partial
             !staging/open-source-candidates/**/*.partial
-          if-no-files-found: error
+          if-no-files-found: ignore
           compression-level: 1
           retention-days: 90
 

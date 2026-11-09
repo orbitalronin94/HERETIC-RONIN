@@ -7,7 +7,7 @@ from pathlib import Path
 from datasets import load_dataset
 from huggingface_hub import HfApi
 from license_gates import license_values_allowed
-from acquisition_safety import AtomicCandidateWriter, finalize_candidate_file, json_default
+from acquisition_safety import AtomicCandidateWriter, finalize_candidate_file, json_default, select_source_group
 
 OUT=Path("staging/open-source-candidates")
 TARGET_BYTES=6_800_000_000  # Advisory candidate-scale target; never an admission gate
@@ -59,9 +59,41 @@ def digest(p):
  with p.open("rb") as f:
   for b in iter(lambda:f.read(1024*1024),b""): h.update(b)
  return h.hexdigest()
+def build_manifest(manifest, group_index, group_count, status):
+ return {
+  "schema":"heretic-open-source-candidate-bundle-v1",
+  "status":status,
+  "training_authorized":False,
+  "policy":"Candidate bytes do not become effective training bytes until source rights/provenance, quality, privacy, cross-source deduplication and global holdout contamination gates pass.",
+  "source_group":{"index":group_index,"count":group_count,"selection":"zero-based source-list index modulo group_count"},
+  "sources":manifest,
+  "total_rows":sum(x["rows_written"] for x in manifest),
+  "total_bytes":sum(x["bytes"] for x in manifest),
+  "target_bytes":TARGET_BYTES,
+  "target_met":sum(x["bytes"] for x in manifest)>=TARGET_BYTES,
+  "scale_factor_vs_current_effective_corpus":sum(x["bytes"] for x in manifest)/680665972,
+  "source_failures":[x["source"] for x in manifest if x["status"]=="source_failed_nonfatal"]
+ }
+
+
 def main():
  OUT.mkdir(parents=True,exist_ok=True); api=HfApi(); manifest=[]
- for source in SOURCES:
+ try:
+  group_count=int(os.environ.get("HERETIC_SOURCE_GROUP_COUNT","1"))
+  group_index=int(os.environ.get("HERETIC_SOURCE_GROUP","0"))
+ except ValueError as exc:
+  raise SystemExit(f"Invalid acquisition source group: {exc}") from exc
+ selected_sources=select_source_group(SOURCES,group_index,group_count)
+ if not selected_sources:
+  raise SystemExit(f"Source group {group_index}/{group_count} contains no sources")
+ def persist_manifest(status):
+  result=build_manifest(manifest,group_index,group_count,status)
+  temporary=OUT/"OPEN-SOURCE-MANIFEST.json.partial"
+  temporary.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+  temporary.replace(OUT/"OPEN-SOURCE-MANIFEST.json")
+  return result
+ persist_manifest("candidate_partial_not_admitted")
+ for source_index, source in selected_sources:
   target=None
   temporary_target=None
   revision=None
@@ -101,6 +133,8 @@ def main():
     message=f"{repo}/{cfg or 'default'}: missing required columns {missing_columns}; available={sorted(available_columns)}"
     if source.get("optional"):
      manifest.append({"source":repo,"revision":revision,"config":cfg or "default","selected_files":source.get("data_files",[]),"split":split,"declared_license":source["license"],"rows_written":0,"rows_rejected":0,"bytes":0,"sha256":None,"status":"skipped_schema_mismatch","caveat":message,"checks":{"streamed_train_only":True,"cross_source_near_duplicate":"NOT_RUN","global_holdout_contamination":"NOT_RUN","human_sample_review":"NOT_RUN"}})
+     manifest[-1]["source_index"]=source_index
+     persist_manifest("candidate_partial_not_admitted")
      print(json.dumps(manifest[-1],ensure_ascii=False),flush=True)
      continue
     raise RuntimeError(message)
@@ -165,6 +199,8 @@ def main():
      "checks":{"streamed_train_only":True,"exact_dedup_within_source":True,"basic_length_filter":True,
        "email_phone_pattern_filter":True,"required_true_fields":source.get("required_true_fields",[]),"selected_columns":selected_columns,"cross_source_near_duplicate":"PENDING","global_holdout_contamination":"PENDING",
        "human_sample_review":"PENDING","license_review":"per-record allowlist applied; external legal/provenance review pending" if any(source.get(key) for key in ("license_filter","license_name_filter","license_exact_allowlist","license_all_exact_allowlist")) else "source-card-declared; final legal/provenance audit pending","per_record_license_filter":source.get("license_filter",[]),"per_record_license_name_filter":source.get("license_name_filter",[]),"per_record_license_exact_allowlist":source.get("license_exact_allowlist",[]),"per_record_license_all_exact_allowlist":source.get("license_all_exact_allowlist",[]),"per_record_license_filter_applied":bool(any(source.get(key) for key in ("license_filter","license_name_filter","license_exact_allowlist","license_all_exact_allowlist")))}})
+   manifest[-1]["source_index"]=source_index
+   persist_manifest("candidate_partial_not_admitted")
    print(json.dumps(manifest[-1],ensure_ascii=False),flush=True)
 
   except Exception as exc:
@@ -174,16 +210,10 @@ def main():
     target.unlink(missing_ok=True)
    failure={"source":source.get("id","unknown"),"revision":revision,"config":source.get("config") or "default","split":source.get("split","train"),"declared_license":source.get("license"),"rows_written":0,"rows_rejected":0,"bytes":0,"sha256":None,"status":"source_failed_nonfatal","caveat":f"{type(exc).__name__}: {exc}","checks":{"cross_source_near_duplicate":"NOT_RUN","global_holdout_contamination":"NOT_RUN","human_sample_review":"NOT_RUN"}}
    manifest.append(failure)
+   manifest[-1]["source_index"]=source_index
+   persist_manifest("candidate_partial_not_admitted")
    print(json.dumps(failure,ensure_ascii=False),flush=True)
- result={"schema":"heretic-open-source-candidate-bundle-v1","status":"candidate_not_admitted","training_authorized":False,
-  "policy":"No candidate may train until cross-source deduplication, holdout contamination, human sample review and per-source license/provenance gates pass.",
-  "sources":manifest,"total_rows":sum(x["rows_written"] for x in manifest),
-  "total_bytes":sum(x["bytes"] for x in manifest),
-  "target_bytes":TARGET_BYTES,"target_met":sum(x["bytes"] for x in manifest)>=TARGET_BYTES,
-  "scale_factor_vs_current_effective_corpus":sum(x["bytes"] for x in manifest)/680665972,
-  "source_failures":[x["source"] for x in manifest if x["status"]=="source_failed_nonfatal"],
-  "policy":"Candidate bytes do not become effective training bytes until global deduplication, holdout contamination, source rights and quality gates pass."}
- (OUT/"OPEN-SOURCE-MANIFEST.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n")
+ result=persist_manifest("candidate_not_admitted")
  print(json.dumps(result,ensure_ascii=False,indent=2),flush=True)
  # PyArrow may abort during interpreter teardown on hosted runners; all outputs are closed and flushed.
  sys.stdout.flush(); sys.stderr.flush(); os._exit(0)

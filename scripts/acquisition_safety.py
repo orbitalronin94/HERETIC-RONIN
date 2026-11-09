@@ -54,3 +54,16 @@ def json_default(value: object) -> str:
     if callable(isoformat):
         return str(isoformat())
     raise TypeError(f"Object of type {type(value).__name__} is not JSON serializable")
+
+
+def select_source_group(sources, group_index: int, group_count: int):
+    """Partition a fixed source list into deterministic, disjoint acquisition groups."""
+    if group_count < 1:
+        raise ValueError("group_count must be at least 1")
+    if group_index < 0 or group_index >= group_count:
+        raise ValueError("group_index must be within [0, group_count)")
+    return [
+        (index, source)
+        for index, source in enumerate(sources)
+        if index % group_count == group_index
+    ]
