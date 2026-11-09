@@ -2,7 +2,7 @@ name: HERETIC — acquire pinned open-source corpus candidates
 
 on:
   schedule:
-    - cron: "30 12 * * *"
+    - cron: "30 0,6,12,18 * * *"
   push:
     paths:
       - ".github/workflows/acquire-open-source-candidates.yml"
@@ -63,9 +63,11 @@ jobs:
         id: source-group
         shell: bash
         run: |
-          if [[ "${GITHUB_EVENT_NAME}" == "schedule" ]]; then
+          if [[ "${GITHUB_EVENT_NAME}" == "schedule" || "${GITHUB_EVENT_NAME}" == "push" ]]; then
             day_of_year="$(date -u +%j)"
-            group="$((10#$day_of_year % 4))"
+            hour_utc="$(date -u +%H)"
+            tranche_slot="$((10#$hour_utc / 6))"
+            group="$(((10#$day_of_year + tranche_slot) % 4))"
           else
             group="${HERETIC_SOURCE_GROUP_INPUT:-0}"
           fi
