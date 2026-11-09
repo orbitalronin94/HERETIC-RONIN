@@ -249,3 +249,7 @@ La [run 42488804804](https://github.com/orbitalronin94/HERETIC-RONIN/actions/run
 La versión actual del workflow divide la lista fija de fuentes en **cuatro tranches deterministas** por índice módulo 4. La ejecución diaria selecciona una tranche y `workflow_dispatch` permite seleccionar explícitamente los grupos 0–3. Cada fuente completa persiste el manifiesto candidato de forma incremental y el workflow intenta publicar el último estado aun si una fuente posterior falla. Todo sigue en `candidate_not_admitted`: la partición por tranches mejora recuperación y duración, pero no sustituye auditoría de derechos, deduplicación global, revisión humana ni G-0/holdout.
 
 El inventario admitido no cambia: **260.971 documentos / 703.593.871 bytes**, equivalente al **0,1407 %** del objetivo de 500 GB. No se suman filas candidatas ni bytes efímeros.
+
+### Nuevo candidato de biblioteca: EUR-Lex / CELLAR
+
+Se ha registrado EUR-Lex/CELLAR como candidato multilingüe de legislación de la UE. No hay descarga ni admisión: los documentos jurídicos son reutilizables salvo condiciones especiales, el contenido editorial/resúmenes/textos consolidados propiedad de la UE se identifica como CC-BY-4.0 y los metadatos como CC0-1.0. Terceros y documentos con condiciones particulares quedan excluidos hasta revisión. [Aviso legal](https://eur-lex.europa.eu/content/legal-notice/legal-notice.html?locale=en) · [CELLAR/SPARQL](https://op.europa.eu/en/web/cellar/cellar-data/metadata/knowledge-graph). El estado y los gates están en `data/sources/registry.json`.
