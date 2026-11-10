@@ -3070,6 +3070,6 @@
     "private_repository_policy": "Full staging and sample-review artifact may be uploaded only when github.event.repository.private == true.",
     "sample_log_policy": "review_candidate_samples.py writes its sample file locally but prints summary counts only; no raw text to Actions logs.",
     "push_trigger_policy": "Acquisition push trigger restricted to main; pull_request runs validation only.",
-    "historical_exposure": "The already-published artifact 13737479716 and sample excerpts in run 42737780473 job logs remain accessible until their retention expiry 2027-02-08. They were not deleted in this run."
+    "historical_exposure": "The artifact 13737479716 has GitHub metadata expiry 2027-02-08. Raw excerpts also appear in the job log; the exact log-retention expiry was not checked. Neither artifact nor log was deleted."
   }
 }
