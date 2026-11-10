@@ -31,8 +31,9 @@ def main():
             reports.append({"file":path.name,"rows":seen,"samples":reservoir})
     OUT.write_text(json.dumps({"schema":"heretic-manual-sample-review-v1","seed":SEED,
        "samples_per_source":PER_SOURCE,"sources":reports},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print(json.dumps({"schema":"heretic-manual-sample-review-v1","seed":SEED,
-       "sources":[{"file":x["file"],"rows":x["rows"],"samples":x["samples"]} for x in reports]},
-       ensure_ascii=False,indent=2),flush=True)
+    summary={"schema":"heretic-manual-sample-review-v1","seed":SEED,
+       "samples_per_source":PER_SOURCE,
+       "sources":[{"file":x["file"],"rows":x["rows"],"sample_count":len(x["samples"])} for x in reports]}
+    print(json.dumps(summary,ensure_ascii=False,indent=2),flush=True)
 
 if __name__=="__main__": main()

@@ -3,7 +3,9 @@ name: HERETIC — acquire pinned open-source corpus candidates
 on:
   schedule:
     - cron: "30 0,6,12,18 * * *"
+  # Avoid full acquisition runs from review branches; PRs run validation only.
   push:
+    branches: [main]
     paths:
       - ".github/workflows/acquire-open-source-candidates.yml"
   workflow_dispatch:
@@ -24,6 +26,8 @@ on:
       - "scripts/acquire_open_source_candidates.py"
       - "scripts/license_gates.py"
       - "scripts/acquisition_safety.py"
+      - "scripts/review_candidate_samples.py"
+      - "tests/test_review_candidate_samples.py"
       - "tests/test_license_gates.py"
       - "tests/test_acquisition_safety.py"
 
@@ -92,14 +96,14 @@ jobs:
       - name: Stream bounded train-only slices and pin source revisions
         run: python scripts/acquire_open_source_candidates.py
 
-      - name: Compile and manually sample candidate rows for human review
+      - name: Compile and prepare local candidate samples without logging excerpts
         run: |
           python -m py_compile scripts/acquire_open_source_candidates.py scripts/review_candidate_samples.py
           python scripts/review_candidate_samples.py
 
-      - name: Upload candidate tranche and last complete manifest
-        id: upload-candidates
-        if: always()
+      - name: Upload private candidate tranche and sample report
+        id: upload-private-candidates
+        if: always() && github.event.repository.private == true
         uses: actions/upload-artifact@v7
         with:
           name: heretic-open-source-candidates-${{ github.run_id }}-group-${{ steps.source-group.outputs.group }}
@@ -111,18 +115,33 @@ jobs:
           compression-level: 1
           retention-days: 90
 
+      - name: Upload public manifest only (no payloads or sample text)
+        id: upload-public-manifest
+        if: always() && github.event.repository.private != true
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-open-source-manifest-${{ github.run_id }}-group-${{ steps.source-group.outputs.group }}
+          path: staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90
+
       - name: Report candidate scale; shortfall is informational
-        if: always() && steps.upload-candidates.outcome == 'success'
+        if: always()
         shell: bash
         run: |
           set -euo pipefail
           python - <<'PY'
           import json
           from pathlib import Path
-          report=json.loads(Path("staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json").read_text())
+          manifest=Path("staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json")
+          if not manifest.is_file():
+              print("No complete candidate manifest was produced; no candidate bytes are counted.")
+              raise SystemExit(0)
+          report=json.loads(manifest.read_text())
           total=int(report.get("total_bytes",0))
           target=int(report.get("target_bytes",6800000000))
           print(json.dumps({"candidate_bytes":total,"target_bytes":target,"scale_factor":report.get("scale_factor_vs_current_effective_corpus"),"target_met":total>=target,"source_failures":report.get("source_failures",[])},indent=2))
           if total < target:
-              print("Candidate scale target not met; artifact is preserved for review. This is not an admission and does not fail the acquisition run.")
+              print("Candidate scale target not met; this is not an admission and does not fail the acquisition run.")
           PY
