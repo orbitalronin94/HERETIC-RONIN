@@ -2421,7 +2421,7 @@
       "privacy_secrets_malware": "NOT_COMPLETED; current acquisition filter only rejects email/phone patterns",
       "license_review": "per-record allowlists applied where configured; source lineage, upstream rights and third-party content review pending"
     },
-    "storage_risk": "The repository is public and the artifact contains the full staging directory, including raw candidate shards and sample material. GitHub documents that public artifacts can be accessed without authentication by anyone with repository read access. This artifact is therefore not a private quarantine.",
+    "storage_risk": "The repository is public. The artifact contains raw candidate shards and MANUAL-SAMPLE-REVIEW.json, and review_candidate_samples.py also prints raw sample excerpts to the public Actions job log. GitHub documents that public artifacts can be accessed without authentication by readers of public resources. Neither artifact nor logs are a private quarantine.",
     "note": "Candidate telemetry only. The workflow's success means the tranche and artifact were produced, not that any gate passed. Do not train from or promote any of these rows."
   },
   "previous_candidate_batch_details": {

@@ -294,7 +294,7 @@ El artefacto `heretic-open-source-candidates-42737780473-group-2` (ID `137374797
 
 ### Riesgo de almacenamiento del lote
 
-El workflow sube `staging/open-source-candidates/` completo al artefacto de Actions, incluidos los shards brutos y material de muestra. Como el repositorio es público, los artefactos públicos no constituyen una cuarentena privada: GitHub documenta que los endpoints de artefactos de recursos públicos pueden utilizarse sin autenticación. El artefacto actual no se ha borrado ni se ha cancelado ningún workflow; antes de seguir publicando payloads sin revisión hay que separar manifiestos públicos de datos en cuarentena privada o limitar el artefacto a fuentes cuyo derecho de redistribución esté ya acreditado.
+El workflow sube `staging/open-source-candidates/` completo al artefacto de Actions, incluidos los shards brutos y material de muestra. Como el repositorio es público, los artefactos públicos no constituyen una cuarentena privada: GitHub documenta que los endpoints de artefactos de recursos públicos pueden utilizarse sin autenticación. El paso `review_candidate_samples.py` también imprime extractos brutos en los logs públicos de Actions. El artefacto y esos logs no son una cuarentena privada. No se ha borrado el artefacto ni se ha cancelado ningún workflow; antes de publicar nuevos payloads hay que separar manifiestos públicos de datos en cuarentena privada o limitar la publicación a fuentes cuyo derecho de redistribución esté acreditado.
 
 ## Nuevas fuentes investigadas — 2026-11-10 (solo descubrimiento)
 
