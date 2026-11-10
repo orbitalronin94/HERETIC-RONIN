@@ -3,6 +3,7 @@ name: HERETIC — acquire pinned open-source corpus candidates
 on:
   schedule:
     - cron: "30 0,6,12,18 * * *"
+  # Avoid full acquisition runs from review branches; PRs run validation only.
   push:
     branches: [main]
     paths:
