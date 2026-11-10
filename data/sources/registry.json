@@ -2197,6 +2197,45 @@
       ],
       "count_toward_admitted_bytes": false,
       "training_authorized": false
+    },
+    {
+      "id": "Austrian Parliament:stenographic-protocols-nationalrat-bundesrat",
+      "url": "https://www.parlament.gv.at/recherchieren/open-data/daten-und-lizenz/stenographische-protkolle/index.html",
+      "retrieval_url": "https://www.parlament.gv.at/Filter/api/filter/data/211?js=eval&showAll=true",
+      "revision": "Mutable official API; no immutable commit. Before staging, freeze the exact POST body and response, retrieval timestamp, protocol/session identifiers, HTML payload URLs and SHA-256 per document.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired.",
+      "reported_license": "Transcript payload: the Austrian Parliament dataset page explicitly classifies only Nationalrat and Bundesrat stenographic protocols as freie Werke, freely usable without a separate licence. Filter/API result-list metadata: CC-BY-4.0. No SPDX identifier is asserted for the transcript payload; CC-BY-4.0 applies to the open-data result lists/metadata, not automatically to unrelated site content.",
+      "status": "candidate_discovery_only_pending_snapshot_privacy_and_global_g0",
+      "domains": [
+        "Parliamentary debates",
+        "public policy",
+        "law",
+        "economics",
+        "science and technology"
+      ],
+      "language": [
+        "de"
+      ],
+      "rights_caveat": "The rights statement is narrowly scoped to stenographic protocols of the Nationalrat and Bundesrat. It does not cover every parliamentary dataset or all website content. Public proceedings may contain personal data, third-party quotations or attached material; those require separate review and must not be assumed cleared by the free-work statement.",
+      "required_checks": [
+        "Use only the official Austrian Parliament Open Data filter/API and record the exact POST body, retrieval timestamp and API response hash.",
+        "Restrict payload acquisition to stenographic protocols of Nationalrat (NRSITZ) and Bundesrat (BRSITZ); do not generalise the rights statement to other datasets.",
+        "Preserve sitting date, legislative period, chamber, session number, citation, official source URL and document identifiers.",
+        "Freeze each HTML transcript separately and record exact byte length and SHA-256; pin a dated snapshot manifest because the API is mutable.",
+        "Keep CC-BY-4.0 API/filter metadata distinct from the transcript payload, which the source describes as freie Werke; do not assign a blanket SPDX licence to the full website.",
+        "Exclude non-transcript attachments, images, biographies, contact details and unrelated site material; inspect quotations and embedded third-party content.",
+        "Run privacy/PII review, language/encoding/schema checks, content-quality and completeness checks, plus stratified human review by chamber, period and subject.",
+        "Deduplicate exact and approximate matches against all corpus splits and every validation/test/benchmark/holdout set; require global G-0 clearance.",
+        "Keep candidate-only and training_authorized=false until every source-level and global gate passes."
+      ],
+      "evidence_urls": [
+        "https://www.parlament.gv.at/recherchieren/open-data/daten-und-lizenz/",
+        "https://www.parlament.gv.at/recherchieren/open-data/daten-und-lizenz/stenographische-protkolle/index.html",
+        "https://www.parlament.gv.at/Filter/api/filter/data/211?js=eval&showAll=true"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false
     }
   ],
   "target_library_bytes": 500000000000,
