@@ -5,6 +5,8 @@ on:
     paths:
       - "src/heretic_ronin/**"
       - "scripts/build_heretic_tokenizer.py"
+      - "scripts/encode_heretic_corpus.py"
+      - "scripts/train_heretic_from_scratch.py"
       - "tests/test_heretic_from_scratch.py"
       - "requirements-heretic.txt"
       - ".github/workflows/heretic-from-scratch-ci.yml"
@@ -32,5 +34,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.2"
           python -m pip install "numpy>=1.26" "tokenizers>=0.20"
+      - name: Compile all new Python modules
+        run: python -m compileall -q src/heretic_ronin scripts/build_heretic_tokenizer.py scripts/encode_heretic_corpus.py scripts/train_heretic_from_scratch.py
       - name: Run model and tokenizer tests
         run: python -m unittest discover -s tests -p 'test_heretic_from_scratch.py' -v
