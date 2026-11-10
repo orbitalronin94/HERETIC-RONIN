@@ -28,7 +28,7 @@ El tamaño inicial se mantiene en 32.768 para preservar la escala de parámetros
 ## Fases de refactor
 
 - [x] Añadir paquete de arquitectura independiente con todas las filas entrenables.
-- [ ] Añadir tokenizador BPE byte-level nuevo y pruebas de round-trip multilingüe.
+- [x] Añadir tokenizador BPE byte-level nuevo y pruebas de round-trip multilingüe.
 - [ ] Sustituir los trainers heredados por un trainer único de inicialización aleatoria.
 - [ ] Rehacer workflows de corpus, entrenamiento segmentado, holdout y artefactos.
 - [ ] Retirar workflows de continuación heredada una vez que los reemplazos estén validados.
