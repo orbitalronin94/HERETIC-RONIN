@@ -281,3 +281,25 @@ La run [42737780473](https://github.com/orbitalronin94/HERETIC-RONIN/actions/run
 La [PR #30](https://github.com/orbitalronin94/HERETIC-RONIN/pull/30) se integró en el commit [ca3fb47](https://github.com/orbitalronin94/HERETIC-RONIN/commit/ca3fb4714bbf94eb0cfe16b384ac04ef05cae3d6), validado por la [run 42830396419](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42830396419): compilación y suite de seguridad correctas, sin descargar datasets. En repositorios públicos, las futuras ejecuciones suben solo `OPEN-SOURCE-MANIFEST.json`; shards y muestras completos solo se publican si el repositorio es privado. El script de muestras deja de imprimir extractos en los logs y muestra únicamente recuentos. El trigger de push de adquisición queda limitado a `main`; los PR ejecutan solo validación.
 
 La exposición histórica no desaparece: el artefacto [13737479716](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42737780473/artifacts/13737479716) figura con expiración **2027-02-08** en los metadatos de GitHub; los extractos también están en el log del job, pero su fecha exacta de retención no se ha verificado. No se han borrado artefactos ni cancelado workflows. La adquisición que ya se había disparado desde la rama antes de restringir el trigger ([run 42830186561](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42830186561)) continúa bajo la política de manifiesto público solamente; el push de `main` ([run 42830458157](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42830458157)) espera la exclusión mutua.
+
+
+## Descubrimiento adicional — Parlamento de Austria (2026-11-10)
+
+**Estado: discovery only; no descargar ni contar bytes todavía.**
+
+La ficha oficial del dataset de protocolos estenográficos confirma:
+- Protocolos completos del Nationalrat y Bundesrat en HTML desde la XX legislatura.
+- Discursos individuales estructurados desde la XXVI legislatura.
+- Los protocolos de ambos órganos son descritos como *freie Werke* y libremente utilizables sin licencia adicional. La ficha limita esta afirmación exclusivamente a esos protocolos.
+- Las listas de resultados y metadatos de la API se publican bajo CC BY 4.0; separar esa licencia del texto de los protocolos.
+
+API oficial: `POST https://www.parlament.gv.at/Filter/api/filter/data/211?js=eval&showAll=true`. Filtrar exclusivamente `NRSITZ` y `BRSITZ`. El endpoint es mutable, no una revisión inmutable.
+
+Antes de adquirir:
+1. Congelar el cuerpo POST, respuesta, timestamp, IDs de protocolo/sesión, URL HTML, tamaño y SHA-256 por documento.
+2. Preservar cámara, legislatura, fecha, número de sesión, cita y procedencia.
+3. Excluir adjuntos, imágenes, biografías y material no incluido en la ficha; revisar citas de terceros.
+4. Auditar privacidad/PII, calidad, idioma, estructura y una muestra estratificada por cámara, legislatura y materia.
+5. Ejecutar deduplicación exacta/aproximada global y contaminación de validation/test/benchmark/holdout; exigir G-0.
+
+La fuente se añade como candidata de descubrimiento con `training_authorized=false`, `count_toward_admitted_bytes=false`, filas desconocidas y tamaño no medido. **0 bytes admitidos.**
