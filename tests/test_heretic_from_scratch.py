@@ -52,7 +52,7 @@ class HereticTokenizerTests(unittest.TestCase):
                         for value in samples),
                 encoding="utf-8",
             )
-            tokenizer = build_tokenizer([corpus], vocab_size=512)
+            tokenizer = build_tokenizer([corpus], vocab_size=350)
             for sample in samples:
                 encoded = tokenizer.encode(sample)
                 decoded = tokenizer.decode(encoded.ids, skip_special_tokens=True)
