@@ -2236,6 +2236,54 @@
       ],
       "count_toward_admitted_bytes": false,
       "training_authorized": false
+    },
+    {
+      "id": "Assemblée nationale:an-comptes-rendus-17e",
+      "url": "https://data.assemblee-nationale.fr/travaux-parlementaires/debats",
+      "retrieval_url": "http://data.assemblee-nationale.fr/static/openData/repository/17/VP/syceronbrut/syseron.xml.zip",
+      "upstream_dataset_id": "an-comptes-rendus",
+      "revision": "Mutable official export for the 17th legislature; dataset page lists export date 2026-11-06 and publisher MD5 a91c9d51574a8e89eb183a7bef74bf57. No immutable commit. Before staging, freeze exact ZIP bytes, retrieval timestamp, SHA-256, archive file manifest and per-record identifiers.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired.",
+      "reported_license": "Etalab Licence Ouverte v1.0 (custom; SPDX expression label LicenseRef-Etalab-Open-License-v1.0, not an SPDX-listed licence). The official resource an-comptes-rendus is explicitly labelled Licence Ouverte. The licence permits reproduction, redistribution, adaptation and commercial reuse with attribution, but excludes personal data unless consent, anonymisation or a legal provision permits reuse, and excludes third-party IP rights.",
+      "spdx_license_identifier": "LicenseRef-Etalab-Open-License-v1.0",
+      "status": "candidate_discovery_only_pending_snapshot_personal_data_and_global_g0",
+      "domains": [
+        "French parliamentary debates",
+        "public policy",
+        "law",
+        "economics",
+        "education",
+        "science and technology"
+      ],
+      "language": [
+        "fr"
+      ],
+      "rights_caveat": "The licence applies to the official an-comptes-rendus dataset for the 17th legislature, not every file on the Assemblée nationale website. Licence Ouverte v1.0 explicitly excludes personal data unless one of its stated legal bases applies, and excludes third-party IP. Speaker names and references to private persons require a documented privacy decision; do not assume that public availability clears them.",
+      "publisher_checksums": {
+        "md5": "a91c9d51574a8e89eb183a7bef74bf57",
+        "dataset_page_date": "2026-11-06"
+      },
+      "required_checks": [
+        "Acquire only the official an-comptes-rendus resource for the 17th legislature; do not mix older archive legislatures or other datasets without separate rights review.",
+        "Freeze the exact ZIP response, retrieval timestamp, publisher MD5 verification, calculated SHA-256, archive member list and per-record identifiers.",
+        "Preserve producer attribution (Assemblée nationale), source URL, export/update date, sitting date, session number, topic and speaker metadata where lawful.",
+        "Use only the transcript text and metadata in the an-comptes-rendus resource; exclude unrelated biographies, votes, images, attachments and website material.",
+        "Apply the exact Etalab Licence Ouverte v1.0 terms; record it as LicenseRef-Etalab-Open-License-v1.0 rather than inventing a standard SPDX identifier.",
+        "Review personal data under the licence and applicable law; retain or process identifiable information only where consent, anonymisation or a documented legal provision permits it.",
+        "Exclude third-party protected quotations, attachments and embedded works unless their rights are independently cleared.",
+        "Run schema, XML integrity, encoding, language, quality, privacy/PII, secret and malware checks; audit stratified samples by sitting, topic and format.",
+        "Deduplicate exact and approximate matches against the entire corpus and all validation/test/benchmark/holdout material; require global G-0 clearance.",
+        "Keep candidate-only, training_authorized=false and admitted bytes at zero until every gate passes."
+      ],
+      "evidence_urls": [
+        "https://data.assemblee-nationale.fr/travaux-parlementaires/debats",
+        "https://hackathon2026.assemblee-nationale.fr/",
+        "https://data.assemblee-nationale.fr/licence-ouverte-open-licence",
+        "https://data.assemblee-nationale.fr/content/download/28755/file/Licence_Ouverte.pdf"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false
     }
   ],
   "target_library_bytes": 500000000000,
