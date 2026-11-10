@@ -33,4 +33,4 @@ jobs:
           python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.2"
           python -m pip install "numpy>=1.26" "tokenizers>=0.20"
       - name: Run model and tokenizer tests
-        run: python -m unittest tests.test_heretic_from_scratch -v
+        run: python -m unittest discover -s tests -p 'test_heretic_from_scratch.py' -v
