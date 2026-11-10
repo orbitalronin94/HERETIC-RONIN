@@ -253,3 +253,10 @@ El inventario admitido no cambia: **260.971 documentos / 703.593.871 bytes**, eq
 ### Nuevo candidato de biblioteca: EUR-Lex / CELLAR
 
 Se ha registrado EUR-Lex/CELLAR como candidato multilingüe de legislación de la UE. No hay descarga ni admisión: los documentos jurídicos son reutilizables salvo condiciones especiales, el contenido editorial/resúmenes/textos consolidados propiedad de la UE se identifica como CC-BY-4.0 y los metadatos como CC0-1.0. Terceros y documentos con condiciones particulares quedan excluidos hasta revisión. [Aviso legal](https://eur-lex.europa.eu/content/legal-notice/legal-notice.html?locale=en) · [CELLAR/SPARQL](https://op.europa.eu/en/web/cellar/cellar-data/metadata/knowledge-graph). El estado y los gates están en `data/sources/registry.json`.
+
+
+## Adquisición candidate-only — 2026-11-10
+
+La [run 42737780473](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42737780473) completó la tranche 2/4: **152.449 filas candidatas en 7 slices y 1.144.332.790 bytes JSONL**. El artefacto ZIP tiene 397.069.719 bytes y digest SHA-256 de GitHub Actions `22428d0ae88ac63b8fc0a6887126390f3372d485beea795f0afeb11a3b38f2c9`. Fallaron tres slices: Spanish-PD-Books (954/1.000 filas mínimas), Spanish-PD-Newspapers (shard `0041.parquet` ausente) y German Commons political (0/500 filas). **Admisiones nuevas: 0 documentos / 0 bytes**; no se ejecutaron deduplicación cruzada, G-0/holdout ni aprobación humana. El inventario admitido permanece en **260.971 documentos / 703.593.871 bytes (0,1407 % de 500 GB)**. El detalle por fuente y los hashes están en [data/datasets/README.md](data/datasets/README.md) y [data/sources/registry.json](data/sources/registry.json).
+
+La revisión también detectó que el artefacto contiene el directorio completo de staging y que el repositorio es público: los artefactos públicos de Actions son accesibles a lectores del repositorio. Por tanto, ese ZIP no equivale a una cuarentena privada. No se ha borrado ni cancelado nada; el riesgo queda registrado para corregir el almacenamiento antes de publicar nuevos payloads no revisados.

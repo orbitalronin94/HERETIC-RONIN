@@ -260,3 +260,17 @@ Se registra **EUR-Lex / CELLAR** como candidato de alto valor para legislación 
 - **Alcance inicial propuesto:** actos jurídicos del Diario Oficial de la UE producidos por instituciones de la UE. Separar metadatos, actos, resúmenes y textos consolidados. Excluir documentos con condiciones especiales, material de terceros y recursos con derechos o privacidad no resueltos.
 - **Reproducibilidad:** fijar consulta SPARQL, timestamp, IDs CELEX/ELI/CELLAR de work/expression/manifestation/item, idioma y formato; guardar SHA-256 por expresión y payload. No tratar un endpoint mutable como revisión inmutable.
 - **Estado:** `candidate_discovery_only_pending_document_level_terms`; 0 descargas, 0 documentos admitidos, 0 bytes admitidos. G-0, deduplicación global, privacidad y revisión estratificada siguen siendo obligatorios.
+
+
+## Descubrimiento y seguridad de staging — 2026-11-10
+
+### Nuevas fuentes candidatas (sin descarga ni admisión)
+
+1. **Common Voice Scripted Speech v27.0 (texto únicamente).** Release con corte 2026-09-11 y 295 locales. Fijar metadata en `common-voice/cv-dataset@65ca2460d5e686ea03902a932bbca09b322dc4b0` (release JSON blob Git SHA `e401c4a8e923cad5c8baacb6120c095b1e1bd561`). MDC lista CC0-1.0, pero no basta el license badge: unir `train.tsv` con `validated_sentences.tsv`, preservar `source`/dominio/ID y excluir prompts Wikipedia, terceros o procedencia desconocida. Nada de audio, `client_id`, edad, género ni acentos. Acceso MDC pendiente; 0 bytes.
+2. **Tatoeba text corpus.** CC-BY-2.0-FR por defecto, CC0 para un subconjunto; el autor debe citarse por frase. Congelar export semanal, joins de licencias y enlaces de traducción con SHA-256; excluir audio, autor ausente, licencias ambiguas, material copiado/retirado y PII. Mantener cada componente de traducción en un único split. Calidad y veracidad no están garantizadas por Tatoeba. 0 bytes.
+3. **World Bank Open Knowledge Repository.** Catálogo con licencias mixtas por obra: aceptar como candidatos solo CC-BY-4.0 o CC-BY-3.0-IGO exactas. Excluir NC, ND, SA, términos desconocidos y componentes de terceros; conservar atribución, handle/DOI, autor, año, publisher y avisos de traducción/adaptación. 0 bytes.
+4. **Parlamento Europeo Open Data.** La regla institucional de diciembre de 2024 adopta CC-BY-4.0 para open data, pero no sustituye el chequeo por recurso, exclusión de terceros y revisión de datos personales de ponentes. El registro ya existente se mantiene en descubrimiento; no se descarga aún.
+
+### Alerta de cuarentena pública
+
+La run [42737780473](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42737780473) subió el directorio completo `staging/open-source-candidates/` a un artefacto de un repositorio público. El artefacto incluye payloads brutos de fuentes cuyo linaje/derechos todavía no han pasado todos los gates. Los artefactos públicos de GitHub Actions pueden descargarse sin autenticación por lectores de recursos públicos. Esto **no es una cuarentena privada**. No se borró el artefacto ni se canceló ningún workflow; registrar como bloqueo de seguridad antes de nuevas publicaciones de payloads no revisados. Prioridad: conservar artefactos públicos solo con manifiestos/hashes y mover payloads pendientes a almacenamiento privado o no publicarlos hasta que sus derechos estén acreditados.

@@ -2072,6 +2072,131 @@
         "https://eur-lex.europa.eu/content/tools/webservices/DataExtractionUsingWebServices.pdf"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "Mozilla Data Collective:Common Voice Scripted Speech v27.0 (text-only)",
+      "url": "https://commonvoice.mozilla.org/datasets",
+      "revision": "Scripted Speech v27.0, data cut-off 2026-09-11; metadata repository common-voice/cv-dataset@65ca2460d5e686ea03902a932bbca09b322dc4b0; release metadata datasets/scripted-speech/cv-corpus-27.0-2026-09-11.json (Git blob e401c4a8e923cad5c8baacb6120c095b1e1bd561). No payload acquired.",
+      "reported_languages": 295,
+      "reported_size": "Text-only size not measured. Published locale archive sizes include audio and must not be counted as text bytes.",
+      "reported_license": "Mozilla Data Collective dataset listing: CC0-1.0. The cv-dataset metadata repository code is MPL-2.0; that code license is not the payload license.",
+      "status": "candidate_discovery_only_pending_mdc_access_and_sentence_source_lineage",
+      "domains": [
+        "multilingual speech transcripts",
+        "language",
+        "sentence-domain-labelled text"
+      ],
+      "language": [
+        "295 locales in SCS v27.0; per-locale volume is highly uneven; prioritise es, ca, gl, pt, en, fr, de and it only after source review"
+      ],
+      "publisher_checksums": {
+        "es": "b7c1f303ebe3c4a637afdd3d31c5aaa3da131a893ce77169db182068f342e4c1",
+        "ca": "84ec56b9db9d2fffe32501deb458b7da5169302022c3caf05518747663055b87",
+        "en": "2fbc16e9811e0a727c7fde5c71158a9295a2aa5e26f9ec21b305f0a8368a10c7"
+      },
+      "metadata_blob_sha": "e401c4a8e923cad5c8baacb6120c095b1e1bd561",
+      "rights_caveat": "MDC labels the dataset CC0-1.0, but Common Voice prompt lineage includes user submissions and text imported from other sources, including Wikipedia. Do not infer that a database-level CC0 label clears every underlying prompt. Require the release's validated_sentences source field and independently compatible upstream rights; exclude Wikipedia-derived and unknown-lineage rows. Never ingest audio, client_id, age, gender, accents or speaker-level metadata.",
+      "required_checks": [
+        "Use only official Mozilla Data Collective downloads/API/SDK; do not store account credentials in Git",
+        "Pin release v27.0, locale, exact archive publisher checksum and retrieval timestamp",
+        "Join train.tsv sentence IDs to validated_sentences.tsv and preserve source, sentence_domain, is_used and sentence_id",
+        "Keep text-only fields; exclude audio, client_id, age, gender, accents and other speaker metadata",
+        "Exclude Wikipedia-derived, externally sourced or unknown-lineage prompts unless their upstream rights are independently verified and compatible",
+        "Exclude retired prompts (is_used=false), malformed text, PII and low-quality language samples",
+        "Measure language and domain distribution; deduplicate sentence IDs and exact/near duplicates globally",
+        "Run G-0/validation/test/holdout contamination checks and human review stratified by locale, domain and prompt source"
+      ],
+      "evidence_urls": [
+        "https://commonvoice.mozilla.org/datasets",
+        "https://mozilladatacollective.com/api-reference",
+        "https://github.com/common-voice/cv-dataset/tree/65ca2460d5e686ea03902a932bbca09b322dc4b0",
+        "https://github.com/common-voice/common-voice"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false
+    },
+    {
+      "id": "Tatoeba:multilingual-sentence-text",
+      "url": "https://tatoeba.org/en/downloads",
+      "revision": "Weekly mutable exports; no immutable snapshot acquired. Freeze exact sentence/link/CC0 export files, retrieval timestamp and SHA-256 before staging.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no export downloaded.",
+      "reported_license": "Text sentences default to CC-BY-2.0-FR; a CC0-1.0 subset exists; licensing is sentence-specific. Audio has separate, mixed licenses and is excluded.",
+      "license_uri_allowlist": [
+        "https://creativecommons.org/licenses/by/2.0/fr/",
+        "https://creativecommons.org/publicdomain/zero/1.0/"
+      ],
+      "status": "candidate_discovery_only_pending_weekly_snapshot_author_attribution_and_quality_review",
+      "domains": [
+        "multilingual sentence pairs",
+        "translation",
+        "language learning",
+        "everyday language"
+      ],
+      "language": [
+        "Multilingual; exact per-language counts must be measured from a frozen export."
+      ],
+      "rights_caveat": "Tatoeba requires attribution to each sentence author under CC-BY 2.0 FR and warns that it cannot systematically verify all contributions or the accuracy/truth of translations. Some user submissions may be copied or legally problematic. Use text only; exclude audio, profiles, comments, licensing-issue rows, missing/ambiguous author or license, and any content whose upstream rights cannot be established. The corpus is linguistic material, not a factual knowledge source.",
+      "required_checks": [
+        "Download only official text and translation-link exports; do not acquire audio",
+        "Freeze every export file, retrieval timestamp, size and SHA-256",
+        "Join the CC0 subset to sentence IDs; accept only verified CC0-1.0 or default CC-BY-2.0-FR text where the current export semantics are confirmed",
+        "Preserve sentence ID, author username, language, text, license and translation-link provenance for attribution",
+        "Exclude missing authors, licensing-issue rows, ambiguous licenses, copied third-party material, personal data and unsafe content",
+        "Build connected components from translation links and keep each component in a single deterministic split to prevent translation leakage",
+        "Audit language balance, grammar, translation accuracy and offensive/low-quality material with stratified human review",
+        "Run exact/near deduplication and global validation/test/holdout contamination checks before any admission"
+      ],
+      "evidence_urls": [
+        "https://tatoeba.org/en/terms_of_use",
+        "https://tatoeba.org/en/downloads",
+        "https://en.www.en.wiki.tatoeba.org/articles/show/using-the-tatoeba-corpus"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false
+    },
+    {
+      "id": "World Bank Open Knowledge Repository:CC-BY-only",
+      "url": "https://openknowledge.worldbank.org/",
+      "revision": "Mutable per-work repository; no bulk snapshot acquired. Pin each work handle/DOI, metadata version, file/version and payload SHA-256.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired.",
+      "reported_license": "Mixed per work. Candidate allowlist only: CC-BY-4.0 or CC-BY-3.0-IGO. Reject CC-BY-NC-3.0-IGO, CC-BY-NC-ND-3.0-IGO, other, missing or ambiguous terms.",
+      "license_exact_allowlist": [
+        "CC-BY-4.0",
+        "CC-BY-3.0-IGO"
+      ],
+      "status": "candidate_discovery_only_pending_per_work_license_and_third_party_review",
+      "domains": [
+        "development economics",
+        "public policy",
+        "climate",
+        "agriculture",
+        "education",
+        "infrastructure",
+        "finance",
+        "public health"
+      ],
+      "language": [
+        "Per work; mostly English with some translations. Measure language from each item."
+      ],
+      "rights_caveat": "The World Bank Group explicitly lists several different licenses in the OKR and states that some works have other terms. It also disclaims ownership/clearance of third-party components. Only item-level CC-BY-4.0 or CC-BY-3.0-IGO works are candidates; NC/ND and unknown terms are excluded. Preserve the exact author/year/title/publisher/handle/license attribution. Translations and adaptations require additional notices.",
+      "required_checks": [
+        "Use official OKR item pages and APIs; pin work handle/DOI, metadata revision, exact file version and retrieval timestamp",
+        "Read the item-level rights statement; accept only exact CC-BY-4.0 or CC-BY-3.0-IGO",
+        "Reject NC, ND, share-alike, custom, absent or ambiguous licenses",
+        "Inspect each work for third-party figures, maps, photographs, appendices, datasets and quoted material; exclude uncleared components",
+        "Preserve authors, year, title, publisher, handle URI, license and complete attribution notice",
+        "Apply the required World Bank translation/adaptation notices when applicable",
+        "Scan PII, secrets, quality, language, encoding, malware and withdrawn/revised versions",
+        "Run global exact/near deduplication, holdout contamination and stratified human review by domain, language, publisher and year"
+      ],
+      "evidence_urls": [
+        "https://www.worldbank.org/ext/en/legal/terms-conditions/open-knowledge-repository",
+        "https://openknowledge.worldbank.org/entities/publication/a8961e4e-3ecf-553d-b784-0de1db5c1c63"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false
     }
   ],
   "target_library_bytes": 500000000000,
@@ -2109,7 +2234,7 @@
     "2026-11-08 source discovery: German Commons has separate named splits with different per-source licenses; only germanpd (CC0), btdrucksachen (CC0) and germanpoliticalspeeches (CC-BY-4.0) are queued, each with exact per-record license checks. BOE consolidated legislation API is a candidate under its 2024 reuse conditions, excluding special-term documents, third-party material and the CC BY-NC-ND Biblioteca Jurídica Digital.",
     "2026-11-08 sample audit: Aya candidate sample lacked language/language_code/annotation_type in the exported source_metadata and included a poem-like full text. Updated collector to preserve allowed metadata while excluding user_id; content rights remain unresolved, so Aya stays candidate-only."
   ],
-  "last_candidate_batch": "Run 42488804804: 17 complete candidate slices; 629,527 rows and 2,436,847,391 JSONL bytes reconstructed from job logs before the six-hour cancellation; 3 source failures; no artifact/final manifest; 0 admitted rows / 0 admitted bytes; ephemeral runner files not recoverable.",
+  "last_candidate_batch": "Run 42737780473 (tranche 2/4): 152.449 filas en 7 slices completos; 1.144.332.790 bytes JSONL candidatos; ZIP 397.069.719 bytes (SHA-256 GitHub Actions 22428d0ae88ac63b8fc0a6887126390f3372d485beea795f0afeb11a3b38f2c9); 3 fallos; 0 filas / 0 bytes admitidos; no autorizado para entrenamiento.",
   "next_candidate_batch": "Use the current four-tranche deterministic acquisition workflow on main (source-list index modulo 4; daily scheduled group, workflow_dispatch allows groups 0–3). Audit each tranche artifact and per-source manifest independently. German Commons splits remain candidates pending per-record license and upstream rights checks; BOE and European Parliament remain discovery-only until resource-level terms, third-party rights and privacy are established. Never promote candidate data without full deduplication, human review and G-0/holdout clearance. Also investigate EUR-Lex/CELLAR Official Journal legal acts as a multilingual discovery candidate; no acquisition until document-level reuse terms and third-party exclusions are verified.",
   "audit_summary": {
     "run_id": 42288107561,
@@ -2155,6 +2280,151 @@
     "note": "The 68 excluded global indices are all below the 256,305-record base-corpus boundary; all 4,734 curated Cosmopedia records remain in the authorized subset. Heuristic audit only; no semantic proof and no expanded redistribution rights."
   },
   "last_candidate_batch_details": {
+    "run_id": 42737780473,
+    "run_number": 68,
+    "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42737780473",
+    "head_sha": "479234ebab5a04a39dbab52bb5f971649a30b200",
+    "created_at": "2026-11-10T01:43:19Z",
+    "updated_at": "2026-11-10T05:33:39Z",
+    "conclusion": "success",
+    "workflow_mode": "four deterministic acquisition tranches; group 2 of 4",
+    "source_group": 2,
+    "candidate_rows": 152449,
+    "candidate_jsonl_bytes": 1144332790,
+    "candidate_target_bytes": 6800000000,
+    "candidate_target_met": false,
+    "completed_source_slices": 7,
+    "source_failures": 3,
+    "failed_sources": [
+      {
+        "source": "PleIAs/Spanish-PD-Books",
+        "revision": "001eaf13681f483069361dd82195ce279e12ed63",
+        "config": "default",
+        "split": "train",
+        "reason": "954 filas utilizables; mínimo 1.000. Shard parcial descartado."
+      },
+      {
+        "source": "PleIAs/Spanish-PD-Newspapers",
+        "revision": "17509f22d33a5f82def051e853899b8b65d7a9e2",
+        "config": "default",
+        "split": "train",
+        "reason": "FileNotFoundError: falta hf://datasets/PleIAs/Spanish-PD-Newspapers@17509f22d33a5f82def051e853899b8b65d7a9e2/default/train/0041.parquet."
+      },
+      {
+        "source": "coral-nlp/german-commons",
+        "revision": "d12379bba6ecdc525958ebe6e182f9cb905a06e2",
+        "config": "political",
+        "split": "germanpoliticalspeeches",
+        "reason": "0 filas utilizables; mínimo 500. Shard parcial descartado."
+      }
+    ],
+    "candidate_sources": [
+      {
+        "source": "HuggingFaceTB/cosmopedia",
+        "revision": "0ae6ec63f91742bd2d1eaef4f02232c55d719385",
+        "config": "auto_math_text",
+        "split": "train",
+        "rows": 50000,
+        "jsonl_bytes": 236364804,
+        "sha256": "665be7e612ba8b38f7d3b125a886284d008f44f555f0fef37c8d1592719d06cf",
+        "status": "candidate_not_admitted"
+      },
+      {
+        "source": "common-pile/pressbooks_filtered",
+        "revision": "1a1d3b50d77f834370f8eb4c0d174668dd1676bb",
+        "config": "default",
+        "split": "train",
+        "rows": 33736,
+        "jsonl_bytes": 302949633,
+        "sha256": "ffcd8219132f154b6405259639b94987eaa05bb54fb0aca7bc562c433d967d74",
+        "status": "candidate_not_admitted"
+      },
+      {
+        "source": "common-pile/oercommons_filtered",
+        "revision": "506b6159dadcbc0dc67611cea024eedb04232fb2",
+        "config": "default",
+        "split": "train",
+        "rows": 3828,
+        "jsonl_bytes": 28787310,
+        "sha256": "5a10422434eca490390762263f3fd9c066fa7a1d75de088d2caa2fa3d2b12396",
+        "status": "candidate_not_admitted"
+      },
+      {
+        "source": "facebook/voxpopuli",
+        "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+        "config": "es",
+        "split": "train",
+        "rows": 20000,
+        "jsonl_bytes": 10095818,
+        "sha256": "49e7df3161b06f307136d78502238c449dfb00015b0eccf78abd97392e589dc1",
+        "status": "candidate_not_admitted"
+      },
+      {
+        "source": "facebook/voxpopuli",
+        "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+        "config": "it",
+        "split": "train",
+        "rows": 12885,
+        "jsonl_bytes": 6667111,
+        "sha256": "2c959d383306ead1d6d94c572c4315be93802e5bb314a7294d77ff492190b217",
+        "status": "candidate_not_admitted"
+      },
+      {
+        "source": "common-pile/pubmed_filtered",
+        "revision": "c156f0569a92d8f2edc33cebe1f72f7d3e1cae84",
+        "config": "default",
+        "split": "train",
+        "rows": 20000,
+        "jsonl_bytes": 494416484,
+        "sha256": "da8c11cfac2c6326e41119d3bd34e2d905b5987ffe84a7065bb8d56839e27e40",
+        "status": "candidate_not_admitted"
+      },
+      {
+        "source": "IFM/Math-Reasoning",
+        "revision": "e249295774c3a66943e1483dbf53e0c811bc41dd",
+        "config": "math-dialogue",
+        "split": "train",
+        "rows": 12000,
+        "jsonl_bytes": 65051630,
+        "sha256": "a82a4b22791bf751fa59f87b71c8eeb0b87f0d1cbdf86c2c519eea842120e5bd",
+        "status": "candidate_not_admitted"
+      }
+    ],
+    "artifact_id": 13737479716,
+    "artifact_name": "heretic-open-source-candidates-42737780473-group-2",
+    "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42737780473/artifacts/13737479716",
+    "artifact_size_bytes": 397069719,
+    "artifact_sha256": "22428d0ae88ac63b8fc0a6887126390f3372d485beea795f0afeb11a3b38f2c9",
+    "artifact_digest_source": "GitHub Actions artifact digest",
+    "artifact_expires_at": "2027-02-08T01:43:19Z",
+    "manifest_available": true,
+    "manifest_sha256": null,
+    "manifest_note": "El manifiesto está incluido en el artefacto; su SHA-256 independiente no se ha recalculado en esta revisión.",
+    "source_shard_hashes_status": "SHA-256 reportados por el manifiesto/log; no se han recalculado individualmente desde los shards extraídos en esta revisión.",
+    "remote_bytes_downloaded": null,
+    "compressed_source_bytes": null,
+    "admitted_rows_added": 0,
+    "admitted_bytes_added": 0,
+    "training_authorized": false,
+    "human_sample_review": "PENDING",
+    "sample_report": "El workflow generó una muestra automática de 6 filas por fuente; no constituye aprobación humana y no cubre estratos independientes de dominio/idioma/formato.",
+    "checks": {
+      "streamed_train_only": true,
+      "exact_dedup_within_source": true,
+      "basic_length_filter": true,
+      "email_phone_pattern_filter": true,
+      "cross_source_near_duplicate": "PENDING",
+      "global_holdout_contamination": "PENDING",
+      "global_G0": "PENDING",
+      "human_sample_review": "PENDING",
+      "domain_language_format_stratification": "PENDING",
+      "privacy_secrets_malware": "NOT_COMPLETED; current acquisition filter only rejects email/phone patterns",
+      "license_review": "per-record allowlists applied where configured; source lineage, upstream rights and third-party content review pending"
+    },
+    "storage_risk": "The repository is public and the artifact contains the full staging directory, including raw candidate shards and sample material. GitHub documents that public artifacts can be accessed without authentication by anyone with repository read access. This artifact is therefore not a private quarantine.",
+    "note": "Candidate telemetry only. The workflow's success means the tranche and artifact were produced, not that any gate passed. Do not train from or promote any of these rows."
+  },
+  "previous_candidate_batch_details": {
     "run_id": 42488804804,
     "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42488804804",
     "head_sha": "5cbbd87c9fc718f26277a0935ca923b7777a41b1",
@@ -2356,233 +2626,437 @@
     "partial_outputs_warning": "The runner logged 17 complete source shards and their JSONL hashes, but the six-hour cancellation occurred before artifact publication. No durable payload or final manifest is available. Hashes are log-reported and cannot be reverified against a recovered artifact; runner files are ephemeral and not counted in corpus totals.",
     "note": "Totals reconstructed from the job log and reconciled against all 20 source result records (17 complete, 3 failed). This is candidate acquisition telemetry only, not an admission or recoverable dataset bundle."
   },
-  "previous_candidate_batch_details": {
-    "run_id": 42357699240,
-    "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42357699240",
-    "head_sha": "b6cff3bf5f634737b660c7d7efe168fbec6a6177",
-    "created_at": "2026-11-07T08:58:18Z",
-    "conclusion": "failure",
-    "artifact_id": 13573027505,
-    "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42357699240/artifacts/13573027505",
-    "artifact_size_bytes": 749837081,
-    "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
-    "candidate_rows": 531963,
-    "candidate_jsonl_bytes": 1670605627,
-    "candidate_target_bytes": 6800000000,
-    "candidate_target_met": false,
-    "scale_factor_vs_effective_corpus": 2.454369243832274,
-    "admitted_rows_added": 0,
-    "admitted_bytes_added": 0,
-    "training_authorized": false,
-    "candidate_sources": [
-      {
-        "source": "HuggingFaceFW/fineweb-edu",
-        "config": "sample-10BT",
-        "split": "train",
-        "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
-        "rows": 100000,
-        "jsonl_bytes": 424092222,
-        "sha256": "f979572a7ba4aa6da1b548926c13fdcadbf1d6056da81aedcd8f5ae0060bbe60"
-      },
-      {
-        "source": "open-web-math/open-web-math",
-        "config": "default",
-        "split": "train",
-        "revision": "fde8ef8de2300f5e778f56261843dab89f230815",
-        "rows": 100000,
-        "jsonl_bytes": 456695086,
-        "sha256": "de0fb30cbd572d1c044a2b996364b99fe268093fa1e8da78ebb197598dce0140"
-      },
-      {
-        "source": "HuggingFaceTB/cosmopedia",
-        "config": "auto_math_text",
-        "split": "train",
-        "revision": "0ae6ec63f91742bd2d1eaef4f02232c55d719385",
-        "rows": 50000,
-        "jsonl_bytes": 234364804,
-        "sha256": "00aeb438e935249c789e4faaed0db1550b11c157acc6e2889855d6b6c6f1ec82"
-      },
-      {
-        "source": "HuggingFaceTB/smollm-corpus",
-        "config": "cosmopedia-v2",
-        "split": "train",
-        "revision": "3ba9d605774198c5868892d7a8deda78031a781f",
-        "rows": 50000,
-        "jsonl_bytes": 278500947,
-        "sha256": "efd2645de8957ea165b9fc1c3c15f327f20e572160f4b2e47b777b4ed40e1ce6"
-      },
-      {
-        "source": "CohereLabs/aya_dataset",
-        "config": "default",
-        "split": "train",
-        "revision": "f9ea04583f02a8f86404ff6c58bf75fe637df8a2",
-        "rows": 25000,
-        "jsonl_bytes": 42931184,
-        "sha256": "aca1e7af7239d80ce71c1e1e59f6780dd5cd69890fc14c9eab1745032073913b"
-      },
-      {
-        "source": "philippesaade/wikidata",
-        "config": "default",
-        "split": "train",
-        "revision": "3c43a705de25f60268a1ef343098d3c3464706c7",
-        "rows": 50000,
-        "jsonl_bytes": 165781647,
-        "sha256": "50213e55daba7cdd07173ed96d913179084471bfeeffc34975e22097f28de978"
-      },
-      {
-        "source": "openslr/librispeech_asr",
-        "config": "all",
-        "split": "train.clean.360",
-        "revision": "71cacbfb7e2354c4226d01e70d77d5fca3d04ba1",
-        "rows": 50000,
-        "jsonl_bytes": 19208974,
-        "sha256": "e511e8baa318bba4a58e1f25debb526536f5470059cd4101e04897d9e381a77f"
-      },
-      {
-        "source": "facebook/voxpopuli",
-        "config": "es",
-        "split": "train",
-        "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
-        "rows": 20000,
-        "jsonl_bytes": 9295818,
-        "sha256": "2371d1a16d9b3c48aaac7f4694213361f19df5b8a36c592b3f4bdf2744adb09f"
-      },
-      {
-        "source": "facebook/voxpopuli",
-        "config": "en",
-        "split": "train",
-        "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
-        "rows": 20000,
-        "jsonl_bytes": 8895378,
-        "sha256": "5c5ce71b2409aea77264bf7df7f770c82f25d82fc5069ddb3213b154898d3217"
-      },
-      {
-        "source": "facebook/voxpopuli",
-        "config": "de",
-        "split": "train",
-        "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
-        "rows": 20000,
-        "jsonl_bytes": 9057291,
-        "sha256": "f2829d5701abda7deb265ce88b5bbb24dc085d5a3134569f0add5d2f87f50da3"
-      },
-      {
-        "source": "facebook/voxpopuli",
-        "config": "fr",
-        "split": "train",
-        "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
-        "rows": 20000,
-        "jsonl_bytes": 9249739,
-        "sha256": "e88fd5e2a4f44254ae8f6e0b38b14d2220a06e6a707e4e46c78792a2b6ec14f2"
-      },
-      {
-        "source": "facebook/voxpopuli",
-        "config": "it",
-        "split": "train",
-        "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
-        "rows": 12885,
-        "jsonl_bytes": 6151711,
-        "sha256": "f7ec771d7e4d1a62a26231eeaec2d8654dc8479733802dc1f329b750bdbc7285"
-      },
-      {
-        "source": "facebook/voxpopuli",
-        "config": "pl",
-        "split": "train",
-        "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
-        "rows": 14078,
-        "jsonl_bytes": 6380826,
-        "sha256": "3e3bfe1899e86da1ef98a7ce2c7aea1a855ec795065da62c6fc66bf7c547bb7b"
-      }
-    ],
-    "blocked_or_failed_sources": [
-      {
-        "source": "common-pile/pubmed_filtered",
-        "config": "default",
-        "split": "train",
-        "status": "skipped_schema_mismatch",
-        "revision": "c156f0569a92d8f2edc33cebe1f72f7d3e1cae84",
-        "reason": "common-pile/pubmed_filtered/default: missing required columns ['text']; available=[]"
-      },
-      {
-        "source": "common-pile/stackexchange",
-        "config": "default",
-        "split": "train",
-        "status": "source_failed_nonfatal",
-        "revision": null,
-        "reason": "RuntimeError: common-pile/stackexchange/default: missing required columns ['text']; available=[]"
-      },
-      {
-        "source": "common-pile/pressbooks_filtered",
-        "config": "default",
-        "split": "train",
-        "status": "source_failed_nonfatal",
-        "revision": null,
-        "reason": "RuntimeError: common-pile/pressbooks_filtered/default: missing required columns ['text']; available=[]"
-      },
-      {
-        "source": "common-pile/libretexts_filtered",
-        "config": "default",
-        "split": "train",
-        "status": "source_failed_nonfatal",
-        "revision": null,
-        "reason": "RuntimeError: common-pile/libretexts_filtered/default: missing required columns ['text']; available=[]"
-      },
-      {
-        "source": "secemp9/arxiv-complete",
-        "config": "paper_text",
-        "split": "train",
-        "status": "source_failed_nonfatal",
-        "revision": null,
-        "reason": "RuntimeError: secemp9/arxiv-complete: only 6650 usable rows"
-      },
-      {
-        "source": "common-pile/doab",
-        "config": "default",
-        "split": "train",
-        "status": "source_failed_nonfatal",
-        "revision": null,
-        "reason": "RuntimeError: common-pile/doab/default: missing required columns ['text']; available=[]"
-      },
-      {
-        "source": "common-pile/oercommons_filtered",
-        "config": "default",
-        "split": "train",
-        "status": "source_failed_nonfatal",
-        "revision": null,
-        "reason": "RuntimeError: common-pile/oercommons_filtered/default: missing required columns ['text']; available=[]"
-      },
-      {
-        "source": "common-pile/news_filtered",
-        "config": "default",
-        "split": "train",
-        "status": "source_failed_nonfatal",
-        "revision": null,
-        "reason": "RuntimeError: common-pile/news_filtered/default: missing required columns ['text']; available=[]"
-      },
-      {
-        "source": "openslr/librispeech_asr",
-        "config": "all",
-        "split": "train.clean.100",
-        "status": "source_failed_nonfatal",
-        "revision": null,
-        "reason": "RuntimeError: openslr/librispeech_asr: only 21038 usable rows"
-      },
-      {
-        "source": "common-pile/cccc",
-        "config": "default",
-        "split": "train",
-        "status": "skipped_schema_mismatch",
-        "revision": "72bd015ff2a77f8701c617096fbb5dc89dd705fe",
-        "reason": "common-pile/cccc/default: missing required columns ['text']; available=[]"
-      },
-      {
-        "source": "common-pile/data_provenance_initiative_filtered",
-        "config": "default",
-        "split": "train",
-        "status": "source_failed_nonfatal",
-        "revision": null,
-        "reason": "RuntimeError: common-pile/data_provenance_initiative_filtered/default: missing required columns ['text']; available=[]"
-      }
-    ],
-    "note": "The bundle is candidate-only. Cross-source near-deduplication, global holdout contamination, human sample review and final rights/provenance checks were not run. Do not feed it to training."
-  }
+  "historical_candidate_batches": [
+    {
+      "run_id": 42357699240,
+      "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42357699240",
+      "head_sha": "b6cff3bf5f634737b660c7d7efe168fbec6a6177",
+      "created_at": "2026-11-07T08:58:18Z",
+      "conclusion": "failure",
+      "artifact_id": 13573027505,
+      "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42357699240/artifacts/13573027505",
+      "artifact_size_bytes": 749837081,
+      "artifact_sha256": "e58188d5ca788df5f330905996a5592896f090fa1f19088ac7edae728f6eb1de",
+      "candidate_rows": 531963,
+      "candidate_jsonl_bytes": 1670605627,
+      "candidate_target_bytes": 6800000000,
+      "candidate_target_met": false,
+      "scale_factor_vs_effective_corpus": 2.454369243832274,
+      "admitted_rows_added": 0,
+      "admitted_bytes_added": 0,
+      "training_authorized": false,
+      "candidate_sources": [
+        {
+          "source": "HuggingFaceFW/fineweb-edu",
+          "config": "sample-10BT",
+          "split": "train",
+          "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+          "rows": 100000,
+          "jsonl_bytes": 424092222,
+          "sha256": "f979572a7ba4aa6da1b548926c13fdcadbf1d6056da81aedcd8f5ae0060bbe60"
+        },
+        {
+          "source": "open-web-math/open-web-math",
+          "config": "default",
+          "split": "train",
+          "revision": "fde8ef8de2300f5e778f56261843dab89f230815",
+          "rows": 100000,
+          "jsonl_bytes": 456695086,
+          "sha256": "de0fb30cbd572d1c044a2b996364b99fe268093fa1e8da78ebb197598dce0140"
+        },
+        {
+          "source": "HuggingFaceTB/cosmopedia",
+          "config": "auto_math_text",
+          "split": "train",
+          "revision": "0ae6ec63f91742bd2d1eaef4f02232c55d719385",
+          "rows": 50000,
+          "jsonl_bytes": 234364804,
+          "sha256": "00aeb438e935249c789e4faaed0db1550b11c157acc6e2889855d6b6c6f1ec82"
+        },
+        {
+          "source": "HuggingFaceTB/smollm-corpus",
+          "config": "cosmopedia-v2",
+          "split": "train",
+          "revision": "3ba9d605774198c5868892d7a8deda78031a781f",
+          "rows": 50000,
+          "jsonl_bytes": 278500947,
+          "sha256": "efd2645de8957ea165b9fc1c3c15f327f20e572160f4b2e47b777b4ed40e1ce6"
+        },
+        {
+          "source": "CohereLabs/aya_dataset",
+          "config": "default",
+          "split": "train",
+          "revision": "f9ea04583f02a8f86404ff6c58bf75fe637df8a2",
+          "rows": 25000,
+          "jsonl_bytes": 42931184,
+          "sha256": "aca1e7af7239d80ce71c1e1e59f6780dd5cd69890fc14c9eab1745032073913b"
+        },
+        {
+          "source": "philippesaade/wikidata",
+          "config": "default",
+          "split": "train",
+          "revision": "3c43a705de25f60268a1ef343098d3c3464706c7",
+          "rows": 50000,
+          "jsonl_bytes": 165781647,
+          "sha256": "50213e55daba7cdd07173ed96d913179084471bfeeffc34975e22097f28de978"
+        },
+        {
+          "source": "openslr/librispeech_asr",
+          "config": "all",
+          "split": "train.clean.360",
+          "revision": "71cacbfb7e2354c4226d01e70d77d5fca3d04ba1",
+          "rows": 50000,
+          "jsonl_bytes": 19208974,
+          "sha256": "e511e8baa318bba4a58e1f25debb526536f5470059cd4101e04897d9e381a77f"
+        },
+        {
+          "source": "facebook/voxpopuli",
+          "config": "es",
+          "split": "train",
+          "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "rows": 20000,
+          "jsonl_bytes": 9295818,
+          "sha256": "2371d1a16d9b3c48aaac7f4694213361f19df5b8a36c592b3f4bdf2744adb09f"
+        },
+        {
+          "source": "facebook/voxpopuli",
+          "config": "en",
+          "split": "train",
+          "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "rows": 20000,
+          "jsonl_bytes": 8895378,
+          "sha256": "5c5ce71b2409aea77264bf7df7f770c82f25d82fc5069ddb3213b154898d3217"
+        },
+        {
+          "source": "facebook/voxpopuli",
+          "config": "de",
+          "split": "train",
+          "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "rows": 20000,
+          "jsonl_bytes": 9057291,
+          "sha256": "f2829d5701abda7deb265ce88b5bbb24dc085d5a3134569f0add5d2f87f50da3"
+        },
+        {
+          "source": "facebook/voxpopuli",
+          "config": "fr",
+          "split": "train",
+          "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "rows": 20000,
+          "jsonl_bytes": 9249739,
+          "sha256": "e88fd5e2a4f44254ae8f6e0b38b14d2220a06e6a707e4e46c78792a2b6ec14f2"
+        },
+        {
+          "source": "facebook/voxpopuli",
+          "config": "it",
+          "split": "train",
+          "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "rows": 12885,
+          "jsonl_bytes": 6151711,
+          "sha256": "f7ec771d7e4d1a62a26231eeaec2d8654dc8479733802dc1f329b750bdbc7285"
+        },
+        {
+          "source": "facebook/voxpopuli",
+          "config": "pl",
+          "split": "train",
+          "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "rows": 14078,
+          "jsonl_bytes": 6380826,
+          "sha256": "3e3bfe1899e86da1ef98a7ce2c7aea1a855ec795065da62c6fc66bf7c547bb7b"
+        }
+      ],
+      "blocked_or_failed_sources": [
+        {
+          "source": "common-pile/pubmed_filtered",
+          "config": "default",
+          "split": "train",
+          "status": "skipped_schema_mismatch",
+          "revision": "c156f0569a92d8f2edc33cebe1f72f7d3e1cae84",
+          "reason": "common-pile/pubmed_filtered/default: missing required columns ['text']; available=[]"
+        },
+        {
+          "source": "common-pile/stackexchange",
+          "config": "default",
+          "split": "train",
+          "status": "source_failed_nonfatal",
+          "revision": null,
+          "reason": "RuntimeError: common-pile/stackexchange/default: missing required columns ['text']; available=[]"
+        },
+        {
+          "source": "common-pile/pressbooks_filtered",
+          "config": "default",
+          "split": "train",
+          "status": "source_failed_nonfatal",
+          "revision": null,
+          "reason": "RuntimeError: common-pile/pressbooks_filtered/default: missing required columns ['text']; available=[]"
+        },
+        {
+          "source": "common-pile/libretexts_filtered",
+          "config": "default",
+          "split": "train",
+          "status": "source_failed_nonfatal",
+          "revision": null,
+          "reason": "RuntimeError: common-pile/libretexts_filtered/default: missing required columns ['text']; available=[]"
+        },
+        {
+          "source": "secemp9/arxiv-complete",
+          "config": "paper_text",
+          "split": "train",
+          "status": "source_failed_nonfatal",
+          "revision": null,
+          "reason": "RuntimeError: secemp9/arxiv-complete: only 6650 usable rows"
+        },
+        {
+          "source": "common-pile/doab",
+          "config": "default",
+          "split": "train",
+          "status": "source_failed_nonfatal",
+          "revision": null,
+          "reason": "RuntimeError: common-pile/doab/default: missing required columns ['text']; available=[]"
+        },
+        {
+          "source": "common-pile/oercommons_filtered",
+          "config": "default",
+          "split": "train",
+          "status": "source_failed_nonfatal",
+          "revision": null,
+          "reason": "RuntimeError: common-pile/oercommons_filtered/default: missing required columns ['text']; available=[]"
+        },
+        {
+          "source": "common-pile/news_filtered",
+          "config": "default",
+          "split": "train",
+          "status": "source_failed_nonfatal",
+          "revision": null,
+          "reason": "RuntimeError: common-pile/news_filtered/default: missing required columns ['text']; available=[]"
+        },
+        {
+          "source": "openslr/librispeech_asr",
+          "config": "all",
+          "split": "train.clean.100",
+          "status": "source_failed_nonfatal",
+          "revision": null,
+          "reason": "RuntimeError: openslr/librispeech_asr: only 21038 usable rows"
+        },
+        {
+          "source": "common-pile/cccc",
+          "config": "default",
+          "split": "train",
+          "status": "skipped_schema_mismatch",
+          "revision": "72bd015ff2a77f8701c617096fbb5dc89dd705fe",
+          "reason": "common-pile/cccc/default: missing required columns ['text']; available=[]"
+        },
+        {
+          "source": "common-pile/data_provenance_initiative_filtered",
+          "config": "default",
+          "split": "train",
+          "status": "source_failed_nonfatal",
+          "revision": null,
+          "reason": "RuntimeError: common-pile/data_provenance_initiative_filtered/default: missing required columns ['text']; available=[]"
+        }
+      ],
+      "note": "The bundle is candidate-only. Cross-source near-deduplication, global holdout contamination, human sample review and final rights/provenance checks were not run. Do not feed it to training."
+    },
+    {
+      "run_id": 42488804804,
+      "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42488804804",
+      "head_sha": "5cbbd87c9fc718f26277a0935ca923b7777a41b1",
+      "created_at": "2026-11-08T14:14:10Z",
+      "conclusion": "cancelled_after_six_hour_timeout",
+      "workflow_mode": "monolithic acquisition before four-tranche selector was merged to main",
+      "candidate_rows": 629527,
+      "candidate_jsonl_bytes": 2436847391,
+      "candidate_target_bytes": 6800000000,
+      "candidate_target_met": false,
+      "completed_source_slices": 17,
+      "source_failures": 3,
+      "failed_sources": [
+        "common-pile/libretexts_filtered:train",
+        "secemp9/arxiv-complete:train",
+        "openslr/librispeech_asr:train.clean.100"
+      ],
+      "candidate_sources": [
+        {
+          "source": "HuggingFaceFW/fineweb-edu",
+          "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+          "config": "sample-10BT",
+          "split": "train",
+          "rows": 100000,
+          "jsonl_bytes": 428092222,
+          "sha256": "021a35da979813fa7cf2b270a7bbc77c0673420e9ed21bc948e4a269e7bc0d77",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "open-web-math/open-web-math",
+          "revision": "fde8ef8de2300f5e778f56261843dab89f230815",
+          "config": "default",
+          "split": "train",
+          "rows": 100000,
+          "jsonl_bytes": 460695086,
+          "sha256": "67bd36bed38f4125436a09cb6904e7612784fa1031f00e44672eb946c1c0954c",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "HuggingFaceTB/cosmopedia",
+          "revision": "0ae6ec63f91742bd2d1eaef4f02232c55d719385",
+          "config": "auto_math_text",
+          "split": "train",
+          "rows": 50000,
+          "jsonl_bytes": 236364804,
+          "sha256": "665be7e612ba8b38f7d3b125a886284d008f44f555f0fef37c8d1592719d06cf",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "HuggingFaceTB/smollm-corpus",
+          "revision": "3ba9d605774198c5868892d7a8deda78031a781f",
+          "config": "cosmopedia-v2",
+          "split": "train",
+          "rows": 50000,
+          "jsonl_bytes": 280500947,
+          "sha256": "5533e2d75ac5b83a17fdbe441dca24740424f3671d3db2748c0c9492249e5d93",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "CohereLabs/aya_dataset",
+          "revision": "f9ea04583f02a8f86404ff6c58bf75fe637df8a2",
+          "config": "default",
+          "split": "train",
+          "rows": 25000,
+          "jsonl_bytes": 46109328,
+          "sha256": "9a8633c336389bd555e71d26646a908f2834416025d3e1b0bd7e20d00216da43",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "philippesaade/wikidata",
+          "revision": "3c43a705de25f60268a1ef343098d3c3464706c7",
+          "config": "default",
+          "split": "train",
+          "rows": 50000,
+          "jsonl_bytes": 167781647,
+          "sha256": "ad779639abb79cc5454040301c245ca688bcc86772bb88283b3022be3b7e1e5d",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "common-pile/pressbooks_filtered",
+          "revision": "1a1d3b50d77f834370f8eb4c0d174668dd1676bb",
+          "config": "default",
+          "split": "train",
+          "rows": 33736,
+          "jsonl_bytes": 302949633,
+          "sha256": "ffcd8219132f154b6405259639b94987eaa05bb54fb0aca7bc562c433d967d74",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "common-pile/doab",
+          "revision": "89e7a35935045f2b268a2229347e38f16fbeb729",
+          "config": "default",
+          "split": "train",
+          "rows": 50000,
+          "jsonl_bytes": 360265617,
+          "sha256": "87e07933a50b7da3e5ae7ce850d2ef8c9f0c95a2ce0e5b9a9c5d44e49fb61646",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "common-pile/oercommons_filtered",
+          "revision": "506b6159dadcbc0dc67611cea024eedb04232fb2",
+          "config": "default",
+          "split": "train",
+          "rows": 3828,
+          "jsonl_bytes": 28787310,
+          "sha256": "5a10422434eca490390762263f3fd9c066fa7a1d75de088d2caa2fa3d2b12396",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "common-pile/news_filtered",
+          "revision": "59aaa8f104e189e6fb8033f0ed319c5c343a03b1",
+          "config": "default",
+          "split": "train",
+          "rows": 10000,
+          "jsonl_bytes": 50282540,
+          "sha256": "cf417a4ceeea3f91df7c9c35aa3328995461bc56a9bb4fe7a1a4f0ff3d431ba7",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "openslr/librispeech_asr",
+          "revision": "71cacbfb7e2354c4226d01e70d77d5fca3d04ba1",
+          "config": "all",
+          "split": "train.clean.360",
+          "rows": 50000,
+          "jsonl_bytes": 21708974,
+          "sha256": "5222e62edd4d73053f6ede7a76214a9ef81de8e92fd3f0eb9d3de2d3baf1c47e",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "facebook/voxpopuli",
+          "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "config": "es",
+          "split": "train",
+          "rows": 20000,
+          "jsonl_bytes": 10095818,
+          "sha256": "49e7df3161b06f307136d78502238c449dfb00015b0eccf78abd97392e589dc1",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "facebook/voxpopuli",
+          "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "config": "en",
+          "split": "train",
+          "rows": 20000,
+          "jsonl_bytes": 9695378,
+          "sha256": "16d055db8451e1f247907265f38b5835d00f766e1cf9193438c93792d29a159f",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "facebook/voxpopuli",
+          "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "config": "de",
+          "split": "train",
+          "rows": 20000,
+          "jsonl_bytes": 9857291,
+          "sha256": "269d88fd53e7841f9f7f1cdd9136bd496b28c5ed70032f071cf316a9f21e2c9c",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "facebook/voxpopuli",
+          "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "config": "fr",
+          "split": "train",
+          "rows": 20000,
+          "jsonl_bytes": 10049739,
+          "sha256": "1d5448f262b86cc7e2816bf6019984f0d468de27c48426d59d410891d6fe7996",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "facebook/voxpopuli",
+          "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "config": "it",
+          "split": "train",
+          "rows": 12885,
+          "jsonl_bytes": 6667111,
+          "sha256": "2c959d383306ead1d6d94c572c4315be93802e5bb314a7294d77ff492190b217",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "facebook/voxpopuli",
+          "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "config": "pl",
+          "split": "train",
+          "rows": 14078,
+          "jsonl_bytes": 6943946,
+          "sha256": "e92a2b881863a94bf96949c3c398f103ba320ccfaedaf1d1874f591ab020a692",
+          "status": "candidate_not_admitted"
+        }
+      ],
+      "artifact_id": null,
+      "artifact_url": null,
+      "artifact_size_bytes": null,
+      "artifact_sha256": null,
+      "manifest_available": false,
+      "manifest_sha256": null,
+      "admitted_rows_added": 0,
+      "admitted_bytes_added": 0,
+      "training_authorized": false,
+      "partial_outputs_warning": "The runner logged 17 complete source shards and their JSONL hashes, but the six-hour cancellation occurred before artifact publication. No durable payload or final manifest is available. Hashes are log-reported and cannot be reverified against a recovered artifact; runner files are ephemeral and not counted in corpus totals.",
+      "note": "Totals reconstructed from the job log and reconciled against all 20 source result records (17 complete, 3 failed). This is candidate acquisition telemetry only, not an admission or recoverable dataset bundle."
+    }
+  ]
 }

@@ -264,3 +264,43 @@ El aviso legal de EUR-Lex permite reutilizar documentos jurídicos para fines co
 **Estado:** candidato de descubrimiento; 0 descargas, 0 filas candidatas y 0 bytes admitidos. Antes de staging se fijarán consulta SPARQL, timestamp, CELEX/ELI/CELLAR IDs, expresión por idioma, formato y SHA-256. No se habilita para train ni se altera el inventario admitido.
 
 Fuentes primarias: [aviso legal EUR-Lex](https://eur-lex.europa.eu/content/legal-notice/legal-notice.html?locale=en), [CELLAR](https://op.europa.eu/en/web/cellar), [knowledge graph/SPARQL](https://op.europa.eu/en/web/cellar/cellar-data/metadata/knowledge-graph) y [documentación CELLAR](https://op.europa.eu/en/web/cellar/documentation). El registro detallado y los controles están en `data/sources/registry.json`.
+
+
+## Adquisición candidate-only — run 42737780473 (2026-11-10)
+
+La [run 42737780473](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42737780473) completó la tranche determinista **2/4**. El estado `success` significa que terminó la adquisición y publicó el artefacto; no significa admisión ni autorización de entrenamiento.
+
+| Fuente / configuración | Revisión inmutable | Filas | Bytes JSONL | SHA-256 del shard |
+|---|---|---:|---:|---|
+| HuggingFaceTB/cosmopedia · auto_math_text | `0ae6ec63f91742bd2d1eaef4f02232c55d719385` | 50.000 | 236.364.804 | `665be7e612ba8b38f7d3b125a886284d008f44f555f0fef37c8d1592719d06cf` |
+| common-pile/pressbooks_filtered | `1a1d3b50d77f834370f8eb4c0d174668dd1676bb` | 33.736 | 302.949.633 | `ffcd8219132f154b6405259639b94987eaa05bb54fb0aca7bc562c433d967d74` |
+| common-pile/oercommons_filtered | `506b6159dadcbc0dc67611cea024eedb04232fb2` | 3.828 | 28.787.310 | `5a10422434eca490390762263f3fd9c066fa7a1d75de088d2caa2fa3d2b12396` |
+| facebook/voxpopuli · es | `42f01879c780b4a2e90ec0b4f616c2ece526e4f1` | 20.000 | 10.095.818 | `49e7df3161b06f307136d78502238c449dfb00015b0eccf78abd97392e589dc1` |
+| facebook/voxpopuli · it | `42f01879c780b4a2e90ec0b4f616c2ece526e4f1` | 12.885 | 6.667.111 | `2c959d383306ead1d6d94c572c4315be93802e5bb314a7294d77ff492190b217` |
+| common-pile/pubmed_filtered | `c156f0569a92d8f2edc33cebe1f72f7d3e1cae84` | 20.000 | 494.416.484 | `da8c11cfac2c6326e41119d3bd34e2d905b5987ffe84a7065bb8d56839e27e40` |
+| IFM/Math-Reasoning · math-dialogue | `e249295774c3a66943e1483dbf53e0c811bc41dd` | 12.000 | 65.051.630 | `a82a4b22791bf751fa59f87b71c8eeb0b87f0d1cbdf86c2c519eea842120e5bd` |
+| **Total candidato** | | **152.449** | **1.144.332.790** | |
+
+El artefacto `heretic-open-source-candidates-42737780473-group-2` (ID `13737479716`) ocupa **397.069.719 bytes**; digest SHA-256 publicado por GitHub Actions: `22428d0ae88ac63b8fc0a6887126390f3372d485beea795f0afeb11a3b38f2c9`. Incluye el manifiesto y el directorio de staging; el SHA-256 propio del manifiesto no se ha recalculado en esta revisión y los hashes de shards proceden del manifiesto/log, no de una segunda extracción independiente. No hay medición fiable de bytes remotos ni de tamaño comprimido de las fuentes upstream.
+
+**Slices fallidos y descartados:**
+- Spanish-PD-Books: 954 filas utilizables frente al mínimo de 1.000; parcial descartado.
+- Spanish-PD-Newspapers: falta `default/train/0041.parquet` en la revisión fijada; no se publicó shard.
+- German Commons political: 0 filas utilizables frente al mínimo de 500; parcial descartado.
+
+**Gates pendientes:** near-dedup entre fuentes, contaminación global de validation/test/benchmarks/holdout, G-0, revisión humana, privacidad/secretos/malware y derechos de upstream/terceros. La muestra automática fue de seis filas por fuente: no es aprobación humana ni cubre estratos independientes de dominio, idioma y formato. El filtro de adquisición actual solo rechaza patrones de email/teléfono; no equivale a un escáner completo de PII o secretos.
+
+**Admisión del lote: 0 filas / 0 bytes.** No se marca `training_eligible`, no se modifica el corpus admitido y no se autoriza entrenamiento. El inventario sigue en **260.971 documentos / 703.593.871 bytes**, **0,1407 %** del objetivo decimal de 500 GB.
+
+### Riesgo de almacenamiento del lote
+
+El workflow sube `staging/open-source-candidates/` completo al artefacto de Actions, incluidos los shards brutos y material de muestra. Como el repositorio es público, los artefactos públicos no constituyen una cuarentena privada: GitHub documenta que los endpoints de artefactos de recursos públicos pueden utilizarse sin autenticación. El artefacto actual no se ha borrado ni se ha cancelado ningún workflow; antes de seguir publicando payloads sin revisión hay que separar manifiestos públicos de datos en cuarentena privada o limitar el artefacto a fuentes cuyo derecho de redistribución esté ya acreditado.
+
+## Nuevas fuentes investigadas — 2026-11-10 (solo descubrimiento)
+
+- **Common Voice Scripted Speech v27.0:** 295 locales; metadata fijada en `common-voice/cv-dataset@65ca2460d5e686ea03902a932bbca09b322dc4b0`. Mozilla Data Collective lista los datasets como CC0-1.0, pero la línea de prompts incluye aportaciones de usuarios y texto importado; no se aceptará nada con procedencia Wikipedia/terceros o desconocida sin verificar derechos. Solo texto, sin audio ni metadatos demográficos/de hablante. Acceso MDC pendiente; 0 descargas y 0 bytes admitidos.
+- **Tatoeba:** frases de texto bajo CC-BY-2.0-FR por defecto, con subconjunto CC0; exige atribuir al autor de cada frase. No hay snapshot inmutable ni descarga en esta ejecución. Traducciones no verificadas profesionalmente, posibles aportaciones copiadas y contenido ofensivo: requiere atribución por fila, filtro de derechos y partición por componentes de traducción. Audio excluido.
+- **World Bank Open Knowledge Repository:** licencia mixta por obra. Solo se estudiarán ítems con CC-BY-4.0 o CC-BY-3.0-IGO exactas; NC/ND, términos desconocidos y componentes de terceros quedan fuera. Requiere atribución completa y avisos adicionales para traducciones/adaptaciones.
+- **Parlamento Europeo:** se confirmó que las reglas institucionales de Open Data adoptan CC-BY-4.0, pero el candidato de discursos sigue pendiente de licencia a nivel de recurso, terceros y privacidad de metadatos de ponentes.
+
+Los tres primeros registros nuevos permanecen como `candidate_discovery_only`, con `count_toward_admitted_bytes=false` y `training_authorized=false`. No se ha descargado ni admitido material de ellos.
