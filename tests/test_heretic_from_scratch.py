@@ -12,7 +12,7 @@ from scripts.build_heretic_tokenizer import build_tokenizer
 class HereticModelTests(unittest.TestCase):
     def test_all_parameters_trainable_and_embeddings_tied(self):
         config = HereticConfig(
-            vocab_size=512, context_length=32, n_layers=2,
+            vocab_size=350, context_length=32, n_layers=2,
             d_model=32, n_heads=4, d_ff=64,
             gradient_checkpointing=False,
         )
