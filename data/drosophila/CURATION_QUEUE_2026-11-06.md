@@ -303,3 +303,23 @@ Antes de adquirir:
 5. Ejecutar deduplicación exacta/aproximada global y contaminación de validation/test/benchmark/holdout; exigir G-0.
 
 La fuente se añade como candidata de descubrimiento con `training_authorized=false`, `count_toward_admitted_bytes=false`, filas desconocidas y tamaño no medido. **0 bytes admitidos.**
+
+
+## Descubrimiento multilingüe — Asamblea Nacional de Francia (2026-11-10)
+
+**Estado: discovery only; no descargar ni contar bytes hasta cerrar privacidad y snapshot.**
+
+La ficha oficial `Débats` describe el dataset `an-comptes-rendus` de la XVII legislatura: actas de sesiones, fechas, números, temas, oradores y textos de debates en francés, XML. La página oficial del Hackathon 2026 etiqueta ese recurso como **Licence Ouverte / Open Licence**. El export de la ficha consultada indica fecha 2026-11-06 y MD5 `a91c9d51574a8e89eb183a7bef74bf57`.
+
+La licencia oficial enlazada es Etalab **Licence Ouverte v1.0**. Permite reproducir, redistribuir, adaptar y explotar comercialmente con atribución. No tiene un identificador SPDX estándar; registrar como `LicenseRef-Etalab-Open-License-v1.0`. El propio texto excluye datos personales salvo consentimiento, anonimización o base legal, y excluye derechos de terceros.
+
+Antes de adquirir:
+1. Congelar ZIP exacto, timestamp, MD5 del publicador, SHA-256 calculado, lista de miembros y IDs de registros.
+2. Limitarse a `an-comptes-rendus`, XVII legislatura; no mezclar otras legislaturas ni otras colecciones.
+3. Conservar atribución a Assemblée nationale, fecha de actualización, sesión, fecha, tema e identificadores.
+4. Resolver speaker names y referencias a particulares bajo la cláusula de datos personales; excluir registros/campos sin base legal documentada.
+5. Excluir citas/adjuntos de terceros sin derechos claros.
+6. Validar XML, codificación, calidad, PII y seguridad; auditar muestra estratificada.
+7. Deduplicar contra toda la biblioteca y holdouts y superar G-0.
+
+No se ha descargado nada: filas desconocidas, 0 bytes staged y 0 bytes admitidos. `training_authorized=false`.

@@ -325,3 +325,16 @@ Se incorpora a la cola de descubrimiento, **sin descarga ni admisión**, el data
 - No se ha asignado SPDX al texto: la fuente lo describe como obra libre bajo su régimen nacional; CC BY 4.0 se registra solo para metadatos/listas API.
 
 Fuentes primarias: [ficha de protocolos](https://www.parlament.gv.at/recherchieren/open-data/daten-und-lizenz/stenographische-protkolle/index.html) · [condiciones generales y catálogo](https://www.parlament.gv.at/recherchieren/open-data/daten-und-lizenz/).
+
+
+## Nuevo candidato documental — Asamblea Nacional de Francia (2026-11-10)
+
+Se registra el recurso oficial **`an-comptes-rendus`**, con los textos de debates de la XVII legislatura en XML y francés:
+
+- La ficha del recurso describe actas de sesión con fechas, números de sesión, temas, oradores y textos.
+- La página oficial del Hackathon 2026 identifica expresamente `an-comptes-rendus` y lo etiqueta como **Licence Ouverte / Open Licence**.
+- El export actual de la ficha de debates está fechado **2026-11-06** y publica MD5 `a91c9d51574a8e89eb183a7bef74bf57`. Es una exportación mutable; aún no se ha descargado ni calculado SHA-256.
+- La licencia enlazada por el portal es **Etalab Licence Ouverte v1.0**, no una licencia SPDX estándar. Se registra con el identificador local `LicenseRef-Etalab-Open-License-v1.0`. Permite adaptación y uso comercial con atribución, pero excluye datos personales salvo consentimiento, anonimización o base legal, y excluye derechos de terceros.
+- Estado: candidato de descubrimiento. Filas y bytes **no medidos; 0 descargados y 0 admitidos**. Antes de staging hay que congelar el ZIP, verificar MD5/SHA-256, resolver datos personales y terceros, revisar muestras y ejecutar deduplicación/holdout/G-0.
+
+Fuentes oficiales: [ficha Débats](https://data.assemblee-nationale.fr/travaux-parlementaires/debats) · [recursos Hackathon 2026](https://hackathon2026.assemblee-nationale.fr/) · [texto de Licence Ouverte v1.0](https://data.assemblee-nationale.fr/content/download/28755/file/Licence_Ouverte.pdf).

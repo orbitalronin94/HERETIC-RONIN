@@ -123,6 +123,28 @@ class LicenseGateTests(unittest.TestCase):
         self.assertTrue(source["evidence_urls"])
         self.assertGreaterEqual(len(source["required_checks"]), 8)
 
+    def test_french_assembly_debates_remain_discovery_only(self):
+        from pathlib import Path
+        import json
+
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        matches = [
+            source for source in registry["sources"]
+            if source.get("id") == "Assemblée nationale:an-comptes-rendus-17e"
+        ]
+        self.assertEqual(len(matches), 1)
+        source = matches[0]
+        self.assertTrue(source["status"].startswith("candidate_discovery_only"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIsNone(source["reported_rows"])
+        self.assertIn("Not measured", source["reported_size"])
+        self.assertIn("LicenseRef-Etalab-Open-License-v1.0", source["reported_license"])
+        self.assertIn("personal data", source["rights_caveat"])
+        self.assertEqual(source["publisher_checksums"]["md5"], "a91c9d51574a8e89eb183a7bef74bf57")
+        self.assertIn("SHA-256", source["revision"])
+
 
 if __name__ == "__main__":
     unittest.main()
