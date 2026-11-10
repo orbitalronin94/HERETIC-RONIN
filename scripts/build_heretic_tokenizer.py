@@ -64,7 +64,10 @@ def build_tokenizer(paths: list[Path], vocab_size: int) -> Tokenizer:
         raise ValueError("vocab_size must be at least 260 for byte-level coverage")
     tokenizer = Tokenizer(models.BPE(unk_token="<|unk|>"))
     tokenizer.normalizer = normalizers.NFC()
-    tokenizer.pre_tokenizer = pre_tokenizers.Sequence([\n        pre_tokenizers.Split(Regex(r"[0-9]"), behavior="isolated"),\n        pre_tokenizers.ByteLevel(add_prefix_space=False),\n    ])
+    tokenizer.pre_tokenizer = pre_tokenizers.Sequence([
+        pre_tokenizers.Split(Regex(r"[0-9]"), behavior="isolated"),
+        pre_tokenizers.ByteLevel(add_prefix_space=False),
+    ])
     tokenizer.decoder = decoders.ByteLevel()
     trainer = trainers.BpeTrainer(
         vocab_size=vocab_size,
