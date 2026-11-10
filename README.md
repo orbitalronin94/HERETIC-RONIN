@@ -272,3 +272,8 @@ La exposición histórica no desaparece: el artefacto [13737479716](https://gith
 ### Descubrimiento documental — Parlamento de Austria (2026-11-10)
 
 Se ha localizado una fuente primaria adicional en alemán: los protocolos estenográficos del Nationalrat y Bundesrat. La ficha oficial los clasifica como *freie Werke* solo para esos dos tipos de protocolo; los metadatos/listas API están bajo CC BY 4.0. Se registra como **candidata de descubrimiento**, no como adquisición ni admisión: 0 filas y 0 bytes medidos. Quedan pendientes snapshot inmutable por documento, privacidad/terceros, revisión de calidad, deduplicación global y G-0. Detalles en [la cola de curación](data/drosophila/CURATION_QUEUE_2026-11-06.md).
+
+
+### Candidato francés — debates de la Assemblée nationale (2026-11-10)
+
+Se ha localizado el recurso oficial `an-comptes-rendus` de la XVII legislatura, con textos de debates en francés y XML. La ficha y la página oficial del Hackathon lo etiquetan como Licence Ouverte; el PDF enlazado identifica la versión 1.0. Se permite adaptación/uso comercial con atribución, pero los datos personales y derechos de terceros quedan excluidos salvo las bases expresamente previstas. Se registra como candidato, no como admisión: 0 descargas y 0 bytes. Faltan snapshot/hash, revisión de privacidad/terceros, deduplicación y G-0. [Ficha oficial](https://data.assemblee-nationale.fr/travaux-parlementaires/debats) · [licencia](https://data.assemblee-nationale.fr/content/download/28755/file/Licence_Ouverte.pdf).
