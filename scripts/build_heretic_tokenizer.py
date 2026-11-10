@@ -60,8 +60,8 @@ def iter_text(paths: list[Path]) -> Iterator[str]:
 
 
 def build_tokenizer(paths: list[Path], vocab_size: int) -> Tokenizer:
-    if vocab_size < 512:
-        raise ValueError("vocab_size must be at least 512 for byte-level coverage")
+    if vocab_size < 260:
+        raise ValueError("vocab_size must be at least 260 for byte-level coverage")
     tokenizer = Tokenizer(models.BPE(unk_token="<|unk|>"))
     tokenizer.normalizer = normalizers.NFC()
     tokenizer.pre_tokenizer = pre_tokenizers.ByteLevel(add_prefix_space=False)
@@ -80,7 +80,6 @@ def build_tokenizer(paths: list[Path], vocab_size: int) -> Tokenizer:
             "Increase the train corpus or lower the requested vocabulary explicitly."
         )
     eos_id = tokenizer.token_to_id("<|eos|>")
-    bos_id = tokenizer.token_to_id("<|bos|>")
     tokenizer.post_processor = processors.TemplateProcessing(
         single="$A <|eos|>",
         pair="$A <|eos|> $B <|eos|>",
