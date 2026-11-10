@@ -3058,5 +3058,18 @@
       "partial_outputs_warning": "The runner logged 17 complete source shards and their JSONL hashes, but the six-hour cancellation occurred before artifact publication. No durable payload or final manifest is available. Hashes are log-reported and cannot be reverified against a recovered artifact; runner files are ephemeral and not counted in corpus totals.",
       "note": "Totals reconstructed from the job log and reconciled against all 20 source result records (17 complete, 3 failed). This is candidate acquisition telemetry only, not an admission or recoverable dataset bundle."
     }
-  ]
+  ],
+  "storage_remediation": {
+    "pr_number": 30,
+    "pr_url": "https://github.com/orbitalronin94/HERETIC-RONIN/pull/30",
+    "merge_commit_sha": "ca3fb4714bbf94eb0cfe16b384ac04ef05cae3d6",
+    "validation_run_id": 42830396419,
+    "validation_run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42830396419",
+    "validation_conclusion": "success",
+    "public_repository_policy": "Upload only OPEN-SOURCE-MANIFEST.json; do not publish raw candidate shards or sample excerpts.",
+    "private_repository_policy": "Full staging and sample-review artifact may be uploaded only when github.event.repository.private == true.",
+    "sample_log_policy": "review_candidate_samples.py writes its sample file locally but prints summary counts only; no raw text to Actions logs.",
+    "push_trigger_policy": "Acquisition push trigger restricted to main; pull_request runs validation only.",
+    "historical_exposure": "The already-published artifact 13737479716 and sample excerpts in run 42737780473 job logs remain accessible until their retention expiry 2027-02-08. They were not deleted in this run."
+  }
 }
