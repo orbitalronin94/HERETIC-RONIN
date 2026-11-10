@@ -165,14 +165,15 @@ def main() -> None:
         progress = step / args.steps
         optimizer.lr = 8e-5 * (0.2 + 0.8 * 0.5 * (1.0 + math.cos(math.pi * progress)))
         batch = sample_batch(train_data, rng, args.batch_size, args.sequence_length)
-        optimizer.zero_grad = None
         for parameter in model.parameters():
             parameter.grad = None
         _, loss = model(batch, labels=batch)
         if loss is None or not torch.isfinite(loss):
             raise FloatingPointError(f"Non-finite training loss at step {step}")
         loss.backward()
-        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+        grad_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+        if not torch.isfinite(grad_norm):
+            raise FloatingPointError(f"Non-finite gradient norm at step {step}")
         optimizer.step()
         losses.append(float(loss.detach()))
         if step == 1 or step % 10 == 0 or step == args.steps:
