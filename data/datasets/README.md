@@ -1,6 +1,6 @@
 # HERETIC-RONIN — biblioteca de datasets
 
-Actualizado: 2026-11-09. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
+Actualizado: 2026-11-10. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
 
 ## Resumen verificable
 
@@ -311,3 +311,17 @@ Los tres primeros registros nuevos permanecen como `candidate_discovery_only`, c
 La [PR #30](https://github.com/orbitalronin94/HERETIC-RONIN/pull/30) se integró en el commit [ca3fb47](https://github.com/orbitalronin94/HERETIC-RONIN/commit/ca3fb4714bbf94eb0cfe16b384ac04ef05cae3d6), validado por la [run 42830396419](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42830396419): compilación y suite de seguridad correctas, sin descargar datasets. En repositorios públicos, las futuras ejecuciones suben solo `OPEN-SOURCE-MANIFEST.json`; shards y muestras completos solo se publican si el repositorio es privado. El script de muestras deja de imprimir extractos en los logs y muestra únicamente recuentos. El trigger de push de adquisición queda limitado a `main`; los PR ejecutan solo validación.
 
 La exposición histórica no desaparece: el artefacto [13737479716](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42737780473/artifacts/13737479716) figura con expiración **2027-02-08** en los metadatos de GitHub; los extractos también están en el log del job, pero su fecha exacta de retención no se ha verificado. No se han borrado artefactos ni cancelado workflows. La adquisición que ya se había disparado desde la rama antes de restringir el trigger ([run 42830186561](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42830186561)) continúa bajo la política de manifiesto público solamente; el push de `main` ([run 42830458157](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42830458157)) espera la exclusión mutua.
+
+
+## Nuevo descubrimiento — Parlamento de Austria (2026-11-10)
+
+Se incorpora a la cola de descubrimiento, **sin descarga ni admisión**, el dataset oficial de protocolos estenográficos del Nationalrat y Bundesrat:
+
+- La página específica indica que los textos completos están disponibles en HTML desde la XX legislatura y que los discursos individuales están estructurados desde la XXVI.
+- La misma ficha limita expresamente la condición de *freie Werke* a los protocolos estenográficos del Nationalrat y Bundesrat. Las listas de resultados y metadatos de la API están bajo CC BY 4.0; esa licencia no se extiende a otros materiales del portal.
+- API de filtros documentada: `POST https://www.parlament.gv.at/Filter/api/filter/data/211?js=eval&showAll=true`.
+- Idioma inicial: alemán. Tamaño, filas y bytes: **no medidos; 0 descargados y 0 admitidos**.
+- Bloqueos antes de staging: congelar cuerpo exacto de consulta, respuesta, timestamp, IDs de sesión y SHA-256 por documento; revisar datos personales, citas/material de terceros, calidad y codificación; deduplicar contra todo el corpus y holdouts; superar G-0.
+- No se ha asignado SPDX al texto: la fuente lo describe como obra libre bajo su régimen nacional; CC BY 4.0 se registra solo para metadatos/listas API.
+
+Fuentes primarias: [ficha de protocolos](https://www.parlament.gv.at/recherchieren/open-data/daten-und-lizenz/stenographische-protkolle/index.html) · [condiciones generales y catálogo](https://www.parlament.gv.at/recherchieren/open-data/daten-und-lizenz/).
