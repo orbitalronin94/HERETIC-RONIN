@@ -361,3 +361,22 @@ No se ha descargado nada: filas desconocidas, 0 bytes staged y 0 bytes admitidos
 - Near-dedup global, holdout, G-0, auditoría humana estratificada y escaneo completo de privacidad/secretos/malware siguen pendientes. 0 bytes admitidos.
 
 Siguiente paso: reducir la carga por ejecución mediante ocho grupos deterministas; obtener snapshots de BOE y, si se autoriza el acceso, Légifrance; y construir una auditoría global que realmente incluya los candidatos antes de considerar cualquier admisión.
+
+
+## Fuentes nórdicas — 2026-11-11
+
+### Stortinget — candidato noruego
+
+- Fuente: [data.stortinget.no](https://data.stortinget.no/), API XML/JSON.
+- Las condiciones remiten a la licencia vigente NLOD; el enlace oficial lleva a NLOD 2.0. Registro local LicenseRef-NLOD-2.0. Permite uso comercial y modificación/redistribución, con atribución y sin tergiversar los datos.
+- Excluir datos personales sin base jurídica, confidenciales, terceros no licenciables y marcas. Excluir endpoints de personas, biografías, fotos, listas de oradores y aportaciones de audiencias.
+- Respetar 100 llamadas/minuto. El servicio solo muestra la versión vigente; congelar consultas y snapshots por registro.
+- Estado: discovery-only, 0 descargas y 0 bytes.
+
+### Folketinget — actas danesas bloqueadas
+
+- Fuente: [Folketinget Open Data](https://www.ft.dk/dokumenter/aabne_data), OData v3, XML/JSON.
+- Los términos generales permiten uso comercial y modificación, pero las actas tienen cláusula específica de reproducción, reserva derechos sobre colecciones de intervenciones de cada orador y limitan cambios a lo necesario para el uso permitido.
+- Las actas provisionales pueden revisarse sin marcar cada cambio; hay que conservar y mostrar estado provisional/final. PDFs, imágenes y anexos de terceros no quedan automáticamente cubiertos.
+- Estado: bloqueado hasta que se determine si extracción, normalización/tokenización, agregación y entrenamiento interno caben en esas condiciones. 0 descargas y 0 bytes.
+

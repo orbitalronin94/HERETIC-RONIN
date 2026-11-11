@@ -189,5 +189,27 @@ class LicenseGateTests(unittest.TestCase):
         self.assertIn("17 U.S.C. §105", source["reported_license"])
         self.assertIn("Spain", source["rights_caveat"])
 
+    def test_stortinget_nlod_candidate_remains_discovery_only(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "Stortinget:open-data-api")
+        self.assertTrue(source["status"].startswith("candidate_discovery_only"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIn("LicenseRef-NLOD-2.0", source["reported_license"])
+        self.assertIn("100 requests per minute", source["reported_license"])
+        self.assertIn("personal data", source["rights_caveat"])
+        self.assertGreaterEqual(len(source["required_checks"]), 8)
+
+    def test_folketinget_transcripts_are_blocked_pending_special_rights_review(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "Folketinget:open-data-proceedings")
+        self.assertTrue(source["status"].startswith("blocked_discovery"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIn("exclusive right", source["reported_license"])
+        self.assertIn("collections of their own contributions", source["rights_caveat"])
+
 if __name__ == "__main__":
     unittest.main()

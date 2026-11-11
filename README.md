@@ -284,3 +284,10 @@ Se ha localizado el recurso oficial `an-comptes-rendus` de la XVII legislatura, 
 Se han incorporado al registro como candidatos de descubrimiento, sin descargas ni bytes admitidos, la API de legislación consolidada del BOE (LicenseRef-BOE-Reuse-2024) y la API Légifrance/DILA (LicenseRef-Etalab-Open-License-2.0). Ambas permiten reutilización comercial bajo condiciones de atribución, pero mantienen exclusiones de terceros y datos personales; Légifrance exige acceso PISTE/OAuth y deja fuera de la primera fase la jurisprudencia. El Bundestag queda bloqueado por falta de licencia explícita del payload. GovInfo queda bloqueado hasta aclarar derechos territoriales fuera de EE. UU. y excluir contenido de terceros.
 
 La última adquisición [run 42976034496](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42976034496) se canceló al límite de seis horas: produjo 145.000 filas y 484.058.841 bytes JSONL en el runner, pero solo publicó el manifiesto. El payload fue efímero y **no se conserva**; 0 bytes admitidos. Se ajusta la partición del workflow de cuatro a ocho grupos para reducir el tamaño de cada ejecución y evitar repetir el timeout. El total admitido permanece en 703.593.871 bytes (0,141 % de 500 GB).
+
+
+## Fuentes nórdicas — 2026-11-11
+
+Se registra Stortinget como candidato noruego bajo LicenseRef-NLOD-2.0: la licencia oficial permite uso comercial y modificaciones, pero excluye datos personales sin base jurídica, confidencialidad y derechos de terceros. No hay payload descargado; se excluyen desde el inicio endpoints de personas, biografías, fotos y aportaciones de audiencias. [Condiciones](https://data.stortinget.no/om-datatjenesten/bruksvilkar/) · [NLOD 2.0](https://data.norge.no/nlod/no/2.0).
+
+Folketinget queda bloqueado para actas: aunque sus términos generales permiten uso comercial y adaptación, la cláusula específica de las actas reserva derechos de colección a los oradores y limita las modificaciones; además, los borradores cambian sin marcar cada revisión. [Condiciones oficiales](https://www.ft.dk/dokumenter/aabne_data).
