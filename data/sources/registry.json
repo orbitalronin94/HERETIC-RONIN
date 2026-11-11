@@ -7,28 +7,43 @@
     {
       "id": "Agencia Estatal BOE:legislacion-consolidada",
       "url": "https://www.boe.es/datosabiertos/api/api.php",
-      "revision": "mutable API; each retrieved text must be frozen by retrieval timestamp, BOE identifier/CVE, last-update date and SHA-256",
-      "reported_license": "BOE Reuse Conditions approved 2024-06-27 (custom terms; no SPDX identifier)",
-      "status": "candidate_discovery_only_pending_record_scope",
+      "retrieval_url": "https://www.boe.es/datosabiertos/api/legislacion-consolidada",
+      "revision": "Mutable official API; no immutable commit. Before staging, freeze exact query parameters, retrieval timestamp, API/XSD schema, response snapshot, document IDs and per-document SHA-256.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired.",
+      "reported_license": "BOE reuse conditions approved by AEBOE resolution of 2024-06-27; custom terms, not an SPDX-listed licence. They permit commercial and non-commercial reuse, copying, redistribution, modification/adaptation and derivative products with attribution. Record as LicenseRef-BOE-Reuse-2024. Some documents may have special terms; the conditions exclude Biblioteca Jurídica Digital works and third-party-owned/shared elements.",
+      "spdx_license_identifier": "LicenseRef-BOE-Reuse-2024",
+      "status": "candidate_discovery_only_pending_snapshot_scope_privacy_and_global_g0",
       "domains": [
         "Spanish legislation",
         "law",
-        "public administration"
+        "public administration",
+        "economics",
+        "labour"
       ],
       "language": [
         "es"
       ],
-      "rights_caveat": "General BOE reuse terms allow commercial/non-commercial reproduction, distribution, adaptation and extraction, but some documents have special terms; exclude Biblioteca Jurídica Digital (CC BY-NC-ND 4.0) and all third-party protected elements. Preserve attribution, update date, informational-consolidated-text disclaimer and applicable metadata; honor GDPR.",
+      "rights_caveat": "Scope is restricted to the official legislación-consolidada API endpoint. Do not include Biblioteca Jurídica Digital works (the legal notice states CC BY-NC-ND 4.0 unless otherwise indicated), BORME/company notices, logos, marks, third-party-owned/shared elements or documents with special conditions. Each consolidated text must be labelled as informational, not official; preserve the BOE source citation and last-update date. Personal data remain subject to GDPR and Spanish data-protection law.",
       "required_checks": [
-        "use only official /datosabiertos/api/legislacion-consolidada endpoints",
-        "verify document-level applicability of 2024 reuse terms and absence of special terms",
-        "exclude Biblioteca Jurídica Digital and third-party content",
-        "preserve BOE identifier/CVE, ELI, publication and consolidation dates, source URL and citation",
-        "freeze exact response bytes and SHA-256; mutable API is not an immutable revision",
-        "review personal data and GDPR",
-        "never present consolidated text as official/authentic version; preserve informational disclaimer"
+        "Freeze the exact API query, retrieval timestamp, API schema/XSD, response snapshot and per-document IDs before staging.",
+        "Acquire only the legislación-consolidada endpoint; do not include BORME, Biblioteca Jurídica Digital or unrelated BOE content.",
+        "Verify the applicable reuse conditions on every document and exclude special-use notices and third-party-owned/shared elements.",
+        "Preserve BOE identifier, title, ELI/NOR where present, source URL, publication date, consolidation/update date and attribution.",
+        "Retain the required notice that consolidated texts are informational and not the official/authentic publication.",
+        "Exclude logos, marks, attached third-party works and records whose personal-data reuse lacks a documented basis.",
+        "Validate XML/XSD, encoding, completeness, language, text quality, privacy/PII, secrets and file safety.",
+        "Audit samples stratified by year, legal instrument type, language and document format.",
+        "Deduplicate exact and approximately against every corpus split and all validation/test/benchmark/holdout material; require global G-0.",
+        "Keep discovery-only, training_authorized=false and admitted bytes at zero until all gates pass."
       ],
-      "count_toward_admitted_bytes": false
+      "evidence_urls": [
+        "https://www.boe.es/datosabiertos/api/api.php",
+        "https://www.boe.es/informacion/aviso_legal/index.php",
+        "https://www.boe.es/datosabiertos/faq/consolidada.php"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false
     },
     {
       "id": "AI-MO/NuminaMath-CoT",
