@@ -3,8 +3,7 @@ name: HERETIC — multidomain distillation + independent holdout
 on:
   push:
     paths:
-      - ".github/workflows/multidomain-distillation-holdout.yml"
-      - "scripts/heretic_distill_multidomain.py"
+      - "scripts/heretic_distill_full_corpus_100.py"
   workflow_dispatch:
 
 permissions:
@@ -99,12 +98,17 @@ jobs:
         run: |
           set -euo pipefail
           git clone --depth 1 --filter=blob:none --sparse https://github.com/orbitalronin94/RONIN-IA.git ronin-source
-          git -C ronin-source sparse-checkout set ronin
+          git -C ronin-source sparse-checkout set ronin data/datasets/admitted
+          mkdir -p payload/data/datasets
+          cp -a ronin-source/data/datasets/admitted payload/data/datasets/
+          echo "Corpus files: $(find payload/data/datasets/admitted -type f | wc -l)"
+          du -sh payload/data/datasets/admitted
+          test "$(find payload/data/datasets/admitted -type f | wc -l)" -gt 0
 
-      - name: Generate/resume 1,000 multidomain examples in-process, continue student, and run paired holdout
+      - name: Scan full corpus; generate 200 source-grounded examples; run paired 100-step distillation
         env:
           PYTHONPATH: ronin-source
-        run: python scripts/heretic_distill_multidomain.py
+        run: python scripts/heretic_distill_full_corpus_100.py
 
       - name: Upload teacher data, distilled checkpoint, holdout and reports
         if: always()
