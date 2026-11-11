@@ -1082,6 +1082,41 @@
       ]
     },
     {
+      "id": "Folketinget:open-data-proceedings",
+      "url": "https://www.ft.dk/dokumenter/aabne_data",
+      "retrieval_url": "https://oda.ft.dk",
+      "revision": "Mutable OData v3 service; data are updated continuously. If legal scope is resolved, freeze exact OData query, response timestamp, document/session IDs, preliminary/final status and per-record SHA-256. Preliminary transcripts may be revised without marking every change.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired.",
+      "reported_license": "Folketinget's general open-data terms grant a worldwide, free, non-exclusive and broad right to copy, distribute, publish, modify, combine and use catalogue data commercially. However, the special terms for debate transcripts grant a right to reproduce the proceedings, reserve to each original right-holder an exclusive right to publish collections of their own contributions, and limit changes to what the permitted use requires. This transcript-specific clause needs legal interpretation before machine-learning transformation/training.",
+      "status": "blocked_discovery_transcript_specific_rights_and_collection_limitations",
+      "domains": [
+        "Danish parliamentary proceedings",
+        "public policy",
+        "law",
+        "public administration"
+      ],
+      "language": [
+        "da"
+      ],
+      "rights_caveat": "The open-data catalogue includes XML debate transcripts, but linked PDFs and images are generally outside the open-data grant; embedded third-party works remain governed by separate rights. Transcript terms require clear preliminary/final labelling, permit revisions of preliminary transcripts without marking every change, and reserve speaker rights over collections of their own contributions. Do not acquire or stage transcript text until legal review confirms the scope of reproduction, normalization/tokenization for training and aggregation rights. Personal data and third-party content also require separate review.",
+      "required_checks": [
+        "Obtain legal interpretation of the transcript-specific reproduction clause and the right-holder's exclusive collection right for speakers' own contributions.",
+        "Determine whether text extraction, normalization, tokenization and internal ML training are permitted modifications under the special transcript terms.",
+        "Separate debate transcripts from linked PDFs, images, biographies, reports, articles, presentations and other third-party material.",
+        "Require stable preliminary/final status and snapshot each transcript version; do not assume preliminary text is immutable.",
+        "Preserve Folketinget attribution, session, meeting, speaker/record identifiers and update timestamp without retaining unnecessary personal data.",
+        "Review GDPR and Danish copyright law, including the scope of personal-data and speaker rights.",
+        "Only after legal clearance, validate OData/XML schema, encoding, quality, privacy, security and global deduplication/holdout gates."
+      ],
+      "evidence_urls": [
+        "https://www.ft.dk/dokumenter/aabne_data",
+        "https://oda.ft.dk/Home/AcceptConditions"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false
+    },
+    {
       "id": "HuggingFaceFW/fineweb",
       "url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb",
       "revision": "main (must pin immutable commit before ingestion)",
@@ -2238,6 +2273,48 @@
         "human review, quality, PII, deduplication and holdout contamination"
       ],
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "Stortinget:open-data-api",
+      "url": "https://data.stortinget.no/",
+      "retrieval_url": "https://data.stortinget.no/dokumentasjon-og-hjelp/",
+      "revision": "Mutable official API; the service displays only the latest data and documentation. Freeze exact endpoint/query, schema, retrieval timestamp, response snapshot, document IDs and SHA-256 for every batch.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired. API rate limit: 100 requests per minute.",
+      "reported_license": "Stortinget's current terms refer to the Norwegian Licence for Open Government Data (NLOD), linked to NLOD 2.0; record as LicenseRef-NLOD-2.0 rather than assuming an SPDX identifier. NLOD 2.0 permits copying, modification, combination, redistribution and commercial use, subject to attribution, non-misrepresentation and exclusions for personal data without a lawful basis, confidentiality, third-party rights and other IP rights. Stortinget requires source attribution and limits API use to 100 requests per minute.",
+      "spdx_license_identifier": "LicenseRef-NLOD-2.0",
+      "status": "candidate_discovery_only_pending_payload_scope_privacy_and_global_g0",
+      "domains": [
+        "Norwegian parliamentary procedure",
+        "public policy",
+        "law",
+        "public administration"
+      ],
+      "language": [
+        "no"
+      ],
+      "rights_caveat": "The service exposes questions, cases, meetings, votes, hearings, publications and person-related data. Initial scope must exclude person/biography/photo endpoints, hearing submissions, confidential material and any record/field containing personal data without a documented lawful basis or third-party material that Stortinget cannot license. Only official text and metadata demonstrably within the NLOD-covered service may proceed. The API is mutable and the current revision is not a reproducible snapshot.",
+      "required_checks": [
+        "Confirm at retrieval time that the Stortinget terms still link to NLOD 2.0 and preserve the exact licence text/version.",
+        "Restrict initial scope to official parliamentary questions, cases, agendas, votes and publications with text demonstrably covered by the service terms.",
+        "Exclude person, biography, photo and speaker-list endpoints, hearing submissions and any confidential or personal data lacking a documented lawful basis.",
+        "Exclude third-party attachments, reports, presentations and embedded works whose rights Stortinget cannot license.",
+        "Respect the 100-request-per-minute limit and use deterministic pagination, backoff and stable query ordering.",
+        "Freeze API endpoint, query, schema, retrieval timestamp, record IDs, source URLs and per-record SHA-256.",
+        "Preserve Stortinget attribution, record type, session, meeting date, update timestamp and original language.",
+        "Validate XML/JSON schema, encoding, completeness, Norwegian language, quality, privacy, secrets and file safety.",
+        "Audit samples stratified by endpoint, parliamentary session, record type and format.",
+        "Deduplicate against all corpus splits and all validation/test/benchmark/holdout material; require global G-0.",
+        "Keep discovery-only, training_authorized=false and admitted bytes at zero until all gates pass."
+      ],
+      "evidence_urls": [
+        "https://data.stortinget.no/",
+        "https://data.stortinget.no/om-datatjenesten/bruksvilkar/",
+        "https://data.stortinget.no/dokumentasjon-og-hjelp/",
+        "https://data.norge.no/nlod/no/2.0"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false
     },
     {
       "id": "Tatoeba:multilingual-sentence-text",
