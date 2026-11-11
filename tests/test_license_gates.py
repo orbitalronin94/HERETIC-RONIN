@@ -141,7 +141,7 @@ class LicenseGateTests(unittest.TestCase):
         self.assertIsNone(source["reported_rows"])
         self.assertIn("Not measured", source["reported_size"])
         self.assertIn("LicenseRef-Etalab-Open-License-v1.0", source["reported_license"])
-        self.assertIn("personal-data", source["rights_caveat"])
+        self.assertIn("personal data", source["rights_caveat"])
         self.assertEqual(source["publisher_checksums"]["md5"], "a91c9d51574a8e89eb183a7bef74bf57")
         self.assertIn("SHA-256", source["revision"])
 
@@ -167,7 +167,7 @@ class LicenseGateTests(unittest.TestCase):
         self.assertIs(source["count_toward_admitted_bytes"], False)
         self.assertIn("LicenseRef-Etalab-Open-License-2.0", source["reported_license"])
         self.assertIn("PISTE", source["reported_size"])
-        self.assertIn("personal data", source["rights_caveat"])
+        self.assertIn("personal-data", source["rights_caveat"])
         self.assertGreaterEqual(len(source["required_checks"]), 8)
 
     def test_bundestag_payload_is_blocked_without_explicit_license(self):
