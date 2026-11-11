@@ -54,16 +54,17 @@ class AcquisitionSafetyTests(unittest.TestCase):
             self.assertEqual(target.read_text(encoding="utf-8"), '{"text":"ok"}\n')
 
 
-    def test_source_groups_are_disjoint_and_cover_every_source(self):
-        sources = [{"id": f"source-{i}"} for i in range(11)]
-        groups = [
-            select_source_group(sources, group_index, 4)
-            for group_index in range(4)
-        ]
-        flattened = [index for group in groups for index, _ in group]
-        self.assertEqual(sorted(flattened), list(range(len(sources))))
-        self.assertEqual(len(flattened), len(set(flattened)))
-        self.assertEqual([len(group) for group in groups], [3, 3, 3, 2])
+    def test_source_groups_are_disjoint_and_cover_every_source_for_four_and_eight_groups(self):
+        sources = [{"id": f"source-{i}"} for i in range(41)]
+        for group_count in (4, 8):
+            with self.subTest(group_count=group_count):
+                groups = [
+                    select_source_group(sources, group_index, group_count)
+                    for group_index in range(group_count)
+                ]
+                flattened = [index for group in groups for index, _ in group]
+                self.assertEqual(sorted(flattened), list(range(len(sources))))
+                self.assertEqual(len(flattened), len(set(flattened)))
 
     def test_source_group_rejects_invalid_bounds(self):
         sources = [{"id": "one"}]

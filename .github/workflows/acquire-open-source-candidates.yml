@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       source_group:
-        description: "Deterministic acquisition tranche (0–3)"
+        description: "Deterministic acquisition tranche (0–7)"
         required: true
         default: "0"
         type: choice
@@ -20,6 +20,10 @@ on:
           - "1"
           - "2"
           - "3"
+          - "4"
+          - "5"
+          - "6"
+          - "7"
   pull_request:
     paths:
       - ".github/workflows/acquire-open-source-candidates.yml"
@@ -57,7 +61,7 @@ jobs:
     timeout-minutes: 360
     env:
       PYTHONUNBUFFERED: "1"
-      HERETIC_SOURCE_GROUP_COUNT: "4"
+      HERETIC_SOURCE_GROUP_COUNT: "8"
       HERETIC_SOURCE_GROUP_INPUT: ${{ inputs.source_group || '0' }}
     steps:
       - name: Checkout HERETIC-RONIN
@@ -75,13 +79,13 @@ jobs:
           else
             group="${HERETIC_SOURCE_GROUP_INPUT:-0}"
           fi
-          if ! [[ "$group" =~ ^[0-3]$ ]]; then
+          if ! [[ "$group" =~ ^[0-7]$ ]]; then
             echo "Invalid source group: $group" >&2
             exit 2
           fi
           echo "HERETIC_SOURCE_GROUP=$group" >> "$GITHUB_ENV"
           echo "group=$group" >> "$GITHUB_OUTPUT"
-          echo "Acquisition source group: $group/4"
+          echo "Acquisition source group: $group/8"
 
       - name: Set up Python
         uses: actions/setup-python@v6

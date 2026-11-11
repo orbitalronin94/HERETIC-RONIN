@@ -146,5 +146,48 @@ class LicenseGateTests(unittest.TestCase):
         self.assertIn("SHA-256", source["revision"])
 
 
+    def test_boe_consolidated_legislation_remains_discovery_only(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "Agencia Estatal BOE:legislacion-consolidada")
+        self.assertTrue(source["status"].startswith("candidate_discovery_only"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIsNone(source["reported_rows"])
+        self.assertIn("LicenseRef-BOE-Reuse-2024", source["reported_license"])
+        self.assertIn("Biblioteca Jurídica Digital", source["rights_caveat"])
+        self.assertGreaterEqual(len(source["required_checks"]), 8)
+
+    def test_legifrance_api_remains_discovery_only(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "DILA/Légifrance:legal-texts-api-open-2.0")
+        self.assertTrue(source["status"].startswith("candidate_discovery_only"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIn("LicenseRef-Etalab-Open-License-2.0", source["reported_license"])
+        self.assertIn("PISTE", source["reported_size"])
+        self.assertIn("personal-data", source["rights_caveat"])
+        self.assertGreaterEqual(len(source["required_checks"]), 8)
+
+    def test_bundestag_payload_is_blocked_without_explicit_license(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "Deutscher Bundestag:plenarprotokolle-und-drucksachen")
+        self.assertTrue(source["status"].startswith("blocked_discovery"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIn("No explicit licence", source["reported_license"])
+
+    def test_govinfo_is_blocked_pending_territorial_and_third_party_review(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "US GovInfo:USCODE-CFR-STATUTE")
+        self.assertTrue(source["status"].startswith("blocked_discovery"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIn("17 U.S.C. §105", source["reported_license"])
+        self.assertIn("Spain", source["rights_caveat"])
+
 if __name__ == "__main__":
     unittest.main()
