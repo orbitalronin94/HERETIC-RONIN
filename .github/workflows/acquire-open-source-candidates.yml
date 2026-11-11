@@ -74,8 +74,9 @@ jobs:
           if [[ "${GITHUB_EVENT_NAME}" == "schedule" || "${GITHUB_EVENT_NAME}" == "push" ]]; then
             day_of_year="$(date -u +%j)"
             hour_utc="$(date -u +%H)"
+            group_count="${HERETIC_SOURCE_GROUP_COUNT:-8}"
             tranche_slot="$((10#$hour_utc / 6))"
-            group="$(((10#$day_of_year + tranche_slot) % 4))"
+            group="$(((10#$day_of_year + tranche_slot) % group_count))"
           else
             group="${HERETIC_SOURCE_GROUP_INPUT:-0}"
           fi
@@ -85,7 +86,7 @@ jobs:
           fi
           echo "HERETIC_SOURCE_GROUP=$group" >> "$GITHUB_ENV"
           echo "group=$group" >> "$GITHUB_OUTPUT"
-          echo "Acquisition source group: $group/8"
+          echo "Acquisition source group: $group/$group_count"
 
       - name: Set up Python
         uses: actions/setup-python@v6
