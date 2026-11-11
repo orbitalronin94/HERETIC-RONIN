@@ -393,3 +393,32 @@ Fuentes: [Bundestag Open Data](https://www.bundestag.de/services/opendata) · [G
 El run 42925046806 (grupo 1/4) produjo 352.000 filas / 1.463.172.254 bytes JSONL y un artefacto de manifiesto de 3.923 bytes. Reprodujo exactamente las revisiones, conteos, bytes y hashes de run 42841334250; es una repetición, no crecimiento acumulado. Ambos dejaron 0 bytes admitidos y 0 bytes de payload retenido.
 
 **Balance global sin cambios:** 260.971 documentos y 703.593.871 bytes admitidos; 0 nuevas admisiones. Progreso sobre 500 GB: 0,141 %.
+
+
+## Descubrimientos nórdicos — 2026-11-11
+
+### Noruega — Stortinget Open Data API
+
+La fuente primaria del Stortinget ofrece datos del procedimiento parlamentario —preguntas, asuntos, reuniones, votaciones, audiencias y publicaciones— en XML/JSON. Sus condiciones remiten a la versión vigente de la Norsk lisens for offentlige data; el enlace oficial conduce a NLOD 2.0.
+
+- NLOD 2.0 permite copiar, modificar, combinar, redistribuir y usar comercialmente, con atribución y sin presentar los datos de forma engañosa.
+- La licencia excluye datos personales sin base jurídica, información confidencial, derechos de terceros que el licenciante no pueda conceder y otras IP como marcas.
+- Se registra como LicenseRef-NLOD-2.0; no se presupone un identificador SPDX.
+- La API limita las llamadas a 100 por minuto y solo muestra la versión vigente del servicio/documentación.
+- Estado: candidato de descubrimiento; 0 descargas, 0 filas medidas y 0 bytes admitidos. Primera selección limitada a preguntas, asuntos, agendas, votaciones y publicaciones oficiales; excluidos endpoints de personas/biografías/fotos, listas de oradores, aportaciones a audiencias y contenido de terceros.
+
+Fuentes oficiales: [Stortinget Open Data](https://data.stortinget.no/) · [condiciones de uso](https://data.stortinget.no/om-datatjenesten/bruksvilkar/) · [API y XML](https://data.stortinget.no/dokumentasjon-og-hjelp/) · [NLOD 2.0](https://data.norge.no/nlod/no/2.0).
+
+### Dinamarca — Folketinget Open Data (bloqueado para actas)
+
+El catálogo OData v3 ofrece XML/JSON y contiene actas de debates en XML. Las condiciones generales conceden uso comercial y adaptación de los datos del catálogo; sin embargo, las actas tienen cláusulas especiales:
+
+- Los borradores pueden revisarse varias veces sin que cada cambio quede marcado; debe conservarse y comunicarse si el acta es provisional o definitiva.
+- Para las actas se concede expresamente un derecho de reproducción, se reserva al titular originario el derecho exclusivo de publicar colecciones de sus propias intervenciones y se limita la modificación a lo necesario para el uso permitido.
+- Los PDFs, imágenes y otros documentos enlazados no forman parte en general de los datos abiertos; las obras de terceros incluidas en anexos conservan sus propios derechos.
+- Estas cláusulas necesitan interpretación jurídica antes de extraer, normalizar, tokenizar, agregar o entrenar con los textos.
+
+Estado: bloqueado, sin descarga ni staging. No se interpreta la licencia general como autorización automática para transformar las actas en un corpus de entrenamiento.
+
+Fuentes oficiales: [Open Data y condiciones](https://www.ft.dk/dokumenter/aabne_data) · [portal OData](https://oda.ft.dk).
+
