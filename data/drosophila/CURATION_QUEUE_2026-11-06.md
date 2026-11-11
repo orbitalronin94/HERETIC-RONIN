@@ -323,3 +323,41 @@ Antes de adquirir:
 7. Deduplicar contra toda la biblioteca y holdouts y superar G-0.
 
 No se ha descargado nada: filas desconocidas, 0 bytes staged y 0 bytes admitidos. `training_authorized=false`.
+
+
+## Nuevos descubrimientos jurídicos y adquisición — 2026-11-11
+
+### BOE — legislación consolidada (candidato)
+
+- Fuente primaria: [API oficial](https://www.boe.es/datosabiertos/api/api.php); endpoint objetivo: /datosabiertos/api/legislacion-consolidada.
+- Condiciones de reutilización AEBOE, resolución 27-06-2024: permiten uso comercial y adaptación con atribución. Registro local LicenseRef-BOE-Reuse-2024; no inventar SPDX.
+- Excluir Biblioteca Jurídica Digital (CC BY-NC-ND 4.0 salvo excepción expresa), BORME, marcas, elementos compartidos con terceros y documentos con condiciones especiales.
+- Texto consolidado siempre informativo; conservar atribución BOE y fecha de actualización.
+- Estado: discovery-only, 0 descargas y 0 bytes.
+
+### Légifrance / DILA — textos jurídicos (candidato)
+
+- Fuente primaria: [Open data y API](https://www.legifrance.gouv.fr/contenu/pied-de-page/open-data-et-api), estable desde 04-04-2023.
+- Licence Ouverte / Etalab 2.0, registrada como LicenseRef-Etalab-Open-License-2.0; CGU API permiten uso comercial, requieren PISTE/OAuth y aplican cuotas.
+- Primera fase solo textos legislativos, códigos y reglamentos bajo responsabilidad de DILA. Jurisprudencia excluida por privacidad/terceros.
+- Estado: discovery-only; sin credenciales PISTE ni snapshot, 0 descargas y 0 bytes.
+
+### Bloqueos explícitos
+
+- **Bundestag:** XML/JSON disponibles, pero sin licencia explícita del payload en la página oficial consultada. No adquirir.
+- **GovInfo:** 17 U.S.C. §105 solo cubre obras federales estadounidenses que cumplan la definición legal; GovInfo advierte de contenido de terceros. No staging hasta revisión territorial España/UE y derechos por documento.
+
+### Última ejecución
+
+[Run 42976034496](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42976034496) — cancelado al límite de 360 minutos. Grupo 0/4:
+
+- FineWeb-Edu: 100.000 filas, 428.092.222 bytes JSONL.
+- Aya: 25.000 filas, 46.109.328 bytes JSONL.
+- VoxPopuli alemán: 20.000 filas, 9.857.291 bytes JSONL.
+- Total efímero: 145.000 filas, 484.058.841 bytes JSONL; 71.526 filas rechazadas por filtros de adquisición.
+- arXiv y LibriSpeech clean.100 descartaron sus shards parciales por no alcanzar el mínimo de filas.
+- Artefacto [13856681975](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42976034496/artifacts/13856681975): manifiesto de 2.190 bytes, SHA-256 ZIP 94863a5c62a333e2bb7fe94389e332ba0d237f7d8211264e23cc739815694587; SHA-256 del JSON b9fd726daa029e64edb8dcf1642c36d71a950506b2e1bba1d6a7ad5a1ef9c8d8.
+- El payload no se retuvo (0 bytes); los hashes de shards no se pudieron verificar contra archivos recuperados.
+- Near-dedup global, holdout, G-0, auditoría humana estratificada y escaneo completo de privacidad/secretos/malware siguen pendientes. 0 bytes admitidos.
+
+Siguiente paso: reducir la carga por ejecución mediante ocho grupos deterministas; obtener snapshots de BOE y, si se autoriza el acceso, Légifrance; y construir una auditoría global que realmente incluya los candidatos antes de considerar cualquier admisión.
