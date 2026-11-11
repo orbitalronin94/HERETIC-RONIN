@@ -277,3 +277,10 @@ Se ha localizado una fuente primaria adicional en alemán: los protocolos esteno
 ### Candidato francés — debates de la Assemblée nationale (2026-11-10)
 
 Se ha localizado el recurso oficial `an-comptes-rendus` de la XVII legislatura, con textos de debates en francés y XML. La ficha y la página oficial del Hackathon lo etiquetan como Licence Ouverte; el PDF enlazado identifica la versión 1.0. Se permite adaptación/uso comercial con atribución, pero los datos personales y derechos de terceros quedan excluidos salvo las bases expresamente previstas. Se registra como candidato, no como admisión: 0 descargas y 0 bytes. Faltan snapshot/hash, revisión de privacidad/terceros, deduplicación y G-0. [Ficha oficial](https://data.assemblee-nationale.fr/travaux-parlementaires/debats) · [licencia](https://data.assemblee-nationale.fr/content/download/28755/file/Licence_Ouverte.pdf).
+
+
+## Curación de fuentes jurídicas — 2026-11-11
+
+Se han incorporado al registro como candidatos de descubrimiento, sin descargas ni bytes admitidos, la API de legislación consolidada del BOE (LicenseRef-BOE-Reuse-2024) y la API Légifrance/DILA (LicenseRef-Etalab-Open-License-2.0). Ambas permiten reutilización comercial bajo condiciones de atribución, pero mantienen exclusiones de terceros y datos personales; Légifrance exige acceso PISTE/OAuth y deja fuera de la primera fase la jurisprudencia. El Bundestag queda bloqueado por falta de licencia explícita del payload. GovInfo queda bloqueado hasta aclarar derechos territoriales fuera de EE. UU. y excluir contenido de terceros.
+
+La última adquisición [run 42976034496](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42976034496) se canceló al límite de seis horas: produjo 145.000 filas y 484.058.841 bytes JSONL en el runner, pero solo publicó el manifiesto. El payload fue efímero y **no se conserva**; 0 bytes admitidos. Se ajusta la partición del workflow de cuatro a ocho grupos para reducir el tamaño de cada ejecución y evitar repetir el timeout. El total admitido permanece en 703.593.871 bytes (0,141 % de 500 GB).
