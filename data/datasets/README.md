@@ -338,3 +338,58 @@ Se registra el recurso oficial **`an-comptes-rendus`**, con los textos de debate
 - Estado: candidato de descubrimiento. Filas y bytes **no medidos; 0 descargados y 0 admitidos**. Antes de staging hay que congelar el ZIP, verificar MD5/SHA-256, resolver datos personales y terceros, revisar muestras y ejecutar deduplicación/holdout/G-0.
 
 Fuentes oficiales: [ficha Débats](https://data.assemblee-nationale.fr/travaux-parlementaires/debats) · [recursos Hackathon 2026](https://hackathon2026.assemblee-nationale.fr/) · [texto de Licence Ouverte v1.0](https://data.assemblee-nationale.fr/content/download/28755/file/Licence_Ouverte.pdf).
+
+
+## Descubrimientos jurídicos y administrativos multilingües — 2026-11-11
+
+### España — API de legislación consolidada del BOE
+
+La API oficial ofrece legislación consolidada, sumarios BOE/BORME y tablas auxiliares. Se registra únicamente el endpoint de **legislación consolidada**, no los sumarios BORME ni la Biblioteca Jurídica Digital.
+
+- Las condiciones de reutilización aprobadas por resolución de 27-06-2024 permiten uso comercial/no comercial, reproducción, distribución, adaptación y obras derivadas con atribución.
+- La licencia es un conjunto de condiciones propio, no una entrada SPDX; se registra como LicenseRef-BOE-Reuse-2024.
+- La página legal excluye obras de la Biblioteca Jurídica Digital —CC BY-NC-ND 4.0 salvo indicación distinta— y elementos de terceros; algunos documentos pueden tener condiciones especiales.
+- Cada texto consolidado debe presentarse como informativo, no como publicación oficial. Deben conservarse la atribución BOE y la fecha de actualización.
+- Estado: candidato de descubrimiento; 0 descargas, 0 filas medidas y 0 bytes admitidos. La API es mutable y requiere snapshot, XSD, IDs y SHA-256 antes de staging.
+
+Fuentes oficiales: [API de datos abiertos](https://www.boe.es/datosabiertos/api/api.php) · [condiciones de reutilización](https://www.boe.es/informacion/aviso_legal/index.php) · [FAQ de legislación consolidada](https://www.boe.es/datosabiertos/faq/consolidada.php).
+
+### Francia — API Légifrance / DILA
+
+La API estable, abierta el 04-04-2023, somete los datos a Licence Ouverte / Etalab 2.0 y a las CGU de PISTE y de la propia API. Las CGU API indican que se permite uso comercial, pero requieren registro, OAuth y respeto a los límites de uso.
+
+- Se registra como LicenseRef-Etalab-Open-License-2.0, no como SPDX estándar.
+- La primera selección futura se limitaría a textos legislativos, códigos y reglamentos bajo responsabilidad de DILA.
+- Jurisprudencia y decisiones judiciales quedan excluidas inicialmente por riesgos de datos personales, terceros y pseudonimización.
+- La API advierte que sus datos no son jurídicamente oponibles y que puede haber errores o falta de actualización.
+- Estado: candidato de descubrimiento; 0 descargas, 0 filas medidas y 0 bytes admitidos. Falta acceso PISTE autorizado, snapshot inmutable y G-0.
+
+Fuentes oficiales: [Open data y API](https://www.legifrance.gouv.fr/contenu/pied-de-page/open-data-et-api) · [CGU de la API (15-12-2022)](https://www.legifrance.gouv.fr/contenu/Media/files/pied-de-page/cgu-legifrance-api-vf-15-12-2022_0.pdf) · [Licence Ouverte 2.0](https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf).
+
+### Fuentes investigadas y bloqueadas
+
+- **Deutscher Bundestag:** ofrece Plenarprotokolle y Drucksachen en XML/JSON para procesamiento, pero la página oficial consultada no acredita una licencia explícita del payload. Bloqueado; no se infiere permiso comercial de la etiqueta “Open Data”.
+- **GovInfo (EE. UU.):** 17 U.S.C. §105 cubre obras del Gobierno federal preparadas por empleados en sus funciones, pero GovInfo advierte que publicaciones oficiales pueden contener material de terceros protegido. Además, esa regla estadounidense no resuelve por sí sola el alcance territorial en España/UE. Bloqueado hasta revisión territorial y clearance por documento.
+
+Fuentes: [Bundestag Open Data](https://www.bundestag.de/services/opendata) · [GovInfo copyright policy](https://www.govinfo.gov/about/policies) · [17 U.S.C. §105](https://www.copyright.gov/title17/92chap1.html).
+
+## Adquisición parcial más reciente — run 42976034496 (2026-11-11)
+
+[Run de GitHub Actions](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42976034496) — grupo 0/4; terminó cancelado al alcanzar el límite de 360 minutos.
+
+| Fuente | Filas candidatas en runner | Bytes JSONL | SHA-256 del shard |
+|---|---:|---:|---|
+| FineWeb-Edu, revisión 87f09149ef4734204d70ed1d046ddc9ca3f2b8f9 | 100.000 | 428.092.222 | 021a35da979813fa7cf2b270a7bbc77c0673420e9ed21bc948e4a269e7bc0d77 |
+| Aya, revisión f9ea04583f02a8f86404ff6c58bf75fe637df8a2 | 25.000 | 46.109.328 | 9a8633c336389bd555e71d26646a908f2834416025d3e1b0bd7e20d00216da43 |
+| VoxPopuli alemán, revisión 42f01879c780b4a2e90ec0b4f616c2ece526e4f1 | 20.000 | 9.857.291 | 269d88fd53e7841f9f7f1cdd9136bd496b28c5ed70032f071cf316a9f21e2c9c |
+| **Total** | **145.000** | **484.058.841** | — |
+
+- 71.526 filas fueron rechazadas por los filtros de adquisición aplicados; dos slices fallaron y descartaron sus archivos parciales: arXiv obtuvo 6.650 filas utilizables frente a un mínimo de 50.000; LibriSpeech train.clean.100 obtuvo 21.038 frente a 25.000.
+- El manifiesto informa 145.000 filas y 484.058.841 bytes JSONL, pero son resultados escritos en el runner efímero. El repositorio es público y el workflow subió únicamente el manifiesto: **payload retenido = 0 bytes**.
+- Artefacto manifiesto: [13856681975](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42976034496/artifacts/13856681975), 2.190 bytes; SHA-256 del ZIP 94863a5c62a333e2bb7fe94389e332ba0d237f7d8211264e23cc739815694587; SHA-256 del JSON interno b9fd726daa029e64edb8dcf1642c36d71a950506b2e1bba1d6a7ad5a1ef9c8d8.
+- Los hashes de shards están declarados en el manifiesto, pero no pudieron recalcularse contra los payloads porque no se conservaron.
+- Near-dedup global, contaminación de holdout, G-0, auditoría humana estratificada, PII/secretos y malware: pendientes o no completados. No es admisión.
+
+El run 42925046806 (grupo 1/4) produjo 352.000 filas / 1.463.172.254 bytes JSONL y un artefacto de manifiesto de 3.923 bytes. Reprodujo exactamente las revisiones, conteos, bytes y hashes de run 42841334250; es una repetición, no crecimiento acumulado. Ambos dejaron 0 bytes admitidos y 0 bytes de payload retenido.
+
+**Balance global sin cambios:** 260.971 documentos y 703.593.871 bytes admitidos; 0 nuevas admisiones. Progreso sobre 500 GB: 0,141 %.
