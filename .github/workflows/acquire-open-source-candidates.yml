@@ -71,10 +71,10 @@ jobs:
         id: source-group
         shell: bash
         run: |
+          group_count="${HERETIC_SOURCE_GROUP_COUNT:-8}"
           if [[ "${GITHUB_EVENT_NAME}" == "schedule" || "${GITHUB_EVENT_NAME}" == "push" ]]; then
             day_of_year="$(date -u +%j)"
             hour_utc="$(date -u +%H)"
-            group_count="${HERETIC_SOURCE_GROUP_COUNT:-8}"
             tranche_slot="$((10#$hour_utc / 6))"
             group="$(((10#$day_of_year + tranche_slot) % group_count))"
           else
