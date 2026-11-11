@@ -76,5 +76,13 @@ class AcquisitionSafetyTests(unittest.TestCase):
             select_source_group(sources, 4, 4)
 
 
+    def test_workflow_schedule_uses_configured_group_count(self):
+        root = Path(__file__).resolve().parents[1]
+        workflow = (root / ".github/workflows/acquire-open-source-candidates.yml").read_text(encoding="utf-8")
+        self.assertIn('HERETIC_SOURCE_GROUP_COUNT: "8"', workflow)
+        self.assertIn('group_count="${HERETIC_SOURCE_GROUP_COUNT:-8}"', workflow)
+        self.assertIn('% group_count', workflow)
+        self.assertNotIn('% 4))', workflow)
+
 if __name__ == "__main__":
     unittest.main()
