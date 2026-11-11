@@ -1,3 +1,5 @@
+> **Reconstrucción experimental iniciada — 2026-11-10:** se está preparando una nueva línea de HERETIC-RONIN desde cero, alineada con la arquitectura de 500M de MINIRONIN/MAXIRONIN. El checkpoint histórico descrito más abajo es únicamente un artefacto heredado para trazabilidad: **no se cargará ni continuará** en la nueva línea. La nueva arquitectura declara 500.141.056 parámetros, con todas las filas de embeddings entrenables, y un byte-level BPE de 32.768 tokens entrenado desde cero sobre particiones train autorizadas. La reconstrucción está en la [PR #29](https://github.com/orbitalronin94/HERETIC-RONIN/pull/29); no se considera terminada ni se promociona ningún modelo hasta validar workflows y holdout.
+
 # HERETIC-RONIN
 
 ### MODELO LARGO. MÉTODO CORTO.
