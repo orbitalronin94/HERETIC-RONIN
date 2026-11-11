@@ -141,7 +141,7 @@ class LicenseGateTests(unittest.TestCase):
         self.assertIsNone(source["reported_rows"])
         self.assertIn("Not measured", source["reported_size"])
         self.assertIn("LicenseRef-Etalab-Open-License-v1.0", source["reported_license"])
-        self.assertIn("personal data", source["rights_caveat"])
+        self.assertIn("personal-data", source["rights_caveat"])
         self.assertEqual(source["publisher_checksums"]["md5"], "a91c9d51574a8e89eb183a7bef74bf57")
         self.assertIn("SHA-256", source["revision"])
 
