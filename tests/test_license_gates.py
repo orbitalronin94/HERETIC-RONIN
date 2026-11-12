@@ -281,7 +281,7 @@ class LicenseGateTests(unittest.TestCase):
         self.assertEqual(batch["admitted_rows_added"], 0)
         self.assertEqual(batch["admitted_bytes_added"], 0)
         self.assertIs(batch["training_authorized"], False)
-        self.assertIn("Failed to create", batch["artifact_failure"])
+        self.assertIn("failed to create", batch["artifact_failure"])
 
 if __name__ == "__main__":
     unittest.main()
