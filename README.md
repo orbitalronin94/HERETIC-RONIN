@@ -291,3 +291,15 @@ La última adquisición [run 42976034496](https://github.com/orbitalronin94/HERE
 Se registra Stortinget como candidato noruego bajo LicenseRef-NLOD-2.0: la licencia oficial permite uso comercial y modificaciones, pero excluye datos personales sin base jurídica, confidencialidad y derechos de terceros. No hay payload descargado; se excluyen desde el inicio endpoints de personas, biografías, fotos y aportaciones de audiencias. [Condiciones](https://data.stortinget.no/om-datatjenesten/bruksvilkar/) · [NLOD 2.0](https://data.norge.no/nlod/no/2.0).
 
 Folketinget queda bloqueado para actas: aunque sus términos generales permiten uso comercial y adaptación, la cláusula específica de las actas reserva derechos de colección a los oradores y limita las modificaciones; además, los borradores cambian sin marcar cada revisión. [Condiciones oficiales](https://www.ft.dk/dokumenter/aabne_data).
+
+
+---
+
+## Curación de biblioteca — estado verificado a 12/11/2026
+
+- Biblioteca admitida contabilizada: **703.593.871 bytes** (671,0 MiB), según la última auditoría global [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
+- Objetivo: 500.000.000.000 bytes decimales; progreso **0,141 %**.
+- Última adquisición: [run 43176267906](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43176267906), 170.000 filas / 462.861.425 bytes JSONL generados en un runner efímero. Solo se retuvo el manifiesto; 0 bytes staged durable y **0 bytes admitidos nuevos**.
+- ILO y Australia se han añadido como fuentes discovery-only; Canada Justice Laws queda bloqueada por una discrepancia no resuelta entre los términos del catálogo y la autorización de reproducción/adaptación del payload.
+
+El detalle de hashes, estados por fuente, límites de licencia, artefactos y controles pendientes está en [data/datasets/README.md](data/datasets/README.md) y [data/sources/registry.json](data/sources/registry.json). Los tamaños efímeros o anunciados nunca se suman a la biblioteca admitida.
