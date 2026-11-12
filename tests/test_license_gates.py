@@ -211,5 +211,59 @@ class LicenseGateTests(unittest.TestCase):
         self.assertIn("exclusive right", source["reported_license"])
         self.assertIn("collections of their own contributions", source["rights_caveat"])
 
+
+    def test_ilo_research_repository_remains_discovery_only(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "International Labour Organization:research-repository-cc-by-2023-05-03+")
+        self.assertTrue(source["status"].startswith("candidate_discovery_only"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIsNone(source["reported_rows"])
+        self.assertIn("2023-05-03", source["reported_license"])
+        self.assertIn("copyright page", " ".join(source["required_checks"]))
+        self.assertIn("third-party", source["rights_caveat"])
+        self.assertIn("microdata", source["rights_caveat"])
+        self.assertGreaterEqual(len(source["required_checks"]), 8)
+
+    def test_australian_federal_register_remains_discovery_only(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "Australia Federal Register of Legislation:commonwealth-laws-cc-by-4.0-default")
+        self.assertTrue(source["status"].startswith("candidate_discovery_only"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIsNone(source["reported_rows"])
+        self.assertIn("CC BY 4.0", source["reported_license"])
+        self.assertIn("third-party", source["reported_license"])
+        self.assertIn("F2014L01500", source["reported_license"])
+        self.assertGreaterEqual(len(source["required_checks"]), 8)
+
+    def test_canadian_justice_laws_remains_blocked_on_adaptation_scope(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "Canada Justice Laws:consolidated-federal-laws-bulk-xml")
+        self.assertTrue(source["status"].startswith("blocked_discovery"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIn("OGL Canada 2.0", source["reported_license"])
+        self.assertIn("Reproduction of Federal Law Order", source["reported_license"])
+        self.assertIn("adaptation", source["rights_caveat"])
+
+    def test_run_88_candidate_batch_is_not_counted_as_admitted_or_staged(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        batch = registry["last_candidate_batch_details"]
+        self.assertEqual(batch["run_id"], 43176267906)
+        self.assertEqual(batch["candidate_rows"], 170000)
+        self.assertEqual(batch["candidate_jsonl_bytes"], 462861425)
+        self.assertEqual(batch["staged_rows"], 0)
+        self.assertEqual(batch["retained_payload_bytes"], 0)
+        self.assertEqual(batch["admitted_rows_added"], 0)
+        self.assertEqual(batch["admitted_bytes_added"], 0)
+        self.assertIs(batch["training_authorized"], False)
+        self.assertEqual(batch["artifact_sha256"], "87b93844e6b74ee1eb23468d86055e588e0c142510cf26ee905d3342fccf3626")
+        self.assertEqual(batch["manifest_sha256"], "3f1fa4f320b866dcb85ef7910b7d78646f7bcf97ae36daf4108836c479ea1a83")
+
 if __name__ == "__main__":
     unittest.main()
