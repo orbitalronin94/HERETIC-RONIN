@@ -380,3 +380,28 @@ Siguiente paso: reducir la carga por ejecución mediante ocho grupos determinist
 - Las actas provisionales pueden revisarse sin marcar cada cambio; hay que conservar y mostrar estado provisional/final. PDFs, imágenes y anexos de terceros no quedan automáticamente cubiertos.
 - Estado: bloqueado hasta que se determine si extracción, normalización/tokenización, agregación y entrenamiento interno caben en esas condiciones. 0 descargas y 0 bytes.
 
+
+
+## Descubrimiento multilingüe y jurídico — 2026-11-12
+
+### ILO Research Repository — candidato, no descargado
+
+- Fuente: [ILO Research Repository](https://researchrepository.ilo.org/esploro/); política primaria: [Rights and permissions](https://www.ilo.org/rights-and-permissions).
+- Las publicaciones producidas desde **2023-05-03** son CC BY 4.0 por defecto, salvo que la página de copyright de la obra indique otra licencia. Las obras anteriores no heredan automáticamente esa licencia.
+- Ámbitos potenciales: economía laboral, empleo, protección social, migración, formación, seguridad y salud laboral, relaciones industriales y estadísticas. El repositorio contiene obras en inglés, francés y español; el idioma debe preservarse por documento.
+- Excluir co-publicaciones con otros términos, componentes de terceros, microdatos restringidos, fotografías CC BY-NC-ND, audio/vídeo CC BY-ND y emblemas.
+- No se ha identificado todavía un contrato público de export/API reproducible. No se ha descargado nada: 0 filas, 0 bytes.
+
+### Australia — Federal Register of Legislation — candidato, no descargado
+
+- Fuente: [Federal Register](https://www.legislation.gov.au/) y [términos oficiales](https://www.legislation.gov.au/terms-of-use).
+- CC BY 4.0 por defecto para el contenido del registro, salvo Commonwealth Coat of Arms y avisos específicos. Permite adaptación y uso comercial con atribución y fecha de descarga.
+- Cada instrumento debe revisarse individualmente: el registro alberga documentos de múltiples agencias/autores y el contenido de terceros exige permiso. Ejemplo de exclusión: F2014L01500 contiene una licencia CC BY-NC 4.0.
+- Fijar instrumento, versión (as-made/compilation), fecha, URL y SHA-256 por documento. No se ha descargado nada: 0 filas, 0 bytes.
+
+### Canadá — Justice Laws bulk XML — bloqueado
+
+- El [catálogo Open Government Portal](https://open.canada.ca/data/en/dataset/2f4bb174-b2e7-4fb2-a7a1-a313507acbc6) etiqueta el paquete bulk XML con Open Government Licence — Canada 2.0.
+- El [Reproduction of Federal Law Order SI/97-5](https://laws-lois.justice.gc.ca/PDF/SI-97-5.pdf) permite reproducir leyes y consolidaciones sin permiso, con diligencia sobre la exactitud y sin presentar la reproducción como versión oficial; no expresa claramente derechos de adaptación.
+- Bloqueado hasta aclarar si OGL Canada cubre el payload XML y si la transformación prevista para entrenamiento está autorizada. Excluir información personal, derechos de terceros y símbolos oficiales.
+- No se ha descargado nada: 0 filas, 0 bytes; `training_authorized=false`.
