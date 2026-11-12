@@ -235,7 +235,7 @@ class LicenseGateTests(unittest.TestCase):
         self.assertIs(source["count_toward_admitted_bytes"], False)
         self.assertIsNone(source["reported_rows"])
         self.assertIn("CC BY 4.0", source["reported_license"])
-        self.assertIn("third-party", source["reported_license"])
+        self.assertIn("Third-party", source["reported_license"])
         self.assertIn("F2014L01500", source["reported_license"])
         self.assertGreaterEqual(len(source["required_checks"]), 8)
 
