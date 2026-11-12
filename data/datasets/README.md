@@ -1,6 +1,6 @@
 # HERETIC-RONIN — biblioteca de datasets
 
-Actualizado: 2026-11-10. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
+Actualizado: 2026-11-12. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
 
 ## Resumen verificable
 
@@ -422,3 +422,53 @@ Estado: bloqueado, sin descarga ni staging. No se interpreta la licencia general
 
 Fuentes oficiales: [Open Data y condiciones](https://www.ft.dk/dokumenter/aabne_data) · [portal OData](https://oda.ft.dk).
 
+
+
+## Adquisición de candidatos — 2026-11-12 (run 88, grupo 5/8)
+
+[Run 43176267906](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43176267906) terminó con éxito en el commit `a75fb8d35d099efa04353918ee7b73ad2a65cc75`. El éxito significa que terminó la adquisición, no que se haya admitido material.
+
+- Filas candidatas escritas por el runner: **170.000**.
+- Bytes JSONL escritos en el runner: **462.861.425**.
+- Filas filtradas/rechazadas por el recolector: **283.379**.
+- Fuentes completadas: 4; fallos no fatales: 1.
+- Bytes remotos anunciados/descargados y bytes comprimidos originales: **no medidos**.
+- Payload durable retenido: **0 bytes**; staging durable: **0 filas / 0 bytes**.
+- Admisión nueva: **0 filas / 0 bytes**.
+
+| Fuente | Revisión inmutable | Config/split | Filas | Bytes JSONL efímeros | SHA-256 reportado por el runner |
+|---|---|---|---:|---:|---|
+| philippesaade/wikidata | `3c43a705de25f60268a1ef343098d3c3464706c7` | default/train | 50.000 | 167.781.647 | `ad779639abb79cc5454040301c245ca688bcc86772bb88283b3022be3b7e1e5d` |
+| openslr/librispeech_asr | `71cacbfb7e2354c4226d01e70d77d5fca3d04ba1` | all/train.clean.360 | 50.000 | 21.708.974 | `5222e62edd4d73053f6ede7a76214a9ef81de8e92fd3f0eb9d3de2d3baf1c47e` |
+| common-pile/data_provenance_initiative_filtered | `8f5afcf585e4618ff12f5b6d49cb5242faf5afbd` | default/train | 50.000 | 87.100.950 | `35199be7ec9e6126b3e484c0c9aaf52ffc6d0598a41727359b0f0ea0a5f236c3` |
+| PleIAs/common_corpus | `307910e4c5d040d6f318e6edf2a2b97849155771` | default/train | 20.000 | 186.269.854 | `d53b2571fe117cb93113e99c2683c7d4fa3db6c47629d4130803636d46e68b99` |
+| coral-nlp/german-commons | `d12379bba6ecdc525958ebe6e182f9cb905a06e2` | political/btdrucksachen | 0 | 0 | — |
+
+Los hashes de shards son los calculados y registrados por el script en el manifiesto; **no se pudieron recalcular contra los shards** porque el runner fue efímero y el repositorio público solo conserva el manifiesto. El hash del artefacto y el del JSON interno sí se verificaron después de descargarlo:
+
+- Artefacto [13923729490](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43176267906/artifacts/13923729490): ZIP de 2.721 bytes; SHA-256 `87b93844e6b74ee1eb23468d86055e588e0c142510cf26ee905d3342fccf3626`.
+- `OPEN-SOURCE-MANIFEST.json`: 8.771 bytes; SHA-256 `3f1fa4f320b866dcb85ef7910b7d78646f7bcf97ae36daf4108836c479ea1a83`.
+
+**Controles pendientes:** la adquisición usó train-only, deduplicación exacta dentro de cada fuente, filtro de longitud y patrones básicos de email/teléfono. No ejecutó near-dedup global, comparación contra todos los holdouts, G-0, revisión humana real, escaneo integral de PII, secretos o malware. Se generaron seis muestras de reservoir por fuente, pero solo se publicaron sus recuentos; no hay muestras disponibles para revisión humana. Los filtros por licencia se aplicaron en origen donde estaban configurados, pero no sustituyen la verificación independiente de cada upstream y componente de terceros.
+
+- Wikidata: etiqueta oficial CC0-1.0 verificada; pendientes privacidad, calidad y deduplicación global.
+- LibriSpeech: etiqueta CC-BY-4.0 verificada; pendiente revisión de procedencia de los textos transcritos y calidad.
+- Data Provenance Initiative: allowlist por registro aplicada; siguen pendientes errores de metadatos, posibles casos de license laundering y derechos upstream.
+- PleIAs Common Corpus: allowlist exacta de nombres aplicada; no hubo etiqueta oficial de licencia del Hub y falta revisar cada obra/origen y sus componentes.
+- German Commons `btdrucksachen`: cero filas utilizables; shard parcial descartado.
+
+Este lote queda **held / ephemeral / not retained**, no staged durable y no training-eligible. No se suman sus 462.861.425 bytes al total admitido.
+
+## Nuevos descubrimientos jurídicos — 2026-11-12
+
+### ILO Research Repository — candidato discovery-only
+
+La política oficial de la OIT establece CC BY 4.0 por defecto para publicaciones producidas desde el 3 de mayo de 2023, salvo indicación distinta; la página de copyright de cada obra controla. Excluye componentes de terceros. Los trabajos anteriores no quedan cubiertos automáticamente; las fotografías son mayoritariamente CC BY-NC-ND y el audio/vídeo suele ser CC BY-ND. El portal de investigación declara 18.392 activos, pero esa cifra es dinámica y no equivale a documentos elegibles. No se ha identificado aún un contrato de export/API reproducible. [Derechos OIT](https://www.ilo.org/rights-and-permissions) · [Research Repository](https://researchrepository.ilo.org/esploro/).
+
+### Australia — Federal Register of Legislation — candidato discovery-only
+
+La página oficial declara CC BY 4.0 para el contenido del registro salvo el Commonwealth Coat of Arms y los elementos expresamente exceptuados; permite adaptación y uso comercial con atribución. Exige indicar la fecha completa de descarga y si se modificó el contenido. Los derechos de terceros quedan fuera. Hay excepciones por instrumento: F2014L01500 declara CC BY-NC 4.0 y debe excluirse. [Términos oficiales](https://www.legislation.gov.au/terms-of-use) · [OPC — Federal Register](https://www.opc.gov.au/FRL).
+
+### Canadá — Justice Laws bulk XML — bloqueado
+
+El catálogo de Open Government Portal etiqueta el paquete bulk XML con OGL Canada 2.0. Sin embargo, el Reproduction of Federal Law Order SI/97-5 permite expresamente reproducir legislación federal sin permiso, pero no dice expresamente que permita adaptarla. La relación entre la licencia del catálogo y el payload, y el alcance para transformaciones de entrenamiento, no está resuelta. No descargar hasta aclararlo. [Dataset XML](https://open.canada.ca/data/en/dataset/2f4bb174-b2e7-4fb2-a7a1-a313507acbc6) · [OGL Canada](https://open.canada.ca/en/open-government-licence-canada) · [SI/97-5](https://laws-lois.justice.gc.ca/PDF/SI-97-5.pdf).
