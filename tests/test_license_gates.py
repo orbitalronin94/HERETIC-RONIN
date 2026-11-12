@@ -265,5 +265,23 @@ class LicenseGateTests(unittest.TestCase):
         self.assertEqual(batch["artifact_sha256"], "87b93844e6b74ee1eb23468d86055e588e0c142510cf26ee905d3342fccf3626")
         self.assertEqual(batch["manifest_sha256"], "3f1fa4f320b866dcb85ef7910b7d78646f7bcf97ae36daf4108836c479ea1a83")
 
+
+    def test_run_87_artifact_publication_failure_is_not_staged_or_admitted(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        batch = registry["previous_candidate_batch_details"]
+        self.assertEqual(batch["run_id"], 43090663647)
+        self.assertEqual(batch["conclusion"], "failure")
+        self.assertEqual(batch["candidate_rows"], 73736)
+        self.assertEqual(batch["candidate_jsonl_bytes"], 807461935)
+        self.assertIs(batch["manifest_available"], False)
+        self.assertIsNone(batch["artifact_id"])
+        self.assertEqual(batch["staged_rows"], 0)
+        self.assertEqual(batch["retained_payload_bytes"], 0)
+        self.assertEqual(batch["admitted_rows_added"], 0)
+        self.assertEqual(batch["admitted_bytes_added"], 0)
+        self.assertIs(batch["training_authorized"], False)
+        self.assertIn("failed to create", batch["artifact_failure"])
+
 if __name__ == "__main__":
     unittest.main()

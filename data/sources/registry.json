@@ -531,7 +531,7 @@
       "url": "https://huggingface.co/datasets/common-pile/pressbooks_filtered",
       "revision": "pin immutable Hub SHA per acquisition",
       "reported_license": "per-document mixed public domain/CC-BY/CC-BY-SA; candidate filter CC-BY-4.0 only",
-      "status": "candidate_acquisition_queued",
+      "status": "candidate_downloaded_ephemeral_not_retained_pending_upstream_rights_and_global_g0",
       "domains": [
         "open textbooks",
         "education",
@@ -545,14 +545,28 @@
         "check embedded third-party material",
         "deduplication, PII, quality and holdout contamination"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "last_acquisition": {
+        "run_id": 43090663647,
+        "revision": "1a1d3b50d77f834370f8eb4c0d174668dd1676bb",
+        "config": "default",
+        "split": "train",
+        "rows_written": 33736,
+        "rows_rejected": 20719,
+        "jsonl_bytes_written_in_runner": 302949633,
+        "sha256_reported_by_runner": "ffcd8219132f154b6405259639b94987eaa05bb54fb0aca7bc562c433d967d74",
+        "durable_staged_rows": 0,
+        "retained_payload_bytes": 0,
+        "admitted_rows": 0,
+        "status": "held_ephemeral_not_retained"
+      }
     },
     {
       "id": "common-pile/pubmed_filtered",
       "url": "https://huggingface.co/datasets/common-pile/pubmed_filtered",
       "revision": "resolve immutable Hub SHA at acquisition",
       "reported_license": "per-document; allow CC-BY-4.0 and CC0-1.0 only",
-      "status": "candidate_acquisition_in_progress",
+      "status": "candidate_downloaded_ephemeral_not_retained_pending_upstream_rights_and_global_g0",
       "domains": [
         "biomedicine",
         "life sciences",
@@ -566,7 +580,21 @@
         "inspect third-party figures/tables and article-specific notices",
         "PII, scientific quality, duplicate and holdout audits"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "last_acquisition": {
+        "run_id": 43090663647,
+        "revision": "c156f0569a92d8f2edc33cebe1f72f7d3e1cae84",
+        "config": "default",
+        "split": "train",
+        "rows_written": 20000,
+        "rows_rejected": 57351,
+        "jsonl_bytes_written_in_runner": 494416484,
+        "sha256_reported_by_runner": "da8c11cfac2c6326e41119d3bd34e2d905b5987ffe84a7065bb8d56839e27e40",
+        "durable_staged_rows": 0,
+        "retained_payload_bytes": 0,
+        "admitted_rows": 0,
+        "status": "held_ephemeral_not_retained"
+      }
     },
     {
       "id": "common-pile/pubmed_filtered:cc-by-4.0-cc0-only",
@@ -715,7 +743,7 @@
       "revision": "pin dataset commit at acquisition; config political / split germanpoliticalspeeches",
       "reported_rows": 6678,
       "reported_license": "CC-BY-4.0 per source table; verify every record license",
-      "status": "candidate_split_added_not_acquired",
+      "status": "candidate_acquisition_failed_last_attempt_no_usable_rows",
       "domains": [
         "German parliamentary speeches",
         "politics"
@@ -730,7 +758,22 @@
         "preserve attribution, speaker/source metadata and dates",
         "audit privacy, quality, global duplicates and holdout"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "last_acquisition": {
+        "run_id": 43090663647,
+        "revision": "d12379bba6ecdc525958ebe6e182f9cb905a06e2",
+        "config": "political",
+        "split": "germanpoliticalspeeches",
+        "rows_written": 0,
+        "rows_rejected": 0,
+        "jsonl_bytes_written_in_runner": 0,
+        "sha256_reported_by_runner": null,
+        "durable_staged_rows": 0,
+        "retained_payload_bytes": 0,
+        "admitted_rows": 0,
+        "status": "source_failed_nonfatal",
+        "reason": "0 usable rows; minimum 500; partial shard discarded."
+      }
     },
     {
       "id": "crumb/openstax-text:default",
@@ -945,7 +988,7 @@
       "reported_rows": 1255237,
       "reported_size": "673 GB dataset total including audio; acquisition is bounded to 10k gold transcript rows per language for es/en/de/fr/it/pl",
       "reported_license": "CC0-1.0 for VoxPopuli data; official facebookresearch/voxpopuli repository and dataset card",
-      "status": "candidate_acquisition_queued_text_only",
+      "status": "candidate_downloaded_ephemeral_not_retained_pending_provenance_and_global_g0",
       "domains": [
         "multilingual parliamentary speech",
         "public policy",
@@ -1108,7 +1151,23 @@
           ],
           "recorded_date": "2026-11-07"
         }
-      ]
+      ],
+      "last_acquisition": {
+        "run_id": 43090663647,
+        "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+        "config": "es",
+        "split": "train",
+        "rows_written": 20000,
+        "rows_rejected": 21565,
+        "jsonl_bytes_written_in_runner": 10095818,
+        "sha256_reported_by_runner": "49e7df3161b06f307136d78502238c449dfb00015b0eccf78abd97392e589dc1",
+        "official_license_tag": "license:cc0-1.0",
+        "official_license_tag_verified": true,
+        "durable_staged_rows": 0,
+        "retained_payload_bytes": 0,
+        "admitted_rows": 0,
+        "status": "held_ephemeral_not_retained"
+      }
     },
     {
       "id": "Folketinget:open-data-proceedings",
@@ -2205,7 +2264,7 @@
       "reported_rows": 302640,
       "reported_size": "52.1 GB total; two selected shards approx 1.18 GB compressed",
       "reported_license": "Public domain claimed for EU/all regions by publisher; author death >70 years criterion",
-      "status": "candidate_acquisition_queued_rights_ocr_review",
+      "status": "candidate_acquisition_failed_last_attempt_insufficient_usable_rows",
       "domains": [
         "literature",
         "history",
@@ -2225,7 +2284,23 @@
         "deduplicate against Spanish literature and all corpus sources",
         "keep candidate-only until rights and global audit pass"
       ],
-      "count_toward_admitted_bytes": false
+      "count_toward_admitted_bytes": false,
+      "last_acquisition": {
+        "run_id": 43090663647,
+        "revision": "001eaf13681f483069361dd82195ce279e12ed63",
+        "config": "default",
+        "split": "train",
+        "rows_written": 0,
+        "usable_rows_before_minimum": 954,
+        "minimum_rows": 1000,
+        "jsonl_bytes_written_in_runner": 0,
+        "sha256_reported_by_runner": null,
+        "durable_staged_rows": 0,
+        "retained_payload_bytes": 0,
+        "admitted_rows": 0,
+        "status": "source_failed_nonfatal",
+        "reason": "954 usable rows; minimum 1,000; partial shard discarded."
+      }
     },
     {
       "id": "PleIAs/Spanish-PD-Newspapers:0041",
@@ -2912,92 +2987,93 @@
     "note": "Successful acquisition workflow, not a successful admission. The 170,000 rows and 462,861,425 JSONL bytes are ephemeral held candidate output; remote/compressed source bytes were not measured; 0 durable staged bytes and 0 admitted bytes."
   },
   "previous_candidate_batch_details": {
-    "run_id": 42976034496,
-    "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42976034496",
-    "head_sha": "53deb3e19fd8875bacab9938620eb00285c3909c",
-    "created_at": "2026-11-11T06:57:35Z",
-    "updated_at": "2026-11-11T12:57:55Z",
-    "conclusion": "cancelled",
-    "workflow_mode": "four deterministic acquisition groups; group 0 of 4; runner timeout at 360 minutes",
-    "source_group": 0,
-    "source_group_count": 4,
-    "candidate_rows": 145000,
-    "candidate_jsonl_bytes": 484058841,
+    "run_id": 43090663647,
+    "run_number": 87,
+    "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43090663647",
+    "head_sha": "a75fb8d35d099efa04353918ee7b73ad2a65cc75",
+    "created_at": "2026-11-11T19:48:48Z",
+    "updated_at": "2026-11-11T21:01:48Z",
+    "conclusion": "failure",
+    "workflow_mode": "eight deterministic acquisition groups; group 6 of 8; artifact publication failed",
+    "source_group": 6,
+    "source_group_count": 8,
+    "candidate_rows": 73736,
+    "candidate_jsonl_bytes": 807461935,
     "candidate_target_bytes": 6800000000,
     "candidate_target_met": false,
     "completed_source_slices": 3,
     "source_failures": 2,
     "failed_sources": [
       {
-        "source": "secemp9/arxiv-complete",
-        "revision": "cee894837962fede5612cccf2a4c7cacf49b4c3a",
-        "config": "paper_text",
+        "source": "PleIAs/Spanish-PD-Books",
+        "revision": "001eaf13681f483069361dd82195ce279e12ed63",
+        "config": "default",
         "split": "train",
-        "reason": "Only 6,650 usable rows; minimum 50,000; partial shard discarded."
+        "reason": "Only 954 usable rows; minimum 1,000; partial shard discarded."
       },
       {
-        "source": "openslr/librispeech_asr",
-        "revision": "71cacbfb7e2354c4226d01e70d77d5fca3d04ba1",
-        "config": "all",
-        "split": "train.clean.100",
-        "reason": "Only 21,038 usable rows; minimum 25,000; partial shard discarded."
+        "source": "coral-nlp/german-commons",
+        "revision": "d12379bba6ecdc525958ebe6e182f9cb905a06e2",
+        "config": "political",
+        "split": "germanpoliticalspeeches",
+        "reason": "0 usable rows; minimum 500; partial shard discarded."
       }
     ],
     "candidate_sources": [
       {
-        "source": "HuggingFaceFW/fineweb-edu",
-        "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
-        "config": "sample-10BT",
-        "split": "train",
-        "rows": 100000,
-        "jsonl_bytes": 428092222,
-        "sha256": "021a35da979813fa7cf2b270a7bbc77c0673420e9ed21bc948e4a269e7bc0d77",
-        "official_license_tag": null,
-        "status": "candidate_not_admitted"
-      },
-      {
-        "source": "CohereLabs/aya_dataset",
-        "revision": "f9ea04583f02a8f86404ff6c58bf75fe637df8a2",
+        "source": "common-pile/pressbooks_filtered",
+        "revision": "1a1d3b50d77f834370f8eb4c0d174668dd1676bb",
         "config": "default",
         "split": "train",
-        "rows": 25000,
-        "jsonl_bytes": 46109328,
-        "sha256": "9a8633c336389bd555e71d26646a908f2834416025d3e1b0bd7e20d00216da43",
-        "official_license_tag": "license:apache-2.0",
+        "rows": 33736,
+        "jsonl_bytes": 302949633,
+        "sha256": "ffcd8219132f154b6405259639b94987eaa05bb54fb0aca7bc562c433d967d74",
         "status": "candidate_not_admitted"
       },
       {
         "source": "facebook/voxpopuli",
         "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
-        "config": "de",
+        "config": "es",
         "split": "train",
         "rows": 20000,
-        "jsonl_bytes": 9857291,
-        "sha256": "269d88fd53e7841f9f7f1cdd9136bd496b28c5ed70032f071cf316a9f21e2c9c",
+        "jsonl_bytes": 10095818,
+        "sha256": "49e7df3161b06f307136d78502238c449dfb00015b0eccf78abd97392e589dc1",
         "official_license_tag": "license:cc0-1.0",
+        "official_license_tag_verified": true,
+        "status": "candidate_not_admitted"
+      },
+      {
+        "source": "common-pile/pubmed_filtered",
+        "revision": "c156f0569a92d8f2edc33cebe1f72f7d3e1cae84",
+        "config": "default",
+        "split": "train",
+        "rows": 20000,
+        "jsonl_bytes": 494416484,
+        "sha256": "da8c11cfac2c6326e41119d3bd34e2d905b5987ffe84a7065bb8d56839e27e40",
         "status": "candidate_not_admitted"
       }
     ],
-    "total_rows": 145000,
-    "rejected_rows": 71526,
-    "held_rows": 145000,
+    "rejected_rows": 99635,
+    "held_rows": 73736,
+    "staged_rows": 0,
     "remote_bytes_announced": null,
     "remote_bytes_downloaded": null,
-    "downloaded_jsonl_bytes_in_runner": 484058841,
+    "compressed_source_bytes": null,
+    "downloaded_jsonl_bytes_in_runner": 807461935,
     "retained_payload_rows": 0,
     "retained_payload_bytes": 0,
     "artifact_payload_bytes": 0,
-    "artifact_manifest_bytes": 2190,
-    "artifact_id": 13856681975,
-    "artifact_name": "heretic-open-source-manifest-42976034496-group-0",
-    "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42976034496/artifacts/13856681975",
-    "artifact_sha256": "94863a5c62a333e2bb7fe94389e332ba0d237f7d8211264e23cc739815694587",
-    "manifest_sha256": "b9fd726daa029e64edb8dcf1642c36d71a950506b2e1bba1d6a7ad5a1ef9c8d8",
-    "manifest_bytes": 6789,
-    "source_shard_hashes_status": "SHA-256 values are recorded in the manifest but could not be recomputed against raw shards because only the manifest was retained and the runner was ephemeral.",
+    "artifact_manifest_bytes": 0,
+    "artifact_id": null,
+    "artifact_url": null,
+    "artifact_sha256": null,
+    "manifest_available": false,
+    "manifest_sha256": null,
+    "source_shard_hashes_status": "Per-shard SHA-256 values were printed in the Actions job log, but no artifact or payload bundle was successfully published; the shard files were on an ephemeral runner and the hashes cannot be independently reverified against recovered files.",
     "admitted_rows_added": 0,
     "admitted_bytes_added": 0,
     "training_authorized": false,
+    "human_sample_review": "PENDING. The sample script logged only per-source sample counts; no sample content artifact was retained.",
     "checks": {
       "streamed_train_only": true,
       "exact_dedup_within_source": true,
@@ -3008,11 +3084,12 @@
       "global_G0": "PENDING",
       "human_sample_review": "PENDING",
       "domain_language_format_stratification": "PENDING",
-      "privacy_secrets_malware": "NOT_COMPLETED; only simple email/phone pattern filters were applied",
-      "license_review": "source-card or official Hub tag checks only; upstream rights, third-party content and source-level provenance review remain pending"
+      "privacy_secrets_malware": "NOT_COMPLETED; only basic email/phone pattern filtering was applied",
+      "license_review": "PressBooks and PubMed per-record CC allowlists applied; VoxPopuli official CC0 tag verified. Independent upstream rights, third-party content and provenance review pending."
     },
-    "storage_risk": "The repository is public. The workflow uploaded only OPEN-SOURCE-MANIFEST.json; raw candidate payloads and sample text were not uploaded. The runner staging directory was ephemeral and is not recoverable after the run.",
-    "note": "Candidate telemetry only. The 145,000 rows and 484,058,841 JSONL bytes are ephemeral candidate output, not durable staged bytes and not admitted bytes."
+    "artifact_failure": "actions/upload-artifact@v7 failed to create the public manifest artifact after five retries; the endpoint returned an HTML response where JSON was expected. This was an artifact-publication failure after candidate generation, not an admission failure.",
+    "storage_risk": "The repository is public. No payload or manifest artifact was retained. Candidate JSONL files and sample files existed only on the ephemeral runner and are not recoverable from this run.",
+    "note": "Candidate telemetry only. 73,736 rows / 807,461,935 JSONL bytes were generated in the runner, but no durable staged bytes or admitted bytes exist. The run conclusion is failure because artifact publication failed."
   },
   "historical_candidate_batches": [
     {
@@ -3693,6 +3770,111 @@
       },
       "storage_risk": "The repository is public. The workflow uploaded only OPEN-SOURCE-MANIFEST.json; raw candidate payloads and sample text were not uploaded. The runner staging directory was ephemeral and is not recoverable after the run.",
       "note": "Candidate telemetry only. The 145,000 rows and 484,058,841 JSONL bytes are ephemeral candidate output, not durable staged bytes and not admitted bytes."
+    },
+    {
+      "run_id": 43090663647,
+      "run_number": 87,
+      "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43090663647",
+      "head_sha": "a75fb8d35d099efa04353918ee7b73ad2a65cc75",
+      "created_at": "2026-11-11T19:48:48Z",
+      "updated_at": "2026-11-11T21:01:48Z",
+      "conclusion": "failure",
+      "workflow_mode": "eight deterministic acquisition groups; group 6 of 8; artifact publication failed",
+      "source_group": 6,
+      "source_group_count": 8,
+      "candidate_rows": 73736,
+      "candidate_jsonl_bytes": 807461935,
+      "candidate_target_bytes": 6800000000,
+      "candidate_target_met": false,
+      "completed_source_slices": 3,
+      "source_failures": 2,
+      "failed_sources": [
+        {
+          "source": "PleIAs/Spanish-PD-Books",
+          "revision": "001eaf13681f483069361dd82195ce279e12ed63",
+          "config": "default",
+          "split": "train",
+          "reason": "Only 954 usable rows; minimum 1,000; partial shard discarded."
+        },
+        {
+          "source": "coral-nlp/german-commons",
+          "revision": "d12379bba6ecdc525958ebe6e182f9cb905a06e2",
+          "config": "political",
+          "split": "germanpoliticalspeeches",
+          "reason": "0 usable rows; minimum 500; partial shard discarded."
+        }
+      ],
+      "candidate_sources": [
+        {
+          "source": "common-pile/pressbooks_filtered",
+          "revision": "1a1d3b50d77f834370f8eb4c0d174668dd1676bb",
+          "config": "default",
+          "split": "train",
+          "rows": 33736,
+          "jsonl_bytes": 302949633,
+          "sha256": "ffcd8219132f154b6405259639b94987eaa05bb54fb0aca7bc562c433d967d74",
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "facebook/voxpopuli",
+          "revision": "42f01879c780b4a2e90ec0b4f616c2ece526e4f1",
+          "config": "es",
+          "split": "train",
+          "rows": 20000,
+          "jsonl_bytes": 10095818,
+          "sha256": "49e7df3161b06f307136d78502238c449dfb00015b0eccf78abd97392e589dc1",
+          "official_license_tag": "license:cc0-1.0",
+          "official_license_tag_verified": true,
+          "status": "candidate_not_admitted"
+        },
+        {
+          "source": "common-pile/pubmed_filtered",
+          "revision": "c156f0569a92d8f2edc33cebe1f72f7d3e1cae84",
+          "config": "default",
+          "split": "train",
+          "rows": 20000,
+          "jsonl_bytes": 494416484,
+          "sha256": "da8c11cfac2c6326e41119d3bd34e2d905b5987ffe84a7065bb8d56839e27e40",
+          "status": "candidate_not_admitted"
+        }
+      ],
+      "rejected_rows": 99635,
+      "held_rows": 73736,
+      "staged_rows": 0,
+      "remote_bytes_announced": null,
+      "remote_bytes_downloaded": null,
+      "compressed_source_bytes": null,
+      "downloaded_jsonl_bytes_in_runner": 807461935,
+      "retained_payload_rows": 0,
+      "retained_payload_bytes": 0,
+      "artifact_payload_bytes": 0,
+      "artifact_manifest_bytes": 0,
+      "artifact_id": null,
+      "artifact_url": null,
+      "artifact_sha256": null,
+      "manifest_available": false,
+      "manifest_sha256": null,
+      "source_shard_hashes_status": "Per-shard SHA-256 values were printed in the Actions job log, but no artifact or payload bundle was successfully published; the shard files were on an ephemeral runner and the hashes cannot be independently reverified against recovered files.",
+      "admitted_rows_added": 0,
+      "admitted_bytes_added": 0,
+      "training_authorized": false,
+      "human_sample_review": "PENDING. The sample script logged only per-source sample counts; no sample content artifact was retained.",
+      "checks": {
+        "streamed_train_only": true,
+        "exact_dedup_within_source": true,
+        "basic_length_filter": true,
+        "email_phone_pattern_filter": true,
+        "cross_source_near_duplicate": "PENDING",
+        "global_holdout_contamination": "PENDING",
+        "global_G0": "PENDING",
+        "human_sample_review": "PENDING",
+        "domain_language_format_stratification": "PENDING",
+        "privacy_secrets_malware": "NOT_COMPLETED; only basic email/phone pattern filtering was applied",
+        "license_review": "PressBooks and PubMed per-record CC allowlists applied; VoxPopuli official CC0 tag verified. Independent upstream rights, third-party content and provenance review pending."
+      },
+      "artifact_failure": "actions/upload-artifact@v7 failed to create the public manifest artifact after five retries; the endpoint returned an HTML response where JSON was expected. This was an artifact-publication failure after candidate generation, not an admission failure.",
+      "storage_risk": "The repository is public. No payload or manifest artifact was retained. Candidate JSONL files and sample files existed only on the ephemeral runner and are not recoverable from this run.",
+      "note": "Candidate telemetry only. 73,736 rows / 807,461,935 JSONL bytes were generated in the runner, but no durable staged bytes or admitted bytes exist. The run conclusion is failure because artifact publication failed."
     }
   ],
   "storage_remediation": {

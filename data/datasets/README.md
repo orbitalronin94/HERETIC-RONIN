@@ -472,3 +472,18 @@ La página oficial declara CC BY 4.0 para el contenido del registro salvo el Com
 ### Canadá — Justice Laws bulk XML — bloqueado
 
 El catálogo de Open Government Portal etiqueta el paquete bulk XML con OGL Canada 2.0. Sin embargo, el Reproduction of Federal Law Order SI/97-5 permite expresamente reproducir legislación federal sin permiso, pero no dice expresamente que permita adaptarla. La relación entre la licencia del catálogo y el payload, y el alcance para transformaciones de entrenamiento, no está resuelta. No descargar hasta aclararlo. [Dataset XML](https://open.canada.ca/data/en/dataset/2f4bb174-b2e7-4fb2-a7a1-a313507acbc6) · [OGL Canada](https://open.canada.ca/en/open-government-licence-canada) · [SI/97-5](https://laws-lois.justice.gc.ca/PDF/SI-97-5.pdf).
+
+
+## Adquisición fallida de artefacto — 2026-11-11 (run 87, grupo 6/8)
+
+[Run 43090663647](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43090663647) generó candidatos, pero terminó en **failure** porque `actions/upload-artifact@v7` devolvió HTML donde esperaba JSON y agotó cinco reintentos. No hubo artefacto ni manifiesto durable.
+
+| Fuente | Revisión | Config/split | Filas | Bytes JSONL efímeros | SHA-256 reportado en el log |
+|---|---|---|---:|---:|---|
+| common-pile/pressbooks_filtered | `1a1d3b50d77f834370f8eb4c0d174668dd1676bb` | default/train | 33.736 | 302.949.633 | `ffcd8219132f154b6405259639b94987eaa05bb54fb0aca7bc562c433d967d74` |
+| facebook/voxpopuli | `42f01879c780b4a2e90ec0b4f616c2ece526e4f1` | es/train | 20.000 | 10.095.818 | `49e7df3161b06f307136d78502238c449dfb00015b0eccf78abd97392e589dc1` |
+| common-pile/pubmed_filtered | `c156f0569a92d8f2edc33cebe1f72f7d3e1cae84` | default/train | 20.000 | 494.416.484 | `da8c11cfac2c6326e41119d3bd34e2d905b5987ffe84a7065bb8d56839e27e40` |
+
+Total: **73.736 filas / 807.461.935 bytes JSONL** en el runner. El recolector filtró 99.635 filas. Fallos parciales descartados: PleIAs Spanish-PD-Books (954 filas utilizables frente a un mínimo de 1.000) y German Commons `germanpoliticalspeeches` (0 frente a 500). Los bytes remotos/comprimidos no se midieron.
+
+Los hashes de shards proceden del log; no se pueden recalcular porque los archivos se perdieron con el runner efímero. El artefacto de manifiesto tampoco se creó. Payload durable retenido: **0 bytes**; staging durable: **0 bytes**; admisión: **0 filas / 0 bytes**. Las muestras solo se resumieron en logs; no hubo revisión humana. El fallo no habilita reintentos de admisión ni permite contar los bytes efímeros.
