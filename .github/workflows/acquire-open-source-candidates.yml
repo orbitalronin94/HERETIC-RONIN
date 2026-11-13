@@ -44,6 +44,18 @@ jobs:
           python-version: "3.11"
       - name: Compile acquisition and license gate without downloading datasets
         run: python -m py_compile scripts/acquire_open_source_candidates.py scripts/review_candidate_samples.py scripts/license_gates.py scripts/acquisition_safety.py
+      - name: Smoke-test GPG AES-256 candidate packaging with a disposable fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v gpg >/dev/null
+          tmp="$(mktemp -d)"
+          trap 'rm -rf "$tmp"' EXIT
+          printf 'fixture-only candidate payload' > "$tmp/plain.txt"
+          printf 'fixture-passphrase-not-a-secret' > "$tmp/passphrase"
+          gpg --batch --yes --pinentry-mode loopback --symmetric --cipher-algo AES256 --force-mdc --compress-algo none --s2k-digest-algo SHA512 --passphrase-file "$tmp/passphrase" --output "$tmp/payload.gpg" "$tmp/plain.txt"
+          gpg --batch --yes --pinentry-mode loopback --decrypt --passphrase-file "$tmp/passphrase" --output "$tmp/roundtrip.txt" "$tmp/payload.gpg"
+          cmp "$tmp/plain.txt" "$tmp/roundtrip.txt"
       - name: Test license and acquisition safety gates
         run: python -m unittest discover -s tests -v
 
