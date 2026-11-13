@@ -53,7 +53,7 @@ jobs:
           trap 'rm -rf "$tmp"' EXIT
           printf 'fixture-only candidate payload' > "$tmp/plain.txt"
           printf 'fixture-passphrase-not-a-secret' > "$tmp/passphrase"
-          gpg --batch --yes --pinentry-mode loopback --symmetric --cipher-algo AES256 --force-mdc --compress-algo none --s2k-digest-algo SHA512 --passphrase-file "$tmp/passphrase" --output "$tmp/payload.gpg" "$tmp/plain.txt"
+          gpg --batch --yes --pinentry-mode loopback --symmetric --cipher-algo AES256 --force-mdc --compress-algo none --s2k-digest-algo SHA512 --s2k-mode 3 --s2k-count 65011712 --passphrase-file "$tmp/passphrase" --output "$tmp/payload.gpg" "$tmp/plain.txt"
           gpg --batch --yes --pinentry-mode loopback --decrypt --passphrase-file "$tmp/passphrase" --output "$tmp/roundtrip.txt" "$tmp/payload.gpg"
           cmp "$tmp/plain.txt" "$tmp/roundtrip.txt"
       - name: Test license and acquisition safety gates
@@ -115,12 +115,15 @@ jobs:
           HERETIC_STAGING_PASSPHRASE: ${{ secrets.HERETIC_STAGING_PASSPHRASE }}
         run: |
           set -euo pipefail
-          if [[ "$REPOSITORY_PRIVATE" == "true" || -n "$HERETIC_STAGING_PASSPHRASE" ]]; then
+          if [[ "$REPOSITORY_PRIVATE" == "true" ]]; then
             echo "ready=true" >> "$GITHUB_OUTPUT"
-            echo "Durable candidate storage is configured."
+            echo "Private candidate storage is configured."
+          elif [[ "${#HERETIC_STAGING_PASSPHRASE}" -ge 32 ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+            echo "Encrypted public candidate storage is configured with a passphrase of at least 32 characters."
           else
             echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "Storage gate blocked acquisition: this repository is public and HERETIC_STAGING_PASSPHRASE is not configured. No candidate payload will be downloaded to an ephemeral runner."
+            echo "Storage gate blocked acquisition: public repositories require HERETIC_STAGING_PASSPHRASE with at least 32 characters. No candidate payload will be downloaded to an ephemeral runner."
           fi
 
       - name: Set up Python
@@ -167,7 +170,7 @@ jobs:
               "target_bytes": 6800000000, "target_met": False,
               "scale_factor_vs_current_effective_corpus": 0,
               "source_failures": [],
-              "storage_gate": {"status": "blocked", "reason": "Public repository requires HERETIC_STAGING_PASSPHRASE for encrypted candidate artifacts; no secret was available.", "required_secret": "HERETIC_STAGING_PASSPHRASE", "payload_downloaded": False}
+              "storage_gate": {"status": "blocked", "reason": "Public repository requires HERETIC_STAGING_PASSPHRASE with at least 32 characters; the secret was missing or too short.", "required_secret": "HERETIC_STAGING_PASSPHRASE", "payload_downloaded": False}
           }
           path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
           print(json.dumps({"status": report["status"], "candidate_rows": 0, "candidate_bytes": 0, "training_authorized": False}, indent=2))
