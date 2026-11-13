@@ -9,6 +9,7 @@ from scripts.acquisition_safety import (
     finalize_candidate_file,
     json_default,
     select_source_group,
+    scheduled_source_group,
 )
 
 
@@ -66,6 +67,30 @@ class AcquisitionSafetyTests(unittest.TestCase):
                 self.assertEqual(sorted(flattened), list(range(len(sources))))
                 self.assertEqual(len(flattened), len(set(flattened)))
 
+    def test_scheduled_groups_cover_all_eight_groups_once_every_48_hours(self):
+        first_cycle = [
+            scheduled_source_group(day, slot, 8, 4)
+            for day in (1, 2)
+            for slot in range(4)
+        ]
+        second_cycle = [
+            scheduled_source_group(day, slot, 8, 4)
+            for day in (3, 4)
+            for slot in range(4)
+        ]
+        self.assertEqual(first_cycle, list(range(8)))
+        self.assertEqual(second_cycle, list(range(8)))
+
+    def test_scheduled_group_rejects_invalid_day_slot_and_counts(self):
+        with self.assertRaises(ValueError):
+            scheduled_source_group(0, 0, 8, 4)
+        with self.assertRaises(ValueError):
+            scheduled_source_group(367, 0, 8, 4)
+        with self.assertRaises(ValueError):
+            scheduled_source_group(1, 4, 8, 4)
+        with self.assertRaises(ValueError):
+            scheduled_source_group(1, 0, 0, 4)
+
     def test_source_group_rejects_invalid_bounds(self):
         sources = [{"id": "one"}]
         with self.assertRaises(ValueError):
@@ -80,9 +105,13 @@ class AcquisitionSafetyTests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         workflow = (root / ".github/workflows/acquire-open-source-candidates.yml").read_text(encoding="utf-8")
         self.assertIn('HERETIC_SOURCE_GROUP_COUNT: "8"', workflow)
-        self.assertIn('group_count="${HERETIC_SOURCE_GROUP_COUNT:-8}"', workflow)
-        self.assertIn('% group_count', workflow)
-        self.assertNotIn('% 4))', workflow)
+        self.assertIn('HERETIC_SOURCE_GROUP_SLOTS_PER_DAY: "4"', workflow)
+        self.assertIn('scheduled_source_group', workflow)
+        self.assertNotIn('  push:\n    branches: [main]', workflow)
+        self.assertIn('Check durable candidate storage before downloading', workflow)
+        self.assertIn('HERETIC_STAGING_PASSPHRASE', workflow)
+        self.assertIn('gpg --batch', workflow)
+        self.assertIn('blocked_storage_gate', workflow)
 
 if __name__ == "__main__":
     unittest.main()
