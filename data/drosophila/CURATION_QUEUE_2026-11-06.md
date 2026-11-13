@@ -437,3 +437,6 @@ Ambos runs retuvieron solo manifiestos: 0 bytes de payload, 0 staged, 0 admitido
 1. Configurar el almacenamiento cifrado y recuperar los artefactos para revisión en un entorno controlado.
 2. Ejecutar near-dedup contra todo el corpus y los splits protegidos, auditoría estratificada real y G-0.
 3. Mantener todos los candidatos fuera de `training_eligible` hasta que todos los gates pasen.
+
+
+**Fortaleza del secreto de staging:** en repositorios públicos el workflow solo descarga si `HERETIC_STAGING_PASSPHRASE` tiene al menos 32 caracteres; GPG usa AES-256, SHA-512 S2K y control de integridad. Sin ese mínimo, el lote se bloquea antes de descargar.
