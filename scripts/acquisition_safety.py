@@ -67,3 +67,27 @@ def select_source_group(sources, group_index: int, group_count: int):
         for index, source in enumerate(sources)
         if index % group_count == group_index
     ]
+
+
+def scheduled_source_group(
+    day_of_year: int,
+    tranche_slot: int,
+    group_count: int,
+    slots_per_day: int = 4,
+) -> int:
+    """Map each scheduled daily slot to a balanced deterministic source group.
+
+    With four slots per day and eight groups, every consecutive 48-hour window
+    visits each group exactly once. The mapping is independent of workflow run
+    numbers and pull-request events.
+    """
+    if group_count < 1:
+        raise ValueError("group_count must be at least 1")
+    if slots_per_day < 1:
+        raise ValueError("slots_per_day must be at least 1")
+    if day_of_year < 1 or day_of_year > 366:
+        raise ValueError("day_of_year must be within [1, 366]")
+    if tranche_slot < 0 or tranche_slot >= slots_per_day:
+        raise ValueError("tranche_slot must be within [0, slots_per_day)")
+    absolute_slot = (day_of_year - 1) * slots_per_day + tranche_slot
+    return absolute_slot % group_count
