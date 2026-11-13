@@ -3,11 +3,6 @@ name: HERETIC — acquire pinned open-source corpus candidates
 on:
   schedule:
     - cron: "30 0,6,12,18 * * *"
-  # Avoid full acquisition runs from review branches; PRs run validation only.
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/acquire-open-source-candidates.yml"
   workflow_dispatch:
     inputs:
       source_group:
@@ -49,6 +44,18 @@ jobs:
           python-version: "3.11"
       - name: Compile acquisition and license gate without downloading datasets
         run: python -m py_compile scripts/acquire_open_source_candidates.py scripts/review_candidate_samples.py scripts/license_gates.py scripts/acquisition_safety.py
+      - name: Smoke-test GPG AES-256 candidate packaging with a disposable fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v gpg >/dev/null
+          tmp="$(mktemp -d)"
+          trap 'rm -rf "$tmp"' EXIT
+          printf 'fixture-only candidate payload' > "$tmp/plain.txt"
+          printf 'fixture-passphrase-not-a-secret' > "$tmp/passphrase"
+          gpg --batch --yes --pinentry-mode loopback --symmetric --cipher-algo AES256 --force-mdc --compress-algo none --s2k-digest-algo SHA512 --passphrase-file "$tmp/passphrase" --output "$tmp/payload.gpg" "$tmp/plain.txt"
+          gpg --batch --yes --pinentry-mode loopback --decrypt --passphrase-file "$tmp/passphrase" --output "$tmp/roundtrip.txt" "$tmp/payload.gpg"
+          cmp "$tmp/plain.txt" "$tmp/roundtrip.txt"
       - name: Test license and acquisition safety gates
         run: python -m unittest discover -s tests -v
 
@@ -62,23 +69,35 @@ jobs:
     env:
       PYTHONUNBUFFERED: "1"
       HERETIC_SOURCE_GROUP_COUNT: "8"
+      HERETIC_SOURCE_GROUP_SLOTS_PER_DAY: "4"
       HERETIC_SOURCE_GROUP_INPUT: ${{ inputs.source_group || '0' }}
     steps:
       - name: Checkout HERETIC-RONIN
         uses: actions/checkout@v5
 
-      - name: Select deterministic daily source tranche
+      - name: Select balanced deterministic source tranche
         id: source-group
         shell: bash
+        env:
+          GROUP_COUNT: ${{ env.HERETIC_SOURCE_GROUP_COUNT }}
+          SLOTS_PER_DAY: ${{ env.HERETIC_SOURCE_GROUP_SLOTS_PER_DAY }}
+          GROUP_INPUT: ${{ env.HERETIC_SOURCE_GROUP_INPUT }}
         run: |
-          group_count="${HERETIC_SOURCE_GROUP_COUNT:-8}"
-          if [[ "${GITHUB_EVENT_NAME}" == "schedule" || "${GITHUB_EVENT_NAME}" == "push" ]]; then
-            day_of_year="$(date -u +%j)"
-            hour_utc="$(date -u +%H)"
-            tranche_slot="$((10#$hour_utc / 6))"
-            group="$(((10#$day_of_year + tranche_slot) % group_count))"
+          set -euo pipefail
+          group_count="${GROUP_COUNT:-8}"
+          if [[ "${GITHUB_EVENT_NAME}" == "schedule" ]]; then
+            group="$(python - <<'PY'
+          import os
+          from datetime import datetime, timezone
+          from scripts.acquisition_safety import scheduled_source_group
+          now = datetime.now(timezone.utc)
+          day = int(now.strftime("%j"))
+          slot = now.hour // 6
+          print(scheduled_source_group(day, slot, int(os.environ["GROUP_COUNT"]), int(os.environ["SLOTS_PER_DAY"])))
+          PY
+          )"
           else
-            group="${HERETIC_SOURCE_GROUP_INPUT:-0}"
+            group="${GROUP_INPUT:-0}"
           fi
           if ! [[ "$group" =~ ^[0-7]$ ]]; then
             echo "Invalid source group: $group" >&2
@@ -88,27 +107,105 @@ jobs:
           echo "group=$group" >> "$GITHUB_OUTPUT"
           echo "Acquisition source group: $group/$group_count"
 
+      - name: Check durable candidate storage before downloading
+        id: storage
+        shell: bash
+        env:
+          REPOSITORY_PRIVATE: ${{ github.event.repository.private }}
+          HERETIC_STAGING_PASSPHRASE: ${{ secrets.HERETIC_STAGING_PASSPHRASE }}
+        run: |
+          set -euo pipefail
+          if [[ "$REPOSITORY_PRIVATE" == "true" || -n "$HERETIC_STAGING_PASSPHRASE" ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+            echo "Durable candidate storage is configured."
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Storage gate blocked acquisition: this repository is public and HERETIC_STAGING_PASSPHRASE is not configured. No candidate payload will be downloaded to an ephemeral runner."
+          fi
+
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 
       - name: Install dataset streaming tools
+        if: steps.storage.outputs.ready == 'true'
         run: |
           python -m pip install --upgrade pip
           python -m pip install "datasets==4.3.0" "huggingface_hub==0.36.0" "pyarrow>=20"
 
       - name: Stream bounded train-only slices and pin source revisions
+        if: steps.storage.outputs.ready == 'true'
         run: python scripts/acquire_open_source_candidates.py
 
       - name: Compile and prepare local candidate samples without logging excerpts
+        if: steps.storage.outputs.ready == 'true'
         run: |
           python -m py_compile scripts/acquire_open_source_candidates.py scripts/review_candidate_samples.py
           python scripts/review_candidate_samples.py
 
+      - name: Record storage-gate block without downloading payloads
+        if: steps.storage.outputs.ready != 'true'
+        env:
+          SOURCE_GROUP: ${{ steps.source-group.outputs.group }}
+          SOURCE_GROUP_COUNT: ${{ env.HERETIC_SOURCE_GROUP_COUNT }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          path = Path("staging/open-source-candidates/OPEN-SOURCE-MANIFEST.json")
+          path.parent.mkdir(parents=True, exist_ok=True)
+          group = int(os.environ["SOURCE_GROUP"])
+          count = int(os.environ["SOURCE_GROUP_COUNT"])
+          report = {
+              "schema": "heretic-open-source-candidate-bundle-v1",
+              "status": "blocked_storage_gate",
+              "training_authorized": False,
+              "policy": "No candidate payload was downloaded because durable private or encrypted storage is not configured.",
+              "source_group": {"index": group, "count": count, "selection": "balanced UTC schedule slots: ((day_of_year - 1) * slots_per_day + tranche_slot) modulo group_count"},
+              "sources": [], "total_rows": 0, "total_bytes": 0,
+              "target_bytes": 6800000000, "target_met": False,
+              "scale_factor_vs_current_effective_corpus": 0,
+              "source_failures": [],
+              "storage_gate": {"status": "blocked", "reason": "Public repository requires HERETIC_STAGING_PASSPHRASE for encrypted candidate artifacts; no secret was available.", "required_secret": "HERETIC_STAGING_PASSPHRASE", "payload_downloaded": False}
+          }
+          path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          print(json.dumps({"status": report["status"], "candidate_rows": 0, "candidate_bytes": 0, "training_authorized": False}, indent=2))
+          PY
+
+      - name: Encrypt candidate tranche before public artifact upload
+        id: encrypt-public-candidates
+        if: github.event.repository.private != true && steps.storage.outputs.ready == 'true'
+        shell: bash
+        env:
+          HERETIC_STAGING_PASSPHRASE: ${{ secrets.HERETIC_STAGING_PASSPHRASE }}
+        run: |
+          set -euo pipefail
+          command -v gpg >/dev/null
+          archive="staging/heretic-candidates-${GITHUB_RUN_ID}.tar.gz"
+          encrypted="${archive}.gpg"
+          tar --sort=name --mtime='UTC 1970-01-01' --owner=0 --group=0 --numeric-owner --exclude='*.partial' -C staging -cf - open-source-candidates | gzip -n > "$archive"
+          passfile="$RUNNER_TEMP/heretic-staging-passphrase"
+          umask 077
+          printf '%s' "$HERETIC_STAGING_PASSPHRASE" > "$passfile"
+          gpg --batch --yes --pinentry-mode loopback --symmetric --cipher-algo AES256 --force-mdc --compress-algo none --s2k-digest-algo SHA512 --passphrase-file "$passfile" --output "$encrypted" "$archive"
+          rm -f "$passfile" "$archive"
+          sha256sum "$encrypted" > "${encrypted}.sha256"
+          find staging/open-source-candidates -maxdepth 1 -type f ! -name OPEN-SOURCE-MANIFEST.json -delete
+          echo "Encrypted bundle SHA-256:"
+          cat "${encrypted}.sha256"
+
+      - name: Remove any plaintext candidate payload after public packaging
+        if: always() && github.event.repository.private != true
+        shell: bash
+        run: |
+          if [[ -d staging/open-source-candidates ]]; then
+            find staging/open-source-candidates -maxdepth 1 -type f ! -name OPEN-SOURCE-MANIFEST.json -delete
+          fi
+
       - name: Upload private candidate tranche and sample report
         id: upload-private-candidates
-        if: always() && github.event.repository.private == true
+        if: always() && github.event.repository.private == true && steps.storage.outputs.ready == 'true'
         uses: actions/upload-artifact@v7
         with:
           name: heretic-open-source-candidates-${{ github.run_id }}-group-${{ steps.source-group.outputs.group }}
@@ -118,6 +215,19 @@ jobs:
             !staging/open-source-candidates/**/*.partial
           if-no-files-found: ignore
           compression-level: 1
+          retention-days: 90
+
+      - name: Upload encrypted candidate tranche (public repository)
+        id: upload-encrypted-candidates
+        if: always() && github.event.repository.private != true && steps.storage.outputs.ready == 'true' && steps.encrypt-public-candidates.outcome == 'success'
+        uses: actions/upload-artifact@v7
+        with:
+          name: heretic-open-source-encrypted-candidates-${{ github.run_id }}-group-${{ steps.source-group.outputs.group }}
+          path: |
+            staging/heretic-candidates-${{ github.run_id }}.tar.gz.gpg
+            staging/heretic-candidates-${{ github.run_id }}.tar.gz.gpg.sha256
+          if-no-files-found: error
+          compression-level: 0
           retention-days: 90
 
       - name: Upload public manifest only (no payloads or sample text)

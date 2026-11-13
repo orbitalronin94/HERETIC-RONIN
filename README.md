@@ -303,3 +303,13 @@ Folketinget queda bloqueado para actas: aunque sus términos generales permiten 
 - ILO y Australia se han añadido como fuentes discovery-only; Canada Justice Laws queda bloqueada por una discrepancia no resuelta entre los términos del catálogo y la autorización de reproducción/adaptación del payload.
 
 El detalle de hashes, estados por fuente, límites de licencia, artefactos y controles pendientes está en [data/datasets/README.md](data/datasets/README.md) y [data/sources/registry.json](data/sources/registry.json). Los tamaños efímeros o anunciados nunca se suman a la biblioteca admitida.
+
+## Curación de biblioteca — actualización verificada 2026-11-13
+
+- **Admisiones nuevas:** 0. Total acumulado: **703.593.871 bytes** / 260.971 documentos; **0,140719 %** de 500 GB (auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447)).
+- [Run 92](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43298985874): 35.000 filas / 945.924.928 bytes JSONL efímeros; solo manifiesto durable, 0 staged/admitidos. [Run 93](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43383222519): 73.736 filas / 807.461.935 bytes efímeros, repetición exacta del grupo 6 de run 87; 0 contenido único, 0 staged/admitidos. Hashes y fallos por fuente constan en `data/datasets/README.md` y el registro.
+- Nuevas fuentes discovery-only: Eurostat y publicaciones OECD posteriores a 2024-07-01 con CC-BY-4.0 por obra. OpenThoughts3 queda held/desactivado hasta resolver procedencia y derechos upstream por fila.
+- La rotación de ocho grupos se corrige para cubrirlos una vez cada 48 horas. El workflow no adquiere por `push`.
+- En este repositorio público, el workflow exige `HERETIC_STAGING_PASSPHRASE` para descargar; sin el secreto solo genera un manifiesto `blocked_storage_gate`. Con él, el payload se cifra antes del artefacto público y se elimina el plaintext del runner. No se ha creado ni modificado ningún secreto.
+
+Ningún candidato pasa a `training_eligible` hasta completar revisión de licencias/procedencia, calidad, privacidad, malware, deduplicación global, contaminación de holdout y G-0.
