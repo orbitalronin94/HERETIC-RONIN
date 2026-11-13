@@ -344,6 +344,8 @@ class LicenseGateTests(unittest.TestCase):
         self.assertIs(source["acquisition_enabled"], False)
         self.assertIs(source["training_authorized"], False)
         self.assertEqual(source["last_acquisition"]["run_id"], 43298985874)
+        self.assertEqual(source["last_acquisition"]["durable_staged_rows"], 0)
+        self.assertEqual(source["last_acquisition"]["admitted_rows"], 0)
         script = (root / "scripts/acquire_open_source_candidates.py").read_text(encoding="utf-8")
         self.assertIn('"enabled":False', script)
         self.assertIn("held_source_disabled", script)
