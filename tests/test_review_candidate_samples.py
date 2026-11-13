@@ -59,6 +59,8 @@ class CandidateSamplePrivacyTests(unittest.TestCase):
         self.assertIn("Remove any plaintext candidate payload after public packaging", workflow)
         self.assertIn("retention-days: 90", workflow)
         self.assertIn("blocked_storage_gate", workflow)
+        self.assertIn("${#HERETIC_STAGING_PASSPHRASE}", workflow)
+        self.assertIn("65011712", workflow)
         self.assertIn("Smoke-test GPG AES-256 candidate packaging with a disposable fixture", workflow)
         self.assertIn("cmp \"$tmp/plain.txt\" \"$tmp/roundtrip.txt\"", workflow)
 

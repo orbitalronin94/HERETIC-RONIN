@@ -508,3 +508,6 @@ En ambos runs: bytes remotos y comprimidos no medidos; 0 bytes retenidos, 0 stag
 La rotación anterior `day_of_year + slot` repetía grupos y no repartía uniformemente las ocho tranches. Se cambia a `((day_of_year - 1) * 4 + slot) % 8`, que cubre los ocho grupos exactamente una vez por cada ciclo de 48 horas. La adquisición ya no se dispara por `push`; los PR ejecutan validación solamente.
 
 El repositorio es público. El workflow exige el secreto Actions `HERETIC_STAGING_PASSPHRASE` antes de descargar payloads; si falta, publica un manifiesto `blocked_storage_gate` de cero bytes y no descarga. Si existe, cifra el paquete con GPG AES-256 e integridad antes de publicar el artefacto público; los payloads en claro se borran del runner. Los artefactos tienen retención de 90 días. No se ha creado ni modificado ningún secreto.
+
+
+**Fortaleza del secreto de staging:** en repositorios públicos el workflow solo descarga si `HERETIC_STAGING_PASSPHRASE` tiene al menos 32 caracteres; GPG usa AES-256, SHA-512 S2K y control de integridad. Sin ese mínimo, el lote se bloquea antes de descargar.

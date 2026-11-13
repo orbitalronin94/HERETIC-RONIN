@@ -4344,11 +4344,11 @@
     "sample_log_policy": "review_candidate_samples.py writes its sample file locally but prints summary counts only; no raw text to Actions logs.",
     "push_trigger_policy": "Acquisition no longer runs on push; scheduled and workflow_dispatch runs acquire, while pull_request runs validation only.",
     "historical_exposure": "The artifact 13737479716 has GitHub metadata expiry 2027-02-08. Raw excerpts also appear in the job log; the exact log-retention expiry was not checked. Neither artifact nor log was deleted.",
-    "public_candidate_storage_gate": "Public repository requires the HERETIC_STAGING_PASSPHRASE Actions secret before any candidate payload is downloaded. Without it, acquisition is skipped and a zero-byte blocked_storage_gate manifest is published.",
-    "public_encryption": "When the secret is configured, candidate payloads and sample excerpts are packaged and encrypted with GPG AES-256 plus integrity protection before public artifact upload; plaintext candidate files are deleted from the runner.",
+    "public_candidate_storage_gate": "Public repository requires HERETIC_STAGING_PASSPHRASE with at least 32 characters before any candidate payload is downloaded. Without it, acquisition is skipped and a zero-byte blocked_storage_gate manifest is published.",
+    "public_encryption": "When the secret is configured, candidate payloads and sample excerpts are packaged and encrypted with GPG AES-256, SHA-512 S2K (65,011,712 iterations) and integrity protection before public artifact upload; plaintext candidate files are deleted from the runner.",
     "private_storage": "Private repositories may upload the bounded raw candidate tranche as a private Actions artifact.",
     "artifact_retention_days": 90,
-    "required_secret": "HERETIC_STAGING_PASSPHRASE (high-entropy random passphrase; never store in Git or print in logs)",
+    "required_secret": "HERETIC_STAGING_PASSPHRASE (high-entropy random passphrase of at least 32 characters; never store in Git or print in logs)",
     "encrypted_artifact_policy": "Encrypted artifact remains publicly downloadable ciphertext; only holders of the passphrase may decrypt. Record artifact SHA-256 and keep the passphrase outside the repository.",
     "group_rotation_fix": "Scheduled group index uses ((day_of_year - 1) * 4 + tranche_slot) modulo group_count so four daily slots cover all eight groups exactly once in each 48-hour cycle."
   }
