@@ -49,5 +49,16 @@ class CandidateSamplePrivacyTests(unittest.TestCase):
         self.assertNotIn("!staging/open-source-candidates", public_step)
 
 
+    def test_public_candidate_artifact_requires_encryption_or_skips_download(self):
+        workflow = Path(".github/workflows/acquire-open-source-candidates.yml").read_text(encoding="utf-8")
+        self.assertIn("Check durable candidate storage before downloading", workflow)
+        self.assertIn("steps.storage.outputs.ready == 'true'", workflow)
+        self.assertIn("steps.storage.outputs.ready != 'true'", workflow)
+        self.assertIn("Encrypt candidate tranche before public artifact upload", workflow)
+        self.assertIn("Upload encrypted candidate tranche (public repository)", workflow)
+        self.assertIn("Remove any plaintext candidate payload after public packaging", workflow)
+        self.assertIn("retention-days: 90", workflow)
+        self.assertIn("blocked_storage_gate", workflow)
+
 if __name__ == "__main__":
     unittest.main()
