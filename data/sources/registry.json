@@ -583,7 +583,7 @@
       "count_toward_admitted_bytes": false,
       "last_acquisition": {
         "run_id": 43383222519,
-        "revision": "c156f0569a92d8f2edc33cebe1f72e2d905b5987ffe84a7065bb8d56839e27e40",
+        "revision": "c156f0569a92d8f2edc33cebe1f72f7d3e1cae84",
         "config": "default",
         "split": "train",
         "rows_written": 20000,
@@ -3056,7 +3056,7 @@
       },
       {
         "source": "common-pile/pubmed_filtered",
-        "revision": "c156f0569a92d8f2edc33cebe1f72e2d905b5987ffe84a7065bb8d56839e27e40",
+        "revision": "c156f0569a92d8f2edc33cebe1f72f7d3e1cae84",
         "config": "default",
         "split": "train",
         "rows": 20000,
