@@ -253,7 +253,7 @@ class LicenseGateTests(unittest.TestCase):
     def test_run_88_candidate_batch_is_not_counted_as_admitted_or_staged(self):
         root = Path(__file__).resolve().parents[1]
         registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
-        batch = registry["last_candidate_batch_details"]
+        batch = next(x for x in registry["historical_candidate_batches"] if x["run_id"] == 43176267906)
         self.assertEqual(batch["run_id"], 43176267906)
         self.assertEqual(batch["candidate_rows"], 170000)
         self.assertEqual(batch["candidate_jsonl_bytes"], 462861425)
@@ -269,7 +269,7 @@ class LicenseGateTests(unittest.TestCase):
     def test_run_87_artifact_publication_failure_is_not_staged_or_admitted(self):
         root = Path(__file__).resolve().parents[1]
         registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
-        batch = registry["previous_candidate_batch_details"]
+        batch = next(x for x in registry["historical_candidate_batches"] if x["run_id"] == 43090663647)
         self.assertEqual(batch["run_id"], 43090663647)
         self.assertEqual(batch["conclusion"], "failure")
         self.assertEqual(batch["candidate_rows"], 73736)
@@ -282,6 +282,71 @@ class LicenseGateTests(unittest.TestCase):
         self.assertEqual(batch["admitted_bytes_added"], 0)
         self.assertIs(batch["training_authorized"], False)
         self.assertIn("failed to create", batch["artifact_failure"])
+
+    def test_run_92_candidate_batch_is_not_staged_or_admitted(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        batch = registry["previous_candidate_batch_details"]
+        self.assertEqual(batch["run_id"], 43298985874)
+        self.assertEqual(batch["candidate_rows"], 35000)
+        self.assertEqual(batch["candidate_jsonl_bytes"], 945924928)
+        self.assertEqual(batch["staged_rows"], 0)
+        self.assertEqual(batch["retained_payload_bytes"], 0)
+        self.assertEqual(batch["admitted_bytes_added"], 0)
+        self.assertEqual(batch["manifest_sha256"], "c4d9055db2c098b1f05c6333c60df18636f74e125d65e7ea7ba57881c6296645")
+
+    def test_run_93_is_an_exact_duplicate_of_run_87_and_not_admitted(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        batch = registry["last_candidate_batch_details"]
+        self.assertEqual(batch["run_id"], 43383222519)
+        self.assertEqual(batch["duplicate_of_run_id"], 43090663647)
+        self.assertEqual(batch["unique_candidate_rows_added"], 0)
+        self.assertEqual(batch["unique_candidate_bytes_added"], 0)
+        self.assertEqual(batch["candidate_rows"], 73736)
+        self.assertEqual(batch["candidate_jsonl_bytes"], 807461935)
+        self.assertEqual(batch["staged_rows"], 0)
+        self.assertEqual(batch["admitted_bytes_added"], 0)
+        self.assertEqual(batch["artifact_sha256"], "79b3e47ad7467370f611b979bd7294a1022f6f114eca6ce4b59d075218965129")
+        historical = next(x for x in registry["historical_candidate_batches"] if x["run_id"] == 43090663647)
+        self.assertEqual(historical["candidate_sources"][0]["sha256"], batch["candidate_sources"][0]["sha256"])
+
+    def test_eurostat_candidate_is_scoped_and_discovery_only(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "Eurostat:statistics-data-metadata-publications")
+        self.assertTrue(source["status"].startswith("candidate_discovery_only"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIsNone(source["reported_rows"])
+        self.assertIn("2011/833/EU", source["reported_license"])
+        self.assertIn("third-party", source["rights_caveat"])
+        self.assertIn("historical versions are not retained", source["revision"])
+        self.assertGreaterEqual(len(source["required_checks"]), 8)
+
+    def test_oecd_candidate_is_post_2024_cc_by_only_and_discovery_only(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "OECD:written-content-cc-by-4.0-from-2024-07-01")
+        self.assertTrue(source["status"].startswith("candidate_discovery_only"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertEqual(source["spdx_license_identifier"], "CC-BY-4.0")
+        self.assertIn("2024-07-01", source["reported_license"])
+        self.assertIn("third-party", source["rights_caveat"])
+        self.assertGreaterEqual(len(source["required_checks"]), 8)
+
+    def test_openthoughts3_is_held_and_not_reacquired_until_source_lineage_is_cleared(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "open-thoughts/OpenThoughts3-1.2M")
+        self.assertTrue(source["status"].startswith("held_downloaded_ephemeral"))
+        self.assertIs(source["acquisition_enabled"], False)
+        self.assertIs(source["training_authorized"], False)
+        self.assertEqual(source["last_acquisition"]["run_id"], 43298985874)
+        script = (root / "scripts/acquire_open_source_candidates.py").read_text(encoding="utf-8")
+        self.assertIn('"enabled":False', script)
+        self.assertIn("held_source_disabled", script)
 
 if __name__ == "__main__":
     unittest.main()
