@@ -405,3 +405,35 @@ Siguiente paso: reducir la carga por ejecución mediante ocho grupos determinist
 - El [Reproduction of Federal Law Order SI/97-5](https://laws-lois.justice.gc.ca/PDF/SI-97-5.pdf) permite reproducir leyes y consolidaciones sin permiso, con diligencia sobre la exactitud y sin presentar la reproducción como versión oficial; no expresa claramente derechos de adaptación.
 - Bloqueado hasta aclarar si OGL Canada cubre el payload XML y si la transformación prevista para entrenamiento está autorizada. Excluir información personal, derechos de terceros y símbolos oficiales.
 - No se ha descargado nada: 0 filas, 0 bytes; `training_authorized=false`.
+
+## 2026-11-13 — revisión diaria (runs 92–93)
+
+### Admisiones
+
+- Nuevas admisiones: **0 documentos / 0 bytes**.
+- Total acumulado verificado: **703.593.871 bytes**, 260.971 documentos; progreso **0,140719 %** hacia 500 GB. Referencia: [auditoría global 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
+
+### Lotes
+
+- [Run 92, grupo 7/8](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43298985874): 35.000 filas / 945.924.928 bytes JSONL efímeros. VoxPopuli EN 20.000 filas (9.695.378 bytes; `16d055db8451e1f247907265f38b5835d00f766e1cf9193438c93792d29a159f`); OpenThoughts3 15.000 (936.229.550 bytes; `c23a18348f6478acac2ed0549df655a1c3f433d6f6763d93e9892e877f3228a9`). LibreTexts 20.532/25.000 y Spanish-PD-Books 978/1.000 descartados. Manifiesto artifact [13983600253](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43298985874/artifacts/13983600253), ZIP SHA-256 `adc350c45bf60c66e1e35f62dcbc0fb449aad312ddc2e8bcf1d72983f9c98ebd`, JSON SHA-256 `c4d9055db2c098b1f05c6333c60df18636f74e125d65e7ea7ba57881c6296645`.
+- [Run 93, grupo 6/8](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43383222519): 73.736 filas / 807.461.935 bytes JSONL efímeros. Los tres shards válidos son idénticos por hash, filas y bytes a run 87: 0 contenido único adicional. Spanish-PD-Books 954/1.000 y German Commons 0/500 descartados. Manifiesto artifact [14018112522](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43383222519/artifacts/14018112522), ZIP SHA-256 `79b3e47ad7467370f611b979bd7294a1022f6f114eca6ce4b59d075218965129`, JSON SHA-256 `59e692299981eca4403fa3836b7f1c4e38469315286e41620f0fd35055710d77`.
+
+Ambos runs retuvieron solo manifiestos: 0 bytes de payload, 0 staged, 0 admitidos. Bytes remotos/comprimidos desconocidos; hashes de shards no recalculables tras perderse el runner. G-0, near-dedup global, holdout, privacidad, malware y revisión humana siguen pendientes.
+
+### Nuevas fuentes en discovery-only
+
+- Eurostat: política de reutilización comercial con atribución, pero excepciones por titularidad de terceros, co-publicaciones, países y series comerciales concretas. API mutable sin historial de versiones; cualquier futuro lote debe congelarse como snapshot con consulta, dataflow, DSD, codelists, timestamp y SHA-256. No se adquirió; API anunciada en mantenimiento el 13/11 de 14:00 a 23:00 CET.
+- OECD: limitar a publicaciones escritas desde 2024-07-01 y confirmar CC-BY-4.0 en cada copyright page. Excluir obras con excepciones, co-publicaciones o material de terceros.
+- OpenThoughts3: held y desactivado. La licencia Apache del dataset agregado no limpia los derechos de las preguntas upstream; no reacquirir sin procedencia/licencia por fila.
+
+### Medidas operativas
+
+- Rotación corregida a `((day_of_year - 1) * 4 + tranche_slot) % 8`: ocho grupos en 48 horas sin solapamiento.
+- Eliminado el trigger `push` de adquisición; los PR solo validan.
+- En repositorio público, no descargar sin el secreto Actions `HERETIC_STAGING_PASSPHRASE`. Sin él, el workflow registra `blocked_storage_gate` y cero bytes. Con él, publica un artefacto GPG AES-256 cifrado y elimina plaintext del runner. Retención de artefactos: 90 días. No se ha creado ni cambiado el secreto.
+
+### Pendiente
+
+1. Configurar el almacenamiento cifrado y recuperar los artefactos para revisión en un entorno controlado.
+2. Ejecutar near-dedup contra todo el corpus y los splits protegidos, auditoría estratificada real y G-0.
+3. Mantener todos los candidatos fuera de `training_eligible` hasta que todos los gates pasen.
