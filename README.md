@@ -313,3 +313,6 @@ El detalle de hashes, estados por fuente, límites de licencia, artefactos y con
 - En este repositorio público, el workflow exige `HERETIC_STAGING_PASSPHRASE` para descargar; sin el secreto solo genera un manifiesto `blocked_storage_gate`. Con él, el payload se cifra antes del artefacto público y se elimina el plaintext del runner. No se ha creado ni modificado ningún secreto.
 
 Ningún candidato pasa a `training_eligible` hasta completar revisión de licencias/procedencia, calidad, privacidad, malware, deduplicación global, contaminación de holdout y G-0.
+
+
+**Fortaleza del secreto de staging:** en repositorios públicos el workflow solo descarga si `HERETIC_STAGING_PASSPHRASE` tiene al menos 32 caracteres; GPG usa AES-256, SHA-512 S2K y control de integridad. Sin ese mínimo, el lote se bloquea antes de descargar.
