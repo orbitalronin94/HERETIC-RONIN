@@ -1779,7 +1779,8 @@
         "https://huggingface.co/datasets/open-thoughts/OpenThoughts3-1.2M/blob/61bcf9d4eb38b30295efc2021227a63cc5bb34c8/README.md",
         "https://arxiv.org/abs/2506.04178",
         "https://github.com/open-thoughts/open-thoughts"
-      ]
+      ],
+      "training_authorized": false
     },
     {
       "id": "open-web-math/open-web-math",
