@@ -29,6 +29,9 @@ on:
       - "tests/test_review_candidate_samples.py"
       - "tests/test_license_gates.py"
       - "tests/test_acquisition_safety.py"
+      - "scripts/admit_voxpopuli_cc0.py"
+      - "tests/test_voxpopuli_admission.py"
+      - ".github/workflows/admit-voxpopuli-cc0.yml"
 
 permissions:
   contents: read
