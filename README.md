@@ -316,3 +316,13 @@ Ningún candidato pasa a `training_eligible` hasta completar revisión de licenc
 
 
 **Fortaleza del secreto de staging:** en repositorios públicos el workflow solo descarga si `HERETIC_STAGING_PASSPHRASE` tiene al menos 32 caracteres; GPG usa AES-256, SHA-512 S2K y control de integridad. Sin ese mínimo, el lote se bloquea antes de descargar.
+
+
+## Curación de biblioteca — actualización verificada 2026-11-14
+
+- **Admisiones nuevas:** 0. Total acumulado: **703.593.871 bytes** y 260.971 documentos, según la última auditoría global [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447); progreso **0,140719 %** de 500 GB.
+- [Run 102](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43568604566) terminó correctamente, pero el preflight bloqueó la adquisición antes de descargar: el repositorio es público y HERETIC_STAGING_PASSPHRASE estaba ausente o por debajo de 32 caracteres. Resultado: 0 filas, 0 bytes remotos/descargados/comprimidos medidos, 0 bytes staged y 0 admitidos. Solo se publicó el manifiesto [artifact 14103293875](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43568604566/artifacts/14103293875), 653 bytes ZIP, SHA-256 88c9315417f8f9cb6531c0ed8df6b7b9bb79d240bae86163c94bef75753fb5da; JSON interno 871 bytes, SHA-256 0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7.
+- **EuroVoc 4.24** se registra como candidato discovery-only: tesauro multidisciplinar en 24 lenguas oficiales de la UE y tres lenguas de países candidatos. Las distribuciones archivadas de 2020 aparecen como CC0-1.0, pero no se extrapola esa licencia al paquete 4.24 actual; falta confirmar la licencia de la distribución exacta antes de adquirir.
+- **HUDOC / TEDH** queda bloqueado: los términos oficiales limitan la reproducción de textos a uso privado o información/educación relacionada con las actividades del Tribunal y sin cobro; otros usos, especialmente comerciales, requieren permiso previo por escrito. No se descargó.
+
+Ningún candidato pasa a training_eligible. Los gates de licencia por activo, privacidad, seguridad, near-dedup global, contaminación de holdout y G-0 siguen siendo obligatorios.
