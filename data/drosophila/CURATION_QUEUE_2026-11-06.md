@@ -455,3 +455,6 @@ Ambos runs retuvieron solo manifiestos: 0 bytes de payload, 0 staged, 0 admitido
 - EEA Datahub: candidatos WISE Statistics–Nutrients (DOI 10.2909/c6e353a2-c004-41eb-b0c1-5a2a1da5ef3b) y WEI+ 2023 (DOI 10.2909/3c13b52b-36e5-44bc-a07f-8389d43dfd3b), ambos con metadatos que declaran CC-BY 4.0 y EEA como titular. Pendiente upstream WISE SoE/WISE-6, acuerdos de países, distribuciones y hashes, calidad, privacidad y G-0. 0 descargas.
 - FAO Publications: bloqueado por los términos por defecto de uso no comercial y necesidad de permiso para reproducción/adaptación. No descargar sin autorización individual compatible.
 - Ningún registro se marca training_eligible; 0 bytes admitidos nuevos.
+
+
+- [Run 101](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43496984977), grupo 3/8: el preflight bloqueó antes de descargar por falta de HERETIC_STAGING_PASSPHRASE (mínimo 32 caracteres). 0 filas, 0 bytes remotos/descargados/comprimidos medidos, 0 staged y 0 admitidos. Artefacto [14071464119](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43496984977/artifacts/14071464119): ZIP 653 bytes, SHA-256 cddd161c01910852db6083f15ed157b2b4c6e2ad38308fa5ddc070b9767205b6; JSON interno 871 bytes, SHA-256 2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26. Hash del ZIP recalculado localmente y coincidente con GitHub; no hubo payload ni shards.
