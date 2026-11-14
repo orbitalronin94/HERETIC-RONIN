@@ -530,3 +530,6 @@ Total acumulado sin cambios: **703.593.871 bytes / 260.971 documentos**, progres
 - EEA Datahub: dos registros WISE (Nutrients 2025 y WEI+ 2023) muestran CC-BY 4.0 con EEA como titular en sus metadatos. Siguen como candidatos: falta trazar derechos de los datos nacionales/upstream, fijar distribuciones y hashes, auditar calidad y superar G-0. No se adquirió ningún payload.
 - FAO Publications: bloqueado por los términos por defecto no comerciales y la exigencia de permiso para reproducciones/adaptaciones. No descargado.
 - Resultado: **0 admisiones nuevas / 0 bytes**. Ninguno de los dos registros es training_eligible.
+
+
+- [Run 101](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43496984977), grupo 3/8: el preflight bloqueó antes de descargar por falta de HERETIC_STAGING_PASSPHRASE (mínimo 32 caracteres). 0 filas, 0 bytes remotos/descargados/comprimidos medidos, 0 staged y 0 admitidos. Artefacto [14071464119](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43496984977/artifacts/14071464119): ZIP 653 bytes, SHA-256 cddd161c01910852db6083f15ed157b2b4c6e2ad38308fa5ddc070b9767205b6; JSON interno 871 bytes, SHA-256 2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26. Hash del ZIP recalculado localmente y coincidente con GitHub; no hubo payload ni shards.
