@@ -511,3 +511,15 @@ El repositorio es público. El workflow exige el secreto Actions `HERETIC_STAGIN
 
 
 **Fortaleza del secreto de staging:** en repositorios públicos el workflow solo descarga si `HERETIC_STAGING_PASSPHRASE` tiene al menos 32 caracteres; GPG usa AES-256, SHA-512 S2K y control de integridad. Sin ese mínimo, el lote se bloquea antes de descargar.
+
+
+## Actualización de curación — 2026-11-14 (run 102)
+
+**Admisiones nuevas: 0.** La última ejecución programada [43568604566](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43568604566) terminó correctamente en el paso de preflight, pero el gate de almacenamiento bloqueó la descarga antes de contactar fuentes: el repositorio es público y HERETIC_STAGING_PASSPHRASE estaba ausente o era demasiado corto.
+
+- Grupo: 5/8. Filas candidatas: **0**; bytes remotos/descargados/comprimidos: **no medidos**; JSONL generado: **0 bytes**; staging durable: **0 filas / 0 bytes**; payload retenido: **0 bytes**; admisión: **0 filas / 0 bytes**.
+- Artefacto de manifiesto [14103293875](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43568604566/artifacts/14103293875): ZIP 653 bytes, SHA-256 88c9315417f8f9cb6531c0ed8df6b7b9bb79d240bae86163c94bef75753fb5da. JSON interno 871 bytes, SHA-256 0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7. El manifiesto declara blocked_storage_gate, payload_downloaded=false y training_authorized=false.
+- **EuroVoc 4.24**: candidato discovery-only, 24 lenguas oficiales de la UE más albanés, macedonio y serbio. Las distribuciones archivadas de 2020 constan como CC0-1.0, pero la licencia de la distribución actual 4.24 debe confirmarse en su ficha exacta; no se ha descargado.
+- **HUDOC / TEDH**: bloqueado por términos no comerciales. La reproducción de textos se limita a uso privado o información/educación relacionada con el Tribunal, sin cobro; cualquier otro uso, especialmente comercial, exige permiso previo escrito. No se ha descargado.
+
+Total acumulado sin cambios: **703.593.871 bytes / 260.971 documentos**, progreso **0,140719 %** de 500 GB. El éxito del workflow solo confirma que el bloqueo se registró correctamente; no es una adquisición ni una admisión.
