@@ -298,7 +298,7 @@ class LicenseGateTests(unittest.TestCase):
     def test_run_93_is_an_exact_duplicate_of_run_87_and_not_admitted(self):
         root = Path(__file__).resolve().parents[1]
         registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
-                batch = next(x for x in registry["historical_candidate_batches"] if x["run_id"] == 43383222519)
+        batch = next(x for x in registry["historical_candidate_batches"] if x["run_id"] == 43383222519)
         self.assertEqual(batch["run_id"], 43383222519)
         self.assertEqual(batch["duplicate_of_run_id"], 43090663647)
         self.assertEqual(batch["unique_candidate_rows_added"], 0)
