@@ -326,3 +326,13 @@ Ningún candidato pasa a `training_eligible` hasta completar revisión de licenc
 - **HUDOC / TEDH** queda bloqueado: los términos oficiales limitan la reproducción de textos a uso privado o información/educación relacionada con las actividades del Tribunal y sin cobro; otros usos, especialmente comerciales, requieren permiso previo por escrito. No se descargó.
 
 Ningún candidato pasa a training_eligible. Los gates de licencia por activo, privacidad, seguridad, near-dedup global, contaminación de holdout y G-0 siguen siendo obligatorios.
+
+
+## Curación 2026-11-14 — EEA Datahub y FAO
+
+- **EEA Datahub / WISE**: candidato discovery-only, limitado a dos registros cuyos metadatos identifican expresamente CC-BY 4.0 y al EEA como titular: WISE Statistics–Nutrients (DOI 10.2909/c6e353a2-c004-41eb-b0c1-5a2a1da5ef3b) y WEI+ country-scale 2023 (DOI 10.2909/3c13b52b-36e5-44bc-a07f-8389d43dfd3b). La política del EEA advierte que parte de los datos fuente pertenece a terceros y puede estar sujeta a acuerdos/licencias propios; se exige rastrear los flujos WISE SoE/WISE-6 y excluir componentes externos no aclarados. No se ha descargado ningún payload.
+- **FAO Publications**: bloqueado bajo los términos por defecto, que limitan la reutilización a estudio/investigación/docencia y productos no comerciales; reproducción, traducción y adaptación requieren solicitud de permiso. Solo se reconsiderará una obra concreta con licencia compatible o autorización escrita que cubra el uso previsto.
+- Admisiones nuevas: **0 documentos / 0 bytes**. Ambos registros permanecen training_authorized=false y no cuentan hacia el objetivo de 500 GB.
+
+
+- [Run 101](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43496984977), grupo 3/8: el preflight bloqueó antes de descargar por falta de HERETIC_STAGING_PASSPHRASE (mínimo 32 caracteres). 0 filas, 0 bytes remotos/descargados/comprimidos medidos, 0 staged y 0 admitidos. Artefacto [14071464119](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43496984977/artifacts/14071464119): ZIP 653 bytes, SHA-256 cddd161c01910852db6083f15ed157b2b4c6e2ad38308fa5ddc070b9767205b6; JSON interno 871 bytes, SHA-256 2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26. Hash del ZIP recalculado localmente y coincidente con GitHub; no hubo payload ni shards.

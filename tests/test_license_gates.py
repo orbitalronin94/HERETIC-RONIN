@@ -400,5 +400,46 @@ class LicenseGateTests(unittest.TestCase):
         self.assertIn("--s2k-mode 3", command)
         self.assertIn("--s2k-count 65011712", command)
 
+    def test_eea_wise_records_are_item_scoped_discovery_only(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "European Environment Agency:EEA-Datahub-WISE-CC-BY-4.0-records")
+        self.assertTrue(source["status"].startswith("candidate_discovery_only"))
+        self.assertEqual(source["spdx_license_identifier"], "CC-BY-4.0")
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIn("c6e353a2-c004-41eb-b0c1-5a2a1da5ef3b", source["revision"])
+        self.assertIn("3c13b52b-36e5-44bc-a07f-8389d43dfd3b", source["revision"])
+        self.assertIn("third parties", source["reported_license"])
+        self.assertGreaterEqual(len(source["required_checks"]), 9)
+
+    def test_fao_default_noncommercial_terms_are_blocked(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "FAO:publications-document-repository-default-terms")
+        self.assertTrue(source["status"].startswith("blocked_noncommercial"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIsNone(source["spdx_license_identifier"])
+        self.assertIn("non-commercial", source["reported_license"])
+        self.assertIn("permission request", source["reported_license"])
+
+
+    def test_run_101_storage_gate_manifest_is_verified_and_not_admitted(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        batch = next(x for x in registry["historical_candidate_batches"] if x["run_id"] == 43496984977)
+        self.assertEqual(batch["conclusion"], "success")
+        self.assertEqual(batch["source_group"], 3)
+        self.assertEqual(batch["candidate_rows"], 0)
+        self.assertEqual(batch["candidate_jsonl_bytes"], 0)
+        self.assertEqual(batch["artifact_sha256"], "cddd161c01910852db6083f15ed157b2b4c6e2ad38308fa5ddc070b9767205b6")
+        self.assertEqual(batch["manifest_sha256"], "2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26")
+        self.assertEqual(batch["retained_payload_bytes"], 0)
+        self.assertEqual(batch["admitted_bytes_added"], 0)
+        self.assertIs(batch["training_authorized"], False)
+        self.assertIs(batch["storage_gate"]["payload_downloaded"], False)
+
+
 if __name__ == "__main__":
     unittest.main()
