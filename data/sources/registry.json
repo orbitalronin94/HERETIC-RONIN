@@ -3027,6 +3027,94 @@
       "count_toward_admitted_bytes": false,
       "training_authorized": false,
       "recorded_date": "2026-11-14"
+    },
+    {
+      "id": "European Environment Agency:EEA-Datahub-WISE-CC-BY-4.0-records",
+      "url": "https://www.eea.europa.eu/en/datahub",
+      "retrieval_url": "https://sdi.eea.europa.eu/catalogue/srv/api/records/",
+      "revision": "Item-level candidate allowlist checked 2026-11-14: WISE Statistics - nutrients (record c6e353a2-c004-41eb-b0c1-5a2a1da5ef3b, DOI 10.2909/c6e353a2-c004-41eb-b0c1-5a2a1da5ef3b, edition 01.00, citation identifier eea_t_wise-statistics-nutrient-1990-2023_p_2025_v01_r00) and WEI+ country-scale 2023 (record 3c13b52b-36e5-44bc-a07f-8389d43dfd3b, DOI 10.2909/3c13b52b-36e5-44bc-a07f-8389d43dfd3b, edition 01.00, citation identifier eea_v_3035_250_k_wei-country-scale_p_2023_v01_r00). Mutable catalogue/API; before acquisition freeze full item metadata, exact distribution URLs/member lists, UTC retrieval time, schema and SHA-256. No immutable repository commit.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired. Metadata records list CSV/TXT/SQL or SHP/XLSX distributions but no byte sizes were measured.",
+      "reported_license": "Narrow item-level scope only: both named EEA Datahub metadata records explicitly state License CC-BY 4.0 and copyright holder European Environment Agency (EEA). SPDX CC-BY-4.0 applies only if the frozen record metadata at acquisition still contains that exact licence and EEA copyright-holder statement. EEA's general legal notice grants reuse only for material for which EEA holds rights; its data policy states that source data may be owned by third parties and may have separate access agreements and licence conditions. No blanket licence is inferred for the Datahub.",
+      "spdx_license_identifier": "CC-BY-4.0",
+      "status": "candidate_discovery_only_pending_upstream_dataflow_rights_distribution_snapshot_quality_and_global_g0",
+      "domains": [
+        "environmental science",
+        "freshwater",
+        "water quality",
+        "nutrients",
+        "water use",
+        "water scarcity",
+        "climate impacts",
+        "environmental statistics"
+      ],
+      "language": [
+        "en"
+      ],
+      "rights_caveat": "The two records identify EEA as copyright holder and CC-BY 4.0, but their lineage includes reported data from WISE SoE/WISE-6 and country-level sources. EEA's data policy explicitly warns that much source data is owned by other organisations and may have separate access agreements/licences. Verify the underlying reporting/dataflow terms and every embedded component before acquisition. Exclude Natural Earth boundaries, external vocabularies/classifications, third-party geometries, logos, linked documents and any source records whose rights are not independently cleared. Do not treat a record's licence as blanket permission for all linked resources.",
+      "required_checks": [
+        "Re-fetch and freeze the exact metadata JSON for both allowlisted record UUIDs; require the exact CC-BY 4.0 URI and copyright holder EEA in each frozen record, otherwise fail closed.",
+        "Trace WISE SoE/WISE-6 and national reporting upstream terms for every included table/field; exclude any country/provider data whose reuse/adaptation rights are not established.",
+        "Freeze exact CSV/XLSX/TXT/SQL distribution URLs, file/member names, schema, UTC timestamp, compressed and expanded byte counts and SHA-256; never infer bytes from metadata.",
+        "Exclude SHP/geospatial boundaries and linked Natural Earth, GEMET, Eionet, ROD, external indicator and third-party resources unless separately licensed and allowlisted.",
+        "Preserve DOI, record UUID, citation identifier, edition, title, publisher/custodian, source URL, access date, attribution and CC-BY 4.0 notice.",
+        "Validate table schemas, units, geographic/time keys, missing values, encoding, consistency and source-specific quality metadata; preserve original units and definitions.",
+        "Audit samples by indicator, country, year/quarter, format and source lineage; document known differences from national series.",
+        "Check personal data, confidential/statistical data, secrets and malicious files; exclude rows or fields subject to privacy/statistical restrictions.",
+        "Run exact and approximate deduplication against all corpus partitions and validation/test/benchmark/holdout; require global G-0.",
+        "Keep discovery-only, training_authorized=false and admitted bytes zero until item-level, upstream, technical, privacy, quality, human-review and global gates all pass."
+      ],
+      "evidence_urls": [
+        "https://www.eea.europa.eu/en/datahub",
+        "https://www.eea.europa.eu/en/legal-notice",
+        "https://www.eea.europa.eu/en/datahub/eea-data-policy",
+        "https://sdi.eea.europa.eu/catalogue/srv/api/records/c6e353a2-c004-41eb-b0c1-5a2a1da5ef3b",
+        "https://sdi.eea.europa.eu/catalogue/srv/api/records/3c13b52b-36e5-44bc-a07f-8389d43dfd3b"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "recorded_date": "2026-11-14"
+    },
+    {
+      "id": "FAO:publications-document-repository-default-terms",
+      "url": "https://www.fao.org/publications/",
+      "retrieval_url": "https://www.fao.org/publications/about-fao-publishing/permissions/",
+      "revision": "Rights and permissions page checked 2026-11-14; mutable policy page. No work-level payload or immutable snapshot acquired.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired.",
+      "reported_license": "Custom FAO copyright terms; no SPDX identifier. FAO states all publications are copyright protected. Unless otherwise indicated, copying, printing and downloading are allowed for private study, research and teaching, and use in non-commercial products/services with acknowledgement. Reuse involving reproductions, translations or adaptations requires a permission request. No general commercial reuse or machine-learning training/adaptation grant is established by the default notice.",
+      "spdx_license_identifier": null,
+      "status": "blocked_noncommercial_default_terms_and_adaptation_permission_required",
+      "domains": [
+        "agriculture",
+        "food systems",
+        "fisheries",
+        "forestry",
+        "nutrition",
+        "rural development",
+        "food security"
+      ],
+      "language": [
+        "varies by individual publication; not inferred"
+      ],
+      "rights_caveat": "Do not acquire or stage FAO publications under the default terms for this project. Reconsider only an individual work whose own copyright page grants compatible commercial reuse and adaptation, or after written permission explicitly covers the intended training and transformations. Exclude third-party photographs, maps, tables, annexes and co-published material unless independently cleared.",
+      "required_checks": [
+        "Do not download or stage under the default non-commercial terms.",
+        "Reconsider only when a specific work has an item-level compatible licence or written permission covering commercial use, adaptation and machine-learning training.",
+        "Verify the rights holder, authors, edition, publication date, DOI/ISBN and every third-party component for each work.",
+        "Preserve exact attribution, source URL, licence/permission text, revision, retrieval date and SHA-256.",
+        "Exclude co-publications, third-party images/maps/tables, restricted data and materials whose rights are unclear.",
+        "If rights are cleared, validate PDF/HTML integrity, text extraction, language, quality, PII, secrets and malicious files.",
+        "Audit stratified samples by subject, language, publication type and format.",
+        "Run exact and approximate deduplication against all corpus splits and protected holdouts; require global G-0.",
+        "Keep blocked and training_authorized=false unless all work-level and global gates pass."
+      ],
+      "evidence_urls": [
+        "https://www.fao.org/publications/about-fao-publishing/permissions/"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "recorded_date": "2026-11-14"
     }
   ],
   "target_library_bytes": 500000000000,
