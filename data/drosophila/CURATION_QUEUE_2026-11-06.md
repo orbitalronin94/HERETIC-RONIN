@@ -448,3 +448,10 @@ Ambos runs retuvieron solo manifiestos: 0 bytes de payload, 0 staged, 0 admitido
 - EuroVoc 4.24 queda discovery-only hasta confirmar licencia de la distribución actual; la licencia CC0 observada en distribuciones archivadas de 2020 no se extrapola.
 - HUDOC queda bloqueado por sus condiciones de reutilización no comerciales; solo se reconsiderará con permiso previo escrito que cubra expresamente entrenamiento y adaptación.
 - No reanudar adquisición hasta disponer de almacenamiento durable privado o cifrado; mantener G-0, near-dedup, holdout, privacidad y revisión humana sin excepciones.
+
+
+## 2026-11-14 — EEA Datahub / FAO
+
+- EEA Datahub: candidatos WISE Statistics–Nutrients (DOI 10.2909/c6e353a2-c004-41eb-b0c1-5a2a1da5ef3b) y WEI+ 2023 (DOI 10.2909/3c13b52b-36e5-44bc-a07f-8389d43dfd3b), ambos con metadatos que declaran CC-BY 4.0 y EEA como titular. Pendiente upstream WISE SoE/WISE-6, acuerdos de países, distribuciones y hashes, calidad, privacidad y G-0. 0 descargas.
+- FAO Publications: bloqueado por los términos por defecto de uso no comercial y necesidad de permiso para reproducción/adaptación. No descargar sin autorización individual compatible.
+- Ningún registro se marca training_eligible; 0 bytes admitidos nuevos.
