@@ -350,5 +350,46 @@ class LicenseGateTests(unittest.TestCase):
         self.assertIn('"enabled":False', script)
         self.assertIn("held_source_disabled", script)
 
+    def test_run_102_storage_gate_blocked_before_download_and_not_admitted(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        batch = next(x for x in registry["historical_candidate_batches"] if x["run_id"] == 43568604566)
+        self.assertEqual(batch["conclusion"], "success")
+        self.assertEqual(batch["candidate_rows"], 0)
+        self.assertEqual(batch["candidate_jsonl_bytes"], 0)
+        self.assertEqual(batch["staged_rows"], 0)
+        self.assertEqual(batch["retained_payload_bytes"], 0)
+        self.assertEqual(batch["admitted_rows_added"], 0)
+        self.assertEqual(batch["admitted_bytes_added"], 0)
+        self.assertIs(batch["training_authorized"], False)
+        self.assertIs(batch["storage_gate"]["payload_downloaded"], False)
+        self.assertEqual(batch["storage_gate"]["status"], "blocked")
+        self.assertEqual(batch["artifact_sha256"], "88c9315417f8f9cb6531c0ed8df6b7b9bb79d240bae86163c94bef75753fb5da")
+        self.assertEqual(batch["manifest_sha256"], "0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7")
+
+    def test_eurovoc_424_remains_discovery_only_until_current_distribution_license_is_verified(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "Publications Office EU:EuroVoc-4.24-multilingual-thesaurus")
+        self.assertTrue(source["status"].startswith("candidate_discovery_only"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIsNone(source["reported_rows"])
+        self.assertIn("4.24", source["revision"])
+        self.assertIn("2020", source["reported_license"])
+        self.assertIn("current 4.24 release's own distribution licence has not yet been confirmed", source["reported_license"])
+        self.assertEqual(len(source["language"]), 27)
+        self.assertGreaterEqual(len(source["required_checks"]), 8)
+
+    def test_hudoc_is_blocked_under_noncommercial_reuse_terms(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        source = next(s for s in registry["sources"] if s.get("id") == "European Court of Human Rights:HUDOC-case-law")
+        self.assertTrue(source["status"].startswith("blocked_noncommercial"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIn("prior written permission", source["reported_license"])
+        self.assertIn("commercial", source["reported_license"])
+
 if __name__ == "__main__":
     unittest.main()
