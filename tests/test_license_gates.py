@@ -425,5 +425,21 @@ class LicenseGateTests(unittest.TestCase):
         self.assertIn("permission request", source["reported_license"])
 
 
+    def test_run_101_storage_gate_manifest_is_verified_and_not_admitted(self):
+        root = Path(__file__).resolve().parents[1]
+        registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
+        batch = next(x for x in registry["historical_candidate_batches"] if x["run_id"] == 43496984977)
+        self.assertEqual(batch["conclusion"], "success")
+        self.assertEqual(batch["source_group"], 3)
+        self.assertEqual(batch["candidate_rows"], 0)
+        self.assertEqual(batch["candidate_jsonl_bytes"], 0)
+        self.assertEqual(batch["artifact_sha256"], "cddd161c01910852db6083f15ed157b2b4c6e2ad38308fa5ddc070b9767205b6")
+        self.assertEqual(batch["manifest_sha256"], "2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26")
+        self.assertEqual(batch["retained_payload_bytes"], 0)
+        self.assertEqual(batch["admitted_bytes_added"], 0)
+        self.assertIs(batch["training_authorized"], False)
+        self.assertIs(batch["storage_gate"]["payload_downloaded"], False)
+
+
 if __name__ == "__main__":
     unittest.main()
