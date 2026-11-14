@@ -523,3 +523,10 @@ El repositorio es público. El workflow exige el secreto Actions `HERETIC_STAGIN
 - **HUDOC / TEDH**: bloqueado por términos no comerciales. La reproducción de textos se limita a uso privado o información/educación relacionada con el Tribunal, sin cobro; cualquier otro uso, especialmente comercial, exige permiso previo escrito. No se ha descargado.
 
 Total acumulado sin cambios: **703.593.871 bytes / 260.971 documentos**, progreso **0,140719 %** de 500 GB. El éxito del workflow solo confirma que el bloqueo se registró correctamente; no es una adquisición ni una admisión.
+
+
+## Revisión de derechos — EEA Datahub y FAO (2026-11-14)
+
+- EEA Datahub: dos registros WISE (Nutrients 2025 y WEI+ 2023) muestran CC-BY 4.0 con EEA como titular en sus metadatos. Siguen como candidatos: falta trazar derechos de los datos nacionales/upstream, fijar distribuciones y hashes, auditar calidad y superar G-0. No se adquirió ningún payload.
+- FAO Publications: bloqueado por los términos por defecto no comerciales y la exigencia de permiso para reproducciones/adaptaciones. No descargado.
+- Resultado: **0 admisiones nuevas / 0 bytes**. Ninguno de los dos registros es training_eligible.
