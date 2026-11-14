@@ -286,7 +286,7 @@ class LicenseGateTests(unittest.TestCase):
     def test_run_92_candidate_batch_is_not_staged_or_admitted(self):
         root = Path(__file__).resolve().parents[1]
         registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
-        batch = registry["previous_candidate_batch_details"]
+        batch = next(x for x in registry["historical_candidate_batches"] if x["run_id"] == 43298985874)
         self.assertEqual(batch["run_id"], 43298985874)
         self.assertEqual(batch["candidate_rows"], 35000)
         self.assertEqual(batch["candidate_jsonl_bytes"], 945924928)
@@ -298,7 +298,7 @@ class LicenseGateTests(unittest.TestCase):
     def test_run_93_is_an_exact_duplicate_of_run_87_and_not_admitted(self):
         root = Path(__file__).resolve().parents[1]
         registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
-        batch = registry["last_candidate_batch_details"]
+                batch = next(x for x in registry["historical_candidate_batches"] if x["run_id"] == 43383222519)
         self.assertEqual(batch["run_id"], 43383222519)
         self.assertEqual(batch["duplicate_of_run_id"], 43090663647)
         self.assertEqual(batch["unique_candidate_rows_added"], 0)
@@ -390,6 +390,15 @@ class LicenseGateTests(unittest.TestCase):
         self.assertIs(source["count_toward_admitted_bytes"], False)
         self.assertIn("prior written permission", source["reported_license"])
         self.assertIn("commercial", source["reported_license"])
+
+    def test_public_encryption_uses_explicit_high_work_factor(self):
+        root = Path(__file__).resolve().parents[1]
+        workflow = (root / ".github/workflows/acquire-open-source-candidates.yml").read_text(encoding="utf-8")
+        command = next(line.strip() for line in workflow.splitlines() if "gpg --batch --yes --pinentry-mode loopback --symmetric" in line and '--output "$encrypted"' in line)
+        self.assertIn("--cipher-algo AES256", command)
+        self.assertIn("--s2k-digest-algo SHA512", command)
+        self.assertIn("--s2k-mode 3", command)
+        self.assertIn("--s2k-count 65011712", command)
 
 if __name__ == "__main__":
     unittest.main()
