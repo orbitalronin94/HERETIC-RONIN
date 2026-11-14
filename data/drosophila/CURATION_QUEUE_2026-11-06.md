@@ -440,3 +440,11 @@ Ambos runs retuvieron solo manifiestos: 0 bytes de payload, 0 staged, 0 admitido
 
 
 **Fortaleza del secreto de staging:** en repositorios públicos el workflow solo descarga si `HERETIC_STAGING_PASSPHRASE` tiene al menos 32 caracteres; GPG usa AES-256, SHA-512 S2K y control de integridad. Sin ese mínimo, el lote se bloquea antes de descargar.
+
+
+## Revisión de curación — 2026-11-14
+
+- [Run 102](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43568604566): preflight correcto, adquisición bloqueada por almacenamiento. HERETIC_STAGING_PASSPHRASE no estaba presente o no alcanzaba 32 caracteres. 0 filas, 0 bytes descargados, 0 staged y 0 admitidos. Manifiesto [14103293875](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43568604566/artifacts/14103293875), ZIP SHA-256 88c9315417f8f9cb6531c0ed8df6b7b9bb79d240bae86163c94bef75753fb5da; JSON SHA-256 0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7.
+- EuroVoc 4.24 queda discovery-only hasta confirmar licencia de la distribución actual; la licencia CC0 observada en distribuciones archivadas de 2020 no se extrapola.
+- HUDOC queda bloqueado por sus condiciones de reutilización no comerciales; solo se reconsiderará con permiso previo escrito que cubra expresamente entrenamiento y adaptación.
+- No reanudar adquisición hasta disponer de almacenamiento durable privado o cifrado; mantener G-0, near-dedup, holdout, privacidad y revisión humana sin excepciones.
