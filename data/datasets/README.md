@@ -533,3 +533,17 @@ Total acumulado sin cambios: **703.593.871 bytes / 260.971 documentos**, progres
 
 
 - [Run 101](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43496984977), grupo 3/8: el preflight bloqueó antes de descargar por falta de HERETIC_STAGING_PASSPHRASE (mínimo 32 caracteres). 0 filas, 0 bytes remotos/descargados/comprimidos medidos, 0 staged y 0 admitidos. Artefacto [14071464119](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43496984977/artifacts/14071464119): ZIP 653 bytes, SHA-256 cddd161c01910852db6083f15ed157b2b4c6e2ad38308fa5ddc070b9767205b6; JSON interno 871 bytes, SHA-256 2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26. Hash del ZIP recalculado localmente y coincidente con GitHub; no hubo payload ni shards.
+
+
+## Revisión de curación — 2026-11-15
+
+**Admisiones nuevas: 0.** Se añadieron dos fuentes a discovery-only, sin descarga:
+
+- legislation.gov.uk: OGL-UK-3.0 para el texto legislativo cubierto por el aviso del sitio; excluir excepciones, datos personales y derechos de terceros. El material derivado de EUR-Lex se separa y no se cuenta aquí. Preservar atribuciones de Westlaw/British History Online, versiones/fechas y XML exacto.
+- Registro público del Consejo de la UE: Decision (EU) 2017/1842 cubre documentos públicos producidos/held por el Consejo para reutilización comercial y no comercial, con atribución y sin distorsión; quedan pendientes condiciones por documento, adaptación/training, privacidad, derechos de terceros y seguridad.
+
+Ambas entradas tienen `training_authorized=false`, `count_toward_admitted_bytes=false`, sin filas ni bytes medidos.
+
+[Run 43687908071](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43687908071), grupo 1/8, quedó bloqueado en preflight por falta de `HERETIC_STAGING_PASSPHRASE` de al menos 32 caracteres. No contactó las fuentes ni descargó payload. Manifiesto [14150964444](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43687908071/artifacts/14150964444): ZIP SHA-256 `a2bea5f0df4fdf616328872d3774265066685b7afea70ade5ef5db260dfc516d`; JSON interno SHA-256 `5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437`.
+
+Total acumulado verificado sin cambios: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB. No se suman candidatos, artefactos ni bytes efímeros.
