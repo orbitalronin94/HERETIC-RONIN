@@ -345,3 +345,10 @@ Ningún candidato pasa a training_eligible. Los gates de licencia por activo, pr
 - Ambos registros: `training_authorized=false`, `count_toward_admitted_bytes=false`, filas y bytes no medidos. No son admisiones.
 - [Run 43687908071](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43687908071), grupo 1/8: el preflight bloqueó antes de descargar porque el repositorio es público y `HERETIC_STAGING_PASSPHRASE` estaba ausente o por debajo de 32 caracteres. Manifiesto [artifact 14150964444](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43687908071/artifacts/14150964444), ZIP 653 bytes, SHA-256 `a2bea5f0df4fdf616328872d3774265066685b7afea70ade5ef5db260dfc516d`; JSON interno 871 bytes, SHA-256 `5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437`. El manifiesto declara `blocked_storage_gate`, 0 filas, 0 bytes y `training_authorized=false`.
 - Admisiones nuevas: **0 documentos / 0 bytes**. Total acumulado sin cambios: **703.593.871 bytes / 260.971 documentos**, progreso **0,140719 %** de 500 GB; referencia [auditoría global 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
+
+
+## Curación 2026-11-15 — European Parliament Think Tank / EPRS
+
+- Añadido **European Parliament Think Tank / EPRS** como candidato discovery-only, limitado a publicaciones cuya propia página indique expresamente CC-BY-4.0 y titularidad de la Unión Europea. Hay ejemplos verificables en publicaciones de 2025 y 2026 sobre derechos de autor/IA y retención de datos. El aviso legal general del Parlamento no se trata como una licencia CC-BY universal: cada obra debe revisarse, y figuras, tablas, citas y anexos de terceros se excluyen salvo autorización independiente.
+- Se preservarán código EPRS, autoría, fecha, DOI/ISBN, idioma, página de copyright, PDF/HTML exacto y SHA-256. Sin descarga ni bytes medidos en esta ejecución.
+- El candidato permanece `training_authorized=false` y `count_toward_admitted_bytes=false`; faltan revisión de cada obra, terceros, privacidad, muestras y G-0.
