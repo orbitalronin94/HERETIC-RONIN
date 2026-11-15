@@ -34,6 +34,16 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertGreaterEqual(len(source["evidence_urls"]), 6)
         self.assertGreaterEqual(len(source["required_checks"]), 10)
 
+    def test_eprs_publications_require_item_level_cc_by_and_remain_discovery_only(self):
+        source = self.source("European Parliament:Think Tank-EPRS-CC-BY-4.0-item-level")
+        self.assert_discovery_only(source)
+        self.assertEqual(source["spdx_license_identifier"], "CC-BY-4.0")
+        self.assertIn("individual publication page", source["reported_license"])
+        self.assertIn("third-party", source["rights_caveat"])
+        self.assertIn("item-level", " ".join(source["required_checks"]))
+        self.assertGreaterEqual(len(source["evidence_urls"]), 4)
+        self.assertGreaterEqual(len(source["required_checks"]), 10)
+
     def test_council_register_remains_unlicensed_for_automatic_training_pending_item_checks(self):
         source = self.source("Council of the European Union:public-register-of-council-documents")
         self.assert_discovery_only(source)
