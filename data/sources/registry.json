@@ -3218,6 +3218,64 @@
       "count_toward_admitted_bytes": false,
       "training_authorized": false,
       "recorded_date": "2026-11-15"
+    },
+    {
+      "id": "European Parliament:Think Tank-EPRS-CC-BY-4.0-item-level",
+      "url": "https://www.europarl.europa.eu/thinktank/en/home",
+      "retrieval_url": "https://www.europarl.europa.eu/thinktank/en/home",
+      "revision": "Mutable Think Tank publication catalogue. For each candidate, freeze the EPRS document code, item page, publication/edition date, exact copyright statement, author list, language, exact PDF/HTML file URL, UTC retrieval timestamp, response bytes and SHA-256. No immutable bulk snapshot or repository commit was identified.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired. Only individual publications with an explicit item-level CC-BY-4.0 statement are in scope.",
+      "reported_license": "CC-BY-4.0 (SPDX) only for individual Think Tank/EPRS publications whose own item page explicitly states that reuse is authorised under Creative Commons Attribution 4.0 International and identifies the European Union as rights holder. The European Parliament's general website notice is not a blanket CC-BY licence: it describes broader reuse conditions for EU-owned material and different conditions for other items. Do not infer CC-BY-4.0 from the portal, publisher or neighbouring publications.",
+      "spdx_license_identifier": "CC-BY-4.0",
+      "status": "candidate_discovery_only_pending_item_level_license_third_party_privacy_and_global_g0",
+      "domains": [
+        "European policy",
+        "law",
+        "economics",
+        "finance",
+        "trade",
+        "employment",
+        "education",
+        "health",
+        "agriculture",
+        "environment",
+        "energy",
+        "transport",
+        "science",
+        "technology",
+        "digital policy",
+        "international relations",
+        "culture",
+        "public administration"
+      ],
+      "language": [
+        "Preserve the actual language of each publication and its edition; do not infer from the catalogue or document code."
+      ],
+      "rights_caveat": "Only individual EPRS/Think Tank publications whose own page explicitly declares CC-BY-4.0 are candidates. The Parliament's general legal notice authorises reuse of EU-owned or third-party material for which the EU holds rights under broader conditions, but also states that specific items may have different conditions and that third-party rights may require permission. Documents carrying only the general notice, personal-use/non-commercial limits, reproduction-only terms, uncertain authorship or un-cleared third-party figures/tables are excluded. CC-BY-4.0 item pages still do not license embedded third-party components unless those are separately covered.",
+      "required_checks": [
+        "Require the exact individual publication page to state CC-BY-4.0 and identify the European Union as rights holder; do not infer the licence from the portal, a neighbouring item or the general legal notice.",
+        "Exclude items with only general EP reuse terms, personal-use or non-commercial restrictions, reproduction-only terms, missing/ambiguous notices or conflicting item-level conditions.",
+        "Preserve EPRS document code, title, all authors, publication date, DOI/ISBN where present, committee/series, subject tags, language, edition, canonical page URL and required attribution.",
+        "Freeze the exact PDF/HTML file URL, file bytes, UTC retrieval time, page copyright statement and SHA-256; do not treat a mutable catalogue URL as an immutable revision.",
+        "Inspect each figure, table, photograph, map, quotation, annex and linked attachment; exclude third-party components unless their rights independently permit the intended reuse and adaptation.",
+        "Exclude EP logos, trademarks, branding, multimedia, photographs and external-source material unless item-level permission expressly covers them.",
+        "Validate PDF/HTML integrity, text extraction, encoding, Unicode, language, completeness, tables, equations and OCR quality; preserve document structure and citations.",
+        "Audit stratified samples by policy domain, language, publication year, format, author and document type; record factual-quality and extraction defects.",
+        "Review personal data, named individuals, sensitive case examples, contact details and other PII; do not assume public availability removes privacy obligations.",
+        "Run malware, archive-bomb, embedded-file and secret scans before staging.",
+        "Run exact and approximate deduplication against all admitted/candidate corpus material and every validation/test/benchmark/holdout split; require global G-0 and human review.",
+        "Keep discovery-only, training_authorized=false and count_toward_admitted_bytes=false until all item-level and global gates pass."
+      ],
+      "evidence_urls": [
+        "https://www.europarl.europa.eu/legal-notice/en",
+        "https://www.europarl.europa.eu/thinktank/en/academic/EPRS_ATA(2025)769585",
+        "https://www.europarl.europa.eu/thinktank/en/academic/EPRS_BRI(2026)789334",
+        "https://www.europarl.europa.eu/thinktank/en/academic/EPRS_BRI(2025)775878"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "recorded_date": "2026-11-15"
     }
   ],
   "target_library_bytes": 500000000000,
