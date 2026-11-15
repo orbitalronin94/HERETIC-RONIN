@@ -467,3 +467,11 @@ Ambos runs retuvieron solo manifiestos: 0 bytes de payload, 0 staged, 0 admitido
 - No se descargó ninguno de los candidatos. Ambos tienen `training_authorized=false` y `count_toward_admitted_bytes=false`.
 - [Run 43687908071](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43687908071): grupo 1/8 bloqueado antes de descargar por falta de `HERETIC_STAGING_PASSPHRASE` (mínimo 32 caracteres). 0 filas, 0 bytes descargados/staged/admitidos. Artifact [14150964444](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43687908071/artifacts/14150964444), ZIP SHA-256 `a2bea5f0df4fdf616328872d3774265066685b7afea70ade5ef5db260dfc516d`; JSON SHA-256 `5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437`.
 - Nuevas admisiones: **0 bytes**. Total: **703.593.871 bytes / 260.971 documentos**; progreso **0,140719 %** de 500 GB. G-0, near-dedup global, holdout, privacidad, seguridad y revisión humana siguen obligatorios.
+
+
+## 2026-11-15 — European Parliament Think Tank / EPRS
+
+- Candidato discovery-only limitado a publicaciones con declaración CC-BY-4.0 en la página individual y titularidad de la UE. No usar el aviso legal general como licencia universal.
+- Preservar código EPRS, autores, fecha, DOI/ISBN, idioma, aviso exacto, PDF/HTML y SHA-256. Excluir figuras/tablas/anexos de terceros sin derechos independientes, material con términos no comerciales/reproducción limitada y datos personales no autorizados.
+- Ejemplos oficiales consultados: EPRS_ATA(2025)769585 y EPRS_BRI(2026)789334. No se descargaron.
+- `training_authorized=false`, `count_toward_admitted_bytes=false`; pendientes auditoría por obra, muestras, privacidad, near-dedup y G-0.
