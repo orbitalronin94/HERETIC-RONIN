@@ -3115,6 +3115,109 @@
       "count_toward_admitted_bytes": false,
       "training_authorized": false,
       "recorded_date": "2026-11-14"
+    },
+    {
+      "id": "UK legislation:legislation.gov.uk-core-text-OGL-UK-3.0",
+      "url": "https://www.legislation.gov.uk/",
+      "retrieval_url": "https://www.legislation.gov.uk/openapi",
+      "revision": "Mutable official API. For each item, freeze the legislation identifier, exact version/date URI (as-enacted or point-in-time), OpenAPI/schema revision, response format, UTC retrieval timestamp, exact response bytes and SHA-256. A current URI without an explicit version/date is not an immutable snapshot.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired.",
+      "reported_license": "OGL-UK-3.0 (SPDX). legislation.gov.uk states that all site content is available under OGL v3.0 except where otherwise stated. This candidate is limited to core UK and devolved legislation text whose item-level notice does not state another condition. The site separately identifies material derived from EUR-Lex; exclude that material from this source and process only under the existing EUR-Lex record. The site expressly confirms that Westlaw-contributed legislation text and British History Online-contributed Statutes of the Realm text may be reused under OGL, subject to their additional attribution statements.",
+      "spdx_license_identifier": "OGL-UK-3.0",
+      "status": "candidate_discovery_only_pending_item_version_scope_privacy_and_global_g0",
+      "domains": [
+        "UK and devolved legislation",
+        "constitutional law",
+        "administrative law",
+        "criminal law",
+        "civil law",
+        "taxation",
+        "environment",
+        "health",
+        "education",
+        "transport",
+        "public administration"
+      ],
+      "language": [
+        "Preserve the actual language per item; English and Welsh where supplied. Do not infer language from the site or jurisdiction."
+      ],
+      "rights_caveat": "OGL v3.0 permits commercial reuse and adaptation with attribution, but excludes personal data, third-party rights the provider cannot license, departmental/public-sector logos and crests, the Royal Arms except where integral to a document, military insignia, identity documents and other IP rights. legislation.gov.uk also contains material derived from EUR-Lex under a separate Commission reuse policy; such material is excluded from this candidate. Westlaw and British History Online contributions have specific required attribution statements. Explanatory notes, annotations, external resources and any item with a different notice are not automatically included.",
+      "required_checks": [
+        "Acquire only core legislative text with an item-level OGL v3.0 notice or an official site statement that clearly covers the selected text; fail closed on other or missing terms.",
+        "Exclude EUR-Lex-derived material from this source and route any separately considered EU-origin content through the existing EUR-Lex record and its own rights checks.",
+        "Preserve legislation identifier, jurisdiction, document class, title, year/number, version date, as-enacted/current status, in-force metadata, language and source URI.",
+        "Freeze the exact versioned URI, OpenAPI schema/revision, XML response, retrieval timestamp, compressed/expanded bytes and SHA-256; never treat a mutable current URL as a revision.",
+        "Preserve the additional Westlaw attribution 'Westlaw UK derived from Crown Copyright material and contributed to legislation.gov.uk' and the British History Online attribution where those contributions are selected.",
+        "Exclude personal data, third-party works, logos, crests, Royal Arms where not integral, military insignia, identity documents and all item-level exceptions.",
+        "Parse version metadata including Match, Status, prospective/repealed/discarded provisions and UnappliedEffects; do not present a historical or incomplete consolidation as current law.",
+        "Validate XML/schema, encoding, Unicode, completeness, extraction quality, jurisdiction and language; audit stratified samples by jurisdiction, legislation type, period, language and format.",
+        "Respect the official fair-use policy, identify the crawler with a legitimate User-Agent, stay below the stated rate limit and use conservative request pacing or a bulk method agreed with The National Archives.",
+        "Run exact and approximate deduplication against all admitted/candidate corpus material and every validation/test/benchmark/holdout split; require global G-0 and human review.",
+        "Keep discovery-only, training_authorized=false and count_toward_admitted_bytes=false until every item-level and global gate passes."
+      ],
+      "evidence_urls": [
+        "https://www.legislation.gov.uk/",
+        "https://www.legislation.gov.uk/openapi",
+        "https://www.legislation.gov.uk/developer/formats/xml",
+        "https://www.legislation.gov.uk/fair-use-policy",
+        "https://www.legislation.gov.uk/contributors",
+        "https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/open-government-licence/",
+        "https://spdx.org/licenses/OGL-UK-3.0.html"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "recorded_date": "2026-11-15"
+    },
+    {
+      "id": "Council of the European Union:public-register-of-council-documents",
+      "url": "https://www.consilium.europa.eu/en/documents/public-register/",
+      "retrieval_url": "https://www.consilium.europa.eu/en/general-secretariat/corporate-policies/transparency/",
+      "revision": "Mutable public register. For each document, freeze the Council document number/ID, exact public-register metadata response, version and language, publication date, document type, exact file URL, UTC retrieval timestamp and payload SHA-256. No single immutable repository commit or static corpus snapshot is available.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired. The Council states that the public register contains references to official Council documents from 1999 onwards and that about 80% are immediately accessible; this is not an eligible-row or byte count.",
+      "reported_license": "LicenseRef-Council-Decision-2017-1842 (custom institutional reuse terms; no SPDX identifier asserted). Council Decision (EU) 2017/1842 applies to documents held and produced by the Council that have been made public by the Council, allowing commercial and non-commercial reuse subject to attribution, no distortion of the original meaning, and any additional conditions the General Secretariat may apply. The Council copyright notice authorises reproduction with source acknowledgement and clear indication of changes, but third-party material requires prior authorisation. This is not a blanket licence for every register item and does not by itself settle all adaptation or machine-learning-training questions.",
+      "spdx_license_identifier": null,
+      "status": "candidate_discovery_only_pending_document_level_conditions_adaptation_privacy_and_global_g0",
+      "domains": [
+        "EU governance",
+        "public administration",
+        "European policy",
+        "foreign affairs",
+        "economic and financial affairs",
+        "justice and home affairs",
+        "environment",
+        "agriculture",
+        "transport",
+        "employment",
+        "education",
+        "trade",
+        "security"
+      ],
+      "language": [
+        "Preserve the actual language and language version for each document; Council documents may be available in one or more of the 24 official EU languages."
+      ],
+      "rights_caveat": "Only documents held and produced by the Council and made public by the Council fall within Decision (EU) 2017/1842. The Decision excludes documents affected by third-party intellectual-property rights or Member-State access-rights regimes and remains subject to personal-data, public-access and EU-classified-information rules. The General Secretariat may apply additional conditions to particular document types. Public availability is not a licence for every attached annex, image or third-party work. Confirm that the applicable item terms cover the intended copying, transformation and training use before acquisition.",
+      "required_checks": [
+        "Select only public-register items whose record confirms that the document is held/produced by the Council and made public by the Council; do not use merely referenced or third-party documents.",
+        "Capture the exact item-level copyright/reuse notice and any additional conditions; confirm that they cover the intended adaptation and machine-learning training transformations before download.",
+        "Preserve Council document ID/number, title, institution/body, authoring unit where public, date, document type, version, language, public-register URL and attribution text.",
+        "Freeze the exact register metadata, versioned file URL, file format, UTC retrieval time, exact payload bytes and SHA-256; no mutable catalogue query may stand in for an item revision.",
+        "Exclude third-party intellectual property, Member-State material subject to separate access regimes, personal data without a lawful basis, confidential information and EU classified information.",
+        "Inspect annexes, attachments, images, maps, audio/video and cited external documents separately; exclude components without independently verified reuse rights.",
+        "Preserve the original meaning, document version and any amendments; mark every transformation and do not imply Council endorsement.",
+        "Validate file integrity, schema, XML/PDF extraction, encoding, language, document completeness and quality; audit stratified samples by policy domain, language, document type and format.",
+        "Run exact and approximate deduplication against all admitted/candidate corpus material and every validation/test/benchmark/holdout split; require global G-0 and human review.",
+        "Keep discovery-only, training_authorized=false and count_toward_admitted_bytes=false until all rights, privacy, quality, security and global gates pass."
+      ],
+      "evidence_urls": [
+        "https://eur-lex.europa.eu/eli/dec/2017/1842/oj/eng",
+        "https://www.consilium.europa.eu/en/general-secretariat/corporate-policies/transparency/",
+        "https://www.consilium.europa.eu/en/about-site/copyright/"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "recorded_date": "2026-11-15"
     }
   ],
   "target_library_bytes": 500000000000,
