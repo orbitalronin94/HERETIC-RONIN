@@ -554,3 +554,18 @@ Total acumulado verificado sin cambios: **703.593.871 bytes / 260.971 documentos
 - Añadido **European Parliament Think Tank / EPRS** como candidato discovery-only, limitado a publicaciones cuya propia página indique expresamente CC-BY-4.0 y titularidad de la Unión Europea. Hay ejemplos verificables en publicaciones de 2025 y 2026 sobre derechos de autor/IA y retención de datos. El aviso legal general del Parlamento no se trata como una licencia CC-BY universal: cada obra debe revisarse, y figuras, tablas, citas y anexos de terceros se excluyen salvo autorización independiente.
 - Se preservarán código EPRS, autoría, fecha, DOI/ISBN, idioma, página de copyright, PDF/HTML exacto y SHA-256. Sin descarga ni bytes medidos en esta ejecución.
 - El candidato permanece `training_authorized=false` y `count_toward_admitted_bytes=false`; faltan revisión de cada obra, terceros, privacidad, muestras y G-0.
+
+
+## Curación — 2026-11-16
+
+### Open Research Europe — candidato discovery-only
+
+La plataforma cubre ciencias naturales, ingeniería y tecnología, medicina, agricultura/veterinaria, ciencias sociales y humanidades. Sus artículos se publican bajo CC BY; la versión exacta de la licencia puede cambiar y se muestra bajo el resumen. Se registrará como `CC-BY-4.0` únicamente cuando la página individual indique expresamente esa versión. El copyright permanece con el autor o su institución. Los datos asociados pueden estar bajo CC0/CC BY, pero son activos separados. [Política editorial](https://ore.eu/editorial-policies/) · [Cómo publica](https://ore.eu/how-publishing-works) · [Guía de artículos](https://ore.eu/article-guidelines).
+
+**Estado:** no descargado, filas y bytes desconocidos. Exigir DOI y versión inmutable, copyright page, autores, revisión por pares completada y aprobada, historial de versiones, revisión de terceros, privacidad/consentimiento, integridad, calidad, muestra humana, deduplicación global y G-0. Excluir material retracted/withdrawn, revisión pendiente o no aprobada, editorial notes sin resolver y suplementos/figuras de terceros sin licencia propia. `training_authorized=false`; `count_toward_admitted_bytes=false`.
+
+### Run 117 — 2026-11-16
+
+[Run 43821600133](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43821600133), grupo 5/8: el preflight bloqueó antes de descargar porque el secreto `HERETIC_STAGING_PASSPHRASE` no estaba presente o tenía menos de 32 caracteres. 0 filas; bytes remotos/comprimidos no medidos; 0 bytes descargados, JSONL, staged, retenidos o admitidos. Manifiesto [artifact 14204298738](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43821600133/artifacts/14204298738), 653 bytes. SHA-256 informado por metadatos de GitHub: `48650002b2d9f35b79cfb96df40186235259ce507596d35681489879abd7ca0f`; no se descargó el ZIP para recalcularlo en esta ejecución. El manifiesto no tiene hash interno verificado. El éxito del run solo acredita que el bloqueo se registró correctamente.
+
+Total admitido sin cambios: **703.593.871 bytes / 260.971 documentos**; **0,140719 %** de 500 GB. Nuevas admisiones: **0 documentos / 0 bytes**.
