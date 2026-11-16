@@ -1,4 +1,6 @@
 # HERETIC-RONIN
+**English summary:** HERETIC-RONIN is an experimental small-language-model research laboratory studying data quality, large curated corpora, synthetic training data, training efficiency, transfer experiments, and controlled holdout evaluation. Dataset volume and falling training loss are not treated as evidence of model capability.
+
 
 ### MODELO LARGO. MÉTODO CORTO.
 
