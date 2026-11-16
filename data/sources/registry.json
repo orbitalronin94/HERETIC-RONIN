@@ -3330,6 +3330,64 @@
       "count_toward_admitted_bytes": false,
       "training_authorized": false,
       "recorded_date": "2026-11-16"
+    },
+    {
+      "id": "CORDIS:EU-owned-editorial-news-and-thematic-packs-CC-BY-4.0",
+      "url": "https://cordis.europa.eu/",
+      "retrieval_url": "https://cordis.europa.eu/",
+      "revision": "Mutable CORDIS portal. For each item freeze the CORDIS article ID, canonical item URL, original language/version, author/byline, publication/update date, exact item-level copyright notice, page HTML and any downloadable text payload, UTC retrieval timestamp, byte length and SHA-256. No immutable bulk commit is identified; the exact item snapshot plus hash is the immutable revision.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired.",
+      "reported_license": "CC-BY-4.0 (SPDX) only for EU-owned editorial content on CORDIS whose item page has no different copyright notice and whose EU authorship/ownership is confirmed. The current CORDIS legal notice implements Commission Decision 2011/833/EU and states that, unless otherwise noted, EU-owned editorial content is reusable under CC BY 4.0 with attribution and change indication. This does not cover beneficiary-provided project materials, third-party works, or assets with specific terms.",
+      "spdx_license_identifier": "CC-BY-4.0",
+      "status": "candidate_discovery_only_pending_item_level_rights_editorial_scope_privacy_and_global_g0",
+      "domains": [
+        "research and innovation",
+        "science",
+        "technology",
+        "engineering",
+        "health",
+        "medicine",
+        "agriculture",
+        "energy",
+        "environment",
+        "transport",
+        "digital policy",
+        "industry",
+        "social sciences",
+        "economics",
+        "public policy",
+        "humanities"
+      ],
+      "language": [
+        "CORDIS interface exposes Spanish, German, English, French, Italian and Polish; this does not establish that every article exists in all six languages. Preserve the actual original language of each item. Exclude machine-translated variants until eTranslation terms and item-level rights are independently cleared."
+      ],
+      "rights_caveat": "Scope is restricted to editorial News and Thematic Pack material demonstrably authored/owned by the EU and covered by the CORDIS CC-BY-4.0 notice. Do not include project-result records, beneficiary-authored abstracts, deliverables, reports, grant outputs, partner uploads or other materials supplied by EU-funded beneficiaries unless the relevant grant terms and item-level licence explicitly authorize the intended use. Exclude third-party photos, drawings, videos, audio, graphics, quoted material and linked assets unless independently cleared. CORDIS publicly displays project participant contact details; exclude names, emails, phone numbers and other personal data unless a documented lawful basis and necessity review permits processing. Exclude logos, marks, patents, registered designs and confidential/privileged information. Machine-translated pages are not automatically covered by the original article licence; keep original-language text only until translation-service terms are reviewed.",
+      "required_checks": [
+        "Limit discovery to CORDIS editorial News and Thematic Pack items; exclude project-result records, beneficiary submissions, deliverables, reports and grant-funded partner materials unless their own grant and item-level terms authorize reuse.",
+        "For each item verify EU ownership/authorship and the exact item-level copyright notice; require no conflicting notice and explicit applicability of CC-BY-4.0.",
+        "Record CORDIS article ID, title, all authors/bylines, publication and update dates, canonical URL, source agency, domain, actual language, version, and required attribution.",
+        "Freeze the exact item HTML/text payload, any JATS/XML/PDF source if available, UTC retrieval time, byte length, SHA-256 and any source API/query parameters; do not treat a mutable search endpoint as an immutable revision.",
+        "Apply Commission Decision 2011/833/EU scope checks: exclude third-party rights, privileged/access-restricted documents, confidential data, patents, trademarks, registered designs, logos and unpublished ongoing research whose reuse would interfere with validation or IP registration.",
+        "Inspect all images, photographs, drawings, diagrams, charts, video, audio, embedded media, long quotations and linked files; exclude components without independent rights clearance.",
+        "Exclude beneficiary-provided material unless the applicable grant agreement and specific item licence are obtained and reviewed; do not infer rights from EU funding alone.",
+        "Exclude names, emails, phone numbers and participant contact information from project pages; review all remaining personal data, special-category data and identifiable private individuals under the applicable EU data-protection rules.",
+        "Preserve original-language content only; do not acquire machine-translated variants until the eTranslation terms and their application to the exact item are reviewed.",
+        "Validate HTML/XML/PDF integrity, schema, encoding, Unicode, language, completeness, extraction quality, duplicate revisions and embedded-file safety.",
+        "Run malware, archive-bomb, embedded-file, external-link and secret scans before staging.",
+        "Audit human samples stratified by topic, language, year, article type, author and format; verify source attribution, factual quality, citations and third-party notices.",
+        "Run exact and approximate deduplication against all admitted and candidate corpora and every validation/test/benchmark/holdout split; require global G-0 and independent contamination review.",
+        "Keep discovery-only, training_authorized=false and count_toward_admitted_bytes=false until all item-level and global gates pass."
+      ],
+      "evidence_urls": [
+        "https://cordis.europa.eu/about/legal",
+        "https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng",
+        "https://cordis.europa.eu/",
+        "https://cordis.europa.eu/about/legal#copyright-notice"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "recorded_date": "2026-11-16"
     }
   ],
   "target_library_bytes": 500000000000,
