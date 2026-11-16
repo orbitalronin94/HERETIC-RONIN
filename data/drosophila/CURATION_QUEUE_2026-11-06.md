@@ -494,3 +494,12 @@ Ambos runs retuvieron solo manifiestos: 0 bytes de payload, 0 staged, 0 admitido
 [Run 43821600133](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43821600133), grupo 5/8, terminó correctamente solo porque registró el bloqueo de almacenamiento. El secreto `HERETIC_STAGING_PASSPHRASE` faltaba o tenía menos de 32 caracteres. No contactó fuentes: 0 filas, 0 bytes remotos/descargados medidos, 0 JSONL, 0 staged y 0 admitidos. Artefacto [14204298738](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43821600133/artifacts/14204298738), 653 bytes; digest SHA-256 de metadatos GitHub `48650002b2d9f35b79cfb96df40186235259ce507596d35681489879abd7ca0f`, no recalculado independientemente.
 
 Total admitido: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB. Nuevas admisiones: **0**.
+
+
+## 2026-11-16 — CORDIS (candidato discovery-only)
+
+- Fuente: [CORDIS](https://cordis.europa.eu/), gestionado por Publications Office de la UE. El aviso legal vigente indica CC-BY-4.0 para contenido editorial propiedad de la UE salvo aviso distinto; aplica la Decisión 2011/833/UE. [Aviso legal](https://cordis.europa.eu/about/legal) · [Decisión 2011/833/UE](https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng).
+- Alcance candidato: solo noticias y *Thematic Packs* editoriales con titularidad de la UE y licencia confirmada por elemento. Excluir project-results, abstracts/deliverables/reportes aportados por beneficiarios salvo autorización específica del grant, terceros, material multimedia, logos/marcas y contenido confidencial.
+- CORDIS publica contactos de participantes en proyectos; excluir nombres, emails, teléfonos y demás PII de esos registros. El portal ofrece UI ES/DE/EN/FR/IT/PL, pero la lengua real y disponibilidad de cada artículo deben verificarse. No incluir traducciones automáticas sin revisar términos de eTranslation.
+- Congelar ID/URL, autores, fecha, versión, copyright notice, idioma, HTML/payload exacto, timestamp UTC, bytes y SHA-256. Auditoría de muestras, seguridad, privacidad, near-dedup global y G-0 obligatorios.
+- Estado: discovery-only, no descargado, filas/bytes desconocidos; `training_authorized=false`, `count_toward_admitted_bytes=false`.
