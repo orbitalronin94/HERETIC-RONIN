@@ -475,3 +475,22 @@ Ambos runs retuvieron solo manifiestos: 0 bytes de payload, 0 staged, 0 admitido
 - Preservar código EPRS, autores, fecha, DOI/ISBN, idioma, aviso exacto, PDF/HTML y SHA-256. Excluir figuras/tablas/anexos de terceros sin derechos independientes, material con términos no comerciales/reproducción limitada y datos personales no autorizados.
 - Ejemplos oficiales consultados: EPRS_ATA(2025)769585 y EPRS_BRI(2026)789334. No se descargaron.
 - `training_authorized=false`, `count_toward_admitted_bytes=false`; pendientes auditoría por obra, muestras, privacidad, near-dedup y G-0.
+
+
+## 2026-11-16 — Open Research Europe y run 117
+
+### Open Research Europe — candidato discovery-only
+
+- Fuente: [Open Research Europe](https://open-research-europe.ec.europa.eu/); políticas: [editorial](https://ore.eu/editorial-policies/), [publicación](https://ore.eu/how-publishing-works), [guía de artículos](https://ore.eu/article-guidelines).
+- La plataforma publica artículos bajo CC BY, pero la versión exacta puede variar y se muestra debajo del resumen. Solo admitir como candidato los artículos cuya página individual declare expresamente **CC-BY-4.0** y nombre al titular. El copyright suele permanecer en el autor o su institución.
+- Ámbitos: ciencias naturales, ingeniería/tecnología, medicina, agricultura/veterinaria, ciencias sociales y humanidades. Preservar idioma real por versión; no inferir cobertura multilingüe.
+- Las figuras, tablas, citas extensas, fotografías, mapas, anexos, suplementos y datos subyacentes pueden tener licencias distintas. No heredarles la licencia del artículo; exigir revisión independiente.
+- ORE publica antes de la revisión abierta por pares. Solo considerar versiones con revisión completada y resultado aprobado; mantener en hold los artículos awaiting peer review, rechazados, con editorial note sin resolver, corregidos, retirados o retractados. Preservar DOI, versión, estado de revisión e historial.
+- Para cada artículo: DOI/version DOI, código/versión, autores, fecha, copyright page, licencia exacta, idioma, URL exacta de HTML/JATS/PDF, timestamp UTC, bytes y SHA-256. Revisar PII, consentimiento y ética, especialmente en medicina y estudios con personas.
+- Estado: discovery-only, 0 descargas, filas y bytes desconocidos; `training_authorized=false`, `count_toward_admitted_bytes=false`. G-0, deduplicación global y revisión humana pendientes.
+
+### Run 117 — 2026-11-16
+
+[Run 43821600133](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43821600133), grupo 5/8, terminó correctamente solo porque registró el bloqueo de almacenamiento. El secreto `HERETIC_STAGING_PASSPHRASE` faltaba o tenía menos de 32 caracteres. No contactó fuentes: 0 filas, 0 bytes remotos/descargados medidos, 0 JSONL, 0 staged y 0 admitidos. Artefacto [14204298738](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43821600133/artifacts/14204298738), 653 bytes; digest SHA-256 de metadatos GitHub `48650002b2d9f35b79cfb96df40186235259ce507596d35681489879abd7ca0f`, no recalculado independientemente.
+
+Total admitido: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB. Nuevas admisiones: **0**.
