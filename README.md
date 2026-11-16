@@ -362,3 +362,10 @@ Ningún candidato pasa a training_eligible. Los gates de licencia por activo, pr
 - El candidato no se ha descargado: revisión DOI/version, derechos de terceros, privacidad, revisión por pares, muestras y G-0 pendientes. `training_authorized=false`, `count_toward_admitted_bytes=false`.
 - [Run 117](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43821600133), grupo 5/8: preflight de almacenamiento bloqueado por falta de `HERETIC_STAGING_PASSPHRASE` de al menos 32 caracteres. 0 filas, 0 bytes descargados, 0 bytes staged y 0 admitidos. Manifiesto [14204298738](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43821600133/artifacts/14204298738), 653 bytes; SHA-256 del artefacto según metadatos de GitHub: `48650002b2d9f35b79cfb96df40186235259ce507596d35681489879abd7ca0f` (no recalculado independientemente en esta ejecución).
 - El total admitido no cambia: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** del objetivo de 500 GB. No se suman candidatos, manifiestos ni tamaños anunciados.
+
+
+## CORDIS — candidato discovery-only (2026-11-16)
+
+Se ha registrado CORDIS únicamente para noticias y *Thematic Packs* editoriales cuya titularidad de la UE y aviso aplicable CC-BY-4.0 se confirmen en cada elemento. El aviso legal vigente excluye derechos de terceros, contenido aportado por beneficiarios de programas europeos, patentes/marcas y otros activos con condiciones distintas. CORDIS también publica datos de contacto de participantes en proyectos: esos campos quedan fuera de alcance. La interfaz ofrece ES/DE/EN/FR/IT/PL, pero no se presume que cada artículo esté disponible en todos esos idiomas ni se incluyen traducciones automáticas sin revisar sus términos. [Aviso legal de CORDIS](https://cordis.europa.eu/about/legal) · [Decisión 2011/833/UE](https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng).
+
+No se ha descargado ningún payload; candidato discovery-only, `training_authorized=false`, `count_toward_admitted_bytes=false`. Pendientes autoría/licencia por artículo, derechos de terceros, PII, muestras, integridad, near-dedup global y G-0.
