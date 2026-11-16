@@ -44,6 +44,20 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertGreaterEqual(len(source["evidence_urls"]), 4)
         self.assertGreaterEqual(len(source["required_checks"]), 10)
 
+    def test_cordis_scope_is_limited_to_eu_owned_editorial_content_and_excludes_beneficiary_material(self):
+        source = self.source("CORDIS:EU-owned-editorial-news-and-thematic-packs-CC-BY-4.0")
+        self.assert_discovery_only(source)
+        self.assertEqual(source["spdx_license_identifier"], "CC-BY-4.0")
+        self.assertIn("EU-owned editorial content", source["reported_license"])
+        self.assertIn("beneficiary", source["rights_caveat"])
+        self.assertIn("personal data", source["rights_caveat"])
+        checks = " ".join(source["required_checks"]).casefold()
+        self.assertIn("grant", checks)
+        self.assertIn("global g-0", checks)
+        self.assertIn("machine-translated", checks)
+        self.assertGreaterEqual(len(source["evidence_urls"]), 3)
+        self.assertGreaterEqual(len(source["required_checks"]), 12)
+
     def test_open_research_europe_requires_item_level_cc_by_approved_peer_review_and_global_g0(self):
         source = self.source("Open Research Europe:CC-BY-4.0-item-level-research-articles")
         self.assert_discovery_only(source)
