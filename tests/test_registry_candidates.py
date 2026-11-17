@@ -82,5 +82,36 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertGreaterEqual(len(source["required_checks"]), 9)
 
 
+    def test_plos_articles_require_exact_item_level_cc_by_and_global_g0(self):
+        source = self.source("PLOS:research-articles-item-level-CC-BY-4.0")
+        self.assert_discovery_only(source)
+        self.assertEqual(source["spdx_license_identifier"], "CC-BY-4.0")
+        self.assertEqual(source["license_exact_allowlist"], ["CC-BY-4.0"])
+        self.assertIn("exact item-level", source["reported_license"])
+        self.assertIn("third-party", source["rights_caveat"])
+        checks = " ".join(source["required_checks"]).casefold()
+        self.assertIn("10 requests/minute", checks)
+        self.assertIn("jats xml", checks)
+        self.assertIn("global g-0", checks)
+        self.assertGreaterEqual(len(source["evidence_urls"]), 4)
+        self.assertGreaterEqual(len(source["required_checks"]), 12)
+
+    def test_latest_scheduled_acquisitions_are_verified_zero_byte_storage_blocks(self):
+        last = self.registry["last_candidate_batch_details"]
+        previous = self.registry["previous_candidate_batch_details"]
+        self.assertEqual(last["run_id"], 44045933438)
+        self.assertEqual(previous["run_id"], 43970081452)
+        for batch in (last, previous):
+            self.assertEqual(batch["candidate_rows"], 0)
+            self.assertEqual(batch["downloaded_jsonl_bytes_in_runner"], 0)
+            self.assertEqual(batch["retained_payload_bytes"], 0)
+            self.assertEqual(batch["admitted_bytes_added"], 0)
+            self.assertIs(batch["training_authorized"], False)
+            self.assertIs(batch["checks"]["payload_downloaded"], False)
+            self.assertEqual(batch["storage_gate"]["status"], "blocked")
+            self.assertEqual(batch["manifest_bytes"], 871)
+            self.assertEqual(batch["artifact_zip_bytes"], 653)
+
+
 if __name__ == "__main__":
     unittest.main()
