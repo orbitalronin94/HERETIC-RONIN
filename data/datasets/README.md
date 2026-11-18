@@ -1,6 +1,6 @@
 # HERETIC-RONIN — biblioteca de datasets
 
-Actualizado: 2026-11-12. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
+Actualizado: 2026-11-18. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
 
 ## Resumen verificable
 
@@ -13,6 +13,7 @@ Actualizado: 2026-11-12. Este documento distingue **admitido**, **candidato** y 
 | Subconjunto resultante autorizado | 260.971 documentos |
 | Total de bytes admitidos contabilizados | **703.593.871 bytes (671,0 MiB)** |
 | Objetivo de biblioteca | 500.000.000.000 bytes (500 GB decimal) |
+| Fuentes registradas | 92 (90 previas + WIPO Publications y WIPO Lex bloqueado) |
 
 Auditoría global: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Artefacto de auditoría: ID `13570263309`, SHA-256 `db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9`.
 
@@ -594,3 +595,32 @@ La adquisición futura deberá usar el Solr Search API/JATS XML documentado, con
 Ambos ZIP y JSON se descargaron y sus hashes se recalcularon independientemente; los hashes ZIP coinciden con el digest de GitHub. El manifiesto de cada run confirma payload_downloaded=false, training_authorized=false y total_rows=0. Los bytes remotos y comprimidos no se midieron porque no hubo petición de payload. Los jobs de instalación/adquisición se omitieron por el gate; el workflow terminó correctamente al registrar el bloqueo.
 
 **Balance:** 0 admisiones nuevas. Total acumulado sin cambios: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB, según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se suman candidatos, manifiestos ni tamaños de artefacto.
+
+
+## Curación y adquisición — 2026-11-18
+
+### WIPO Publications — candidata, no admitida
+
+Se incorpora como candidata únicamente la publicación individual cuya propia página de copyright declare **CC-BY-4.0** y confirme que WIPO es titular. La política general de acceso abierto de WIPO establece CC BY 4.0 para muchas publicaciones nuevas, pero contempla excepciones; la licencia del portal no sustituye el aviso de cada obra. Ejemplos con aviso individual explícito: *WIPO IP Facts and Figures 2024* (DOI 10.34667/tind.57723), *World Intellectual Property Report 2024* (DOI 10.34667/tind.49284) y *A Primer on Technology Transfer in the Field of Biotechnology* (2025; DOI 10.34667/tind.50126). Se excluyen emblemas, logotipos, figuras/fotografías y demás material de terceros sin autorización independiente. No se ha descargado contenido: 0 filas y 0 bytes. Estado: `training_authorized=false`, pendiente de snapshot por DOI/ISBN, derechos por elemento, privacidad, calidad, deduplicación global y G-0.
+
+### WIPO Lex — bloqueada
+
+No se incorpora como fuente entrenable. Sus términos actuales limitan los textos jurídicos y traducciones a fines académicos, de investigación y no comerciales; los juicios de PI no pueden adaptarse, modificarse ni utilizarse comercialmente. Además, prohíben consultas automatizadas, adquisición/descarga masiva y scraping. No se ha consultado ni descargado ningún payload. Solo podría reconsiderarse tras permiso escrito que cubra el uso previsto y autorización de todos los titulares pertinentes.
+
+### Últimas ejecuciones programadas — runs 123 y 124
+
+Ambos runs terminaron correctamente porque registraron un bloqueo previo a cualquier descarga. El repositorio es público y `HERETIC_STAGING_PASSPHRASE` estaba ausente o por debajo de 32 caracteres.
+
+| Run | Grupo | Filas | Bytes JSONL | Staged | Admitidos | Manifiesto ZIP |
+|---|---:|---:|---:|---:|---:|---:|
+| [123](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44177892230) | 3/8 | 0 | 0 | 0 | 0 | [14370333374](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44177892230/artifacts/14370333374) |
+| [124](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44262175192) | 5/8 | 0 | 0 | 0 | 0 | [14409340141](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44262175192/artifacts/14409340141) |
+
+En ambos: 871 bytes de JSON dentro de un ZIP de 653 bytes; bytes remotos y comprimidos no medidos, pues no se inició la descarga. Los dos artefactos se descargaron y verificaron:
+
+- Run 123: ZIP SHA-256 `f6099c982aa2fe7a1ab0500f6fac06279223a46b59757849a8fdc7aed01cc4a8`; JSON SHA-256 `2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26`.
+- Run 124: ZIP SHA-256 `0f4c06392971fb32a751e5878d6737deed43aa98196b002ff637ccf58ae7a650`; JSON SHA-256 `0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7`.
+
+Los manifiestos declaran `blocked_storage_gate`, `payload_downloaded=false`, `total_rows=0` y `training_authorized=false`. No existen hashes de shards porque no hubo shards.
+
+**Inventario admitido sin cambios:** 260.971 documentos y 703.593.871 bytes; progreso **0,140719 %** de 500 GB. No se suman candidatos, manifiestos ni tamaños de artefactos.
