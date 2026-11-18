@@ -101,7 +101,7 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assert_discovery_only(source)
         self.assertEqual(source["spdx_license_identifier"], "CC-BY-4.0")
         self.assertEqual(source["license_exact_allowlist"], ["CC-BY-4.0"])
-        self.assertIn("individual", source["reported_license"])
+        self.assertIn("item-level", source["reported_license"])
         self.assertIn("third-party", source["rights_caveat"])
         checks = " ".join(source["required_checks"]).casefold()
         self.assertIn("copyright-notice", checks)
@@ -123,6 +123,7 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertIn("automated queries", terms)
         self.assertIn("bulk", terms)
         self.assertGreaterEqual(len(source["evidence_urls"]), 2)
+
     def test_latest_scheduled_acquisitions_are_verified_zero_byte_storage_blocks(self):
         last = self.registry["last_candidate_batch_details"]
         previous = self.registry["previous_candidate_batch_details"]
