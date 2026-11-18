@@ -512,3 +512,21 @@ Total admitido: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 50
 - Run 120: artifact [14276384265](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43970081452/artifacts/14276384265), ZIP 653 bytes, SHA-256 5ccaf40cebdf09513fe878878c686cd2c3e51307e81877c75db01e48ed52899b; JSON interno 871 bytes, SHA-256 3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992.
 - Run 121: artifact [14312065087](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44045933438/artifacts/14312065087), ZIP 653 bytes, SHA-256 bd558141f5e6d4f3375aaba4fea21c00a0b70733c9bfeea2d0711c70c1a6e046; JSON interno 871 bytes, SHA-256 5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437. Los ZIP y JSON se descargaron y los hashes se recalcularon; los ZIP coinciden con los digests de GitHub.
 - Total admitido sin cambios: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB; referencia [auditoría global 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Cero admisiones nuevas.
+
+
+## Descubrimiento de fuentes — 2026-11-18
+
+### WIPO Publications — candidata por obra
+
+Se registra el catálogo de publicaciones de la OMPI para selección estricta por obra. La política de acceso abierto de WIPO declara CC BY 4.0 para muchas publicaciones nuevas, salvo avisos más restrictivos; los avisos individuales consultados de *WIPO IP Facts and Figures 2024* (10.34667/tind.57723), *World Intellectual Property Report 2024* (10.34667/tind.49284) y *A Primer on Technology Transfer in the Field of Biotechnology* (10.34667/tind.50126) muestran CC-BY-4.0. Solo se considerarán publicaciones cuyo aviso individual confirme la licencia y la titularidad de WIPO. Se excluyen emblemas/logos y elementos de terceros no despejados. No se ha descargado nada; queda pendiente snapshot, revisión por idioma/formato, privacidad, calidad, near-dedup global y G-0. Registro: `WIPO:online-publications-item-level-CC-BY-4.0`.
+
+### WIPO Lex — bloqueada
+
+Los términos oficiales limitan los textos jurídicos y traducciones a uso académico, de investigación y no comercial; los juicios no pueden adaptarse ni usarse comercialmente. También prohíben consultas automatizadas, adquisición/descarga masiva y scraping. No se harán consultas ni descargas automáticas. Solo se reconsiderará con permiso escrito de WIPO y de los titulares originales que cubra expresamente adaptación, uso comercial y entrenamiento. Registro: `WIPO Lex:IP-legal-texts-translations-and-judgments`, estado bloqueado.
+
+### Runs 123 y 124
+
+- [Run 123](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44177892230), grupo 3/8: storage gate bloqueado, 0 filas, 0 bytes descargados/staged/admitidos. ZIP [14370333374](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44177892230/artifacts/14370333374), SHA-256 `f6099c982aa2fe7a1ab0500f6fac06279223a46b59757849a8fdc7aed01cc4a8`; manifiesto JSON SHA-256 `2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26`.
+- [Run 124](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44262175192), grupo 5/8: storage gate bloqueado, 0 filas, 0 bytes descargados/staged/admitidos. ZIP [14409340141](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44262175192/artifacts/14409340141), SHA-256 `0f4c06392971fb32a751e5878d6737deed43aa98196b002ff637ccf58ae7a650`; manifiesto JSON SHA-256 `0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7`.
+
+En ambos runs el secreto `HERETIC_STAGING_PASSPHRASE` faltaba o era demasiado corto. No se contactó con fuentes para descargar payloads. El inventario admitido sigue en 703.593.871 bytes y 260.971 documentos; admisiones nuevas: cero.
