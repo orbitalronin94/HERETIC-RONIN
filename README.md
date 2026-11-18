@@ -380,3 +380,12 @@ No se ha descargado ningún payload; candidato discovery-only, `training_authori
 - Run 121 artifact [14312065087](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44045933438/artifacts/14312065087): ZIP SHA-256 bd558141f5e6d4f3375aaba4fea21c00a0b70733c9bfeea2d0711c70c1a6e046; JSON interno 5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437. Los hashes ZIP/JSON se recalcularon tras descargar los artefactos y coincidieron con los valores esperados.
 
 Los candidatos y los manifiestos no se suman al total admitido. El gate de almacenamiento sigue bloqueando cualquier adquisición; G-0, privacidad, malware, revisión humana y deduplicación global continúan pendientes para todos los candidatos.
+
+
+## Curación de fuentes — 2026-11-18
+
+El registro contiene **92 fuentes**: se añade WIPO Publications como candidata estrictamente limitada a obras cuyo aviso individual declare CC-BY-4.0 y WIPO como titular; WIPO Lex queda bloqueada porque sus términos limitan el uso a fines no comerciales y prohíben consultas automatizadas y adquisición masiva. No se ha descargado material de ninguna de las dos.
+
+Las ejecuciones programadas [run 123](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44177892230) y [run 124](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44262175192) se bloquearon antes de descargar por falta de `HERETIC_STAGING_PASSPHRASE` (mínimo 32 caracteres en el repositorio público). Ambos manifiestos se descargaron y verificaron; cada uno declara cero filas, cero bytes de payload y `training_authorized=false`. Sus hashes y detalles están en [data/sources/registry.json](data/sources/registry.json) y [data/datasets/README.md](data/datasets/README.md).
+
+El inventario admitido sigue en **260.971 documentos / 703.593.871 bytes**, equivalente al **0,140719 %** de 500 GB. No se han ejecutado G-0, deduplicación global ni revisión humana sobre nuevos lotes porque no hubo payloads. No se ha entrenado ni modificado ningún checkpoint.
