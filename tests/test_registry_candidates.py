@@ -96,11 +96,44 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertGreaterEqual(len(source["evidence_urls"]), 4)
         self.assertGreaterEqual(len(source["required_checks"]), 12)
 
+    def test_wipo_publications_are_limited_to_item_level_cc_by_4_and_third_party_clearance(self):
+        source = self.source("WIPO:online-publications-item-level-CC-BY-4.0")
+        self.assert_discovery_only(source)
+        self.assertEqual(source["spdx_license_identifier"], "CC-BY-4.0")
+        self.assertEqual(source["license_exact_allowlist"], ["CC-BY-4.0"])
+        self.assertIn("individual", source["reported_license"])
+        self.assertIn("third-party", source["rights_caveat"])
+        checks = " ".join(source["required_checks"]).casefold()
+        self.assertIn("copyright-notice", checks)
+        self.assertIn("doi/isbn", checks)
+        self.assertIn("global g-0", checks)
+        self.assertGreaterEqual(len(source["evidence_urls"]), 5)
+        self.assertGreaterEqual(len(source["required_checks"]), 12)
+
+    def test_wipo_lex_is_blocked_for_noncommercial_and_bulk_automation_terms(self):
+        source = self.source("WIPO Lex:IP-legal-texts-translations-and-judgments")
+        self.assertTrue(source["status"].startswith("blocked_"))
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIsNone(source["reported_rows"])
+        self.assertIn("Not measured", source["reported_size"])
+        self.assertIsNone(source.get("spdx_license_identifier"))
+        terms = " ".join([source["reported_license"], source["rights_caveat"], *source["required_checks"]]).casefold()
+        self.assertIn("non-commercial", terms)
+        self.assertIn("automated queries", terms)
+        self.assertIn("bulk", terms)
+        self.assertGreaterEqual(len(source["evidence_urls"]), 2)
     def test_latest_scheduled_acquisitions_are_verified_zero_byte_storage_blocks(self):
         last = self.registry["last_candidate_batch_details"]
         previous = self.registry["previous_candidate_batch_details"]
-        self.assertEqual(last["run_id"], 44045933438)
-        self.assertEqual(previous["run_id"], 43970081452)
+        self.assertEqual(last["run_id"], 44262175192)
+        self.assertEqual(previous["run_id"], 44177892230)
+        self.assertEqual(last["source_group"], 5)
+        self.assertEqual(previous["source_group"], 3)
+        self.assertEqual(last["artifact_sha256"], "0f4c06392971fb32a751e5878d6737deed43aa98196b002ff637ccf58ae7a650")
+        self.assertEqual(last["manifest_sha256"], "0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7")
+        self.assertEqual(previous["artifact_sha256"], "f6099c982aa2fe7a1ab0500f6fac06279223a46b59757849a8fdc7aed01cc4a8")
+        self.assertEqual(previous["manifest_sha256"], "2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26")
         for batch in (last, previous):
             self.assertEqual(batch["candidate_rows"], 0)
             self.assertEqual(batch["downloaded_jsonl_bytes_in_runner"], 0)
