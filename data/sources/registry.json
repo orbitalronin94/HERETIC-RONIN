@@ -3560,6 +3560,71 @@
       ],
       "count_toward_admitted_bytes": false,
       "training_authorized": false
+    },
+    {
+      "id": "Open Book Publishers:peer-reviewed-books-item-level-CC-BY-4.0",
+      "url": "https://www.openbookpublishers.com/books",
+      "revision": "Mutable publisher catalogue; no single immutable commit or uniform content revision. Freeze each candidate by DOI, edition/version, item page, copyright/licence statement, exact XML/HTML/EPUB asset URL, retrieval timestamp, byte length and SHA-256. Candidate examples checked 2026-11-19 include DOI 10.11647/OBP.0067 (Ovid, Amores, Book 1), DOI 10.11647/OBP.0098 (Diderot, Rameau's Nephew bilingual edition), and DOI 10.11647/OBP.0185 (Engaging Researchers with Data Management). No payload acquired.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no book payload acquired. Publisher catalogue reports over 450 titles, but this is not an eligible-document or byte count.",
+      "reported_license": "No blanket licence is asserted for all book payloads. Open Book Publishers states that authors retain copyright and choose the open licence for each book; the publisher says its books are peer-reviewed. This candidate allowlist is limited to individual title records whose own copyright page/item page explicitly states CC BY 4.0. Primary examples verified: Ovid, Amores (Book 1), DOI 10.11647/OBP.0067, item page states CC BY 4.0 and lists an XML ISBN; Denis Diderot, Rameau's Nephew / Le Neveu de Rameau, DOI 10.11647/OBP.0098, item page states CC BY 4.0 and lists English and French; Engaging Researchers with Data Management, DOI 10.11647/OBP.0185, publisher-hosted front matter states CC BY 4.0 and lists an XML ISBN. These are per-title examples, not a catalogue-wide licence. The publisher's MARC catalogue records are separately CC BY-SA 4.0 and are not payload candidates; Thoth metadata is CC0 and may be used for discovery only.",
+      "status": "candidate_discovery_only_pending_item_level_license_third_party_content_snapshot_and_global_g0",
+      "domains": [
+        "academic research",
+        "classical studies",
+        "literature",
+        "languages",
+        "philosophy",
+        "history",
+        "archaeology",
+        "religion",
+        "sociology",
+        "anthropology",
+        "development studies",
+        "data management",
+        "digital humanities",
+        "law",
+        "economics",
+        "science",
+        "arts"
+      ],
+      "language": [
+        "Per title and edition; verified examples include English and English/French. Preserve the actual language for each work and do not infer multilingual coverage from the publisher catalogue."
+      ],
+      "rights_caveat": "The publisher is a scholarly, peer-reviewed OA press with more than 450 titles, but authors choose licences per book; free access or the website's own CC BY footer does not license all books. Exclude every title under CC BY-NC, CC BY-ND, CC BY-NC-ND, CC BY-SA, CC BY-NC-SA, custom/reproduction-only terms, missing or ambiguous rights, or any other licence outside the exact CC-BY-4.0 allowlist. Multi-author works may retain chapter-level copyright; confirm that every included chapter is covered by the title-level CC BY 4.0 notice. Exclude images, illustrations, photographs, maps, audio, video, cover art, supplementary resources and third-party quotations/figures unless separately cleared; do not inherit the book licence for those components. Some OBP titles explicitly contain fair-use material or chapter-level licence differences; exclude the affected title/chapter/component unless a separate rights basis is documented. Use text-only XML/HTML/EPUB content where available. No payload may be acquired or staged until per-title rights and storage gates pass.",
+      "required_checks": [
+        "Discover titles through the official OBP catalogue, but treat catalogue metadata as discovery only; do not infer book-content rights from the publisher website footer, MARC or Thoth metadata licence.",
+        "Require the individual title's own copyright/item page to state the exact CC BY 4.0 licence URI https://creativecommons.org/licenses/by/4.0/; reject all other, missing, ambiguous or conflicting licences.",
+        "Preserve DOI, ISBN, title, all authors/editors, copyright holder, publisher, edition, publication date, actual language, licence statement and canonical item URL.",
+        "Freeze the exact title edition/version, copyright page, selected XML/HTML/EPUB asset URL, retrieval timestamp, payload length and SHA-256; DOI alone is not a payload snapshot.",
+        "Verify chapter-level rights for edited volumes and multi-author books; exclude chapters whose author retains separate or differently licensed rights unless their exact terms are cleared.",
+        "Exclude CC BY-NC, CC BY-ND, CC BY-NC-ND, CC BY-SA, CC BY-NC-SA, reproduction-only, custom, withdrawn, missing and ambiguous licences.",
+        "Inspect the copyright page, acknowledgements, image/illustration credits and list of figures; exclude third-party images, photographs, maps, charts, audio, video, cover art, quoted works and supplementary resources unless separately cleared.",
+        "Exclude any title or chapter that includes fair-use/fair-dealing excerpts or third-party material without an explicit licence covering the intended training reuse; do not assume the publisher's title-level CC BY notice clears such components.",
+        "Acquire text-only XML/HTML/EPUB where available; exclude media assets and avoid PDF OCR unless no accessible text format exists and a separate quality review approves it.",
+        "Validate format integrity, XML/HTML structure, UTF-8/declared encoding, completeness, extraction quality, language and document metadata.",
+        "Audit deterministic samples stratified by title, domain, language, author/editor, chapter and format; verify scholarly quality and detect OCR/markup corruption.",
+        "Run privacy/PII, secrets, malware, archive/path traversal and embedded-resource checks; hold questionable content.",
+        "Deduplicate exact and approximately against the full admitted corpus and every validation/test/benchmark/holdout split; require global G-0.",
+        "Keep source discovery-only and training_authorized=false until every work-level, component-level and global gate has an auditable pass.",
+        "Do not count catalogue metadata, candidate files, staged bytes or manifests as admitted training bytes."
+      ],
+      "evidence_urls": [
+        "https://www.openbookpublishers.com/publish-with-us/information-for-authors",
+        "https://www.openbookpublishers.com/books/10.11647/obp.0067",
+        "https://www.openbookpublishers.com/books/10.11647/obp.0098",
+        "https://books.openbookpublishers.com/10.11647/obp.0185.07.pdf",
+        "https://www.openbookpublishers.com/libraries/marc-records",
+        "https://books.openbookpublishers.com/10.11647/obp.0225.04.pdf",
+        "https://books.openbookpublishers.com/10.11647/obp.0159.pdf",
+        "https://creativecommons.org/licenses/by/4.0/"
+      ],
+      "spdx_license_identifier": "CC-BY-4.0",
+      "license_exact_allowlist": [
+        "CC-BY-4.0"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false
     }
   ],
   "target_library_bytes": 500000000000,
@@ -5124,5 +5189,6 @@
     "required_secret": "HERETIC_STAGING_PASSPHRASE (high-entropy random passphrase of at least 32 characters; never store in Git or print in logs)",
     "encrypted_artifact_policy": "Encrypted artifact remains publicly downloadable ciphertext; only holders of the passphrase may decrypt. Record artifact SHA-256 and keep the passphrase outside the repository.",
     "group_rotation_fix": "Scheduled group index uses ((day_of_year - 1) * 4 + tranche_slot) modulo group_count so four daily slots cover all eight groups exactly once in each 48-hour cycle."
-  }
+  },
+  "source_count": 93
 }
