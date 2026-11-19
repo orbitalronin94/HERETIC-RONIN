@@ -239,16 +239,20 @@ class LicenseGateTests(unittest.TestCase):
         self.assertIn("F2014L01500", source["reported_license"])
         self.assertGreaterEqual(len(source["required_checks"]), 8)
 
-    def test_canadian_justice_laws_remains_blocked_on_adaptation_scope(self):
+    def test_canadian_justice_laws_bulk_xml_is_ogl_candidate_but_not_training_authorized(self):
         root = Path(__file__).resolve().parents[1]
         registry = json.loads((root / "data/sources/registry.json").read_text(encoding="utf-8"))
         source = next(s for s in registry["sources"] if s.get("id") == "Canada Justice Laws:consolidated-federal-laws-bulk-xml")
-        self.assertTrue(source["status"].startswith("blocked_discovery"))
+        self.assertTrue(source["status"].startswith("candidate_discovery_only"))
         self.assertIs(source["training_authorized"], False)
         self.assertIs(source["count_toward_admitted_bytes"], False)
-        self.assertIn("OGL Canada 2.0", source["reported_license"])
+        self.assertEqual(source["spdx_license_identifier"], "LicenseRef-OGL-Canada-2.0")
+        self.assertIn("Open Government Portal", source["reported_license"])
+        self.assertIn("LICENSE.md", source["reported_license"])
+        self.assertIn("855cdfc65207a6906c414e09a77d7f93267c5356", source["revision"])
         self.assertIn("Reproduction of Federal Law Order", source["reported_license"])
-        self.assertIn("adaptation", source["rights_caveat"])
+        self.assertIn("third-party", source["rights_caveat"])
+        self.assertIn("personal information", source["rights_caveat"])
 
     def test_run_88_candidate_batch_is_not_counted_as_admitted_or_staged(self):
         root = Path(__file__).resolve().parents[1]
