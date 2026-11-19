@@ -546,3 +546,17 @@ La entrada existente se reclasifica de bloqueada a **candidate discovery-only**.
 ## Adquisiciones 128/129 — 2026-11-19
 
 Runs [128](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44394965672) y [129](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44482327436) terminaron al registrar `blocked_storage_gate`: secreto `HERETIC_STAGING_PASSPHRASE` ausente o menor de 32 caracteres. Cada uno produjo únicamente manifiesto de 871 bytes en ZIP de 653 bytes. No se descargó payload; bytes remotos y comprimidos no medidos; 0 filas, 0 staged, 0 admitidos. Los hashes recalculados están en el registro y el inventario. No hay shards ni hashes de shards.
+
+
+## Open Book Publishers — candidata por obra 2026-11-19
+
+Añadida al registro como **candidate discovery-only**. La editorial tiene más de 450 títulos académicos y declara revisión por pares, pero los autores eligen la licencia de cada obra. Solo considerar títulos con aviso individual exacto CC BY 4.0.
+
+Ejemplos comprobados en páginas/front matter de la propia editorial:
+- Ovid, *Amores (Book 1)* — DOI 10.11647/OBP.0067, CC BY 4.0, inglés, ISBN XML.
+- Diderot, *Rameau's Nephew / Le Neveu de Rameau* — DOI 10.11647/OBP.0098, CC BY 4.0, inglés/francés, ISBN XML.
+- *Engaging Researchers with Data Management* — DOI 10.11647/OBP.0185, CC BY 4.0, ISBN XML.
+
+La licencia del catálogo no se hereda: los MARC records de OBP son CC BY-SA 4.0 y quedan excluidos; Thoth CC0 es metadata, no texto de libro. Excluir NC/ND/SA, capítulos con derechos distintos, fair-use excerpts, citas/figuras/fotos/mapas/audio/vídeo/portadas/suplementos de terceros sin clearance independiente. No adquirir PDF/EPUB/XML hasta fijar edición y hash y completar revisión de privacidad, seguridad, calidad, muestra estratificada, deduplicación global y G-0. Cero payload adquirido, cero bytes admitidos; `training_authorized=false`.
+
+Evidencia: [política editorial](https://www.openbookpublishers.com/publish-with-us/information-for-authors), [Ovid](https://www.openbookpublishers.com/books/10.11647/obp.0067), [Diderot bilingüe](https://www.openbookpublishers.com/books/10.11647/obp.0098), [Engaging Researchers](https://books.openbookpublishers.com/10.11647/obp.0185.07.pdf), [licencias de registros MARC/Thoth](https://www.openbookpublishers.com/libraries/marc-records).
