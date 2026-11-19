@@ -124,6 +124,22 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertIn("bulk", terms)
         self.assertGreaterEqual(len(source["evidence_urls"]), 2)
 
+    def test_canada_justice_laws_bulk_xml_is_item_level_ogl_candidate_only(self):
+        source = self.source("Canada Justice Laws:consolidated-federal-laws-bulk-xml")
+        self.assert_discovery_only(source)
+        self.assertEqual(source["spdx_license_identifier"], "LicenseRef-OGL-Canada-2.0")
+        self.assertIn("Open Government Portal", source["reported_license"])
+        self.assertIn("LICENSE.md", source["reported_license"])
+        self.assertIn("855cdfc65207a6906c414e09a77d7f93267c5356", source["revision"])
+        self.assertIn("personal information", source["rights_caveat"])
+        self.assertIn("third-party", source["rights_caveat"])
+        checks = " ".join(source["required_checks"]).casefold()
+        self.assertIn("acts and regulations", checks)
+        self.assertIn("global g-0", checks)
+        self.assertIn("not be represented as official versions", checks)
+        self.assertGreaterEqual(len(source["evidence_urls"]), 6)
+        self.assertGreaterEqual(len(source["required_checks"]), 12)
+
     def test_latest_scheduled_acquisitions_are_verified_zero_byte_storage_blocks(self):
         last = self.registry["last_candidate_batch_details"]
         previous = self.registry["previous_candidate_batch_details"]
