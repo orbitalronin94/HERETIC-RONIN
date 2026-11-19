@@ -124,6 +124,22 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertIn("bulk", terms)
         self.assertGreaterEqual(len(source["evidence_urls"]), 2)
 
+    def test_open_book_publishers_requires_per_title_cc_by_4_and_component_clearance(self):
+        source = self.source("Open Book Publishers:peer-reviewed-books-item-level-CC-BY-4.0")
+        self.assert_discovery_only(source)
+        self.assertEqual(source["spdx_license_identifier"], "CC-BY-4.0")
+        self.assertEqual(source["license_exact_allowlist"], ["CC-BY-4.0"])
+        self.assertIn("authors retain copyright", source["reported_license"])
+        self.assertIn("CC BY-SA 4.0", source["reported_license"])
+        self.assertIn("chapter-level", source["rights_caveat"])
+        self.assertIn("fair-use", source["rights_caveat"])
+        checks = " ".join(source["required_checks"]).casefold()
+        self.assertIn("exact cc by 4.0", checks)
+        self.assertIn("global g-0", checks)
+        self.assertIn("sha-256", checks)
+        self.assertGreaterEqual(len(source["evidence_urls"]), 7)
+        self.assertGreaterEqual(len(source["required_checks"]), 14)
+
     def test_canada_justice_laws_bulk_xml_is_item_level_ogl_candidate_only(self):
         source = self.source("Canada Justice Laws:consolidated-federal-laws-bulk-xml")
         self.assert_discovery_only(source)
