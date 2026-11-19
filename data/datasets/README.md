@@ -13,7 +13,7 @@ Actualizado: 2026-11-19. Este documento distingue **admitido**, **candidato** y 
 | Subconjunto resultante autorizado | 260.971 documentos |
 | Total de bytes admitidos contabilizados | **703.593.871 bytes (671,0 MiB)** |
 | Objetivo de biblioteca | 500.000.000.000 bytes (500 GB decimal) |
-| Fuentes registradas | 92 (sin nuevas entradas en esta actualización; Canada Justice Laws pasa de bloqueada a candidata discovery-only) |
+| Fuentes registradas | 93 (incluye Open Book Publishers como candidata por título; Canada Justice Laws discovery-only) |
 
 Auditoría global: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Artefacto de auditoría: ID `13570263309`, SHA-256 `db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9`.
 
@@ -657,3 +657,20 @@ Cada ZIP contiene solo un manifiesto JSON de 871 bytes; el ZIP ocupa 653 bytes. 
 Los ZIP se descargaron y sus hashes se recalcularon independientemente; coinciden con los digests de GitHub. Ambos manifiestos declaran `blocked_storage_gate`, `payload_downloaded=false`, `total_rows=0` y `training_authorized=false`. No existen hashes de shards.
 
 **Balance:** 0 admisiones nuevas. El total admitido permanece en **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB, según la última auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se suman candidatos, manifiestos ni tamaños de artefacto.
+
+
+## Nueva candidata multidisciplinar — Open Book Publishers (2026-11-19)
+
+**Estado: discovery-only; cero documentos y bytes admitidos.**
+
+Open Book Publishers es una editorial académica independiente, sin ánimo de lucro y dirigida por académicos. Declara más de 450 títulos, revisión por pares y múltiples disciplinas. Sus autores conservan el copyright y eligen la licencia de cada libro; por ello no existe una licencia general que permita tratar todo el catálogo como CC BY. [Política de autores y revisión](https://www.openbookpublishers.com/publish-with-us/information-for-authors) · [Catálogo](https://www.openbookpublishers.com/books).
+
+La allowlist futura se limita a obras cuya propia página de título/copyright declare **CC BY 4.0 exacta**. Ejemplos de alcance, no admisiones:
+
+- *Ovid, Amores (Book 1)*, William Turpin, DOI [10.11647/OBP.0067](https://doi.org/10.11647/OBP.0067): ficha individual CC BY 4.0, idioma inglés, ISBN XML.
+- *Denis Diderot, Rameau's Nephew / Le Neveu de Rameau*, Marian Hobson, Kate E. Tunstall y Caroline Warman, DOI [10.11647/OBP.0098](https://doi.org/10.11647/OBP.0098): ficha individual CC BY 4.0, inglés/francés, ISBN XML.
+- *Engaging Researchers with Data Management: The Cookbook*, ocho autores, DOI [10.11647/OBP.0185](https://doi.org/10.11647/OBP.0185): el front matter alojado por la editorial declara CC BY 4.0 y ofrece ISBN XML.
+
+No se infiere una licencia de la ficha bibliográfica: los registros MARC de OBP se publican bajo CC BY-SA 4.0 y no son contenido entrenable; los metadatos Thoth CC0 son solo para descubrimiento. Los libros con NC, ND, SA, condiciones ambiguas, fair-use excerpts, derechos de capítulo separados o componentes de terceros quedan fuera. Figuras, fotografías, mapas, audio, vídeo, portadas y suplementos se excluyen salvo permiso independiente. La muestra *B C, Before Computers* contiene material identificado como fair use; no se debe adquirir íntegramente bajo la licencia del libro.
+
+La revisión de cada obra deberá fijar DOI/edición, autores, copyright, licencia exacta, lengua, ISBN, asset XML/HTML/EPUB, timestamp y SHA-256. Siguen pendientes integridad, calidad, privacidad/PII, seguridad, muestra estratificada, deduplicación global y G-0. `training_authorized=false`; `count_toward_admitted_bytes=false`.
