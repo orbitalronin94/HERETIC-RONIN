@@ -302,7 +302,7 @@ Folketinget queda bloqueado para actas: aunque sus términos generales permiten 
 - Biblioteca admitida contabilizada: **703.593.871 bytes** (671,0 MiB), según la última auditoría global [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
 - Objetivo: 500.000.000.000 bytes decimales; progreso **0,141 %**.
 - Última adquisición: [run 43176267906](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43176267906), 170.000 filas / 462.861.425 bytes JSONL generados en un runner efímero. Solo se retuvo el manifiesto; 0 bytes staged durable y **0 bytes admitidos nuevos**.
-- ILO y Australia se han añadido como fuentes discovery-only; Canada Justice Laws queda bloqueada por una discrepancia no resuelta entre los términos del catálogo y la autorización de reproducción/adaptación del payload.
+- ILO y Australia se han añadido como fuentes discovery-only; Canada Justice Laws pasa a candidata discovery-only tras verificar que la ficha oficial del recurso bulk XML y el LICENSE.md del repositorio de payload, fijado en 855cdfc65207a6906c414e09a77d7f93267c5356, declaran OGL Canada v2.0; no se ha descargado ni admitido contenido.
 
 El detalle de hashes, estados por fuente, límites de licencia, artefactos y controles pendientes está en [data/datasets/README.md](data/datasets/README.md) y [data/sources/registry.json](data/sources/registry.json). Los tamaños efímeros o anunciados nunca se suman a la biblioteca admitida.
 
@@ -389,3 +389,11 @@ El registro contiene **92 fuentes**: se añade WIPO Publications como candidata 
 Las ejecuciones programadas [run 123](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44177892230) y [run 124](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44262175192) se bloquearon antes de descargar por falta de `HERETIC_STAGING_PASSPHRASE` (mínimo 32 caracteres en el repositorio público). Ambos manifiestos se descargaron y verificaron; cada uno declara cero filas, cero bytes de payload y `training_authorized=false`. Sus hashes y detalles están en [data/sources/registry.json](data/sources/registry.json) y [data/datasets/README.md](data/datasets/README.md).
 
 El inventario admitido sigue en **260.971 documentos / 703.593.871 bytes**, equivalente al **0,140719 %** de 500 GB. No se han ejecutado G-0, deduplicación global ni revisión humana sobre nuevos lotes porque no hubo payloads. No se ha entrenado ni modificado ningún checkpoint.
+
+
+## Curación y adquisición — 2026-11-19
+
+- **Canada Justice Laws** deja de estar bloqueada por la duda de alcance de licencia y pasa a candidata discovery-only. La ficha oficial del recurso bulk XML asigna OGL Canada; el repositorio de payload `justicecanada/laws-lois-xml`, fijado en `855cdfc65207a6906c414e09a77d7f93267c5356`, contiene `LICENSE.md` con la misma OGL. La licencia permite adaptación y uso comercial con atribución, pero excluye PII, derechos de terceros y símbolos oficiales. La Reproduction of Federal Law Order añade exactitud y no representación como versión oficial. Alcance futuro limitado a XML de Acts/Regulations en EN/FR; ningún payload descargado.
+- [Run 128](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44394965672), grupo 7/8, y [run 129](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44482327436), grupo 1/8, bloquearon antes de descargar por falta de `HERETIC_STAGING_PASSPHRASE` de 32 caracteres. Ambos generaron solo manifiestos de 871 bytes dentro de ZIP de 653 bytes; 0 filas, 0 bytes de payload y 0 admisiones. Los hashes ZIP/JSON verificados están en `data/sources/registry.json` y `data/datasets/README.md`.
+- Inventario admitido sin cambios: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB, según la última auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se cuentan candidatos ni manifiestos.
+- La fuente canadiense sigue con `training_authorized=false`; faltan snapshot de payload, privacidad/seguridad, auditoría de muestras, deduplicación global y G-0.

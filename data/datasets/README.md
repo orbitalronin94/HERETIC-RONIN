@@ -1,6 +1,6 @@
 # HERETIC-RONIN — biblioteca de datasets
 
-Actualizado: 2026-11-18. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
+Actualizado: 2026-11-19. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
 
 ## Resumen verificable
 
@@ -13,7 +13,7 @@ Actualizado: 2026-11-18. Este documento distingue **admitido**, **candidato** y 
 | Subconjunto resultante autorizado | 260.971 documentos |
 | Total de bytes admitidos contabilizados | **703.593.871 bytes (671,0 MiB)** |
 | Objetivo de biblioteca | 500.000.000.000 bytes (500 GB decimal) |
-| Fuentes registradas | 92 (90 previas + WIPO Publications y WIPO Lex bloqueado) |
+| Fuentes registradas | 92 (sin nuevas entradas en esta actualización; Canada Justice Laws pasa de bloqueada a candidata discovery-only) |
 
 Auditoría global: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Artefacto de auditoría: ID `13570263309`, SHA-256 `db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9`.
 
@@ -624,3 +624,36 @@ En ambos: 871 bytes de JSON dentro de un ZIP de 653 bytes; bytes remotos y compr
 Los manifiestos declaran `blocked_storage_gate`, `payload_downloaded=false`, `total_rows=0` y `training_authorized=false`. No existen hashes de shards porque no hubo shards.
 
 **Inventario admitido sin cambios:** 260.971 documentos y 703.593.871 bytes; progreso **0,140719 %** de 500 GB. No se suman candidatos, manifiestos ni tamaños de artefactos.
+
+
+## Curación de biblioteca — actualización verificada 2026-11-19
+
+### Canada Justice Laws — candidata discovery-only, no admitida
+
+Se reevalúa la entrada existente de **Canada Justice Laws: consolidated federal laws bulk XML**. La ficha oficial del Open Government Portal identifica el recurso concreto “Consolidated federal Acts and regulations – Bulk XML” y le asigna **Open Government Licence – Canada**; la misma ficha enlaza el repositorio oficial `justicecanada/laws-lois-xml`. En el commit inmutable `855cdfc65207a6906c414e09a77d7f93267c5356` (2026-11-16), el archivo `LICENSE.md` del repositorio vuelve a declarar Open Government Licence – Canada. La versión 2.0 permite copiar, modificar, traducir, adaptar y distribuir, también con fines comerciales, con atribución; excluye información personal, derechos de terceros no licenciables, símbolos oficiales y otros derechos de propiedad intelectual. [Ficha oficial del recurso](https://open.canada.ca/data/dataset/2f4bb174-b2e7-4fb2-a7a1-a313507acbc6) · [OGL Canada](https://open.canada.ca/en/open-government-licence-canada) · [LICENSE.md fijado](https://raw.githubusercontent.com/justicecanada/laws-lois-xml/855cdfc65207a6906c414e09a77d7f93267c5356/LICENSE.md).
+
+La **Reproduction of Federal Law Order SI/97-5** permite además reproducir enactments y consolidaciones sin permiso, exige exactitud y prohíbe presentar reproducciones como versiones oficiales. La base para adaptación no se infiere de esa orden: procede de la OGL que el portal asigna al recurso y que figura en el repositorio de payload. [Orden oficial](https://laws-lois.justice.gc.ca/eng/regulations/SI-97-5/page-1.html).
+
+- Revisión fijada: `justicecanada/laws-lois-xml@855cdfc65207a6906c414e09a77d7f93267c5356`; el commit indica legislación vigente al 2026-10-29.
+- Alcance futuro: solo XML de Acts y Regulations en inglés/francés. Excluir DTD, XSLT, tablas de búsqueda, código, PDFs, símbolos, material de terceros y cualquier elemento con aviso distinto.
+- Preservar ID, cita, título, idioma, fecha de consolidación/actualización y versión. Validar exactitud y no presentar copias como oficiales.
+- PII, seguridad XML/XXE, integridad por archivo, calidad, muestra estratificada, deduplicación global y G-0 siguen pendientes.
+- No se ha descargado payload: filas desconocidas; bytes remotos, descargados, comprimidos, expandidos, staged y admitidos no medidos/0 según corresponda. `training_authorized=false`; `count_toward_admitted_bytes=false`.
+
+### Runs programados 128 y 129 — bloqueo de almacenamiento
+
+Ambos runs terminaron correctamente solo porque registraron el bloqueo antes de contactar con las fuentes. En el repositorio público falta `HERETIC_STAGING_PASSPHRASE` de al menos 32 caracteres.
+
+| Run | Grupo | Filas | Bytes de payload descargados | Staged | Admitidos | Artefacto |
+|---|---:|---:|---:|---:|---:|---|
+| [128](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44394965672) | 7/8 | 0 | 0 | 0 | 0 | [14467584999](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44394965672/artifacts/14467584999) |
+| [129](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44482327436) | 1/8 | 0 | 0 | 0 | 0 | [14508428839](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44482327436/artifacts/14508428839) |
+
+Cada ZIP contiene solo un manifiesto JSON de 871 bytes; el ZIP ocupa 653 bytes. Los bytes remotos anunciados/descargados y comprimidos no se midieron porque no hubo solicitudes de payload.
+
+- Run 128: ZIP SHA-256 `cf794e0a569b259284d56b744943cc484a70fa30526fa2e1c4d384bfd316b41b`; JSON SHA-256 `3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992`.
+- Run 129: ZIP SHA-256 `2b04d8064fb1dbff181e736ef47e4ac1c1732a9550367234e8c7b72569c2882f`; JSON SHA-256 `5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437`.
+
+Los ZIP se descargaron y sus hashes se recalcularon independientemente; coinciden con los digests de GitHub. Ambos manifiestos declaran `blocked_storage_gate`, `payload_downloaded=false`, `total_rows=0` y `training_authorized=false`. No existen hashes de shards.
+
+**Balance:** 0 admisiones nuevas. El total admitido permanece en **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB, según la última auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se suman candidatos, manifiestos ni tamaños de artefacto.

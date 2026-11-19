@@ -530,3 +530,19 @@ Los términos oficiales limitan los textos jurídicos y traducciones a uso acad�
 - [Run 124](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44262175192), grupo 5/8: storage gate bloqueado, 0 filas, 0 bytes descargados/staged/admitidos. ZIP [14409340141](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44262175192/artifacts/14409340141), SHA-256 `0f4c06392971fb32a751e5878d6737deed43aa98196b002ff637ccf58ae7a650`; manifiesto JSON SHA-256 `0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7`.
 
 En ambos runs el secreto `HERETIC_STAGING_PASSPHRASE` faltaba o era demasiado corto. No se contactó con fuentes para descargar payloads. El inventario admitido sigue en 703.593.871 bytes y 260.971 documentos; admisiones nuevas: cero.
+
+
+## Canada Justice Laws — revisión de derechos 2026-11-19
+
+La entrada existente se reclasifica de bloqueada a **candidate discovery-only**. La ficha oficial del recurso “Consolidated federal Acts and regulations – Bulk XML” (dataset `2f4bb174-b2e7-4fb2-a7a1-a313507acbc6`) identifica el recurso y declara Open Government Licence – Canada. El repositorio oficial enlazado, `justicecanada/laws-lois-xml`, está fijado en el commit `855cdfc65207a6906c414e09a77d7f93267c5356`; su `LICENSE.md` declara la misma OGL. La OGL Canada v2.0 permite copia, modificación, adaptación, traducción y uso comercial con atribución, y excluye PII, derechos de terceros y símbolos oficiales. La Reproduction of Federal Law Order SI/97-5 exige exactitud y que la reproducción no se presente como versión oficial.
+
+- Alcance futuro: únicamente XML de Acts y Regulations en inglés/francés en el commit fijado.
+- Excluir DTD/XSLT/lookup, código, PDFs, logos, PII, terceros y avisos diferentes.
+- Preservar IDs, citas, títulos, idioma y fechas de consolidación/actualización.
+- Snapshot exacto, SHA-256 por archivo, XML seguro sin XXE, privacidad, malware, calidad, muestra estratificada, deduplicación global y G-0 pendientes.
+- No descargado; `training_authorized=false`, `count_toward_admitted_bytes=false`, 0 bytes admitidos.
+- Evidencia primaria: [ficha del recurso](https://open.canada.ca/data/dataset/2f4bb174-b2e7-4fb2-a7a1-a313507acbc6), [OGL Canada v2.0](https://open.canada.ca/en/open-government-licence-canada), [LICENSE.md en commit fijado](https://raw.githubusercontent.com/justicecanada/laws-lois-xml/855cdfc65207a6906c414e09a77d7f93267c5356/LICENSE.md), [Reproduction of Federal Law Order](https://laws-lois.justice.gc.ca/eng/regulations/SI-97-5/page-1.html).
+
+## Adquisiciones 128/129 — 2026-11-19
+
+Runs [128](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44394965672) y [129](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44482327436) terminaron al registrar `blocked_storage_gate`: secreto `HERETIC_STAGING_PASSPHRASE` ausente o menor de 32 caracteres. Cada uno produjo únicamente manifiesto de 871 bytes en ZIP de 653 bytes. No se descargó payload; bytes remotos y comprimidos no medidos; 0 filas, 0 staged, 0 admitidos. Los hashes recalculados están en el registro y el inventario. No hay shards ni hashes de shards.
