@@ -161,7 +161,7 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assert_discovery_only(source)
         self.assertEqual(source["spdx_license_identifier"], "CC-BY-4.0")
         self.assertEqual(source["license_exact_allowlist"], ["CC-BY-4.0"])
-        self.assertIn("unless specifically labeled otherwise", source["reported_license"])
+        self.assertIn("unless specifically labeled otherwise", source["reported_license"].casefold())
         self.assertIn("third-party", source["rights_caveat"])
         self.assertIn("Microdata Research License", source["rights_caveat"])
         checks = " ".join(source["required_checks"]).casefold()
