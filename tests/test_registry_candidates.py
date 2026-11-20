@@ -156,17 +156,33 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertGreaterEqual(len(source["evidence_urls"]), 6)
         self.assertGreaterEqual(len(source["required_checks"]), 12)
 
+    def test_world_bank_data_catalog_is_limited_to_first_party_cc_by_4_datasets(self):
+        source = self.source("World Bank Data Catalog:first-party-CC-BY-4.0-only")
+        self.assert_discovery_only(source)
+        self.assertEqual(source["spdx_license_identifier"], "CC-BY-4.0")
+        self.assertEqual(source["license_exact_allowlist"], ["CC-BY-4.0"])
+        self.assertIn("unless specifically labeled otherwise", source["reported_license"])
+        self.assertIn("third-party", source["rights_caveat"])
+        self.assertIn("Microdata Research License", source["rights_caveat"])
+        checks = " ".join(source["required_checks"]).casefold()
+        self.assertIn("resource-level license metadata", checks)
+        self.assertIn("odbl/share-alike", checks)
+        self.assertIn("restricted-data list", checks)
+        self.assertIn("global g-0", checks)
+        self.assertGreaterEqual(len(source["evidence_urls"]), 5)
+        self.assertGreaterEqual(len(source["required_checks"]), 14)
+
     def test_latest_scheduled_acquisitions_are_verified_zero_byte_storage_blocks(self):
         last = self.registry["last_candidate_batch_details"]
         previous = self.registry["previous_candidate_batch_details"]
-        self.assertEqual(last["run_id"], 44482327436)
-        self.assertEqual(previous["run_id"], 44394965672)
-        self.assertEqual(last["source_group"], 1)
-        self.assertEqual(previous["source_group"], 7)
-        self.assertEqual(last["artifact_sha256"], "2b04d8064fb1dbff181e736ef47e4ac1c1732a9550367234e8c7b72569c2882f")
-        self.assertEqual(last["manifest_sha256"], "5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437")
-        self.assertEqual(previous["artifact_sha256"], "cf794e0a569b259284d56b744943cc484a70fa30526fa2e1c4d384bfd316b41b")
-        self.assertEqual(previous["manifest_sha256"], "3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992")
+        self.assertEqual(last["run_id"], 44696596900)
+        self.assertEqual(previous["run_id"], 44613415575)
+        self.assertEqual(last["source_group"], 5)
+        self.assertEqual(previous["source_group"], 3)
+        self.assertEqual(last["artifact_sha256"], "b3cbb40c3a95d8da9ba45f779f2a8d27d7f50b85f1736ec099acfa202d8b2306")
+        self.assertEqual(last["manifest_sha256"], "0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7")
+        self.assertEqual(previous["artifact_sha256"], "4a9803b324b2e9fd722f2eb6b27bdd4b76a06d810caaeb41de3329c3d0e184bd")
+        self.assertEqual(previous["manifest_sha256"], "2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26")
         for batch in (last, previous):
             self.assertEqual(batch["candidate_rows"], 0)
             self.assertEqual(batch["downloaded_jsonl_bytes_in_runner"], 0)
