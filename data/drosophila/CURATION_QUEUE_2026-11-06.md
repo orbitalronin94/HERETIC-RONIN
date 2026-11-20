@@ -560,3 +560,12 @@ Ejemplos comprobados en páginas/front matter de la propia editorial:
 La licencia del catálogo no se hereda: los MARC records de OBP son CC BY-SA 4.0 y quedan excluidos; Thoth CC0 es metadata, no texto de libro. Excluir NC/ND/SA, capítulos con derechos distintos, fair-use excerpts, citas/figuras/fotos/mapas/audio/vídeo/portadas/suplementos de terceros sin clearance independiente. No adquirir PDF/EPUB/XML hasta fijar edición y hash y completar revisión de privacidad, seguridad, calidad, muestra estratificada, deduplicación global y G-0. Cero payload adquirido, cero bytes admitidos; `training_authorized=false`.
 
 Evidencia: [política editorial](https://www.openbookpublishers.com/publish-with-us/information-for-authors), [Ovid](https://www.openbookpublishers.com/books/10.11647/obp.0067), [Diderot bilingüe](https://www.openbookpublishers.com/books/10.11647/obp.0098), [Engaging Researchers](https://books.openbookpublishers.com/10.11647/obp.0185.07.pdf), [licencias de registros MARC/Thoth](https://www.openbookpublishers.com/libraries/marc-records).
+ 
+## World Bank Data Catalog — candidata de datos estructurados (2026-11-20)
+
+**Discovery-only; no descargada ni admitida.** La licencia por defecto para datasets del Banco Mundial es CC BY 4.0 salvo que el propio registro indique otra cosa. El catálogo también incluye ODbL, Microdata Research License, datasets de terceros, externos, custom y restringidos; por tanto, no se puede tratar el catálogo como una licencia global.
+
+Solo evaluar datasets de titularidad del Banco Mundial cuando tanto los metadatos del dataset como los del recurso declaren exactamente CC-BY-4.0. Excluir ODbL/share-alike, microdatos y registros individuales, Microdata Research License, restricciones, terceros no despejados y cualquier licencia ausente o ambigua. Fijar dataset ID y versión, resource ID y versión, URL, timestamp y SHA-256. Preservar la atribución requerida por el Banco Mundial; revisar lineage, PII, seguridad, calidad, idioma, duplicados y G-0 global antes de admitir. No inferir multilingüismo del catálogo: registrar el idioma de cada recurso.
+
+Evidencia oficial: [licencias](https://datacatalog.worldbank.org/public-licenses), [términos](https://www.worldbank.org/ext/en/legal/terms-conditions/datasets), [API](https://ddh-openapi.worldbank.org/docs/index.html), [guía](https://datacatalog.worldbank.org/getting-started), [FAQ](https://datacatalog.worldbank.org/faq). El registro queda en data/sources/registry.json como candidate_discovery_only, training_authorized=false y cero bytes admitidos.
+

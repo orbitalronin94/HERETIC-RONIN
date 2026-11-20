@@ -13,7 +13,7 @@ Actualizado: 2026-11-19. Este documento distingue **admitido**, **candidato** y 
 | Subconjunto resultante autorizado | 260.971 documentos |
 | Total de bytes admitidos contabilizados | **703.593.871 bytes (671,0 MiB)** |
 | Objetivo de biblioteca | 500.000.000.000 bytes (500 GB decimal) |
-| Fuentes registradas | 93 (incluye Open Book Publishers como candidata por título; Canada Justice Laws discovery-only) |
+| Fuentes registradas | 94 (incluye Open Book Publishers como candidata por título; Canada Justice Laws discovery-only) |
 
 Auditoría global: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Artefacto de auditoría: ID `13570263309`, SHA-256 `db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9`.
 
@@ -674,3 +674,16 @@ La allowlist futura se limita a obras cuya propia página de título/copyright d
 No se infiere una licencia de la ficha bibliográfica: los registros MARC de OBP se publican bajo CC BY-SA 4.0 y no son contenido entrenable; los metadatos Thoth CC0 son solo para descubrimiento. Los libros con NC, ND, SA, condiciones ambiguas, fair-use excerpts, derechos de capítulo separados o componentes de terceros quedan fuera. Figuras, fotografías, mapas, audio, vídeo, portadas y suplementos se excluyen salvo permiso independiente. La muestra *B C, Before Computers* contiene material identificado como fair use; no se debe adquirir íntegramente bajo la licencia del libro.
 
 La revisión de cada obra deberá fijar DOI/edición, autores, copyright, licencia exacta, lengua, ISBN, asset XML/HTML/EPUB, timestamp y SHA-256. Siguen pendientes integridad, calidad, privacidad/PII, seguridad, muestra estratificada, deduplicación global y G-0. `training_authorized=false`; `count_toward_admitted_bytes=false`.
+ 
+## Candidato multidominio — World Bank Data Catalog (2026-11-20)
+
+**Estado: discovery-only; cero payload descargado y cero bytes admitidos.** Se registra el catálogo oficial como fuente de datos estructurados de agricultura, clima, economía, educación, energía, medioambiente, finanzas, salud, infraestructura, pobreza y gobernanza. El catálogo incluye miles de datasets; la licencia por defecto de los datasets del Banco Mundial es CC BY 4.0, salvo indicación distinta. No se hereda esa licencia a los datasets de terceros ni a los recursos con términos específicos.
+
+La allowlist futura exige que tanto la ficha del dataset como los metadatos de cada recurso identifiquen exactamente **CC-BY-4.0**, y que el titular sea el propio Banco Mundial. Se excluyen ODbL/share-alike, Microdata Research License, NC/ND, licencias externas o custom, material restringido, microdatos y cualquier dataset de terceros sin clearance independiente. Deben fijarse dataset ID, versión, resource ID/versión, URL y SHA-256 por activo; el API documenta metadatos y endpoints de historial/versionado. Se conservará la atribución exigida por el Banco Mundial y el enlace a los términos vigentes. El idioma se medirá por recurso: no se presume que el catálogo sea multilingüe.
+
+Fuentes primarias: [licencias del Data Catalog](https://datacatalog.worldbank.org/public-licenses) · [términos de datasets](https://www.worldbank.org/ext/en/legal/terms-conditions/datasets) · [API](https://ddh-openapi.worldbank.org/docs/index.html) · [guía de uso](https://datacatalog.worldbank.org/getting-started) · [FAQ](https://datacatalog.worldbank.org/faq).
+
+La adquisición sigue bloqueada por almacenamiento: [run 133](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44613415575), grupo 3/8, y [run 134](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44696596900), grupo 5/8, finalizaron correctamente el preflight pero no descargaron payload. Ambos manifiestos declaran blocked_storage_gate, 0 filas, 0 bytes y training_authorized=false. Artefactos: [14573297654](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44613415575/artifacts/14573297654), SHA-256 ZIP 4a9803b324b2e9fd722f2eb6b27bdd4b76a06d810caaeb41de3329c3d0e184bd; [14610009546](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44696596900/artifacts/14610009546), SHA-256 ZIP b3cbb40c3a95d8da9ba45f779f2a8d27d7f50b85f1736ec099acfa202d8b2306. Los hashes internos de manifiesto y bytes exactos figuran en data/sources/registry.json.
+
+No se ejecutaron revisión de muestras, escáneres de payload, deduplicación global ni G-0 porque no hubo payload. El candidato conserva training_authorized=false y count_toward_admitted_bytes=false. El inventario admitido no cambia: **260.971 documentos / 703.593.871 bytes**, **0,140719 %** del objetivo de 500 GB, según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
+
