@@ -413,3 +413,10 @@ El API permite consultar metadatos de datasets/recursos e historial de versiones
 
 Las [runs 133](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44613415575) y [134](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44696596900) finalizaron el preflight con éxito, pero ambas bloquearon antes de descargar por falta de HERETIC_STAGING_PASSPHRASE de al menos 32 caracteres. Cada una produjo solo un manifiesto de 871 bytes dentro de un ZIP de 653 bytes; 0 filas, 0 bytes de payload y 0 admisiones. El inventario admitido permanece en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB, según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se entrenó ni se modificó ningún checkpoint.
 
+
+
+## Curación de biblioteca — actualización 2026-11-21
+
+Se incorpora **OECD Data Explorer** como candidata discovery-only para datos SDMX multidominio. La reutilización comercial está permitida por las condiciones de OECD salvo restricciones adicionales o derechos de terceros; por eso solo se evaluarán series cuya metadata y pestaña *source* acrediten derechos completos de OECD. No se asigna SPDX ni se autoriza entrenamiento por la mera presencia en el portal. API y controles de adquisición constan en data/sources/registry.json.
+
+Las adquisiciones programadas [run 137](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44813247702) y [run 138](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44881057593) terminaron el preflight, pero bloquearon antes de descargar por falta de HERETIC_STAGING_PASSPHRASE de al menos 32 caracteres. Solo se publicaron manifiestos de 871 bytes dentro de ZIP de 653 bytes; no hubo payload, filas, staging ni admisiones. **Admisiones nuevas: 0 documentos / 0 bytes.** El inventario sigue en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB, según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se entrenó ni se modificó ningún checkpoint.
