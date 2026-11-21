@@ -197,7 +197,7 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertIn("third-party", source["rights_caveat"])
         checks = " ".join(source["required_checks"]).casefold()
         self.assertIn("public-use microdata", checks)
-        self.assertIn("re-identification", checks)
+        self.assertIn("attempt to identify", checks)
         self.assertIn("global g-0", checks)
         self.assertGreaterEqual(len(source["evidence_urls"]), 5)
 
