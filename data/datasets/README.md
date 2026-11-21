@@ -687,3 +687,23 @@ La adquisición sigue bloqueada por almacenamiento: [run 133](https://github.com
 
 No se ejecutaron revisión de muestras, escáneres de payload, deduplicación global ni G-0 porque no hubo payload. El candidato conserva training_authorized=false y count_toward_admitted_bytes=false. El inventario admitido no cambia: **260.971 documentos / 703.593.871 bytes**, **0,140719 %** del objetivo de 500 GB, según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
 
+
+
+## Curación candidate-only — 2026-11-21
+
+### OECD Data Explorer — series de datos con derechos OECD acreditados
+
+Se añade **OECD Data Explorer** como candidata discovery-only multidominio. Las condiciones oficiales de la OCDE permiten extraer, descargar, copiar, adaptar, distribuir, compartir e incorporar datos para cualquier finalidad, incluso comercial, salvo cuando existan restricciones adicionales o derechos de terceros. La propia OCDE advierte que no garantiza controlar todos los derechos de todos los datos. Por ello, solo se considerarán series cuya metadata y pestaña *source* acrediten derechos de OECD sobre todas las observaciones incluidas y ausencia de restricciones adicionales; la inclusión en el portal no basta. Se conserva la cita y atribución exigidas por serie. Esta autorización condicional no es una licencia CC/SPDX: no se asigna identificador SPDX.
+
+La adquisición futura deberá fijar agencia, dataflow y versiones explícitas, DSD, codelists, restricciones/ValidFrom, consulta y dimensiones exactas, formato, timestamp UTC, longitud y SHA-256. La API SDMX admite CSV/JSON/XML. Se respetará el límite publicado de **60 descargas por hora**, sin VPN ni fuentes anonimizadas, usando cache y consultas de contentconstraint. Se excluirán series mixtas o de terceros sin autorización independiente, restricciones especiales, datos confidenciales/personales y cualquier registro con derechos inciertos. El candidato queda training_authorized=false, sin payload, filas ni bytes admitidos.
+
+Fuentes oficiales: [condiciones de uso de OECD, §3 Data](https://www.oecd.org/en/about/terms-conditions.html) · [API SDMX](https://www.oecd.org/en/data/insights/data-explainers/2024/09/api.html) · [buenas prácticas y límites de API](https://www.oecd.org/en/data/insights/data-explainers/2024/11/Api-best-practices-and-recommendations.html) · [catálogo SDMX](https://sdmx.oecd.org/public/rest/dataflow/all).
+
+### Adquisiciones programadas — runs 137 y 138
+
+- [Run 137](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44813247702), grupo 7/8: preflight correcto, adquisición bloqueada por falta de HERETIC_STAGING_PASSPHRASE (mínimo 32 caracteres). Manifiesto [artifact 14667188891](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44813247702/artifacts/14667188891): ZIP 653 bytes, SHA-256 a93086b9570d214b0036a5cfb9c7b2a8c5711a041ced85b175ed8a46c88f71ff; JSON interno 871 bytes, SHA-256 3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992.
+- [Run 138](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44881057593), grupo 1/8: mismo bloqueo antes de descargar. Manifiesto [artifact 14697991415](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44881057593/artifacts/14697991415): ZIP 653 bytes, SHA-256 5941156dc57a7e31ad2dab81621f7344a9a6748e45ace8c73040f434d75db0f7; JSON interno 871 bytes, SHA-256 5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437.
+- Ambos manifiestos declaran blocked_storage_gate, training_authorized=false, 0 filas, 0 bytes de payload y 0 shards. El job de validación fue omitido en estos eventos programados; el éxito solo acredita que el bloqueo se registró correctamente.
+- Admisiones nuevas: **0 documentos / 0 bytes**. No se midieron bytes remotos ni descargados; los 653 bytes ZIP y 871 bytes JSON son solo el artefacto/manifiesto, nunca datos de entrenamiento.
+
+El inventario admitido permanece en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** del objetivo decimal de 500 GB, según la auditoría global [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). G-0, deduplicación global, holdout y revisión de payload no se ejecutaron porque no hubo payload. No se ha entrenado ni modificado ningún checkpoint.

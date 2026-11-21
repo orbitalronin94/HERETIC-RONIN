@@ -569,3 +569,21 @@ Solo evaluar datasets de titularidad del Banco Mundial cuando tanto los metadato
 
 Evidencia oficial: [licencias](https://datacatalog.worldbank.org/public-licenses), [términos](https://www.worldbank.org/ext/en/legal/terms-conditions/datasets), [API](https://ddh-openapi.worldbank.org/docs/index.html), [guía](https://datacatalog.worldbank.org/getting-started), [FAQ](https://datacatalog.worldbank.org/faq). El registro queda en data/sources/registry.json como candidate_discovery_only, training_authorized=false y cero bytes admitidos.
 
+
+
+## OECD Data Explorer — datos SDMX, discovery-only (2026-11-21)
+
+**Candidata multidominio; 0 descargas, 0 filas y 0 bytes admitidos.** La OCDE permite la reutilización de sus datos para cualquier finalidad, incluso comercial, salvo restricciones adicionales o derechos de terceros. La política no equivale a una licencia general sobre todo el contenido del portal: la propia OCDE declara que no garantiza poseer/controlar todos los derechos. Solo se evaluarán series en las que los metadatos y la pestaña *source* acrediten derechos de OECD para todas las observaciones y ausencia de restricciones adicionales. Las series mixtas/de terceros sin autorización independiente, confidenciales, personales o de titularidad incierta se excluyen.
+
+- Fuente de términos: https://www.oecd.org/en/about/terms-conditions.html (apartado 3, Data); no se asigna SPDX porque no es una licencia CC estándar.
+- API: https://www.oecd.org/en/data/insights/data-explainers/2024/09/api.html; SDMX REST con estructura y datos consultables y formatos CSV/JSON/XML.
+- Control de carga: límite actual publicado de 60 descargas/hora; no usar VPN ni fuentes anonimizadas; emplear contentconstraint, cache y consultas acotadas: https://www.oecd.org/en/data/insights/data-explainers/2024/11/Api-best-practices-and-recommendations.html.
+- Antes de descargar: fijar agencia/dataflow y versiones, DSD, codelists, ValidFrom, consulta/dimensiones, formato, timestamp UTC, longitud y SHA-256; conservar cita y fuente por serie.
+- Pendientes: rights check por serie, snapshot, calidad, privacidad/PII, malware/secretos, deduplicación exacta y aproximada contra todos los splits, contaminación holdout y G-0. Mantener training_authorized=false y count_toward_admitted_bytes=false.
+
+### Runs 137–138: bloqueo de almacenamiento
+
+- Run 137, grupo 7/8: https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44813247702 — artifact 14667188891, ZIP 653 bytes, SHA-256 a93086b9570d214b0036a5cfb9c7b2a8c5711a041ced85b175ed8a46c88f71ff; manifiesto 871 bytes, SHA-256 3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992.
+- Run 138, grupo 1/8: https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44881057593 — artifact 14697991415, ZIP 653 bytes, SHA-256 5941156dc57a7e31ad2dab81621f7344a9a6748e45ace8c73040f434d75db0f7; manifiesto 871 bytes, SHA-256 5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437.
+
+Ambos preflights finalizaron correctamente pero el secreto HERETIC_STAGING_PASSPHRASE faltaba o tenía menos de 32 caracteres. No se contactó con fuentes para descargar payload; 0 filas, 0 bytes remotos/descargados medidos, 0 staged y 0 admitidos. El job de validación fue omitido en los eventos programados. El inventario sigue en **260.971 documentos / 703.593.871 bytes (0,140719 % de 500 GB)** según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
