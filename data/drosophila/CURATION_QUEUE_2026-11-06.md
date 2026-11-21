@@ -587,3 +587,16 @@ Evidencia oficial: [licencias](https://datacatalog.worldbank.org/public-licenses
 - Run 138, grupo 1/8: https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44881057593 — artifact 14697991415, ZIP 653 bytes, SHA-256 5941156dc57a7e31ad2dab81621f7344a9a6748e45ace8c73040f434d75db0f7; manifiesto 871 bytes, SHA-256 5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437.
 
 Ambos preflights finalizaron correctamente pero el secreto HERETIC_STAGING_PASSPHRASE faltaba o tenía menos de 32 caracteres. No se contactó con fuentes para descargar payload; 0 filas, 0 bytes remotos/descargados medidos, 0 staged y 0 admitidos. El job de validación fue omitido en los eventos programados. El inventario sigue en **260.971 documentos / 703.593.871 bytes (0,140719 % de 500 GB)** según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
+
+
+## Statistics Canada — estadísticas agregadas bilingües, discovery-only (2026-11-21)
+
+**Candidata; 0 descargas, 0 filas y 0 bytes admitidos.** La Statistics Canada Open Licence concede derechos mundiales y permite reproducción, distribución, venta y adaptación de los resultados no confidenciales cuando Statistics Canada es titular o licenciatario de todos los derechos. No es una licencia CC/SPDX. La licencia excluye los derechos de terceros, que permanecen en sus titulares. Solo se evaluarán tablas agregadas con titularidad de Statistics Canada acreditada por producto. Aunque la definición general menciona PUMF, la política del proyecto excluye microdatos y registros de personas/hogares/empresas por privacidad y riesgo de reidentificación.
+
+- Derechos y alcance: https://www.statcan.gc.ca/en/terms-conditions/open-licence y FAQ https://www.statcan.gc.ca/en/terms-conditions/open-licence-faq.
+- API: WDS JSON, SDMX REST, full-table CSV/SDMX y Delta Files: https://www.statcan.gc.ca/en/developers/wds y https://www.statcan.gc.ca/en/developers.
+- El WDS publica actualizaciones diarias; la guía documenta PID, metadata de cubos/series, releaseTime, issueDate, code sets y límite de 25 solicitudes/s por IP: https://www.statcan.gc.ca/en/developers/wds/user-guide.
+- Preservar el aviso exacto de fuente y el aviso de adaptación; excluir material de terceros, confidencial, granular o con riesgo de divulgación; no reidentificar ni usar logos o símbolos oficiales.
+- Pendientes: rights check por producto, snapshot/hash, calidad, idioma EN/FR real, privacidad, malware/secretos, deduplicación global y contaminación de holdout/G-0. Mantener training_authorized=false y count_toward_admitted_bytes=false.
+
+No se ha descargado contenido. No se cuentan tamaños anunciados, metadatos de catálogo ni bytes de manifiestos como admisión. El inventario sigue en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB.

@@ -188,6 +188,19 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertIn("global g-0", checks)
         self.assertGreaterEqual(len(source["evidence_urls"]), 4)
 
+    def test_statistics_canada_aggregate_data_is_open_licence_candidate_only(self):
+        source = self.source("Statistics Canada:Open-Licence-aggregate-statistics-only")
+        self.assert_discovery_only(source)
+        self.assertIsNone(source["spdx_license_identifier"])
+        self.assertIn("worldwide, royalty-free", source["reported_license"])
+        self.assertIn("owner or licensee", source["reported_license"])
+        self.assertIn("third-party", source["rights_caveat"])
+        checks = " ".join(source["required_checks"]).casefold()
+        self.assertIn("public-use microdata", checks)
+        self.assertIn("re-identification", checks)
+        self.assertIn("global g-0", checks)
+        self.assertGreaterEqual(len(source["evidence_urls"]), 5)
+
     def test_latest_scheduled_acquisitions_are_verified_zero_byte_storage_blocks(self):
         last = self.registry["last_candidate_batch_details"]
         previous = self.registry["previous_candidate_batch_details"]

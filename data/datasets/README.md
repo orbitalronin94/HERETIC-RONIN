@@ -707,3 +707,16 @@ Fuentes oficiales: [condiciones de uso de OECD, §3 Data](https://www.oecd.org/e
 - Admisiones nuevas: **0 documentos / 0 bytes**. No se midieron bytes remotos ni descargados; los 653 bytes ZIP y 871 bytes JSON son solo el artefacto/manifiesto, nunca datos de entrenamiento.
 
 El inventario admitido permanece en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** del objetivo decimal de 500 GB, según la auditoría global [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). G-0, deduplicación global, holdout y revisión de payload no se ejecutaron porque no hubo payload. No se ha entrenado ni modificado ningún checkpoint.
+
+
+## Candidata multidominio — Statistics Canada Open Licence (2026-11-21)
+
+Se añade Statistics Canada como candidata discovery-only para estadísticas agregadas multidominio y bilingües. La licencia oficial concede derechos mundiales, gratuitos y no exclusivos para usar, reproducir, publicar, distribuir o vender la información cubierta y productos derivados; pero solo cubre resultados no confidenciales en los que Statistics Canada sea titular o licenciatario de todos los derechos de propiedad intelectual. Los derechos de terceros permanecen en sus titulares. No se asigna SPDX porque es una licencia específica de la institución.
+
+El alcance inicial se limita a tablas estadísticas agregadas no confidenciales con titularidad despejada. Se excluyen microdatos y PUMF aunque aparezcan en la definición amplia de Information, datos de personas/hogares/empresas, celdas pequeñas con riesgo de divulgación, material de terceros y contenido conjunto no despejado. Se prohíbe cualquier enlace o combinación orientada a reidentificar personas, empresas u organizaciones. Se conserva la atribución exacta y el aviso de adaptación; no se usan logotipos ni símbolos oficiales.
+
+La WDS ofrece datos y metadatos diarios mediante JSON y SDMX; hay descargas completas CSV/SDMX y Delta Files diarios. Los metadatos incluyen títulos EN/FR. Para cada activo se fijarán PID, tabla/vector, releaseTime/issueDate, metadatos, code sets, petición exacta, formato, timestamp UTC, longitud y SHA-256. El manual publica un límite de 25 solicitudes por segundo por IP; se aplicará un ritmo conservador y caché. No se ha descargado payload: **0 filas y 0 bytes admitidos**, training_authorized=false.
+
+Fuentes oficiales: [Open Licence](https://www.statcan.gc.ca/en/terms-conditions/open-licence) · [FAQ de la licencia](https://www.statcan.gc.ca/en/terms-conditions/open-licence-faq) · [Web Data Service](https://www.statcan.gc.ca/en/developers/wds) · [guía WDS](https://www.statcan.gc.ca/en/developers/wds/user-guide) · [portal de desarrolladores](https://www.statcan.gc.ca/en/developers).
+
+El inventario admitido no cambia: **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB, según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). La nueva fuente no se suma al contador hasta completar revisión por producto, privacidad, seguridad, deduplicación y G-0.
