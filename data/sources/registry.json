@@ -3736,6 +3736,66 @@
       "count_toward_admitted_bytes": false,
       "training_authorized": false,
       "recorded_date": "2026-11-21"
+    },
+    {
+      "id": "Statistics Canada:Open-Licence-aggregate-statistics-only",
+      "url": "https://www.statcan.gc.ca/",
+      "retrieval_url": "https://www.statcan.gc.ca/en/developers/wds",
+      "revision": "Mutable Web Data Service/SDMX APIs and daily updated output database. For each product freeze product ID/PID, table and vector IDs, exact WDS/SDMX request and response format, cube/series metadata, releaseTime and issueDate where available, code sets, UTC retrieval timestamp, exact response length and SHA-256. Full-table CSV/SDMX and daily Delta File snapshots may be hashed, but the upstream service is not a single immutable corpus revision.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired. WDS exposes JSON, SDMX REST and full-table CSV/SDMX downloads; Delta File provides daily changed data and metadata.",
+      "reported_license": "Statistics Canada Open Licence (current version effective at access time; page last modified 2025-07-10) grants a worldwide, royalty-free, non-exclusive right to use, reproduce, publish, freely distribute or sell covered Information and value-added products and to sublicense consistent rights. Scope is limited to non-confidential results for which Statistics Canada is the owner or licensee of all intellectual-property rights. Third-party rights remain with their owners. Required source and adaptation notices apply. This is a jurisdiction-specific licence, not a CC/SPDX licence; no SPDX identifier is asserted.",
+      "spdx_license_identifier": null,
+      "status": "candidate_discovery_only_pending_product_level_rights_privacy_snapshot_and_global_g0",
+      "domains": [
+        "economics",
+        "population",
+        "demography",
+        "employment",
+        "education",
+        "health",
+        "environment",
+        "energy",
+        "agriculture",
+        "industry",
+        "trade",
+        "justice",
+        "housing",
+        "transport",
+        "public finance",
+        "social statistics"
+      ],
+      "language": [
+        "Statistics Canada publishes English and French product titles and metadata fields (for example cubeTitleEn/cubeTitleFr); preserve and measure actual language for each table, series and text product."
+      ],
+      "rights_caveat": "Initial scope is aggregate statistical tables and non-confidential outputs only where Statistics Canada is the owner or licensee of all intellectual-property rights. Exclude any third-party-owned material, co-produced content without separate clearance, confidential/restricted data, public-use microdata files and all person-, household- or business-level microdata despite their mention in the broad licence definition. Do not merge or link datasets for re-identification of an individual, business or organization; exclude granular or small-cell data with disclosure risk. Preserve the exact source/adaptation notice. Do not use Statistics Canada or Government of Canada logos, wordmarks, official symbols or imply endorsement.",
+      "required_checks": [
+        "Check the Statistics Canada Open Licence version in force at the exact access timestamp and retain a copy/hash of the terms page.",
+        "For each product verify that Statistics Canada is the owner or licensee of all intellectual-property rights; portal publication alone is not sufficient.",
+        "Exclude third-party-owned, jointly published or externally sourced components unless the specific rights holder and licence are independently verified and recorded.",
+        "Limit the initial acquisition to aggregate, non-confidential statistical tables and standard non-personal outputs; exclude public-use microdata files, microdata and respondent-level records.",
+        "Reject small-cell, granular or otherwise disclosure-risk data; never merge or link the information to attempt to identify a person, business or organization.",
+        "Preserve PID/product ID, table and vector IDs, title, reference date, releaseTime, issueDate, author/publisher where relevant, source and exact required attribution notice.",
+        "For adapted content retain the required adapted-from notice and non-endorsement disclaimer; reproduce the information accurately and do not imply Statistics Canada endorsement.",
+        "Exclude Statistics Canada and Government of Canada names, crests, logos, wordmarks, flags and official symbols from payloads and derivatives unless separately authorised.",
+        "Pin exact WDS/SDMX request, product/table/vector identifiers, cube and series metadata, code sets, dimensions, units, frequency, response format, UTC timestamp, response length and SHA-256; hash raw and transformed payloads separately.",
+        "Respect daily update behaviour and published WDS server limits (25 requests per second per IP); use conservative throttling, bounded requests and cached metadata.",
+        "Validate JSON/SDMX/CSV schema, encoding, scalar and decimal handling, units, status codes, missing values, dimensions, reference periods and bilingual labels.",
+        "Audit samples by domain, language, format and product; scan PII, confidential/sensitive content, secrets and malware before retaining any payload.",
+        "Run exact and approximate deduplication against the entire corpus and all validation, test, benchmark and holdout splits; require global G-0.",
+        "Keep discovery-only, training_authorized=false and count_toward_admitted_bytes=false until all item-level and global gates pass."
+      ],
+      "evidence_urls": [
+        "https://www.statcan.gc.ca/en/terms-conditions/open-licence",
+        "https://www.statcan.gc.ca/en/terms-conditions/open-licence-faq",
+        "https://www.statcan.gc.ca/en/developers/wds",
+        "https://www.statcan.gc.ca/en/developers/wds/user-guide",
+        "https://www.statcan.gc.ca/en/developers",
+        "https://www.statcan.gc.ca/en/microdata/api"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "recorded_date": "2026-11-21"
     }
   ],
   "target_library_bytes": 500000000000,
@@ -5305,5 +5365,5 @@
     "encrypted_artifact_policy": "Encrypted artifact remains publicly downloadable ciphertext; only holders of the passphrase may decrypt. Record artifact SHA-256 and keep the passphrase outside the repository.",
     "group_rotation_fix": "Scheduled group index uses ((day_of_year - 1) * 4 + tranche_slot) modulo group_count so four daily slots cover all eight groups exactly once in each 48-hour cycle."
   },
-  "source_count": 95
+  "source_count": 96
 }
