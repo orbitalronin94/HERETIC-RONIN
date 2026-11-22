@@ -234,7 +234,7 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertIs(source["acquisition_enabled"], False)
         self.assertIn("institutional unit", source["reported_license"])
         self.assertIn("AI model", source["reported_license"])
-        self.assertIn("redistribution", source["rights_caveat"])
+        self.assertIn("redistribute", source["rights_caveat"])
 
     def test_latest_scheduled_acquisitions_are_verified_zero_byte_storage_blocks(self):
         last = self.registry["last_candidate_batch_details"]
