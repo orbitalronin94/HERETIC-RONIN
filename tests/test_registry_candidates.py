@@ -207,7 +207,7 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assert_discovery_only(source)
         self.assertEqual(source["spdx_license_identifier"], "CC-BY-4.0")
         self.assertIs(source["acquisition_enabled"], False)
-        self.assertIn("3 May 2023", source["reported_license"])
+        self.assertIn("2023-05-03", source["reported_license"])
         self.assertIn("microdata", source["rights_caveat"])
         checks = " ".join(source["required_checks"]).casefold()
         self.assertIn("microdata", checks)
