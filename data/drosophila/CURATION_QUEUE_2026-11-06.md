@@ -600,3 +600,16 @@ Ambos preflights finalizaron correctamente pero el secreto HERETIC_STAGING_PASSP
 - Pendientes: rights check por producto, snapshot/hash, calidad, idioma EN/FR real, privacidad, malware/secretos, deduplicación global y contaminación de holdout/G-0. Mantener training_authorized=false y count_toward_admitted_bytes=false.
 
 No se ha descargado contenido. No se cuentan tamaños anunciados, metadatos de catálogo ni bytes de manifiestos como admisión. El inventario sigue en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB.
+
+
+## ILOSTAT — estadísticas agregadas y diccionarios, discovery-only (2026-11-22)
+
+**Candidata multidominio y trilingüe; 0 descargas, 0 filas y 0 bytes admitidos.** La política de derechos de ILO cubre bajo CC BY 4.0 las bases de datos, datasets y metadatos referenciales publicados o puestos a disposición desde el 3 de mayo de 2023, salvo indicación distinta. Excluye microdatos enviados u obtenidos de constituyentes y socios cuando están restringidos al uso exclusivo de ILO. ILOSTAT agrega datos de oficinas estadísticas nacionales, cuestionarios, procesamiento de microdatos y estimaciones modelizadas; por tanto, el portal no basta para resolver los derechos de cada tabla.
+
+- Fuentes oficiales: [Rights and permissions](https://www.ilo.org/rights-and-permissions), [ILOSTAT bulk download](https://ilostat.ilo.org/data/bulk/), [data collection and production](https://ilostat.ilo.org/about/data-collection-and-production/).
+- Alcance posible: tablas estadísticas agregadas, diccionarios y metadatos públicos con evidencia de licencia y derechos de origen. El portal documenta tablas de contenido y diccionarios EN/FR/ES.
+- Excluir microdatos, registros de encuestas, fuentes restringidas a ILO, celdas confidenciales o reidentificables, datos personales y cualquier material de terceros sin autorización.
+- Para cada tabla: fijar ruta, indicador/área de referencia, `last.update`, colección, fuente, notas, versión de diccionarios, timestamp UTC, bytes comprimidos/expandidos y SHA-256.
+- Auditar CSV/gzip, esquema, valores ausentes, unidades, frecuencia, periodos, idioma, PII, secretos y malware; muestrear por dominio, país, idioma y formato.
+- Deduplicar contra todo el corpus y todos los splits protegidos; ejecutar G-0 global antes de cualquier admisión.
+- No está incluido en el colector Hugging Face actual. Requiere un workflow/descargador dedicado, acotado y determinista; permanece `acquisition_enabled=false` y `training_authorized=false` hasta implementarlo y superar todos los gates.
