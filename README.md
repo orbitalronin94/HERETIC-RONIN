@@ -438,3 +438,11 @@ ILOSTAT queda en discovery-only para tablas estadísticas agregadas y diccionari
 ## Últimas adquisiciones programadas — runs 142 y 143
 
 Las [runs 142](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44942179717) y [143](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44997636660) completaron el preflight y bloquearon antes de descargar por falta de `HERETIC_STAGING_PASSPHRASE` de al menos 32 caracteres. Los artefactos [14722191284](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44942179717/artifacts/14722191284) y [14744695975](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44997636660/artifacts/14744695975) son manifiestos ZIP de 653 bytes, con JSON internos de 871 bytes; sus SHA-256 se descargaron y verificaron contra los digests de GitHub. No hubo payload, filas, staging ni admisiones. **Admisiones nuevas: 0 documentos / 0 bytes.** El inventario sigue en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB. No se entrenó ni se modificó ningún checkpoint.
+
+
+## Fuentes no incorporadas tras revisión de derechos — 2026-11-22
+
+- **UNESCO UIS:** excluida por licencia CC BY-SA 4.0; share-alike no está aprobado.
+- **UN Comtrade:** bloqueada porque la excepción para uso de IA está limitada al uso interno de una unidad institucional y la redistribución externa de datos originales requiere permiso de UNSD.
+
+No se descargó payload de ninguna de las dos fuentes. Los motivos y condiciones están registrados en `data/sources/registry.json`.
