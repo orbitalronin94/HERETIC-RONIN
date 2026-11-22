@@ -13,7 +13,7 @@ Actualizado: 2026-11-22. Este documento distingue **admitido**, **candidato** y 
 | Subconjunto resultante autorizado | 260.971 documentos |
 | Total de bytes admitidos contabilizados | **703.593.871 bytes (671,0 MiB)** |
 | Objetivo de biblioteca | 500.000.000.000 bytes (500 GB decimal) |
-| Fuentes registradas | 97 (incluye ILOSTAT, OECD Data Explorer y Statistics Canada como candidatas discovery-only; ninguna añade bytes admitidos) |
+| Fuentes registradas | 99 (incluye ILOSTAT, OECD Data Explorer y Statistics Canada como candidatas; UIS excluida por BY-SA y UN Comtrade bloqueada por uso interno/re-distribución) |
 
 Auditoría global: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Artefacto de auditoría: ID `13570263309`, SHA-256 `db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9`.
 
@@ -740,3 +740,11 @@ Cada activo deberá fijarse mediante su ruta exacta, fila de `table_of_contents`
 - Admisiones nuevas: **0 documentos / 0 bytes**. Los 653 bytes ZIP y 871 bytes JSON son solo contenedores/manifiestos, nunca corpus.
 
 El inventario admitido permanece en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** del objetivo decimal de 500 GB, según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). G-0, deduplicación global, holdout y revisión de payload no se ejecutaron porque no hubo payload. No se ha entrenado ni modificado ningún checkpoint.
+
+
+## Fuentes investigadas y no adquiribles — 2026-11-22
+
+- **UNESCO Institute for Statistics (UIS) Data Browser:** excluido porque sus términos oficiales declaran CC BY-SA 4.0. El proyecto no ha aprobado share-alike; no se descarga ni se incorpora contenido. Además, cualquier futura reconsideración exigiría revisar la procedencia de los indicadores y sus fuentes upstream.
+- **UN Comtrade:** bloqueado. La política permite uso de IA dentro del uso interno definido como uso por personal de una unidad institucional en beneficio de esa unidad, pero prohíbe la redistribución externa de datos originales sin permiso de UNSD. No se ha acreditado elegibilidad institucional ni una licencia de distribución para el uso previsto. No se descarga ni se admite contenido.
+
+Ambas fuentes figuran en `data/sources/registry.json` como no adquiribles, con `training_authorized=false` y cero bytes. Evidencia: [UIS terms](https://databrowser.uis.unesco.org/terms-and-conditions) · [UN Comtrade use policy](https://uncomtrade.org/docs/policy-on-comtrade-data-use/) · [UN Comtrade redistribution](https://uncomtrade.org/docs/re-dissemination-of-data/).
