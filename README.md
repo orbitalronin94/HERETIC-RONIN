@@ -425,3 +425,16 @@ Las adquisiciones programadas [run 137](https://github.com/orbitalronin94/HERETI
 ## Nueva fuente candidata — Statistics Canada (2026-11-21)
 
 Statistics Canada se registra como discovery-only para estadísticas agregadas EN/FR. La Open Licence permite usos comerciales y adaptación únicamente sobre resultados no confidenciales de los que Statistics Canada sea titular o licenciatario de todos los derechos; los derechos de terceros quedan excluidos. Se excluyen microdatos, PUMF y cualquier contenido con riesgo de reidentificación. No se asigna SPDX ni se autorizan datos por la mera presencia en el portal. El inventario, las condiciones de atribución y los controles pendientes están en data/sources/registry.json y data/datasets/README.md. No se ha descargado ni admitido contenido.
+
+
+## Nueva candidata multidominio — ILOSTAT (2026-11-22)
+
+ILOSTAT queda en discovery-only para tablas estadísticas agregadas y diccionarios EN/FR/ES. La política de ILO cubre bajo CC BY 4.0 datasets y metadatos referenciales publicados desde el 3 de mayo de 2023, con una excepción expresa para microdatos restringidos al uso exclusivo de ILO. Como ILOSTAT combina datos de oficinas estadísticas nacionales, cuestionarios, procesamiento de microdatos y estimaciones, cada tabla exige revisión de fuente, colección, notas y derechos upstream. Se excluyen microdatos, registros personales, celdas reidentificables y cualquier dato de terceros sin autorización. No hay payload descargado ni bytes admitidos. La fuente requiere un colector dedicado y permanece desactivada hasta resolver almacenamiento y todos los gates.
+
+- [Política de derechos ILO](https://www.ilo.org/rights-and-permissions)
+- [ILOSTAT bulk download](https://ilostat.ilo.org/data/bulk/)
+- [Metodología de recopilación](https://ilostat.ilo.org/about/data-collection-and-production/)
+
+## Últimas adquisiciones programadas — runs 142 y 143
+
+Las [runs 142](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44942179717) y [143](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44997636660) completaron el preflight y bloquearon antes de descargar por falta de `HERETIC_STAGING_PASSPHRASE` de al menos 32 caracteres. Los artefactos [14722191284](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44942179717/artifacts/14722191284) y [14744695975](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44997636660/artifacts/14744695975) son manifiestos ZIP de 653 bytes, con JSON internos de 871 bytes; sus SHA-256 se descargaron y verificaron contra los digests de GitHub. No hubo payload, filas, staging ni admisiones. **Admisiones nuevas: 0 documentos / 0 bytes.** El inventario sigue en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB. No se entrenó ni se modificó ningún checkpoint.

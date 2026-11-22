@@ -1,6 +1,6 @@
 # HERETIC-RONIN — biblioteca de datasets
 
-Actualizado: 2026-11-19. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
+Actualizado: 2026-11-22. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
 
 ## Resumen verificable
 
@@ -13,7 +13,7 @@ Actualizado: 2026-11-19. Este documento distingue **admitido**, **candidato** y 
 | Subconjunto resultante autorizado | 260.971 documentos |
 | Total de bytes admitidos contabilizados | **703.593.871 bytes (671,0 MiB)** |
 | Objetivo de biblioteca | 500.000.000.000 bytes (500 GB decimal) |
-| Fuentes registradas | 94 (incluye Open Book Publishers como candidata por título; Canada Justice Laws discovery-only) |
+| Fuentes registradas | 97 (incluye ILOSTAT, OECD Data Explorer y Statistics Canada como candidatas discovery-only; ninguna añade bytes admitidos) |
 
 Auditoría global: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Artefacto de auditoría: ID `13570263309`, SHA-256 `db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9`.
 
@@ -720,3 +720,23 @@ La WDS ofrece datos y metadatos diarios mediante JSON y SDMX; hay descargas comp
 Fuentes oficiales: [Open Licence](https://www.statcan.gc.ca/en/terms-conditions/open-licence) · [FAQ de la licencia](https://www.statcan.gc.ca/en/terms-conditions/open-licence-faq) · [Web Data Service](https://www.statcan.gc.ca/en/developers/wds) · [guía WDS](https://www.statcan.gc.ca/en/developers/wds/user-guide) · [portal de desarrolladores](https://www.statcan.gc.ca/en/developers).
 
 El inventario admitido no cambia: **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB, según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). La nueva fuente no se suma al contador hasta completar revisión por producto, privacidad, seguridad, deduplicación y G-0.
+
+
+## Candidata multidominio — ILOSTAT, estadísticas agregadas y diccionarios EN/FR/ES (2026-11-22)
+
+ILOSTAT queda registrada como candidata discovery-only. La política oficial de ILO cubre bajo **CC BY 4.0** las bases de datos, datasets y metadatos referenciales publicados o puestos a disposición desde el 3 de mayo de 2023, salvo indicación distinta. La misma política excluye microdatos enviados u obtenidos de constituyentes y socios cuando estén restringidos al uso exclusivo de ILO. No se asigna esta licencia a los datos upstream de terceros: cada tabla requiere revisión de su procedencia y de los campos `source`, `collection` y `note_source`.
+
+El alcance potencial se limita a tablas estadísticas agregadas y diccionarios públicos. Se excluyen microdatos, registros de encuestas, datos confidenciales, celdas reidentificables y cualquier tabla cuyo origen o condiciones no acrediten los derechos de ILO. El portal de descarga documenta CSV comprimidos, metadatos y diccionarios; las tablas de contenido y diccionarios están disponibles en inglés, francés y español. Las cifras aproximadas de 500 tablas por indicador y 700 por área de referencia son descripciones dinámicas del portal, no filas elegibles ni bytes admitidos.
+
+Cada activo deberá fijarse mediante su ruta exacta, fila de `table_of_contents`, `last.update`, colección, fuente, diccionarios, timestamp UTC, longitud comprimida/expandida y SHA-256. La revisión de calidad incluirá integridad gzip, esquema CSV, semántica de valores ausentes, idioma, privacidad, seguridad y muestras estratificadas. La fuente no está conectada al colector Hugging Face actual: requiere un descargador acotado dedicado.
+
+**Estado:** 0 payload descargado, 0 filas y 0 bytes admitidos; `training_authorized=false`. No se ha asignado SPDX fuera del alcance estrecho CC-BY-4.0. Fuentes: [política de derechos ILO](https://www.ilo.org/rights-and-permissions) · [bulk download ILOSTAT](https://ilostat.ilo.org/data/bulk/) · [metodología de recopilación](https://ilostat.ilo.org/about/data-collection-and-production/).
+
+### Adquisiciones programadas — runs 142 y 143
+
+- [Run 142](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44942179717), grupo 3/8, commit `69ed4922bdedaa51e14ad5cfeb98c6a54f0ebd25`: storage gate bloqueado antes de descargar. [Artifact 14722191284](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44942179717/artifacts/14722191284), ZIP de 653 bytes, SHA-256 `91456a426261ffed766fb3c80a043cc2bc17283ca82786fea73b7b7c8b1e4cd0`; JSON interno de 871 bytes, SHA-256 `2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26`.
+- [Run 143](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44997636660), grupo 5/8, mismo commit: mismo bloqueo. [Artifact 14744695975](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44997636660/artifacts/14744695975), ZIP de 653 bytes, SHA-256 `98fc588089178c5326f7ab8073e15a38aa7d0e8b243b538b4ddb77e461e035eb`; JSON interno de 871 bytes, SHA-256 `0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7`.
+- Ambos artefactos se descargaron y sus SHA-256 se recalcularon; coinciden con el digest de GitHub. Los manifiestos declaran `blocked_storage_gate`, `training_authorized=false`, 0 filas, 0 bytes de payload y 0 shards. Los jobs de adquisición concluyeron correctamente al registrar el bloqueo; los jobs de validación se omitieron por ser ejecuciones programadas.
+- Admisiones nuevas: **0 documentos / 0 bytes**. Los 653 bytes ZIP y 871 bytes JSON son solo contenedores/manifiestos, nunca corpus.
+
+El inventario admitido permanece en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** del objetivo decimal de 500 GB, según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). G-0, deduplicación global, holdout y revisión de payload no se ejecutaron porque no hubo payload. No se ha entrenado ni modificado ningún checkpoint.
