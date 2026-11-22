@@ -613,3 +613,11 @@ No se ha descargado contenido. No se cuentan tamaños anunciados, metadatos de c
 - Auditar CSV/gzip, esquema, valores ausentes, unidades, frecuencia, periodos, idioma, PII, secretos y malware; muestrear por dominio, país, idioma y formato.
 - Deduplicar contra todo el corpus y todos los splits protegidos; ejecutar G-0 global antes de cualquier admisión.
 - No está incluido en el colector Hugging Face actual. Requiere un workflow/descargador dedicado, acotado y determinista; permanece `acquisition_enabled=false` y `training_authorized=false` hasta implementarlo y superar todos los gates.
+
+
+## Fuentes revisadas y excluidas/bloqueadas — 2026-11-22
+
+- **UNESCO UIS Data Browser:** excluido por CC BY-SA 4.0; el proyecto no ha aprobado obligaciones share-alike. No descargar ni staging. [Términos oficiales](https://databrowser.uis.unesco.org/terms-and-conditions).
+- **UN Comtrade:** bloqueado hasta acreditar que el uso encaja en la excepción de uso interno por una unidad institucional y obtener permiso para cualquier redistribución externa. La política incluye IA en uso interno, pero prohíbe re-difusión sin permiso de UNSD. No descargar ni staging. [Política de uso](https://uncomtrade.org/docs/policy-on-comtrade-data-use/) · [re-difusión](https://uncomtrade.org/docs/re-dissemination-of-data/).
+
+Ambos registros tienen `acquisition_enabled=false`, `training_authorized=false` y `count_toward_admitted_bytes=false`.

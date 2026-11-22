@@ -215,6 +215,27 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertIn("global g-0", checks)
         self.assertGreaterEqual(len(source["evidence_urls"]), 5)
 
+
+    def test_uis_data_browser_excluded_for_unapproved_sharealike(self):
+        source = self.source("UNESCO UIS:Data-Browser-CC-BY-SA-4.0")
+        self.assertEqual(source["status"], "excluded_unapproved_sharealike")
+        self.assertEqual(source["spdx_license_identifier"], "CC-BY-SA-4.0")
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIs(source["acquisition_enabled"], False)
+        self.assertIn("share-alike", source["rights_caveat"])
+
+    def test_un_comtrade_blocked_pending_internal_use_and_redistribution_rights(self):
+        source = self.source("UNSD:UN-Comtrade-internal-use-and-redistribution-restrictions")
+        self.assertTrue(source["status"].startswith("blocked_internal_use"))
+        self.assertIsNone(source["spdx_license_identifier"])
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIs(source["acquisition_enabled"], False)
+        self.assertIn("institutional unit", source["reported_license"])
+        self.assertIn("AI model", source["reported_license"])
+        self.assertIn("redistribute", source["rights_caveat"])
+
     def test_latest_scheduled_acquisitions_are_verified_zero_byte_storage_blocks(self):
         last = self.registry["last_candidate_batch_details"]
         previous = self.registry["previous_candidate_batch_details"]

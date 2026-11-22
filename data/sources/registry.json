@@ -3853,6 +3853,89 @@
       "acquisition_enabled": false,
       "disabled_reason": "Not part of the current Hugging Face collector. A dedicated bounded ILOSTAT bulk collector and item-level rights/source audit are required; do not acquire until secure durable storage is available and the full pipeline is implemented.",
       "recorded_date": "2026-11-22"
+    },
+    {
+      "id": "UNESCO UIS:Data-Browser-CC-BY-SA-4.0",
+      "url": "https://databrowser.uis.unesco.org/",
+      "retrieval_url": "https://databrowser.uis.unesco.org/terms-and-conditions",
+      "revision": "Mutable UIS Data Browser and terms page; no immutable corpus snapshot or repository commit acquired. No payload downloaded. Any future rights reconsideration must freeze exact indicator metadata, query, export response, release/update timestamp and SHA-256.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired.",
+      "reported_license": "The official UIS Data Browser Terms and Conditions state that the work of the UIS is licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0). This is an explicit share-alike condition, not CC BY or CC0. HERETIC-RONIN has not approved share-alike ingestion, so this source is excluded from the training library.",
+      "spdx_license_identifier": "CC-BY-SA-4.0",
+      "status": "excluded_unapproved_sharealike",
+      "domains": [
+        "education",
+        "science",
+        "culture",
+        "communication",
+        "demographics",
+        "SDG 4 indicators"
+      ],
+      "language": [
+        "Per indicator and metadata record; language coverage not yet inventoried."
+      ],
+      "rights_caveat": "CC BY-SA 4.0 requires adaptations to be shared under the same or a compatible licence. The project has not approved share-alike obligations for its training library. The portal also aggregates international statistical inputs; upstream provenance would need separate review even if policy approval changed. Do not download or stage payload under the current policy.",
+      "required_checks": [
+        "Do not acquire while CC BY-SA 4.0 remains unapproved for the training library.",
+        "If policy is reconsidered, review the complete CC BY-SA 4.0 attribution and adaptation obligations before any download.",
+        "Identify the source institution and upstream rights for every selected indicator; portal publication alone does not clear all underlying sources.",
+        "Freeze exact indicator metadata, query, export response, release/update timestamp, schema and SHA-256 before any permitted pilot.",
+        "Exclude confidential, personal, small-cell or re-identifiable data; audit language, quality and metadata.",
+        "Run exact/near deduplication against every corpus split and global G-0 before any future admission."
+      ],
+      "evidence_urls": [
+        "https://databrowser.uis.unesco.org/terms-and-conditions",
+        "https://databrowser.uis.unesco.org/about",
+        "https://www.unesco.org/en/articles/new-data-browser"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "acquisition_enabled": false,
+      "disabled_reason": "Excluded under current project policy because the official UIS terms specify CC BY-SA 4.0 and share-alike has not been approved.",
+      "recorded_date": "2026-11-22"
+    },
+    {
+      "id": "UNSD:UN-Comtrade-internal-use-and-redistribution-restrictions",
+      "url": "https://comtrade.un.org/",
+      "retrieval_url": "https://uncomtrade.org/docs/policy-on-comtrade-data-use/",
+      "revision": "Mutable UN Comtrade database and API. No payload or immutable snapshot acquired. The current policy and licence agreement were reviewed on 2026-11-22; any future permission would need to identify the exact product, subscription, data range and redistribution scope.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired.",
+      "reported_license": "Custom UN Comtrade licence agreement; no SPDX open-data licence. The current policy states that original UN Comtrade data are for internal use only and may not be re-disseminated without UNSD permission. It explicitly includes AI model use within internal use, but defines internal use as use by staff members of an institutional unit for that unit's benefit. External sharing is separately restricted; large-scale or commercial re-dissemination can require a fee-bearing distribution licence. No evidence establishes that this project's use qualifies under the institutional-unit definition or that the required redistribution rights are available.",
+      "spdx_license_identifier": null,
+      "status": "blocked_internal_use_eligibility_and_redistribution_permission_required",
+      "domains": [
+        "international trade",
+        "economics",
+        "commodities",
+        "tariffs",
+        "trade flows",
+        "country statistics"
+      ],
+      "language": [
+        "API data are primarily coded observations with multilingual documentation; payload language not yet inventoried."
+      ],
+      "rights_caveat": "The AI-use exception is expressly limited to the defined internal-use boundary. A public repository, public corpus or external distribution of original records would not be covered merely because the data are transformed or stored in a different format. The project cannot assume institutional-unit eligibility or permission to redistribute. Do not download, stage or admit without written rights confirmation and a distribution arrangement covering the intended use.",
+      "required_checks": [
+        "Do not acquire until the user/project's institutional-unit eligibility for the internal-use exception is documented.",
+        "Obtain written UNSD clarification or a licence covering the exact AI-training use and any intended corpus/artifact distribution.",
+        "Do not treat format conversion, filtering, sorting or pivoting as substantial transformation; the policy explicitly says these do not by themselves change redistribution status.",
+        "If a permitted use is established, use official APIs within rate limits, pin query/date/period and preserve Source: UN Comtrade attribution.",
+        "Keep any data restricted to the permitted internal boundary; never publish original records or public artifacts without explicit distribution rights.",
+        "Run privacy, quality, provenance, exact/near deduplication and global G-0 only after legal access is established."
+      ],
+      "evidence_urls": [
+        "https://uncomtrade.org/docs/policy-on-comtrade-data-use/",
+        "https://uncomtrade.org/docs/re-dissemination-of-data/",
+        "https://uncomtrade.org/docs/un-comtrade-api/",
+        "https://comtrade.un.org/licenseagreement.html"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "acquisition_enabled": false,
+      "disabled_reason": "Blocked pending proof of eligibility for the institutional internal-use exception and written permission for any redistribution beyond that boundary.",
+      "recorded_date": "2026-11-22"
     }
   ],
   "target_library_bytes": 500000000000,
@@ -3891,6 +3974,10 @@
     {
       "date": "2026-11-22",
       "note": "New discovery-only candidate: ILOSTAT aggregate statistical tables and referential dictionaries. The ILO Rights and Permissions policy covers datasets and accompanying referential metadata published from 2023-05-03 under CC BY 4.0, with an explicit exception for microdata submitted by or obtained from constituents/partners and restricted solely to ILO use. ILOSTAT bulk download documents roughly 500 indicator and 700 reference-area tables, zipped CSVs and EN/FR/ES dictionaries. The corpus mixes national statistical office sources, questionnaire data, microdata-derived indicators and modelled estimates; therefore only individually snapshotted aggregate products with clear ILO rights/source lineage are candidates. No payload downloaded; 0 admitted bytes; a dedicated collector, privacy review, item-level rights audit and global G-0 remain pending."
+    },
+    {
+      "date": "2026-11-22",
+      "note": "Reviewed and excluded two tempting institutional sources. UNESCO UIS Data Browser explicitly licenses UIS work under CC BY-SA 4.0; share-alike is not approved, so no payload may be acquired. UN Comtrade policy permits AI use only within a narrowly defined institutional internal-use boundary and prohibits re-dissemination without UNSD permission; institutional eligibility and any necessary distribution rights are not established. Both remain non-acquirable and contribute 0 rows/bytes."
     }
   ],
   "notes": [
@@ -5558,5 +5645,5 @@
     "encrypted_artifact_policy": "Encrypted artifact remains publicly downloadable ciphertext; only holders of the passphrase may decrypt. Record artifact SHA-256 and keep the passphrase outside the repository.",
     "group_rotation_fix": "Scheduled group index uses ((day_of_year - 1) * 4 + tranche_slot) modulo group_count so four daily slots cover all eight groups exactly once in each 48-hour cycle."
   },
-  "source_count": 97
+  "source_count": 99
 }
