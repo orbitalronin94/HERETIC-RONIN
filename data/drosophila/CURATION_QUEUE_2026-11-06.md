@@ -621,3 +621,20 @@ No se ha descargado contenido. No se cuentan tamaños anunciados, metadatos de c
 - **UN Comtrade:** bloqueado hasta acreditar que el uso encaja en la excepción de uso interno por una unidad institucional y obtener permiso para cualquier redistribución externa. La política incluye IA en uso interno, pero prohíbe re-difusión sin permiso de UNSD. No descargar ni staging. [Política de uso](https://uncomtrade.org/docs/policy-on-comtrade-data-use/) · [re-difusión](https://uncomtrade.org/docs/re-dissemination-of-data/).
 
 Ambos registros tienen `acquisition_enabled=false`, `training_authorized=false` y `count_toward_admitted_bytes=false`.
+
+
+## Hansard — informes parlamentarios diarios con OPL explícita (2026-11-23)
+
+**Candidata discovery-only; 0 descargas, 0 filas y 0 bytes admitidos.** Se limita a PDFs diarios oficiales Commons/Lords cuyo propio documento incluya el aviso de reproducción bajo Open Parliament Licence v3.0 (SPDX `OPL-UK-3.0`). La muestra Commons del 2026-11-03 incluye el aviso en la página 1. La licencia permite adaptación y uso comercial con atribución, pero excluye datos personales y derechos de terceros.
+
+- Fuentes: [Hansard PDF Commons 2026-11-03](https://hansard.parliament.uk/pdf/Commons/2026-11-03), [Open Parliament Licence](https://www.parliament.uk/site-information/copyright-parliament/open-parliament-licence/), [SPDX OPL-UK-3.0](https://spdx.org/licenses/OPL-UK-3.0.html).
+- El archivo Historic Hansard se excluye por defecto: su página declara que el material permanece bajo Parliamentary Copyright; no se infiere OPL desde la licencia general.
+- Requisitos: aviso OPL en cada PDF; congelar cámara/fecha/volumen/número/URL/timestamp/páginas/bytes/SHA-256; extraer texto y hash separado; preservar atribución exacta; excluir datos personales y terceros; revisar privacidad por segmento y auditar muestras por cámara, fecha, tema y tipo documental.
+- El endpoint no está conectado al colector HF; necesita colector PDF dedicado, almacenamiento seguro, revisión de privacidad/derechos, deduplicación completa y G-0. `acquisition_enabled=false`, `training_authorized=false`.
+
+## Adquisiciones programadas — runs 149 y 150 (2026-11-23)
+
+- [Run 149](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45063468144), grupo 7/8, artifact [14770830618](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45063468144/artifacts/14770830618): storage gate bloqueado antes de descargar; ZIP 653 bytes, SHA-256 `16fb4e6c8fae488456ed0faa8fee8e3e83cc502820c451c31dcc5e89c8525568`; JSON 871 bytes, SHA-256 `3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992`.
+- [Run 150](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45135391130), grupo 1/8, artifact [14800025470](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45135391130/artifacts/14800025470): mismo bloqueo; ZIP 653 bytes, SHA-256 `26c72180952574f3919dfa467fe2921ae97e47ef626c36fbfd24083470697bce`; JSON 871 bytes, SHA-256 `5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437`.
+- Ambos manifiestos registran `blocked_storage_gate`, 0 filas y 0 bytes de payload. Los hashes se verificaron descargando los artefactos y recalculando SHA-256.
+- **Admisiones nuevas: 0 documentos / 0 bytes.** Inventario global sin cambios: 260.971 documentos y 703.593.871 bytes admitidos.
