@@ -435,14 +435,24 @@ ILOSTAT queda en discovery-only para tablas estadísticas agregadas y diccionari
 - [ILOSTAT bulk download](https://ilostat.ilo.org/data/bulk/)
 - [Metodología de recopilación](https://ilostat.ilo.org/about/data-collection-and-production/)
 
-## Últimas adquisiciones programadas — runs 142 y 143
+## Últimas adquisiciones programadas — runs 149 y 150
 
-Las [runs 142](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44942179717) y [143](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44997636660) completaron el preflight y bloquearon antes de descargar por falta de `HERETIC_STAGING_PASSPHRASE` de al menos 32 caracteres. Los artefactos [14722191284](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44942179717/artifacts/14722191284) y [14744695975](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44997636660/artifacts/14744695975) son manifiestos ZIP de 653 bytes, con JSON internos de 871 bytes; sus SHA-256 se descargaron y verificaron contra los digests de GitHub. No hubo payload, filas, staging ni admisiones. **Admisiones nuevas: 0 documentos / 0 bytes.** El inventario sigue en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB. No se entrenó ni se modificó ningún checkpoint.
-
-
+Las [runs 149](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45063468144) (grupo 7/8) y [150](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45135391130) (grupo 1/8) completaron el preflight y bloquearon antes de descargar porque falta `HERETIC_STAGING_PASSPHRASE` de al menos 32 caracteres. Sus artefactos [14770830618](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45063468144/artifacts/14770830618) y [14800025470](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45135391130/artifacts/14800025470) son manifiestos ZIP de 653 bytes; cada JSON interno tiene 871 bytes. SHA-256 ZIP verificados: `16fb4e6c8fae488456ed0faa8fee8e3e83cc502820c451c31dcc5e89c8525568` y `26c72180952574f3919dfa467fe2921ae97e47ef626c36fbfd24083470697bce`. SHA-256 JSON internos: `3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992` y `5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437`. Ambos manifiestos declaran `blocked_storage_gate`, 0 filas, 0 bytes de payload y `training_authorized=false`. **Admisiones nuevas: 0 documentos / 0 bytes.**
 ## Fuentes no incorporadas tras revisión de derechos — 2026-11-22
 
 - **UNESCO UIS:** excluida por licencia CC BY-SA 4.0; share-alike no está aprobado.
 - **UN Comtrade:** bloqueada porque la excepción para uso de IA está limitada al uso interno de una unidad institucional y la redistribución externa de datos originales requiere permiso de UNSD.
 
 No se descargó payload de ninguna de las dos fuentes. Los motivos y condiciones están registrados en `data/sources/registry.json`.
+
+
+## Nueva candidata — UK Parliament Hansard, PDFs con OPL explícita (2026-11-23)
+
+Se registra Hansard como candidata discovery-only, limitada a informes diarios Commons/Lords cuyo propio PDF incluya el aviso de reproducción bajo Open Parliament Licence v3.0 (SPDX `OPL-UK-3.0`). El PDF oficial Commons del 3 de noviembre de 2026 contiene el aviso en su página 1. La licencia permite adaptación y uso comercial con atribución, pero excluye datos personales y derechos de terceros. Los discursos contienen nombres y referencias a particulares; no se descargará ni se habilitará el colector hasta disponer de una revisión/redacción de privacidad defendible y de controles de terceros. El archivo Historic Hansard se excluye por defecto: su página de archivo declara que el material permanece bajo Parliamentary Copyright, sin conceder por sí sola el mismo alcance OPL.
+
+- [PDF oficial de muestra, Commons 2026-11-03](https://hansard.parliament.uk/pdf/Commons/2026-11-03)
+- [Open Parliament Licence v3.0](https://www.parliament.uk/site-information/copyright-parliament/open-parliament-licence/)
+- [SPDX OPL-UK-3.0](https://spdx.org/licenses/OPL-UK-3.0.html)
+- [Aviso del archivo Historic Hansard](https://api.parliament.uk/historic-hansard/index.html)
+
+**Estado:** 0 payload descargado, 0 filas y 0 bytes admitidos; `acquisition_enabled=false`, `training_authorized=false`. El inventario sigue en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB. G-0 y la deduplicación global no se ejecutaron porque no hubo payload.
