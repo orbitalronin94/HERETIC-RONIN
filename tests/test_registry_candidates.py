@@ -242,7 +242,7 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertEqual(source["spdx_license_identifier"], "OPL-UK-3.0")
         self.assertEqual(source["license_exact_allowlist"], ["OPL-UK-3.0"])
         self.assertIs(source["acquisition_enabled"], False)
-        self.assertIn("individual PDF", source["reported_license"])
+        self.assertIn("daily PDF", source["reported_license"])
         self.assertIn("personal data", source["rights_caveat"])
         self.assertIn("Historic Hansard", source["rights_caveat"])
         checks = " ".join(source["required_checks"]).casefold()
