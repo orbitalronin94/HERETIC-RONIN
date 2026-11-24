@@ -297,7 +297,7 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertEqual(previous["artifact_sha256"], "7660bc0aa3a07c8f214f52048d1cbb543ee3e586d613e9c7006f58feeb83be83")
         self.assertEqual(last["manifest_sha256"], "0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7")
         self.assertEqual(previous["manifest_sha256"], "3410f1b55d99d02fe29be723a56d8fefb20a81e0c517fe1cc6e7aa0eedcfd8ec")
-        history = {batch["run_number"]: batch for batch in self.registry["historical_candidate_batches"]}
+        history = {batch["run_number"]: batch for batch in self.registry["historical_candidate_batches"] if batch.get("run_number") is not None}
         self.assertEqual(history[149]["artifact_id"], 14770830618)
         self.assertEqual(history[150]["artifact_id"], 14800025470)
         for batch in (last, previous):
