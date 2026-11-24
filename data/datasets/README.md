@@ -1,6 +1,6 @@
 # HERETIC-RONIN — biblioteca de datasets
 
-Actualizado: 2026-11-22. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
+Actualizado: 2026-11-24. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
 
 ## Resumen verificable
 
@@ -13,7 +13,7 @@ Actualizado: 2026-11-22. Este documento distingue **admitido**, **candidato** y 
 | Subconjunto resultante autorizado | 260.971 documentos |
 | Total de bytes admitidos contabilizados | **703.593.871 bytes (671,0 MiB)** |
 | Objetivo de biblioteca | 500.000.000.000 bytes (500 GB decimal) |
-| Fuentes registradas | 100 (incluye ILOSTAT, OECD Data Explorer, Statistics Canada y Hansard con OPL explícita como candidatas; UIS excluida por BY-SA y UN Comtrade bloqueada por uso interno/re-distribución) |
+| Fuentes registradas | 102 (incluye ILOSTAT, OECD Data Explorer, Statistics Canada y Hansard con OPL explícita como candidatas; UIS excluida por BY-SA y UN Comtrade bloqueada por uso interno/re-distribución) |
 
 Auditoría global: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Artefacto de auditoría: ID `13570263309`, SHA-256 `db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9`.
 
@@ -760,3 +760,29 @@ El archivo Historic Hansard no queda cubierto por inferencia: su página de arch
 - Fijación: cámara, fecha, volumen, número, URL, timestamp UTC, páginas, bytes exactos y SHA-256 del PDF; hash independiente del texto extraído.
 - Exclusiones: datos personales, referencias identificables a particulares, material de terceros, imágenes, escudos, marcas, audio/vídeo y adjuntos.
 - No hay colector dedicado ni payload adquirido. `acquisition_enabled=false`, `training_authorized=false`, 0 filas y 0 bytes admitidos. G-0 y la deduplicación global siguen pendientes para cualquier futura adquisición.
+
+
+## Descubrimientos nuevos — Europeana y New Zealand Legislation (2026-11-24)
+
+### Europeana — metadatos culturales multilingües, CC0
+
+Se registra como candidata **solo para metadatos**. Europeana publica todos los metadatos disponibles en europeana.eu bajo CC0 1.0, pero los objetos digitales, imágenes, audio, vídeo, transcripciones y contenidos enlazados conservan los derechos indicados por cada registro/proveedor. No se infiere que CC0 de metadatos relicencie el objeto. La metadata incluye valores en varios idiomas; deben preservarse los xml:lang por campo y la procedencia de traducciones/enriquecimientos. Se excluye toda descarga de edm:object, edm:isShownBy, edm:preview, europeana:object, enclosure y URLs de proveedores. Los metadatos también requieren filtro de privacidad, ya que pueden describir personas vivas o incluir información sensible.
+
+- [Términos de uso](https://www.europeana.eu/en/rights/terms-of-use) · [Guía de uso de metadatos](https://www.europeana.eu/en/rights/usage-guidelines-for-metadata) · [API key](https://pro.europeana.eu/page/get-api) · [multilingüismo](https://pro.europeana.eu/index.php/page/data-multilinguality) · [Europeana Data Model](https://pro.europeana.eu/index.php/page/edm-documentation).
+- La API requiere una clave confidencial; no se ha solicitado ni configurado una clave de proyecto. No hay colector ni snapshot adquirido.
+
+### New Zealand Legislation — legislación oficial sin copyright (s. 27)
+
+Se registra como candidata para Bills, Acts, regulations y bylaws cubiertos por la sección 27 de la Copyright Act 1994. Los términos oficiales de la API confirman que el Crown no reclama copyright sobre la compilación de datos legislativos. Esto no despeja obras de terceros incorporadas por referencia. Se excluyen del piloto la legislación secundaria publicada por agencias (calidad/integridad advertidas por PCO), material de terceros, emblemas y ayudas del sitio. La API v0 beta requiere una clave confidencial, tiene límites de 10.000 solicitudes por clave/día y 2.000 por IP cada cinco minutos. Cada obra y versión debe fijarse mediante work_id, version_id, fecha, estado, formato XML y SHA-256.
+
+- [Copyright](https://www.legislation.govt.nz/copyright/) · [API terms](https://www.legislation.govt.nz/learn-more/legislation-data/api-terms-of-use/) · [Developer API](https://www.legislation.govt.nz/developer-api) · [Copyright Act 1994, s.27](https://www.legislation.govt.nz/act/public/1994/143/en/latest/sections/DLM345939/) · [anuncio de la API, 2026-02-11](https://www.legislation.govt.nz/learn-more/news/earlier-news-posts/earlier-2026-news-posts/legislation-api-now-available-plus-a-reminder-that-rss-feeds-will-change).
+- No se ha solicitado ni configurado la clave API. No hay colector ni payload adquirido.
+
+Ambas fuentes quedan discovery-only, acquisition_enabled=false, training_authorized=false, 0 filas y 0 bytes admitidos. Requieren claves separadas, colectores dedicados, revisión de privacidad y procedencia, deduplicación y G-0.
+
+### Adquisiciones programadas — runs 153 y 154 (2026-11-24)
+
+- [Run 153](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45295413549), grupo 4/8, artifact [14876935300](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45295413549/artifacts/14876935300): storage gate bloqueado antes de descargar; ZIP 653 bytes, SHA-256 7660bc0aa3a07c8f214f52048d1cbb543ee3e586d613e9c7006f58feeb83be83; JSON 871 bytes, SHA-256 3410f1b55d99d02fe29be723a56d8fefb20a81e0c517fe1cc6e7aa0eedcfd8ec.
+- [Run 154](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45373420083), grupo 5/8, artifact [14909198800](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45373420083/artifacts/14909198800): mismo bloqueo; ZIP 653 bytes, SHA-256 5682d2f797a45ac60aa0b5ef62ece713aee192e45bd0b35b1b3d45dc893af5b1; JSON 871 bytes, SHA-256 0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7.
+- Ambos manifiestos se descargaron y verificaron; registran blocked_storage_gate, 0 filas, 0 shards, 0 bytes de payload y training_authorized=false. Los 653 bytes ZIP y 871 bytes JSON son manifiestos, no corpus.
+- **Admisiones nuevas: 0 documentos / 0 bytes.** Inventario global sin cambios: 260.971 documentos y 703.593.871 bytes admitidos.
