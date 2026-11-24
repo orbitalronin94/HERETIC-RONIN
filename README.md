@@ -456,3 +456,13 @@ Se registra Hansard como candidata discovery-only, limitada a informes diarios C
 - [Aviso del archivo Historic Hansard](https://api.parliament.uk/historic-hansard/index.html)
 
 **Estado:** 0 payload descargado, 0 filas y 0 bytes admitidos; `acquisition_enabled=false`, `training_authorized=false`. El inventario sigue en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB. G-0 y la deduplicación global no se ejecutaron porque no hubo payload.
+
+
+## Descubrimientos de fuentes — 2026-11-24
+
+Se registran dos candidatos adicionales, sin descargas ni autorización de entrenamiento:
+
+- **Europeana:** metadatos culturales multilingües bajo CC0 1.0; la licencia no se extiende a los objetos digitales ni a contenidos de proveedores. El alcance actual es estrictamente metadata-only, con xml:lang, edm:rights y procedencia preservados. [Términos de uso](https://www.europeana.eu/en/rights/terms-of-use) · [guía de metadatos](https://www.europeana.eu/en/rights/usage-guidelines-for-metadata).
+- **New Zealand Legislation:** Bills, Acts, regulations y bylaws cubiertos por Copyright Act 1994, sección 27; excluye obras de terceros incorporadas por referencia y legislación secundaria publicada por agencias hasta superar revisión de calidad. La API v0 beta requiere clave confidencial y versiones fijadas por work_id/version_id. [API terms](https://www.legislation.govt.nz/learn-more/legislation-data/api-terms-of-use/) · [sección 27](https://www.legislation.govt.nz/act/public/1994/143/en/latest/sections/DLM345939/).
+
+Ambas permanecen discovery-only, sin colector ni claves API configuradas. No se han descargado payloads. Las runs programadas [153](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45295413549) y [154](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45373420083) quedaron bloqueadas antes de descargar por falta de almacenamiento privado o del secreto HERETIC_STAGING_PASSPHRASE (mínimo 32 caracteres). El inventario admitido permanece en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB.
