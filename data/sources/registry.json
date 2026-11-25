@@ -1642,7 +1642,8 @@
       "training_authorized": false,
       "acquisition_enabled": false,
       "terms_reviewed_at": "2026-11-25",
-      "reported_rows": null
+      "reported_rows": null,
+      "terms_effective_date": "2025-10-31"
     },
     {
       "id": "NCBI/PMC-OA-Subset:CC-BY-4.0-or-CC0-only",

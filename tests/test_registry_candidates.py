@@ -208,7 +208,7 @@ class RegistryCandidateTests(unittest.TestCase):
         source = self.source("Mozilla Data Collective:Common Voice Scripted Speech v27.0 (text-only)")
         self.assert_discovery_only(source)
         self.assertIs(source["acquisition_enabled"], False)
-        self.assertIn("2025-10-31", source["terms_reviewed_at"])
+        self.assertEqual(source["terms_effective_date"], "2025-10-31")
         self.assertIn("not to post", source["rights_caveat"])
         checks = " ".join(source["required_checks"]).casefold()
         self.assertIn("no posting, distribution or mirroring", checks)
