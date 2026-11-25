@@ -664,3 +664,35 @@ Ambas fuentes quedan discovery-only, acquisition_enabled=false, training_authori
 - [Run 154](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45373420083), grupo 5/8, artifact [14909198800](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45373420083/artifacts/14909198800): mismo bloqueo; ZIP 653 bytes, SHA-256 5682d2f797a45ac60aa0b5ef62ece713aee192e45bd0b35b1b3d45dc893af5b1; JSON 871 bytes, SHA-256 0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7.
 - Ambos manifiestos se descargaron y verificaron; registran blocked_storage_gate, 0 filas, 0 shards, 0 bytes de payload y training_authorized=false. Los 653 bytes ZIP y 871 bytes JSON son manifiestos, no corpus.
 - **Admisiones nuevas: 0 documentos / 0 bytes.** Inventario global sin cambios: 260.971 documentos y 703.593.871 bytes admitidos.
+
+
+## Descubrimientos y bloqueos — 2026-11-25
+
+### G-0: aclaración del alcance de la auditoría histórica
+
+La run [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447) no es un G-0 global completo. `scripts/audit_heretic_training_corpus.py` importa el artefacto train de RONIN-IA y candidatos expresamente suministrados (Cosmopedia en esa ejecución); no enumera todos los splits de validation/test/benchmark/holdout. El diagnóstico de 120 preguntas es sintético y no sustituye los holdouts reales. La autorización histórica se limita a ese subconjunto source-scoped. **Bloqueo:** construir un manifiesto inmutable que cubra cada fuente y todos sus splits protegidos, ejecutar deduplicación exacta/aproximada y contaminación, y mantener cualquier fuente nueva fuera de training_eligible hasta entonces.
+
+### MASSIVE 1.1 — candidato de texto multilingüe
+
+- Release oficial: [alexa/massive](https://github.com/alexa/massive), revisión de metadata/NOTICE `f966f21846043aabef9b0f974fa7970027f43738`; tarball [MASSIVE 1.1](https://amazon-massive-nlu-dataset.s3.amazonaws.com/amazon-massive-dataset-1.1.tar.gz).
+- Más de 1M de utterances, 52 idiomas, 18 dominios, 60 intents y 55 slots; incluye catalán. NOTICE de Amazon declara CC BY 4.0 para MASSIVE y el texto SLURP; [SLURP LICENSE](https://github.com/pswietojanski/slurp/blob/8eb16545762be97ace75334109d73824217311f1/LICENSE.txt) separa el audio CC BY-NC 4.0, que se excluye.
+- Solo `partition=train`; excluir dev/test y MMNLU-22 eval. Eliminar `worker_id` de cada fila y de `judgments`; conservar métricas agregadas. Verificar LICENSE del tarball, SHA-256, calidad, privacidad y lineage por idioma.
+- Estado discovery-only, `acquisition_enabled=false`, 0 descargas y 0 bytes admitidos.
+
+### Universal Dependencies 2.19 — candidato mixto por treebank
+
+- Release [2.19](https://universaldependencies.org/download.html), [LINDAT handle 11234/1-6316](https://hdl.handle.net/11234/1-6316), publicado 2026-11-15: 402 treebanks, 226 idiomas.
+- Licencia mixta: revisar por treebank `LICENSE.txt` y `README License:`; solo permitir exactamente CC BY 4.0 o CC0 1.0 y siempre con derechos del texto subyacente despejados. Excluir BY-SA, NC, ND, GPL, ausentes/contradictorias.
+- Excluir Spanish AnCora hasta resolver su conflicto CC BY/GNU; excluir English GUMReddit porque no incluye el texto fuente. Solo `*-train.conllu`, nunca dev/test/test-only ni texto externo.
+- Estado discovery-only, `acquisition_enabled=false`, 0 payload y 0 bytes admitidos.
+
+### Common Voice v27.0 — términos actualizados
+
+Los [términos oficiales](https://commonvoice.mozilla.org/oc/terms), efectivos 2025-10-31, limitan el acceso de datasets a Mozilla Data Collective y piden no publicar, distribuir ni mirror el dataset en otras plataformas. Sigue pendiente la procedencia de prompts por fila; no descargar ni re-hospedar hasta tener un flujo compatible con MDC y lineage validado.
+
+### Preflights 157 y 158
+
+- [Run 157](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45503206072), grupo 7/8, artifact 14971249604: ZIP SHA-256 `99c089bad3165b290c5d47d3677581cbe73ef1a7474579525d6c7ff272090dc5`; manifiesto SHA-256 `3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992`.
+- [Run 158](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45581135551), grupo 1/8, artifact 15005629437: ZIP SHA-256 `63475b22bd76851a587b41c254468d7bde1eced8e9f6bdf78cec11c21a8ae7d4`; manifiesto SHA-256 `5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437`.
+- Ambos ZIP contienen únicamente un manifiesto de 871 bytes; el ZIP mide 653 bytes. Storage gate bloqueado antes de descargar por falta de `HERETIC_STAGING_PASSPHRASE` (mínimo 32 caracteres). 0 filas, 0 bytes de payload, 0 staged, 0 admitted.
+- Total admitido: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB. Nuevas admisiones: **0**.

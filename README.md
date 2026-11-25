@@ -21,12 +21,17 @@ Su principio es sencillo: **experimentar sin reverencia, medir sin indulgencia**
 | Estructura | 10 shards JSONL de 5.000 filas |
 | Dominios actuales | Matemáticas, álgebra, lógica, programación, física, química, probabilidad, estadística, economía e ingeniería |
 | Naturaleza del lote actual | Sintético y procedimental; no corpus gold |
-| Corpus admitido tras auditoría global | 260.971 documentos únicos (261.039 examinados, 68 excluidos); 703.593.871 bytes de texto admitidos: base RONIN-IA 680.665.972 + Cosmopedia curada 22.927.899. Auditoría combinada [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). |
+| Corpus admitido tras auditoría source-scoped | 260.971 documentos únicos (261.039 examinados, 68 excluidos); 703.593.871 bytes de texto admitidos: base RONIN-IA 680.665.972 + Cosmopedia curada 22.927.899. Auditoría combinada [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). |
 | Objetivo de biblioteca | 500 GB de datos admitidos y trazables (objetivo, aún no alcanzado) |
 | Promoción de datos | Nunca automática por volumen |
 | Evaluación | Holdout separado; nunca se incorpora al entrenamiento |
+| G-0 global para nuevas admisiones | **BLOQUEADO** hasta inventariar y auditar todos los splits validation/test/benchmark/holdout |
 
 **Importante:** las 50.000 filas actuales se generaron mediante plantillas procedimentales. Los IDs distintos garantizan filas identificables, no diversidad semántica ni corrección independiente. El lote sirve como material experimental, pero no debe describirse como 50.000 ejemplos humanos verificados ni como 50.000 capacidades distintas. La propia ficha del lote documenta esta limitación.
+
+
+
+**Alcance de G-0 (revisión 2026-11-25):** la run [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447) es source-scoped, no una auditoría completa de todos los splits protegidos. El script `scripts/audit_heretic_training_corpus.py` solo importa el artefacto train de RONIN-IA y los candidatos suministrados explícitamente; las 120 preguntas sintéticas no equivalen al inventario completo de validation/test/benchmarks/holdouts. El `training_authorized=true` histórico solo se aplica a ese subconjunto. **Ningún candidato nuevo puede pasar a admitted/training_eligible** hasta superar el G-0 completo.
 
 ## Biblioteca de datos
 
@@ -39,7 +44,7 @@ La biblioteca versionada se organiza en `data/`:
 - `data/drosophila/parts/`: shards JSONL de entrenamiento.
 - `data/drosophila/README_01301_51300.md`: ficha y limitaciones del lote sintético de 50.000 filas.
 
-**Drosophila es el nombre del corpus experimental, no un filtro temático biológico.** La biblioteca es generalista y multidominio. La cola de curación vigente está en [`data/drosophila/CURATION_QUEUE_2026-11-06.md`](data/drosophila/CURATION_QUEUE_2026-11-06.md); las fuentes, licencias declaradas y gates de adquisición se registran en [`data/sources/registry.json`](data/sources/registry.json). Los manifiestos train-only de RONIN-IA se recuperaron con hashes verificados. La auditoría global combinada [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447) examinó 261.039 documentos (256.305 de la base RONIN-IA + 4.734 de Cosmopedia v0.1), excluyó 68 extremos duplicados y dejó 260.971 documentos admitidos. Los 4.734 textos Cosmopedia aportan 22.927.899 bytes; sumados a los 680.665.972 bytes de la base, el inventario admitido asciende a 703.593.871 bytes. La comprobación de 120 preguntas es un diagnóstico sintético, no un benchmark externo. Papers conserva alcance de autorización interna únicamente.
+**Drosophila es el nombre del corpus experimental, no un filtro temático biológico.** La biblioteca es generalista y multidominio. La cola de curación vigente está en [`data/drosophila/CURATION_QUEUE_2026-11-06.md`](data/drosophila/CURATION_QUEUE_2026-11-06.md); las fuentes, licencias declaradas y gates de adquisición se registran en [`data/sources/registry.json`](data/sources/registry.json). Los manifiestos train-only de RONIN-IA se recuperaron con hashes verificados. La auditoría source-scoped combinada [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447) examinó 261.039 documentos (256.305 de la base RONIN-IA + 4.734 de Cosmopedia v0.1), excluyó 68 extremos duplicados y dejó 260.971 documentos admitidos. Los 4.734 textos Cosmopedia aportan 22.927.899 bytes; sumados a los 680.665.972 bytes de la base, el inventario admitido asciende a 703.593.871 bytes. La comprobación de 120 preguntas es un diagnóstico sintético, no un benchmark externo. Papers conserva alcance de autorización interna únicamente.
 
 La biblioteca crecerá hacia **500 GB**, no hacia un número fijo de ejemplos. El tamaño anunciado por una fuente no equivale a bytes descargados ni a bytes admitidos. Mantendremos contadores separados para bytes remotos anunciados, bytes descargados, bytes íntegros, bytes tras deduplicación y bytes finalmente admitidos. Cada nuevo lote debe conservar, como mínimo:
 
@@ -167,7 +172,7 @@ La licencia de una colección **no borra los derechos de cada documento**. ODC-B
 
 ### Entrenamiento experimental actual — 500 pasos
 
-El piloto [run 42358300901](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42358300901) ejecuta 500 pasos de optimizador en tramos reanudables de 50. Comenzó antes de que Cosmopedia v0.1 superara la auditoría global, por lo que **no debe contabilizarse como entrenamiento con Cosmopedia**: consume el corpus base RONIN-IA ya autorizado (680.665.972 bytes). La admisión de Cosmopedia queda disponible para una siguiente ejecución, que deberá descargar el artefacto curado, verificar su SHA-256 y consumir el manifiesto/auditoría correspondientes.
+El piloto [run 42358300901](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42358300901) ejecuta 500 pasos de optimizador en tramos reanudables de 50. Comenzó antes de que Cosmopedia v0.1 superara la auditoría source-scoped, por lo que **no debe contabilizarse como entrenamiento con Cosmopedia**: consume el corpus base RONIN-IA ya autorizado (680.665.972 bytes). La admisión de Cosmopedia queda disponible para una siguiente ejecución, que deberá descargar el artefacto curado, verificar su SHA-256 y consumir el manifiesto/auditoría correspondientes.
 
 La auditoría combinada [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447) incluyó 4.734 filas Cosmopedia y 256.305 registros base. Detectó 9 grupos/hits exactos y 68 pares SimHash; los 68 índices excluidos pertenecen al tramo base anterior al inicio del bloque Cosmopedia, por lo que los 4.734 registros curados quedaron dentro del subconjunto autorizado. No hubo coincidencias exactas con las 120 preguntas sintéticas. Esto no demuestra ausencia semántica de contaminación ni certifica la exactitud de cada afirmación matemática.
 
@@ -242,7 +247,7 @@ Como nueva vía biomédica primaria, se ha registrado [PMC Open Access Subset](h
 
 ## Curación externa — revisión 2026-11-08
 
-La última adquisición candidate-only [42379525699](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42379525699) produjo 780.527 filas y 4.505.001.697 bytes JSONL según su manifiesto, pero no superó la auditoría global y dejó parciales no reconciliados. **Admisiones nuevas: 0 bytes.** El inventario admitido sigue en 260.971 documentos / 703.593.871 bytes. Detalles, hashes y bloqueos: [inventario de datasets](data/datasets/README.md).
+La última adquisición candidate-only [42379525699](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42379525699) produjo 780.527 filas y 4.505.001.697 bytes JSONL según su manifiesto, pero no superó la auditoría source-scoped y dejó parciales no reconciliados. **Admisiones nuevas: 0 bytes.** El inventario admitido sigue en 260.971 documentos / 703.593.871 bytes. Detalles, hashes y bloqueos: [inventario de datasets](data/datasets/README.md).
 
 ## Adquisición interrumpida y tranches diarias — 2026-11-09
 
@@ -299,7 +304,7 @@ Folketinget queda bloqueado para actas: aunque sus términos generales permiten 
 
 ## Curación de biblioteca — estado verificado a 12/11/2026
 
-- Biblioteca admitida contabilizada: **703.593.871 bytes** (671,0 MiB), según la última auditoría global [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
+- Biblioteca admitida contabilizada: **703.593.871 bytes** (671,0 MiB), según la última auditoría source-scoped [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
 - Objetivo: 500.000.000.000 bytes decimales; progreso **0,141 %**.
 - Última adquisición: [run 43176267906](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43176267906), 170.000 filas / 462.861.425 bytes JSONL generados en un runner efímero. Solo se retuvo el manifiesto; 0 bytes staged durable y **0 bytes admitidos nuevos**.
 - ILO y Australia se han añadido como fuentes discovery-only; Canada Justice Laws pasa a candidata discovery-only tras verificar que la ficha oficial del recurso bulk XML y el LICENSE.md del repositorio de payload, fijado en 855cdfc65207a6906c414e09a77d7f93267c5356, declaran OGL Canada v2.0; no se ha descargado ni admitido contenido.
@@ -308,7 +313,7 @@ El detalle de hashes, estados por fuente, límites de licencia, artefactos y con
 
 ## Curación de biblioteca — actualización verificada 2026-11-13
 
-- **Admisiones nuevas:** 0. Total acumulado: **703.593.871 bytes** / 260.971 documentos; **0,140719 %** de 500 GB (auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447)).
+- **Admisiones nuevas:** 0. Total acumulado: **703.593.871 bytes** / 260.971 documentos; **0,140719 %** de 500 GB (auditoría source-scoped [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447)).
 - [Run 92](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43298985874): 35.000 filas / 945.924.928 bytes JSONL efímeros; solo manifiesto durable, 0 staged/admitidos. [Run 93](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43383222519): 73.736 filas / 807.461.935 bytes efímeros, repetición exacta del grupo 6 de run 87; 0 contenido único, 0 staged/admitidos. Hashes y fallos por fuente constan en `data/datasets/README.md` y el registro.
 - Nuevas fuentes discovery-only: Eurostat y publicaciones OECD posteriores a 2024-07-01 con CC-BY-4.0 por obra. OpenThoughts3 queda held/desactivado hasta resolver procedencia y derechos upstream por fila.
 - La rotación de ocho grupos se corrige para cubrirlos una vez cada 48 horas. El workflow no adquiere por `push`.
@@ -322,7 +327,7 @@ Ningún candidato pasa a `training_eligible` hasta completar revisión de licenc
 
 ## Curación de biblioteca — actualización verificada 2026-11-14
 
-- **Admisiones nuevas:** 0. Total acumulado: **703.593.871 bytes** y 260.971 documentos, según la última auditoría global [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447); progreso **0,140719 %** de 500 GB.
+- **Admisiones nuevas:** 0. Total acumulado: **703.593.871 bytes** y 260.971 documentos, según la última auditoría source-scoped [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447); progreso **0,140719 %** de 500 GB.
 - [Run 102](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43568604566) terminó correctamente, pero el preflight bloqueó la adquisición antes de descargar: el repositorio es público y HERETIC_STAGING_PASSPHRASE estaba ausente o por debajo de 32 caracteres. Resultado: 0 filas, 0 bytes remotos/descargados/comprimidos medidos, 0 bytes staged y 0 admitidos. Solo se publicó el manifiesto [artifact 14103293875](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43568604566/artifacts/14103293875), 653 bytes ZIP, SHA-256 88c9315417f8f9cb6531c0ed8df6b7b9bb79d240bae86163c94bef75753fb5da; JSON interno 871 bytes, SHA-256 0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7.
 - **EuroVoc 4.24** se registra como candidato discovery-only: tesauro multidisciplinar en 24 lenguas oficiales de la UE y tres lenguas de países candidatos. Las distribuciones archivadas de 2020 aparecen como CC0-1.0, pero no se extrapola esa licencia al paquete 4.24 actual; falta confirmar la licencia de la distribución exacta antes de adquirir.
 - **HUDOC / TEDH** queda bloqueado: los términos oficiales limitan la reproducción de textos a uso privado o información/educación relacionada con las actividades del Tribunal y sin cobro; otros usos, especialmente comerciales, requieren permiso previo por escrito. No se descargó.
@@ -346,7 +351,7 @@ Ningún candidato pasa a training_eligible. Los gates de licencia por activo, pr
 - **Council of the European Union — public register**: nuevo candidato discovery-only. La Decision (EU) 2017/1842 permite reutilización comercial y no comercial de documentos públicos producidos/held por el Consejo, con atribución y sin distorsión; excluye derechos de terceros y regímenes de acceso de Estados miembros, y se somete a privacidad y seguridad. Las condiciones adicionales por tipo de documento y el alcance de adaptación/entrenamiento deben verificarse por activo. No se ha descargado payload.
 - Ambos registros: `training_authorized=false`, `count_toward_admitted_bytes=false`, filas y bytes no medidos. No son admisiones.
 - [Run 43687908071](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43687908071), grupo 1/8: el preflight bloqueó antes de descargar porque el repositorio es público y `HERETIC_STAGING_PASSPHRASE` estaba ausente o por debajo de 32 caracteres. Manifiesto [artifact 14150964444](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43687908071/artifacts/14150964444), ZIP 653 bytes, SHA-256 `a2bea5f0df4fdf616328872d3774265066685b7afea70ade5ef5db260dfc516d`; JSON interno 871 bytes, SHA-256 `5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437`. El manifiesto declara `blocked_storage_gate`, 0 filas, 0 bytes y `training_authorized=false`.
-- Admisiones nuevas: **0 documentos / 0 bytes**. Total acumulado sin cambios: **703.593.871 bytes / 260.971 documentos**, progreso **0,140719 %** de 500 GB; referencia [auditoría global 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
+- Admisiones nuevas: **0 documentos / 0 bytes**. Total acumulado sin cambios: **703.593.871 bytes / 260.971 documentos**, progreso **0,140719 %** de 500 GB; referencia [auditoría source-scoped 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
 
 
 ## Curación 2026-11-15 — European Parliament Think Tank / EPRS
@@ -373,7 +378,7 @@ No se ha descargado ningún payload; candidato discovery-only, `training_authori
 
 ## Curación de biblioteca — actualización verificada 2026-11-17
 
-- **Nuevas admisiones:** 0 documentos / 0 bytes. Total acumulado: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB, según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
+- **Nuevas admisiones:** 0 documentos / 0 bytes. Total acumulado: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB, según la auditoría source-scoped [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
 - **PLOS** se incorpora como candidato discovery-only para artículos con CC-BY-4.0 exacta en la página individual. La política de PLOS permite minería y reutilización comercial de artículos CC BY, pero las figuras, tablas, imágenes, mapas, código, citas y suplementos de terceros pueden tener derechos independientes. La adquisición futura usará el Solr Search API/JATS XML y respetará 100 filas por petición, 10 peticiones/minuto, 300/hora y 7.200/día. [Licencias](https://journals.plos.org/plosone/s/licenses-and-copyright) · [TDM](https://api.plos.org/text-and-data-mining.html) · [API FAQ](https://api.plos.org/solr/faq/).
 - **Run 120** ([43970081452](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43970081452), grupo 7/8) y **run 121** ([44045933438](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44045933438), grupo 1/8) se bloquearon antes de descargar porque HERETIC_STAGING_PASSPHRASE faltaba o tenía menos de 32 caracteres. Ambos registraron 0 filas, 0 bytes descargados/staged/admitidos y training_authorized=false.
 - Run 120 artifact [14276384265](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43970081452/artifacts/14276384265): ZIP SHA-256 5ccaf40cebdf09513fe878878c686cd2c3e51307e81877c75db01e48ed52899b; JSON interno 3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992.
@@ -395,7 +400,7 @@ El inventario admitido sigue en **260.971 documentos / 703.593.871 bytes**, equi
 
 - **Canada Justice Laws** deja de estar bloqueada por la duda de alcance de licencia y pasa a candidata discovery-only. La ficha oficial del recurso bulk XML asigna OGL Canada; el repositorio de payload `justicecanada/laws-lois-xml`, fijado en `855cdfc65207a6906c414e09a77d7f93267c5356`, contiene `LICENSE.md` con la misma OGL. La licencia permite adaptación y uso comercial con atribución, pero excluye PII, derechos de terceros y símbolos oficiales. La Reproduction of Federal Law Order añade exactitud y no representación como versión oficial. Alcance futuro limitado a XML de Acts/Regulations en EN/FR; ningún payload descargado.
 - [Run 128](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44394965672), grupo 7/8, y [run 129](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44482327436), grupo 1/8, bloquearon antes de descargar por falta de `HERETIC_STAGING_PASSPHRASE` de 32 caracteres. Ambos generaron solo manifiestos de 871 bytes dentro de ZIP de 653 bytes; 0 filas, 0 bytes de payload y 0 admisiones. Los hashes ZIP/JSON verificados están en `data/sources/registry.json` y `data/datasets/README.md`.
-- Inventario admitido sin cambios: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB, según la última auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se cuentan candidatos ni manifiestos.
+- Inventario admitido sin cambios: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB, según la última auditoría source-scoped [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se cuentan candidatos ni manifiestos.
 - La fuente canadiense sigue con `training_authorized=false`; faltan snapshot de payload, privacidad/seguridad, auditoría de muestras, deduplicación global y G-0.
 
 
@@ -411,7 +416,7 @@ Se añade un candidato discovery-only de datos estructurados del Banco Mundial. 
 
 El API permite consultar metadatos de datasets/recursos e historial de versiones; antes de adquirir habrá que fijar IDs, versiones, URL y SHA-256, preservar la atribución obligatoria, revisar la procedencia upstream y pasar calidad, privacidad, seguridad, deduplicación y G-0. [Licencias oficiales](https://datacatalog.worldbank.org/public-licenses) · [términos](https://www.worldbank.org/ext/en/legal/terms-conditions/datasets) · [API](https://ddh-openapi.worldbank.org/docs/index.html).
 
-Las [runs 133](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44613415575) y [134](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44696596900) finalizaron el preflight con éxito, pero ambas bloquearon antes de descargar por falta de HERETIC_STAGING_PASSPHRASE de al menos 32 caracteres. Cada una produjo solo un manifiesto de 871 bytes dentro de un ZIP de 653 bytes; 0 filas, 0 bytes de payload y 0 admisiones. El inventario admitido permanece en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB, según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se entrenó ni se modificó ningún checkpoint.
+Las [runs 133](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44613415575) y [134](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44696596900) finalizaron el preflight con éxito, pero ambas bloquearon antes de descargar por falta de HERETIC_STAGING_PASSPHRASE de al menos 32 caracteres. Cada una produjo solo un manifiesto de 871 bytes dentro de un ZIP de 653 bytes; 0 filas, 0 bytes de payload y 0 admisiones. El inventario admitido permanece en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB, según la auditoría source-scoped [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se entrenó ni se modificó ningún checkpoint.
 
 
 
@@ -419,7 +424,7 @@ Las [runs 133](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/4461
 
 Se incorpora **OECD Data Explorer** como candidata discovery-only para datos SDMX multidominio. La reutilización comercial está permitida por las condiciones de OECD salvo restricciones adicionales o derechos de terceros; por eso solo se evaluarán series cuya metadata y pestaña *source* acrediten derechos completos de OECD. No se asigna SPDX ni se autoriza entrenamiento por la mera presencia en el portal. API y controles de adquisición constan en data/sources/registry.json.
 
-Las adquisiciones programadas [run 137](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44813247702) y [run 138](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44881057593) terminaron el preflight, pero bloquearon antes de descargar por falta de HERETIC_STAGING_PASSPHRASE de al menos 32 caracteres. Solo se publicaron manifiestos de 871 bytes dentro de ZIP de 653 bytes; no hubo payload, filas, staging ni admisiones. **Admisiones nuevas: 0 documentos / 0 bytes.** El inventario sigue en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB, según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se entrenó ni se modificó ningún checkpoint.
+Las adquisiciones programadas [run 137](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44813247702) y [run 138](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44881057593) terminaron el preflight, pero bloquearon antes de descargar por falta de HERETIC_STAGING_PASSPHRASE de al menos 32 caracteres. Solo se publicaron manifiestos de 871 bytes dentro de ZIP de 653 bytes; no hubo payload, filas, staging ni admisiones. **Admisiones nuevas: 0 documentos / 0 bytes.** El inventario sigue en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB, según la auditoría source-scoped [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se entrenó ni se modificó ningún checkpoint.
 
 
 ## Nueva fuente candidata — Statistics Canada (2026-11-21)
@@ -466,3 +471,10 @@ Se registran dos candidatos adicionales, sin descargas ni autorización de entre
 - **New Zealand Legislation:** Bills, Acts, regulations y bylaws cubiertos por Copyright Act 1994, sección 27; excluye obras de terceros incorporadas por referencia y legislación secundaria publicada por agencias hasta superar revisión de calidad. La API v0 beta requiere clave confidencial y versiones fijadas por work_id/version_id. [API terms](https://www.legislation.govt.nz/learn-more/legislation-data/api-terms-of-use/) · [sección 27](https://www.legislation.govt.nz/act/public/1994/143/en/latest/sections/DLM345939/).
 
 Ambas permanecen discovery-only, sin colector ni claves API configuradas. No se han descargado payloads. Las runs programadas [153](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45295413549) y [154](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45373420083) quedaron bloqueadas antes de descargar por falta de almacenamiento privado o del secreto HERETIC_STAGING_PASSPHRASE (mínimo 32 caracteres). El inventario admitido permanece en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB.
+
+
+## Curación de fuentes — 2026-11-25
+
+Se registran como discovery-only dos fuentes multilingües nuevas: [MASSIVE 1.1](https://github.com/alexa/massive) (texto CC BY 4.0, 52 idiomas; solo train, sin audio ni worker IDs) y [Universal Dependencies 2.19](https://universaldependencies.org/download.html) (402 treebanks/226 idiomas, licencias mixtas por treebank; solo CC BY 4.0/CC0 con derechos del texto despejados). Common Voice v27.0 queda sujeto a los términos MDC vigentes y a no re-hospedar datasets. Ninguna se ha descargado ni admitido. Detalles y controles en [registry](data/sources/registry.json), [inventario](data/datasets/README.md) y [cola de curación](data/drosophila/CURATION_QUEUE_2026-11-06.md).
+
+Las [runs 157](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45503206072) y [158](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45581135551) completaron el preflight pero fueron bloqueadas por falta de `HERETIC_STAGING_PASSPHRASE`. Solo publicaron manifiestos ZIP de 653 bytes; no hubo payload, staging ni admisiones. El total sigue en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB. No se ha entrenado ni modificado ningún checkpoint.

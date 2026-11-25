@@ -1,6 +1,6 @@
 # HERETIC-RONIN — biblioteca de datasets
 
-Actualizado: 2026-11-24. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
+Actualizado: 2026-11-25. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
 
 ## Resumen verificable
 
@@ -8,16 +8,21 @@ Actualizado: 2026-11-24. Este documento distingue **admitido**, **candidato** y 
 |---|---:|
 | Corpus base RONIN-IA admitido | 680.665.972 bytes |
 | Cosmopedia v0.1 curada y admitida | 4.734 documentos · 22.927.899 bytes |
-| Auditoría combinada | 261.039 documentos examinados |
+| Auditoría source-scoped combinada | 261.039 documentos examinados |
 | Exclusiones exactas/near-duplicate | 68 extremos |
 | Subconjunto resultante autorizado | 260.971 documentos |
 | Total de bytes admitidos contabilizados | **703.593.871 bytes (671,0 MiB)** |
 | Objetivo de biblioteca | 500.000.000.000 bytes (500 GB decimal) |
-| Fuentes registradas | 102 (incluye ILOSTAT, OECD Data Explorer, Statistics Canada y Hansard con OPL explícita como candidatas; UIS excluida por BY-SA y UN Comtrade bloqueada por uso interno/re-distribución) |
+| G-0 global para nuevas admisiones | **BLOQUEADO**: falta inventario inmutable completo de todos los splits protegidos |
+| Fuentes registradas | 104 (incluye MASSIVE 1.1 y Universal Dependencies 2.19 como discovery-only; Common Voice v27.0 continúa sujeto a acceso MDC y lineage por prompt) |
 
-Auditoría global: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Artefacto de auditoría: ID `13570263309`, SHA-256 `db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9`.
+Auditoría source-scoped: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Artefacto de auditoría: ID `13570263309`, SHA-256 `db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9`.
 
 La auditoría detectó 9 grupos/hits exactos y 68 pares SimHash. Los 68 índices excluidos están dentro del bloque base de 256.305 registros; los 4.734 documentos Cosmopedia permanecen en el subconjunto autorizado. No hubo coincidencias exactas con las 120 preguntas sintéticas de diagnóstico. Esto es una heurística de deduplicación y contaminación, no una prueba semántica ni un benchmark público.
+
+
+
+**Bloqueo G-0 (revisión 2026-11-25).** La run [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447) es una auditoría *source-scoped*, no un G-0 completo. El script `scripts/audit_heretic_training_corpus.py` importa el artefacto train de RONIN-IA y solo los candidatos que se le suministran expresamente (en esa ejecución, Cosmopedia); no inventaría todos los splits validation/test/benchmark/holdout del corpus. Las 120 preguntas son un diagnóstico sintético, no el conjunto protegido completo. El `training_authorized=true` histórico solo se aplica a ese subconjunto exacto. **No se admite ninguna fuente nueva** hasta crear y auditar un manifiesto inmutable de todas las fuentes y todos sus splits protegidos.
 
 ## Datasets admitidos
 
@@ -36,7 +41,7 @@ La auditoría detectó 9 grupos/hits exactos y 68 pares SimHash. Los 68 índices
 - Curación: 5.000 entradas; 4.734 conservadas; 266 rechazadas (265 con caracteres de control/reemplazo y 1 por longitud).
 - Revisión humana: 50 fragmentos deterministas estratificados.
 - SHA-256 del JSONL curado: `f474a3d8bd7a18ab7cac222ae1f2906c52bdaa346a27ca0df728039ac1438f9a`.
-- Auditoría global: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
+- Auditoría source-scoped: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
 
 **Limitación de calidad y derechos:** el contenido es sintético y hereda una línea de semillas externas de AutoMathText. La revisión detectó explicaciones mayormente coherentes, pero también notación dañada y posibles errores matemáticos. La declaración Apache-2.0 de la ficha se registra como evidencia del publicador; no es una opinión legal ni una verificación independiente de cada semilla. Se admite solo como texto experimental de next-token, no como supervisión de respuestas correctas.
 
@@ -55,8 +60,8 @@ El lote de 100 bibliotecas del [run 42356179021](https://github.com/orbitalronin
 | OpenWebMath | 100.000 | 456.695.086 | Cuarentena: contenido de blogs/foros/Q&A; licencia del contenido subyacente no resuelta |
 | Cosmopedia v0.1 raw | 50.000 | 234.364.804 | Solo el slice separado curado de 4.734 filas está admitido |
 | Cosmopedia v2 | 50.000 | 278.500.947 | Cuarentena: lineage de semillas mixto |
-| Wikidata | 50.000 | 165.781.647 | Candidato CC0; falta muestra y auditoría global |
-| Aya | 25.000 | 42.931.184 | Candidato Apache-2.0; falta revisión de privacidad/splits y auditoría global |
+| Wikidata | 50.000 | 165.781.647 | Candidato CC0; falta muestra y auditoría source-scoped |
+| Aya | 25.000 | 42.931.184 | Candidato Apache-2.0; falta revisión de privacidad/splits y auditoría source-scoped |
 | LibriSpeech train.clean.360 | 50.000 | 19.208.974 | Candidato CC-BY-4.0; texto solo, pendiente muestra y auditoría |
 | VoxPopuli (6 idiomas) | 106.963 | En manifiesto | Candidato CC0; pendiente revisión por idioma y auditoría |
 
@@ -84,7 +89,7 @@ La API oficial [Open Data API v2](https://data.europarl.europa.eu/en/developer-c
 3. Validar esquema, calidad, privacidad y seguridad.
 4. Revisar muestras estratificadas manualmente.
 5. Deduplicar exacta y aproximadamente contra todo el corpus.
-6. Ejecutar auditoría global y control de contaminación.
+6. Ejecutar auditoría source-scoped y control de contaminación.
 7. Contar bytes solo después de una admisión explícita en el registro.
 8. Conectar el dataset al workflow de entrenamiento y verificarlo en sus logs/manifiestos antes de afirmar que el modelo lo consumió.
 
@@ -204,7 +209,7 @@ No se debe cancelar el workflow activo ni lanzar otra adquisición concurrente. 
 
 ## Adquisición candidate-only — run 42379525699 (revisión 2026-11-08)
 
-El [run 42379525699](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42379525699) terminó después de conservar sus artefactos. El workflow marcó fallo porque no alcanzó su umbral de escala de 6.800.000.000 bytes; no fue una admisión ni una auditoría global.
+El [run 42379525699](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42379525699) terminó después de conservar sus artefactos. El workflow marcó fallo porque no alcanzó su umbral de escala de 6.800.000.000 bytes; no fue una admisión ni una auditoría source-scoped.
 
 | Métrica | Resultado |
 |---|---:|
@@ -232,7 +237,7 @@ El [run 42379525699](https://github.com/orbitalronin94/HERETIC-RONIN/actions/run
 | Common Corpus | 20.000 | 185.442.381 | Metadatos exactos de licencia; requiere comprobación de derechos por fuente |
 | PT-BR Books Públicos | 10.000 | 128.837.168 | CC0 declarado; verificar obras, procedencia, OCR e idioma |
 
-Otros lotes incluyen FineWeb-Edu, OpenWebMath, Cosmopedia, Aya, LibriSpeech y VoxPopuli. FineWeb/OpenWebMath permanecen en cuarentena por derechos de las páginas subyacentes; Cosmopedia v2 por linaje mixto; Aya por contenido de terceros y metadatos de idioma incompletos en la muestra; el resto sigue pendiente de auditoría global. El artefacto de muestras es un muestreo determinista, **no una aprobación humana**.
+Otros lotes incluyen FineWeb-Edu, OpenWebMath, Cosmopedia, Aya, LibriSpeech y VoxPopuli. FineWeb/OpenWebMath permanecen en cuarentena por derechos de las páginas subyacentes; Cosmopedia v2 por linaje mixto; Aya por contenido de terceros y metadatos de idioma incompletos en la muestra; el resto sigue pendiente de auditoría source-scoped. El artefacto de muestras es un muestreo determinista, **no una aprobación humana**.
 
 ### Corrección del recolector
 
@@ -491,7 +496,7 @@ Los hashes de shards proceden del log; no se pueden recalcular porque los archiv
 
 ## Actualización de curación — 2026-11-13 (runs 92–93)
 
-**Admisiones nuevas: 0.** El total acumulado sigue en **703.593.871 bytes** y 260.971 documentos según la última auditoría global verificada (run [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447)). Progreso hacia 500.000.000.000 bytes: **0,140719 %**. Ningún byte de los lotes siguientes se suma al total.
+**Admisiones nuevas: 0.** El total acumulado sigue en **703.593.871 bytes** y 260.971 documentos según la última auditoría source-scoped verificada (run [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447)). Progreso hacia 500.000.000.000 bytes: **0,140719 %**. Ningún byte de los lotes siguientes se suma al total.
 
 - [Run 92](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43298985874), grupo 7/8: 35.000 filas y 945.924.928 bytes JSONL producidos en el runner. VoxPopuli inglés: 20.000 filas, 9.695.378 bytes, SHA-256 `16d055db8451e1f247907265f38b5835d00f766e1cf9193438c93792d29a159f`. OpenThoughts3: 15.000 filas, 936.229.550 bytes, SHA-256 `c23a18348f6478acac2ed0549df655a1c3f433d6f6763d93e9892e877f3228a9`. LibreTexts (20.532/25.000) y PleIAs Spanish-PD-Books (978/1.000) se descartaron por debajo del mínimo. Artifact de manifiesto [13983600253](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43298985874/artifacts/13983600253), 1.938 bytes, SHA-256 `adc350c45bf60c66e1e35f62dcbc0fb449aad312ddc2e8bcf1d72983f9c98ebd`; JSON interno 5.372 bytes, SHA-256 `c4d9055db2c098b1f05c6333c60df18636f74e125d65e7ea7ba57881c6296645`.
 - [Run 93](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43383222519), grupo 6/8: 73.736 filas y 807.461.935 bytes JSONL producidos en el runner. PressBooks: 33.736 filas / 302.949.633 bytes; VoxPopuli español: 20.000 / 10.095.818; PubMed: 20.000 / 494.416.484. PleIAs Spanish-PD-Books (954/1.000) y German Commons speeches (0/500) se descartaron. Los tres shards correctos tienen exactamente los mismos SHA-256, conteos y bytes que run 87; run 93 es una repetición, con **0 filas y 0 bytes candidatos únicos nuevos**. Artifact de manifiesto [14018112522](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43383222519/artifacts/14018112522), 2.292 bytes, SHA-256 `79b3e47ad7467370f611b979bd7294a1022f6f114eca6ce4b59d075218965129`; JSON interno 7.287 bytes, SHA-256 `59e692299981eca4403fa3836b7f1c4e38469315286e41620f0fd35055710d77`.
@@ -594,7 +599,7 @@ La adquisición futura deberá usar el Solr Search API/JATS XML documentado, con
 
 Ambos ZIP y JSON se descargaron y sus hashes se recalcularon independientemente; los hashes ZIP coinciden con el digest de GitHub. El manifiesto de cada run confirma payload_downloaded=false, training_authorized=false y total_rows=0. Los bytes remotos y comprimidos no se midieron porque no hubo petición de payload. Los jobs de instalación/adquisición se omitieron por el gate; el workflow terminó correctamente al registrar el bloqueo.
 
-**Balance:** 0 admisiones nuevas. Total acumulado sin cambios: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB, según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se suman candidatos, manifiestos ni tamaños de artefacto.
+**Balance:** 0 admisiones nuevas. Total acumulado sin cambios: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB, según la auditoría source-scoped [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se suman candidatos, manifiestos ni tamaños de artefacto.
 
 
 ## Curación y adquisición — 2026-11-18
@@ -656,7 +661,7 @@ Cada ZIP contiene solo un manifiesto JSON de 871 bytes; el ZIP ocupa 653 bytes. 
 
 Los ZIP se descargaron y sus hashes se recalcularon independientemente; coinciden con los digests de GitHub. Ambos manifiestos declaran `blocked_storage_gate`, `payload_downloaded=false`, `total_rows=0` y `training_authorized=false`. No existen hashes de shards.
 
-**Balance:** 0 admisiones nuevas. El total admitido permanece en **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB, según la última auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se suman candidatos, manifiestos ni tamaños de artefacto.
+**Balance:** 0 admisiones nuevas. El total admitido permanece en **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB, según la última auditoría source-scoped [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). No se suman candidatos, manifiestos ni tamaños de artefacto.
 
 
 ## Nueva candidata multidisciplinar — Open Book Publishers (2026-11-19)
@@ -685,7 +690,7 @@ Fuentes primarias: [licencias del Data Catalog](https://datacatalog.worldbank.or
 
 La adquisición sigue bloqueada por almacenamiento: [run 133](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44613415575), grupo 3/8, y [run 134](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44696596900), grupo 5/8, finalizaron correctamente el preflight pero no descargaron payload. Ambos manifiestos declaran blocked_storage_gate, 0 filas, 0 bytes y training_authorized=false. Artefactos: [14573297654](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44613415575/artifacts/14573297654), SHA-256 ZIP 4a9803b324b2e9fd722f2eb6b27bdd4b76a06d810caaeb41de3329c3d0e184bd; [14610009546](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44696596900/artifacts/14610009546), SHA-256 ZIP b3cbb40c3a95d8da9ba45f779f2a8d27d7f50b85f1736ec099acfa202d8b2306. Los hashes internos de manifiesto y bytes exactos figuran en data/sources/registry.json.
 
-No se ejecutaron revisión de muestras, escáneres de payload, deduplicación global ni G-0 porque no hubo payload. El candidato conserva training_authorized=false y count_toward_admitted_bytes=false. El inventario admitido no cambia: **260.971 documentos / 703.593.871 bytes**, **0,140719 %** del objetivo de 500 GB, según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
+No se ejecutaron revisión de muestras, escáneres de payload, deduplicación global ni G-0 porque no hubo payload. El candidato conserva training_authorized=false y count_toward_admitted_bytes=false. El inventario admitido no cambia: **260.971 documentos / 703.593.871 bytes**, **0,140719 %** del objetivo de 500 GB, según la auditoría source-scoped [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
 
 
 
@@ -706,7 +711,7 @@ Fuentes oficiales: [condiciones de uso de OECD, §3 Data](https://www.oecd.org/e
 - Ambos manifiestos declaran blocked_storage_gate, training_authorized=false, 0 filas, 0 bytes de payload y 0 shards. El job de validación fue omitido en estos eventos programados; el éxito solo acredita que el bloqueo se registró correctamente.
 - Admisiones nuevas: **0 documentos / 0 bytes**. No se midieron bytes remotos ni descargados; los 653 bytes ZIP y 871 bytes JSON son solo el artefacto/manifiesto, nunca datos de entrenamiento.
 
-El inventario admitido permanece en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** del objetivo decimal de 500 GB, según la auditoría global [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). G-0, deduplicación global, holdout y revisión de payload no se ejecutaron porque no hubo payload. No se ha entrenado ni modificado ningún checkpoint.
+El inventario admitido permanece en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** del objetivo decimal de 500 GB, según la auditoría source-scoped [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). G-0, deduplicación global, holdout y revisión de payload no se ejecutaron porque no hubo payload. No se ha entrenado ni modificado ningún checkpoint.
 
 
 ## Candidata multidominio — Statistics Canada Open Licence (2026-11-21)
@@ -719,7 +724,7 @@ La WDS ofrece datos y metadatos diarios mediante JSON y SDMX; hay descargas comp
 
 Fuentes oficiales: [Open Licence](https://www.statcan.gc.ca/en/terms-conditions/open-licence) · [FAQ de la licencia](https://www.statcan.gc.ca/en/terms-conditions/open-licence-faq) · [Web Data Service](https://www.statcan.gc.ca/en/developers/wds) · [guía WDS](https://www.statcan.gc.ca/en/developers/wds/user-guide) · [portal de desarrolladores](https://www.statcan.gc.ca/en/developers).
 
-El inventario admitido no cambia: **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB, según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). La nueva fuente no se suma al contador hasta completar revisión por producto, privacidad, seguridad, deduplicación y G-0.
+El inventario admitido no cambia: **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB, según la auditoría source-scoped [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). La nueva fuente no se suma al contador hasta completar revisión por producto, privacidad, seguridad, deduplicación y G-0.
 
 
 ## Candidata multidominio — ILOSTAT, estadísticas agregadas y diccionarios EN/FR/ES (2026-11-22)
@@ -786,3 +791,37 @@ Ambas fuentes quedan discovery-only, acquisition_enabled=false, training_authori
 - [Run 154](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45373420083), grupo 5/8, artifact [14909198800](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45373420083/artifacts/14909198800): mismo bloqueo; ZIP 653 bytes, SHA-256 5682d2f797a45ac60aa0b5ef62ece713aee192e45bd0b35b1b3d45dc893af5b1; JSON 871 bytes, SHA-256 0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7.
 - Ambos manifiestos se descargaron y verificaron; registran blocked_storage_gate, 0 filas, 0 shards, 0 bytes de payload y training_authorized=false. Los 653 bytes ZIP y 871 bytes JSON son manifiestos, no corpus.
 - **Admisiones nuevas: 0 documentos / 0 bytes.** Inventario global sin cambios: 260.971 documentos y 703.593.871 bytes admitidos.
+
+
+## Descubrimientos nuevos — 2026-11-25: MASSIVE 1.1 y Universal Dependencies 2.19
+
+### AmazonScience MASSIVE 1.1 — candidato de texto multilingüe CC BY 4.0
+
+La versión 1.1 añade catalán a las 51 lenguas anteriores: 52 idiomas, más de un millón de utterances paralelas, 18 dominios, 60 intents y 55 tipos de slot. El NOTICE específico de Amazon declara CC BY 4.0 para el dataset y confirma que el texto fuente de SLURP es CC BY 4.0. La parte de audio de SLURP es CC BY-NC 4.0 y queda excluida. Se fija el README/NOTICE en el commit `f966f21846043aabef9b0f974fa7970027f43738` y SLURP en `8eb16545762be97ace75334109d73824217311f1`; el tarball 1.1 aún no se ha descargado ni hasheado.
+
+- [MASSIVE 1.1 oficial](https://github.com/alexa/massive/blob/f966f21846043aabef9b0f974fa7970027f43738/README.md) · [NOTICE de datos](https://github.com/alexa/massive/blob/f966f21846043aabef9b0f974fa7970027f43738/NOTICE.md) · [tarball 1.1](https://amazon-massive-nlu-dataset.s3.amazonaws.com/amazon-massive-dataset-1.1.tar.gz) · [licencia textual SLURP](https://github.com/pswietojanski/slurp/blob/8eb16545762be97ace75334109d73824217311f1/LICENSE.txt).
+- Solo se considerará `partition=train`; dev/test y el material de evaluación MMNLU-22 quedan fuera. Se eliminarán `worker_id` y todos los identificadores anidados en `judgments`; se conservarán únicamente métricas agregadas para filtrar gramática, ortografía, intent y slots.
+- Estado: discovery-only, `acquisition_enabled=false`, `training_authorized=false`; 0 filas y 0 bytes descargados/admitidos. Pendientes LICENSE del tarball, hash, calidad por idioma, privacidad, near-dedup y G-0 completo.
+
+### Universal Dependencies 2.19 — candidato multilingüe con licencias mixtas por treebank
+
+El release oficial del 15-11-2026 contiene 402 treebanks en 226 idiomas y se distribuye mediante LINDAT/CLARIAH-CZ, handle `11234/1-6316`. No existe una licencia única para la colección: UD exige revisar `LICENSE.txt` y el campo `License:` del README de cada treebank. Solo se consideran licencias exactas CC BY 4.0 o CC0 1.0, y únicamente cuando también estén despejados los derechos del texto subyacente. BY-SA, NC, ND, GPL y licencias ausentes/contradictorias quedan fuera.
+
+- [Release 2.19](https://universaldependencies.org/download.html) · [política oficial de licencias](https://universaldependencies.org/contributing/licensing.html) · [snapshot LINDAT](https://hdl.handle.net/11234/1-6316).
+- Riesgos ya identificados: Spanish AnCora declara CC BY 4.0 en metadatos pero su descripción remite a una licencia GNU heredada; queda excluido. English GUMReddit indica que el texto subyacente no está incluido; no se descargará ni fusionará texto externo. Solo se considerarían ficheros `*-train.conllu`; ningún dev/test/test-only.
+- Estado: discovery-only, `acquisition_enabled=false`, `training_authorized=false`; 0 payload y 0 bytes admitidos. Pendientes manifiesto y hash del release, auditoría por treebank, derechos del texto, muestras, calidad, privacidad, deduplicación global y G-0.
+
+### Common Voice v27.0 — aclaración de términos MDC
+
+Los términos oficiales vigentes desde 2025-10-31 disponen que los datasets se ofrecen exclusivamente a través de Mozilla Data Collective y piden no publicar, distribuir ni replicar/mirror el dataset en otras plataformas. Además, sigue pendiente la procedencia de cada prompt (se excluyen Wikipedia y fuentes no despejadas). Se mantiene `acquisition_enabled=false` hasta disponer de una ruta compatible con MDC que no re-hospede el payload.
+
+- [Common Voice Legal Terms](https://commonvoice.mozilla.org/oc/terms) · [datasets MDC](https://commonvoice.mozilla.org/en/datasets).
+
+**Balance de las tres fuentes:** 0 descargas, 0 filas medidas y 0 bytes admitidos; no se suman a la biblioteca.
+
+## Adquisiciones programadas — runs 157 y 158 (2026-11-25)
+
+- [Run 157](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45503206072), grupo 7/8, artifact [14971249604](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45503206072/artifacts/14971249604): ZIP 653 bytes, SHA-256 `99c089bad3165b290c5d47d3677581cbe73ef1a7474579525d6c7ff272090dc5`; manifiesto JSON 871 bytes, SHA-256 `3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992`.
+- [Run 158](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45581135551), grupo 1/8, artifact [15005629437](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45581135551/artifacts/15005629437): ZIP 653 bytes, SHA-256 `63475b22bd76851a587b41c254468d7bde1eced8e9f6bdf78cec11c21a8ae7d4`; manifiesto JSON 871 bytes, SHA-256 `5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437`.
+- Ambos terminaron `success` porque el preflight completó correctamente, pero el storage gate bloqueó antes de contactar fuentes o descargar payload: 0 filas, 0 bytes remotos/descargados medidos, 0 staged y 0 admitidos. Motivo: falta `HERETIC_STAGING_PASSPHRASE` de al menos 32 caracteres. Los ZIP contienen solo manifiestos, no corpus.
+- **Admisiones nuevas: 0 documentos / 0 bytes.** Inventario admitido sin cambios: **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB.
