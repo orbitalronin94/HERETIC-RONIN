@@ -1602,7 +1602,7 @@
       "url": "https://commonvoice.mozilla.org/datasets",
       "revision": "Scripted Speech v27.0, data cut-off 2026-09-11; metadata repository common-voice/cv-dataset@65ca2460d5e686ea03902a932bbca09b322dc4b0; release metadata datasets/scripted-speech/cv-corpus-27.0-2026-09-11.json (Git blob e401c4a8e923cad5c8baacb6120c095b1e1bd561). No payload acquired.",
       "reported_languages": 295,
-      "reported_size": "Text-only size not measured. Published locale archive sizes include audio and must not be counted as text bytes.",
+      "reported_size": "Not measured; no payload acquired.",
       "reported_license": "Mozilla Data Collective dataset listing: CC0-1.0. The cv-dataset metadata repository code is MPL-2.0; that code license is not the payload license.",
       "status": "candidate_discovery_only_pending_mdc_access_prompt_lineage_and_no_mirroring",
       "domains": [
@@ -1641,7 +1641,8 @@
       "count_toward_admitted_bytes": false,
       "training_authorized": false,
       "acquisition_enabled": false,
-      "terms_reviewed_at": "2026-11-25"
+      "terms_reviewed_at": "2026-11-25",
+      "reported_rows": null
     },
     {
       "id": "NCBI/PMC-OA-Subset:CC-BY-4.0-or-CC0-only",
