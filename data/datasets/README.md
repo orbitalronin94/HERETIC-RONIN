@@ -8,7 +8,7 @@ Actualizado: 2026-11-25. Este documento distingue **admitido**, **candidato** y 
 |---|---:|
 | Corpus base RONIN-IA admitido | 680.665.972 bytes |
 | Cosmopedia v0.1 curada y admitida | 4.734 documentos · 22.927.899 bytes |
-| Auditoría combinada | 261.039 documentos examinados |
+| Auditoría source-scoped combinada | 261.039 documentos examinados |
 | Exclusiones exactas/near-duplicate | 68 extremos |
 | Subconjunto resultante autorizado | 260.971 documentos |
 | Total de bytes admitidos contabilizados | **703.593.871 bytes (671,0 MiB)** |
