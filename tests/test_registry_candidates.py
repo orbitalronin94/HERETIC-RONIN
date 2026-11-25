@@ -172,6 +172,55 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertGreaterEqual(len(source["evidence_urls"]), 5)
         self.assertGreaterEqual(len(source["required_checks"]), 14)
 
+
+    def test_massive_11_is_text_only_cc_by_and_train_partition_candidate(self):
+        source = self.source("AmazonScience/MASSIVE:1.1-text-train-only")
+        self.assert_discovery_only(source)
+        self.assertEqual(source["spdx_license_identifier"], "CC-BY-4.0")
+        self.assertEqual(source["license_exact_allowlist"], ["CC-BY-4.0"])
+        self.assertIs(source["acquisition_enabled"], False)
+        self.assertIn("f966f21846043aabef9b0f974fa7970027f43738", source["revision"])
+        self.assertIn("SLURP audio is CC BY-NC 4.0", source["reported_license"])
+        self.assertIn("worker_id", source["rights_caveat"])
+        checks = " ".join(source["required_checks"]).casefold()
+        self.assertIn("partition is exactly train", checks)
+        self.assertIn("mmnlu-22", checks)
+        self.assertIn("global g-0", checks)
+        self.assertGreaterEqual(len(source["evidence_urls"]), 6)
+
+    def test_universal_dependencies_219_is_mixed_license_and_per_treebank_only(self):
+        source = self.source("Universal Dependencies:2.19-treebanks-per-treebank-CC-BY-4.0-or-CC0-only")
+        self.assert_discovery_only(source)
+        self.assertIsNone(source["spdx_license_identifier"])
+        self.assertEqual(source["license_exact_allowlist"], ["CC-BY-4.0", "CC0-1.0"])
+        self.assertIs(source["acquisition_enabled"], False)
+        self.assertIn("11234/1-6316", source["revision"])
+        self.assertIn("Spanish AnCora", source["rights_caveat"])
+        self.assertIn("GUMReddit", source["rights_caveat"])
+        checks = " ".join(source["required_checks"]).casefold()
+        self.assertIn("license.txt", checks)
+        self.assertIn("readme", checks)
+        self.assertIn("*-train.conllu", checks)
+        self.assertIn("global g-0", checks)
+        self.assertGreaterEqual(len(source["evidence_urls"]), 6)
+
+    def test_common_voice_v27_respects_current_mdc_no_mirroring_terms(self):
+        source = self.source("Mozilla Data Collective:Common Voice Scripted Speech v27.0 (text-only)")
+        self.assert_discovery_only(source)
+        self.assertIs(source["acquisition_enabled"], False)
+        self.assertIn("2025-10-31", source["terms_reviewed_at"])
+        self.assertIn("do not post", source["rights_caveat"])
+        checks = " ".join(source["required_checks"]).casefold()
+        self.assertIn("no posting, distribution or mirroring", checks)
+        self.assertIn("commonvoice.mozilla.org/oc/terms", " ".join(source["evidence_urls"]))
+
+    def test_global_g0_is_blocked_until_all_protected_splits_are_inventoried(self):
+        gate = self.registry["global_g0_status"]
+        self.assertEqual(gate["status"], "blocked_incomplete_split_inventory")
+        self.assertIn("validation/test/benchmark/holdout", gate["missing_scope"])
+        self.assertIn("120 synthetic", gate["missing_scope"])
+        self.assertIn("not a complete global G-0", gate["reason"])
+
     def test_registry_source_count_matches_source_records(self):
         self.assertEqual(self.registry["source_count"], len(self.registry["sources"]))
 
@@ -285,18 +334,18 @@ class RegistryCandidateTests(unittest.TestCase):
     def test_latest_scheduled_acquisitions_are_verified_zero_byte_storage_blocks(self):
         last = self.registry["last_candidate_batch_details"]
         previous = self.registry["previous_candidate_batch_details"]
-        self.assertEqual(last["run_id"], 45373420083)
-        self.assertEqual(last["run_number"], 154)
-        self.assertEqual(previous["run_id"], 45295413549)
-        self.assertEqual(previous["run_number"], 153)
-        self.assertEqual(last["source_group"], 5)
-        self.assertEqual(previous["source_group"], 4)
-        self.assertEqual(last["artifact_id"], 14909198800)
-        self.assertEqual(previous["artifact_id"], 14876935300)
-        self.assertEqual(last["artifact_sha256"], "5682d2f797a45ac60aa0b5ef62ece713aee192e45bd0b35b1b3d45dc893af5b1")
-        self.assertEqual(previous["artifact_sha256"], "7660bc0aa3a07c8f214f52048d1cbb543ee3e586d613e9c7006f58feeb83be83")
-        self.assertEqual(last["manifest_sha256"], "0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7")
-        self.assertEqual(previous["manifest_sha256"], "3410f1b55d99d02fe29be723a56d8fefb20a81e0c517fe1cc6e7aa0eedcfd8ec")
+        self.assertEqual(last["run_id"], 45581135551)
+        self.assertEqual(last["run_number"], 158)
+        self.assertEqual(previous["run_id"], 45503206072)
+        self.assertEqual(previous["run_number"], 157)
+        self.assertEqual(last["source_group"], 1)
+        self.assertEqual(previous["source_group"], 7)
+        self.assertEqual(last["artifact_id"], 15005629437)
+        self.assertEqual(previous["artifact_id"], 14971249604)
+        self.assertEqual(last["artifact_sha256"], "63475b22bd76851a587b41c254468d7bde1eced8e9f6bdf78cec11c21a8ae7d4")
+        self.assertEqual(previous["artifact_sha256"], "99c089bad3165b290c5d47d3677581cbe73ef1a7474579525d6c7ff272090dc5")
+        self.assertEqual(last["manifest_sha256"], "5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437")
+        self.assertEqual(previous["manifest_sha256"], "3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992")
         history = {batch["run_number"]: batch for batch in self.registry["historical_candidate_batches"] if batch.get("run_number") is not None}
         self.assertEqual(history[149]["artifact_id"], 14770830618)
         self.assertEqual(history[150]["artifact_id"], 14800025470)

@@ -1604,7 +1604,7 @@
       "reported_languages": 295,
       "reported_size": "Text-only size not measured. Published locale archive sizes include audio and must not be counted as text bytes.",
       "reported_license": "Mozilla Data Collective dataset listing: CC0-1.0. The cv-dataset metadata repository code is MPL-2.0; that code license is not the payload license.",
-      "status": "candidate_discovery_only_pending_mdc_access_and_sentence_source_lineage",
+      "status": "candidate_discovery_only_pending_mdc_access_prompt_lineage_and_no_mirroring",
       "domains": [
         "multilingual speech transcripts",
         "language",
@@ -1619,7 +1619,7 @@
         "en": "2fbc16e9811e0a727c7fde5c71158a9295a2aa5e26f9ec21b305f0a8368a10c7"
       },
       "metadata_blob_sha": "e401c4a8e923cad5c8baacb6120c095b1e1bd561",
-      "rights_caveat": "MDC labels the dataset CC0-1.0, but Common Voice prompt lineage includes user submissions and text imported from other sources, including Wikipedia. Do not infer that a database-level CC0 label clears every underlying prompt. Require the release's validated_sentences source field and independently compatible upstream rights; exclude Wikipedia-derived and unknown-lineage rows. Never ingest audio, client_id, age, gender, accents or speaker-level metadata.",
+      "rights_caveat": "MDC labels the dataset CC0-1.0, but Common Voice prompt lineage includes user submissions and text imported from other sources, including Wikipedia. Do not infer that a database-level CC0 label clears every underlying prompt. Require the release's validated_sentences source field and independently compatible upstream rights; exclude Wikipedia-derived and unknown-lineage rows. Never ingest audio, client_id, age, gender, accents or speaker-level metadata. Current Common Voice Legal Terms effective 2025-10-31 state that datasets are made available exclusively through Mozilla Data Collective (MDC) and ask users not to post, distribute or mirror any dataset, in whole or part, on other platforms/services. Do not stage or rehost payloads in Actions artifacts until a compliant access/storage path is established; preserve the existing per-sentence source-lineage restriction.",
       "required_checks": [
         "Use only official Mozilla Data Collective downloads/API/SDK; do not store account credentials in Git",
         "Pin release v27.0, locale, exact archive publisher checksum and retrieval timestamp",
@@ -1628,16 +1628,20 @@
         "Exclude Wikipedia-derived, externally sourced or unknown-lineage prompts unless their upstream rights are independently verified and compatible",
         "Exclude retired prompts (is_used=false), malformed text, PII and low-quality language samples",
         "Measure language and domain distribution; deduplicate sentence IDs and exact/near duplicates globally",
-        "Run G-0/validation/test/holdout contamination checks and human review stratified by locale, domain and prompt source"
+        "Run G-0/validation/test/holdout contamination checks and human review stratified by locale, domain and prompt source",
+        "Comply with the current Common Voice Legal Terms effective 2025-10-31: access through MDC only and no posting, distribution or mirroring; do not upload or rehost a dataset artifact."
       ],
       "evidence_urls": [
         "https://commonvoice.mozilla.org/datasets",
         "https://mozilladatacollective.com/api-reference",
         "https://github.com/common-voice/cv-dataset/tree/65ca2460d5e686ea03902a932bbca09b322dc4b0",
-        "https://github.com/common-voice/common-voice"
+        "https://github.com/common-voice/common-voice",
+        "https://commonvoice.mozilla.org/oc/terms"
       ],
       "count_toward_admitted_bytes": false,
-      "training_authorized": false
+      "training_authorized": false,
+      "acquisition_enabled": false,
+      "terms_reviewed_at": "2026-11-25"
     },
     {
       "id": "NCBI/PMC-OA-Subset:CC-BY-4.0-or-CC0-only",
@@ -4105,6 +4109,115 @@
       "training_authorized": false,
       "acquisition_enabled": false,
       "recorded_date": "2026-11-24"
+    },
+    {
+      "id": "AmazonScience/MASSIVE:1.1-text-train-only",
+      "url": "https://github.com/alexa/massive",
+      "retrieval_url": "https://amazon-massive-nlu-dataset.s3.amazonaws.com/amazon-massive-dataset-1.1.tar.gz",
+      "revision": "MASSIVE 1.1 release; metadata/README/NOTICE pinned to alexa/massive@f966f21846043aabef9b0f974fa7970027f43738 (2022-11-28). Upstream SLURP license pinned to pswietojanski/slurp@8eb16545762be97ace75334109d73824217311f1. The S3 archive's own LICENSE and SHA-256 have not yet been measured because no payload was downloaded.",
+      "reported_rows": null,
+      "reported_size": "Not measured; the official release describes more than 1 million utterances across 52 languages, 18 domains, 60 intents and 55 slot types.",
+      "reported_license": "The data-specific Amazon NOTICE states that the MASSIVE dataset is CC BY 4.0. It separately identifies SLURP text as CC BY 4.0. The SLURP audio portion is CC BY-NC 4.0 and is excluded. Verify the LICENSE included in the exact MASSIVE 1.1 archive before any acquisition; the Apache-2.0 code/repository licence does not replace the dataset licence.",
+      "spdx_license_identifier": "CC-BY-4.0",
+      "license_exact_allowlist": [
+        "CC-BY-4.0"
+      ],
+      "status": "candidate_discovery_only_pending_archive_hash_quality_privacy_and_global_g0",
+      "domains": [
+        "multilingual natural-language understanding",
+        "conversational utterances",
+        "intent classification",
+        "slot annotation",
+        "18 assistant domains"
+      ],
+      "language": [
+        "52 languages; locale per record; includes Catalan ca-ES"
+      ],
+      "rights_caveat": "Scope is text-only MASSIVE 1.1. Amazon's NOTICE grants CC BY 4.0 for the dataset and identifies the upstream SLURP textual part as CC BY 4.0; SLURP audio is CC BY-NC 4.0 and must never be acquired. The dataset card says it contains no personal or sensitive information, but records include obfuscated worker_id fields, including nested judgments; remove all worker identifiers and retain only aggregated quality scores. Preserve Amazon/SLURP attribution and citation. Exclude dev/test partitions and the separate MMNLU-22 evaluation payload. Do not infer data rights from the Apache-2.0 code licence.",
+      "payload_scope": "Text JSONL only; retain records whose partition is exactly train. Exclude audio, recordings, audio assets, dev/test and all competition evaluation material.",
+      "attribution": "MASSIVE dataset copyright Amazon.com, Inc. or affiliates; authors Jack FitzGerald, Christopher Hench, Charith Peris, Scott Mackie, Kay Rottmann, Ana Sanchez, Aaron Nash, Liam Urbach, Vishesh Kakarala, Richa Singh, Swetha Ranganath, Laurie Crist, Misha Britan, Wouter Leeuwis, Gokhan Tur and Prem Natarajan. Preserve SLURP textual-source attribution as required.",
+      "citation": "FitzGerald et al., MASSIVE: A 1M-Example Multilingual Natural Language Understanding Dataset with 51 Typologically-Diverse Languages, ACL 2023, arXiv:2204.08582; cite the SLURP source as required by its upstream README.",
+      "required_checks": [
+        "Pin the MASSIVE 1.1 README/NOTICE at alexa/massive commit f966f21846043aabef9b0f974fa7970027f43738 and freeze the S3 archive URL, retrieval timestamp, byte length and SHA-256 before staging.",
+        "Verify the LICENSE file inside the exact 1.1 archive; independently preserve the data-specific Amazon NOTICE and the SLURP textual licence at the pinned upstream revision.",
+        "Acquire text only; never download audio, recordings, waveforms or audio-related assets because the SLURP audio licence is CC BY-NC 4.0.",
+        "Select only records whose partition is exactly train in each locale; exclude dev, test and the separate unlabeled MMNLU-22 evaluation material.",
+        "Preserve locale, record ID, scenario, intent, slot annotation, source lineage, citation, revision, split and per-file SHA-256.",
+        "Remove worker_id and every nested judgments[].worker_id; retain only aggregated quality metrics and no worker-level linkage.",
+        "Filter and audit intent_score, slots_score, grammar_score and spelling_score; stratify human review by locale, domain, intent and format, with extra scrutiny for low-resource locales and translations.",
+        "Validate JSONL schema, UTF-8, language labels, malformed rows, text length, quality, PII, secrets and malware; the dataset-card privacy statement is not a substitute for scanning.",
+        "Deduplicate exact and approximately against every corpus source and every validation/test/benchmark/holdout split; preserve language labels and avoid false cross-lingual duplicate matches.",
+        "Require the complete global G-0 inventory and contamination audit before any training_eligible or admitted state.",
+        "Keep acquisition_enabled=false until durable private storage or approved encrypted staging is configured; do not publish raw candidate payloads or samples.",
+        "Do not count announced rows or sizes; record remote, downloaded, compressed, expanded and admitted bytes separately after a verified acquisition."
+      ],
+      "evidence_urls": [
+        "https://github.com/alexa/massive/tree/f966f21846043aabef9b0f974fa7970027f43738",
+        "https://github.com/alexa/massive/blob/f966f21846043aabef9b0f974fa7970027f43738/NOTICE.md",
+        "https://amazon-massive-nlu-dataset.s3.amazonaws.com/amazon-massive-dataset-1.1.tar.gz",
+        "https://github.com/pswietojanski/slurp/blob/8eb16545762be97ace75334109d73824217311f1/LICENSE.txt",
+        "https://www.amazon.science/publications/massive-a-1m-example-multilingual-natural-language-understanding-dataset-with-51-typologically-diverse-languages",
+        "https://arxiv.org/abs/2204.08582",
+        "https://github.com/alexa/massive/blob/f966f21846043aabef9b0f974fa7970027f43738/README.md"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "acquisition_enabled": false
+    },
+    {
+      "id": "Universal Dependencies:2.19-treebanks-per-treebank-CC-BY-4.0-or-CC0-only",
+      "url": "https://universaldependencies.org/",
+      "retrieval_url": "https://hdl.handle.net/11234/1-6316",
+      "revision": "Universal Dependencies 2.19 release via LINDAT/CLARIAH-CZ handle 11234/1-6316, released 2026-11-15. Official release metadata reports 402 treebanks and 226 languages. The exact archive byte length and SHA-256 remain unmeasured because no payload was downloaded.",
+      "reported_rows": null,
+      "reported_size": "Not measured; release metadata reports 402 treebanks and 226 languages, not a byte size or a single row count.",
+      "reported_license": "Mixed licence per treebank; there is no collection-wide SPDX licence. UD directs users to each treebank's LICENSE.txt and the machine-readable License: field in its README. Only exact CC-BY-4.0 or CC0-1.0 treebanks are candidates; no licence is inferred from the umbrella repository or another treebank.",
+      "spdx_license_identifier": null,
+      "license_exact_allowlist": [
+        "CC-BY-4.0",
+        "CC0-1.0"
+      ],
+      "status": "candidate_discovery_only_mixed_license_per_treebank_pending_underlying_text_rights_and_global_g0",
+      "domains": [
+        "multilingual linguistics",
+        "morphology",
+        "syntax",
+        "dependency parsing",
+        "part-of-speech tagging",
+        "language annotation"
+      ],
+      "language": [
+        "226 languages; preserve the exact language code per treebank"
+      ],
+      "rights_caveat": "The release is mixed-licence and the UD policy says new treebanks default to CC BY-SA 4.0; NC, ND and legacy non-CC licences also occur. Exclude CC BY-SA, NC, ND, GPL, missing or conflicting licences. Annotation rights do not automatically clear underlying texts. The Spanish AnCora page advertises CC BY 4.0 but its description says the GNU licence is inherited from the original AnCora dataset; exclude it until resolved. English GUMReddit explicitly says the underlying text is not included; never fetch or merge that external text. Exclude test-only/treebanks without text and any work whose underlying source rights are not independently clear.",
+      "payload_scope": "Only individual treebanks with text included, both LICENSE.txt and README License: metadata exactly CC-BY-4.0 or CC0-1.0, and independently cleared underlying-text rights. Only *-train.conllu files; no dev/test files, test-only treebanks or externally sourced text.",
+      "required_checks": [
+        "Freeze the exact LINDAT/CLARIAH-CZ 2.19 archive at handle 11234/1-6316; record retrieval timestamp, byte length, archive SHA-256 and complete file manifest before staging.",
+        "Enumerate all 402 treebanks and 226 language labels from the release itself; do not assume a uniform collection licence.",
+        "For every treebank, require LICENSE.txt and the README machine-readable License: field to agree exactly on CC-BY-4.0 or CC0-1.0; reject all other, missing, malformed or conflicting licence values.",
+        "Audit underlying source-text rights separately from annotation rights and retain the original source, contributors, citations, DOI/URL and attribution.",
+        "Exclude CC BY-SA, CC BY-NC, CC BY-NC-SA, CC BY-ND, GPL, custom or unclear terms; do not treat the default CC BY-SA as eligible.",
+        "Exclude Spanish AnCora while its CC BY 4.0 metadata conflicts with the GNU licence inherited from the original corpus.",
+        "Exclude English GUMReddit and any treebank whose underlying text is absent; never retrieve third-party text to fill annotation-only files.",
+        "Use only files named *-train.conllu; exclude dev/test and test-only treebanks, and preserve the split label and treebank ID.",
+        "Preserve language code, treebank ID, contributors, citation, source lineage, release handle, file path, split, retrieval date and per-file SHA-256.",
+        "Validate CoNLL-U syntax, UTF-8, sentence/token counts, missing forms, malformed rows, duplicates, language identification and annotation quality.",
+        "Audit human samples stratified by treebank, language, genre and file format; inspect source-text and annotation provenance independently.",
+        "Scan for PII, sensitive data, secrets and unsafe payloads; apply exact and approximate deduplication against every corpus and protected evaluation split.",
+        "Require the complete global G-0 inventory and holdout-contamination audit before any training_eligible or admitted state; keep acquisition_enabled=false meanwhile."
+      ],
+      "evidence_urls": [
+        "https://universaldependencies.org/download.html",
+        "https://universaldependencies.org/contributing/licensing.html",
+        "https://hdl.handle.net/11234/1-6316",
+        "https://universaldependencies.org/treebanks/es_ancora/index.html",
+        "https://universaldependencies.org/treebanks/en_gumreddit/index.html",
+        "https://universaldependencies.org/treebanks/cop_bohairic/index.html",
+        "https://universaldependencies.org/treebanks/otk_clausal/index.html"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "acquisition_enabled": false
     }
   ],
   "target_library_bytes": 500000000000,
@@ -4159,8 +4272,8 @@
     "2026-11-08 sample audit: Aya candidate sample lacked language/language_code/annotation_type in the exported source_metadata and included a poem-like full text. Updated collector to preserve allowed metadata while excluding user_id; content rights remain unresolved, so Aya stays candidate-only.",
     "2026-11-12 acquisition run 43176267906 (group 5/8): 170,000 ephemeral candidate rows / 462,861,425 JSONL bytes in the runner; 4 source shards complete, 1 source failed. Only the 2,721-byte manifest artifact was retained; 0 durable staged bytes and 0 admitted bytes. Per-shard hashes are manifest-reported but cannot be reverified without payload files. Global G-0, near-dedup, holdout, human review, comprehensive PII/secrets/malware checks remain pending."
   ],
-  "last_candidate_batch": "Run 154 (2026-11-24, group 5/8): storage gate blocked before download; 0 candidate rows, 0 downloaded/JSONL bytes, 0 durable staged bytes and 0 admitted bytes. Artifact 14909198800 and manifest hashes independently verified. No payload or source shards existed.",
-  "next_candidate_batch": "Do not download candidate payloads until durable private storage or HERETIC_STAGING_PASSPHRASE (at least 32 characters) is configured. Europeana metadata and New Zealand legislation are discovery-only candidates: each requires its own confidential API key, dedicated snapshot collector and source-specific metadata/content-rights handling. Continue primary-source discovery; preserve G-0 and every global gate.",
+  "last_candidate_batch": "Run 158 (2026-11-25, group 1/8): storage gate blocked before download; 0 candidate rows, 0 downloaded/JSONL bytes, 0 durable staged bytes and 0 admitted bytes. Artifact 15005629437 and manifest hashes independently verified.",
+  "next_candidate_batch": "Do not download candidate payloads until durable private storage or HERETIC_STAGING_PASSPHRASE (at least 32 characters) is configured. MASSIVE 1.1 is text-only CC-BY-4.0 candidate; Universal Dependencies 2.19 is mixed-license and must be filtered per treebank. Common Voice v27.0 is subject to current MDC-only/no-mirroring terms and prompt-level source lineage. Global G-0 remains blocked until every corpus split and protected holdout has a complete immutable inventory; no new source may be admitted before that audit.",
   "audit_summary": {
     "run_id": 42288107561,
     "documents_audited": 256305,
@@ -4171,7 +4284,7 @@
     "training_run_id": 42338551408,
     "training_bytes": 680665972,
     "training_bytes_human": "649.0 MiB",
-    "note": "Internal training admission only. The 120-question holdout is a synthetic diagnostic, not a public benchmark. CoVoST, Mathlib4, ScienceVerse, Spanish literature, NASA-reviewed text and owner-authorized Papers only. No external redistribution rights inferred."
+    "note": "Internal training admission only. The 120-question holdout is a synthetic diagnostic, not a public benchmark. CoVoST, Mathlib4, ScienceVerse, Spanish literature, NASA-reviewed text and owner-authorized Papers only. No external redistribution rights inferred. Scope clarification (2026-11-25): this source-scoped audit does not constitute a complete global G-0 and does not authorize any new candidate source."
   },
   "last_manual_review": {
     "date": "2026-11-07",
@@ -4202,18 +4315,21 @@
     "admitted_training_bytes_total": 703593871,
     "admitted_cosmopedia_rows": 4734,
     "admitted_cosmopedia_bytes": 22927899,
-    "note": "The 68 excluded global indices are all below the 256,305-record base-corpus boundary; all 4,734 curated Cosmopedia records remain in the authorized subset. Heuristic audit only; no semantic proof and no expanded redistribution rights."
+    "note": "The 68 excluded global indices are all below the 256,305-record base-corpus boundary; all 4,734 curated Cosmopedia records remain in the authorized subset. Heuristic audit only; no semantic proof and no expanded redistribution rights. Scope clarification (2026-11-25): this run is source-scoped, not a complete global G-0; its synthetic 120-question diagnostic is not the full protected validation/test/benchmark/holdout inventory.",
+    "scope_warning": "Historical training_authorized=true applies only to the exact source-scoped RONIN-IA train subset plus the explicitly supplied curated Cosmopedia candidate. The audit script does not enumerate every validation/test/benchmark/holdout split; this report is not a complete global G-0 and authorizes no new source.",
+    "training_authorized_scope": "Source-scoped subset only; not global G-0.",
+    "global_g0_status": "blocked_incomplete_split_inventory"
   },
   "last_candidate_batch_details": {
-    "run_id": 45373420083,
-    "run_number": 154,
-    "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45373420083",
-    "head_sha": "c46ea65a43beca3e2248f020269ae984a837fad8",
-    "created_at": "2026-11-24T10:17:48Z",
-    "updated_at": "2026-11-24T10:18:09Z",
+    "run_id": 45581135551,
+    "run_number": 158,
+    "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45581135551",
+    "head_sha": "2f99fa661076d537e722c6d37f5af05137452ab7",
+    "created_at": "2026-11-25T08:59:20Z",
+    "updated_at": "2026-11-25T08:59:31Z",
     "conclusion": "success",
-    "workflow_mode": "scheduled acquisition preflight; eight deterministic source groups; group 5 of 8; storage gate blocked before any download",
-    "source_group": 5,
+    "workflow_mode": "scheduled acquisition preflight; eight deterministic source groups; group 1 of 8; storage gate blocked before any download",
+    "source_group": 1,
     "source_group_count": 8,
     "candidate_rows": 0,
     "candidate_jsonl_bytes": 0,
@@ -4235,14 +4351,14 @@
     "artifact_payload_bytes": 0,
     "artifact_zip_bytes": 653,
     "artifact_manifest_bytes": 871,
-    "artifact_id": 14909198800,
-    "artifact_name": "heretic-open-source-manifest-45373420083-group-5",
-    "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45373420083/artifacts/14909198800",
-    "artifact_sha256": "5682d2f797a45ac60aa0b5ef62ece713aee192e45bd0b35b1b3d45dc893af5b1",
-    "artifact_digest_source": "GitHub Actions artifact API SHA-256 independently verified by downloading the ZIP and recalculating its SHA-256.",
-    "artifact_expires_at": "2027-02-22T10:17:49Z",
+    "artifact_id": 15005629437,
+    "artifact_name": "heretic-open-source-manifest-45581135551-group-1",
+    "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45581135551/artifacts/15005629437",
+    "artifact_sha256": "63475b22bd76851a587b41c254468d7bde1eced8e9f6bdf78cec11c21a8ae7d4",
+    "artifact_digest_source": "GitHub Actions artifact SHA-256 independently verified by downloading the ZIP and recalculating its SHA-256.",
+    "artifact_expires_at": "2027-02-23T08:59:21Z",
     "manifest_bytes": 871,
-    "manifest_sha256": "0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7",
+    "manifest_sha256": "5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437",
     "source_shard_hashes_status": "No shards existed because the storage gate blocked before download; no shard hashes apply.",
     "admitted_rows_added": 0,
     "admitted_bytes_added": 0,
@@ -4271,15 +4387,15 @@
     "note": "Successful workflow execution means the preflight and zero-byte block completed correctly. No source was contacted for payload, no rows or candidate bytes were produced, and no data was staged or admitted."
   },
   "previous_candidate_batch_details": {
-    "run_id": 45295413549,
-    "run_number": 153,
-    "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45295413549",
-    "head_sha": "c46ea65a43beca3e2248f020269ae984a837fad8",
-    "created_at": "2026-11-24T00:13:37Z",
-    "updated_at": "2026-11-24T00:13:56Z",
+    "run_id": 45503206072,
+    "run_number": 157,
+    "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45503206072",
+    "head_sha": "2f99fa661076d537e722c6d37f5af05137452ab7",
+    "created_at": "2026-11-24T22:41:00Z",
+    "updated_at": "2026-11-24T22:41:11Z",
     "conclusion": "success",
-    "workflow_mode": "scheduled acquisition preflight; eight deterministic source groups; group 4 of 8; storage gate blocked before any download",
-    "source_group": 4,
+    "workflow_mode": "scheduled acquisition preflight; eight deterministic source groups; group 7 of 8; storage gate blocked before any download",
+    "source_group": 7,
     "source_group_count": 8,
     "candidate_rows": 0,
     "candidate_jsonl_bytes": 0,
@@ -4301,14 +4417,14 @@
     "artifact_payload_bytes": 0,
     "artifact_zip_bytes": 653,
     "artifact_manifest_bytes": 871,
-    "artifact_id": 14876935300,
-    "artifact_name": "heretic-open-source-manifest-45295413549-group-4",
-    "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45295413549/artifacts/14876935300",
-    "artifact_sha256": "7660bc0aa3a07c8f214f52048d1cbb543ee3e586d613e9c7006f58feeb83be83",
-    "artifact_digest_source": "GitHub Actions artifact API SHA-256 independently verified by downloading the ZIP and recalculating its SHA-256.",
-    "artifact_expires_at": "2027-02-22T00:13:37Z",
+    "artifact_id": 14971249604,
+    "artifact_name": "heretic-open-source-manifest-45503206072-group-7",
+    "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45503206072/artifacts/14971249604",
+    "artifact_sha256": "99c089bad3165b290c5d47d3677581cbe73ef1a7474579525d6c7ff272090dc5",
+    "artifact_digest_source": "GitHub Actions artifact SHA-256 independently verified by downloading the ZIP and recalculating its SHA-256.",
+    "artifact_expires_at": "2027-02-22T22:41:00Z",
     "manifest_bytes": 871,
-    "manifest_sha256": "3410f1b55d99d02fe29be723a56d8fefb20a81e0c517fe1cc6e7aa0eedcfd8ec",
+    "manifest_sha256": "3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992",
     "source_shard_hashes_status": "No shards existed because the storage gate blocked before download; no shard hashes apply.",
     "admitted_rows_added": 0,
     "admitted_bytes_added": 0,
@@ -5924,6 +6040,62 @@
         "reason": "The secret was absent or shorter than 32 characters."
       },
       "note": "Successful workflow execution means the preflight and zero-byte block completed correctly. No source was contacted for payload, no rows or candidate bytes were produced, and no data was staged or admitted."
+    },
+    {
+      "run_id": 45295413549,
+      "run_number": 153,
+      "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45295413549",
+      "source_group": 4,
+      "artifact_id": 14876935300,
+      "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45295413549/artifacts/14876935300",
+      "artifact_sha256": "7660bc0aa3a07c8f214f52048d1cbb543ee3e586d613e9c7006f58feeb83be83",
+      "manifest_sha256": "3410f1b55d99d02fe29be723a56d8fefb20a81e0c517fe1cc6e7aa0eedcfd8ec",
+      "candidate_rows": 0,
+      "candidate_jsonl_bytes": 0,
+      "admitted_bytes_added": 0,
+      "training_authorized": false
+    },
+    {
+      "run_id": 45373420083,
+      "run_number": 154,
+      "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45373420083",
+      "source_group": 5,
+      "artifact_id": 14909198800,
+      "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45373420083/artifacts/14909198800",
+      "artifact_sha256": "5682d2f797a45ac60aa0b5ef62ece713aee192e45bd0b35b1b3d45dc893af5b1",
+      "manifest_sha256": "0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7",
+      "candidate_rows": 0,
+      "candidate_jsonl_bytes": 0,
+      "admitted_bytes_added": 0,
+      "training_authorized": false
+    },
+    {
+      "run_id": 45503206072,
+      "run_number": 157,
+      "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45503206072",
+      "source_group": 7,
+      "artifact_id": 14971249604,
+      "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45503206072/artifacts/14971249604",
+      "artifact_sha256": "99c089bad3165b290c5d47d3677581cbe73ef1a7474579525d6c7ff272090dc5",
+      "manifest_sha256": "3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992",
+      "candidate_rows": 0,
+      "candidate_jsonl_bytes": 0,
+      "admitted_bytes_added": 0,
+      "training_authorized": false
+    },
+    {
+      "run_id": 45581135551,
+      "run_number": 158,
+      "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45581135551",
+      "source_group": 1,
+      "artifact_id": 15005629437,
+      "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45581135551/artifacts/15005629437",
+      "artifact_sha256": "63475b22bd76851a587b41c254468d7bde1eced8e9f6bdf78cec11c21a8ae7d4",
+      "manifest_sha256": "5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437",
+      "candidate_rows": 0,
+      "candidate_jsonl_bytes": 0,
+      "admitted_bytes_added": 0,
+      "training_authorized": false
     }
   ],
   "storage_remediation": {
@@ -5946,6 +6118,17 @@
     "encrypted_artifact_policy": "Encrypted artifact remains publicly downloadable ciphertext; only holders of the passphrase may decrypt. Record artifact SHA-256 and keep the passphrase outside the repository.",
     "group_rotation_fix": "Scheduled group index uses ((day_of_year - 1) * 4 + tranche_slot) modulo group_count so four daily slots cover all eight groups exactly once in each 48-hour cycle."
   },
-  "source_count": 102,
-  "previous_candidate_batch": "Run 153 (2026-11-24, group 4/8): storage gate blocked before download; 0 candidate rows, 0 downloaded/JSONL bytes, 0 durable staged bytes and 0 admitted bytes. Artifact 14876935300 and manifest hashes independently verified. No payload or source shards existed."
+  "source_count": 104,
+  "previous_candidate_batch": "Run 157 (2026-11-24, group 7/8): storage gate blocked before download; 0 candidate rows, 0 downloaded/JSONL bytes, 0 durable staged bytes and 0 admitted bytes. Artifact 14971249604 and manifest hashes independently verified.",
+  "global_g0_status": {
+    "status": "blocked_incomplete_split_inventory",
+    "reviewed_at": "2026-11-25",
+    "source_scoped_audit_run_id": 42362365447,
+    "source_scoped_audit_artifact_id": 13570263309,
+    "source_scoped_audit_script": "scripts/audit_heretic_training_corpus.py",
+    "verified_scope": "The audit script imports the exact RONIN-IA train artifact plus only explicitly supplied curated candidates; the recorded run examined 256,305 base records and 4,734 Cosmopedia rows.",
+    "missing_scope": "There is no complete immutable manifest enumerating every current corpus source and every train/validation/test/benchmark/holdout split. The 120 synthetic diagnostic questions are not the protected evaluation inventory.",
+    "reason": "The audit script explicitly states that it audits source-scoped RONIN-IA train artifacts and explicitly supplied candidates; its authorization_scope excludes validation/test/holdout and all other unreviewed candidates. This is not a complete global G-0.",
+    "policy": "Do not mark any new source training_eligible or admitted until a complete hashed inventory of all current corpus splits and protected evaluation sets has been audited for exact/approximate duplicates and contamination."
+  }
 }
