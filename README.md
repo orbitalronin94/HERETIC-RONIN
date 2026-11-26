@@ -478,3 +478,14 @@ Ambas permanecen discovery-only, sin colector ni claves API configuradas. No se 
 Se registran como discovery-only dos fuentes multilingües nuevas: [MASSIVE 1.1](https://github.com/alexa/massive) (texto CC BY 4.0, 52 idiomas; solo train, sin audio ni worker IDs) y [Universal Dependencies 2.19](https://universaldependencies.org/download.html) (402 treebanks/226 idiomas, licencias mixtas por treebank; solo CC BY 4.0/CC0 con derechos del texto despejados). Common Voice v27.0 queda sujeto a los términos MDC vigentes y a no re-hospedar datasets. Ninguna se ha descargado ni admitido. Detalles y controles en [registry](data/sources/registry.json), [inventario](data/datasets/README.md) y [cola de curación](data/drosophila/CURATION_QUEUE_2026-11-06.md).
 
 Las [runs 157](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45503206072) y [158](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45581135551) completaron el preflight pero fueron bloqueadas por falta de `HERETIC_STAGING_PASSPHRASE`. Solo publicaron manifiestos ZIP de 653 bytes; no hubo payload, staging ni admisiones. El total sigue en **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB. No se ha entrenado ni modificado ningún checkpoint.
+
+
+## Curación verificada — 2026-11-26
+
+- **United Nations Parallel Corpus v1.0:** nuevo candidato multilingüe de seis idiomas (árabe, chino, inglés, francés, ruso y español). DGACM identifica el corpus como documentos oficiales en dominio público y exige atribución. Solo se considerará el corpus 1990–2014; el archivo separado de test/dev de 2015 queda protegido. Sin descarga ni autorización de entrenamiento.
+- **MOT v1.11 (BLT Lab):** nuevo candidato CC BY 4.0, con release fijado al commit `9204cad746dfff0921e7a8f64c0cc0917bc75554`. Solo artículos textuales de autoría exclusiva VOA podrían ser elegibles. El contenido AFP/AP/Reuters y otros terceros queda excluido; si no puede verificarse por registro, no se adquiere.
+- **DCEP/JRC:** bloqueado; las condiciones oficiales conceden derechos no exclusivos para investigación, no una autorización general de entrenamiento.
+- **LR-Sum:** bloqueado; la ficha vigente lo describe como principalmente destinado a investigación y su linaje MOT/VOA necesita despeje de derechos por registro.
+- **G-0 global:** sigue bloqueado por falta de un manifiesto inmutable completo de todos los splits protegidos. Ninguna de estas fuentes es `training_eligible`.
+- [Run 162](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45708741819) y [Run 163](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45785916162): ambos preflights se bloquearon antes de descargar porque `HERETIC_STAGING_PASSPHRASE` estaba vacío. Cero payload, cero staging y cero admisiones.
+- Inventario sin cambios: **260.971 documentos / 703.593.871 bytes admitidos (0,140719 % de 500 GB)**.
