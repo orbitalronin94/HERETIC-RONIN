@@ -4220,6 +4220,206 @@
       "count_toward_admitted_bytes": false,
       "training_authorized": false,
       "acquisition_enabled": false
+    },
+    {
+      "id": "United Nations:Parallel-Corpus-v1.0-public-domain-six-languages",
+      "url": "https://www.un.org/dgacm/en/content/uncorpus",
+      "retrieval_url": "https://www.un.org/dgacm/en/content/uncorpus/Download",
+      "revision": "Official United Nations Parallel Corpus v1.0; static release of official records and parliamentary documents produced/translated 1990-2014. The publisher does not provide per-part SHA-256 values; freeze each exact download URL, part name, retrieval timestamp, byte length and calculated SHA-256 before staging.",
+      "reported_rows": null,
+      "reported_size": "Not measured; the official page reports 799,276 documents and 1,727,539 aligned document pairs across six official languages. Archive byte sizes are not published in the inspected source page.",
+      "reported_license": "The UN DGACM source explicitly describes the corpus as official records and other parliamentary documents in the public domain and states that no other restrictions apply beyond its disclaimer. Users must acknowledge the United Nations and cite Ziemski, Junczys-Dowmunt and Pouliquen (2016). No SPDX identifier is asserted because the publisher does not publish a standard SPDX licence for this public-domain corpus.",
+      "spdx_license_identifier": null,
+      "status": "candidate_discovery_only_pending_snapshot_hash_quality_and_global_g0",
+      "domains": [
+        "international law",
+        "public policy",
+        "diplomacy",
+        "economics",
+        "development",
+        "human rights",
+        "education",
+        "science",
+        "multilingual translation"
+      ],
+      "language": [
+        "ar",
+        "en",
+        "es",
+        "fr",
+        "ru",
+        "zh"
+      ],
+      "rights_caveat": "Scope is limited to the exact UN Parallel Corpus v1.0 records that DGACM describes as public domain. Do not generalise this statement to other UN repositories or publications. Exclude third-party attachments, embedded protected works, images, unrelated website material and any record whose public-domain status is contradicted by an item-level notice. Preserve UN attribution and the corpus citation. The official download page provides a separate 2015 test/development archive that must never enter training.",
+      "payload_scope": "Only the official UNv1.0-TEI language archives or documented plain-text bitexts for source documents produced/translated 1990-2014 in Arabic, Chinese, English, French, Russian and Spanish. Exclude UNv1.0.testsets.tar.gz, all development/test sets and 2015 documents.",
+      "attribution": "United Nations, Department for General Assembly and Conference Management (DGACM). Cite Ziemski, M., Junczys-Dowmunt, M. and Pouliquen, B. (2016), The United Nations Parallel Corpus, LREC 2016.",
+      "citation": "Ziemski, M., Junczys-Dowmunt, M. and Pouliquen, B. (2016), The United Nations Parallel Corpus, Language Resources and Evaluation (LREC'16), Portorož, Slovenia.",
+      "required_checks": [
+        "Freeze the official v1.0 download page, exact archive part URLs and file names for each selected language; record retrieval timestamp, remote response headers, downloaded byte length and calculated SHA-256 for every part.",
+        "Use only the 1990-2014 UN Parallel Corpus v1.0 language archives or explicitly documented bitext archives; do not fetch the separate UNv1.0.testsets.tar.gz.",
+        "Keep the official 2015 development/test sets protected and record their exact URLs and hashes in the global evaluation inventory; never copy their sentences or documents into train.",
+        "Preserve document symbol, translation job number, publication date, processing place, keywords, language, original file path, alignment links, source URL and corpus release identifier.",
+        "Confirm that every acquired document is within the corpus scope that DGACM describes as public domain; exclude item-level notices, third-party attachments, embedded protected works and unrelated UN material.",
+        "Preserve the mandatory United Nations acknowledgement and the Ziemski et al. (2016) corpus citation; do not assign CC0 or another SPDX licence that the publisher did not state.",
+        "Reassemble split archive parts only after checking the exact part set and order; verify tar/gzip integrity, XML/TEI schema, UTF-8, document completeness and cross-language symbol consistency.",
+        "Validate sentence alignment references and quality scores; detect malformed, empty, boilerplate and machine-corrupted records.",
+        "Audit human samples stratified by language, publication year, document symbol family, archive format and alignment type.",
+        "Scan for personal data, sensitive content, secrets and unsafe payloads; do not infer privacy clearance from public-domain copyright status.",
+        "Deduplicate exact and approximately against every corpus source and every validation/test/benchmark/holdout split, including the protected 2015 UN test/development material.",
+        "Require the complete global G-0 inventory and contamination audit before any training_eligible or admitted state; keep acquisition_enabled=false meanwhile."
+      ],
+      "evidence_urls": [
+        "https://www.un.org/dgacm/en/content/uncorpus",
+        "https://www.un.org/dgacm/en/content/uncorpus/Download",
+        "https://www.un.org/dgacm/es/content/uncorpus/es",
+        "https://www.un.org/dgacm/fr/content/uncorpus/fr",
+        "https://www.un.org/dgacm/en/content/gtext"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "acquisition_enabled": false,
+      "recorded_date": "2026-11-26"
+    },
+    {
+      "id": "BLTLab:Multilingual-Open-Text-v1.11-first-party-VOA-article-text-only",
+      "url": "https://github.com/bltlab/mot",
+      "retrieval_url": "https://github.com/bltlab/mot/releases/tag/v1.11",
+      "revision": "MOT release v1.11, published 2025-05-08; Git tag resolves to immutable repository commit 9204cad746dfff0921e7a8f64c0cc0917bc75554. The release API lists 54 site archives totalling 8,342,562,863 advertised bytes, but provides no SHA-256 digests; calculate and pin per-asset hashes before staging.",
+      "reported_rows": null,
+      "reported_size": "Not measured for the selected article-only payload. GitHub release metadata advertises 54 site archives totalling 8,342,562,863 bytes; this is remote advertised size, not downloaded, expanded or admitted bytes.",
+      "reported_license": "The LREC 2022 paper states that MOT's collection is CC BY 4.0 and that its source material is public domain. VOA's official copyright notice narrows public-domain status to material produced exclusively by VOA; the same notice identifies AFP, AP and Reuters content as third-party copyrighted material that may not be redistributed. The repository MIT licence covers software, not the corpus.",
+      "spdx_license_identifier": "CC-BY-4.0",
+      "license_exact_allowlist": [
+        "CC-BY-4.0"
+      ],
+      "status": "candidate_discovery_only_pending_article_level_first_party_rights_snapshot_quality_and_global_g0",
+      "domains": [
+        "international news",
+        "politics",
+        "economics",
+        "science",
+        "health",
+        "education",
+        "culture",
+        "technology",
+        "society"
+      ],
+      "language": [
+        "The v1.11 README lists 43 release languages; the 2022 paper describes the first release as 44 languages. Enumerate the exact language/site archive manifest from v1.11 and do not assume the counts are interchangeable."
+      ],
+      "rights_caveat": "MOT is a VOA-site crawl. VOA states that only material produced exclusively by VOA is public domain; VOA sites can also contain AFP, Associated Press, Reuters and other third-party content that is not redistributable. The MOT collection CC BY 4.0 statement does not override those upstream rights. Require verifiable first-party VOA authorship/source metadata for each article and exclude every ambiguous or third-party-derived record. The release contains multiple content types; exclude audio, video, photos, captions, snippets, media assets, logos and trademarks. If first-party provenance cannot be established at record level, do not acquire that archive.",
+      "payload_scope": "Text of content-type=article only, from MOT v1.11 site archives, and only records whose first-party VOA authorship and source rights are verifiable. Exclude audio, video, photo, captions, snippets, third-party wire stories and all media assets.",
+      "attribution": "Chester Palen-Michel, June Kim and Constantine Lignos; cite Palen-Michel, Kim and Lignos (2022), Multilingual Open Text Release 1: Public Domain News in 44 Languages, LREC 2022. Attribute the originating VOA site for each record.",
+      "citation": "Palen-Michel, C., Kim, J. and Lignos, C. (2022), Multilingual Open Text Release 1: Public Domain News in 44 Languages, Proceedings of LREC 2022, pp. 2080-2089.",
+      "required_checks": [
+        "Pin the v1.11 release and repository commit 9204cad746dfff0921e7a8f64c0cc0917bc75554; freeze the exact selected asset IDs, names, URLs, remote sizes, retrieval timestamps, response headers and calculated SHA-256 values.",
+        "Treat the 8,342,562,863-byte sum of 54 release assets as remote advertised size only; do not count it as downloaded or admitted data.",
+        "Verify the v1.11 data release and paper's CC BY 4.0 statement separately from the repository MIT software licence.",
+        "Read the official VOA copyright notice for each source site and retain only material produced exclusively by VOA; exclude AFP, Associated Press, Reuters and any other third-party material.",
+        "Require record-level original URL, site/language code, author/byline, publication date and content type; if first-party authorship or third-party exclusions cannot be verified, hold or reject the record.",
+        "Select only content-type=article text; exclude audio, video, photo, captions, snippets, thumbnails, images, graphics, logos, trademarks and all non-text assets.",
+        "Preserve article ID, original URL, title, author, publication date, language code, source site, content type, v1.11 release, asset filename, split and per-record provenance.",
+        "Resolve the discrepancy between the v1.11 README's 43 languages and the 2022 paper's 44-language description using the exact pinned release manifest; do not infer language coverage.",
+        "Because MOT has no official train/validation/test split, create a deterministic document-level split before any use and keep all held-out partitions protected; never ingest external evaluation data.",
+        "Validate tar member paths against traversal, archive integrity, JSON schema, UTF-8, text quality, language identification, article completeness and duplicated content.",
+        "Audit samples stratified by language, VOA site, year, topic, author and article format; inspect original pages for third-party wire content.",
+        "Scan PII, sensitive personal data, secrets and unsafe payloads; public-domain status does not waive privacy checks.",
+        "Deduplicate exact and approximately against every corpus source and every validation/test/benchmark/holdout split.",
+        "Require the complete global G-0 inventory and contamination audit before any training_eligible or admitted state; keep acquisition_enabled=false until then."
+      ],
+      "evidence_urls": [
+        "https://github.com/bltlab/mot/tree/9204cad746dfff0921e7a8f64c0cc0917bc75554",
+        "https://github.com/bltlab/mot/releases/tag/v1.11",
+        "https://github.com/bltlab/mot/blob/9204cad746dfff0921e7a8f64c0cc0917bc75554/README.md",
+        "https://aclanthology.org/2022.lrec-1.224/",
+        "https://www.voanews.com/p/5338.html",
+        "https://www.usagm.gov/work-with-us/content-requests/voa/"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "acquisition_enabled": false,
+      "recorded_date": "2026-11-26"
+    },
+    {
+      "id": "European Commission:JRC-DCEP-non-exclusive-research-purpose-only",
+      "url": "https://joint-research-centre.ec.europa.eu/language-technology-resources/dcep-digital-corpus-european-parliament_en",
+      "retrieval_url": "https://joint-research-centre.ec.europa.eu/language-technology-resources/dcep-digital-corpus-european-parliament_en",
+      "revision": "DCEP release covering European Parliament texts produced 2001-2012; no immutable data archive commit or per-file SHA-256 was established in this review.",
+      "reported_rows": null,
+      "reported_size": "Not measured; the JRC page reports approximately 1.5 million documents and 1.37 billion words in 24 languages.",
+      "reported_license": "The official DCEP usage conditions state that the data is the exclusive property of the European Parliament and that it grants non-exclusive, worldwide rights free of charge for research purposes. This does not establish a general commercial-use or unrestricted training permission.",
+      "spdx_license_identifier": null,
+      "status": "blocked_research_only_scope_no_general_training_permission",
+      "domains": [
+        "European Parliament documents",
+        "public policy",
+        "law",
+        "economics",
+        "education",
+        "science"
+      ],
+      "language": [
+        "23 official EU languages plus Turkish"
+      ],
+      "rights_caveat": "The official terms restrict the granted reuse right to research purposes and retain European Parliament ownership. This is outside the current general training-use policy unless the rights holder grants additional permission. Do not treat the EUPL licence on extraction software as a licence for the DCEP data.",
+      "required_checks": [
+        "Do not acquire or ingest DCEP under the current policy; obtain explicit written permission covering model training and any intended use before reconsideration.",
+        "Do not infer data rights from the EUPL licence of accompanying extraction software."
+      ],
+      "evidence_urls": [
+        "https://joint-research-centre.ec.europa.eu/language-technology-resources/dcep-digital-corpus-european-parliament_en",
+        "https://joint-research-centre.ec.europa.eu/language-technology-resources_en"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "acquisition_enabled": false,
+      "recorded_date": "2026-11-26"
+    },
+    {
+      "id": "BLTLab:LR-Sum-research-purpose-card-and-VOA-upstream-rights-pending",
+      "url": "https://huggingface.co/datasets/bltlab/lr-sum",
+      "retrieval_url": "https://github.com/bltlab/lr-sum",
+      "revision": "Dataset card pinned to Hugging Face dataset repository revision 2aa3c1dace5f266e1860ca8bba8daef28ea95749; the current card and release metadata must be re-pinned before any future review.",
+      "reported_rows": null,
+      "reported_size": "Not measured; the dataset card advertises 303,052 rows and 723 MB. These are publisher-reported figures, not downloaded or admitted bytes.",
+      "reported_license": "The dataset card declares CC BY 4.0, but its current card also says the dataset is primarily released for research. The dataset derives from MOT v1.6/VOA source material, whose rights exclude third-party AFP, AP and Reuters content. The licence declaration alone does not clear all upstream records.",
+      "spdx_license_identifier": "CC-BY-4.0",
+      "license_exact_allowlist": [
+        "CC-BY-4.0"
+      ],
+      "status": "blocked_research_only_scope_and_upstream_rights_unresolved",
+      "domains": [
+        "multilingual news summarization",
+        "abstractive summarization",
+        "extractive summarization"
+      ],
+      "language": [
+        "39 languages in the current dataset card; the paper describes 40. Verify the pinned release manifest."
+      ],
+      "rights_caveat": "The current dataset card says it is primarily released for research, which is not sufficient for the present general training policy. It is derived from MOT v1.6/VOA text and does not provide a complete per-record upstream rights audit in the inspected card. VOA's official notice excludes third-party AFP/AP/Reuters content from redistribution. Keep blocked unless the dataset owner clarifies the research-purpose statement and supplies auditable per-record first-party provenance.",
+      "payload_scope": "No payload acquisition under current policy. If reconsidered, require text-only article/summary pairs with exact CC BY 4.0, per-record source URL and first-party VOA rights clearance; exclude any third-party source and any evaluation split.",
+      "attribution": "Chester Palen-Michel and Constantine Lignos; cite Palen-Michel and Lignos (2023), LR-Sum: Summarization for Less-Resourced Languages, Findings of ACL 2023, DOI 10.18653/v1/2023.findings-acl.427.",
+      "required_checks": [
+        "Keep acquisition disabled while the dataset card describes the resource as primarily released for research.",
+        "Require written clarification from the dataset owners that the research-purpose statement does not restrict the proposed training use.",
+        "Pin the exact dataset release and all file revisions; calculate per-file SHA-256 and preserve the original Hub metadata.",
+        "Verify the CC BY 4.0 dataset licence separately from the upstream MOT v1.6 content rights.",
+        "Require per-record article URL, language, author/site, and evidence that source text was produced exclusively by VOA; exclude AFP, AP, Reuters and all other third-party material.",
+        "Identify the exact official train split and protect any evaluation data; the current card exposes a test split for at least some language subsets, which must never be ingested.",
+        "Audit summary quality, factual consistency, source-summary alignment, language coverage and duplicates; retain author attribution and paper citation.",
+        "Require complete global G-0 and holdout-contamination checks before any training_eligible or admitted state."
+      ],
+      "evidence_urls": [
+        "https://huggingface.co/datasets/bltlab/lr-sum",
+        "https://huggingface.co/datasets/bltlab/lr-sum/blob/2aa3c1dace5f266e1860ca8bba8daef28ea95749/README.md",
+        "https://github.com/bltlab/lr-sum",
+        "https://aclanthology.org/2023.findings-acl.427/",
+        "https://www.voanews.com/p/5338.html"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "acquisition_enabled": false,
+      "recorded_date": "2026-11-26"
     }
   ],
   "target_library_bytes": 500000000000,
@@ -4274,7 +4474,7 @@
     "2026-11-08 sample audit: Aya candidate sample lacked language/language_code/annotation_type in the exported source_metadata and included a poem-like full text. Updated collector to preserve allowed metadata while excluding user_id; content rights remain unresolved, so Aya stays candidate-only.",
     "2026-11-12 acquisition run 43176267906 (group 5/8): 170,000 ephemeral candidate rows / 462,861,425 JSONL bytes in the runner; 4 source shards complete, 1 source failed. Only the 2,721-byte manifest artifact was retained; 0 durable staged bytes and 0 admitted bytes. Per-shard hashes are manifest-reported but cannot be reverified without payload files. Global G-0, near-dedup, holdout, human review, comprehensive PII/secrets/malware checks remain pending."
   ],
-  "last_candidate_batch": "Run 158 (2026-11-25, group 1/8): storage gate blocked before download; 0 candidate rows, 0 downloaded/JSONL bytes, 0 durable staged bytes and 0 admitted bytes. Artifact 15005629437 and manifest hashes independently verified.",
+  "last_candidate_batch": "Run 163 (2026-11-26, group 5/8): storage gate blocked before download; 0 candidate rows, 0 downloaded/JSONL bytes, 0 durable staged bytes and 0 admitted bytes. Artifact 15100551941; ZIP SHA-256 1cecaa91ba593acfdee3925a060a21eb2a0bb5818c239b72fb55728960a2e1b4; manifest SHA-256 0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7.",
   "next_candidate_batch": "Do not download candidate payloads until durable private storage or HERETIC_STAGING_PASSPHRASE (at least 32 characters) is configured. MASSIVE 1.1 is text-only CC-BY-4.0 candidate; Universal Dependencies 2.19 is mixed-license and must be filtered per treebank. Common Voice v27.0 is subject to current MDC-only/no-mirroring terms and prompt-level source lineage. Global G-0 remains blocked until every corpus split and protected holdout has a complete immutable inventory; no new source may be admitted before that audit.",
   "audit_summary": {
     "run_id": 42288107561,
@@ -4323,15 +4523,15 @@
     "global_g0_status": "blocked_incomplete_split_inventory"
   },
   "last_candidate_batch_details": {
-    "run_id": 45581135551,
-    "run_number": 158,
-    "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45581135551",
-    "head_sha": "2f99fa661076d537e722c6d37f5af05137452ab7",
-    "created_at": "2026-11-25T08:59:20Z",
-    "updated_at": "2026-11-25T08:59:31Z",
+    "run_id": 45785916162,
+    "run_number": 163,
+    "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45785916162",
+    "head_sha": "a9a124dd38c35d5f9c2a3a503f77bc4869a594af",
+    "created_at": "2026-11-26T08:45:50Z",
+    "updated_at": "2026-11-26T08:46:04Z",
     "conclusion": "success",
-    "workflow_mode": "scheduled acquisition preflight; eight deterministic source groups; group 1 of 8; storage gate blocked before any download",
-    "source_group": 1,
+    "workflow_mode": "scheduled acquisition preflight; eight deterministic source groups; group 5 of 8; storage gate blocked before any download",
+    "source_group": 5,
     "source_group_count": 8,
     "candidate_rows": 0,
     "candidate_jsonl_bytes": 0,
@@ -4353,21 +4553,21 @@
     "artifact_payload_bytes": 0,
     "artifact_zip_bytes": 653,
     "artifact_manifest_bytes": 871,
-    "artifact_id": 15005629437,
-    "artifact_name": "heretic-open-source-manifest-45581135551-group-1",
-    "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45581135551/artifacts/15005629437",
-    "artifact_sha256": "63475b22bd76851a587b41c254468d7bde1eced8e9f6bdf78cec11c21a8ae7d4",
-    "artifact_digest_source": "GitHub Actions artifact SHA-256 independently verified by downloading the ZIP and recalculating its SHA-256.",
-    "artifact_expires_at": "2027-02-23T08:59:21Z",
+    "artifact_id": 15100551941,
+    "artifact_name": "heretic-open-source-manifest-45785916162-group-5",
+    "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45785916162/artifacts/15100551941",
+    "artifact_sha256": "1cecaa91ba593acfdee3925a060a21eb2a0bb5818c239b72fb55728960a2e1b4",
+    "artifact_digest_source": "GitHub Actions artifact SHA-256 reported by the upload log and independently verified by downloading the ZIP and recalculating its SHA-256.",
+    "artifact_expires_at": "2027-02-24T08:45:50Z",
     "manifest_bytes": 871,
-    "manifest_sha256": "5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437",
+    "manifest_sha256": "0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7",
     "source_shard_hashes_status": "No shards existed because the storage gate blocked before download; no shard hashes apply.",
     "admitted_rows_added": 0,
     "admitted_bytes_added": 0,
     "training_authorized": false,
     "human_sample_review": "NOT_APPLICABLE; no candidate payload downloaded.",
     "checks": {
-      "storage_preflight": "BLOCKED; HERETIC_STAGING_PASSPHRASE absent or shorter than 32 characters for public-repository encrypted staging",
+      "storage_preflight": "BLOCKED; HERETIC_STAGING_PASSPHRASE was empty in the job environment for public-repository encrypted staging.",
       "payload_downloaded": false,
       "streamed_train_only": "NOT_RUN",
       "exact_dedup_within_source": "NOT_RUN",
@@ -4379,25 +4579,25 @@
       "privacy_secrets_malware": "NOT_RUN",
       "license_review": "NOT_RUN"
     },
-    "storage_risk": "Public repository storage gate prevented all candidate downloads. Only the zero-row manifest was uploaded; no payload or samples were retained.",
+    "storage_risk": "The public repository storage gate prevented all candidate downloads. Only the zero-row manifest was uploaded; no payload or samples were retained.",
     "storage_gate": {
       "status": "blocked",
       "required_secret": "HERETIC_STAGING_PASSPHRASE",
       "payload_downloaded": false,
-      "reason": "The secret was absent or shorter than 32 characters."
+      "reason": "The secret was empty in the workflow environment; the workflow requires at least 32 characters."
     },
     "note": "Successful workflow execution means the preflight and zero-byte block completed correctly. No source was contacted for payload, no rows or candidate bytes were produced, and no data was staged or admitted."
   },
   "previous_candidate_batch_details": {
-    "run_id": 45503206072,
-    "run_number": 157,
-    "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45503206072",
-    "head_sha": "2f99fa661076d537e722c6d37f5af05137452ab7",
-    "created_at": "2026-11-24T22:41:00Z",
-    "updated_at": "2026-11-24T22:41:11Z",
+    "run_id": 45708741819,
+    "run_number": 162,
+    "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45708741819",
+    "head_sha": "a9a124dd38c35d5f9c2a3a503f77bc4869a594af",
+    "created_at": "2026-11-25T21:55:37Z",
+    "updated_at": "2026-11-25T21:55:54Z",
     "conclusion": "success",
-    "workflow_mode": "scheduled acquisition preflight; eight deterministic source groups; group 7 of 8; storage gate blocked before any download",
-    "source_group": 7,
+    "workflow_mode": "scheduled acquisition preflight; eight deterministic source groups; group 3 of 8; storage gate blocked before any download",
+    "source_group": 3,
     "source_group_count": 8,
     "candidate_rows": 0,
     "candidate_jsonl_bytes": 0,
@@ -4419,21 +4619,21 @@
     "artifact_payload_bytes": 0,
     "artifact_zip_bytes": 653,
     "artifact_manifest_bytes": 871,
-    "artifact_id": 14971249604,
-    "artifact_name": "heretic-open-source-manifest-45503206072-group-7",
-    "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45503206072/artifacts/14971249604",
-    "artifact_sha256": "99c089bad3165b290c5d47d3677581cbe73ef1a7474579525d6c7ff272090dc5",
-    "artifact_digest_source": "GitHub Actions artifact SHA-256 independently verified by downloading the ZIP and recalculating its SHA-256.",
-    "artifact_expires_at": "2027-02-22T22:41:00Z",
+    "artifact_id": 15066562283,
+    "artifact_name": "heretic-open-source-manifest-45708741819-group-3",
+    "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45708741819/artifacts/15066562283",
+    "artifact_sha256": "73d43b33e273ceb588503f9a9e1366da21b7311d5da79a3368416afcb42a8df1",
+    "artifact_digest_source": "GitHub Actions artifact SHA-256 reported by the upload log and independently verified by downloading the ZIP and recalculating its SHA-256.",
+    "artifact_expires_at": "2027-02-23T21:55:37Z",
     "manifest_bytes": 871,
-    "manifest_sha256": "3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992",
+    "manifest_sha256": "2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26",
     "source_shard_hashes_status": "No shards existed because the storage gate blocked before download; no shard hashes apply.",
     "admitted_rows_added": 0,
     "admitted_bytes_added": 0,
     "training_authorized": false,
     "human_sample_review": "NOT_APPLICABLE; no candidate payload downloaded.",
     "checks": {
-      "storage_preflight": "BLOCKED; HERETIC_STAGING_PASSPHRASE absent or shorter than 32 characters for public-repository encrypted staging",
+      "storage_preflight": "BLOCKED; HERETIC_STAGING_PASSPHRASE was empty in the job environment for public-repository encrypted staging.",
       "payload_downloaded": false,
       "streamed_train_only": "NOT_RUN",
       "exact_dedup_within_source": "NOT_RUN",
@@ -4445,12 +4645,12 @@
       "privacy_secrets_malware": "NOT_RUN",
       "license_review": "NOT_RUN"
     },
-    "storage_risk": "Public repository storage gate prevented all candidate downloads. Only the zero-row manifest was uploaded; no payload or samples were retained.",
+    "storage_risk": "The public repository storage gate prevented all candidate downloads. Only the zero-row manifest was uploaded; no payload or samples were retained.",
     "storage_gate": {
       "status": "blocked",
       "required_secret": "HERETIC_STAGING_PASSPHRASE",
       "payload_downloaded": false,
-      "reason": "The secret was absent or shorter than 32 characters."
+      "reason": "The secret was empty in the workflow environment; the workflow requires at least 32 characters."
     },
     "note": "Successful workflow execution means the preflight and zero-byte block completed correctly. No source was contacted for payload, no rows or candidate bytes were produced, and no data was staged or admitted."
   },
@@ -6098,6 +6298,42 @@
       "candidate_jsonl_bytes": 0,
       "admitted_bytes_added": 0,
       "training_authorized": false
+    },
+    {
+      "run_id": 45708741819,
+      "run_number": 162,
+      "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45708741819",
+      "head_sha": "a9a124dd38c35d5f9c2a3a503f77bc4869a594af",
+      "created_at": "2026-11-25T21:55:37Z",
+      "updated_at": "2026-11-25T21:55:54Z",
+      "conclusion": "success",
+      "source_group": 3,
+      "artifact_id": 15066562283,
+      "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45708741819/artifacts/15066562283",
+      "artifact_sha256": "73d43b33e273ceb588503f9a9e1366da21b7311d5da79a3368416afcb42a8df1",
+      "manifest_sha256": "2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26",
+      "candidate_rows": 0,
+      "candidate_jsonl_bytes": 0,
+      "admitted_bytes_added": 0,
+      "training_authorized": false
+    },
+    {
+      "run_id": 45785916162,
+      "run_number": 163,
+      "run_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45785916162",
+      "head_sha": "a9a124dd38c35d5f9c2a3a503f77bc4869a594af",
+      "created_at": "2026-11-26T08:45:50Z",
+      "updated_at": "2026-11-26T08:46:04Z",
+      "conclusion": "success",
+      "source_group": 5,
+      "artifact_id": 15100551941,
+      "artifact_url": "https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45785916162/artifacts/15100551941",
+      "artifact_sha256": "1cecaa91ba593acfdee3925a060a21eb2a0bb5818c239b72fb55728960a2e1b4",
+      "manifest_sha256": "0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7",
+      "candidate_rows": 0,
+      "candidate_jsonl_bytes": 0,
+      "admitted_bytes_added": 0,
+      "training_authorized": false
     }
   ],
   "storage_remediation": {
@@ -6120,17 +6356,18 @@
     "encrypted_artifact_policy": "Encrypted artifact remains publicly downloadable ciphertext; only holders of the passphrase may decrypt. Record artifact SHA-256 and keep the passphrase outside the repository.",
     "group_rotation_fix": "Scheduled group index uses ((day_of_year - 1) * 4 + tranche_slot) modulo group_count so four daily slots cover all eight groups exactly once in each 48-hour cycle."
   },
-  "source_count": 104,
-  "previous_candidate_batch": "Run 157 (2026-11-24, group 7/8): storage gate blocked before download; 0 candidate rows, 0 downloaded/JSONL bytes, 0 durable staged bytes and 0 admitted bytes. Artifact 14971249604 and manifest hashes independently verified.",
+  "source_count": 108,
+  "previous_candidate_batch": "Run 162 (2026-11-25, group 3/8): storage gate blocked before download; 0 candidate rows, 0 downloaded/JSONL bytes, 0 durable staged bytes and 0 admitted bytes. Artifact 15066562283; ZIP SHA-256 73d43b33e273ceb588503f9a9e1366da21b7311d5da79a3368416afcb42a8df1; manifest SHA-256 2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26.",
   "global_g0_status": {
     "status": "blocked_incomplete_split_inventory",
-    "reviewed_at": "2026-11-25",
+    "reviewed_at": "2026-11-26",
     "source_scoped_audit_run_id": 42362365447,
     "source_scoped_audit_artifact_id": 13570263309,
     "source_scoped_audit_script": "scripts/audit_heretic_training_corpus.py",
     "verified_scope": "The audit script imports the exact RONIN-IA train artifact plus only explicitly supplied curated candidates; the recorded run examined 256,305 base records and 4,734 Cosmopedia rows.",
     "missing_scope": "There is no complete immutable manifest enumerating every current corpus source and every train/validation/test/benchmark/holdout split. The 120 synthetic diagnostic questions are not the protected evaluation inventory.",
     "reason": "The audit script explicitly states that it audits source-scoped RONIN-IA train artifacts and explicitly supplied candidates; its authorization_scope excludes validation/test/holdout and all other unreviewed candidates. This is not a complete global G-0.",
-    "policy": "Do not mark any new source training_eligible or admitted until a complete hashed inventory of all current corpus splits and protected evaluation sets has been audited for exact/approximate duplicates and contamination."
+    "policy": "Do not mark any new source training_eligible or admitted until a complete hashed inventory of all current corpus splits and protected evaluation sets has been audited for exact/approximate duplicates and contamination.",
+    "latest_review_note": "Rechecked the source-scoped audit script and current repository inventory on 2026-11-26. No complete immutable inventory of every train/validation/test/benchmark/holdout split exists; G-0 remains blocked and all new sources remain discovery-only or blocked."
   }
 }

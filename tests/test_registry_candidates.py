@@ -334,21 +334,23 @@ class RegistryCandidateTests(unittest.TestCase):
     def test_latest_scheduled_acquisitions_are_verified_zero_byte_storage_blocks(self):
         last = self.registry["last_candidate_batch_details"]
         previous = self.registry["previous_candidate_batch_details"]
-        self.assertEqual(last["run_id"], 45581135551)
-        self.assertEqual(last["run_number"], 158)
-        self.assertEqual(previous["run_id"], 45503206072)
-        self.assertEqual(previous["run_number"], 157)
-        self.assertEqual(last["source_group"], 1)
-        self.assertEqual(previous["source_group"], 7)
-        self.assertEqual(last["artifact_id"], 15005629437)
-        self.assertEqual(previous["artifact_id"], 14971249604)
-        self.assertEqual(last["artifact_sha256"], "63475b22bd76851a587b41c254468d7bde1eced8e9f6bdf78cec11c21a8ae7d4")
-        self.assertEqual(previous["artifact_sha256"], "99c089bad3165b290c5d47d3677581cbe73ef1a7474579525d6c7ff272090dc5")
-        self.assertEqual(last["manifest_sha256"], "5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437")
-        self.assertEqual(previous["manifest_sha256"], "3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992")
+        self.assertEqual(last["run_id"], 45785916162)
+        self.assertEqual(last["run_number"], 163)
+        self.assertEqual(previous["run_id"], 45708741819)
+        self.assertEqual(previous["run_number"], 162)
+        self.assertEqual(last["source_group"], 5)
+        self.assertEqual(previous["source_group"], 3)
+        self.assertEqual(last["artifact_id"], 15100551941)
+        self.assertEqual(previous["artifact_id"], 15066562283)
+        self.assertEqual(last["artifact_sha256"], "1cecaa91ba593acfdee3925a060a21eb2a0bb5818c239b72fb55728960a2e1b4")
+        self.assertEqual(previous["artifact_sha256"], "73d43b33e273ceb588503f9a9e1366da21b7311d5da79a3368416afcb42a8df1")
+        self.assertEqual(last["manifest_sha256"], "0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7")
+        self.assertEqual(previous["manifest_sha256"], "2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26")
         history = {batch["run_number"]: batch for batch in self.registry["historical_candidate_batches"] if batch.get("run_number") is not None}
         self.assertEqual(history[149]["artifact_id"], 14770830618)
         self.assertEqual(history[150]["artifact_id"], 14800025470)
+        self.assertEqual(history[162]["artifact_id"], 15066562283)
+        self.assertEqual(history[163]["artifact_id"], 15100551941)
         for batch in (last, previous):
             self.assertEqual(batch["candidate_rows"], 0)
             self.assertEqual(batch["candidate_jsonl_bytes"], 0)
@@ -364,6 +366,55 @@ class RegistryCandidateTests(unittest.TestCase):
             self.assertEqual(batch["manifest_bytes"], 871)
             self.assertEqual(batch["artifact_zip_bytes"], 653)
 
+
+
+    def test_un_parallel_corpus_v10_is_public_domain_six_language_train_only_candidate(self):
+        source = self.source("United Nations:Parallel-Corpus-v1.0-public-domain-six-languages")
+        self.assert_discovery_only(source)
+        self.assertIsNone(source["spdx_license_identifier"])
+        self.assertIs(source["acquisition_enabled"], False)
+        self.assertIn("no other restrictions", source["reported_license"].casefold())
+        self.assertIn("2015", source["rights_caveat"])
+        self.assertIn("UNv1.0.testsets.tar.gz", " ".join(source["required_checks"]))
+        self.assertIn("global g-0", " ".join(source["required_checks"]).casefold())
+        self.assertEqual(set(source["language"]), {"ar", "en", "es", "fr", "ru", "zh"})
+        self.assertGreaterEqual(len(source["evidence_urls"]), 5)
+
+    def test_mot_v111_requires_first_party_voa_article_text_and_excludes_wire_content(self):
+        source = self.source("BLTLab:Multilingual-Open-Text-v1.11-first-party-VOA-article-text-only")
+        self.assert_discovery_only(source)
+        self.assertEqual(source["spdx_license_identifier"], "CC-BY-4.0")
+        self.assertEqual(source["license_exact_allowlist"], ["CC-BY-4.0"])
+        self.assertIs(source["acquisition_enabled"], False)
+        self.assertIn("9204cad746dfff0921e7a8f64c0cc0917bc75554", source["revision"])
+        self.assertIn("AFP", source["rights_caveat"])
+        self.assertIn("Reuters", source["rights_caveat"])
+        self.assertIn("article", source["payload_scope"])
+        self.assertIn("43", source["language"][0])
+        checks = " ".join(source["required_checks"]).casefold()
+        self.assertIn("content-type=article", checks)
+        self.assertIn("first-party", checks)
+        self.assertIn("global g-0", checks)
+        self.assertGreaterEqual(len(source["evidence_urls"]), 6)
+
+    def test_jrc_dcep_is_blocked_for_research_only_reuse_scope(self):
+        source = self.source("European Commission:JRC-DCEP-non-exclusive-research-purpose-only")
+        self.assertTrue(source["status"].startswith("blocked_research_only"))
+        self.assertIsNone(source["spdx_license_identifier"])
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIs(source["acquisition_enabled"], False)
+        self.assertIn("research purposes", source["reported_license"])
+
+    def test_lr_sum_is_blocked_pending_research_scope_and_upstream_rights(self):
+        source = self.source("BLTLab:LR-Sum-research-purpose-card-and-VOA-upstream-rights-pending")
+        self.assertTrue(source["status"].startswith("blocked_research_only"))
+        self.assertEqual(source["spdx_license_identifier"], "CC-BY-4.0")
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIs(source["acquisition_enabled"], False)
+        self.assertIn("primarily released for research", source["reported_license"])
+        self.assertIn("AFP", source["rights_caveat"])
 
 
 if __name__ == "__main__":
