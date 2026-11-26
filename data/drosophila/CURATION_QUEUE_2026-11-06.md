@@ -723,7 +723,7 @@ Los [términos oficiales](https://commonvoice.mozilla.org/oc/terms), efectivos 2
 
 ### Preflights 162 y 163
 
-- [Run 162](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45708741819), grupo 3/8, artifact [15066562283](https://github.com/orbitalronin94/HERETIC-RONIN/HERETIC-RONIN/actions/runs/45708741819/artifacts/15066562283): ZIP 653 bytes, SHA-256 `73d43b33e273ceb588503f9a9e1366da21b7311d5da79a3368416afcb42a8df1`; manifiesto 871 bytes, SHA-256 `2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26`.
+- [Run 162](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45708741819), grupo 3/8, artifact [15066562283](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45708741819/artifacts/15066562283): ZIP 653 bytes, SHA-256 `73d43b33e273ceb588503f9a9e1366da21b7311d5da79a3368416afcb42a8df1`; manifiesto 871 bytes, SHA-256 `2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26`.
 - [Run 163](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45785916162), grupo 5/8, artifact [15100551941](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45785916162/artifacts/15100551941): ZIP 653 bytes, SHA-256 `1cecaa91ba593acfdee3925a060a21eb2a0bb5818c239b72fb55728960a2e1b4`; manifiesto 871 bytes, SHA-256 `0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7`.
 - Ambos manifiestos se descargaron y verificaron. Los logs muestran `HERETIC_STAGING_PASSPHRASE` vacío; el gate bloqueó antes de instalar las herramientas de descarga. 0 filas, 0 bytes remotos medidos, 0 descargados, 0 staged y 0 admitidos.
 - Inventario: **260.971 documentos / 703.593.871 bytes**, sin variación. G-0 global permanece bloqueado; no se han ejecutado deduplicación ni revisión humana sobre nuevos payloads.
