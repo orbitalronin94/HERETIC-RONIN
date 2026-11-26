@@ -1,6 +1,6 @@
 # HERETIC-RONIN — biblioteca de datasets
 
-Actualizado: 2026-11-25. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
+Actualizado: 2026-11-26. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
 
 ## Resumen verificable
 
@@ -825,3 +825,17 @@ Los términos oficiales vigentes desde 2025-10-31 disponen que los datasets se o
 - [Run 158](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45581135551), grupo 1/8, artifact [15005629437](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45581135551/artifacts/15005629437): ZIP 653 bytes, SHA-256 `63475b22bd76851a587b41c254468d7bde1eced8e9f6bdf78cec11c21a8ae7d4`; manifiesto JSON 871 bytes, SHA-256 `5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437`.
 - Ambos terminaron `success` porque el preflight completó correctamente, pero el storage gate bloqueó antes de contactar fuentes o descargar payload: 0 filas, 0 bytes remotos/descargados medidos, 0 staged y 0 admitidos. Motivo: falta `HERETIC_STAGING_PASSPHRASE` de al menos 32 caracteres. Los ZIP contienen solo manifiestos, no corpus.
 - **Admisiones nuevas: 0 documentos / 0 bytes.** Inventario admitido sin cambios: **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB.
+
+
+## Descubrimientos y preflights — 2026-11-26
+
+| Fuente | Alcance revisado | Estado | Motivo / siguiente gate |
+|---|---|---|---|
+| United Nations Parallel Corpus v1.0 | Documentos oficiales 1990–2014, seis idiomas; atribución UN obligatoria | Candidata discovery-only | Fijar y hashear cada parte; excluir por completo test/dev 2015; calidad, privacidad y G-0 global |
+| MOT v1.11 | CC BY 4.0; 54 archivos de sitio anunciados por 8.342.562.863 bytes en total | Candidata discovery-only | Solo texto de artículos de autoría exclusiva VOA; excluir AFP/AP/Reuters y medios; hashes por asset, revisión humana y G-0 |
+| JRC DCEP | Corpus multilingüe del Parlamento Europeo | Bloqueado | La cesión oficial de derechos es para fines de investigación |
+| LR-Sum | Resúmenes en 39/40 idiomas declarados según revisión | Bloqueado | La ficha lo describe como principalmente destinado a investigación; linaje VOA/terceros sin auditoría por registro |
+
+**Runs recientes:** [162](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45708741819), artifact [15066562283](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45708741819/artifacts/15066562283), ZIP SHA-256 `73d43b33e273ceb588503f9a9e1366da21b7311d5da79a3368416afcb42a8df1`, manifiesto SHA-256 `2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26`; [163](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45785916162), artifact [15100551941](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45785916162/artifacts/15100551941), ZIP SHA-256 `1cecaa91ba593acfdee3925a060a21eb2a0bb5818c239b72fb55728960a2e1b4`, manifiesto SHA-256 `0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7`. Cada ZIP mide 653 bytes y contiene un JSON de 871 bytes; ambos manifiestos indican `blocked_storage_gate`, cero filas, cero payload y `training_authorized=false`.
+
+**Admisiones nuevas: 0 documentos / 0 bytes.** El inventario sigue en 260.971 documentos y 703.593.871 bytes admitidos. G-0 global continúa bloqueado; no se ha ejecutado deduplicación ni contaminación sobre nuevos payloads porque no hubo descargas.
