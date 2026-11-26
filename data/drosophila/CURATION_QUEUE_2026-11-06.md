@@ -696,3 +696,34 @@ Los [términos oficiales](https://commonvoice.mozilla.org/oc/terms), efectivos 2
 - [Run 158](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45581135551), grupo 1/8, artifact 15005629437: ZIP SHA-256 `63475b22bd76851a587b41c254468d7bde1eced8e9f6bdf78cec11c21a8ae7d4`; manifiesto SHA-256 `5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437`.
 - Ambos ZIP contienen únicamente un manifiesto de 871 bytes; el ZIP mide 653 bytes. Storage gate bloqueado antes de descargar por falta de `HERETIC_STAGING_PASSPHRASE` (mínimo 32 caracteres). 0 filas, 0 bytes de payload, 0 staged, 0 admitted.
 - Total admitido: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB. Nuevas admisiones: **0**.
+
+
+## Revisión diaria — 2026-11-26
+
+### United Nations Parallel Corpus v1.0 — candidato de alta prioridad
+
+- Fuente primaria: https://www.un.org/dgacm/en/content/uncorpus y https://www.un.org/dgacm/en/content/uncorpus/Download.
+- DGACM describe el corpus como documentos oficiales y parlamentarios de la ONU en dominio público; su disclaimer indica que no se aplican otras restricciones y exige atribución/cita. No se asigna SPDX porque la fuente no publica un identificador estándar.
+- Cobertura oficial: árabe, chino, inglés, francés, ruso y español; 799.276 documentos y 1.727.539 pares alineados anunciados por la fuente. No son bytes medidos.
+- Alcance propuesto: solo v1.0 1990–2014. Excluir el archivo separado `UNv1.0.testsets.tar.gz` y cualquier test/dev de 2015. Preservar símbolo documental, número de traducción, fecha, keywords y alineamientos.
+- Antes de staging: fijar cada parte y URL, hash SHA-256, longitud, estructura TEI/XML, alineamiento, calidad, privacidad y muestras por idioma/año. Estado discovery-only, acquisition_enabled=false, training_authorized=false.
+
+### Multilingual Open Text v1.11 — candidato condicionado
+
+- Release fijado: https://github.com/bltlab/mot/releases/tag/v1.11; tag resuelto a commit `9204cad746dfff0921e7a8f64c0cc0917bc75554`.
+- El paper LREC 2022 declara la colección CC BY 4.0 y fuente de dominio público. El README v1.11 enumera 43 idiomas, mientras el paper de Release 1 habla de 44: resolver contra el manifiesto exacto del release.
+- GitHub anuncia 54 assets con 8.342.562.863 bytes combinados; es tamaño remoto anunciado, no descargado. No hay digest SHA-256 publicado por asset.
+- La política oficial de VOA aclara que solo el material producido exclusivamente por VOA es dominio público; AFP, AP y Reuters son contenido de terceros no redistribuible. Por tanto, solo texto de artículos con autoría VOA verificable; excluir cualquier wire copy, audio, vídeo, fotos, captions, snippets, logos y material ambiguo. Si no se puede demostrar por registro, no adquirir.
+- Estado discovery-only, acquisition_enabled=false, training_authorized=false.
+
+### Fuentes bloqueadas
+
+- **JRC DCEP:** los términos oficiales conceden derechos no exclusivos para investigación; no existe autorización general para el uso de entrenamiento previsto. Bloqueado.
+- **LR-Sum:** la ficha actual declara CC BY 4.0, pero también dice que el dataset se publica principalmente para investigación; deriva de MOT/VOA y no presenta una auditoría de derechos por registro. Bloqueado hasta aclaración del titular y procedencia por artículo.
+
+### Preflights 162 y 163
+
+- [Run 162](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45708741819), grupo 3/8, artifact [15066562283](https://github.com/orbitalronin94/HERETIC-RONIN/HERETIC-RONIN/actions/runs/45708741819/artifacts/15066562283): ZIP 653 bytes, SHA-256 `73d43b33e273ceb588503f9a9e1366da21b7311d5da79a3368416afcb42a8df1`; manifiesto 871 bytes, SHA-256 `2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26`.
+- [Run 163](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45785916162), grupo 5/8, artifact [15100551941](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45785916162/artifacts/15100551941): ZIP 653 bytes, SHA-256 `1cecaa91ba593acfdee3925a060a21eb2a0bb5818c239b72fb55728960a2e1b4`; manifiesto 871 bytes, SHA-256 `0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7`.
+- Ambos manifiestos se descargaron y verificaron. Los logs muestran `HERETIC_STAGING_PASSPHRASE` vacío; el gate bloqueó antes de instalar las herramientas de descarga. 0 filas, 0 bytes remotos medidos, 0 descargados, 0 staged y 0 admitidos.
+- Inventario: **260.971 documentos / 703.593.871 bytes**, sin variación. G-0 global permanece bloqueado; no se han ejecutado deduplicación ni revisión humana sobre nuevos payloads.
