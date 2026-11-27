@@ -752,3 +752,19 @@ Los [términos oficiales](https://commonvoice.mozilla.org/oc/terms), efectivos 2
 - Bytes remotos/descargados/comprimidos/expandidos de corpus: no medidos/0/0/0; staging durable: 0; bytes admitidos: 0. Los 653 bytes ZIP y 871 bytes JSON son solo manifiestos.
 
 **G-0 global sigue bloqueado**: el inventario de splits protegidos continúa incompleto. No se ejecutó deduplicación global ni contaminación de holdout sobre nuevos payloads porque no hubo descargas. Inventario histórico sin cambios: **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB.
+
+
+## Nueva fuente candidata — Federal Register / GovInfo (2026-11-27)
+
+**Estado: discovery-only; 0 descargas, 0 filas medidas, 0 bytes admitidos.**
+
+- Fuente primaria: https://www.govinfo.gov/bulkdata/FR. GovInfo expone directorios anuales de XML desde 2000; el 2026-11-27 el directorio 2026 figuraba actualizado el 26-11-2026 05:39 GMT.
+- Base de reutilización: 1 CFR 2.6 permite reproducir o republicar sin restricción material de ediciones regulares/especiales del Federal Register; NARA/OFR lo confirma. No existe un SPDX estándar para esta base normativa. No usar `LicenseRef` como si fuera una licencia SPDX oficial.
+- La guía GPO `usgpo/bulk-data@83a85170ce0bdd0cf218f6290bd739df8748e2ea` indica que el XML es una representación simplificada no oficial; solo PDF/Text son formatos oficiales online y las tablas/markup pueden presentar anomalías. Cotejar muestras con el formato oficial.
+- La Library of Congress advierte que algunos ítems pueden reimprimir material protegido. Excluir terceros, gráficos, attachments, comentarios externos, user aids, sellos y logos sin autorización separada. Revisión de privacidad obligatoria para nombres/contactos y datos personales sensibles.
+- Congelar por issue: fecha, volumen/número, package/document IDs, agencia, tipo, páginas, URL, headers, timestamp, longitud y SHA-256. Validar XML/UTF-8, tablas, seguridad, calidad y muestras estratificadas por agencia/año/tipo/dominio.
+- No habilitar el colector hasta disponer de almacenamiento seguro, derechos por ítem, revisión de privacidad, deduplicación contra todo el corpus y G-0 global completo.
+
+Fuentes oficiales: [1 CFR 2.6](https://www.ecfr.gov/current/title-1/chapter-I/subchapter-A/part-2/section-2.6), [NARA About the Federal Register](https://www.archives.gov/federal-register/the-federal-register/about.html), [GPO XML user guide](https://github.com/usgpo/bulk-data/blob/83a85170ce0bdd0cf218f6290bd739df8748e2ea/FR-XML_User-Guide.md), [17 USC §105](https://www.govinfo.gov/content/pkg/USCODE-2024-title17/html/USCODE-2024-title17-chap1-sec105.htm), [Library of Congress rights caveat](https://www.loc.gov/collections/federal-register/about-this-collection/rights-and-access/).
+
+Acciones del día: [run 46009185876](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46009185876) y [run 46009185814](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46009185814) finalizaron correctamente, pero ambas auditorías son source-scoped; no completan G-0 global. El último preflight programado [run 45969736101](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45969736101) quedó bloqueado por almacenamiento y descargó 0 bytes.
