@@ -4672,7 +4672,7 @@
     "admitted_cosmopedia_bytes": 22927899,
     "note": "Source-scoped exact/near-duplicate and synthetic-diagnostic audit only. It combined the exact RONIN-IA train artifact with the explicitly supplied curated Cosmopedia v0.1 slice; 261,039 text records were examined, 68 duplicate endpoints excluded and no exact match found against 120 synthetic diagnostic questions. This does not enumerate repository-wide validation/test/benchmark/holdout splits and is not a complete global G-0. No semantic proof or broader redistribution rights are inferred.",
     "scope_warning": "Historical training_authorized=true applies only to the exact source-scoped RONIN-IA train subset plus the explicitly supplied curated Cosmopedia candidate. The audit script does not enumerate every validation/test/benchmark/holdout split; this report is not a complete global G-0 and authorizes no new source.",
-    "training_authorized_scope": "Internal experimental train-only authorization for the exact source-scoped subset only; not global G-0.",
+    "training_authorized_scope": "Internal experimental train-only authorization for the exact source-scoped subset only; not a complete repository-wide G-0.",
     "global_g0_status": "blocked_incomplete_split_inventory",
     "audit_scope": "source_scoped_train_artifact_plus_explicit_curated_candidates",
     "global_g0_complete": false,
