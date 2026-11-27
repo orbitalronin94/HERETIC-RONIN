@@ -514,3 +514,15 @@ Las [runs 157](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/4550
 - Bytes remotos/descargados/comprimidos/expandidos de corpus: no medidos/0/0/0; staging durable: 0; bytes admitidos: 0. Los 653 bytes ZIP y 871 bytes JSON son solo manifiestos.
 
 **G-0 global sigue bloqueado**: el inventario de splits protegidos continúa incompleto. No se ejecutó deduplicación global ni contaminación de holdout sobre nuevos payloads porque no hubo descargas. Inventario histórico sin cambios: **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB.
+
+
+## Nueva candidata — Federal Register de Estados Unidos (2026-11-27)
+
+Se registra **GovInfo Federal Register XML (2000–presente)** como candidata multidominio, discovery-only. La base jurídica es específica: [1 CFR 2.6](https://www.ecfr.gov/current/title-1/chapter-I/subchapter-A/part-2/section-2.6) permite a cualquier persona reproducir o republicar sin restricción material de ediciones regulares o especiales del Federal Register; NARA/OFR confirma esa reutilización. No se asigna SPDX porque no es una licencia estándar.
+
+- Fuente de payload: [GovInfo Bulk Data — Federal Register](https://www.govinfo.gov/bulkdata/FR). La guía GPO fijada en `usgpo/bulk-data@83a85170ce0bdd0cf218f6290bd739df8748e2ea` indica que el XML está disponible desde 2000, pero es una representación simplificada no oficial; solo PDF y Text son formatos oficiales online. Los XML pueden contener anomalías de tablas y marcado. Se exige contraste de muestras con PDF/Text.
+- La licencia general no despeja automáticamente obras de terceros reimpresas: la Library of Congress advierte de casos con material protegido. Se excluyen terceros, adjuntos, gráficos, sellos/logos, comentarios de Regulations.gov y cualquier segmento con derechos dudosos. Se aplica revisión de privacidad por documento/segmento.
+- Cada issue deberá fijarse por fecha, volumen/número, package/document ID, URL, headers, bytes y SHA-256; además, validación XML/UTF-8, calidad, privacidad, seguridad, deduplicación completa y G-0 global.
+- Estado: `candidate_discovery_only_pending_issue_snapshot_third_party_privacy_quality_and_global_g0`; `acquisition_enabled=false`, `training_authorized=false`; 0 descargas, 0 filas medidas y 0 bytes admitidos.
+
+La auditoría principal [run 46009185876](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46009185876) terminó correctamente, pero ejecutó el script source-scoped actual; no completa G-0 global. La curación/auditoría Cosmopedia [run 46009185814](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46009185814) también terminó correctamente y sigue siendo source-scoped. No se atribuye a esas runs ninguna admisión nueva.
