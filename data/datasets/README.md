@@ -1,6 +1,6 @@
 # HERETIC-RONIN — biblioteca de datasets
 
-Actualizado: 2026-11-26. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
+Actualizado: 2026-11-27. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
 
 ## Resumen verificable
 
@@ -14,7 +14,7 @@ Actualizado: 2026-11-26. Este documento distingue **admitido**, **candidato** y 
 | Total de bytes admitidos contabilizados | **703.593.871 bytes (671,0 MiB)** |
 | Objetivo de biblioteca | 500.000.000.000 bytes (500 GB decimal) |
 | G-0 global para nuevas admisiones | **BLOQUEADO**: falta inventario inmutable completo de todos los splits protegidos |
-| Fuentes registradas | 104 (incluye MASSIVE 1.1 y Universal Dependencies 2.19 como discovery-only; Common Voice v27.0 continúa sujeto a acceso MDC y lineage por prompt) |
+| Fuentes registradas | 111 (incluye Global Voices, ParlaMint.ana 5.0 y Federal Register como discovery-only; ninguna está autorizada por G-0 global) |
 
 Auditoría source-scoped: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Artefacto de auditoría: ID `13570263309`, SHA-256 `db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9`.
 
@@ -864,3 +864,19 @@ Los términos oficiales vigentes desde 2025-10-31 disponen que los datasets se o
 - Bytes remotos/descargados/comprimidos/expandidos de corpus: no medidos/0/0/0; staging durable: 0; bytes admitidos: 0. Los 653 bytes ZIP y 871 bytes JSON son solo manifiestos.
 
 **G-0 global sigue bloqueado**: el inventario de splits protegidos continúa incompleto. No se ejecutó deduplicación global ni contaminación de holdout sobre nuevos payloads porque no hubo descargas. Inventario histórico sin cambios: **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB.
+
+
+## Federal Register (GovInfo) — candidata discovery-only (2026-11-27)
+
+- Alcance: XML de issues oficiales en el repositorio GovInfo, años 2000 en adelante; fuente multidominio (regulación, administración, salud, ambiente, energía, transporte, finanzas, trabajo, educación y otros ámbitos federales).
+- Reutilización: [1 CFR 2.6](https://www.ecfr.gov/current/title-1/chapter-I/subchapter-A/part-2/section-2.6) permite reproducir/republicar sin restricción cualquier material que aparezca en ediciones regulares o especiales del Federal Register; [NARA/OFR](https://www.archives.gov/federal-register/the-federal-register/about.html) lo confirma. No se asigna SPDX. La sección 17 USC §105 se conserva como contexto para obras federales cualificadas, no como licencia general para terceros.
+- Payload: [GovInfo FR bulk XML](https://www.govinfo.gov/bulkdata/FR). La guía GPO [fijada al commit 83a85170ce0bdd0cf218f6290bd739df8748e2ea](https://github.com/usgpo/bulk-data/blob/83a85170ce0bdd0cf218f6290bd739df8748e2ea/FR-XML_User-Guide.md) indica que el XML comienza en 2000, no es el formato legal oficial online y puede contener anomalías de tablas/marcado; solo PDF/Text tienen estatus oficial online. Se exige cotejo de muestras con PDF/Text.
+- La Library of Congress advierte que algunos ítems pueden reimprimir obras protegidas de terceros. Se excluyen segmentos, gráficos, adjuntos y obras externas sin derechos despejados; también comentarios/dockets externos, user aids, sellos y logos. Privacidad document/segment-level obligatoria.
+- Inmutabilidad: congelar listado anual, issue date, volumen/número, package/document IDs, URL, headers, timestamp UTC, longitud y SHA-256 por XML; registrar también revisión de schema/XSL.
+- Estado: discovery-only, `acquisition_enabled=false`, `training_authorized=false`; 0 filas medidas, 0 bytes descargados y 0 bytes admitidos. Pendientes colector dedicado, almacenamiento seguro, revisión humana, calidad, deduplicación y G-0 global.
+
+### Acciones de 2026-11-27
+
+- [Run 46009185876](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46009185876): auditoría source-scoped del artefacto RONIN-IA; terminó correctamente, pero no enumera todos los splits protegidos y no constituye G-0 global.
+- [Run 46009185814](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46009185814): curación y auditoría source-scoped de Cosmopedia; terminó correctamente. Su artefacto no supone por sí solo admisión nueva.
+- [Último preflight programado #166](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45969736101): storage gate bloqueado antes de descarga; manifiesto de 871 bytes, 0 filas, 0 payload y 0 admisiones. ZIP artifact [15184268031](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45969736101/artifacts/15184268031), SHA-256 `5cde9471e155fc56cf5c59cfb10c6b6922aaccc625e79d7bc8a8a90e91de9f12`; JSON interno SHA-256 `5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437`.
