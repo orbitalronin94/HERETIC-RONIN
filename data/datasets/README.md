@@ -1,6 +1,6 @@
 # HERETIC-RONIN — biblioteca de datasets
 
-Actualizado: 2026-11-27. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable.
+Actualizado: 2026-11-27. Este documento distingue **admitido**, **candidato** y **cuarentena**. El tamaño descargado nunca equivale por sí solo a tamaño entrenable. La revisión manual de candidatos usa muestreo determinista estratificado por fuente, dominio, idioma y formato; los fragmentos nunca se imprimen en logs públicos.
 
 ## Resumen verificable
 
