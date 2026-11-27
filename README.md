@@ -489,3 +489,28 @@ Las [runs 157](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/4550
 - **G-0 global:** sigue bloqueado por falta de un manifiesto inmutable completo de todos los splits protegidos. Ninguna de estas fuentes es `training_eligible`.
 - [Run 162](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45708741819) y [Run 163](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45785916162): ambos preflights se bloquearon antes de descargar porque `HERETIC_STAGING_PASSPHRASE` estaba vacío. Cero payload, cero staging y cero admisiones.
 - Inventario sin cambios: **260.971 documentos / 703.593.871 bytes admitidos (0,140719 % de 500 GB)**.
+
+## Descubrimientos y preflights — 2026-11-27
+
+### Parallel Global Voices — candidato multilingüe
+
+- La ficha de CLARIN informa 174.629 documentos, 302.617 pares de documentos y 8.356.943 alineamientos de segmentos en 756 pares de lenguas; son recuentos publicados, no bytes medidos. El crawl de ILSP se realizó en 2015-2016 y cubre más de 40 idiomas.
+- Derechos por capas: Global Voices aplica CC BY a su contenido salvo aviso distinto; el pie del sitio identifica CC BY 3.0. ILSP declara los alineamientos generados bajo CC BY 4.0. No hay un único SPDX para el conjunto. Se exigirá página original, autor/byline, licencia exacta y atribución por artículo; se excluyen media y contenido de terceros.
+- Privacidad: revisión reforzada de historias sobre activistas, víctimas, menores y personas privadas; excluir opt-outs, retractaciones y bylines retirados por seguridad. Solo texto y alineamientos, nunca imágenes/audio/vídeo.
+- Estado: discovery-only, acquisition_enabled=false, training_authorized=false; 0 descargas y 0 bytes admitidos.
+
+### ParlaMint.ana 5.0 — candidato multilingüe de debates parlamentarios
+
+- CLARIN.SI item [11356/2005](https://www.clarin.si/repository/xmlui/handle/11356/2005), emitido 2025-07-08, marca sus archivos bajo CC BY 4.0. El registro informa 8.132.022 utterances, 1.231.045.523 palabras, 1.402.488.391 tokens y 29 lenguas; son cifras del catálogo, no bytes adquiridos.
+- El tag Git v5.0 se resuelve al commit 978f9051793367fc2192eedc80c1e71ac8ec7ea5, pero ese repositorio contiene muestras, esquemas y scripts, no el corpus completo. La revisión de datos debe fijarse por archivos de CLARIN.SI y SHA-256 por país.
+- Riesgos: los metadatos incluyen nombres, género, afiliación, orientación política, año de nacimiento y comités. Se excluyen TSV de hablantes, perfiles, etiquetas de tema/sentimiento y la versión traducida al inglés 11356/2006. Se exige despejar derechos de las transcripciones por parlamento/jurisdicción y revisar privacidad del texto.
+- Estado: discovery-only, acquisition_enabled=false, training_authorized=false; 0 descargas y 0 bytes admitidos.
+
+### Preflights recientes
+
+- [Run 165](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45900766740), grupo 7/8, artifact [15156090956](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45900766740/artifacts/15156090956): ZIP 653 bytes, SHA-256 0ca28a1224eb8f57adf481528e9dab3a93ba3850bb41eb2b31e49132dc623902; JSON 871 bytes, SHA-256 3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992.
+- [Run 166](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45969736101), grupo 1/8, artifact [15184268031](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45969736101/artifacts/15184268031): ZIP 653 bytes, SHA-256 5cde9471e155fc56cf5c59cfb10c6b6922aaccc625e79d7bc8a8a90e91de9f12; JSON 871 bytes, SHA-256 5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437.
+- Ambos ZIP se descargaron y sus SHA-256 se recalcularon; coinciden con el digest de GitHub. Los JSON internos confirman blocked_storage_gate, sources=[], 0 filas, 0 bytes y training_authorized=false. El job omitió instalación y descarga porque falta HERETIC_STAGING_PASSPHRASE de al menos 32 caracteres.
+- Bytes remotos/descargados/comprimidos/expandidos de corpus: no medidos/0/0/0; staging durable: 0; bytes admitidos: 0. Los 653 bytes ZIP y 871 bytes JSON son solo manifiestos.
+
+**G-0 global sigue bloqueado**: el inventario de splits protegidos continúa incompleto. No se ejecutó deduplicación global ni contaminación de holdout sobre nuevos payloads porque no hubo descargas. Inventario histórico sin cambios: **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB.
