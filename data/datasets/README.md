@@ -150,7 +150,7 @@ El recolector ahora rechaza filas German Commons con licencia desconocida, combi
 - **0,1407 %** del objetivo de 500.000.000.000 bytes
 - **Nuevas admisiones en esta ejecución: 0 documentos / 0 bytes**
 
-El último global audit autorizado sigue siendo [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Su alcance es el corpus train-only RONIN-IA y la tranche Cosmopedia v0.1 curada que se suministró expresamente; no autoriza ningún otro candidato.
+La última auditoría source-scoped del train combinado sigue siendo [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Su alcance es el corpus train-only RONIN-IA y la tranche Cosmopedia v0.1 curada que se suministró expresamente; no autoriza ningún otro candidato.
 
 ### Lote candidato terminado — run 42357699240
 
