@@ -4615,8 +4615,8 @@
     }
   ],
   "notes": [
-    "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. The exact source-scoped RONIN-IA train corpus plus the curated Cosmopedia v0.1 slice passed the limited global deduplication/exact-holdout audit in run 42362365447. This authorization applies only to that audited subset; every other staged candidate remains excluded until its own rights, provenance, quality, privacy, deduplication and holdout gates pass.",
-    "2026-11-07 admission: Cosmopedia v0.1 auto_math_text curated slice (4,734 rows; 22,927,899 bytes) passed global audit run 42362365447. Combined audit: 261,039 docs examined, 68 duplicate endpoints excluded (all within the 256,305 base records), 260,971 docs admitted, 0 exact matches against 120 synthetic diagnostic questions. Authorized for experimental train-only next-token pretraining only; upstream seed rights remain caveated.",
+    "Library policy update 2026-11-06: the 50k Drosophila procedural rows are one synthetic source only. Exact RONIN-IA train-scoped import materialized 286,464 records in HERETIC run 42283514919 (288,668,608-byte artifact); the source README's 286,468 total is four higher because the latest NASA artifact has only 2 train records and 4 held mismatches. The exact source-scoped RONIN-IA train corpus plus the explicitly supplied curated Cosmopedia v0.1 slice underwent exact/near-duplicate and 120-question synthetic diagnostic audit in run 42362365447. This is not a complete global G-0; authorization applies only to that exact subset. Every other staged candidate remains excluded until its own rights, provenance, quality, privacy, deduplication and protected-split gates pass.",
+    "2026-11-07: Cosmopedia v0.1 auto_math_text curated slice (4,734 rows; 22,927,899 bytes) was included in the source-scoped audit run 42362365447. Combined audit: 261,039 text records examined, 68 duplicate endpoints excluded (all within the 256,305 base records), 260,971 records remained in the audited subset, and 0 exact matches were found against 120 synthetic diagnostic questions. This is not a complete global G-0; authorization is internal experimental train-only for that exact subset only. Upstream seed rights remain caveated.",
     "2026-11-07: added candidate-only acquisition plans for 100k CourtListener public-domain opinions, 50k OpenStax textbook rows (book-level licensing unresolved), and four pinned Spanish-PD-Books parquet shards from a 52.1GB collection. No bytes counted as admitted; source-specific rights/quality gates remain mandatory.",
     "2026-11-07: added Common Corpus (2.27T-token claim, per-document provenance, exact license allowlist), two separate English-PD shards from a 362GB collection, and a Spanish-PD-Newspapers shard from a 48.6GB collection. All remain candidates pending manual rights/OCR/global audit.",
     "2026-11-08 acquisition review: run 42379525699 streamed 780,527 candidate rows / 4,505,001,697 manifest-counted JSONL bytes across 25 completed source slices. No new data admitted. Candidate ZIP 1,860,559,190 bytes (SHA-256 4580efd18cbc11ed2c94947236a3a814b32345fc540a5df6e1550bce01266018); embedded manifest SHA-256 083b0fa38ffd57ec9d78f05d4d2d767d2c30d88f28a1acc2b120744b79b4c39f. Failed source writers left partial files in the artifact despite manifest rows/bytes=0; at least 117,712,976 expanded bytes of partial Spanish-PD-Books shards were confirmed. Entire candidate bundle remains quarantined; do not count partial files or ZIP bytes as admitted.",
@@ -4636,7 +4636,10 @@
     "training_run_id": 42338551408,
     "training_bytes": 680665972,
     "training_bytes_human": "649.0 MiB",
-    "note": "Internal training admission only. The 120-question holdout is a synthetic diagnostic, not a public benchmark. CoVoST, Mathlib4, ScienceVerse, Spanish literature, NASA-reviewed text and owner-authorized Papers only. No external redistribution rights inferred. Scope clarification (2026-11-25): this source-scoped audit does not constitute a complete global G-0 and does not authorize any new candidate source."
+    "note": "Internal training admission only. The 120-question holdout is a synthetic diagnostic, not a public benchmark. CoVoST, Mathlib4, ScienceVerse, Spanish literature, NASA-reviewed text and owner-authorized Papers only. No external redistribution rights inferred. Scope clarification (2026-11-25): this source-scoped audit does not constitute a complete global G-0 and does not authorize any new candidate source.",
+    "global_g0_complete": false,
+    "global_g0_status": "blocked_incomplete_split_inventory",
+    "authorization_scope": "Historical source-scoped train subset only; not a complete global G-0 and no authorization for new candidates."
   },
   "last_manual_review": {
     "date": "2026-11-07",
@@ -4667,10 +4670,13 @@
     "admitted_training_bytes_total": 703593871,
     "admitted_cosmopedia_rows": 4734,
     "admitted_cosmopedia_bytes": 22927899,
-    "note": "The 68 excluded global indices are all below the 256,305-record base-corpus boundary; all 4,734 curated Cosmopedia records remain in the authorized subset. Heuristic audit only; no semantic proof and no expanded redistribution rights. Scope clarification (2026-11-25): this run is source-scoped, not a complete global G-0; its synthetic 120-question diagnostic is not the full protected validation/test/benchmark/holdout inventory.",
+    "note": "Source-scoped exact/near-duplicate and synthetic-diagnostic audit only. It combined the exact RONIN-IA train artifact with the explicitly supplied curated Cosmopedia v0.1 slice; 261,039 text records were examined, 68 duplicate endpoints excluded and no exact match found against 120 synthetic diagnostic questions. This does not enumerate repository-wide validation/test/benchmark/holdout splits and is not a complete global G-0. No semantic proof or broader redistribution rights are inferred.",
     "scope_warning": "Historical training_authorized=true applies only to the exact source-scoped RONIN-IA train subset plus the explicitly supplied curated Cosmopedia candidate. The audit script does not enumerate every validation/test/benchmark/holdout split; this report is not a complete global G-0 and authorizes no new source.",
-    "training_authorized_scope": "Source-scoped subset only; not global G-0.",
-    "global_g0_status": "blocked_incomplete_split_inventory"
+    "training_authorized_scope": "Internal experimental train-only authorization for the exact source-scoped subset only; not a complete repository-wide G-0.",
+    "global_g0_status": "blocked_incomplete_split_inventory",
+    "audit_scope": "source_scoped_train_artifact_plus_explicit_curated_candidates",
+    "global_g0_complete": false,
+    "protected_split_inventory_complete": false
   },
   "last_candidate_batch_details": {
     "run_id": 45969736101,

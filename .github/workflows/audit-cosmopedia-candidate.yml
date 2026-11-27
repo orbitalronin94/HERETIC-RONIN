@@ -1,4 +1,4 @@
-name: HERETIC — curate and globally audit Cosmopedia v0.1
+name: HERETIC — curate and source-scope audit Cosmopedia v0.1
 
 on:
   push:
@@ -93,13 +93,13 @@ jobs:
             --output incoming/cosmopedia-curated.jsonl \
             --manifest out/COSMOPEDIA-CURATION-MANIFEST.json
 
-      - name: Run global exact, near-duplicate and 120-question holdout audit
+      - name: Run source-scoped exact/near-duplicate and 120-question synthetic diagnostic audit (not global G-0)
         run: python scripts/audit_heretic_training_corpus.py --cosmopedia-jsonl incoming/cosmopedia-curated.jsonl
 
       - name: Publish curated candidate and global audit evidence
         uses: actions/upload-artifact@v7
         with:
-          name: heretic-cosmopedia-global-audit-${{ github.run_id }}
+          name: heretic-cosmopedia-source-scoped-audit-${{ github.run_id }}
           path: |
             incoming/cosmopedia-curated.jsonl
             out/COSMOPEDIA-CURATION-MANIFEST.json
