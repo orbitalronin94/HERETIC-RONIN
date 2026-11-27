@@ -465,5 +465,24 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertEqual(self.registry["global_g0_status"]["status"], "blocked_incomplete_split_inventory")
 
 
+    def test_us_federal_register_candidate_uses_item_level_1_cfr_2_6_and_keeps_xml_quality_gates(self):
+        source = self.source("US GovInfo:Federal-Register-official-edition-XML-2000-present")
+        self.assert_discovery_only(source)
+        self.assertIsNone(source["spdx_license_identifier"])
+        self.assertIs(source["acquisition_enabled"], False)
+        self.assertIn("1 CFR 2.6", source["reported_license"])
+        self.assertIn("not an SPDX", source["reported_license"])
+        self.assertIn("2000 onward", source["revision"])
+        self.assertIn("not the official online legal format", source["payload_scope"])
+        self.assertIn("third-party", source["rights_caveat"])
+        self.assertIn("Library of Congress", source["rights_caveat"])
+        checks = " ".join(source["required_checks"]).casefold()
+        self.assertIn("sha-256", checks)
+        self.assertIn("official pdf/text", checks)
+        self.assertIn("external entities", checks)
+        self.assertIn("global g-0", checks)
+        self.assertGreaterEqual(len(source["evidence_urls"]), 6)
+        self.assertGreaterEqual(len(source["required_checks"]), 15)
+
 if __name__ == "__main__":
     unittest.main()
