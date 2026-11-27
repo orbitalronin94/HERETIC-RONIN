@@ -502,7 +502,7 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertIsNone(source["spdx_license_identifier"])
         self.assertIs(source["training_authorized"], False)
         self.assertEqual(len(source["language"]), 24)
-        self.assertIn("non-Acquis", source["rights_caveat"])
+        self.assertIn("outside the Acquis", source["rights_caveat"])
         self.assertIn("UTF-16LE", source["rights_caveat"])
         self.assertIn("NumDoc", " ".join(source["required_checks"]))
         self.assertIn("global G-0", " ".join(source["required_checks"]))
