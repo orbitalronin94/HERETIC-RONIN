@@ -4460,7 +4460,7 @@
         "Exclude photos, video, audio, embedded media, captions, logos, third-party excerpts and all non-text assets; do not infer rights from the corpus page for material owned by external creators.",
         "Exclude retracted, opted-out or security-redacted byline records; do not attempt to reconstruct removed contributor identities.",
         "Audit privacy and sensitive personal data in story text, including references to activists, victims, minors, witnesses and private individuals; redact or hold affected passages without removing mandatory creator attribution.",
-        "Validate archive integrity, TMX/XML schema, UTF-8, document completeness, language labels, source/target mapping and alignment consistency.",
+        "Validate archive integrity, TMX/XML schema, UTF-8, document completeness, language labels, source/target mapping and sentence alignment consistency.",
         "Audit samples stratified by source language, target language, country/region, year, topic, article and alignment format; manually inspect low-resource languages and translation quality.",
         "Check exact and approximate duplicates across all source archives and against every current corpus and protected validation/test/benchmark/holdout split.",
         "Require the complete global G-0 inventory and contamination audit before any training_eligible or admitted state; the 2015-2016 crawl date is not a split guarantee.",
@@ -4541,7 +4541,7 @@
       "attribution": "Preserve the complete author list from the CLARIN.SI record, Tomaž Erjavec et al., CLARIN ERIC and relevant national/project partners; cite the ParlaMint project and the associated publication DOI 10.1007/s10579-024-09798-w.",
       "citation": "ParlaMint: comparable parliamentary corpora; CLARIN.SI item 11356/2005, version 5.0, issued 2025-07-08; associated publication DOI 10.1007/s10579-024-09798-w.",
       "required_checks": [
-        "Pin the CLARIN.SI handle 11356/2005 and the exact v5.0 item record; treat Git commit 978f9051793367fc2192eedc80c1e71ac8ec7ea5 as schemas/scripts/samples only, not as the corpus archive revision.",
+        "Pin the CLARIN.SI handle 11356/2005 and the exact v5.0 item record; treat Git commit 978f9051793367fc2192eedc80c1e71ac8ec7ea5 as schemas/scripts/samples only, not as the corpus archive revision; freeze rights and archive evidence per country.",
         "Enumerate all country/language archive files from the item record; record each exact URL, advertised size, published MD5, retrieval timestamp, downloaded byte length and independently calculated SHA-256.",
         "Verify the CLARIN.SI item-level CC BY 4.0 statement and separately obtain the source-rights basis for each contributing national parliament and jurisdiction before acquiring its transcript text.",
         "Do not infer that the CLARIN corpus deposit or the ParlaMint GitHub software licence grants rights beyond the depositor's authority over each underlying parliamentary transcript.",
