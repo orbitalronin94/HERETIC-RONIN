@@ -4570,6 +4570,72 @@
       "training_authorized": false,
       "acquisition_enabled": false,
       "recorded_date": "2026-11-27"
+    },
+    {
+      "id": "US GovInfo:Federal-Register-official-edition-XML-2000-present",
+      "url": "https://www.govinfo.gov/bulkdata/FR",
+      "retrieval_url": "https://www.govinfo.gov/bulkdata/FR",
+      "revision": "Mutable annual GovInfo Federal Register bulk directories, currently XML issues from 2000 onward. No single immutable corpus commit exists. For every selected issue freeze the exact annual directory listing, issue date, FR volume/number, package/document identifiers, XML asset URL, response headers, UTC retrieval timestamp, exact byte length and calculated SHA-256. Pin the auxiliary GPO schema/user-guide reference to usgpo/bulk-data@83a85170ce0bdd0cf218f6290bd739df8748e2ea; that documentation commit is not the payload revision.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired. GovInfo lists annual Federal Register XML directories from 2000 onward; directory presence and publication volume are not measured corpus bytes or admitted rows.",
+      "reported_license": "1 CFR 2.6 states that any person may reproduce or republish without restriction any material appearing in any regular or special edition of the Federal Register. NARA's Office of the Federal Register FAQ likewise says Federal Register documents may be reproduced without restriction. This is a statutory/regulatory unrestricted-reuse basis, not an SPDX licence; spdx_license_identifier remains null. 17 U.S.C. §105 separately places qualifying U.S. Government works in the U.S. public domain, but is not treated as a blanket licence for third-party or contractor works.",
+      "spdx_license_identifier": null,
+      "status": "candidate_discovery_only_pending_issue_snapshot_third_party_privacy_quality_and_global_g0",
+      "payload_scope": "GovInfo Federal Register annual XML issue files from 2000 onward, text and structural markup only. No graphics, logos, seals, linked docket material, user aids, external attachments, audio/video or other linked content. XML is a machine-readable rendition, not the official online legal format; sampled text and tables must be cross-checked against the official PDF/Text rendition.",
+      "domains": [
+        "federal regulations",
+        "public administration",
+        "administrative law",
+        "health",
+        "environment",
+        "energy",
+        "transportation",
+        "finance",
+        "labour",
+        "education",
+        "science and technology",
+        "agriculture",
+        "trade",
+        "telecommunications",
+        "public safety",
+        "national security",
+        "government grants and procurement"
+      ],
+      "language": [
+        "en"
+      ],
+      "rights_caveat": "The broad reuse rule in 1 CFR 2.6 and NARA's FAQ is strong item-level authority for material appearing in regular/special Federal Register editions. Nevertheless, the Library of Congress warns that some Federal Register collection items may reprint copyrighted third-party material. Do not infer that 17 U.S.C. §105 clears works by contractors/grantees, external authors or third parties. Exclude any item/segment explicitly carrying a third-party copyright or source restriction, reprinted protected work, embedded image/figure/table, docket attachment or linked submission unless separately cleared. The initial candidate is limited to issue XML from GovInfo, not FederalRegister.gov user aids or Regulations.gov comments. Public notices can contain personal names, contact details, health or other sensitive information; apply document/segment-level privacy review and exclude/redact uncertain personal data. XML bulk files are not the official online legal format and can contain table/markup anomalies; never treat unverified XML rendering as authoritative legal text.",
+      "required_checks": [
+        "Use only the official GovInfo Federal Register bulk-data repository and regular/special issue files; do not scrape the unofficial FederalRegister.gov interface as the canonical payload.",
+        "Restrict the initial pilot to annual XML directories from 2000 onward; do not infer availability of XML before 2000 from the issue archive.",
+        "For every issue preserve issue date, FR volume/number, package ID, document number, agency, document type, page span, CFR references, exact source URL and retrieval timestamp.",
+        "Freeze the exact annual directory listing and selected issue/file list; record response headers, byte length, ETag/Last-Modified where available, and SHA-256 for every original XML file.",
+        "Pin the GPO XML schema, XSL and user guide independently; record the auxiliary usgpo/bulk-data documentation commit 83a85170ce0bdd0cf218f6290bd739df8748e2ea without confusing it with the payload revision.",
+        "Preserve attribution to the Office of the Federal Register, National Archives and Records Administration, and U.S. Government Publishing Office (GovInfo); do not use NARA seals or stylized Federal Register logos.",
+        "Apply 1 CFR 2.6 to the exact regular/special Federal Register issue material; do not infer a blanket SPDX identifier or extend the rule to unrelated GovInfo collections.",
+        "Exclude any third-party copyrighted or restricted material reprinted within an issue, including externally authored passages, images, figures, charts, maps, attachments and quoted works when rights are not independently cleared.",
+        "Do not ingest Regulations.gov public comments, docket attachments, linked submissions, FederalRegister.gov user aids, search indexes or unrelated site metadata as Federal Register issue text.",
+        "Run document/segment-level privacy screening for private individuals, personal contact details, health information, sensitive attributes, minors, victims and other high-risk personal data; redact only under a documented and validated policy, otherwise hold/reject.",
+        "Parse XML with external entities and network resolution disabled; reject malformed archives, path traversal, unexpected binary payloads, executable content and suspicious embedded files.",
+        "Validate XML schema, UTF-8, document completeness, page ordering, section hierarchy, tables, numeric values and extraction quality; cross-check stratified samples against the official PDF/Text rendition because GPO warns XML may contain anomalies.",
+        "Track corrections, withdrawals, effective dates and superseding documents without silently merging versions; preserve document_number, publication date and package identifiers.",
+        "Audit deterministic samples stratified by agency, year, document type, domain, format and page range; record human rights/privacy/quality decisions.",
+        "Deduplicate exact and approximately against the entire corpus and every protected validation/test/benchmark/holdout split; require complete global G-0 before staging/admission.",
+        "Keep discovery-only, acquisition_enabled=false, training_authorized=false and count_toward_admitted_bytes=false until a dedicated bounded collector, secure storage, issue-level review and all global gates pass."
+      ],
+      "evidence_urls": [
+        "https://www.ecfr.gov/current/title-1/chapter-I/subchapter-A/part-2/section-2.6",
+        "https://www.archives.gov/federal-register/the-federal-register/about.html",
+        "https://www.govinfo.gov/bulkdata/FR",
+        "https://github.com/usgpo/bulk-data/blob/83a85170ce0bdd0cf218f6290bd739df8748e2ea/FR-XML_User-Guide.md",
+        "https://www.govinfo.gov/content/pkg/USCODE-2024-title17/html/USCODE-2024-title17-chap1-sec105.htm",
+        "https://www.loc.gov/collections/federal-register/about-this-collection/rights-and-access/"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "acquisition_enabled": false,
+      "disabled_reason": "No dedicated issue-level GovInfo Federal Register XML collector exists. Keep disabled pending immutable issue snapshots, third-party and privacy screening, XML-to-official-PDF/Text quality checks, secure durable storage, complete global G-0 and deduplication against protected splits.",
+      "recorded_date": "2026-11-27"
     }
   ],
   "target_library_bytes": 500000000000,
@@ -6548,7 +6614,7 @@
     "encrypted_artifact_policy": "Encrypted artifact remains publicly downloadable ciphertext; only holders of the passphrase may decrypt. Record artifact SHA-256 and keep the passphrase outside the repository.",
     "group_rotation_fix": "Scheduled group index uses ((day_of_year - 1) * 4 + tranche_slot) modulo group_count so four daily slots cover all eight groups exactly once in each 48-hour cycle."
   },
-  "source_count": 110,
+  "source_count": 111,
   "previous_candidate_batch": "Run 165 (2026-11-26, group 7/8): storage gate blocked before download; 0 candidate rows, 0 downloaded/JSONL bytes, 0 durable staged bytes and 0 admitted bytes. Artifact 15156090956; ZIP SHA-256 0ca28a1224eb8f57adf481528e9dab3a93ba3850bb41eb2b31e49132dc623902; manifest SHA-256 3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992.",
   "global_g0_status": {
     "status": "blocked_incomplete_split_inventory",
