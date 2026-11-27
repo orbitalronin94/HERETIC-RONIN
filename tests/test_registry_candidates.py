@@ -456,7 +456,7 @@ class RegistryCandidateTests(unittest.TestCase):
 
     def test_historical_cosmopedia_audit_is_source_scoped_not_complete_global_g0(self):
         audit = self.registry["latest_global_audit"]
-        self.assertEqual(audit["audit_scope"], "source_scoped_train_artifact_plus_explicit_candidates")
+        self.assertEqual(audit["audit_scope"], "source_scoped_train_artifact_plus_explicit_curated_candidates")
         self.assertIs(audit["global_g0_complete"], False)
         self.assertEqual(audit["global_g0_status"], "blocked_incomplete_split_inventory")
         self.assertIs(audit["protected_split_inventory_complete"], False)
