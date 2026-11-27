@@ -14,7 +14,7 @@ Actualizado: 2026-11-27. Este documento distingue **admitido**, **candidato** y 
 | Total de bytes admitidos contabilizados | **703.593.871 bytes (671,0 MiB)** |
 | Objetivo de biblioteca | 500.000.000.000 bytes (500 GB decimal) |
 | G-0 global para nuevas admisiones | **BLOQUEADO**: falta inventario inmutable completo de todos los splits protegidos |
-| Fuentes registradas | 111 (incluye Global Voices, ParlaMint.ana 5.0 y Federal Register como discovery-only; ninguna está autorizada por G-0 global) |
+| Fuentes registradas | 114 (incluye DGT-Acquis y DGT-TM como discovery-only; JRC-Acquis queda bloqueado por conflicto de términos) |
 
 Auditoría source-scoped: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Artefacto de auditoría: ID `13570263309`, SHA-256 `db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9`.
 
@@ -880,3 +880,29 @@ Los términos oficiales vigentes desde 2025-10-31 disponen que los datasets se o
 - [Run 46009185876](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46009185876): auditoría source-scoped del artefacto RONIN-IA; terminó correctamente, pero no enumera todos los splits protegidos y no constituye G-0 global.
 - [Run 46009185814](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46009185814): curación y auditoría source-scoped de Cosmopedia; terminó correctamente. Su artefacto no supone por sí solo admisión nueva.
 - [Último preflight programado #166](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45969736101): storage gate bloqueado antes de descarga; manifiesto de 871 bytes, 0 filas, 0 payload y 0 admisiones. ZIP artifact [15184268031](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45969736101/artifacts/15184268031), SHA-256 `5cde9471e155fc56cf5c59cfb10c6b6922aaccc625e79d7bc8a8a90e91de9f12`; JSON interno SHA-256 `5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437`.
+
+
+## Recursos paralelos multilingües de la Comisión Europea (2026-11-27)
+
+### DGT-Acquis — candidata discovery-only
+
+- Fuente oficial: https://joint-research-centre.ec.europa.eu/language-technology-resources/dgt-acquis_en
+- Corpus del Diario Oficial desde mediados de 2004 hasta finales de 2011, hasta 23 idiomas. La página publica 4.900.254 segmentos para da1-pc (unos 3 GB comprimidos), 3.537.872 ficheros para da1-ft (unos 5 GB) y 3.537.876 para da1-fx (unos 9 GB). Son estadísticas del editor; no son descargas ni bytes admitidos.
+- La Comisión declara titularidad exclusiva del dataset y cesión no exclusiva, mundial y gratuita para todo uso compatible con la Decisión 2011/833/EU. No hay SPDX estándar; mantener `spdx_license_identifier=null` y conservar atribución, URL, última actualización y titularidad de la Comisión.
+- Alcance propuesto: da1-ft para contexto de documento completo; da1-pc solo como representación/alineación tras deduplicar. Excluir TIFF, software, marcas/logos y documentos con derechos de terceros, confidenciales o restricciones especiales. Resolver cada NumDoc contra EUR-Lex.
+- Estado: discovery-only; acquisition_enabled=false; training_authorized=false; 0 descargas y 0 bytes admitidos.
+
+### DGT-TM — candidata discovery-only
+
+- Fuente oficial: https://joint-research-centre.ec.europa.eu/language-technology-resources/dgt-translation-memory_en
+- Memoria TMX en 24 idiomas, UTF-16LE; extracción con inglés como pivote. La página declara titularidad de la Comisión y cesión mundial para todo uso bajo Decisión 2011/833/EU, con atribución y obligación de no distorsionar. La colección incluye documentos no pertenecientes al Acquis; cada NumDoc debe verificarse individualmente.
+- La página indica preprocesamiento que puede cambiar el contenido y alineación automática desde releases 2011. Se requiere auditoría por release, par de idiomas, dominio y longitud; excluir software TMXtract y documentos de terceros.
+- Estado: discovery-only; acquisition_enabled=false; training_authorized=false; no se ha descargado ningún ZIP.
+
+### JRC-Acquis v3.0 — bloqueado por conflicto de términos
+
+- La página actual JRC-Acquis afirma cesión mundial para todo uso bajo Decisión 2011/833/EU, pero enlaza la página de licencia histórica, actualizada en 2011, que dice que el corpus puede usarse/distribuirse para investigación y describe distribución no comercial.
+- Hasta obtener aclaración escrita de JRC/OP, no descargar, no staging y no training_eligible. El corpus anuncia 22 idiomas, 463.792 textos, 4.350.447 documentos alineados y 243.187.303 enlaces; cifras del editor, no inventario admitido.
+- URLs: https://joint-research-centre.ec.europa.eu/language-technology-resources/jrc-acquis_en ; https://wt-public.emm4u.eu/Acquis/JRC-Acquis.3.0/doc/licence.html ; https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng
+
+Para DGT-Acquis/DGT-TM, los snapshots deben fijar cada ZIP/idioma, lista de archivos, NumDoc/CELEX, headers, fecha UTC, bytes y SHA-256. Deduplicar por CELEX/NumDoc y texto normalizado entre ambos recursos, JRC-Acquis, EUR-Lex y todos los splits protegidos. G-0 global sigue siendo obligatorio.

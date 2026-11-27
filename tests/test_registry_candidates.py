@@ -484,5 +484,38 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertGreaterEqual(len(source["evidence_urls"]), 6)
         self.assertGreaterEqual(len(source["required_checks"]), 15)
 
+    def test_dgt_acquis_candidate_has_worldwide_commission_reuse_and_item_level_gates(self):
+        source = self.source("European Commission:DGT-Acquis-2004-2011")
+        self.assert_discovery_only(source)
+        self.assertIsNone(source["spdx_license_identifier"])
+        self.assertIs(source["acquisition_enabled"], False)
+        self.assertIn("worldwide", source["reported_license"])
+        self.assertIn("2011/833/EU", source["reported_license"])
+        self.assertEqual(len(source["language"]), 23)
+        self.assertIn("NumDoc", " ".join(source["required_checks"]))
+        self.assertIn("third-party", source["rights_caveat"])
+        self.assertGreaterEqual(len(source["required_checks"]), 15)
+
+    def test_dgt_tm_candidate_is_not_mistaken_for_a_fully_cleared_document_corpus(self):
+        source = self.source("European Commission:DGT-Translation-Memory-2007-2021")
+        self.assert_discovery_only(source)
+        self.assertIsNone(source["spdx_license_identifier"])
+        self.assertIs(source["training_authorized"], False)
+        self.assertEqual(len(source["language"]), 24)
+        self.assertIn("outside the Acquis", source["rights_caveat"])
+        self.assertIn("UTF-16LE", source["rights_caveat"])
+        self.assertIn("NumDoc", " ".join(source["required_checks"]))
+        self.assertIn("global G-0", " ".join(source["required_checks"]))
+
+    def test_jrc_acquis_is_blocked_until_conflicting_legacy_terms_are_clarified(self):
+        source = self.source("European Commission:JRC-Acquis-v3.0-terms-conflict")
+        self.assertEqual(source["status"], "blocked_rights_conflict_pending_authoritative_clarification")
+        self.assertIs(source["acquisition_enabled"], False)
+        self.assertIs(source["training_authorized"], False)
+        self.assertIsNone(source["spdx_license_identifier"])
+        self.assertIn("research purposes", source["reported_license"])
+        self.assertIn("non-commercial", source["reported_license"])
+        self.assertIn("written clarification", source["disabled_reason"])
+
 if __name__ == "__main__":
     unittest.main()

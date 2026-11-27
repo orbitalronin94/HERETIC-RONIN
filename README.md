@@ -526,3 +526,16 @@ Se registra **GovInfo Federal Register XML (2000–presente)** como candidata mu
 - Estado: `candidate_discovery_only_pending_issue_snapshot_third_party_privacy_quality_and_global_g0`; `acquisition_enabled=false`, `training_authorized=false`; 0 descargas, 0 filas medidas y 0 bytes admitidos.
 
 La auditoría principal [run 46009185876](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46009185876) terminó correctamente, pero ejecutó el script source-scoped actual; no completa G-0 global. La curación/auditoría Cosmopedia [run 46009185814](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46009185814) también terminó correctamente y sigue siendo source-scoped. No se atribuye a esas runs ninguna admisión nueva.
+
+
+## Recursos multilingües de la Comisión Europea — 2026-11-27
+
+Se registran dos candidatos de la Dirección General de Traducción/JRC, ambos **discovery-only** y sin descargas:
+
+- **DGT-Acquis (2004–2011):** corpus paralelo del Diario Oficial en hasta 23 idiomas. La Comisión declara que el dataset es de su propiedad y cede derechos mundiales para todo uso compatible con la Decisión 2011/833/EU. El editor informa 4.900.254 segmentos y unos 3 GB para la representación de párrafos `da1-pc`; también publica `da1-ft` (texto completo, 5 GB). Son cifras anunciadas, no bytes medidos. Se exige mapeo NumDoc/CELEX y exclusión de documentos de terceros.
+- **DGT-TM (releases 2007–2021):** memoria de traducción en 24 idiomas, TMX UTF-16LE, con la extracción inglesa como pivote. La Comisión declara derechos mundiales para todo uso bajo la misma Decisión; la página advierte que el corpus contiene también documentos no pertenecientes al Acquis, que el texto fue preprocesado y que la alineación desde 2011 es automática. Solo se considerarán unidades cuyo NumDoc y titularidad estén verificados.
+- **JRC-Acquis v3.0:** no se adquiere. La página actual concede derechos para todo uso, pero enlaza una licencia de 2011 que limita la distribución a fines de investigación/no comercial. Se registra como bloqueado hasta aclaración escrita de JRC/OP.
+
+Fuentes: [DGT-Acquis](https://joint-research-centre.ec.europa.eu/language-technology-resources/dgt-acquis_en), [DGT-TM](https://joint-research-centre.ec.europa.eu/language-technology-resources/dgt-translation-memory_en), [JRC-Acquis](https://joint-research-centre.ec.europa.eu/language-technology-resources/jrc-acquis_en), [Decisión 2011/833/EU](https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng), [aviso legal EUR-Lex](https://eur-lex.europa.eu/content/legal-notice/legal-notice.html?locale=en).
+
+Los tres registros quedan con `spdx_license_identifier=null`: la base es una cesión/condición de reutilización de la Comisión, no una licencia SPDX estándar. No hay descargas, staging ni admisiones; se exige snapshot por ZIP/idioma, derechos por documento, revisión de calidad/privacidad, deduplicación entre DGT-Acquis/DGT-TM/JRC-Acquis/EUR-Lex y G-0 global.

@@ -768,3 +768,24 @@ Los [términos oficiales](https://commonvoice.mozilla.org/oc/terms), efectivos 2
 Fuentes oficiales: [1 CFR 2.6](https://www.ecfr.gov/current/title-1/chapter-I/subchapter-A/part-2/section-2.6), [NARA About the Federal Register](https://www.archives.gov/federal-register/the-federal-register/about.html), [GPO XML user guide](https://github.com/usgpo/bulk-data/blob/83a85170ce0bdd0cf218f6290bd739df8748e2ea/FR-XML_User-Guide.md), [17 USC §105](https://www.govinfo.gov/content/pkg/USCODE-2024-title17/html/USCODE-2024-title17-chap1-sec105.htm), [Library of Congress rights caveat](https://www.loc.gov/collections/federal-register/about-this-collection/rights-and-access/).
 
 Acciones del día: [run 46009185876](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46009185876) y [run 46009185814](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46009185814) finalizaron correctamente, pero ambas auditorías son source-scoped; no completan G-0 global. El último preflight programado [run 45969736101](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/45969736101) quedó bloqueado por almacenamiento y descargó 0 bytes.
+
+
+## DGT-Acquis / DGT-TM / JRC-Acquis — revisión de derechos (2026-11-27)
+
+### DGT-Acquis
+
+Estado: discovery-only. La página oficial describe corpus del Diario Oficial desde mediados de 2004 hasta finales de 2011, hasta 23 idiomas; publica 4.900.254 segmentos y tamaños comprimidos de 3 GB (da1-pc), 5 GB (da1-ft) y 9 GB (da1-fx). No se han medido ni descargado esos bytes.
+
+La Comisión declara titularidad exclusiva del dataset y cede derechos mundiales para todo uso compatible con la Decisión 2011/833/EU. Requiere atribución, URL, fecha de última actualización y mención de titularidad. Sin SPDX estándar. El artículo 2(2)(b) de la Decisión excluye documentos con derechos de terceros; resolver NumDoc/CELEX uno a uno. Preferir da1-ft para contexto completo y no duplicar da1-pc como texto entrenable.
+
+### DGT-TM
+
+Estado: discovery-only. Memoria de traducción TMX en 24 idiomas, UTF-16LE, releases 2007–2021 (documentos hasta 2020). La Comisión declara derechos mundiales para todo uso bajo Decisión 2011/833/EU, con atribución y no distorsión. El corpus incluye documentos fuera del Acquis, usa inglés como pivote, fue preprocesado y las alineaciones son automáticas desde 2011. Verificar cada NumDoc, excluir terceros/no-Acquis sin derechos, no usar TMXtract y deduplicar contra DGT-Acquis/JRC-Acquis/EUR-Lex.
+
+### JRC-Acquis v3.0
+
+Estado: bloqueado por conflicto de términos. La página actual del JRC declara cesión mundial para todo uso, pero enlaza la licencia histórica actualizada en 2011 que limita el uso/distribución a fines de investigación y habla de distribución no comercial. No descargar hasta recibir aclaración escrita de JRC/OP sobre entrenamiento comercial. La estadística publicada (22 idiomas, 463.792 textos, 4.350.447 documentos alineados) no equivale a payload ni a admisión.
+
+Fuentes oficiales: https://joint-research-centre.ec.europa.eu/language-technology-resources/dgt-acquis_en ; https://joint-research-centre.ec.europa.eu/language-technology-resources/dgt-translation-memory_en ; https://joint-research-centre.ec.europa.eu/language-technology-resources/jrc-acquis_en ; https://wt-public.emm4u.eu/Acquis/JRC-Acquis.3.0/doc/licence.html ; https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng ; https://eur-lex.europa.eu/content/legal-notice/legal-notice.html?locale=en
+
+Todos los registros permanecen sin SPDX estándar, sin descargas y sin autorización de entrenamiento. Se exige snapshot por ZIP/idioma, rights clearance por NumDoc, auditoría de idioma/alineación/privacidad, deduplicación y G-0 global.
