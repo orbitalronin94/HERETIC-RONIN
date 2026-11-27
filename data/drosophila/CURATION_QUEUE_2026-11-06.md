@@ -411,7 +411,7 @@ Siguiente paso: reducir la carga por ejecución mediante ocho grupos determinist
 ### Admisiones
 
 - Nuevas admisiones: **0 documentos / 0 bytes**.
-- Total acumulado verificado: **703.593.871 bytes**, 260.971 documentos; progreso **0,140719 %** hacia 500 GB. Referencia: [auditoría global 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
+- Total acumulado verificado: **703.593.871 bytes**, 260.971 documentos; progreso **0,140719 %** hacia 500 GB. Referencia: [auditoría source-scoped 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
 
 ### Lotes
 
@@ -511,7 +511,7 @@ Total admitido: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 50
 - **Run 120** ([43970081452](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43970081452), grupo 7/8) y **run 121** ([44045933438](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44045933438), grupo 1/8) terminaron correctamente solo al registrar blocked_storage_gate. El secreto HERETIC_STAGING_PASSPHRASE faltaba o era menor de 32 caracteres. Ambos manifiestos dicen payload_downloaded=false, training_authorized=false, 0 filas y 0 bytes de payload. No se midieron bytes remotos/comprimidos.
 - Run 120: artifact [14276384265](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/43970081452/artifacts/14276384265), ZIP 653 bytes, SHA-256 5ccaf40cebdf09513fe878878c686cd2c3e51307e81877c75db01e48ed52899b; JSON interno 871 bytes, SHA-256 3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992.
 - Run 121: artifact [14312065087](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44045933438/artifacts/14312065087), ZIP 653 bytes, SHA-256 bd558141f5e6d4f3375aaba4fea21c00a0b70733c9bfeea2d0711c70c1a6e046; JSON interno 871 bytes, SHA-256 5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437. Los ZIP y JSON se descargaron y los hashes se recalcularon; los ZIP coinciden con los digests de GitHub.
-- Total admitido sin cambios: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB; referencia [auditoría global 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Cero admisiones nuevas.
+- Total admitido sin cambios: **703.593.871 bytes / 260.971 documentos**, **0,140719 %** de 500 GB; referencia [auditoría source-scoped 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Cero admisiones nuevas.
 
 
 ## Descubrimiento de fuentes — 2026-11-18
@@ -586,7 +586,7 @@ Evidencia oficial: [licencias](https://datacatalog.worldbank.org/public-licenses
 - Run 137, grupo 7/8: https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44813247702 — artifact 14667188891, ZIP 653 bytes, SHA-256 a93086b9570d214b0036a5cfb9c7b2a8c5711a041ced85b175ed8a46c88f71ff; manifiesto 871 bytes, SHA-256 3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992.
 - Run 138, grupo 1/8: https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/44881057593 — artifact 14697991415, ZIP 653 bytes, SHA-256 5941156dc57a7e31ad2dab81621f7344a9a6748e45ace8c73040f434d75db0f7; manifiesto 871 bytes, SHA-256 5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437.
 
-Ambos preflights finalizaron correctamente pero el secreto HERETIC_STAGING_PASSPHRASE faltaba o tenía menos de 32 caracteres. No se contactó con fuentes para descargar payload; 0 filas, 0 bytes remotos/descargados medidos, 0 staged y 0 admitidos. El job de validación fue omitido en los eventos programados. El inventario sigue en **260.971 documentos / 703.593.871 bytes (0,140719 % de 500 GB)** según la auditoría global [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
+Ambos preflights finalizaron correctamente pero el secreto HERETIC_STAGING_PASSPHRASE faltaba o tenía menos de 32 caracteres. No se contactó con fuentes para descargar payload; 0 filas, 0 bytes remotos/descargados medidos, 0 staged y 0 admitidos. El job de validación fue omitido en los eventos programados. El inventario sigue en **260.971 documentos / 703.593.871 bytes (0,140719 % de 500 GB)** según la auditoría source-scoped [42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447).
 
 
 ## Statistics Canada — estadísticas agregadas bilingües, discovery-only (2026-11-21)
