@@ -4642,8 +4642,8 @@
       "url": "https://joint-research-centre.ec.europa.eu/language-technology-resources/dgt-acquis_en",
       "retrieval_url": "https://joint-research-centre.ec.europa.eu/language-technology-resources/dgt-acquis_en",
       "revision": "DGT-Acquis family covering Official Journal documents from mid-2004 through end-2011; available representations include da1-ft (file-level plain text), da1-fx (Formex 4 XML), and da1-pc (paragraph-level column-file). No immutable Git commit exists. Freeze the official page snapshot, exact per-language archive URLs and file lists, response headers, byte lengths, UTC retrieval timestamps and SHA-256 for each original ZIP and extracted source file. Map every NumDoc to EUR-Lex CELEX and preserve the source document version/date.",
-      "reported_rows": 4900254,
-      "reported_size": "Publisher reports about 3 GB zipped for da1-pc paragraph-level data, 5 GB for da1-ft plain text and 9 GB for da1-fx Formex XML. These are publisher figures, not measured downloads or admitted bytes.",
+      "reported_rows": null,
+      "reported_size": "Not measured; publisher reports 4,900,254 paragraph segments for da1-pc (about 3 GB zipped), 3,537,872 files for da1-ft (about 5 GB) and 3,537,876 files for da1-fx (about 9 GB). These are publisher figures, not measured downloads or admitted bytes.",
       "reported_license": "The European Commission states that DGT-Acquis data is its exclusive property and cedes non-exclusive rights free of charge worldwide for the full protection term for all kinds of use complying with Commission Decision 2011/833/EU. Re-use must acknowledge the source URL and latest update date and state that the Commission retains ownership; do not distort the original meaning. The Decision permits commercial and non-commercial reuse but excludes documents with third-party IP, confidential data and industrial-property rights. This is a Commission reuse grant, not an SPDX licence; spdx_license_identifier remains null.",
       "spdx_license_identifier": null,
       "status": "candidate_discovery_only_pending_document_level_rights_privacy_quality_and_global_g0",
@@ -4731,7 +4731,7 @@
       "retrieval_url": "https://joint-research-centre.ec.europa.eu/language-technology-resources/dgt-translation-memory_en",
       "revision": "Official DGT-TM release series 2007–2021, covering source documents through 2020; no immutable Git commit exists. Freeze the exact release/version table, every ZIP URL and filename, per-release file list, response headers, byte length, UTC retrieval timestamp and SHA-256. Preserve TMX headers, release ID and each EUR-Lex NumDoc. The official page snapshot must be archived with the manifest.",
       "reported_rows": null,
-      "reported_size": "Publisher lists multiple release archives, including 2017: 848 MB, 2018: 427 MB, 2019: 600 MB, 2020: 395 MB and 2021: 583 MB, plus earlier releases. These are publisher figures only; no cumulative download or admitted bytes have been measured.",
+      "reported_size": "Not measured; publisher lists multiple release archives, including 2017: 848 MB, 2018: 427 MB, 2019: 600 MB, 2020: 395 MB and 2021: 583 MB, plus earlier releases. These are publisher figures only; no cumulative download or admitted bytes have been measured.",
       "reported_license": "The European Commission states that the DGT-TM database is its exclusive property and cedes non-exclusive rights free of charge worldwide for the full protection term for all kinds of use complying with Commission Decision 2011/833/EU. Re-use must identify the source URL and latest update date and state that the Commission retains ownership; do not misrepresent or distort the data. The Decision excludes third-party IP, confidential data and industrial-property rights. This is a Commission reuse grant, not an SPDX licence; spdx_license_identifier remains null.",
       "spdx_license_identifier": null,
       "status": "candidate_discovery_only_pending_document_level_rights_lineage_quality_and_global_g0",
@@ -4881,7 +4881,7 @@
       "count_toward_admitted_bytes": false,
       "training_authorized": false,
       "acquisition_enabled": false,
-      "disabled_reason": "Blocked because the current JRC page's all-uses statement conflicts with its linked 2011 terms page's research-only/non-commercial language. Do not acquire until written authoritative clarification resolves the conflict.",
+      "disabled_reason": "Blocked because the current JRC page's all-uses statement conflicts with its linked 2011 terms page's research-only/non-commercial language. Do not acquire until written clarification from JRC/OP resolves the conflict.",
       "recorded_date": "2026-11-27"
     }
   ],
