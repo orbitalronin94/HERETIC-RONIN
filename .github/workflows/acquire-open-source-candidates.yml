@@ -146,7 +146,7 @@ jobs:
         if: steps.storage.outputs.ready == 'true'
         run: python scripts/acquire_open_source_candidates.py
 
-      - name: Compile and prepare local candidate samples without logging excerpts
+      - name: Compile and prepare deterministic samples stratified by source/domain/language/format without logging excerpts
         if: steps.storage.outputs.ready == 'true'
         run: |
           python -m py_compile scripts/acquire_open_source_candidates.py scripts/review_candidate_samples.py
