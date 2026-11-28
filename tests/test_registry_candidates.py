@@ -334,18 +334,18 @@ class RegistryCandidateTests(unittest.TestCase):
     def test_latest_scheduled_acquisitions_are_verified_zero_byte_storage_blocks(self):
         last = self.registry["last_candidate_batch_details"]
         previous = self.registry["previous_candidate_batch_details"]
-        self.assertEqual(last["run_id"], 45969736101)
-        self.assertEqual(last["run_number"], 166)
-        self.assertEqual(previous["run_id"], 45900766740)
-        self.assertEqual(previous["run_number"], 165)
-        self.assertEqual(last["source_group"], 1)
-        self.assertEqual(previous["source_group"], 7)
-        self.assertEqual(last["artifact_id"], 15184268031)
-        self.assertEqual(previous["artifact_id"], 15156090956)
-        self.assertEqual(last["artifact_sha256"], "5cde9471e155fc56cf5c59cfb10c6b6922aaccc625e79d7bc8a8a90e91de9f12")
-        self.assertEqual(previous["artifact_sha256"], "0ca28a1224eb8f57adf481528e9dab3a93ba3850bb41eb2b31e49132dc623902")
-        self.assertEqual(last["manifest_sha256"], "5a29c6d9b12146e5ba7b8e76a7a849275303a6c7e21b61ab0907fca8eb78c437")
-        self.assertEqual(previous["manifest_sha256"], "3b605cda44c2b6711ea9f30d9926a2a2af9d8194edda80f6b102e51a04e16992")
+        self.assertEqual(last["run_id"], 46125173946)
+        self.assertEqual(last["run_number"], 181)
+        self.assertEqual(previous["run_id"], 46071076162)
+        self.assertEqual(previous["run_number"], 180)
+        self.assertEqual(last["source_group"], 5)
+        self.assertEqual(previous["source_group"], 3)
+        self.assertEqual(last["artifact_id"], 15255428113)
+        self.assertEqual(previous["artifact_id"], 15232982518)
+        self.assertEqual(last["artifact_sha256"], "ea15e4baf19f57b7673946c0fbcfe7b4ea85e644b72eb1cd506aff31e628541d")
+        self.assertEqual(previous["artifact_sha256"], "7655fc1abd5f4f437b0dbbc2297a703a225aa86af31b82b3d0ce9386f68b685b")
+        self.assertEqual(last["manifest_sha256"], "0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7")
+        self.assertEqual(previous["manifest_sha256"], "2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26")
         history = {batch["run_number"]: batch for batch in self.registry["historical_candidate_batches"] if batch.get("run_number") is not None}
         self.assertEqual(history[149]["artifact_id"], 14770830618)
         self.assertEqual(history[150]["artifact_id"], 14800025470)
@@ -353,6 +353,8 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertEqual(history[163]["artifact_id"], 15100551941)
         self.assertEqual(history[165]["artifact_id"], 15156090956)
         self.assertEqual(history[166]["artifact_id"], 15184268031)
+        self.assertEqual(history[180]["artifact_id"], 15232982518)
+        self.assertEqual(history[181]["artifact_id"], 15255428113)
         for batch in (last, previous):
             self.assertEqual(batch["candidate_rows"], 0)
             self.assertEqual(batch["candidate_jsonl_bytes"], 0)
@@ -534,7 +536,7 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertGreaterEqual(len(source["evidence_urls"]), 5)
 
     def test_scheduled_runs_180_and_181_are_historically_reconciled_as_zero_byte_storage_blocks(self):
-        records = {item["run_number"]: item for item in self.registry["historical_candidate_batches"]}
+        records = {item["run_number"]: item for item in self.registry["historical_candidate_batches"] if item.get("run_number") is not None}
         expected = {
             180: {
                 "run_id": 46071076162,
