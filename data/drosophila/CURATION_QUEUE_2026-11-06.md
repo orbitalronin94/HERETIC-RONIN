@@ -808,3 +808,12 @@ Fuentes: [IATE](https://iate.europa.eu/en), [FAQ](https://iate.europa.eu/faq), [
 - G-0 global sigue bloqueado por inventario incompleto de validation/test/benchmark/holdout. Inventario histórico admitido: **260.971 documentos / 703.593.871 bytes (0,140719 % de 500 GB)**.
 
 No se ha entrenado ni modificado ningún modelo o checkpoint.
+
+
+## Open Multilingual Wordnet — candidato con allowlist por paquete (2026-11-28)
+
+Se fija [omwn/omw-data](https://github.com/omwn/omw-data) en `406bf83b3c507a3d1f26e88252d5d66893fd36bf`. El repositorio es mixto y no tiene licencia global de payload. Solo se anotan 12 paquetes candidatos: `omw-sq`, `omw-bg`, `omw-ca`, `omw-eu`, `omw-gl`, `omw-hr`, `omw-it`, `omw-is`, `omw-es`, `omw-el`, `omw-id`, `omw-zsm`, bajo CC-BY-3.0, Apache-2.0 o MIT, según el LICENSE individual y el índice fijado.
+
+Se excluyen los paquetes share-alike, CeCILL-C, ODC-By pendiente de revisión, FinnWordNet por conflicto de licencia, Swedish SALDO por versión no confirmada, los paquetes WordNet con licencia personalizada aún no revisada y el material Wiktionary/CLDR. El código MIT del repositorio no licencia los payloads.
+
+**Estado:** discovery-only; adquisición desactivada, sin payload, sin filas/bytes y sin autorización de entrenamiento. Requisitos pendientes: hash por archivo, revisión del titular y upstream, atribución por wordnet, muestra estratificada, calidad, privacidad, seguridad, deduplicación global y G-0 completo.

@@ -561,3 +561,12 @@ La main inspeccionada antes de esta actualización era 1be95a47f81a8e30f9b81c67d
 - G-0 global sigue bloqueado por falta de un inventario inmutable de todos los splits protegidos. No se ejecutó deduplicación ni contaminación sobre payload nuevo porque no hubo payload.
 
 El inventario admitido permanece en **260.971 documentos / 703.593.871 bytes (0,140719 % de 500 GB)**. No se ha entrenado, alterado la configuración ni promovido checkpoints.
+
+
+## Open Multilingual Wordnet — descubrimiento con derechos por paquete (2026-11-28)
+
+Se incorpora como candidata [Open Multilingual Wordnet](https://omwn.org/) a través de [omwn/omw-data](https://github.com/omwn/omw-data), fijado al commit `406bf83b3c507a3d1f26e88252d5d66893fd36bf`. El proyecto declara actualmente 60 wordnets en 49 idiomas, pero no se ha usado esa cifra como tamaño de payload. El índice fijado contiene 31 paquetes; la allowlist inicial es de 12 paquetes en 12 idiomas con licencia individual CC-BY-3.0, Apache-2.0 o MIT.
+
+No hay licencia global del agregado. Se excluyen los paquetes share-alike, CeCILL-C, ODC-By pendiente, FinnWordNet por conflicto de licencia, Swedish SALDO por versión sin confirmar, licencias WordNet personalizadas pendientes y material derivado de Wiktionary/CLDR. No se ha descargado nada ni se ha inferido que la licencia del código MIT cubra los datos. El registro mantiene `training_authorized=false`, `acquisition_enabled=false` y 0 bytes admitidos.
+
+El siguiente paso, si se resuelven almacenamiento seguro y G-0 global, será un colector por paquete que fije cada LICENSE, cita, fuente upstream y SHA-256, preserve atribución y mantenga cada synset con sus formas relacionadas en un único split.
