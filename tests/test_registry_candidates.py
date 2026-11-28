@@ -517,5 +517,53 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertIn("non-commercial", source["reported_license"])
         self.assertIn("written clarification", source["disabled_reason"])
 
+
+    def test_iate_export_is_blocked_until_download_terms_and_entry_level_rights_are_clear(self):
+        source = self.source("IATE:multilingual-terminology-export-terms-and-reference-rights-unresolved")
+        self.assertTrue(source["status"].startswith("blocked_"))
+        self.assertIsNone(source["spdx_license_identifier"])
+        self.assertIs(source["acquisition_enabled"], False)
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+        self.assertIn("conditions of use", source["reported_license"].casefold())
+        self.assertIn("brochure", source["reported_license"].casefold())
+        self.assertIn("third-party", source["rights_caveat"].casefold())
+        self.assertIn("EU Login", source["revision"])
+        checks = " ".join(source["required_checks"]).casefold()
+        self.assertIn("global g-0", checks)
+        self.assertGreaterEqual(len(source["evidence_urls"]), 5)
+
+    def test_scheduled_runs_180_and_181_are_historically_reconciled_as_zero_byte_storage_blocks(self):
+        records = {item["run_number"]: item for item in self.registry["historical_candidate_batches"]}
+        expected = {
+            180: {
+                "run_id": 46071076162,
+                "artifact_id": 15232982518,
+                "artifact_sha256": "7655fc1abd5f4f437b0dbbc2297a703a225aa86af31b82b3d0ce9386f68b685b",
+                "manifest_sha256": "2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26",
+            },
+            181: {
+                "run_id": 46125173946,
+                "artifact_id": 15255428113,
+                "artifact_sha256": "ea15e4baf19f57b7673946c0fbcfe7b4ea85e644b72eb1cd506aff31e628541d",
+                "manifest_sha256": "0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7",
+            },
+        }
+        for number, values in expected.items():
+            with self.subTest(run=number):
+                record = records[number]
+                self.assertEqual(record["run_id"], values["run_id"])
+                self.assertEqual(record["artifact_id"], values["artifact_id"])
+                self.assertEqual(record["artifact_sha256"], values["artifact_sha256"])
+                self.assertEqual(record["manifest_sha256"], values["manifest_sha256"])
+                self.assertEqual(record["status"], "blocked_storage_gate")
+                self.assertEqual(record["storage_gate_status"], "blocked")
+                self.assertEqual(record["candidate_rows"], 0)
+                self.assertEqual(record["candidate_jsonl_bytes"], 0)
+                self.assertEqual(record["admitted_bytes_added"], 0)
+                self.assertIs(record["training_authorized"], False)
+        self.assertEqual(self.registry["last_candidate_batch_details"]["run_number"], 181)
+        self.assertEqual(self.registry["previous_candidate_batch_details"]["run_number"], 180)
+
 if __name__ == "__main__":
     unittest.main()
