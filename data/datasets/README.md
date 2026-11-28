@@ -14,7 +14,7 @@ Actualizado: 2026-11-28. Este documento distingue **admitido**, **candidato** y 
 | Total de bytes admitidos contabilizados | **703.593.871 bytes (671,0 MiB)** |
 | Objetivo de biblioteca | 500.000.000.000 bytes (500 GB decimal) |
 | G-0 global para nuevas admisiones | **BLOQUEADO**: falta inventario inmutable completo de todos los splits protegidos |
-| Fuentes registradas | 115 (incluye DGT-Acquis y DGT-TM como discovery-only; JRC-Acquis e IATE quedan bloqueados por derechos/condiciones pendientes) |
+| Fuentes registradas | 116 (incluye DGT-Acquis y DGT-TM como discovery-only; JRC-Acquis e IATE quedan bloqueados por derechos/condiciones pendientes) |
 
 Auditoría source-scoped: [run 42362365447](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/42362365447). Artefacto de auditoría: ID `13570263309`, SHA-256 `db826ced0bcd9158fee17d254faad203e7fe9e317f510e12fcf2cd448bb42dc9`.
 
@@ -924,3 +924,12 @@ La base contiene múltiples propietarios institucionales y referencias/contextos
 - Ambos artefactos fueron descargados y sus hashes recalculados; los manifiestos contienen blocked_storage_gate, sources=[], 0 filas y 0 bytes de payload. El job de validación fue omitido en las runs programadas.
 - Bytes remotos: no medidos; bytes de corpus descargados/comprimidos/expandidos: 0; staging durable: 0; bytes admitidos nuevos: **0**. Los artefactos son solo manifiestos.
 - G-0 global continúa bloqueado. Inventario admitido sin cambios: **260.971 documentos / 703.593.871 bytes**, **0,140719 %** de 500 GB.
+
+
+## Open Multilingual Wordnet — candidato por paquete (2026-11-28)
+
+Se registra [omwn/omw-data](https://github.com/omwn/omw-data) fijado al commit `406bf83b3c507a3d1f26e88252d5d66893fd36bf`. El índice contiene 31 paquetes, pero **solo 12 paquetes** pasan el filtro documental inicial: nueve CC BY 3.0, uno Apache-2.0 y dos MIT, en albanés, búlgaro, catalán, euskera, gallego, croata, italiano, islandés, español, griego, indonesio y malayo. No existe una licencia común del agregado; el SPDX queda nulo a nivel de colección y se conserva la licencia por paquete.
+
+Quedan fuera los paquetes share-alike, CeCILL-C, ODC-By pendiente de revisión, FinnWordNet por conflicto entre índice y LICENSE, Swedish SALDO por versión de licencia no confirmada, los paquetes con licencia WordNet personalizada aún no revisados y todo el material extraído de Wiktionary/CLDR. La licencia MIT del código del repositorio no se extiende a los datos.
+
+**Estado:** discovery-only; no se ha descargado ningún payload, no hay filas ni bytes medidos, y no existe autorización de entrenamiento. Antes de adquirir: snapshot y SHA-256 por paquete, verificación del titular/upstream, atribución, calidad lingüística, privacidad, seguridad, deduplicación y G-0 global completo. Los synsets y sus formas relacionadas deberán permanecer juntos en un mismo split.
