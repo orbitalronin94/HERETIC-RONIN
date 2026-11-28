@@ -539,3 +539,25 @@ Se registran dos candidatos de la Dirección General de Traducción/JRC, ambos *
 Fuentes: [DGT-Acquis](https://joint-research-centre.ec.europa.eu/language-technology-resources/dgt-acquis_en), [DGT-TM](https://joint-research-centre.ec.europa.eu/language-technology-resources/dgt-translation-memory_en), [JRC-Acquis](https://joint-research-centre.ec.europa.eu/language-technology-resources/jrc-acquis_en), [Decisión 2011/833/EU](https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng), [aviso legal EUR-Lex](https://eur-lex.europa.eu/content/legal-notice/legal-notice.html?locale=en).
 
 Los tres registros quedan con `spdx_license_identifier=null`: la base es una cesión/condición de reutilización de la Comisión, no una licencia SPDX estándar. No hay descargas, staging ni admisiones; se exige snapshot por ZIP/idioma, derechos por documento, revisión de calidad/privacidad, deduplicación entre DGT-Acquis/DGT-TM/JRC-Acquis/EUR-Lex y G-0 global.
+
+
+## IATE — bloqueado por condiciones de exportación y derechos de terceros (2026-11-28)
+
+IATE es una termbase multilingüe de la UE con terminología de derecho, medioambiente, derechos humanos, medicina, transporte, agricultura, química, propiedad intelectual y procesamiento de datos. El exportador permite seleccionar idiomas, dominios, tipos de término y niveles de fiabilidad y ofrece CSV/TBX, pero requiere EU Login y remite a unas condiciones de uso específicas en la página de descarga. No he encontrado una licencia de dataset verificable en la documentación pública revisada. El aviso de reutilización de un folleto de búsqueda no se extiende automáticamente al termbase.
+
+Los registros pueden incluir definiciones, contextos y referencias a legislación, normas, libros y publicaciones de terceros; además, la base es gestionada por varias instituciones. Se añade al registro como **bloqueada**, sin SPDX, sin descarga y sin autorización de entrenamiento hasta obtener las condiciones exactas de exportación y resolver los derechos por campo/entrada.
+
+- [IATE](https://iate.europa.eu/en) · [FAQ](https://iate.europa.eu/faq) · [folleto de descarga](https://iate.europa.eu/assets/brochure_search_by_collections_and_download.pdf) · [metadatos del catálogo](https://data.europa.eu/data/datasets/iate?locale=en).
+- El catálogo de [EU Vocabularies](https://interoperable-europe.ec.europa.eu/collection/semic-support-centre/solution/eu-vocabularies-reference-data-catalogue) reúne más de 350 activos, pero las licencias varían por activo (CC BY 4.0, CC0 u otras). No se tratará como una licencia común ni como payload; cada vocabulario exige su propia revisión. EuroVoc sigue siendo un registro separado, pendiente de fijar la licencia de su release concreto.
+
+## Preflights programados — runs 180 y 181 (2026-11-28)
+
+La main inspeccionada antes de esta actualización era 1be95a47f81a8e30f9b81c67d3b1dfd612493789. Las runs 180 y 181 del workflow de adquisición terminaron success porque el preflight registró correctamente el bloqueo; el job validate quedó omitido en ambos eventos programados.
+
+- [Run 180](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46071076162), grupo 3/8, artifact [15232982518](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46071076162/artifacts/15232982518): ZIP 653 bytes, SHA-256 7655fc1abd5f4f437b0dbbc2297a703a225aa86af31b82b3d0ce9386f68b685b; JSON interno 871 bytes, SHA-256 2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26.
+- [Run 181](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46125173946), grupo 5/8, artifact [15255428113](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46125173946/artifacts/15255428113): ZIP 653 bytes, SHA-256 ea15e4baf19f57b7673946c0fbcfe7b4ea85e644b72eb1cd506aff31e628541d; JSON interno 871 bytes, SHA-256 0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7.
+- Los ZIP se descargaron y sus SHA-256 se recalcularon localmente; coinciden con el digest de GitHub. Ambos manifiestos declaran blocked_storage_gate, sources=[], 0 filas, 0 bytes de payload y training_authorized=false. El secreto HERETIC_STAGING_PASSPHRASE seguía ausente o era inferior a 32 caracteres; ninguna fuente fue contactada para descargar contenido.
+- Bytes remotos anunciados: no medidos. Bytes de corpus descargados/comprimidos/expandidos: 0. Staging durable: 0. Bytes admitidos nuevos: **0**. Los 653 bytes ZIP y 871 bytes JSON son solo manifiestos.
+- G-0 global sigue bloqueado por falta de un inventario inmutable de todos los splits protegidos. No se ejecutó deduplicación ni contaminación sobre payload nuevo porque no hubo payload.
+
+El inventario admitido permanece en **260.971 documentos / 703.593.871 bytes (0,140719 % de 500 GB)**. No se ha entrenado, alterado la configuración ni promovido checkpoints.
