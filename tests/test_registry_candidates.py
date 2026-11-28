@@ -567,5 +567,35 @@ class RegistryCandidateTests(unittest.TestCase):
         self.assertEqual(self.registry["last_candidate_batch_details"]["run_number"], 181)
         self.assertEqual(self.registry["previous_candidate_batch_details"]["run_number"], 180)
 
+    def test_omw_data_is_pinned_and_allowlisted_per_wordnet_only(self):
+        source = self.source("OMW:omw-data-pinned-per-wordnet-allowlist")
+        self.assert_discovery_only(source)
+        self.assertIsNone(source["spdx_license_identifier"])
+        self.assertIs(source["acquisition_enabled"], False)
+        self.assertEqual(
+            source["revision"].split("commit ")[1].split(" ")[0],
+            "406bf83b3c507a3d1f26e88252d5d66893fd36bf",
+        )
+        self.assertEqual(source["license_exact_allowlist"], ["CC-BY-3.0", "Apache-2.0", "MIT"])
+        packages = source["package_allowlist"]
+        self.assertEqual(len(packages), 12)
+        self.assertEqual(
+            {item["language"] for item in packages},
+            {"sq", "bg", "ca", "eu", "gl", "hr", "it", "is", "es", "el", "id", "zsm"},
+        )
+        self.assertTrue(all(item["license"] in source["license_exact_allowlist"] for item in packages))
+        self.assertEqual(len({item["id"] for item in packages}), 12)
+        self.assertIn("omw-arb", {item["id"] for item in source["excluded_packages"]})
+        self.assertIn("omw-fi", {item["id"] for item in source["excluded_packages"]})
+        self.assertIn("Wiktionary", source["rights_caveat"])
+        self.assertIn("CLDR", source["rights_caveat"])
+        checks = " ".join(source["required_checks"]).casefold()
+        self.assertIn("global g-0", checks)
+        self.assertIn("sha-256", checks)
+        self.assertIn("source project's rights notice", checks)
+        self.assertIs(source["training_authorized"], False)
+        self.assertIs(source["count_toward_admitted_bytes"], False)
+
+
 if __name__ == "__main__":
     unittest.main()
