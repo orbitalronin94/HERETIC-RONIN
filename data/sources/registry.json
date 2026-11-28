@@ -4960,6 +4960,262 @@
       "acquisition_enabled": false,
       "training_authorized": false,
       "count_toward_admitted_bytes": false
+    },
+    {
+      "id": "OMW:omw-data-pinned-per-wordnet-allowlist",
+      "url": "https://github.com/omwn/omw-data",
+      "retrieval_url": "https://github.com/omwn/omw-data/tree/406bf83b3c507a3d1f26e88252d5d66893fd36bf",
+      "revision": "omwn/omw-data pinned to commit 406bf83b3c507a3d1f26e88252d5d66893fd36bf (2026-03-28). index.toml and wns payload paths are read from this immutable commit; no payload was downloaded and no file SHA-256/row count/byte count has been measured.",
+      "reported_rows": null,
+      "reported_size": "Not measured; no payload acquired. The pinned index.toml lists 31 package entries; this candidate allowlist contains 12 packages across 12 language codes. OMW's current project overview reports 60 wordnets in 49 languages, but that project-wide figure is not a payload size or an eligible-row count.",
+      "reported_license": "No collection-wide licence. The pinned index.toml and each package LICENSE govern the individual wordnet payloads. Initial exact allowlist: 9 packages under CC-BY-3.0, 1 under Apache-2.0 and 2 under MIT. The root repository/code licence is not inherited by data. SPDX applies per package only; the aggregate source has no single SPDX identifier.",
+      "spdx_license_identifier": null,
+      "license_exact_allowlist": [
+        "CC-BY-3.0",
+        "Apache-2.0",
+        "MIT"
+      ],
+      "package_allowlist": [
+        {
+          "id": "omw-sq",
+          "language": "sq",
+          "label": "Albanet",
+          "license": "CC-BY-3.0",
+          "license_uri": "https://creativecommons.org/licenses/by/3.0/",
+          "license_file": "wns/als/LICENSE",
+          "payload_path": "wns/als/wn-data-als.tab",
+          "license_basis": "LICENSE says dual-licensed GPL-3.0 or CC BY 3.0; select CC BY 3.0 only."
+        },
+        {
+          "id": "omw-bg",
+          "language": "bg",
+          "label": "BulTreeBank Wordnet",
+          "license": "CC-BY-3.0",
+          "license_uri": "https://creativecommons.org/licenses/by/3.0/",
+          "license_file": "wns/bul/LICENSE",
+          "payload_path": "wns/bul/wn-data-bul.tab",
+          "license_basis": "Package LICENSE explicitly states CC BY 3.0."
+        },
+        {
+          "id": "omw-ca",
+          "language": "ca",
+          "label": "Multilingual Central Repository (Catalan)",
+          "license": "CC-BY-3.0",
+          "license_uri": "https://creativecommons.org/licenses/by/3.0/",
+          "license_file": "wns/mcr/LICENSE",
+          "payload_path": "wns/mcr/wn-data-cat.tab",
+          "license_basis": "MCR LICENSE applies CC BY 3.0 to non-English data; the English engWN component is excluded."
+        },
+        {
+          "id": "omw-eu",
+          "language": "eu",
+          "label": "Multilingual Central Repository (Basque)",
+          "license": "CC-BY-3.0",
+          "license_uri": "https://creativecommons.org/licenses/by/3.0/",
+          "license_file": "wns/mcr/LICENSE",
+          "payload_path": "wns/mcr/wn-data-eus.tab",
+          "license_basis": "MCR LICENSE applies CC BY 3.0 to non-English data; the English engWN component is excluded."
+        },
+        {
+          "id": "omw-gl",
+          "language": "gl",
+          "label": "Multilingual Central Repository (Galician)",
+          "license": "CC-BY-3.0",
+          "license_uri": "https://creativecommons.org/licenses/by/3.0/",
+          "license_file": "wns/mcr/LICENSE",
+          "payload_path": "wns/mcr/wn-data-glg.tab",
+          "license_basis": "MCR LICENSE applies CC BY 3.0 to non-English data; the English engWN component is excluded."
+        },
+        {
+          "id": "omw-hr",
+          "language": "hr",
+          "label": "Croatian Wordnet",
+          "license": "CC-BY-3.0",
+          "license_uri": "https://creativecommons.org/licenses/by/3.0/",
+          "license_file": "wns/hrv/LICENSE",
+          "payload_path": "wns/hrv/wn-data-hrv.tab",
+          "license_basis": "Package LICENSE explicitly states CC BY 3.0."
+        },
+        {
+          "id": "omw-it",
+          "language": "it",
+          "label": "MultiWordNet (Italian)",
+          "license": "CC-BY-3.0",
+          "license_uri": "https://creativecommons.org/licenses/by/3.0/",
+          "license_file": "wns/ita/LICENSE",
+          "payload_path": "wns/ita/wn-data-ita.tab",
+          "license_basis": "Package LICENSE explicitly states CC BY 3.0."
+        },
+        {
+          "id": "omw-is",
+          "language": "is",
+          "label": "IceWordNet",
+          "license": "CC-BY-3.0",
+          "license_uri": "https://creativecommons.org/licenses/by/3.0/",
+          "license_file": "wns/isl/LICENSE",
+          "payload_path": "wns/isl/wn-data-isl.tab",
+          "license_basis": "Package LICENSE includes the CC BY 3.0 legal text."
+        },
+        {
+          "id": "omw-es",
+          "language": "es",
+          "label": "Multilingual Central Repository (Spanish)",
+          "license": "CC-BY-3.0",
+          "license_uri": "https://creativecommons.org/licenses/by/3.0/",
+          "license_file": "wns/mcr/LICENSE",
+          "payload_path": "wns/mcr/wn-data-spa.tab",
+          "license_basis": "MCR LICENSE applies CC BY 3.0 to non-English data; the English engWN component is excluded."
+        },
+        {
+          "id": "omw-el",
+          "language": "el",
+          "label": "Greek Wordnet",
+          "license": "Apache-2.0",
+          "license_uri": "https://opensource.org/licenses/Apache-2.0",
+          "license_file": "wns/ell/LICENSE",
+          "payload_path": "wns/ell/wn-data-ell.tab",
+          "license_basis": "Package LICENSE is Apache License 2.0."
+        },
+        {
+          "id": "omw-id",
+          "language": "id",
+          "label": "Wordnet Bahasa (Indonesian)",
+          "license": "MIT",
+          "license_uri": "https://opensource.org/licenses/MIT",
+          "license_file": "wns/msa/LICENSE",
+          "payload_path": "wns/msa/wn-data-ind.tab",
+          "license_basis": "Package LICENSE is MIT and explicitly describes the Wordnet Bahasa data."
+        },
+        {
+          "id": "omw-zsm",
+          "language": "zsm",
+          "label": "Wordnet Bahasa (Malaysian)",
+          "license": "MIT",
+          "license_uri": "https://opensource.org/licenses/MIT",
+          "license_file": "wns/msa/LICENSE",
+          "payload_path": "wns/msa/wn-data-zsm.tab",
+          "license_basis": "Package LICENSE is MIT and explicitly describes the Wordnet Bahasa data."
+        }
+      ],
+      "excluded_packages": [
+        {
+          "id": "omw-arb",
+          "reason": "CC BY-SA 3.0; share-alike not approved."
+        },
+        {
+          "id": "omw-lt",
+          "reason": "CC BY-SA 3.0; share-alike not approved."
+        },
+        {
+          "id": "omw-nl",
+          "reason": "CC BY-SA 4.0; share-alike not approved."
+        },
+        {
+          "id": "omw-pt",
+          "reason": "CC BY-SA family; share-alike not approved."
+        },
+        {
+          "id": "omw-ro",
+          "reason": "CC BY-SA family; share-alike not approved."
+        },
+        {
+          "id": "omw-sk",
+          "reason": "CC BY-SA 3.0; share-alike not approved."
+        },
+        {
+          "id": "omw-sl",
+          "reason": "CC BY-SA 3.0; share-alike not approved."
+        },
+        {
+          "id": "omw-fr",
+          "reason": "CeCILL-C; excluded pending applicability and upstream rights review."
+        },
+        {
+          "id": "omw-iwn",
+          "reason": "ODC-By 1.0; held pending database-right and upstream source review."
+        },
+        {
+          "id": "omw-fi",
+          "reason": "index.toml says CC BY 3.0 but package LICENSE describes a PWN derivative under the Princeton WordNet license; resolve the mismatch before use."
+        },
+        {
+          "id": "omw-sv",
+          "reason": "package metadata says CC BY 3.0 but the packaged rights metadata only says generic CC-BY attribution; exact version and upstream rights not confirmed."
+        }
+      ],
+      "held_custom_license_packages": [
+        "omw-cmn",
+        "omw-da",
+        "omw-he",
+        "omw-ja",
+        "omw-nn",
+        "omw-nb",
+        "omw-pl",
+        "omw-th"
+      ],
+      "status": "candidate_discovery_only_mixed_license_per_wordnet_allowlist_pending_upstream_rights_snapshot_quality_and_global_g0",
+      "domains": [
+        "multilingual lexical semantics",
+        "wordnets",
+        "lemmas",
+        "synsets",
+        "definitions",
+        "semantic relations",
+        "lexical knowledge graphs",
+        "translation"
+      ],
+      "language": [
+        "sq",
+        "bg",
+        "ca",
+        "eu",
+        "gl",
+        "hr",
+        "it",
+        "is",
+        "es",
+        "el",
+        "id",
+        "zsm"
+      ],
+      "payload_scope": "Only the 12 package paths in package_allowlist. Exclude all other package paths, CLDR/Wiktionary-derived material, code, tests, documentation not needed for attribution, and every external resource not independently cleared.",
+      "attribution": "Preserve each wordnet's original project label, authors, citation.bib, source URL, language, package LICENSE, OMW package ID and commit. Cite Bond and Paik (2012) for the OMW aggregation and cite each original wordnet project separately.",
+      "rights_caveat": "OMW is a mixed collection, not a collection-wide licence. Its pinned index.toml contains per-package licence URIs and the wns tree contains package-specific LICENSE files. Only the 12 exact package_allowlist entries are discovery candidates. Exclude share-alike packages (including Arabic, Lithuanian, Dutch, Portuguese, Romanian, Slovak and Slovenian), the CeCILL-C French package, ODC-By ItalWordNet pending database-right review, FinnWordNet because its index licence conflicts with its package LICENSE, and Swedish SALDO until the exact licence version/upstream rights are confirmed. Hold custom WordNet-licensed packages (Chinese, Danish, Hebrew, Japanese, Norwegian Bokmål/Nynorsk and Polish, Thai) until their full source-holder terms and upstream rights are separately reviewed. Exclude the automatically extracted Wiktionary/CLDR material: Wiktionary text is share-alike/GFDL-derived and CLDR needs its own separate licence/provenance audit. No payload is downloaded or authorised.",
+      "required_checks": [
+        "Acquire only the exact 12 package IDs and payload paths in package_allowlist; fail closed on any additional language, file or package.",
+        "Pin every raw file to commit 406bf83b3c507a3d1f26e88252d5d66893fd36bf; never use main, master or an unpinned release URL.",
+        "Before staging, freeze index.toml, each package LICENSE, README, citation.bib, source URL, language, package ID, exact payload path, retrieval timestamp, byte length and SHA-256.",
+        "Verify each selected package's index.toml licence URI against its own LICENSE and the original source project's rights notice; a repository-level MIT licence does not license the payload.",
+        "Allow only exact CC-BY-3.0, Apache-2.0 or MIT packages listed in package_allowlist; no broad string matching or licence inheritance.",
+        "Exclude all CC-BY-SA/share-alike packages, CeCILL-C, unresolved ODC-By, FinnWordNet's conflicting licence metadata, Swedish SALDO's unconfirmed licence version and all packages with missing or ambiguous terms.",
+        "Hold the custom WordNet-licensed packages until each right holder's full terms, commercial permission, modification rights, attribution and upstream source rights are reviewed independently.",
+        "Exclude wns/cldr and all Wiktionary-derived or automatically extracted data; do not inherit the OMW repository licence for those sources.",
+        "Preserve original project attribution, author/editor, citation, DOI/URL, language, synset/lemma IDs, package ID, licence URI and revision for every admitted row.",
+        "Validate UTF-8, TSV field counts, LMF/XML structure where applicable, malformed records, duplicate IDs, broken references and language-code consistency.",
+        "Audit samples stratified by wordnet package, language, part of speech, source project and record type; review gloss quality, sense alignment and accidental cross-language corruption.",
+        "Scan for personal data, sensitive content, secrets, malicious payloads and third-party quotations or examples; quarantine uncertain records.",
+        "Keep every synset and its linked lexical forms in one deterministic split to prevent translation/sense leakage; never import external validation, test or benchmark splits into train.",
+        "Deduplicate exact and approximately against all admitted corpora and every validation/test/benchmark/holdout source; require a complete immutable protected-split inventory and global G-0.",
+        "Keep acquisition_enabled=false, training_authorized=false and count_toward_admitted_bytes=false until secure storage, a dedicated collector, package-level rights, quality, privacy, deduplication and global G-0 all pass."
+      ],
+      "evidence_urls": [
+        "https://omwn.org/",
+        "https://github.com/omwn/omw-data",
+        "https://github.com/omwn/omw-data/blob/406bf83b3c507a3d1f26e88252d5d66893fd36bf/README.md",
+        "https://github.com/omwn/omw-data/blob/406bf83b3c507a3d1f26e88252d5d66893fd36bf/index.toml",
+        "https://github.com/omwn/omw-data/blob/406bf83b3c507a3d1f26e88252d5d66893fd36bf/wns/als/LICENSE",
+        "https://github.com/omwn/omw-data/blob/406bf83b3c507a3d1f26e88252d5d66893fd36bf/wns/bul/LICENSE",
+        "https://github.com/omwn/omw-data/blob/406bf83b3c507a3d1f26e88252d5d66893fd36bf/wns/mcr/LICENSE",
+        "https://github.com/omwn/omw-data/blob/406bf83b3c507a3d1f26e88252d5d66893fd36bf/wns/ell/LICENSE",
+        "https://github.com/omwn/omw-data/blob/406bf83b3c507a3d1f26e88252d5d66893fd36bf/wns/hrv/LICENSE",
+        "https://github.com/omwn/omw-data/blob/406bf83b3c507a3d1f26e88252d5d66893fd36bf/wns/ita/LICENSE",
+        "https://github.com/omwn/omw-data/blob/406bf83b3c507a3d1f26e88252d5d66893fd36bf/wns/isl/LICENSE",
+        "https://github.com/omwn/omw-data/blob/406bf83b3c507a3d1f26e88252d5d66893fd36bf/wns/msa/LICENSE"
+      ],
+      "count_toward_admitted_bytes": false,
+      "training_authorized": false,
+      "acquisition_enabled": false,
+      "recorded_date": "2026-11-28"
     }
   ],
   "target_library_bytes": 500000000000,
@@ -7001,7 +7257,7 @@
     ],
     "last_checked_at": "2026-11-28"
   },
-  "source_count": 115,
+  "source_count": 116,
   "previous_candidate_batch": "Run 180 (2026-11-27, group 3/8): storage gate blocked before download; 0 candidate rows, 0 downloaded/JSONL bytes, 0 durable staged bytes and 0 admitted bytes. Artifact 15232982518; ZIP SHA-256 7655fc1abd5f4f437b0dbbc2297a703a225aa86af31b82b3d0ce9386f68b685b; manifest SHA-256 2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26.",
   "global_g0_status": {
     "status": "blocked_incomplete_split_inventory",
