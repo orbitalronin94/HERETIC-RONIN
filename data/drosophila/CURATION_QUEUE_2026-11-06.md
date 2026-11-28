@@ -789,3 +789,22 @@ Estado: bloqueado por conflicto de términos. La página actual del JRC declara 
 Fuentes oficiales: https://joint-research-centre.ec.europa.eu/language-technology-resources/dgt-acquis_en ; https://joint-research-centre.ec.europa.eu/language-technology-resources/dgt-translation-memory_en ; https://joint-research-centre.ec.europa.eu/language-technology-resources/jrc-acquis_en ; https://wt-public.emm4u.eu/Acquis/JRC-Acquis.3.0/doc/licence.html ; https://eur-lex.europa.eu/eli/dec/2011/833/oj/eng ; https://eur-lex.europa.eu/content/legal-notice/legal-notice.html?locale=en
 
 Todos los registros permanecen sin SPDX estándar, sin descargas y sin autorización de entrenamiento. Se exige snapshot por ZIP/idioma, rights clearance por NumDoc, auditoría de idioma/alineación/privacidad, deduplicación y G-0 global.
+
+
+## IATE — candidata bloqueada por condiciones de exportación (2026-11-28)
+
+IATE es una termbase multidisciplinar de la UE, con exportaciones CSV/TBX y 24 idiomas oficiales. La descarga requiere EU Login y remite a condiciones de uso específicas que no se han podido verificar públicamente. No se ha encontrado una licencia uniforme del termbase. Las entradas incluyen definiciones, contextos y referencias a legislación, normas y publicaciones de terceros; el aviso de reutilización de un folleto no se extiende al conjunto de datos.
+
+**Estado:** blocked_export_terms_and_entry_level_third_party_rights_unresolved; acquisition_enabled=false; training_authorized=false; 0 descargas, 0 staging y 0 bytes admitidos. No automatizar el exportador ni reutilizar sus contenidos hasta obtener condiciones y derechos por entrada/campo.
+
+Fuentes: [IATE](https://iate.europa.eu/en), [FAQ](https://iate.europa.eu/faq), [guía de descarga](https://iate.europa.eu/assets/brochure_search_by_collections_and_download.pdf), [registro de catálogo](https://data.europa.eu/data/datasets/iate?locale=en).
+
+## Reconciliación de preflights — runs 180 y 181 (2026-11-28)
+
+- Run [180](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46071076162), grupo 3/8, artifact [15232982518](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46071076162/artifacts/15232982518): ZIP 653 B, SHA-256 7655fc1abd5f4f437b0dbbc2297a703a225aa86af31b82b3d0ce9386f68b685b; JSON 871 B, SHA-256 2829acd2e3d3d88cd5d58aa573fff9cfc9c9067d45dc1035e09e1c190c488b26.
+- Run [181](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46125173946), grupo 5/8, artifact [15255428113](https://github.com/orbitalronin94/HERETIC-RONIN/actions/runs/46125173946/artifacts/15255428113): ZIP 653 B, SHA-256 ea15e4baf19f57b7673946c0fbcfe7b4ea85e644b72eb1cd506aff31e628541d; JSON 871 B, SHA-256 0a917a1e504cddc4373d3f5d0be3d3b74f24e47d71bc765236bbfcdfa9b658c7.
+- Los dos manifiestos confirman blocked_storage_gate, cero fuentes, cero filas y cero payload. El preflight terminó correctamente, pero omitió descarga y revisión porque falta HERETIC_STAGING_PASSPHRASE de al menos 32 caracteres.
+- Bytes remotos anunciados: no medidos; descargados/comprimidos/expandidos: 0; staging durable: 0; admitidos: **0**. Los ZIP/JSON solo son manifiestos.
+- G-0 global sigue bloqueado por inventario incompleto de validation/test/benchmark/holdout. Inventario histórico admitido: **260.971 documentos / 703.593.871 bytes (0,140719 % de 500 GB)**.
+
+No se ha entrenado ni modificado ningún modelo o checkpoint.
